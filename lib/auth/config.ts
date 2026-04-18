@@ -66,8 +66,10 @@ export const authConfig: NextAuthConfig = {
           ((user as Record<string, unknown>).subscriptionExpiry as string | null) ?? null
       }
 
-      // Session update trigger — allows client to refresh session data
-      if (trigger === 'update' && session) {
+      // Session update trigger — allows client to refresh session data.
+      // Always re-fetch from DB regardless of whether session data was passed,
+      // so `updateSession()` (no args) still picks up DB changes like emailVerified.
+      if (trigger === 'update') {
         // Re-fetch from DB for fresh data
         const [freshUser] = await getDb()
           .select()

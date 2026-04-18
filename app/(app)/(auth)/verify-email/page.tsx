@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
@@ -8,25 +8,38 @@ import Link from 'next/link'
 function VerifyEmailContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const { data: session, update: updateSession } = useSession()
+  const { data: session, status: sessionStatus, update: updateSession } = useSession()
   const token = searchParams.get('token')
+  const verifyAttempted = useRef(false)
 
   const [status, setStatus] = useState<'waiting' | 'loading' | 'success' | 'expired' | 'error'>(
     token ? 'loading' : 'waiting'
   )
   const [resendStatus, setResendStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
-  // Auto-verify if token is in URL (email link flow)
+  // Auto-verify when token is in URL (email link flow).
+  // We wait for sessionStatus to leave 'loading' so we know whether the
+  // user is logged in, avoiding a stale-closure null for `session`.
   useEffect(() => {
-    if (!token) return
+    if (!token || verifyAttempted.current) return
+    if (sessionStatus === 'loading') return // wait until session resolves
 
-    fetch(`/api/auth/verify-email?token=${token}`)
+    verifyAttempted.current = true
+
+    fetch(`/api/auth/verify-email?token=${encodeURIComponent(token)}`)
       .then((res) => res.json())
       .then(async (data) => {
         if (data.message === 'Email verified successfully') {
           setStatus('success')
-          await updateSession()
-          setTimeout(() => router.push('/feed'), 2500)
+
+          if (sessionStatus === 'authenticated') {
+            // User is logged in — refresh their JWT so proxy sees isEmailVerified: true
+            await updateSession()
+            router.push('/feed')
+          } else {
+            // User is not logged in — send to login with success banner
+            router.push('/login?verified=true')
+          }
         } else if (data.error === 'Token expired') {
           setStatus('expired')
         } else {
@@ -34,7 +47,7 @@ function VerifyEmailContent() {
         }
       })
       .catch(() => setStatus('error'))
-  }, [token, router, updateSession])
+  }, [token, sessionStatus]) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function handleResend() {
     const email = session?.user?.email
@@ -67,7 +80,7 @@ function VerifyEmailContent() {
         <h1 className="font-headline text-on-surface text-[32px] leading-tight font-bold tracking-tight">
           Email verified
         </h1>
-        <p className="text-on-surface-variant text-base">Redirecting you to your feed...</p>
+        <p className="text-on-surface-variant text-base">Redirecting&hellip;</p>
       </div>
     )
   }

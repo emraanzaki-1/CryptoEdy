@@ -7,10 +7,8 @@ import { sendVerificationEmail } from '@/lib/email/send'
 import { rateLimit } from '@/lib/auth/rate-limit'
 
 // GET: Token-based verification (email link flow)
+// No rate limiting — the 32-byte random token is unguessable.
 export async function GET(req: NextRequest) {
-  const blocked = rateLimit(req, { maxRequests: 10, windowSec: 60 })
-  if (blocked) return blocked
-
   try {
     const token = req.nextUrl.searchParams.get('token')
 
@@ -19,7 +17,11 @@ export async function GET(req: NextRequest) {
     }
 
     const [user] = await getDb()
-      .select()
+      .select({
+        id: users.id,
+        emailVerified: users.emailVerified,
+        verificationTokenExpiry: users.verificationTokenExpiry,
+      })
       .from(users)
       .where(eq(users.verificationToken, token))
       .limit(1)
@@ -28,16 +30,24 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid or expired token' }, { status: 400 })
     }
 
+    // Already verified — return success without mutating (idempotent).
+    // This handles React StrictMode double-mount: both requests find the
+    // same token because we never clear it here. Both return success.
+    if (user.emailVerified) {
+      return NextResponse.json({ message: 'Email verified successfully' })
+    }
+
     if (user.verificationTokenExpiry && user.verificationTokenExpiry < new Date()) {
       return NextResponse.json({ error: 'Token expired' }, { status: 400 })
     }
 
+    // Set verified but keep the token — duplicate requests with the same
+    // token will hit the emailVerified check above and succeed.
+    // The token expires naturally (24h) and is overwritten on resend.
     await getDb()
       .update(users)
       .set({
         emailVerified: true,
-        verificationToken: null,
-        verificationTokenExpiry: null,
         updatedAt: new Date(),
       })
       .where(eq(users.id, user.id))
