@@ -1,6 +1,11 @@
 import { Resend } from 'resend'
 
-export const FROM_EMAIL = 'CryptoEdy <noreply@cryptoedy.com>'
+// In development, use Resend's shared sender — no domain verification required.
+// In production, switch to the verified domain address.
+export const FROM_EMAIL =
+  process.env.NODE_ENV === 'development'
+    ? 'CryptoEdy <onboarding@resend.dev>'
+    : 'CryptoEdy <noreply@cryptoedy.com>'
 
 let _resend: Resend | null = null
 
