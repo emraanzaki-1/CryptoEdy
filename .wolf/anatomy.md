@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-18T18:30:01.134Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-18T20:22:06.568Z
 > Files: 206 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -142,7 +142,7 @@
 
 - `layout.tsx` — inter (~253 tok)
 - `not-found.tsx` — NotFound (~244 tok)
-- `page.tsx` — Home (~335 tok)
+- `page.tsx` — Home (~336 tok)
 
 ## app/(app)/(auth)/
 
@@ -328,19 +328,19 @@
 
 ## components/landing/
 
-- `faq-section.tsx` — FAQS (~554 tok)
-- `hero-section.tsx` — HeroSection (~667 tok)
-- `pricing-section.tsx` — FEATURES (~800 tok)
-- `research-preview-section.tsx` — ARTICLES (~1298 tok)
-- `track-record-section.tsx` — TRADES (~655 tok)
-- `value-props-section.tsx` — VALUE_PROPS — renders chart (~697 tok)
+- `faq-section.tsx` — FAQS (~555 tok)
+- `hero-section.tsx` — HeroSection (~602 tok)
+- `pricing-section.tsx` — FEATURES (~808 tok)
+- `research-preview-section.tsx` — ARTICLES (~1375 tok)
+- `track-record-section.tsx` — TRADES (~649 tok)
+- `value-props-section.tsx` — VALUE_PROPS (~755 tok)
 
 ## components/layouts/
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~580 tok)
 - `dashboard-shell.tsx` — DashboardShell — uses useState (~678 tok)
 - `footer.tsx` — Footer (~952 tok)
-- `guest-nav.tsx` — GuestNav (~470 tok)
+- `guest-nav.tsx` — NAV_LINKS (~1076 tok)
 - `settings-nav.tsx` — settingsGroups (~571 tok)
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2025 tok)
 - `top-app-bar.tsx` — useClickOutside — uses useEffect, useState (~3450 tok)

@@ -29,6 +29,9 @@
 - [2026-04-17] Do NOT use `<Button asChild>` with @base-ui/react — Radix-only prop. Use plain `<Link>` with button classes.
 - [2026-04-18] Do NOT suggest Vercel — this project does not use Vercel. Hosting platform is TBD.
 - [2026-04-19] Do NOT implement OTP code verification without a real backend endpoint — the verify-email page previously had a fake `handleVerify()` that `setTimeout`'d to success without any server call. Always verify against real API.
+- [2026-04-19] AbortController does NOT prevent server-side execution — it only cancels the client promise. For React StrictMode double-mount, make the SERVER idempotent instead. Don't clear one-time tokens on consumption; keep them so duplicate requests succeed. Token expires naturally or gets overwritten on reissue.
+- [2026-04-19] useSession() starts with `{ status: 'loading', data: null }` on full page loads. If a useEffect reads `session` from its closure before loading finishes, the value is null even for logged-in users. Always wait for `sessionStatus !== 'loading'` before branching on session data. Add `sessionStatus` to the useEffect dependency array.
+- [2026-04-19] NextAuth v5 JWT callback: `updateSession()` called without arguments passes `session` as `undefined` to the jwt callback. If the callback has `if (trigger === 'update' && session)`, the DB re-fetch is skipped. Use `if (trigger === 'update')` instead.
 
 ## Decision Log
 

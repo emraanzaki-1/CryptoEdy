@@ -624,6 +624,114 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-19T00:00:00.000Z"
+    },
+    {
+      "id": "bug-053",
+      "timestamp": "2026-04-19T00:00:00.000Z",
+      "error_message": "Email verification shows 'Invalid or missing verification token' even though token is valid and email gets verified",
+      "file": "app/(app)/api/auth/verify-email/route.ts",
+      "root_cause": "React StrictMode double-mounts in dev, causing two HTTP requests to the server. AbortController only cancels the client-side promise — the first server request still executes, consuming the token (setting it to null). The second request then can't find the token and returns 400, which the client displays as the final state.",
+      "fix": "Don't clear verificationToken on successful verification. Keep the token so both requests find the same user. The `emailVerified` check returns success for the second call without mutating again (true idempotency). Token expires naturally (24h) and gets overwritten on resend.",
+      "tags": ["auth", "react-strict-mode", "race-condition", "idempotency"],
+      "related_bugs": ["bug-050"],
+      "occurrences": 2,
+      "last_seen": "2026-04-19T00:00:00.000Z"
+    },
+    {
+      "id": "bug-054",
+      "timestamp": "2026-04-19T00:00:00.000Z",
+      "error_message": "verify-email page infinite loop: verify-email API 200 → session → login redirect → verify-email API 200 → repeating",
+      "file": "app/(app)/(auth)/verify-email/page.tsx",
+      "root_cause": "Two bugs working together: (1) useEffect fires before useSession() finishes loading, so `session` is null in the .then() closure even for logged-in users → always takes the else branch → redirects to /login?verified=true instead of calling updateSession(). (2) JWT callback had `if (trigger === 'update' && session)` — calling updateSession() without args passes session=undefined, so DB re-fetch was skipped and isEmailVerified stayed false in JWT. Result: proxy sees stale JWT with isEmailVerified:false → bounces /feed → /verify-email endlessly.",
+      "fix": "Wait for sessionStatus !== 'loading' before firing verify fetch (added sessionStatus to useEffect deps). Use sessionStatus === 'authenticated' instead of session truthiness for branching. Changed JWT callback to `if (trigger === 'update')` (removed `&& session`) so updateSession() without args still re-fetches from DB.",
+      "tags": ["auth", "stale-closure", "useSession", "jwt", "infinite-loop"],
+      "related_bugs": ["bug-053"],
+      "occurrences": 1,
+      "last_seen": "2026-04-19T00:00:00.000Z"
+    },
+    {
+      "id": "bug-055",
+      "timestamp": "2026-04-18T20:18:33.844Z",
+      "error_message": "Type error",
+      "file": "components/layouts/guest-nav.tsx",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": ["auto-detected", "type-fix", "tsx"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-18T20:18:33.844Z"
+    },
+    {
+      "id": "bug-056",
+      "timestamp": "2026-04-18T20:20:56.498Z",
+      "error_message": "CSS fix: group-hover",
+      "file": "components/landing/research-preview-section.tsx",
+      "root_cause": "group-hover: opacity-10\" /> → text-primary text-lg leading-tight font-bold transition-colors\">",
+      "fix": "Changed group-hover: opacity-10\" /> → text-primary text-lg leading-tight font-bold transition-colors\">",
+      "tags": ["auto-detected", "style-fix", "tsx"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-18T20:20:56.498Z"
+    },
+    {
+      "id": "bug-057",
+      "timestamp": "2026-04-18T20:21:07.348Z",
+      "error_message": "Incorrect value in code",
+      "file": "components/landing/track-record-section.tsx",
+      "root_cause": "Had \"text-secondary-container text-4xl font-black trac",
+      "fix": "Changed to \"text-secondary text-4xl font-black tracking-[-0.0",
+      "tags": ["auto-detected", "wrong-value", "tsx"],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-18T20:21:54.551Z"
+    },
+    {
+      "id": "bug-058",
+      "timestamp": "2026-04-18T20:21:22.295Z",
+      "error_message": "Incorrect value in code",
+      "file": "components/landing/pricing-section.tsx",
+      "root_cause": "Had \"mb-16 flex flex-col items-center px-4 py-16\"",
+      "fix": "Changed to \"bg-surface-container-low mb-16 flex flex-col item",
+      "tags": ["auto-detected", "wrong-value", "tsx"],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-18T20:22:00.510Z"
+    },
+    {
+      "id": "bug-059",
+      "timestamp": "2026-04-18T20:21:44.406Z",
+      "error_message": "Incorrect value in code",
+      "file": "components/landing/value-props-section.tsx",
+      "root_cause": "Had \"bg-surface-container-low @container mt-8 flex fle",
+      "fix": "Changed to \"bg-surface-container-low @container flex flex-col",
+      "tags": ["auto-detected", "wrong-value", "tsx"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-18T20:21:44.406Z"
+    },
+    {
+      "id": "bug-060",
+      "timestamp": "2026-04-18T20:21:49.634Z",
+      "error_message": "Incorrect value in code",
+      "file": "components/landing/research-preview-section.tsx",
+      "root_cause": "Had \"py-20\"",
+      "fix": "Changed to \"research\"",
+      "tags": ["auto-detected", "wrong-value", "tsx"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-18T20:21:49.634Z"
+    },
+    {
+      "id": "bug-061",
+      "timestamp": "2026-04-18T20:22:06.585Z",
+      "error_message": "Incorrect value in code",
+      "file": "components/landing/faq-section.tsx",
+      "root_cause": "Had \"bg-surface-container-low mb-16 rounded-xl px-4 py",
+      "fix": "Changed to \"bg-surface-container-low rounded-2xl px-6 py-16 m",
+      "tags": ["auto-detected", "wrong-value", "tsx"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-18T20:22:06.585Z"
     }
   ]
 }

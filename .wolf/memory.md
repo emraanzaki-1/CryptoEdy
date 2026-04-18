@@ -3,6 +3,16 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| Time       | Description                                                                 | File(s)                                         | Outcome                                            | ~Tokens |
+| ---------- | --------------------------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------- | ------- |
+| 2026-04-19 | Added mobile hamburger menu + Login link to GuestNav                        | components/layouts/guest-nav.tsx                | Mobile menu with nav links, Login, Join Pro        | ~800    |
+| 2026-04-19 | Improved Hero Section - removed @container wrapper, full-bleed, rounded-2xl | components/landing/hero-section.tsx             | Cleaner hero with better sizing                    | ~500    |
+| 2026-04-19 | Enhanced Value Props cards - hover lift, icon bg circles                    | components/landing/value-props-section.tsx      | Better visual hierarchy                            | ~200    |
+| 2026-04-19 | Refactored Research Preview to use Next.js Image + hover title color        | components/landing/research-preview-section.tsx | Optimized images, better hover states              | ~600    |
+| 2026-04-19 | Fixed Track Record gain color from neon to readable green                   | components/landing/track-record-section.tsx     | text-secondary instead of text-secondary-container | ~50     |
+| 2026-04-19 | Added surface-container-low bg to Pricing Section                           | components/landing/pricing-section.tsx          | Visual consistency with other sections             | ~50     |
+| 2026-04-19 | Unified section spacing via gap-16 on parent, rounded-2xl on all sections   | app/(app)/page.tsx + all landing sections       | Consistent rhythm, no footer gap                   | ~300    |
+
 | Time | Description                              | File(s)                                           | Outcome                                                               | ~Tokens |
 | ---- | ---------------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------- | ------- |
 | —    | Unified layout colors to single white bg | dashboard-shell.tsx, sidebar.tsx, top-app-bar.tsx | Removed tonal surface colors, rounded container, added subtle borders | ~200    |
@@ -295,3 +305,21 @@
 | 22:15 | Session end: 8 writes across 2 files (coming-soon.tsx, page.tsx) | 0 reads | ~665 tok |
 | 22:18 | Session end: 8 writes across 2 files (coming-soon.tsx, page.tsx) | 0 reads | ~665 tok |
 | 22:18 | Created app/(app)/(dashboard)/upgrade/page.tsx                   | —       | ~309     |
+
+## Session: 2026-04-18 01:42
+
+| Time  | Action                                                                                                                                                   | File(s)                                                   | Outcome    | ~Tokens |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ---------- | ------- |
+| 01:48 | Edited components/layouts/guest-nav.tsx                                                                                                                  | modified GuestNav()                                       | ~1076      |
+| 01:49 | Edited components/landing/hero-section.tsx                                                                                                               | modified HeroSection()                                    | ~602       |
+| 01:49 | Edited components/landing/value-props-section.tsx                                                                                                        | CSS: hover                                                | ~281       |
+| 01:50 | Edited components/landing/research-preview-section.tsx                                                                                                   | CSS: max-width                                            | ~1380      |
+| 01:51 | Edited components/landing/track-record-section.tsx                                                                                                       | 3→3 lines                                                 | ~39        |
+| 01:51 | Edited components/landing/pricing-section.tsx                                                                                                            | "mb-16 flex flex-col items" → "bg-surface-container-low " | ~34        |
+| 01:51 | Edited app/(app)/page.tsx                                                                                                                                | modified Home()                                           | ~178       |
+| 01:51 | Edited components/landing/value-props-section.tsx                                                                                                        | "bg-surface-container-low " → "bg-surface-container-low " | ~32        |
+| 01:51 | Edited components/landing/research-preview-section.tsx                                                                                                   | "py-20" → "research"                                      | ~8         |
+| 01:51 | Edited components/landing/track-record-section.tsx                                                                                                       | "bg-surface-container-low " → "bg-surface-container-low " | ~28        |
+| 01:52 | Edited components/landing/pricing-section.tsx                                                                                                            | "bg-surface-container-low " → "bg-surface-container-low " | ~33        |
+| 01:52 | Edited components/landing/faq-section.tsx                                                                                                                | "bg-surface-container-low " → "bg-surface-container-low " | ~24        |
+| 01:53 | Session end: 12 writes across 8 files (guest-nav.tsx, hero-section.tsx, value-props-section.tsx, research-preview-section.tsx, track-record-section.tsx) | 11 reads                                                  | ~17440 tok |
