@@ -588,6 +588,42 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-18T16:25:00.882Z"
+    },
+    {
+      "id": "bug-050",
+      "timestamp": "2026-04-19T00:00:00.000Z",
+      "error_message": "Ghost OTP verification — handleVerify() fakes success without any API call",
+      "file": "app/(app)/(auth)/verify-email/page.tsx",
+      "root_cause": "OTP verify button called setTimeout to set status='success' without hitting any backend endpoint. Users could fake-verify without actually verifying their email.",
+      "fix": "Removed OTP input/verify UI entirely. Page now shows email-link-only flow with a resend button. OTPInput component kept for future use.",
+      "tags": ["security", "auth", "fake-success"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-19T00:00:00.000Z"
+    },
+    {
+      "id": "bug-051",
+      "timestamp": "2026-04-19T00:00:00.000Z",
+      "error_message": "No rate limiting on auth API routes — register, forgot-password, reset-password, verify-email all unbounded",
+      "file": "lib/auth/rate-limit.ts",
+      "root_cause": "Auth endpoints had no request throttling, allowing brute-force and email spam attacks.",
+      "fix": "Created in-memory IP-based rate limiter at lib/auth/rate-limit.ts. Applied to all auth routes with appropriate limits per endpoint.",
+      "tags": ["security", "auth", "rate-limiting"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-19T00:00:00.000Z"
+    },
+    {
+      "id": "bug-052",
+      "timestamp": "2026-04-19T00:00:00.000Z",
+      "error_message": "Reset-password page accepts expired/invalid tokens — shows form before validating",
+      "file": "app/(app)/(auth)/reset-password/page.tsx",
+      "root_cause": "Page only checked for token presence (!token) but never validated it against the DB. User could fill out the form with an expired token and only learn it failed on submit.",
+      "fix": "Added GET handler to reset-password API for pre-validation. Page now calls GET /api/auth/reset-password?token= on mount. Shows skeleton while checking, error if invalid/expired, form only when valid.",
+      "tags": ["ux", "auth", "validation"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-19T00:00:00.000Z"
     }
   ]
 }

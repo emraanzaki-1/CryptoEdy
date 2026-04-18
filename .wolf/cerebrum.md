@@ -27,9 +27,18 @@
 - [2026-04-18] Next.js 16 uses `proxy.ts` NOT `middleware.ts` — middleware.ts is deprecated and renamed to proxy.ts.
 - [2026-04-17] Do NOT use `@apply border-border` in Tailwind v4 without registering `--color-border` in `@theme inline`.
 - [2026-04-17] Do NOT use `<Button asChild>` with @base-ui/react — Radix-only prop. Use plain `<Link>` with button classes.
+- [2026-04-18] Do NOT suggest Vercel — this project does not use Vercel. Hosting platform is TBD.
+- [2026-04-19] Do NOT implement OTP code verification without a real backend endpoint — the verify-email page previously had a fake `handleVerify()` that `setTimeout`'d to success without any server call. Always verify against real API.
 
 ## Decision Log
 
 - [2026-04-17] Chose shadcn/ui (base-nova) over other frameworks for familiarity + headless flexibility.
 - [2026-04-17] M3 tonal palette for surface hierarchy without borders.
 - [2026-04-18] Settings pages use reusable components (SettingsFormField, ToggleSwitch, ThemeCard, etc.) for consistency across 5 pages.
+- [2026-04-18] Form validation: use `react-hook-form` + `zod` + `@hookform/resolvers` directly. Do NOT use the shadcn `Form` component — it wraps Radix `Slot` which conflicts with `@base-ui/react`. Wire `{...register('field')}` directly onto native inputs or custom input components.
+  - Shared Zod schemas live in `lib/auth/schemas.ts` (loginSchema, registerSchema, forgotPasswordSchema, resetPasswordSchema).
+  - Pattern: RHF owns client-side validation; a separate `serverError` useState handles API-level errors.
+  - All 4 auth forms (login, register, forgot-password, reset-password) already migrated to this pattern.
+- [2026-04-19] Rate limiting: in-memory IP-based rate limiter at `lib/auth/rate-limit.ts`. Applied to all auth API routes. Limits: register 5/60s, forgot-password 5/300s, reset-password 5/300s, verify-email GET 10/60s, verify-email POST (resend) 3/300s.
+- [2026-04-19] Email verification uses link-only flow (no OTP). OTPInput component kept in `components/auth/otp-input.tsx` for future use but not wired to verify-email page.
+- [2026-04-19] Reset-password page pre-validates token via GET `/api/auth/reset-password?token=` on mount. Shows skeleton while checking, error state if invalid/expired, form only when valid.

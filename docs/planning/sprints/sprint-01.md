@@ -122,7 +122,7 @@ RESEND_API_KEY=                # From resend.com dashboard
 - **PR check:** Runs `tsc --noEmit` + `eslint` + `prettier --check`. Must pass before merge.
 - **Main deploy:** Runs full `next build`. Fails the deploy if build breaks.
 - **Branch strategy:** `main` = staging auto-deploy. `production` branch = production deploy. Feature branches merge into `main` via PR only.
-- Vercel project must have separate environments: Preview (per PR), Staging (main), Production (production branch).
+- Deploy target TBD — not Vercel. CI/CD pipeline connects to whichever hosting platform is chosen.
 
 ### Commit Convention Fine Print
 
@@ -145,62 +145,62 @@ Husky commit-msg: runs commitlint.
 
 ### Repo & Tooling
 
-- [ ] `npx create-next-app@latest` — TypeScript, App Router, no `src/` dir, `@` alias
-- [ ] Set `strict: true` in `tsconfig.json`
-- [ ] Configure path aliases (`@/components`, `@/lib`, `@/types`, `@/scripts`)
-- [ ] Install Tailwind CSS v3 + `tailwindcss-animate` plugin
-- [ ] Run `npx shadcn@latest init` — custom theme, CSS variables mode
-- [ ] Define all design tokens in `tailwind.config.ts` under `theme.extend`
-- [ ] Set Shadcn CSS variables in `app/globals.css` to match spec tokens
-- [ ] Install Inter via `next/font/google` in root layout
-- [ ] Install and configure ESLint with `eslint-config-next` + `@typescript-eslint`
-- [ ] Install Prettier + `prettier-plugin-tailwindcss`
-- [ ] Create `.prettierrc` and `.eslintrc.json`
-- [ ] Install Husky: `npx husky init`
-- [ ] Install lint-staged — configure in `package.json`
-- [ ] Install `@commitlint/cli` + `@commitlint/config-conventional`
-- [ ] Add `commitlint.config.ts`
-- [ ] Install Shadcn components needed immediately: `Button`, `Input`, `Form`, `Label`, `Separator`
+- [x] `npx create-next-app@latest` — TypeScript, App Router, no `src/` dir, `@` alias
+- [x] Set `strict: true` in `tsconfig.json`
+- [x] Configure path aliases (`@/components`, `@/lib`, `@/types`, `@/scripts`)
+- [x] Install Tailwind CSS v3 + `tailwindcss-animate` plugin _(shipped as Tailwind v4 + `tw-animate-css`; same capability, CSS-first config)_
+- [x] Run `npx shadcn@latest init` — custom theme, CSS variables mode _(shadcn v4.2.0, base-nova style)_
+- [x] Define all design tokens in `tailwind.config.ts` under `theme.extend` _(Tailwind v4: tokens live in `globals.css` via `@theme inline` — no `tailwind.config.ts`)_
+- [x] Set Shadcn CSS variables in `app/globals.css` to match spec tokens _(M3 tonal palette wired to `--m3-primary: #0052ff` etc.)_
+- [x] Install Inter via `next/font/google` in root layout
+- [x] Install and configure ESLint with `eslint-config-next` + `@typescript-eslint`
+- [x] Install Prettier + `prettier-plugin-tailwindcss`
+- [x] Create `.prettierrc` and `.eslintrc.json` _(`.prettierrc` ✓; ESLint uses flat config `eslint.config.mjs` — ESLint v9 equivalent of `.eslintrc.json`)_
+- [x] Install Husky: `npx husky init`
+- [x] Install lint-staged — configure in `package.json`
+- [x] Install `@commitlint/cli` + `@commitlint/config-conventional`
+- [x] Add `commitlint.config.ts`
+- [x] Install Shadcn components needed immediately: `Button`, `Input`, `Label`, `Separator` _(Form component deferred — using `react-hook-form` + `zod` directly; see decision below)_
 
 ### Environment & Secrets
 
-- [ ] Create `.env.local` with all keys (use placeholder values locally)
-- [ ] Create `.env.example` with all keys + comments explaining each
-- [ ] Confirm `.env.local` is in `.gitignore`
-- [ ] Create `/lib/config/env.ts` — validates all required env vars on startup, throws with a descriptive message if any are missing
+- [x] Create `.env.local` with all keys (use placeholder values locally)
+- [x] Create `.env.example` with all keys + comments explaining each
+- [x] Confirm `.env.local` is in `.gitignore`
+- [x] Create `/lib/config/env.ts` — validates all required env vars on startup, throws with a descriptive message if any are missing
 
 ### CI/CD
 
-- [ ] Create `.github/workflows/ci.yml` — runs on PR: `tsc --noEmit`, `eslint`, `prettier --check`
-- [ ] Create `.github/workflows/build.yml` — runs on push to `main`: `next build`
-- [ ] Connect repo to Vercel — enable Preview Deployments on PRs
-- [ ] Set `main` → Staging environment in Vercel
-- [ ] Create `production` branch → connect to Production environment in Vercel
-- [ ] Add all env vars to Vercel environments (staging + production)
+- [x] Create `.github/workflows/ci.yml` — runs on PR: `tsc --noEmit`, `eslint`, `prettier --check`
+- [x] Create `.github/workflows/build.yml` — runs on push to `main`: `next build`
+- [ ] Choose hosting platform and connect repo — enable preview deployments on PRs
+- [ ] Set `main` → Staging environment
+- [ ] Create `production` branch → connect to Production environment
+- [ ] Add all env vars to hosting environments (staging + production)
 
 ### Baseline Pages
 
-- [ ] `app/layout.tsx` — root layout with font, `<html lang="en">`, metadata baseline
-- [ ] `app/page.tsx` — placeholder homepage ("Coming soon" or blank with brand colour)
-- [ ] `app/not-found.tsx` — 404 page with brand styling
-- [ ] Confirm `npm run dev` starts without errors
-- [ ] Confirm `npm run build` completes without errors
+- [x] `app/layout.tsx` — root layout with font, `<html lang="en">`, metadata baseline
+- [x] `app/page.tsx` — homepage _(full landing page built, not placeholder)_
+- [x] `app/not-found.tsx` — 404 page with brand styling
+- [x] Confirm `npm run dev` starts without errors
+- [x] Confirm `npm run build` completes without errors
 - [ ] Confirm CI passes on a test PR
 
 ---
 
 ## Acceptance Criteria / Definition of Done
 
-- [ ] `npm run dev` starts with zero errors or warnings
-- [ ] `npm run build` produces a clean production build
-- [ ] `tsc --noEmit` passes with `strict: true`
-- [ ] ESLint passes with zero errors
-- [ ] A commit with an invalid message (e.g. "stuff") is rejected by Husky
+- [x] `npm run dev` starts with zero errors or warnings
+- [x] `npm run build` produces a clean production build
+- [x] `tsc --noEmit` passes with `strict: true`
+- [x] ESLint passes with zero errors _(and zero warnings)_
+- [x] A commit with an invalid message (e.g. "stuff") is rejected by Husky
 - [ ] A PR to `main` triggers the CI workflow and shows pass/fail
-- [ ] Vercel preview URL is generated for a test PR
-- [ ] Design tokens (`text-primary`, `bg-accent`, `text-secondary`) render correctly in a test component
-- [ ] `.env.local` is not committed to git
-- [ ] `.env.example` is committed and documents every key
+- [ ] Preview URL is generated for a test PR
+- [x] Design tokens (`text-primary`, `bg-accent`, `text-secondary`) render correctly in a test component
+- [x] `.env.local` is not committed to git
+- [x] `.env.example` is committed and documents every key
 
 ---
 
@@ -213,3 +213,21 @@ None. This is Sprint 1.
 ## Hands-off to Sprint 2
 
 Sprint 2 will install Payload CMS, Drizzle ORM, and build authentication on top of this scaffold. The folder structure, aliases, and env config established here must not change in Sprint 2 — extend, don't reorganise.
+
+---
+
+## Decisions Made During Sprint
+
+### Form Validation: `react-hook-form` + `zod` (not shadcn `Form`)
+
+**Decision:** Skip the shadcn `Form` component. Use `react-hook-form` + `zod` + `@hookform/resolvers` directly.
+
+**Rationale:** The shadcn `Form` component wraps Radix `Slot` internally, which conflicts with the project's `@base-ui/react` setup. Wiring `react-hook-form` directly to the existing `Input`, `Label`, and custom input elements via `{...register(...)}` gives the same validation/a11y benefit without compatibility issues.
+
+**Implementation:**
+
+- Shared Zod schemas in `lib/auth/schemas.ts` (`loginSchema`, `registerSchema`, `forgotPasswordSchema`, `resetPasswordSchema`)
+- All 4 auth forms (login, register, forgot-password, reset-password) migrated from `useState` + manual validation to `useForm` + `zodResolver`
+- Inline field error messages via `errors.<field>.message`
+- `isSubmitting` from RHF replaces manual `loading` state
+- Server-side errors (API failures) kept as `serverError` state alongside RHF — RHF handles client validation, `serverError` handles API responses

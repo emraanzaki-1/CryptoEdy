@@ -1,11 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-18T16:48:53.621Z
-> Files: 200 tracked | Anatomy hits: 0 | Misses: 0
-
-## ../../../.claude/plans/
-
-- `sharded-mixing-waffle.md` — HTML-to-Next.js Conversion Plan (~2060 tok)
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-18T18:30:01.134Z
+> Files: 206 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -19,24 +15,30 @@
 - `drizzle.config.ts` — Drizzle ORM configuration (~79 tok)
 - `eslint.config.mjs` — ESLint flat configuration (~124 tok)
 - `next-env.d.ts` — / <reference types="next" /> (~72 tok)
-- `next.config.ts` — Next.js configuration (~50 tok)
-- `package-lock.json` — npm lock file (~166205 tok)
-- `package.json` — Node.js package manifest (~589 tok)
-- `payload.config.ts` — Declares filename (~724 tok)
+- `next.config.ts` — Next.js configuration (~89 tok)
+- `package-lock.json` — npm lock file (~169519 tok)
+- `package.json` — Node.js package manifest (~637 tok)
+- `payload.config.ts` — Declares filename (~717 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
-- `proxy.ts` — Routes that require an active Pro (or higher) subscription (~895 tok)
+- `proxy.ts` — Routes that require an active Pro (or higher) subscription (~860 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~193839 tok)
+- `tsconfig.tsbuildinfo` (~210562 tok)
 
 ## .claude/
 
-- `settings.json` (~441 tok)
-- `settings.local.json` — Declares p (~998 tok)
+- `settings.json` (~442 tok)
+- `settings.local.json` — Declares p (~1005 tok)
 
 ## .claude/rules/
 
 - `openwolf.md` (~313 tok)
+
+## .code-review-graph/
+
+- `.gitignore` — Git ignore rules (~38 tok)
+- `graph.db-shm` (~8739 tok)
+- `graph.db-wal` (~0 tok)
 
 ## .github/workflows/
 
@@ -74,7 +76,7 @@
 
 ## HTML/apex_research/
 
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1355 tok)
 
 ## HTML/appearance_settings_verbatim_sync/
 
@@ -91,10 +93,6 @@
 ## HTML/billing_verbatim_sync/
 
 - `code.html` — Billing Settings - CryptoEdy (~4611 tok)
-
-## HTML/dashboard_feed_authenticated_9_card_grid_1/
-
-- `code.html` — CryptoEdy - Dashboard (~7131 tok)
 
 ## HTML/dashboard_feed_authenticated_9_card_grid_2/
 
@@ -138,11 +136,11 @@
 
 ## app/
 
-- `globals.css` — Styles: 7 rules, 235 vars (~2962 tok)
+- `globals.css` — Styles: 7 rules, 235 vars, 1 layers (~2962 tok)
 
 ## app/(app)/
 
-- `layout.tsx` — inter (~247 tok)
+- `layout.tsx` — inter (~253 tok)
 - `not-found.tsx` — NotFound (~244 tok)
 - `page.tsx` — Home (~335 tok)
 
@@ -152,45 +150,45 @@
 
 ## app/(app)/(auth)/forgot-password/
 
-- `page.tsx` — ForgotPasswordPage — renders form (~974 tok)
+- `page.tsx` — ForgotPasswordPage — renders form — uses useState (~1082 tok)
 
 ## app/(app)/(auth)/login/
 
-- `page.tsx` — LoginForm — renders form (~1440 tok)
+- `page.tsx` — LoginForm — renders form — uses useRouter, useSearchParams, useState (~1522 tok)
 
 ## app/(app)/(auth)/register/
 
-- `page.tsx` — RegisterPage — renders form (~1605 tok)
+- `page.tsx` — RegisterPage — renders form — uses useRouter, useState (~1627 tok)
 
 ## app/(app)/(auth)/reset-password/
 
-- `page.tsx` — ResetPasswordForm — renders form (~1492 tok)
+- `page.tsx` — ResetPasswordForm — renders form — uses useSearchParams, useRouter, useState (~1519 tok)
 
 ## app/(app)/(auth)/verify-email/
 
-- `page.tsx` — VerifyEmailContent (~1818 tok)
+- `page.tsx` — VerifyEmailContent — uses useSearchParams, useRouter, useState, useEffect (~1800 tok)
 
 ## app/(app)/(dashboard)/
 
-- `layout.tsx` — DashboardLayout (~197 tok)
+- `layout.tsx` — DashboardLayout (~194 tok)
 
 ## app/(app)/(dashboard)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — sleep (~1469 tok)
+- `page.tsx` — sleep (~1496 tok)
 
 ## app/(app)/(dashboard)/community/
 
-- `page.tsx` — CommunityPage (~68 tok)
+- `page.tsx` — CommunityPage (~75 tok)
 
 ## app/(app)/(dashboard)/feed/
 
 - `loading.tsx` — FeedLoading (~235 tok)
-- `page.tsx` — FILTERS (~2897 tok)
+- `page.tsx` — FILTERS — renders chart — uses useState, useEffect (~2896 tok)
 
 ## app/(app)/(dashboard)/saved/
 
-- `page.tsx` — SavedPage (~63 tok)
+- `page.tsx` — SavedPage (~70 tok)
 
 ## app/(app)/(dashboard)/settings/
 
@@ -200,7 +198,7 @@
 
 ## app/(app)/(dashboard)/settings/appearance/
 
-- `page.tsx` — THEMES (~1717 tok)
+- `page.tsx` — THEMES (~1769 tok)
 
 ## app/(app)/(dashboard)/settings/billing/
 
@@ -208,7 +206,7 @@
 
 ## app/(app)/(dashboard)/settings/notifications/
 
-- `page.tsx` — NotificationItem (~1300 tok)
+- `page.tsx` — NotificationItem — uses useState (~1299 tok)
 
 ## app/(app)/(dashboard)/settings/plans/
 
@@ -216,31 +214,31 @@
 
 ## app/(app)/(dashboard)/settings/profile/
 
-- `page.tsx` — ProfileSettingsPage (~1714 tok)
+- `page.tsx` — ProfileSettingsPage — uses useState (~1726 tok)
 
 ## app/(app)/(dashboard)/tools/
 
-- `page.tsx` — ToolsPage (~61 tok)
+- `page.tsx` — ToolsPage (~68 tok)
 
 ## app/(app)/(dashboard)/tools/airdrops/
 
-- `page.tsx` — AirdropsPage (~61 tok)
+- `page.tsx` — AirdropsPage (~68 tok)
 
 ## app/(app)/(dashboard)/tools/market-direction/
 
-- `page.tsx` — MarketDirectionPage (~68 tok)
+- `page.tsx` — MarketDirectionPage (~75 tok)
 
 ## app/(app)/(dashboard)/tools/picks/
 
-- `page.tsx` — PicksPage (~63 tok)
+- `page.tsx` — PicksPage (~70 tok)
 
 ## app/(app)/(dashboard)/tools/tracker/
 
-- `page.tsx` — TrackerPage (~68 tok)
+- `page.tsx` — TrackerPage (~76 tok)
 
 ## app/(app)/(dashboard)/upgrade/
 
-- `page.tsx` — UpgradePage (~309 tok)
+- `page.tsx` — UpgradePage (~305 tok)
 
 ## app/(app)/api/auth/[...nextauth]/
 
@@ -252,19 +250,15 @@
 
 ## app/(app)/api/auth/register/
 
-- `route.ts` — Next.js API route: POST (~565 tok)
+- `route.ts` — Next.js API route: POST (~632 tok)
 
 ## app/(app)/api/auth/reset-password/
 
-- `route.ts` — Next.js API route: POST (~423 tok)
+- `route.ts` — Next.js API route: POST (~416 tok)
 
 ## app/(app)/api/auth/verify-email/
 
-- `route.ts` — GET: Token-based verification (email link flow) (~786 tok)
-
-## app/(app)/upgrade/
-
-- `page.tsx` — UpgradePage (~297 tok)
+- `route.ts` — GET: Token-based verification (email link flow) (~794 tok)
 
 ## app/(payload)/
 
@@ -274,7 +268,7 @@
 
 ## app/(payload)/admin/
 
-- `importMap.js` — Exports importMap (~2074 tok)
+- `importMap.js` — Exports importMap (~2104 tok)
 
 ## app/(payload)/admin/[[...segments]]/
 
@@ -287,9 +281,9 @@
 ## collections/
 
 - `Authors.ts` — Payload's CMS editor accounts — separate from NextAuth app users. (~578 tok)
-- `Categories.ts` — Exports Categories (~429 tok)
+- `Categories.ts` — Exports Categories (~430 tok)
 - `Media.ts` — Exports Media (~285 tok)
-- `Posts.ts` — Exports Posts (~2594 tok)
+- `Posts.ts` — Exports Posts (~2592 tok)
 - `Tags.ts` — Exports Tags (~264 tok)
 
 ## collections/blocks/
@@ -299,21 +293,25 @@
 - `PerformanceTableBlock.ts` — Track record table showing historical pick performance. (~606 tok)
 - `PriceTargetBlock.ts` — Structured token pick summary card embedded in a research article. (~578 tok)
 
+## components/
+
+- `.DS_Store` (~1640 tok)
+
 ## components/admin/
 
-- `AdminDashboard.tsx` — ─── Types ──────────────────────────────────────────────────────────────────── (~3200 tok)
-- `DashboardBanner.tsx` — CryptoEdy dashboard welcome banner. (~548 tok)
-- `Icon.tsx` — CryptoEdy admin icon — shown in collapsed sidebar and browser tab favicon area. (~217 tok)
+- `AdminDashboard.tsx` — ─── Types ──────────────────────────────────────────────────────────────────── (~3452 tok)
+- `DashboardBanner.tsx` — CryptoEdy dashboard welcome banner. (~566 tok)
+- `Icon.tsx` — CryptoEdy admin icon — shown in collapsed sidebar and browser tab favicon area. (~199 tok)
 - `Logo.tsx` — CryptoEdy admin sidebar logo. (~405 tok)
 
 ## components/article/
 
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
-- `paywall-gate.tsx` — SUMMARY_POINTS (~1562 tok)
+- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1572 tok)
 
 ## components/auth/
 
-- `otp-input.tsx` — OTPInput (~744 tok)
+- `otp-input.tsx` — OTPInput — uses useState, useCallback (~744 tok)
 
 ## components/common/
 
@@ -323,9 +321,9 @@
 
 ## components/feed/
 
-- `article-card-list.tsx` — CategoryPill (~838 tok)
+- `article-card-list.tsx` — CategoryPill (~856 tok)
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~906 tok)
-- `article-card.tsx` — CategoryPill (~1104 tok)
+- `article-card.tsx` — CategoryPill (~1152 tok)
 - `view-toggle.tsx` — ViewToggle (~337 tok)
 
 ## components/landing/
@@ -335,17 +333,17 @@
 - `pricing-section.tsx` — FEATURES (~800 tok)
 - `research-preview-section.tsx` — ARTICLES (~1298 tok)
 - `track-record-section.tsx` — TRADES (~655 tok)
-- `value-props-section.tsx` — VALUE_PROPS (~697 tok)
+- `value-props-section.tsx` — VALUE_PROPS — renders chart (~697 tok)
 
 ## components/layouts/
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~580 tok)
-- `dashboard-shell.tsx` — DashboardShell (~604 tok)
+- `dashboard-shell.tsx` — DashboardShell — uses useState (~678 tok)
 - `footer.tsx` — Footer (~952 tok)
 - `guest-nav.tsx` — GuestNav (~470 tok)
 - `settings-nav.tsx` — settingsGroups (~571 tok)
-- `sidebar.tsx` — TOOLS_ITEMS (~2038 tok)
-- `top-app-bar.tsx` — useClickOutside (~3379 tok)
+- `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2025 tok)
+- `top-app-bar.tsx` — useClickOutside — uses useEffect, useState (~3450 tok)
 
 ## components/providers/
 
@@ -354,24 +352,25 @@
 
 ## components/settings/
 
-- `avatar-upload.tsx` — AvatarUpload (~424 tok)
-- `billing-history-table.tsx` — BillingHistoryTable — renders table (~644 tok)
+- `avatar-upload.tsx` — AvatarUpload (~439 tok)
+- `billing-history-table.tsx` — BillingHistoryTable — renders table (~632 tok)
 - `danger-zone.tsx` — DangerZone (~162 tok)
 - `settings-form-field.tsx` — SettingsFormField (~533 tok)
-- `theme-card.tsx` — ThemeCard (~998 tok)
+- `theme-card.tsx` — ThemeCard (~1002 tok)
 
 ## components/ui/
 
-- `alert.tsx` — alertVariants (~589 tok)
-- `badge.tsx` — badgeVariants (~650 tok)
+- `alert.tsx` — alertVariants (~582 tok)
+- `badge.tsx` — badgeVariants (~639 tok)
 - `breadcrumb.tsx` — Breadcrumb (~273 tok)
 - `button.tsx` — buttonVariants (~1043 tok)
-- `card.tsx` — Card (~755 tok)
-- `checkbox.tsx` — Checkbox (~388 tok)
+- `card.tsx` — Card (~744 tok)
+- `checkbox.tsx` — Checkbox (~386 tok)
 - `filter-chip.tsx` — FilterChip (~168 tok)
 - `input.tsx` — Input (~298 tok)
 - `label.tsx` — Label (~148 tok)
-- `separator.tsx` — Separator (~156 tok)
+- `separator.tsx` — Separator (~154 tok)
+- `skeleton.tsx` — Skeleton (~79 tok)
 - `toggle-switch.tsx` — ToggleSwitch (~244 tok)
 
 ## docs/
@@ -385,8 +384,8 @@
 
 ## docs/planning/sprints/
 
-- `sprint-01.md` — Sprint 1 — Project Scaffolding (~2498 tok)
-- `sprint-02.md` — Sprint 2 — Data Layer & Auth Foundation (~3405 tok)
+- `sprint-01.md` — Sprint 1 — Project Scaffolding (~2883 tok)
+- `sprint-02.md` — Sprint 2 — Data Layer & Auth Foundation (~3462 tok)
 - `sprint-03.md` — Sprint 3 — CMS Collections & Content Model (~2888 tok)
 - `sprint-04.md` — Sprint 4 — Home Feed & Article Page (~4096 tok)
 - `sprint-05.md` — Sprint 5 — Wallet Connection & Payment Flow (~3519 tok)
@@ -413,7 +412,7 @@
 ## drizzle/meta/
 
 - `_journal.json` (~61 tok)
-- `0000_snapshot.json` (~2754 tok)
+- `0000_snapshot.json` (~2660 tok)
 
 ## lib/
 
@@ -421,9 +420,10 @@
 
 ## lib/auth/
 
-- `config.ts` — Exports authConfig (~1081 tok)
+- `config.ts` — Exports authConfig (~1065 tok)
 - `index.ts` (~42 tok)
 - `referral.ts` — Generates a unique 12-character alphanumeric referral code (~116 tok)
+- `schemas.ts` — Zod schemas: loginSchema, registerSchema, forgotPasswordSchema (~374 tok)
 - `withRole.ts` — Checks if a user's effective role meets the required minimum role. (~624 tok)
 
 ## lib/config/
@@ -436,18 +436,24 @@
 
 ## lib/db/
 
-- `index.ts` — Use this in all server-side code (API routes, Server Components, middleware) (~242 tok)
+- `index.ts` — Use this in all server-side code (API routes, Server Components, middleware) (~231 tok)
 
 ## lib/db/schema/
 
 - `index.ts` (~15 tok)
 - `sessions.ts` — NextAuth v5 Drizzle adapter schema (~443 tok)
-- `users.ts` — Exports roleEnum, users, User, NewUser (~451 tok)
+- `users.ts` — Exports roleEnum, users, User, NewUser (~456 tok)
 
 ## lib/email/
 
-- `index.ts` — Exports FROM_EMAIL, getResend (~115 tok)
-- `send.ts` — Exports sendVerificationEmail, sendPasswordResetEmail (~532 tok)
+- `index.ts` — In development, use Resend's shared sender — no domain verification required. (~205 tok)
+- `send.ts` — In development, redirect all outbound email to Resend's safe test addresses. (~452 tok)
+
+## lib/email/templates/
+
+- `layout.ts` — Brand tokens — single source of truth for all email templates (~950 tok)
+- `reset-password.ts` — Exports resetPasswordTemplate (~241 tok)
+- `verify-email.ts` — Exports verifyEmailTemplate (~243 tok)
 
 ## lib/lexical/
 
@@ -459,12 +465,12 @@
 
 ## scripts/
 
-- `seed.ts` — CryptoEdy seed script — Sprint 3 (~8154 tok)
+- `seed.ts` — CryptoEdy seed script — Sprint 3 (~8279 tok)
 
 ## styles/
 
 - `admin-makeup.css` — Styles: 85 rules, 17 vars, 1 layers (~7504 tok)
-- `admin.css` — CryptoEdy Admin Skin (~1640 tok)
+- `admin.css` — CryptoEdy Admin Skin (~1596 tok)
 
 ## types/
 
