@@ -1,0 +1,35 @@
+# Cerebrum
+
+> OpenWolf's learning memory. Updated automatically as the AI learns from interactions.
+> Do not edit manually unless correcting an error.
+> Last updated: 2026-04-17
+
+## User Preferences
+
+<!-- How the user likes things done. Code style, tools, patterns, communication. -->
+
+## Key Learnings
+
+- **Project:** cryptoedy
+- **Description:** This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+- **Tailwind v4:** CSS-first config via `@theme inline` in globals.css. No `tailwind.config.js`. Color tokens registered as `--color-*`.
+- **shadcn/ui v4.2.0:** Uses `base-nova` style with `@base-ui/react` (headless). NOT Radix — no `asChild` prop on Button.
+- **M3 Tonal Palette:** 35+ color tokens mapped to Tailwind v4 via `@theme inline`. Shadcn bridge maps `--background`, `--foreground`, etc. to M3 equivalents.
+- **Design System:** No 1px borders (use tonal layering), ghost borders at 15% opacity max, gradient CTAs, glass navigation, no pure black, Inter font with -0.04em tracking.
+- **Icons:** Lucide React replaces Material Symbols from HTML templates.
+- **Route groups:** `(app)` for main, `(auth)` for auth, `(dashboard)` for protected, `(payload)` for CMS.
+
+## Do-Not-Repeat
+
+<!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->
+
+- [2026-04-18] Registration API expected firstName/lastName but form sends username. Always check form payload matches API destructuring.
+- [2026-04-18] Next.js 16 uses `proxy.ts` NOT `middleware.ts` — middleware.ts is deprecated and renamed to proxy.ts.
+- [2026-04-17] Do NOT use `@apply border-border` in Tailwind v4 without registering `--color-border` in `@theme inline`.
+- [2026-04-17] Do NOT use `<Button asChild>` with @base-ui/react — Radix-only prop. Use plain `<Link>` with button classes.
+
+## Decision Log
+
+- [2026-04-17] Chose shadcn/ui (base-nova) over other frameworks for familiarity + headless flexibility.
+- [2026-04-17] M3 tonal palette for surface hierarchy without borders.
+- [2026-04-18] Settings pages use reusable components (SettingsFormField, ToggleSwitch, ThemeCard, etc.) for consistency across 5 pages.

@@ -1,0 +1,196 @@
+'use client'
+
+import { useState, useRef } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import {
+  Home,
+  Users,
+  Wrench,
+  Bookmark,
+  Settings,
+  ChevronDown,
+  BarChart2,
+  TrendingUp,
+  Layers,
+  Gift,
+} from 'lucide-react'
+import { cn } from '@/lib/utils'
+
+const TOOLS_ITEMS = [
+  { href: '/tools/market-direction', label: 'Market Direction', icon: BarChart2 },
+  { href: '/tools/picks', label: 'Assets & Picks', icon: TrendingUp },
+  { href: '/tools/tracker', label: 'Portfolio Tracker', icon: Layers },
+  { href: '/tools/airdrops', label: 'Airdrops', icon: Gift },
+]
+
+const TOP_NAV = [
+  { href: '/feed', label: 'Home', icon: Home },
+  { href: '/community', label: 'Community', icon: Users },
+  { href: '/saved', label: 'Saved', icon: Bookmark },
+]
+
+interface SidebarProps {
+  collapsed: boolean
+}
+
+/* ─── Hover slide-out panel for collapsed Tools ─────────────────────────── */
+function ToolsSlideOut({ visible }: { visible: boolean }) {
+  return (
+    <div
+      className={cn(
+        'border-outline-variant/15 bg-surface-container-lowest absolute top-0 left-full z-[100] ml-1 min-w-[180px] overflow-hidden rounded-xl border shadow-lg transition-all duration-150',
+        visible
+          ? 'pointer-events-auto translate-x-0 opacity-100'
+          : 'pointer-events-none -translate-x-1 opacity-0'
+      )}
+    >
+      <p className="border-outline-variant/10 text-on-surface-variant border-b px-4 py-2.5 text-xs font-bold tracking-wider uppercase">
+        Tools
+      </p>
+      {TOOLS_ITEMS.map((item) => (
+        <Link
+          key={item.href}
+          href={item.href}
+          className="text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface flex items-center gap-3 px-4 py-2.5 text-sm transition-colors"
+        >
+          <item.icon className="size-4 shrink-0" />
+          {item.label}
+        </Link>
+      ))}
+    </div>
+  )
+}
+
+export function Sidebar({ collapsed }: SidebarProps) {
+  const pathname = usePathname()
+  const [toolsOpen, setToolsOpen] = useState(false)
+  const [toolsHover, setToolsHover] = useState(false)
+  const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const isToolsActive = pathname.startsWith('/tools')
+
+  function handleToolsMouseEnter() {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current)
+    setToolsHover(true)
+  }
+
+  function handleToolsMouseLeave() {
+    hoverTimeout.current = setTimeout(() => setToolsHover(false), 150)
+  }
+
+  return (
+    <nav
+      className={cn(
+        'bg-surface flex flex-shrink-0 flex-col transition-all duration-300',
+        collapsed ? 'w-20 overflow-visible' : 'w-64 overflow-y-auto'
+      )}
+    >
+      <div className="flex flex-col gap-1 p-4 pt-8">
+        {/* Regular nav items */}
+        {TOP_NAV.map((item) => {
+          const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              title={collapsed ? item.label : undefined}
+              className={cn(
+                'flex items-center gap-3 rounded-lg px-3 py-3 transition-colors',
+                isActive
+                  ? 'bg-surface-container-lowest text-primary ring-outline-variant/15 shadow-sm ring-1'
+                  : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
+              )}
+            >
+              <item.icon className="size-5 shrink-0" />
+              {!collapsed && (
+                <span className="text-sm font-medium whitespace-nowrap">{item.label}</span>
+              )}
+            </Link>
+          )
+        })}
+
+        {/* Tools — expandable (expanded) or hover slide-out (collapsed) */}
+        {collapsed ? (
+          <div
+            className="relative"
+            onMouseEnter={handleToolsMouseEnter}
+            onMouseLeave={handleToolsMouseLeave}
+          >
+            <button
+              title="Tools"
+              className={cn(
+                'flex w-full items-center justify-center rounded-lg px-3 py-3 transition-colors',
+                isToolsActive
+                  ? 'bg-surface-container-lowest text-primary ring-outline-variant/15 shadow-sm ring-1'
+                  : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
+              )}
+            >
+              <Wrench className="size-5 shrink-0" />
+            </button>
+            <ToolsSlideOut visible={toolsHover} />
+          </div>
+        ) : (
+          <div>
+            <button
+              onClick={() => setToolsOpen((v) => !v)}
+              className={cn(
+                'flex w-full items-center gap-3 rounded-lg px-3 py-3 transition-colors',
+                isToolsActive
+                  ? 'bg-surface-container-lowest text-primary ring-outline-variant/15 shadow-sm ring-1'
+                  : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
+              )}
+            >
+              <Wrench className="size-5 shrink-0" />
+              <span className="flex-1 text-left text-sm font-medium whitespace-nowrap">Tools</span>
+              <ChevronDown
+                className={cn('size-4 shrink-0 transition-transform', toolsOpen && 'rotate-180')}
+              />
+            </button>
+
+            {/* Inline children */}
+            {toolsOpen && (
+              <div className="mt-1 flex flex-col gap-0.5 pl-4">
+                {TOOLS_ITEMS.map((item) => {
+                  const isActive = pathname.startsWith(item.href)
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={cn(
+                        'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors',
+                        isActive
+                          ? 'text-primary font-medium'
+                          : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
+                      )}
+                    >
+                      <item.icon className="size-4 shrink-0" />
+                      <span className="whitespace-nowrap">{item.label}</span>
+                    </Link>
+                  )
+                })}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Settings at bottom */}
+      <div className="mt-auto p-4">
+        <Link
+          href="/settings/profile"
+          title={collapsed ? 'Settings' : undefined}
+          className={cn(
+            'flex items-center gap-3 rounded-lg px-3 py-3 transition-colors',
+            pathname.startsWith('/settings')
+              ? 'bg-surface-container-lowest text-primary ring-outline-variant/15 shadow-sm ring-1'
+              : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
+          )}
+        >
+          <Settings className="size-5 shrink-0" />
+          {!collapsed && <span className="text-sm font-medium whitespace-nowrap">Settings</span>}
+        </Link>
+      </div>
+    </nav>
+  )
+}

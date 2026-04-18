@@ -1,0 +1,78 @@
+import Link from 'next/link'
+import { Clock, Bookmark, Lock } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import type { ArticleCardProps } from './article-card'
+
+function CategoryPill({ category }: { category: string }) {
+  return (
+    <span className="bg-surface-container text-on-surface-variant inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-wider uppercase">
+      {category}
+    </span>
+  )
+}
+
+export function ArticleCardList({
+  title,
+  excerpt,
+  category,
+  readTime,
+  date,
+  imageUrl,
+  imageAlt,
+  isPro,
+  slug,
+}: ArticleCardProps) {
+  return (
+    <Link href={`/articles/${slug}`} className="block">
+      <article className="group border-outline-variant/[0.03] bg-surface-container-lowest flex cursor-pointer overflow-hidden rounded-2xl border">
+        {/* Image */}
+        <div className="bg-surface-container relative w-56 flex-shrink-0 overflow-hidden sm:w-64">
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+            role="img"
+            aria-label={imageAlt}
+            style={{ backgroundImage: `url('${imageUrl}')` }}
+          />
+          <div className="absolute top-3 left-3 flex items-center gap-2">
+            {isPro && (
+              <Badge variant="pro" className="shadow-sm">
+                PRO
+              </Badge>
+            )}
+          </div>
+          {isPro && (
+            <div className="absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
+              <Lock className="size-2.5" />
+              Members only
+            </div>
+          )}
+          <button
+            onClick={(e) => e.preventDefault()}
+            className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-full bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100 hover:bg-black/60"
+            aria-label="Bookmark"
+          >
+            <Bookmark className="size-4" />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="flex flex-1 flex-col justify-center gap-3 p-5">
+          <h3 className="text-on-surface group-hover:text-primary text-lg leading-snug font-bold transition-colors">
+            {title}
+          </h3>
+          <p className="text-on-surface-variant line-clamp-2 text-sm leading-relaxed">{excerpt}</p>
+          <div className="mt-1 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <CategoryPill category={category} />
+              <span className="text-outline text-xs">{date}</span>
+            </div>
+            <span className="text-outline flex shrink-0 items-center gap-1 text-xs">
+              <Clock className="size-3.5" />
+              {readTime}
+            </span>
+          </div>
+        </div>
+      </article>
+    </Link>
+  )
+}

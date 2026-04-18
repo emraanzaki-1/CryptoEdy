@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CryptoEdy - Email Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#221b00",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-container": "#dfe3ff",
+                        "on-surface-variant": "#434656",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-container": "#00f93f",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "surface": "#f8f9ff",
+                        "secondary": "#006e16",
+                        "on-background": "#0b1c30",
+                        "background": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "on-secondary-container": "#006d16",
+                        "surface-tint": "#004ced",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b7c4ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary-fixed-variant": "#0038b6",
+                        "on-secondary-fixed-variant": "#00530e",
+                        "on-tertiary-container": "#4c3e00",
+                        "on-primary-fixed": "#001452",
+                        "inverse-primary": "#b7c4ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#c9a900",
+                        "on-secondary-fixed": "#002203",
+                        "error": "#ba1a1a",
+                        "primary-container": "#0052ff",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#705d00",
+                        "primary": "#003ec7",
+                        "primary-fixed": "#dde1ff",
+                        "on-tertiary-fixed-variant": "#544600",
+                        "outline": "#737688",
+                        "tertiary-fixed": "#ffe16d",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed": "#72ff70",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed-dim": "#e9c400",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#00e639",
+                        "outline-variant": "#c3c5d9",
+                        "surface-variant": "#d3e4fe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .code-input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex selection:bg-primary-container selection:text-on-primary">
+<!-- Left Split: Editorial Image -->
+<div class="hidden lg:flex w-1/2 relative bg-inverse-surface items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center mix-blend-luminosity opacity-80" data-alt="Abstract 3D architectural rendering with deep ocean blue tones and subtle neon green light streaks, representing a high-end digital gallery for financial research" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5I5sU56jm_bAQLf2aDCbJLfZWRy1Rq9zDe9hmEoXjpHH1b04AbGFGpcu56a2m1GIDFdhY5unWLw0p6pLTtWyAQrU2yxQrBP0RGUxs1wUNBiguNt47-V0WxVeIWa8SCsyrBjlT620-ZySOGkVImeCuVGOISH5HyR5BVoQGB7vGI5R5vEd8UkwQwYkRFWNnEMbn-hfGZXHACDdHACZKNHsyRs-1xRDLrNmVNcgzNGD7RNUy4nYzeZo97E3yCg12fau_3svOUM_9fvPg');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface via-transparent to-transparent opacity-90"></div>
+<div class="relative z-10 p-16 max-w-xl">
+<h2 class="text-on-primary font-headline text-5xl font-extrabold tracking-tighter leading-tight mb-6">
+                The Digital<br/>Curator.
+            </h2>
+<p class="text-on-primary-container text-lg leading-relaxed font-body">
+                Access institutional-grade research, asymmetrical market insights, and highly curated financial intelligence.
+            </p>
+</div>
+</div>
+<!-- Right Split: Verification Form -->
+<div class="w-full lg:w-1/2 flex flex-col justify-center items-center p-6 sm:p-12 lg:p-24 relative bg-surface">
+<!-- Minimal Back Navigation for Focused View -->
+<div class="absolute top-8 left-8">
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-label text-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                Return
+            </a>
+</div>
+<div class="w-full max-w-[420px] flex flex-col gap-10">
+<header class="flex flex-col gap-2">
+<h1 class="font-headline text-[32px] tracking-tight font-bold text-on-surface leading-tight">
+                    Verify your email
+                </h1>
+<p class="font-body text-on-surface-variant text-base leading-relaxed">
+                    We sent a code to your email. Please enter it below to confirm your identity.
+                </p>
+</header>
+<!-- Form -->
+<form class="flex flex-col gap-8">
+<!-- 6-Digit Code Input Area -->
+<div class="flex justify-between gap-2 sm:gap-3">
+<input aria-label="Digit 1" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold rounded-lg bg-surface-container-high border-none text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all duration-200" maxlength="1" placeholder="•" type="text"/>
+<input aria-label="Digit 2" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold rounded-lg bg-surface-container-high border-none text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all duration-200" maxlength="1" placeholder="•" type="text"/>
+<input aria-label="Digit 3" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold rounded-lg bg-surface-container-high border-none text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all duration-200" maxlength="1" placeholder="•" type="text"/>
+<input aria-label="Digit 4" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold rounded-lg bg-surface-container-high border-none text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all duration-200" maxlength="1" placeholder="•" type="text"/>
+<input aria-label="Digit 5" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold rounded-lg bg-surface-container-high border-none text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all duration-200" maxlength="1" placeholder="•" type="text"/>
+<input aria-label="Digit 6" class="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-bold rounded-lg bg-surface-container-high border-none text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all duration-200" maxlength="1" placeholder="•" type="text"/>
+</div>
+<!-- Primary CTA -->
+<button class="w-full bg-gradient-to-b from-primary to-primary-container hover:from-primary-container hover:to-primary-container text-on-primary rounded-xl py-4 px-6 font-body font-bold text-base tracking-wide transition-all shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)]" type="button">
+                    Verify
+                </button>
+</form>
+<div class="text-center mt-2">
+<p class="font-body text-sm text-on-surface-variant">
+                    Didn't receive the code? 
+                    <a class="text-primary font-semibold hover:underline decoration-2 underline-offset-4 ml-1 transition-all" href="#">Resend code</a>
+</p>
+</div>
+</div>
+</div>
+</body></html>

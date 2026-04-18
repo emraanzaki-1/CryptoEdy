@@ -23,7 +23,8 @@
       "@/components/*": ["./components/*"],
       "@/lib/*": ["./lib/*"],
       "@/types/*": ["./types/*"],
-      "@/scripts/*": ["./scripts/*"]
+      "@/scripts/*": ["./scripts/*"],
+      "@payload-config": ["./payload.config.ts"]
     }
   },
   "include": [

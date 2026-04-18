@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CryptoEdy - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "error": "#ba1a1a",
+                "surface-bright": "#f8f9ff",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-low": "#eff4ff",
+                "on-secondary-fixed-variant": "#00530e",
+                "surface-dim": "#cbdbf5",
+                "surface-tint": "#004ced",
+                "on-background": "#0b1c30",
+                "on-error-container": "#93000a",
+                "outline": "#737688",
+                "surface-container": "#e5eeff",
+                "secondary-fixed-dim": "#00e639",
+                "surface": "#f8f9ff",
+                "secondary": "#006e16",
+                "surface-variant": "#d3e4fe",
+                "outline-variant": "#c3c5d9",
+                "on-primary-fixed": "#001452",
+                "surface-container-high": "#dce9ff",
+                "primary-fixed-dim": "#b7c4ff",
+                "on-primary-fixed-variant": "#0038b6",
+                "surface-container-highest": "#d3e4fe",
+                "tertiary-fixed": "#ffe16d",
+                "on-secondary-container": "#006d16",
+                "inverse-surface": "#213145",
+                "on-error": "#ffffff",
+                "on-secondary": "#ffffff",
+                "primary": "#003ec7",
+                "inverse-primary": "#b7c4ff",
+                "on-primary": "#ffffff",
+                "on-tertiary-container": "#4c3e00",
+                "secondary-fixed": "#72ff70",
+                "on-primary-container": "#dfe3ff",
+                "on-secondary-fixed": "#002203",
+                "secondary-container": "#00f93f",
+                "tertiary-fixed-dim": "#e9c400",
+                "on-surface": "#0b1c30",
+                "primary-fixed": "#dde1ff",
+                "background": "#f8f9ff",
+                "on-tertiary-fixed-variant": "#544600",
+                "error-container": "#ffdad6",
+                "inverse-on-surface": "#eaf1ff",
+                "primary-container": "#0052ff",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#705d00",
+                "tertiary-container": "#c9a900",
+                "on-surface-variant": "#434656",
+                "on-tertiary-fixed": "#221b00"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {},
+        "fontFamily": {
+                "headline": [
+                        "Inter", "sans-serif"
+                ],
+                "body": [
+                        "Inter", "sans-serif"
+                ],
+                "label": [
+                        "Inter", "sans-serif"
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: theme('colors.surface');
+    color: theme('colors.on-surface');
+  }
+</style>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-container selection:text-on-primary min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap bg-surface-container-lowest px-10 py-3 sticky top-0 z-50 backdrop-blur-md bg-opacity-80">
+<div class="flex items-center gap-8 w-1/3">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6 text-primary flex items-center justify-center">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-on-surface text-lg font-bold leading-tight tracking-[-0.015em]">CryptoEdy</h2>
+</div>
+</div>
+<div class="w-1/3 flex justify-center">
+<label class="flex flex-col w-full max-w-md h-10 group">
+<div class="flex w-full flex-1 items-stretch rounded-full h-full bg-surface-container-low group-focus-within:bg-surface-container-lowest group-focus-within:ring-2 group-focus-within:ring-primary/20 transition-all bg-surface">
+<div class="text-on-surface-variant flex border-none items-center justify-center pl-4 rounded-l-full border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-on-surface focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-on-surface-variant px-4 pl-2 text-sm font-normal leading-normal" placeholder="Search (⌘ /)" value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-4 w-1/3 items-center bg-surface">
+<button class="relative flex cursor-pointer items-center justify-center overflow-hidden rounded-full size-10 bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-full size-10 bg-surface-container hover:bg-surface-container-high transition-colors text-primary font-bold">
+PRO
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 cursor-pointer ring-2 ring-transparent hover:ring-primary/30 transition-all" data-alt="User profile avatar placeholder image with abstract colorful geometric shapes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmcBTmdgem_JIQ8MGSjbN9YAcNYV0hNQuJN1A3BtjQYgkEaAyPU3Zit_Fij1vf3zTGLX0Io-x9VAL4QYaHTuJALUtssP61kCcFcttFKwPX4BvNXALj-8nP0grtruHWR_1BS8V4Qnn2aZf7TSk5PT2UutzdYi9XIi_ReKE0rNnWsUxGSl7cA0ezHXND0CJxSFVcb9qLtn0FvLGWe6lKti_okbbVL89FYNCJWnF7pFhv7C3Ys3pOOrnitoKuxQJW311gXoU_D8b9pW_P");'></div>
+</div>
+</header>
+<div class="flex flex-1 bg-surface">
+<!-- Sidebar -->
+<nav class="w-20 lg:w-64 flex flex-col bg-surface-container-low border-r border-outline-variant/15 flex-shrink-0">
+<div class="flex flex-col gap-2 p-4 pt-8">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-surface-container-lowest text-primary shadow-sm ring-1 ring-outline-variant/15 group" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-sm font-medium hidden lg:block group-hover:text-primary transition-colors">Home</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">group</span>
+<span class="text-sm font-medium hidden lg:block">Community</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">build</span>
+<span class="text-sm font-medium hidden lg:block">Tools</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">bookmark</span>
+<span class="text-sm font-medium hidden lg:block">Saved</span>
+</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 p-6 pb-24 lg:p-10 lg:pb-32 m-4 lg:m-8 rounded-[2rem] lg:rounded-[3rem] shadow-md ring-1 ring-outline-variant/10 !bg-surface-container-lowest">
+<div class="w-full mx-auto flex flex-col gap-8">
+<!-- Header Section -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<h1 class="text-on-surface text-[2.5rem] lg:text-[3.5rem] font-bold leading-tight tracking-[-0.04em]">ansari.rahman's feed</h1>
+<p class="text-on-surface-variant text-base mt-2">Curated financial intelligence and market analysis.</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-low p-1 rounded-lg">
+<button class="p-2 rounded bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</button>
+<button class="p-2 rounded text-on-surface-variant hover:bg-surface-container-high flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-[20px]">view_list</span>
+</button>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex gap-3 flex-wrap">
+<button class="h-9 px-4 rounded-full bg-primary text-on-primary text-sm font-medium shadow-sm hover:bg-primary-container transition-colors">All</button>
+<button class="h-9 px-4 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container-high text-sm font-medium transition-colors">Research</button>
+<button class="h-9 px-4 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container-high text-sm font-medium transition-colors">Analysis</button>
+<button class="h-9 px-4 rounded-full bg-surface-container-low text-on-surface hover:bg-surface-container-high text-sm font-medium transition-colors">News</button>
+</div>
+<!-- Feed Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container shadow-sm ring-1 ring-outline-variant/15">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Abstract 3D rendering of gold Bitcoin coins floating against a deep dark background with subtle neon green lighting accents" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFtf81vbiTwf7Oj1uOITLZVkhvRPxSZ6LEXDfuaqbMgrZT9zcMeV6hCE1gB0y-XGfNuw_EYokVybYONjztiuUJJDQU78mOynIPWltbmQWKC-hiv3J1G7YVS7jsXLif3bYV-7hU5jzZPoPo7A7_YitEmqjJuYRg39DE2PTmByf4BVBc2kv1n-Mf8T3rwszNOiP3eozChvcfd4JXRmRVYYG3OlHol6IYoefNzxMLhv8yYhgw_sUlz9BKPGQpUiW4qNYiNsbm6g7bfML3');"></div>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="px-2 py-1 bg-tertiary-container/90 backdrop-blur-md text-on-tertiary-container text-xs font-bold rounded uppercase tracking-wider shadow-sm">PRO</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant uppercase tracking-wider">
+<span>Research Report</span>
+<span>•</span>
+<span>18 min read</span>
+<span>•</span>
+<span>Today</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Institutional Adoption: The Next Wave of Bitcoin Accumulation</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">An in-depth analysis of Q3 institutional inflows, ETF volume dynamics, and on-chain accumulation patterns pointing towards a supply squeeze.</p>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container shadow-sm ring-1 ring-outline-variant/15">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Glowing blue Ethereum logo integrated with abstract interconnected network nodes representing decentralized finance protocols" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJC3iwSAK4uIwMtAzBNx53zUU5gd-A1jPR07EEVRJmFSEvHPbG1jCmQAozThLYy5ecybp21mTkmMu5zsOmQcoZrhJVwQQJwrGd6EEQOLOOE0zGPxwhLWAhmg8tm7rFfVtwccwhQ75il-wqyR_GZAy1iL6LoC_A5QZqu8s-y7hNnm69q3MtLd_nAo1b7hwoo507giwH4D3AIhBjDk9aIYtmpRsePGjLUJiIxzJzqblr6ZfL2hY2SMMGsv54X6J0usMogV8hscFu-UMQ');"></div>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="px-2 py-1 bg-tertiary-container/90 backdrop-blur-md text-on-tertiary-container text-xs font-bold rounded uppercase tracking-wider shadow-sm">PRO</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant uppercase tracking-wider">
+<span>Analysis</span>
+<span>•</span>
+<span>12 min read</span>
+<span>•</span>
+<span>Yesterday</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Ethereum L2 Ecosystem: Value Accrual Models</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">Evaluating fee generation, sequencer profitability, and the long-term impact of EIP-4844 on leading Layer 2 networks.</p>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container shadow-sm ring-1 ring-outline-variant/15">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Close up of a computer screen displaying complex financial trading charts with green and red candlestick patterns on a dark blue background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlBXGoluDG6DlSePaZ2o7YnnZbEqYNButalR7P69pOlmwqyMJyFiADUVPNHMmOlKRR3lDN2gCRJ1p5X-0XUcH68TrHn8GXKjgMZjugU2tLEIP3VBVxtjnj9KKeAtqk1z8NL755RCbZVfqcF2ZSWV-SeJy6hN0m1iRwoXYaw6srmkEmSB3_aGiLumvMPrwiPsBTiy0p60-9UZaXc8Ydm8lj6-oj7ogqd78SEhJaG39tASET5_GdCDordaCE8UJ9LL4ddyq5ruFB7UKK');"></div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant uppercase tracking-wider">
+<span>Market Update</span>
+<span>•</span>
+<span>5 min read</span>
+<span>•</span>
+<span>2 days ago</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Macro Weekly: Rates Divergence and Crypto Correlation</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">How shifting central bank policies are breaking traditional equity-crypto correlations in the current quarter.</p>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container shadow-sm ring-1 ring-outline-variant/15">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Abstract 3D rendering of gold Bitcoin coins floating against a deep dark background with subtle neon green lighting accents" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFtf81vbiTwf7Oj1uOITLZVkhvRPxSZ6LEXDfuaqbMgrZT9zcMeV6hCE1gB0y-XGfNuw_EYokVybYONjztiuUJJDQU78mOynIPWltbmQWKC-hiv3J1G7YVS7jsXLif3bYV-7hU5jzZPoPo7A7_YitEmqjJuYRg39DE2PTmByf4BVBc2kv1n-Mf8T3rwszNOiP3eozChvcfd4JXRmRVYYG3OlHol6IYoefNzxMLhv8yYhgw_sUlz9BKPGQpUiW4qNYiNsbm6g7bfML3');"></div>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="px-2 py-1 bg-tertiary-container/90 backdrop-blur-md text-on-tertiary-container text-xs font-bold rounded uppercase tracking-wider shadow-sm">PRO</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant uppercase tracking-wider">
+<span>Research Report</span>
+<span>•</span>
+<span>15 min read</span>
+<span>•</span>
+<span>3 days ago</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">DeFi Lending Protocols: Risk Assessment Framework</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">A comprehensive review of the security models, liquidation engines, and collateral ratios of top decentralized lending platforms.</p>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container shadow-sm ring-1 ring-outline-variant/15">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Glowing blue Ethereum logo integrated with abstract interconnected network nodes representing decentralized finance protocols" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJC3iwSAK4uIwMtAzBNx53zUU5gd-A1jPR07EEVRJmFSEvHPbG1jCmQAozThLYy5ecybp21mTkmMu5zsOmQcoZrhJVwQQJwrGd6EEQOLOOE0zGPxwhLWAhmg8tm7rFfVtwccwhQ75il-wqyR_GZAy1iL6LoC_A5QZqu8s-y7hNnm69q3MtLd_nAo1b7hwoo507giwH4D3AIhBjDk9aIYtmpRsePGjLUJiIxzJzqblr6ZfL2hY2SMMGsv54X6J0usMogV8hscFu-UMQ');"></div>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="px-2 py-1 bg-tertiary-container/90 backdrop-blur-md text-on-tertiary-container text-xs font-bold rounded uppercase tracking-wider shadow-sm">PRO</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant uppercase tracking-wider">
+<span>Analysis</span>
+<span>•</span>
+<span>10 min read</span>
+<span>•</span>
+<span>4 days ago</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Tokenomics Review: Sustainable Yield Generation</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">Analyzing mechanisms for long-term value creation and the shift away from inflationary reward emission schedules.</p>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container shadow-sm ring-1 ring-outline-variant/15">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Close up of a computer screen displaying complex financial trading charts with green and red candlestick patterns on a dark blue background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlBXGoluDG6DlSePaZ2o7YnnZbEqYNButalR7P69pOlmwqyMJyFiADUVPNHMmOlKRR3lDN2gCRJ1p5X-0XUcH68TrHn8GXKjgMZjugU2tLEIP3VBVxtjnj9KKeAtqk1z8NL755RCbZVfqcF2ZSWV-SeJy6hN0m1iRwoXYaw6srmkEmSB3_aGiLumvMPrwiPsBTiy0p60-9UZaXc8Ydm8lj6-oj7ogqd78SEhJaG39tASET5_GdCDordaCE8UJ9LL4ddyq5ruFB7UKK');"></div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant uppercase tracking-wider">
+<span>Market Update</span>
+<span>•</span>
+<span>6 min read</span>
+<span>•</span>
+<span>5 days ago</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Regulatory Landscape: MiCA Framework Implementation</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">Understanding the impending compliance requirements and their potential impact on European crypto asset service providers.</p>
+</div>
+</article>
+<!-- Card 7 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container shadow-sm ring-1 ring-outline-variant/15">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Abstract 3D rendering of gold Bitcoin coins floating against a deep dark background with subtle neon green lighting accents" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFtf81vbiTwf7Oj1uOITLZVkhvRPxSZ6LEXDfuaqbMgrZT9zcMeV6hCE1gB0y-XGfNuw_EYokVybYONjztiuUJJDQU78mOynIPWltbmQWKC-hiv3J1G7YVS7jsXLif3bYV-7hU5jzZPoPo7A7_YitEmqjJuYRg39DE2PTmByf4BVBc2kv1n-Mf8T3rwszNOiP3eozChvcfd4JXRmRVYYG3OlHol6IYoefNzxMLhv8yYhgw_sUlz9BKPGQpUiW4qNYiNsbm6g7bfML3');"></div>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="px-2 py-1 bg-tertiary-container/90 backdrop-blur-md text-on-tertiary-container text-xs font-bold rounded uppercase tracking-wider shadow-sm">PRO</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant uppercase tracking-wider">
+<span>Research Report</span>
+<span>•</span>
+<span>22 min read</span>
+<span>•</span>
+<span>1 week ago</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Zero-Knowledge Rollups: Scaling the Future</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">A deep dive into ZK-EVM architectures, privacy implications, and the performance trade-offs of next-generation scaling solutions.</p>
+</div>
+</article>
+<!-- Card 8 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container shadow-sm ring-1 ring-outline-variant/15">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Glowing blue Ethereum logo integrated with abstract interconnected network nodes representing decentralized finance protocols" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJC3iwSAK4uIwMtAzBNx53zUU5gd-A1jPR07EEVRJmFSEvHPbG1jCmQAozThLYy5ecybp21mTkmMu5zsOmQcoZrhJVwQQJwrGd6EEQOLOOE0zGPxwhLWAhmg8tm7rFfVtwccwhQ75il-wqyR_GZAy1iL6LoC_A5QZqu8s-y7hNnm69q3MtLd_nAo1b7hwoo507giwH4D3AIhBjDk9aIYtmpRsePGjLUJiIxzJzqblr6ZfL2hY2SMMGsv54X6J0usMogV8hscFu-UMQ');"></div>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="px-2 py-1 bg-tertiary-container/90 backdrop-blur-md text-on-tertiary-container text-xs font-bold rounded uppercase tracking-wider shadow-sm">PRO</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant uppercase tracking-wider">
+<span>Analysis</span>
+<span>•</span>
+<span>14 min read</span>
+<span>•</span>
+<span>1 week ago</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Real World Asset Tokenization Trends</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">Examining the infrastructure and institutional demand driving the tokenization of traditional financial assets on public blockchains.</p>
+</div>
+</article>
+<!-- Card 9 -->
+<article class="flex flex-col gap-4 group cursor-pointer">
+<div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container shadow-sm ring-1 ring-outline-variant/15">
+<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="Close up of a computer screen displaying complex financial trading charts with green and red candlestick patterns on a dark blue background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlBXGoluDG6DlSePaZ2o7YnnZbEqYNButalR7P69pOlmwqyMJyFiADUVPNHMmOlKRR3lDN2gCRJ1p5X-0XUcH68TrHn8GXKjgMZjugU2tLEIP3VBVxtjnj9KKeAtqk1z8NL755RCbZVfqcF2ZSWV-SeJy6hN0m1iRwoXYaw6srmkEmSB3_aGiLumvMPrwiPsBTiy0p60-9UZaXc8Ydm8lj6-oj7ogqd78SEhJaG39tASET5_GdCDordaCE8UJ9LL4ddyq5ruFB7UKK');"></div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant uppercase tracking-wider">
+<span>Market Update</span>
+<span>•</span>
+<span>8 min read</span>
+<span>•</span>
+<span>2 weeks ago</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface leading-snug group-hover:text-primary transition-colors">Stablecoin Supply Dynamics and Market Liquidity</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2 leading-relaxed">How changes in total stablecoin market capitalization serve as a leading indicator for broader market volatility and liquidity.</p>
+</div>
+</article>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-primary text-on-primary py-16 px-4 md:px-8 lg:px-40 mt-auto rounded-t-[2rem]">
+<div class="max-w-[960px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
+<div class="flex flex-col gap-4 max-w-sm">
+<div class="flex items-center gap-3 text-on-primary">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight">CryptoEdy</h2>
+</div>
+<p class="text-on-primary-container text-sm leading-relaxed opacity-80">
+                                The Digital Curator of institutional-grade financial intelligence for the modern digital asset investor.
+                            </p>
+</div>
+<div class="grid grid-cols-2 gap-8 md:gap-16">
+<div class="flex flex-col gap-4">
+<h4 class="text-on-primary font-bold text-sm uppercase tracking-wider">Platform</h4>
+<a class="text-on-primary-container text-sm hover:text-on-primary transition-colors" href="#">Research Archive</a>
+<a class="text-on-primary-container text-sm hover:text-on-primary transition-colors" href="#">Track Record</a>
+<a class="text-on-primary-container text-sm hover:text-on-primary transition-colors" href="#">Pricing</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-on-primary font-bold text-sm uppercase tracking-wider">Legal</h4>
+<a class="text-on-primary-container text-sm hover:text-on-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-primary-container text-sm hover:text-on-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-primary-container text-sm hover:text-on-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+</div>
+<div class="border-t border-on-primary/20 pt-8 flex flex-col gap-4">
+<p class="text-on-primary-container text-xs leading-relaxed opacity-70">
+<strong>Disclaimer:</strong> The information provided by CryptoEdy is for educational and informational purposes only. It does not constitute financial, investment, or trading advice. Cryptocurrencies are highly volatile assets, and past performance is not indicative of future results. Always conduct your own due diligence before making investment decisions.
+                        </p>
+<p class="text-on-primary-container text-xs opacity-60">
+                            © 2024 CryptoEdy Research. All rights reserved.
+                        </p>
+</div>
+</div>
+</footer>
+</body></html>

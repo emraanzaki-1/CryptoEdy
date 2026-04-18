@@ -1,0 +1,68 @@
+import { buildConfig } from 'payload'
+import { postgresAdapter } from '@payloadcms/db-postgres'
+import { seoPlugin } from '@payloadcms/plugin-seo'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+import { Authors } from './collections/Authors'
+import { Categories } from './collections/Categories'
+import { Media } from './collections/Media'
+import { Posts } from './collections/Posts'
+import { Tags } from './collections/Tags'
+import { richTextEditor } from './lib/lexical/richEditor'
+
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
+
+export default buildConfig({
+  admin: {
+    // Authors collection has auth: true — these are the CMS editor accounts
+    user: 'authors',
+    // 'all' lets each editor pick Light / Dark via avatar → Account → Theme.
+    theme: 'all',
+    // Live preview breakpoints shown in the admin iframe toolbar
+    livePreview: {
+      breakpoints: [
+        { label: 'Mobile', name: 'mobile', width: 375, height: 667 },
+        { label: 'Tablet', name: 'tablet', width: 768, height: 1024 },
+        { label: 'Desktop', name: 'desktop', width: 1440, height: 900 },
+      ],
+    },
+    components: {
+      graphics: {
+        Logo: '@/components/admin/Logo',
+        Icon: '@/components/admin/Icon',
+      },
+      beforeDashboard: ['@/components/admin/AdminDashboard'],
+    },
+  },
+  collections: [Authors, Categories, Tags, Media, Posts],
+  // Rich Lexical editor is the global default for all richText fields.
+  // Posts.content overrides with the same editor (with custom crypto blocks).
+  editor: richTextEditor,
+  secret: process.env.PAYLOAD_SECRET ?? '',
+  typescript: {
+    outputFile: path.resolve(dirname, 'types/payload-types.ts'),
+  },
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL,
+    },
+    // Use a dedicated 'payload' schema so CMS tables are isolated from
+    // the NextAuth/Drizzle tables that live in the default 'public' schema.
+    schemaName: 'payload',
+  }),
+  plugins: [
+    seoPlugin({
+      collections: ['posts'],
+      uploadsCollection: 'media',
+      // Auto-populate SEO fields from post data
+      generateTitle: ({ doc }) => (doc?.title ? `${doc.title as string} | CryptoEdy` : 'CryptoEdy'),
+      generateDescription: ({ doc }) => (doc?.excerpt as string) ?? '',
+      generateURL: ({ doc, collectionConfig }) => {
+        const base = process.env.NEXTAUTH_URL ?? 'http://localhost:3000'
+        return `${base}/posts/${(doc?.slug as string) ?? ''}`
+      },
+    }),
+  ],
+})

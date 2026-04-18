@@ -7,7 +7,7 @@
 const required = [
   'DATABASE_URL',
   'PAYLOAD_SECRET',
-  'NEXTAUTH_SECRET',
+  'AUTH_SECRET',
   'NEXTAUTH_URL',
   'RESEND_API_KEY',
 ] as const

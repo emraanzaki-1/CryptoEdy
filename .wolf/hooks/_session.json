@@ -1,0 +1,83 @@
+{
+  "session_id": "session-2026-04-18-2201",
+  "started": "2026-04-18T16:31:42.427Z",
+  "files_read": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/upgrade/page.tsx": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-18T16:48:41.257Z"
+    }
+  },
+  "files_written": [
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/common/coming-soon.tsx",
+      "action": "create",
+      "tokens": 213,
+      "at": "2026-04-18T16:44:24.462Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/community/page.tsx",
+      "action": "create",
+      "tokens": 68,
+      "at": "2026-04-18T16:44:41.726Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/saved/page.tsx",
+      "action": "create",
+      "tokens": 63,
+      "at": "2026-04-18T16:44:43.975Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/tools/page.tsx",
+      "action": "create",
+      "tokens": 61,
+      "at": "2026-04-18T16:44:46.254Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/tools/market-direction/page.tsx",
+      "action": "create",
+      "tokens": 68,
+      "at": "2026-04-18T16:44:48.492Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/tools/picks/page.tsx",
+      "action": "create",
+      "tokens": 63,
+      "at": "2026-04-18T16:44:50.588Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/tools/tracker/page.tsx",
+      "action": "create",
+      "tokens": 68,
+      "at": "2026-04-18T16:44:52.677Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/tools/airdrops/page.tsx",
+      "action": "create",
+      "tokens": 61,
+      "at": "2026-04-18T16:44:54.715Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/upgrade/page.tsx",
+      "action": "create",
+      "tokens": 309,
+      "at": "2026-04-18T16:48:53.659Z"
+    }
+  ],
+  "edit_counts": {
+    "components/common/coming-soon.tsx": 1,
+    "app/(app)/(dashboard)/community/page.tsx": 1,
+    "app/(app)/(dashboard)/saved/page.tsx": 1,
+    "app/(app)/(dashboard)/tools/page.tsx": 1,
+    "app/(app)/(dashboard)/tools/market-direction/page.tsx": 1,
+    "app/(app)/(dashboard)/tools/picks/page.tsx": 1,
+    "app/(app)/(dashboard)/tools/tracker/page.tsx": 1,
+    "app/(app)/(dashboard)/tools/airdrops/page.tsx": 1,
+    "app/(app)/(dashboard)/upgrade/page.tsx": 1
+  },
+  "anatomy_hits": 0,
+  "anatomy_misses": 1,
+  "repeated_reads_warned": 0,
+  "cerebrum_warnings": 0,
+  "stop_count": 3
+}
