@@ -5,8 +5,12 @@ import { eq, or } from 'drizzle-orm'
 import bcrypt from 'bcryptjs'
 import { generateReferralCode, generateSecureToken } from '@/lib/auth/referral'
 import { sendVerificationEmail } from '@/lib/email/send'
+import { rateLimit } from '@/lib/auth/rate-limit'
 
 export async function POST(req: NextRequest) {
+  const blocked = rateLimit(req, { maxRequests: 5, windowSec: 60 })
+  if (blocked) return blocked
+
   try {
     const { email, username, password } = await req.json()
 

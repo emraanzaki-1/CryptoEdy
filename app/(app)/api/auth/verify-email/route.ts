@@ -4,9 +4,13 @@ import { users } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import { generateSecureToken } from '@/lib/auth/referral'
 import { sendVerificationEmail } from '@/lib/email/send'
+import { rateLimit } from '@/lib/auth/rate-limit'
 
 // GET: Token-based verification (email link flow)
 export async function GET(req: NextRequest) {
+  const blocked = rateLimit(req, { maxRequests: 10, windowSec: 60 })
+  if (blocked) return blocked
+
   try {
     const token = req.nextUrl.searchParams.get('token')
 
@@ -47,6 +51,9 @@ export async function GET(req: NextRequest) {
 
 // POST: Resend verification email
 export async function POST(req: NextRequest) {
+  const blocked = rateLimit(req, { maxRequests: 3, windowSec: 300 })
+  if (blocked) return blocked
+
   try {
     const { email } = await req.json()
 

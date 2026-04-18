@@ -4,7 +4,6 @@ import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
-import { OTPInput } from '@/components/auth/otp-input'
 
 function VerifyEmailContent() {
   const searchParams = useSearchParams()
@@ -12,9 +11,8 @@ function VerifyEmailContent() {
   const { data: session, update: updateSession } = useSession()
   const token = searchParams.get('token')
 
-  const [code, setCode] = useState('')
-  const [status, setStatus] = useState<'input' | 'loading' | 'success' | 'expired' | 'error'>(
-    token ? 'loading' : 'input'
+  const [status, setStatus] = useState<'waiting' | 'loading' | 'success' | 'expired' | 'error'>(
+    token ? 'loading' : 'waiting'
   )
   const [resendStatus, setResendStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
@@ -27,7 +25,6 @@ function VerifyEmailContent() {
       .then(async (data) => {
         if (data.message === 'Email verified successfully') {
           setStatus('success')
-          // Refresh the session so isEmailVerified updates
           await updateSession()
           setTimeout(() => router.push('/feed'), 2500)
         } else if (data.error === 'Token expired') {
@@ -59,14 +56,6 @@ function VerifyEmailContent() {
     } catch {
       setResendStatus('error')
     }
-  }
-
-  function handleVerify() {
-    if (code.length < 6) return
-    setStatus('loading')
-    // OTP code verification — currently uses token flow via email link
-    // Full OTP support would require a separate code-based verification endpoint
-    setTimeout(() => setStatus('success'), 1500)
   }
 
   if (status === 'success') {
@@ -126,37 +115,34 @@ function VerifyEmailContent() {
         <p className="text-on-surface-variant text-base leading-relaxed">
           We sent a verification link to{' '}
           {session?.user?.email ? <strong>{session.user.email}</strong> : 'your email'}. Click the
-          link or enter the code below.
+          link in the email to verify your account.
         </p>
       </header>
 
-      <div className="flex flex-col gap-8">
-        <OTPInput value={code} onChange={setCode} />
-
+      <div className="flex flex-col gap-4">
         <button
           type="button"
-          onClick={handleVerify}
-          disabled={code.length < 6 || status === 'loading'}
+          onClick={handleResend}
+          disabled={resendStatus === 'sending' || resendStatus === 'sent'}
           className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container w-full rounded-xl bg-gradient-to-b px-6 py-4 text-base font-bold tracking-wide shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-all disabled:opacity-50"
         >
-          {status === 'loading' ? 'Verifying...' : 'Verify'}
+          {resendStatus === 'sending'
+            ? 'Sending...'
+            : resendStatus === 'sent'
+              ? 'Email sent! Check your inbox.'
+              : 'Resend verification email'}
         </button>
       </div>
 
       <div className="mt-2 text-center">
         <p className="text-on-surface-variant text-sm">
-          Didn&apos;t receive the email?{' '}
-          <button
-            onClick={handleResend}
-            disabled={resendStatus === 'sending' || resendStatus === 'sent'}
-            className="text-primary disabled:text-on-surface-variant ml-1 font-semibold decoration-2 underline-offset-4 transition-all hover:underline"
+          Wrong email?{' '}
+          <Link
+            href="/login"
+            className="text-primary font-semibold decoration-2 underline-offset-4 hover:underline"
           >
-            {resendStatus === 'sending'
-              ? 'Sending...'
-              : resendStatus === 'sent'
-                ? 'Sent!'
-                : 'Resend email'}
-          </button>
+            Back to login
+          </Link>
         </p>
       </div>
     </div>

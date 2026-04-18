@@ -4,8 +4,12 @@ import { users } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import { generateSecureToken } from '@/lib/auth/referral'
 import { sendPasswordResetEmail } from '@/lib/email/send'
+import { rateLimit } from '@/lib/auth/rate-limit'
 
 export async function POST(req: NextRequest) {
+  const blocked = rateLimit(req, { maxRequests: 5, windowSec: 300 })
+  if (blocked) return blocked
+
   try {
     const { email } = await req.json()
 

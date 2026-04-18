@@ -1,7 +1,9 @@
 import { pgTable, uuid, varchar, timestamp, integer, text, primaryKey } from 'drizzle-orm/pg-core'
 import { users } from './users'
 
-// NextAuth v5 Drizzle adapter schema
+// NextAuth v5 Drizzle adapter schema — required by DrizzleAdapter.
+// `accounts` is used for OAuth providers. `sessions` exists for adapter
+// compatibility but is unused when session.strategy is 'jwt'.
 export const accounts = pgTable(
   'accounts',
   {
