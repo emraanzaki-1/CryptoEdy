@@ -59,7 +59,7 @@ export default buildConfig({
       // Auto-populate SEO fields from post data
       generateTitle: ({ doc }) => (doc?.title ? `${doc.title as string} | CryptoEdy` : 'CryptoEdy'),
       generateDescription: ({ doc }) => (doc?.excerpt as string) ?? '',
-      generateURL: ({ doc, collectionConfig }) => {
+      generateURL: ({ doc }) => {
         const base = process.env.NEXTAUTH_URL ?? 'http://localhost:3000'
         return `${base}/posts/${(doc?.slug as string) ?? ''}`
       },

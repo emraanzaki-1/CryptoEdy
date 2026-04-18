@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Camera } from 'lucide-react'
 
 interface AvatarUploadProps {
@@ -13,7 +14,7 @@ export function AvatarUpload({ imageUrl, alt = 'Profile picture' }: AvatarUpload
       <h3 className="text-on-surface mb-5 text-base font-semibold">Profile Image</h3>
       <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
         <div className="group bg-surface-container ring-surface-container-low relative size-24 overflow-hidden rounded-full ring-4">
-          <img alt={alt} className="size-full object-cover" src={imageUrl} />
+          <Image alt={alt} className="size-full object-cover" src={imageUrl} fill sizes="96px" />
           <div className="absolute inset-0 flex cursor-pointer items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
             <Camera className="size-6 text-white" />
           </div>

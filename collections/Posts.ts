@@ -126,7 +126,7 @@ export const Posts: CollectionConfig = {
       }
     },
     create: ({ req }) => ['analyst', 'admin'].includes(req.user?.role as string),
-    update: ({ req, id }) => {
+    update: ({ req }) => {
       if (!req.user) return false
       if (req.user.role === 'admin') return true
       if (req.user.role === 'analyst') {

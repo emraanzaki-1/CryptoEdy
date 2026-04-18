@@ -1,4 +1,5 @@
 import { Share, Bookmark, Clock } from 'lucide-react'
+import Image from 'next/image'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Badge } from '@/components/ui/badge'
 import { PaywallGate } from '@/components/article/paywall-gate'
@@ -86,11 +87,13 @@ export default async function ArticleDetailPage() {
       </header>
 
       {/* Hero Image */}
-      <div className="border-outline-variant/15 mb-10 h-[400px] w-full overflow-hidden rounded-2xl border shadow-[0_32px_64px_-12px_rgba(11,28,48,0.06)]">
-        <img
+      <div className="border-outline-variant/15 relative mb-10 h-[400px] w-full overflow-hidden rounded-2xl border shadow-[0_32px_64px_-12px_rgba(11,28,48,0.06)]">
+        <Image
           alt="Digital assets visualization"
-          className="h-full w-full object-cover"
+          className="object-cover"
           src={ARTICLE.imageUrl}
+          fill
+          sizes="(max-width: 896px) 100vw, 896px"
         />
       </div>
 
