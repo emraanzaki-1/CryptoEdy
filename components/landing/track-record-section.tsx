@@ -29,7 +29,7 @@ const TRADES = [
 
 export function TrackRecordSection() {
   return (
-    <section className="bg-surface-container-low mb-16 rounded-xl px-4 py-16" id="performance">
+    <section className="bg-surface-container-low rounded-2xl px-6 py-16 md:px-8" id="performance">
       <div className="mb-12 text-center">
         <h2 className="text-on-surface mb-4 text-[32px] font-black tracking-[-0.04em]">
           Proven Track Record
@@ -57,7 +57,7 @@ export function TrackRecordSection() {
               </div>
             </div>
             <div>
-              <div className="text-secondary-container text-4xl font-black tracking-[-0.04em] drop-shadow-sm">
+              <div className="text-secondary text-4xl font-black tracking-[-0.04em]">
                 {trade.gain}
               </div>
               <p className="text-on-surface-variant mt-2 text-xs">

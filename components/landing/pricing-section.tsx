@@ -10,7 +10,10 @@ const FEATURES = [
 
 export function PricingSection() {
   return (
-    <section className="mb-16 flex flex-col items-center px-4 py-16" id="pricing">
+    <section
+      className="bg-surface-container-low flex flex-col items-center rounded-2xl px-4 py-16"
+      id="pricing"
+    >
       <div className="mb-10 text-center">
         <h2 className="text-on-surface mb-4 text-[32px] font-black tracking-[-0.04em]">
           Invest in an Edge

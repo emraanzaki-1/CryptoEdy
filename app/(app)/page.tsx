@@ -9,21 +9,21 @@ import { FAQSection } from '@/components/landing/faq-section'
 
 export default function Home() {
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-      <div className="flex h-full grow flex-col">
-        <div className="flex flex-1 justify-center px-4 py-5 md:px-8 lg:px-40">
-          <div className="flex max-w-[960px] flex-1 flex-col">
-            <GuestNav />
+    <div className="bg-surface relative flex min-h-screen w-full flex-col overflow-x-hidden">
+      <div className="flex flex-1 justify-center px-4 py-5 md:px-8 lg:px-40">
+        <div className="flex max-w-[960px] flex-1 flex-col">
+          <GuestNav />
+          <main className="flex flex-col gap-16">
             <HeroSection />
             <ValuePropsSection />
             <ResearchPreviewSection />
             <TrackRecordSection />
             <PricingSection />
             <FAQSection />
-          </div>
+          </main>
         </div>
-        <Footer />
       </div>
+      <Footer />
     </div>
   )
 }

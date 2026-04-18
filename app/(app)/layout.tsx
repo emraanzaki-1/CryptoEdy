@@ -25,7 +25,10 @@ export default function RootLayout({
       className={`${inter.variable} h-full scroll-smooth antialiased`}
       suppressHydrationWarning
     >
-      <body className="bg-surface text-on-surface font-body flex min-h-full flex-col">
+      <body
+        className="bg-surface text-on-surface font-body flex min-h-full flex-col"
+        suppressHydrationWarning
+      >
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>

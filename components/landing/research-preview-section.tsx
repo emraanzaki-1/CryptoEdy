@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Lock } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 
@@ -37,8 +38,8 @@ const ARTICLES = [
 
 export function ResearchPreviewSection() {
   return (
-    <div className="py-16">
-      <div className="flex items-end justify-between px-4 pb-8">
+    <section id="research">
+      <div className="mb-8 flex items-end justify-between">
         <h2 className="text-on-surface text-[28px] leading-tight font-bold tracking-[-0.015em]">
           Latest Research
         </h2>
@@ -46,13 +47,17 @@ export function ResearchPreviewSection() {
           View All Archive
         </Link>
       </div>
-      <div className="grid grid-cols-1 gap-8 p-4 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         {ARTICLES.map((article) => (
           <div key={article.title} className="group flex cursor-pointer flex-col gap-4 pb-3">
-            <div
-              className="relative aspect-video w-full overflow-hidden rounded-xl bg-cover bg-center"
-              style={{ backgroundImage: `url('${article.imageUrl}')` }}
-            >
+            <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+              <Image
+                src={article.imageUrl}
+                alt={article.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+              />
               <div className="bg-on-surface absolute inset-0 opacity-0 transition-opacity group-hover:opacity-10" />
               {article.isPro && (
                 <div className="bg-tertiary-fixed text-on-tertiary-fixed-variant absolute top-3 right-3 flex items-center gap-1 rounded-full px-3 py-1 text-xs font-bold tracking-wider uppercase shadow-sm">
@@ -65,7 +70,9 @@ export function ResearchPreviewSection() {
                 <Badge variant="category">{article.category}</Badge>
                 <span className="text-on-surface-variant text-xs">{article.date}</span>
               </div>
-              <p className="text-on-surface text-lg leading-tight font-bold">{article.title}</p>
+              <p className="text-on-surface group-hover:text-primary text-lg leading-tight font-bold transition-colors">
+                {article.title}
+              </p>
               {article.isPro ? (
                 <div className="relative">
                   <p className="text-on-surface-variant text-sm leading-relaxed font-normal blur-[3px] select-none">
@@ -86,6 +93,6 @@ export function ResearchPreviewSection() {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   )
 }

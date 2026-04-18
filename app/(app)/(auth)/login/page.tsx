@@ -14,6 +14,7 @@ function LoginForm() {
   const callbackUrl = searchParams.get('callbackUrl') ?? '/feed'
   const registered = searchParams.get('registered') === 'true'
   const reset = searchParams.get('reset') === 'true'
+  const verified = searchParams.get('verified') === 'true'
 
   const [serverError, setServerError] = useState('')
 
@@ -64,6 +65,12 @@ function LoginForm() {
         {reset && (
           <div className="bg-secondary-container/20 text-on-surface rounded-xl px-5 py-3 text-sm font-medium">
             Password reset successfully. You can now log in with your new password.
+          </div>
+        )}
+
+        {verified && (
+          <div className="bg-secondary-container/20 text-on-surface rounded-xl px-5 py-3 text-sm font-medium">
+            Email verified! You can now log in.
           </div>
         )}
 

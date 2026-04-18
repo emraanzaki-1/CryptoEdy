@@ -22,7 +22,7 @@ const FAQS = [
 
 export function FAQSection() {
   return (
-    <section className="bg-surface-container-low mb-16 rounded-xl px-4 py-16">
+    <section className="bg-surface-container-low rounded-2xl px-6 py-16 md:px-8">
       <div className="mb-12 text-center">
         <h2 className="text-on-surface mb-2 text-2xl font-bold">Trusted by 5,000+ Investors</h2>
         <p className="text-on-surface-variant text-sm">

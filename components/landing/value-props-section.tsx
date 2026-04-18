@@ -33,7 +33,7 @@ const VALUE_PROPS = [
 
 export function ValuePropsSection() {
   return (
-    <div className="bg-surface-container-low @container mt-8 flex flex-col gap-12 rounded-xl px-4 py-16">
+    <div className="bg-surface-container-low @container flex flex-col gap-12 rounded-2xl px-6 py-16 md:px-8">
       <div className="flex flex-col gap-4">
         <h2 className="text-on-surface max-w-[720px] text-[32px] leading-tight font-black tracking-[-0.04em] @[480px]:text-[40px]">
           The CryptoEdy Advantage
@@ -47,10 +47,12 @@ export function ValuePropsSection() {
         {VALUE_PROPS.map((prop) => (
           <div
             key={prop.title}
-            className="bg-surface-container-lowest flex flex-1 flex-col gap-4 rounded-xl p-6 shadow-[0_16px_32px_-12px_rgba(11,28,48,0.04)]"
+            className="bg-surface-container-lowest flex flex-1 flex-col gap-4 rounded-xl p-6 shadow-[0_16px_32px_-12px_rgba(11,28,48,0.04)] transition-transform duration-200 hover:-translate-y-1"
           >
-            <div className={`text-3xl ${prop.color}`}>
-              <prop.icon className="size-8" />
+            <div
+              className={`flex size-12 items-center justify-center rounded-xl ${prop.color === 'text-secondary' ? 'bg-secondary/10' : 'bg-primary/10'}`}
+            >
+              <prop.icon className={`size-6 ${prop.color}`} />
             </div>
             <div className="flex flex-col gap-2">
               <h3 className="text-on-surface text-lg leading-tight font-bold">{prop.title}</h3>
