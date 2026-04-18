@@ -3,23 +3,30 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { forgotPasswordSchema, type ForgotPasswordFormValues } from '@/lib/auth/schemas'
 
 export default function ForgotPasswordPage() {
-  const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [submittedEmail, setSubmittedEmail] = useState('')
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<ForgotPasswordFormValues>({
+    resolver: zodResolver(forgotPasswordSchema),
+  })
 
+  async function onSubmit(values: ForgotPasswordFormValues) {
     await fetch('/api/auth/forgot-password', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email: values.email }),
     })
 
-    setLoading(false)
+    setSubmittedEmail(values.email)
     setSent(true)
   }
 
@@ -37,8 +44,8 @@ export default function ForgotPasswordPage() {
       {sent ? (
         <div className="flex flex-col gap-6">
           <div className="bg-secondary-container/20 text-on-surface rounded-xl px-5 py-4 text-sm leading-relaxed font-medium">
-            If an account exists for <strong>{email}</strong>, a reset link has been sent. Check
-            your inbox.
+            If an account exists for <strong>{submittedEmail}</strong>, a reset link has been sent.
+            Check your inbox.
           </div>
 
           <Link
@@ -50,28 +57,29 @@ export default function ForgotPasswordPage() {
           </Link>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-          <label className="flex flex-col gap-2">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
             <span className="text-on-surface text-xs font-medium tracking-widest uppercase">
               Email Address
             </span>
             <input
               type="email"
               placeholder="researcher@cryptoedy.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
               autoComplete="email"
+              {...register('email')}
               className="bg-surface-container-high text-on-surface placeholder:text-on-surface-variant/50 focus:bg-surface-container-lowest focus:ring-primary w-full rounded-xl border-none px-5 py-4 text-base transition-all focus:ring-2 focus:outline-none"
             />
-          </label>
+            {errors.email && (
+              <p className="text-error text-xs font-medium">{errors.email.message}</p>
+            )}
+          </div>
 
           <button
             type="submit"
-            disabled={loading}
-            className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container mt-2 w-full rounded-xl bg-gradient-to-b px-6 py-4 text-base font-bold tracking-wide shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-all disabled:opacity-50"
+            disabled={isSubmitting}
+            className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container shadow-cta mt-2 w-full rounded-xl bg-linear-to-b px-6 py-4 text-base font-bold tracking-wide transition-all disabled:opacity-50"
           >
-            {loading ? 'Sending...' : 'Send reset link'}
+            {isSubmitting ? 'Sending...' : 'Send reset link'}
           </button>
         </form>
       )}

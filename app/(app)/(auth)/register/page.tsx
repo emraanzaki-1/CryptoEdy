@@ -3,48 +3,39 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { registerSchema, type RegisterFormValues } from '@/lib/auth/schemas'
 
 export default function RegisterPage() {
   const router = useRouter()
+  const [serverError, setServerError] = useState('')
 
-  const [form, setForm] = useState({
-    email: '',
-    username: '',
-    password: '',
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
   })
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setError('')
-
-    if (form.password.length < 8) {
-      setError('Password must be at least 8 characters')
-      return
-    }
-
-    setLoading(true)
+  async function onSubmit(values: RegisterFormValues) {
+    setServerError('')
 
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        email: form.email,
-        username: form.username,
-        password: form.password,
+        email: values.email,
+        username: values.username,
+        password: values.password,
       }),
     })
 
     const data = await res.json()
-    setLoading(false)
 
     if (!res.ok) {
-      setError(data.error ?? 'Registration failed')
+      setServerError(data.error ?? 'Registration failed')
       return
     }
 
@@ -62,10 +53,10 @@ export default function RegisterPage() {
         </p>
       </header>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-        {error && (
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+        {serverError && (
           <div className="bg-error-container text-on-error-container rounded-xl px-5 py-3 text-sm font-medium">
-            {error}
+            {serverError}
           </div>
         )}
 
@@ -79,16 +70,14 @@ export default function RegisterPage() {
           <div className="bg-surface-container-high focus-within:bg-surface-container-lowest h-14 w-full overflow-hidden rounded-xl transition-colors duration-200 focus-within:shadow-[0_0_0_2px_rgba(0,62,199,0.15)]">
             <input
               id="email"
-              name="email"
               type="email"
               placeholder="name@company.com"
-              value={form.email}
-              onChange={handleChange}
-              required
               autoComplete="email"
+              {...register('email')}
               className="text-on-surface placeholder:text-on-surface-variant/50 h-full w-full border-none bg-transparent px-4 text-base focus:ring-0 focus:outline-none"
             />
           </div>
+          {errors.email && <p className="text-error text-xs font-medium">{errors.email.message}</p>}
         </div>
 
         <div className="flex flex-col gap-2">
@@ -101,15 +90,15 @@ export default function RegisterPage() {
           <div className="bg-surface-container-high focus-within:bg-surface-container-lowest h-14 w-full overflow-hidden rounded-xl transition-colors duration-200 focus-within:shadow-[0_0_0_2px_rgba(0,62,199,0.15)]">
             <input
               id="username"
-              name="username"
               type="text"
               placeholder="Choose a display name"
-              value={form.username}
-              onChange={handleChange}
-              required
+              {...register('username')}
               className="text-on-surface placeholder:text-on-surface-variant/50 h-full w-full border-none bg-transparent px-4 text-base focus:ring-0 focus:outline-none"
             />
           </div>
+          {errors.username && (
+            <p className="text-error text-xs font-medium">{errors.username.message}</p>
+          )}
         </div>
 
         <div className="flex flex-col gap-2">
@@ -122,25 +111,25 @@ export default function RegisterPage() {
           <div className="bg-surface-container-high focus-within:bg-surface-container-lowest h-14 w-full overflow-hidden rounded-xl transition-colors duration-200 focus-within:shadow-[0_0_0_2px_rgba(0,62,199,0.15)]">
             <input
               id="password"
-              name="password"
               type="password"
               placeholder="Minimum 8 characters"
-              value={form.password}
-              onChange={handleChange}
-              required
               autoComplete="new-password"
+              {...register('password')}
               className="text-on-surface placeholder:text-on-surface-variant/50 h-full w-full border-none bg-transparent px-4 text-base focus:ring-0 focus:outline-none"
             />
           </div>
+          {errors.password && (
+            <p className="text-error text-xs font-medium">{errors.password.message}</p>
+          )}
         </div>
 
         <div className="mt-6 flex flex-col gap-4">
           <button
             type="submit"
-            disabled={loading}
-            className="from-primary to-primary-container text-on-primary flex h-14 w-full items-center justify-center rounded-xl bg-gradient-to-b text-base font-bold tracking-[0.015em] shadow-sm transition-opacity hover:opacity-95 disabled:opacity-50"
+            disabled={isSubmitting}
+            className="from-primary to-primary-container text-on-primary flex h-14 w-full items-center justify-center rounded-xl bg-linear-to-b text-base font-bold tracking-[0.015em] shadow-sm transition-opacity hover:opacity-95 disabled:opacity-50"
           >
-            {loading ? 'Creating account...' : 'Sign Up'}
+            {isSubmitting ? 'Creating account...' : 'Sign Up'}
           </button>
         </div>
       </form>
