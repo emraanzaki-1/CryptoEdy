@@ -2,12 +2,20 @@ import type { CollectionConfig } from 'payload'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
+  defaultSort: 'weight',
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'parent', 'slug'],
+    defaultColumns: ['name', 'parent', 'slug', 'weight'],
     listSearchableFields: ['name', 'slug'],
     description:
       'Content taxonomy with parent-child hierarchy. Top-level parents: Research, Analysis, Education. Children are the specific categories (e.g. Top Picks, Market Updates).',
+    components: {
+      views: {
+        list: {
+          Component: '@/components/admin/views/CategoriesListView',
+        },
+      },
+    },
   },
   access: {
     read: () => true,
@@ -45,6 +53,17 @@ export const Categories: CollectionConfig = {
       name: 'description',
       type: 'textarea',
       admin: { description: 'Short description shown on category landing pages.' },
+    },
+    {
+      name: 'weight',
+      type: 'number',
+      defaultValue: 0,
+      admin: {
+        position: 'sidebar',
+        readOnly: true,
+        description:
+          'Ordering weight within its level (managed via drag-and-drop in the list view). Lower = higher priority.',
+      },
     },
   ],
 }

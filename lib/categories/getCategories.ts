@@ -14,7 +14,7 @@ async function fetchNavCategories(): Promise<NavCategory[]> {
   const { docs } = await payload.find({
     collection: 'categories',
     where: { parent: { exists: false } },
-    sort: 'name',
+    sort: 'weight',
     limit: 50,
     depth: 0,
     overrideAccess: true,
@@ -25,7 +25,7 @@ async function fetchNavCategories(): Promise<NavCategory[]> {
   const { docs: children } = await payload.find({
     collection: 'categories',
     where: { parent: { exists: true } },
-    sort: 'name',
+    sort: 'weight',
     limit: 200,
     depth: 1,
     overrideAccess: true,

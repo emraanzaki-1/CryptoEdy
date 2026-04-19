@@ -27,13 +27,20 @@ const PARENT_CATEGORIES = [
     name: 'Research',
     slug: 'research',
     description: 'High-conviction picks, deep dives, and research reports.',
+    weight: 0,
   },
   {
     name: 'Analysis',
     slug: 'analysis',
     description: 'Market updates, macro direction, and on-chain analysis.',
+    weight: 1,
   },
-  { name: 'Education', slug: 'education', description: 'Courses, guides, and crypto glossary.' },
+  {
+    name: 'Education',
+    slug: 'education',
+    description: 'Courses, guides, and crypto glossary.',
+    weight: 2,
+  },
 ]
 
 // Child categories — `parentSlug` is resolved to an ID at seed time
@@ -44,30 +51,35 @@ const CHILD_CATEGORIES = [
     slug: 'top-picks',
     parentSlug: 'research',
     description: 'High-conviction token picks with entry/exit targets and risk ratings.',
+    weight: 0,
   },
   {
     name: 'Deep Dives',
     slug: 'deep-dives',
     parentSlug: 'research',
     description: 'In-depth protocol and project research reports.',
+    weight: 1,
   },
   {
     name: 'Passive Income',
     slug: 'passive-income',
     parentSlug: 'research',
     description: 'Staking, yield farming, and passive crypto income strategies.',
+    weight: 2,
   },
   {
     name: 'Airdrop Reports',
     slug: 'airdrop-reports',
     parentSlug: 'research',
     description: 'Curated guides for upcoming and active airdrop opportunities.',
+    weight: 3,
   },
   {
     name: 'Memecoins',
     slug: 'memecoins',
     parentSlug: 'research',
     description: 'Analysis and picks in the memecoin sector.',
+    weight: 4,
   },
   // Analysis children
   {
@@ -75,24 +87,28 @@ const CHILD_CATEGORIES = [
     slug: 'market-updates',
     parentSlug: 'analysis',
     description: 'Regular market condition updates and commentary.',
+    weight: 0,
   },
   {
     name: 'Market Direction',
     slug: 'market-direction',
     parentSlug: 'analysis',
     description: 'Macro trend analysis and liquidity flow dashboards.',
+    weight: 1,
   },
   {
     name: 'Market Pulse',
     slug: 'market-pulse',
     parentSlug: 'analysis',
     description: 'On-chain data and sentiment indicators.',
+    weight: 2,
   },
   {
     name: 'Livestreams',
     slug: 'livestreams',
     parentSlug: 'analysis',
     description: 'Weekly interactive sessions and Q&A recordings.',
+    weight: 3,
   },
   // Education children
   {
@@ -100,18 +116,21 @@ const CHILD_CATEGORIES = [
     slug: 'courses',
     parentSlug: 'education',
     description: 'Structured learning paths from crypto basics to advanced trading.',
+    weight: 0,
   },
   {
     name: 'Resource Hub',
     slug: 'resource-hub',
     parentSlug: 'education',
     description: 'Tutorials, guides, and curated resources.',
+    weight: 1,
   },
   {
     name: 'Glossary',
     slug: 'glossary',
     parentSlug: 'education',
     description: 'Plain-language definitions of crypto and DeFi terms.',
+    weight: 2,
   },
 ]
 

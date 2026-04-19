@@ -29,6 +29,8 @@
 - **Feed page architecture:** Split into server component (Payload fetch) and client component (filter/view toggle interactivity) via `FeedClient` wrapper.
 - **Payload + Drizzle same DB:** Payload uses `payload` schema, app uses `public` schema. Admin endpoints can query `public.users` via `getDb()` directly.
 - **Category hierarchy:** Categories use parent-child self-referencing relationship (not a `type` enum). 3 parents (Research, Analysis, Education) with 12 children. Posts.category is a relationship to categories, not a select. Frontend resolves names via `depth: 2` on Payload queries. Feed filter pills match on `parentCategory` (the parent name like "Research"), not the child name.
+- **Category ordering:** Categories have a `weight` field (number, default 0) for ordering. `defaultSort: 'weight'` on the collection config. Weights are independent per hierarchy level (parents 0–2, children 0–N under each parent). Drag-and-drop reorder in admin auto-saves via `POST /api/categories-reorder` endpoint.
+- **Payload 3.x collection-level list view override:** Use `admin.components.views.list.Component` on the CollectionConfig (NOT a global admin view). This replaces only the list view while keeping standard Payload edit/create forms. The component receives `ListViewServerProps` (with `payload`, `user`, `i18n`, `locale`, `permissions`, `visibleEntities` directly on props). Do NOT use `AdminViewServerProps` (which has `initPageResult`) — that's only for global views. Do NOT wrap in `DefaultTemplate` — Payload already provides the admin shell for list views.
 
 ## Do-Not-Repeat
 

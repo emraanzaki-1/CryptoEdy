@@ -347,6 +347,8 @@
 
 ## components/admin/views/
 
+- `CategoriesListView.tsx` — Server component: custom list view for Categories collection (DefaultTemplate, SetStepNav, tree structure) (~500 tok)
+- `CategoriesListClient.tsx` — Client component: hierarchical category list with expand/collapse + drag-and-drop reordering (~3500 tok)
 - `UserManagement.tsx` — UserManagement (~236 tok)
 - `UserManagementClient.tsx` — ROLES — uses useState, useCallback, useEffect (~3775 tok)
 - `UserManagementEdit.tsx` — UserManagementEdit (~334 tok)

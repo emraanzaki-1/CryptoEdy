@@ -3,6 +3,7 @@ import type { Endpoint } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { addDataAndFileToRequest } from 'payload'
+import { revalidateTag } from 'next/cache'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -438,6 +439,51 @@ const adminUserEndpoints: Endpoint[] = [
   },
 ]
 
+// ── Category reorder endpoint ────────────────────────────────────────────────
+
+const categoryReorderEndpoint: Endpoint = {
+  path: '/categories-reorder',
+  method: 'post',
+  handler: async (req) => {
+    if (!isAdmin(req)) {
+      return Response.json({ error: 'Forbidden' }, { status: 403 })
+    }
+
+    await addDataAndFileToRequest(req)
+    const { items } = (req.data ?? {}) as {
+      items?: Array<{ id: string | number; weight: number }>
+    }
+
+    if (!Array.isArray(items) || items.length === 0) {
+      return Response.json({ error: 'items array is required: [{ id, weight }]' }, { status: 400 })
+    }
+
+    // Validate all weights are non-negative integers
+    for (const item of items) {
+      if (typeof item.weight !== 'number' || item.weight < 0 || !Number.isInteger(item.weight)) {
+        return Response.json(
+          { error: `Invalid weight for id ${item.id}: must be a non-negative integer` },
+          { status: 400 }
+        )
+      }
+    }
+
+    await Promise.all(
+      items.map((item) =>
+        req.payload.update({
+          collection: 'categories',
+          id: item.id,
+          data: { weight: item.weight },
+        })
+      )
+    )
+
+    revalidateTag('categories')
+
+    return Response.json({ success: true })
+  },
+}
+
 export default buildConfig({
   admin: {
     // Authors collection has auth: true — these are the CMS editor accounts
@@ -479,7 +525,7 @@ export default buildConfig({
       },
     },
   },
-  endpoints: adminUserEndpoints,
+  endpoints: [...adminUserEndpoints, categoryReorderEndpoint],
   collections: [Authors, Categories, Tags, Media, Posts, Bookmarks],
   // Rich Lexical editor is the global default for all richText fields.
   // Posts.content overrides with the same editor (with custom crypto blocks).
