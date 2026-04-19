@@ -5,22 +5,25 @@ import { ThemeProvider } from '@/components/providers/theme-provider'
 import { TopAppBar } from '@/components/layouts/top-app-bar'
 import { Sidebar } from '@/components/layouts/sidebar'
 
+import type { NavCategory } from '@/lib/categories/getCategories'
+
 interface DashboardShellProps {
   user: {
     name: string
     image?: string
     isPro: boolean
   }
+  navCategories: NavCategory[]
   children: React.ReactNode
 }
 
-export function DashboardShell({ user, children }: DashboardShellProps) {
+export function DashboardShell({ user, navCategories, children }: DashboardShellProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true)
 
   return (
     <ThemeProvider>
       <div className="bg-surface flex h-screen flex-col overflow-hidden">
-        <TopAppBar user={user} />
+        <TopAppBar user={user} navCategories={navCategories} />
         <div className="relative flex min-h-0 flex-1">
           <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed((c) => !c)} />
           <main className="bg-surface-container-lowest flex min-h-0 flex-1 flex-col overflow-y-auto rounded-tl-3xl">

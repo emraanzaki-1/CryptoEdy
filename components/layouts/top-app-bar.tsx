@@ -8,6 +8,7 @@ import { Bell, Bookmark, Settings, LogOut, User, CreditCard, ChevronDown } from 
 import { Logo } from '@/components/common/logo'
 import { SearchBar } from '@/components/common/search-bar'
 import { cn } from '@/lib/utils'
+import type { NavCategory } from '@/lib/categories/getCategories'
 
 interface TopAppBarProps {
   user?: {
@@ -15,6 +16,7 @@ interface TopAppBarProps {
     image?: string
     isPro?: boolean
   }
+  navCategories?: NavCategory[]
 }
 
 function useClickOutside(ref: React.RefObject<HTMLElement | null>, onClose: () => void) {
@@ -29,57 +31,49 @@ function useClickOutside(ref: React.RefObject<HTMLElement | null>, onClose: () =
 
 /* ─── Category Nav Dropdown ─────────────────────────────────────────────── */
 
-const NAV_CATEGORIES = [
-  {
-    label: 'Research',
-    items: [
-      { label: 'All Research', href: '/feed?category=research' },
-      { label: 'Top Picks', href: '/feed?category=top-picks' },
-      { label: 'Market Direction', href: '/feed?category=market-direction' },
-      { label: 'Assets & Picks', href: '/feed?category=assets-picks' },
-    ],
-  },
-  {
-    label: 'Analysis',
-    items: [
-      { label: 'Market Updates', href: '/feed?category=market-updates' },
-      { label: 'On-Chain Analysis', href: '/feed?category=on-chain' },
-      { label: 'Macro Reports', href: '/feed?category=macro' },
-    ],
-  },
-  {
-    label: 'Education',
-    items: [
-      { label: 'Crypto School', href: '/feed?category=crypto-school' },
-      { label: 'Beginner Guides', href: '/feed?category=beginner' },
-      { label: 'Advanced Strategies', href: '/feed?category=advanced' },
-    ],
-  },
-]
-
 function CategoryDropdown({
   label,
   items,
-  open,
-  onOpen,
-  onClose,
 }: {
   label: string
   items: { label: string; href: string }[]
-  open: boolean
-  onOpen: () => void
-  onClose: () => void
 }) {
+  const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
-  useClickOutside(ref, onClose)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const isActive = items.some((i) => pathname.startsWith(i.href.split('?')[0]))
+  const isActive = items.some((i) => pathname.startsWith(i.href))
+
+  function scheduleClose() {
+    closeTimer.current = setTimeout(() => setOpen(false), 150)
+  }
+
+  function cancelClose() {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+  }
+
+  // Close on outside click — but use `click` not `mousedown` so links work
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('click', handleClick)
+    return () => document.removeEventListener('click', handleClick)
+  }, [])
 
   return (
-    <div ref={ref} className="relative" onMouseEnter={onOpen} onMouseLeave={onClose}>
+    <div
+      ref={ref}
+      className="relative"
+      onMouseEnter={() => {
+        cancelClose()
+        setOpen(true)
+      }}
+      onMouseLeave={scheduleClose}
+    >
       <button
-        onClick={() => (open ? onClose() : onOpen())}
+        onClick={() => setOpen((v) => !v)}
         className={cn(
           'flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
           isActive
@@ -92,55 +86,30 @@ function CategoryDropdown({
       </button>
 
       {open && (
-        <div className="border-outline-variant/15 bg-surface-container-lowest absolute top-full left-0 z-50 mt-1 min-w-[180px] overflow-hidden rounded-xl border shadow-lg">
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={onClose}
-              className="text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface block px-4 py-2.5 text-sm transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="absolute top-full left-0 z-50 min-w-[180px] pt-1">
+          <div className="border-outline-variant/15 bg-surface-container-lowest overflow-hidden rounded-xl border shadow-lg">
+            {items.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface block px-4 py-2.5 text-sm transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>
   )
 }
 
-function CategoryNav() {
-  const [activeNav, setActiveNav] = useState<string | null>(null)
-  const openTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-
-  function handleOpen(label: string) {
-    if (closeTimer.current) clearTimeout(closeTimer.current)
-    if (activeNav) {
-      // Another is open — switch immediately
-      setActiveNav(label)
-    } else {
-      // None open — delay before opening
-      openTimer.current = setTimeout(() => setActiveNav(label), 250)
-    }
-  }
-
-  function handleClose() {
-    if (openTimer.current) clearTimeout(openTimer.current)
-    closeTimer.current = setTimeout(() => setActiveNav(null), 150)
-  }
-
+function CategoryNav({ categories }: { categories: NavCategory[] }) {
   return (
     <nav className="hidden items-center gap-1 md:flex">
-      {NAV_CATEGORIES.map((cat) => (
-        <CategoryDropdown
-          key={cat.label}
-          label={cat.label}
-          items={cat.items}
-          open={activeNav === cat.label}
-          onOpen={() => handleOpen(cat.label)}
-          onClose={handleClose}
-        />
+      {categories.map((cat) => (
+        <CategoryDropdown key={cat.label} label={cat.label} items={cat.items} />
       ))}
     </nav>
   )
@@ -297,7 +266,7 @@ function UserDropdown({
 
 /* ─── Top App Bar ───────────────────────────────────────────────────────── */
 
-export function TopAppBar({ user }: TopAppBarProps) {
+export function TopAppBar({ user, navCategories = [] }: TopAppBarProps) {
   const [notifOpen, setNotifOpen] = useState(false)
   const [userOpen, setUserOpen] = useState(false)
 
@@ -309,7 +278,7 @@ export function TopAppBar({ user }: TopAppBarProps) {
       </Link>
 
       {/* Category nav */}
-      <CategoryNav />
+      <CategoryNav categories={navCategories} />
 
       {/* Right side */}
       <div className="flex flex-1 items-center justify-end gap-3">

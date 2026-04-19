@@ -132,7 +132,7 @@ const TAGS = [
 const CMS_AUTHORS = [
   {
     email: 'admin@cryptoedy.com',
-    password: 'Admin123!',
+    password: 'password',
     displayName: 'CryptoEdy Admin',
     role: 'admin' as const,
   },
@@ -148,7 +148,7 @@ const CMS_AUTHORS = [
 const APP_USERS = [
   {
     email: 'admin@cryptoedy.com',
-    password: 'Admin123!',
+    password: 'password',
     role: 'admin' as const,
     emailVerified: true,
     subscriptionExpiry: null,

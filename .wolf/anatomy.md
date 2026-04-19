@@ -1,7 +1,11 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-19T16:03:32.844Z
-> Files: 234 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-19T20:38:40.759Z
+> Files: 245 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../../../.claude/plans/
+
+- `binary-growing-pebble.md` — Bookmarking Feature Plan (~917 tok)
 
 ## ./
 
@@ -18,7 +22,7 @@
 - `next.config.ts` — Next.js configuration (~89 tok)
 - `package-lock.json` — npm lock file (~167654 tok)
 - `package.json` — Node.js package manifest (~639 tok)
-- `payload.config.ts` — API routes: GET (4 endpoints) (~4613 tok)
+- `payload.config.ts` — API routes: GET (4 endpoints) (~4631 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~980 tok)
 - `README.md` — Project documentation (~363 tok)
@@ -192,13 +196,13 @@
 ## app/(app)/(dashboard)/
 
 - `error.tsx` — DashboardError (~148 tok)
-- `layout.tsx` — DashboardLayout (~262 tok)
+- `layout.tsx` — DashboardLayout (~306 tok)
 - `not-found.tsx` — DashboardNotFound (~104 tok)
 
 ## app/(app)/(dashboard)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — ── Helpers ────────────────────────────────────────────────────────────────── (~1904 tok)
+- `page.tsx` — ROLE_HIERARCHY (~2263 tok)
 
 ## app/(app)/(dashboard)/community/
 
@@ -207,11 +211,15 @@
 ## app/(app)/(dashboard)/feed/
 
 - `loading.tsx` — FeedLoading (~235 tok)
-- `page.tsx` — timeAgo (~706 tok)
+- `page.tsx` — timeAgo (~773 tok)
+
+## app/(app)/(dashboard)/feed/[[...slug]]/
+
+- `page.tsx` — FeedPage (~780 tok)
 
 ## app/(app)/(dashboard)/saved/
 
-- `page.tsx` — SavedPage (~70 tok)
+- `page.tsx` — SavedPage (~476 tok)
 
 ## app/(app)/(dashboard)/settings/
 
@@ -238,6 +246,10 @@
 ## app/(app)/(dashboard)/settings/profile/
 
 - `page.tsx` — ProfileSettingsPage — uses useState (~1728 tok)
+
+## app/(app)/(dashboard)/tag/[slug]/
+
+- `page.tsx` — TagPage (~581 tok)
 
 ## app/(app)/(dashboard)/tools/
 
@@ -308,6 +320,7 @@
 ## collections/
 
 - `Authors.ts` — Payload's CMS editor accounts — separate from NextAuth app users. (~578 tok)
+- `Bookmarks.ts` — Exports Bookmarks (~382 tok)
 - `Categories.ts` — Exports Categories (~430 tok)
 - `Media.ts` — Exports Media (~285 tok)
 - `Posts.ts` — Exports Posts (~2592 tok)
@@ -343,6 +356,7 @@
 
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
 - `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1613 tok)
+- `share-button.tsx` — ShareButton (~339 tok)
 
 ## components/article/blocks/
 
@@ -365,10 +379,12 @@
 
 ## components/feed/
 
-- `article-card-list.tsx` — CategoryPill (~852 tok)
+- `article-card-list.tsx` — CategoryPill (~805 tok)
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~906 tok)
-- `article-card.tsx` — CategoryPill (~1148 tok)
-- `feed-client.tsx` — FILTERS — uses useState (~800 tok)
+- `article-card.tsx` — CategoryPill (~1124 tok)
+- `bookmark-button.tsx` — BookmarkButton (~669 tok)
+- `feed-client.tsx` — FeedClient (~799 tok)
+- `tag-client.tsx` — TagClient (~533 tok)
 - `view-toggle.tsx` — ViewToggle (~337 tok)
 
 ## components/landing/
@@ -383,12 +399,12 @@
 ## components/layouts/
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~570 tok)
-- `dashboard-shell.tsx` — DashboardShell — uses useState (~511 tok)
+- `dashboard-shell.tsx` — DashboardShell (~552 tok)
 - `footer.tsx` — Footer (~947 tok)
 - `guest-nav.tsx` — NAV_LINKS — uses useState (~1037 tok)
 - `settings-nav.tsx` — settingsGroups (~572 tok)
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2179 tok)
-- `top-app-bar.tsx` — useClickOutside — uses useEffect, useState (~3466 tok)
+- `top-app-bar.tsx` — useClickOutside (~3220 tok)
 
 ## components/providers/
 
@@ -474,6 +490,15 @@
 - `schemas.ts` — Zod schemas: loginSchema, registerSchema, forgotPasswordSchema (~374 tok)
 - `withRole.ts` — Checks if a user's effective role meets the required minimum role. (~624 tok)
 
+## lib/bookmarks/
+
+- `actions.ts` — Exports toggleBookmark (~322 tok)
+- `getBookmarkedPostIds.ts` — Exports getBookmarkedPostIds (~177 tok)
+
+## lib/categories/
+
+- `getCategories.ts` — Exports NavCategory, getNavCategories (~502 tok)
+
 ## lib/config/
 
 - `env.ts` — Startup environment validator. (~266 tok)
@@ -511,6 +536,10 @@
 ## lib/notifications/
 
 - `events.ts` — Sprint 3 stub — full notification engine built in Sprint 10. (~255 tok)
+
+## lib/posts/
+
+- `mapToCardProps.ts` — Exports timeAgo, mapPostToCardProps (~629 tok)
 
 ## scripts/
 

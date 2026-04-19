@@ -1,6 +1,7 @@
 import Link from 'next/link'
-import { Clock, Bookmark, Lock } from 'lucide-react'
+import { Clock, Lock } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import { BookmarkButton } from '@/components/feed/bookmark-button'
 import type { ArticleCardProps } from './article-card'
 
 function CategoryPill({ category }: { category: string }) {
@@ -21,6 +22,8 @@ export function ArticleCardList({
   imageAlt,
   isPro,
   slug,
+  postId,
+  isBookmarked = false,
 }: ArticleCardProps) {
   return (
     <Link href={`/articles/${slug}`} className="block">
@@ -46,13 +49,9 @@ export function ArticleCardList({
               Members only
             </div>
           )}
-          <button
-            onClick={(e) => e.preventDefault()}
-            className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-full bg-black/40 text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100 hover:bg-black/60"
-            aria-label="Bookmark"
-          >
-            <Bookmark className="size-4" />
-          </button>
+          {postId && (
+            <BookmarkButton postId={postId} initialBookmarked={isBookmarked} variant="card" />
+          )}
         </div>
 
         {/* Content */}

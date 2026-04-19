@@ -1,5 +1,6 @@
-import { Share, Bookmark, Clock } from 'lucide-react'
+import { Clock } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
@@ -7,8 +8,11 @@ import type { SerializedEditorState } from 'lexical'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Badge } from '@/components/ui/badge'
+import { BookmarkButton } from '@/components/feed/bookmark-button'
+import { ShareButton } from '@/components/article/share-button'
 import { PaywallGate } from '@/components/article/paywall-gate'
 import { auth } from '@/lib/auth'
+import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import type { Role } from '@/lib/auth/withRole'
 import { jsxConverters } from '@/lib/lexical/jsxConverters'
 
@@ -63,6 +67,12 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
   // Determine lock state
   const isLocked = post.isProOnly === true && ROLE_HIERARCHY[effectiveRole] < ROLE_HIERARCHY['pro']
 
+  // Check bookmark state
+  const bookmarkedIds = session?.user?.id
+    ? await getBookmarkedPostIds(session.user.id)
+    : new Set<string>()
+  const isBookmarked = bookmarkedIds.has(String(post.id))
+
   // Extract data
   const author =
     post.author && typeof post.author === 'object' && 'displayName' in post.author
@@ -85,11 +95,23 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       ? (post.category as Record<string, unknown>)
       : null
   const categoryName = (categoryObj?.name as string) ?? 'Research'
+  const categorySlug = (categoryObj?.slug as string) ?? ''
   const parentObj =
     categoryObj?.parent && typeof categoryObj.parent === 'object'
       ? (categoryObj.parent as Record<string, unknown>)
       : null
   const parentName = (parentObj?.name as string) ?? categoryName
+  const parentSlug = (parentObj?.slug as string) ?? categorySlug
+
+  // Resolve tags from populated relationship
+  const tags = Array.isArray(post.tags)
+    ? post.tags
+        .filter((t) => t && typeof t === 'object' && 'name' in t)
+        .map((t) => {
+          const tag = t as Record<string, unknown>
+          return { name: tag.name as string, slug: (tag.slug as string) ?? '' }
+        })
+    : []
 
   return (
     <article className="mx-auto max-w-4xl">
@@ -97,8 +119,8 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       <Breadcrumb
         items={[
           { label: 'Home', href: '/feed' },
-          { label: parentName, href: '/feed' },
-          { label: categoryName, href: '/feed' },
+          { label: parentName, href: `/feed/${parentSlug}` },
+          { label: categoryName, href: `/feed/${categorySlug}` },
           { label: post.title as string },
         ]}
         className="mb-8"
@@ -137,18 +159,12 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <button
-              aria-label="Share"
-              className="border-outline-variant/15 bg-surface text-on-surface-variant hover:bg-surface-container-low flex size-10 items-center justify-center rounded-full border transition-colors"
-            >
-              <Share className="size-5" />
-            </button>
-            <button
-              aria-label="Bookmark"
-              className="border-outline-variant/15 bg-surface text-on-surface-variant hover:bg-surface-container-low flex size-10 items-center justify-center rounded-full border transition-colors"
-            >
-              <Bookmark className="size-5" />
-            </button>
+            <ShareButton title={post.title as string} slug={(post.slug as string) ?? slug} />
+            <BookmarkButton
+              postId={String(post.id)}
+              initialBookmarked={isBookmarked}
+              variant="article"
+            />
           </div>
         </div>
       </header>
@@ -166,6 +182,13 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         </div>
       )}
 
+      {/* The Hook */}
+      {post.excerpt && (
+        <p className="border-primary text-on-background mb-10 border-l-4 py-2 pl-6 text-xl leading-relaxed font-medium md:text-2xl">
+          {post.excerpt as string}
+        </p>
+      )}
+
       {/* Content */}
       {isLocked ? (
         <section className="article-body text-on-surface-variant max-w-none text-base leading-[1.6]">
@@ -175,6 +198,23 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         <section className="article-body text-on-surface-variant max-w-none text-base leading-[1.6]">
           <RichText data={post.content as SerializedEditorState} converters={jsxConverters} />
         </section>
+      )}
+
+      {/* Tags */}
+      {tags.length > 0 && (
+        <footer className="border-outline-variant/15 mt-10 border-t pt-6">
+          <div className="flex flex-wrap items-center gap-2">
+            {tags.map((tag) => (
+              <Link
+                key={tag.slug}
+                href={`/tag/${tag.slug}`}
+                className="text-primary hover:bg-primary/10 rounded-full px-3 py-1 text-sm font-medium transition-colors"
+              >
+                #{tag.name}
+              </Link>
+            ))}
+          </div>
+        </footer>
       )}
     </article>
   )

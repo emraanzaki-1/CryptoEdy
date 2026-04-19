@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Research Dashboard - No Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "primary": "#003ec7",
+                        "surface-dim": "#cbdbf5",
+                        "on-tertiary-container": "#4c3e00",
+                        "secondary-container": "#00f93f",
+                        "on-surface-variant": "#434656",
+                        "primary-container": "#0052ff",
+                        "on-secondary-fixed": "#002203",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#e9c400",
+                        "on-secondary-fixed-variant": "#00530e",
+                        "secondary-fixed": "#72ff70",
+                        "secondary-fixed-dim": "#00e639",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "tertiary-container": "#c9a900",
+                        "outline": "#737688",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary-fixed": "#001452",
+                        "outline-variant": "#c3c5d9",
+                        "on-secondary-container": "#006d16",
+                        "on-primary-container": "#dfe3ff",
+                        "surface-container-low": "#eff4ff",
+                        "error-container": "#ffdad6",
+                        "secondary": "#006e16",
+                        "surface-container-low": "#eff4ff",
+                        "on-surface": "#0b1c30",
+                        "inverse-surface": "#213145",
+                        "primary-fixed-dim": "#b7c4ff",
+                        "on-tertiary-fixed": "#221b00",
+                        "inverse-primary": "#b7c4ff",
+                        "on-primary-fixed-variant": "#0038b6",
+                        "surface": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dde1ff",
+                        "on-tertiary-fixed-variant": "#544600",
+                        "tertiary": "#705d00",
+                        "surface-tint": "#004ced",
+                        "on-background": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#dce9ff",
+                        "background": "#f8f9ff",
+                        "tertiary-fixed": "#ffe16d",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container": "#e5eeff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Verbatim Header from Shared Components -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-outline-variant/15 px-10 py-3 bg-surface-container-lowest">
+<div class="flex items-center gap-4 text-on-surface">
+<div class="size-4 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path></svg>
+</div>
+<h2 class="text-on-surface text-lg font-bold leading-tight tracking-[-0.015em]">Research Dashboard</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-primary flex border-none bg-surface-container-low items-center justify-center pl-4 rounded-l-lg border-r-0" data-icon="MagnifyingGlass" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+</svg>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-on-surface focus:outline-0 focus:ring-0 border-none bg-surface-container-low focus:border-none h-full placeholder:text-outline px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search" value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-surface-container-low text-on-surface gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<div class="text-on-surface" data-icon="Bell" data-size="20px" data-weight="regular">
+<svg fill="currentColor" height="20px" viewbox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
+</svg>
+</div>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-surface-container-low text-on-surface gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<div class="text-on-surface" data-icon="Gear" data-size="20px" data-weight="regular">
+<svg fill="currentColor" height="20px" viewbox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"></path>
+</svg>
+</div>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="professional portrait of a financial researcher in a modern office setting with soft natural lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBFEBXhPmGuIMoO2xWo7EaUrqpZZLKzjdWGRorqx4EDa_TmydWnh3c21fwWStZXSIXsBfIaeY56kFqdqgiZqlNNiMd4i2b0N7RVYeFtSGCnxVOmJwQooVilUwS-B3cRtf170km5ppcXHU5C-0EUKX7FC7sLeO6k8GdyoC-bpMmWlPWfn5yldgsXkGK_CRgILiLeDyAqkrZ3KzPzP9swXGlJ4m5BQ0sDNTOgBsjJSd8KSuUWdu4lmaHuS_6tBF4tjNAdQBsekY-3nfta");'></div>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- Verbatim SideNavBar Content Logic -->
+<aside class="flex w-80 h-full min-h-[calc(100vh-64px)] flex-col justify-between bg-surface-container-low p-4 border-r border-outline-variant/10">
+<div class="flex flex-col gap-8">
+<div class="flex gap-3 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="minimalist abstract circular logo with deep blue and white geometric patterns" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBZIGD0dFBFP2XRkSIzbuJLu4HmL2c56A4dCMp-W1xlIM_mcqcWDLD7O4lsuf6gXOO8FQzc38Pmi1PZRTnmDu5qgu0KE-Y5cLSajhgcMxcwMD5hD8KpbrIuyWEd3et9DbFd2Whijadb1WzvSH_V5rdmDlKNkAfAXSkXxCIyAR6GZYpojAx_UDJmXAIKfkKYDx_qJsCHVw1n8PRHoj_mSEylwwVjq11z3q_wnl-vLsXvaJzI71CMWLNl5fj0oqLgfW2QjLdptyue7Eq6");'></div>
+<div class="flex flex-col">
+<h1 class="text-on-surface text-base font-bold leading-normal">Research Pro</h1>
+<p class="text-on-surface-variant text-xs font-medium uppercase tracking-wider">Premium Access</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-on-primary shadow-lg shadow-primary/10 cursor-pointer">
+<div class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">house</div>
+<p class="text-sm font-semibold">Home</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="material-symbols-outlined">chart_line_up</div>
+<p class="text-sm font-semibold">Markets</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="material-symbols-outlined">books</div>
+<p class="text-sm font-semibold">Research Archive</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="material-symbols-outlined">wallet</div>
+<p class="text-sm font-semibold">Portfolio</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="material-symbols-outlined">settings</div>
+<p class="text-sm font-semibold">Settings</p>
+</div>
+</nav>
+</div>
+</aside>
+<!-- Main Content Area: Empty State -->
+<main class="flex-1 flex flex-col items-center justify-center p-12 bg-surface">
+<div class="max-w-xl w-full flex flex-col items-center gap-8">
+<!-- Clean & Modern Empty State Illustration -->
+<div class="relative w-full aspect-video rounded-2xl bg-surface-container-low overflow-hidden flex items-center justify-center p-8 group">
+<!-- Abstract Digital Curator Background -->
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_50%_50%,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
+<div class="relative flex flex-col items-center">
+<div class="size-24 rounded-3xl bg-surface-container-lowest flex items-center justify-center shadow-xl shadow-primary/5 mb-4">
+<span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: 'FILL' 0, 'wght' 200;">search_insights</span>
+</div>
+<div class="flex gap-2">
+<div class="w-12 h-1.5 rounded-full bg-primary/20"></div>
+<div class="w-24 h-1.5 rounded-full bg-primary/10"></div>
+<div class="w-8 h-1.5 rounded-full bg-primary/5"></div>
+</div>
+</div>
+<!-- Decorative floating elements -->
+<div class="absolute top-10 left-10 size-16 rounded-full bg-secondary-container/20 blur-2xl"></div>
+<div class="absolute bottom-10 right-10 size-20 rounded-full bg-primary-container/20 blur-2xl"></div>
+</div>
+<div class="flex flex-col items-center gap-3 text-center">
+<h2 class="text-on-surface text-3xl font-bold tracking-tight">No insights yet</h2>
+<p class="text-on-surface-variant text-base leading-relaxed max-w-md">
+                            Start following markets or research sectors to populate your feed with curated financial intelligence.
+                        </p>
+</div>
+<!-- Primary CTA Button -->
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-b from-primary to-primary-container text-on-primary rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-xl">explore</span>
+                            Explore Research Archive
+                        </button>
+</div>
+<!-- Micro-actions for secondary guidance -->
+<div class="flex items-center gap-8 pt-4 border-t border-outline-variant/20 w-full justify-center">
+<div class="flex items-center gap-2 text-on-surface-variant cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">trending_up</span>
+<span class="text-xs font-bold uppercase tracking-widest">Hot Sectors</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">notifications_active</span>
+<span class="text-xs font-bold uppercase tracking-widest">Alerts Setup</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Verbatim Footer -->
+<footer class="flex flex-col gap-6 px-10 py-10 text-center bg-surface-container-lowest border-t border-outline-variant/10">
+<div class="flex flex-wrap items-center justify-center gap-6 md:flex-row md:justify-around">
+<a class="text-on-surface-variant text-sm font-medium hover:text-primary transition-colors min-w-40" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant text-sm font-medium hover:text-primary transition-colors min-w-40" href="#">Terms of Service</a>
+<a class="text-on-surface-variant text-sm font-medium hover:text-primary transition-colors min-w-40" href="#">Help Center</a>
+</div>
+<p class="text-on-surface-variant/60 text-sm font-normal">© 2024 Research Dashboard Inc. All rights reserved.</p>
+</footer>
+</div>
+</div>
+</body></html>

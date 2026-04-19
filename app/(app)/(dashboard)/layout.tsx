@@ -1,6 +1,7 @@
 import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import { DashboardShell } from '@/components/layouts/dashboard-shell'
+import { getNavCategories } from '@/lib/categories/getCategories'
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await auth()
@@ -13,6 +14,8 @@ export default async function DashboardLayout({ children }: { children: React.Re
     role === 'pro' && subscriptionExpiry && new Date(subscriptionExpiry) < new Date()
   const isPro = !isProExpired && (role === 'pro' || role === 'analyst' || role === 'admin')
 
+  const navCategories = await getNavCategories()
+
   return (
     <DashboardShell
       user={{
@@ -20,6 +23,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
         image: session.user.image ?? undefined,
         isPro,
       }}
+      navCategories={navCategories}
     >
       {children}
     </DashboardShell>

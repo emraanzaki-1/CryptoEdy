@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { FilterChip } from '@/components/ui/filter-chip'
 import { ViewToggle } from '@/components/feed/view-toggle'
 import { ArticleCard } from '@/components/feed/article-card'
@@ -8,18 +9,14 @@ import { ArticleCardList } from '@/components/feed/article-card-list'
 import { EmptyState } from '@/components/common/empty-state'
 import type { ArticleCardProps } from '@/components/feed/article-card'
 
-const FILTERS = ['All', 'Research', 'Analysis', 'Education'] as const
+interface FeedClientProps {
+  articles: ArticleCardProps[]
+  filters?: { label: string; slug: string }[]
+  activeFilter?: string
+}
 
-export function FeedClient({ articles }: { articles: ArticleCardProps[] }) {
+export function FeedClient({ articles, filters = [], activeFilter = 'All' }: FeedClientProps) {
   const [view, setView] = useState<'grid' | 'list'>('grid')
-  const [activeFilter, setActiveFilter] = useState('All')
-
-  const filtered =
-    activeFilter === 'All'
-      ? articles
-      : articles.filter(
-          (a) => (a.parentCategory ?? a.category).toLowerCase() === activeFilter.toLowerCase()
-        )
 
   return (
     <div className="mx-auto flex w-full flex-col gap-8">
@@ -38,35 +35,35 @@ export function FeedClient({ articles }: { articles: ArticleCardProps[] }) {
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3">
-        {FILTERS.map((filter) => (
-          <FilterChip
-            key={filter}
-            label={filter}
-            active={activeFilter === filter}
-            onClick={() => setActiveFilter(filter)}
-          />
+        <Link href="/feed">
+          <FilterChip label="All" active={activeFilter === 'All'} />
+        </Link>
+        {filters.map((filter) => (
+          <Link key={filter.slug} href={`/feed/${filter.slug}`}>
+            <FilterChip label={filter.label} active={activeFilter === filter.label} />
+          </Link>
         ))}
       </div>
 
       {/* Feed */}
-      {filtered.length > 0 ? (
+      {articles.length > 0 ? (
         view === 'grid' ? (
           <div className="flex flex-col gap-6">
-            {filtered[0] && <ArticleCard {...filtered[0]} hero />}
+            {articles[0] && <ArticleCard {...articles[0]} hero />}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 [&>*]:h-full">
-              {filtered.slice(1).map((article) => (
+              {articles.slice(1).map((article) => (
                 <ArticleCard key={article.slug} {...article} />
               ))}
             </div>
           </div>
         ) : (
           <div className="flex flex-col gap-4">
-            {filtered.map((article) => (
+            {articles.map((article) => (
               <ArticleCardList key={article.slug} {...article} />
             ))}
           </div>
         )
-      ) : articles.length === 0 ? (
+      ) : activeFilter === 'All' ? (
         <EmptyState
           title="No articles yet"
           message="New research and analysis will appear here as they're published."
