@@ -7,7 +7,7 @@
  *
  * Run after: npm run db:migrate
  */
-import 'dotenv/config'
+// env is loaded via scripts/patch-next-env.cjs (preloaded with -r flag)
 import { getPayload } from 'payload'
 import config from '../payload.config'
 import { getDb } from '../lib/db'
@@ -22,80 +22,95 @@ const IS_RESET = process.argv.includes('--reset')
 // Seed data definitions
 // ---------------------------------------------------------------------------
 
-const CATEGORIES = [
-  // Research
+const PARENT_CATEGORIES = [
+  {
+    name: 'Research',
+    slug: 'research',
+    description: 'High-conviction picks, deep dives, and research reports.',
+  },
+  {
+    name: 'Analysis',
+    slug: 'analysis',
+    description: 'Market updates, macro direction, and on-chain analysis.',
+  },
+  { name: 'Education', slug: 'education', description: 'Courses, guides, and crypto glossary.' },
+]
+
+// Child categories — `parentSlug` is resolved to an ID at seed time
+const CHILD_CATEGORIES = [
+  // Research children
   {
     name: 'Top Picks',
     slug: 'top-picks',
-    type: 'research' as const,
+    parentSlug: 'research',
     description: 'High-conviction token picks with entry/exit targets and risk ratings.',
   },
   {
     name: 'Deep Dives',
     slug: 'deep-dives',
-    type: 'research' as const,
+    parentSlug: 'research',
     description: 'In-depth protocol and project research reports.',
   },
   {
     name: 'Passive Income',
     slug: 'passive-income',
-    type: 'research' as const,
+    parentSlug: 'research',
     description: 'Staking, yield farming, and passive crypto income strategies.',
   },
   {
     name: 'Airdrop Reports',
     slug: 'airdrop-reports',
-    type: 'research' as const,
+    parentSlug: 'research',
     description: 'Curated guides for upcoming and active airdrop opportunities.',
   },
   {
     name: 'Memecoins',
     slug: 'memecoins',
-    type: 'research' as const,
+    parentSlug: 'research',
     description: 'Analysis and picks in the memecoin sector.',
   },
-  // Analysis
+  // Analysis children
   {
     name: 'Market Updates',
     slug: 'market-updates',
-    type: 'analysis' as const,
+    parentSlug: 'analysis',
     description: 'Regular market condition updates and commentary.',
   },
   {
     name: 'Market Direction',
     slug: 'market-direction',
-    type: 'analysis' as const,
+    parentSlug: 'analysis',
     description: 'Macro trend analysis and liquidity flow dashboards.',
   },
   {
     name: 'Market Pulse',
     slug: 'market-pulse',
-    type: 'analysis' as const,
+    parentSlug: 'analysis',
     description: 'On-chain data and sentiment indicators.',
   },
   {
     name: 'Livestreams',
     slug: 'livestreams',
-    type: 'analysis' as const,
+    parentSlug: 'analysis',
     description: 'Weekly interactive sessions and Q&A recordings.',
   },
-  // Education
+  // Education children
   {
     name: 'Courses',
     slug: 'courses',
-    type: 'education' as const,
+    parentSlug: 'education',
     description: 'Structured learning paths from crypto basics to advanced trading.',
   },
   {
     name: 'Resource Hub',
     slug: 'resource-hub',
-    type: 'education' as const,
+    parentSlug: 'education',
     description: 'Tutorials, guides, and curated resources.',
   },
   {
     name: 'Glossary',
     slug: 'glossary',
-    type: 'education' as const,
+    parentSlug: 'education',
     description: 'Plain-language definitions of crypto and DeFi terms.',
   },
 ]
@@ -211,23 +226,53 @@ async function main() {
     console.log('[seed] Reset complete.')
   }
 
-  // ---- Categories ----
+  // ---- Categories (parent-child hierarchy) ----
   console.log('[seed] Seeding categories...')
   const categoryIdMap: Record<string, string> = {}
-  for (const cat of CATEGORIES) {
+
+  // Seed parent categories first (Research, Analysis, Education)
+  for (const parent of PARENT_CATEGORIES) {
     const existing = await payload.find({
       collection: 'categories',
-      where: { slug: { equals: cat.slug } },
+      where: { slug: { equals: parent.slug } },
       limit: 1,
     })
     if (existing.docs.length > 0) {
-      categoryIdMap[cat.slug] = existing.docs[0].id as string
+      categoryIdMap[parent.slug] = existing.docs[0].id as string
       continue
     }
-    const created = await payload.create({ collection: 'categories', data: cat })
-    categoryIdMap[cat.slug] = created.id as string
+    const created = await payload.create({
+      collection: 'categories',
+      data: { name: parent.name, slug: parent.slug, description: parent.description },
+    })
+    categoryIdMap[parent.slug] = created.id as string
   }
-  console.log(`[seed] Categories: ${Object.keys(categoryIdMap).length} ready.`)
+
+  // Seed child categories with parent references
+  for (const child of CHILD_CATEGORIES) {
+    const existing = await payload.find({
+      collection: 'categories',
+      where: { slug: { equals: child.slug } },
+      limit: 1,
+    })
+    if (existing.docs.length > 0) {
+      categoryIdMap[child.slug] = existing.docs[0].id as string
+      continue
+    }
+    const created = await payload.create({
+      collection: 'categories',
+      data: {
+        name: child.name,
+        slug: child.slug,
+        description: child.description,
+        parent: categoryIdMap[child.parentSlug],
+      },
+    })
+    categoryIdMap[child.slug] = created.id as string
+  }
+  console.log(
+    `[seed] Categories: ${Object.keys(categoryIdMap).length} ready (3 parents + 12 children).`
+  )
 
   // ---- Tags ----
   console.log('[seed] Seeding tags...')
@@ -308,7 +353,7 @@ async function main() {
       slug: 'ethereum-everything-exchange',
       excerpt:
         'Despite the noise, Ethereum continues to dominate DeFi TVL and developer activity. Here is why ETH is still the highest-conviction hold in our portfolio.',
-      category: 'top-picks',
+      category: categoryIdMap['top-picks'],
       isProOnly: true,
       status: 'published',
       publishedAt: daysAgo(7),
@@ -328,7 +373,7 @@ async function main() {
       slug: 'solana-defi-season-picks',
       excerpt:
         "Solana's DeFi ecosystem is heating up. We have identified three undervalued protocols poised to capture disproportionate upside in the next 90 days.",
-      category: 'top-picks',
+      category: categoryIdMap['top-picks'],
       isProOnly: true,
       status: 'published',
       publishedAt: daysAgo(14),
@@ -348,7 +393,7 @@ async function main() {
       slug: 'layer2-arbitrage-scaling-wars',
       excerpt:
         'With five major Layer 2s competing for users and liquidity, significant mispricing exists. Our analysis identifies which L2 tokens are undervalued relative to their on-chain fundamentals.',
-      category: 'top-picks',
+      category: categoryIdMap['top-picks'],
       isProOnly: true,
       status: 'published',
       publishedAt: daysAgo(21),
@@ -369,7 +414,7 @@ async function main() {
       slug: 'defi-lending-deep-dive',
       excerpt:
         'A comprehensive analysis of the four largest DeFi lending protocols — their risk models, yield mechanisms, and token value accrual.',
-      category: 'deep-dives',
+      category: categoryIdMap['deep-dives'],
       isProOnly: true,
       status: 'published',
       publishedAt: daysAgo(10),
@@ -389,7 +434,7 @@ async function main() {
       slug: 'restaking-thesis-eigenlayer',
       excerpt:
         'Restaking could be the most significant primitive to emerge from Ethereum in years. We break down the mechanics, risks, and investment thesis.',
-      category: 'deep-dives',
+      category: categoryIdMap['deep-dives'],
       isProOnly: true,
       status: 'published',
       publishedAt: daysAgo(18),
@@ -410,7 +455,7 @@ async function main() {
       slug: 'weekly-market-update-btc-consolidates',
       excerpt:
         'Bitcoin has traded sideways for 3 weeks as macro data sends mixed signals. Here is what to watch heading into the next Fed decision.',
-      category: 'market-updates',
+      category: categoryIdMap['market-updates'],
       isProOnly: false,
       status: 'published',
       publishedAt: daysAgo(3),
@@ -429,7 +474,7 @@ async function main() {
       slug: 'ethereum-etf-inflows-market-update',
       excerpt:
         "US Ethereum ETFs have recorded seven consecutive days of positive inflows. We break down the data and explain why this matters for ETH's price trajectory.",
-      category: 'market-updates',
+      category: categoryIdMap['market-updates'],
       isProOnly: false,
       status: 'published',
       publishedAt: daysAgo(6),
@@ -449,7 +494,7 @@ async function main() {
       slug: 'market-direction-q3-macro-setup',
       excerpt:
         'Our comprehensive macro analysis for Q3. We examine liquidity cycles, Fed policy, and global capital flows to determine the optimal positioning for the next 90 days.',
-      category: 'market-direction',
+      category: categoryIdMap['market-direction'],
       isProOnly: true,
       status: 'published',
       publishedAt: daysAgo(12),
@@ -470,7 +515,7 @@ async function main() {
       slug: 'understanding-amm-defi-basics',
       excerpt:
         'Automated Market Makers replaced traditional order books in DeFi. This guide explains exactly how AMMs work, why they sometimes cause losses, and how to use them safely.',
-      category: 'courses',
+      category: categoryIdMap['courses'],
       isProOnly: false,
       status: 'published',
       publishedAt: daysAgo(30),
@@ -491,7 +536,7 @@ async function main() {
       slug: 'airdrop-report-five-protocols-q3',
       excerpt:
         'Five protocols with unconfirmed but highly probable token launches in the next 6 months. Step-by-step qualification checklist included.',
-      category: 'airdrop-reports',
+      category: categoryIdMap['airdrop-reports'],
       isProOnly: true,
       status: 'published',
       publishedAt: daysAgo(5),
@@ -533,6 +578,7 @@ async function main() {
         isProOnly: post.isProOnly,
         riskRating: (post as { riskRating?: string }).riskRating ?? undefined,
       },
+      context: { skipStatusGuard: true },
     })
     seededCount++
   }
