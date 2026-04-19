@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { TopAppBar } from '@/components/layouts/top-app-bar'
 import { Sidebar } from '@/components/layouts/sidebar'
+import { SearchModal } from '@/components/common/search-modal'
+import { useSearchModal } from '@/lib/hooks/useSearchModal'
 
 import type { NavCategory } from '@/lib/categories/getCategories'
 
@@ -19,11 +21,12 @@ interface DashboardShellProps {
 
 export function DashboardShell({ user, navCategories, children }: DashboardShellProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true)
+  const { isOpen: searchOpen, open: openSearch, close: closeSearch } = useSearchModal()
 
   return (
     <ThemeProvider>
       <div className="bg-surface flex h-screen flex-col overflow-hidden">
-        <TopAppBar user={user} navCategories={navCategories} />
+        <TopAppBar user={user} navCategories={navCategories} onSearchClick={openSearch} />
         <div className="relative flex min-h-0 flex-1">
           <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed((c) => !c)} />
           <main className="bg-surface-container-lowest flex min-h-0 flex-1 flex-col overflow-y-auto rounded-tl-3xl">
@@ -44,6 +47,7 @@ export function DashboardShell({ user, navCategories, children }: DashboardShell
             </footer>
           </main>
         </div>
+        <SearchModal isOpen={searchOpen} onClose={closeSearch} />
       </div>
     </ThemeProvider>
   )

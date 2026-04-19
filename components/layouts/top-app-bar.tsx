@@ -4,7 +4,16 @@ import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
-import { Bell, Bookmark, Settings, LogOut, User, CreditCard, ChevronDown } from 'lucide-react'
+import {
+  Bell,
+  Bookmark,
+  Settings,
+  LogOut,
+  User,
+  CreditCard,
+  ChevronDown,
+  Search,
+} from 'lucide-react'
 import { Logo } from '@/components/common/logo'
 import { SearchBar } from '@/components/common/search-bar'
 import { cn } from '@/lib/utils'
@@ -17,6 +26,7 @@ interface TopAppBarProps {
     isPro?: boolean
   }
   navCategories?: NavCategory[]
+  onSearchClick?: () => void
 }
 
 function useClickOutside(ref: React.RefObject<HTMLElement | null>, onClose: () => void) {
@@ -266,7 +276,7 @@ function UserDropdown({
 
 /* ─── Top App Bar ───────────────────────────────────────────────────────── */
 
-export function TopAppBar({ user, navCategories = [] }: TopAppBarProps) {
+export function TopAppBar({ user, navCategories = [], onSearchClick }: TopAppBarProps) {
   const [notifOpen, setNotifOpen] = useState(false)
   const [userOpen, setUserOpen] = useState(false)
 
@@ -282,8 +292,17 @@ export function TopAppBar({ user, navCategories = [] }: TopAppBarProps) {
 
       {/* Right side */}
       <div className="flex flex-1 items-center justify-end gap-3">
+        {/* Mobile search button */}
+        <button
+          type="button"
+          onClick={onSearchClick}
+          className="bg-surface-container text-on-surface hover:bg-surface-container-high flex size-10 cursor-pointer items-center justify-center rounded-full transition-colors md:hidden"
+        >
+          <Search className="size-5" />
+        </button>
+
         <div className="hidden flex-1 justify-end md:flex">
-          <SearchBar className="max-w-sm" />
+          <SearchBar className="max-w-sm" onClick={onSearchClick} />
         </div>
 
         {/* Notification bell */}
