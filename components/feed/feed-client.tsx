@@ -8,7 +8,7 @@ import { ArticleCardList } from '@/components/feed/article-card-list'
 import { EmptyState } from '@/components/common/empty-state'
 import type { ArticleCardProps } from '@/components/feed/article-card'
 
-const FILTERS = ['All', 'Research', 'Analysis', 'News'] as const
+const FILTERS = ['All', 'Research', 'Analysis', 'Education'] as const
 
 export function FeedClient({ articles }: { articles: ArticleCardProps[] }) {
   const [view, setView] = useState<'grid' | 'list'>('grid')
@@ -17,7 +17,9 @@ export function FeedClient({ articles }: { articles: ArticleCardProps[] }) {
   const filtered =
     activeFilter === 'All'
       ? articles
-      : articles.filter((a) => a.category.toLowerCase().includes(activeFilter.toLowerCase()))
+      : articles.filter(
+          (a) => (a.parentCategory ?? a.category).toLowerCase() === activeFilter.toLowerCase()
+        )
 
   return (
     <div className="mx-auto flex w-full flex-col gap-8">

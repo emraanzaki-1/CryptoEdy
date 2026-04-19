@@ -7,6 +7,7 @@ export interface ArticleCardProps {
   title: string
   excerpt: string
   category: string
+  parentCategory?: string
   readTime: string
   date: string
   imageUrl: string

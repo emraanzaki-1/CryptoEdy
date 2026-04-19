@@ -4,10 +4,10 @@ export const Categories: CollectionConfig = {
   slug: 'categories',
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'type', 'slug'],
+    defaultColumns: ['name', 'parent', 'slug'],
     listSearchableFields: ['name', 'slug'],
     description:
-      'Content taxonomy. Slugs must match URL paths exactly — do not change without updating routes.',
+      'Content taxonomy with parent-child hierarchy. Top-level parents: Research, Analysis, Education. Children are the specific categories (e.g. Top Picks, Market Updates).',
   },
   access: {
     read: () => true,
@@ -33,15 +33,13 @@ export const Categories: CollectionConfig = {
       },
     },
     {
-      name: 'type',
-      type: 'select',
-      required: true,
-      options: [
-        { label: 'Research', value: 'research' },
-        { label: 'Analysis', value: 'analysis' },
-        { label: 'Education', value: 'education' },
-      ],
-      admin: { description: 'Top-level section this category belongs to.' },
+      name: 'parent',
+      type: 'relationship',
+      relationTo: 'categories',
+      admin: {
+        description:
+          'Parent category for hierarchy. Leave empty for top-level categories (Research, Analysis, Education). Set to a parent for child categories (e.g. Top Picks → Research).',
+      },
     },
     {
       name: 'description',

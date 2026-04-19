@@ -390,7 +390,12 @@ export default async function AdminDashboard() {
                     >
                       {authorName}
                       {post.category && (
-                        <span style={{ marginLeft: '6px', opacity: 0.7 }}>· {post.category}</span>
+                        <span style={{ marginLeft: '6px', opacity: 0.7 }}>
+                          ·{' '}
+                          {typeof post.category === 'object' && post.category !== null
+                            ? ((post.category as Record<string, unknown>).name as string)
+                            : post.category}
+                        </span>
                       )}
                     </div>
                   )}

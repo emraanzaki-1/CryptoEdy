@@ -11,10 +11,18 @@ export interface PostPublishedEvent {
 }
 
 export async function onPostPublished(post: Record<string, unknown>): Promise<void> {
+  // Resolve category name from populated relationship or string fallback
+  let categoryName = 'Unknown'
+  if (post.category && typeof post.category === 'object' && post.category !== null) {
+    categoryName = ((post.category as Record<string, unknown>).name as string) ?? 'Unknown'
+  } else if (typeof post.category === 'string') {
+    categoryName = post.category
+  }
+
   const event: PostPublishedEvent = {
     postId: post.id as string,
     title: post.title as string,
-    category: post.category as string,
+    category: categoryName,
     isProOnly: post.isProOnly as boolean,
     authorId:
       typeof post.author === 'object' && post.author !== null

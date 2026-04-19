@@ -4,7 +4,6 @@ import type {
   CollectionAfterChangeHook,
 } from 'payload'
 import { onPostPublished } from '../lib/notifications/events'
-import { CATEGORY_SELECT_OPTIONS } from '../lib/constants/taxonomy'
 import { richTextEditor } from '../lib/lexical/richEditor'
 
 // ---------------------------------------------------------------------------
@@ -56,7 +55,9 @@ const autoPublishedAt: CollectionBeforeChangeHook = ({ data, originalDoc }) => {
 }
 
 // Analysts cannot self-publish or unpublish — only admins can move status to/from published.
-const guardStatusTransition: CollectionBeforeChangeHook = ({ data, req, originalDoc }) => {
+const guardStatusTransition: CollectionBeforeChangeHook = ({ data, req, originalDoc, context }) => {
+  if (context?.skipStatusGuard) return data
+
   const userRole = req.user?.role as string | undefined
   const newStatus = data.status as string | undefined
   const currentStatus = (originalDoc?.status as string | undefined) ?? 'draft'
@@ -217,9 +218,9 @@ export const Posts: CollectionConfig = {
     // ---- Sidebar: Taxonomy ----
     {
       name: 'category',
-      type: 'select',
+      type: 'relationship',
+      relationTo: 'categories',
       required: true,
-      options: CATEGORY_SELECT_OPTIONS,
       admin: {
         position: 'sidebar',
         description: 'Primary content category. Determines URL path and feed filter pill.',
@@ -262,7 +263,6 @@ export const Posts: CollectionConfig = {
         position: 'sidebar',
         description:
           'Risk badge on pick cards. Only shown for Top Picks and Deep Dives — leave blank for analysis/education.',
-        condition: (data) => data.category === 'top-picks' || data.category === 'deep-dives',
       },
     },
 

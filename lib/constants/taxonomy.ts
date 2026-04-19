@@ -32,12 +32,6 @@ export const ALL_CATEGORIES = (
   Object.entries(TAXONOMY) as [CategoryType, (typeof TAXONOMY)[CategoryType]][]
 ).flatMap(([type, section]) => section.items.map((item) => ({ ...item, type })))
 
-// Flat select options array for Payload fields
-export const CATEGORY_SELECT_OPTIONS = ALL_CATEGORIES.map((c) => ({
-  label: c.label,
-  value: c.value,
-}))
-
 export type CategoryType = keyof typeof TAXONOMY
 export type CategorySlug =
   | 'top-picks'
