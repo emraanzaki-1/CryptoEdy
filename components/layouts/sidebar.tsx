@@ -7,13 +7,14 @@ import {
   Home,
   Users,
   Wrench,
-  Bookmark,
   Settings,
   ChevronDown,
   BarChart2,
   TrendingUp,
   Layers,
   Gift,
+  PanelLeft,
+  PanelLeftClose,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -27,11 +28,11 @@ const TOOLS_ITEMS = [
 const TOP_NAV = [
   { href: '/feed', label: 'Home', icon: Home },
   { href: '/community', label: 'Community', icon: Users },
-  { href: '/saved', label: 'Saved', icon: Bookmark },
 ]
 
 interface SidebarProps {
   collapsed: boolean
+  onToggle: () => void
 }
 
 /* ─── Hover slide-out panel for collapsed Tools ─────────────────────────── */
@@ -62,7 +63,7 @@ function ToolsSlideOut({ visible }: { visible: boolean }) {
   )
 }
 
-export function Sidebar({ collapsed }: SidebarProps) {
+export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   const pathname = usePathname()
   const [toolsOpen, setToolsOpen] = useState(false)
   const [toolsHover, setToolsHover] = useState(false)
@@ -86,7 +87,19 @@ export function Sidebar({ collapsed }: SidebarProps) {
         collapsed ? 'w-20 overflow-visible' : 'w-64 overflow-y-auto'
       )}
     >
-      <div className="flex flex-col gap-1 p-4 pt-8">
+      <div className="flex flex-col gap-1 p-4 pt-4">
+        {/* Collapse / expand toggle */}
+        <button
+          onClick={onToggle}
+          className={cn(
+            'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface mb-2 flex size-8 items-center justify-center rounded-lg transition-colors',
+            collapsed ? 'self-center' : 'self-end'
+          )}
+          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          {collapsed ? <PanelLeft className="size-4" /> : <PanelLeftClose className="size-4" />}
+        </button>
+
         {/* Regular nav items */}
         {TOP_NAV.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(item.href + '/')

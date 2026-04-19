@@ -6,8 +6,12 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const session = await auth()
   if (!session?.user) redirect('/login')
 
-  const isPro =
-    session.user.role === 'pro' || session.user.role === 'analyst' || session.user.role === 'admin'
+  const role = session.user.role ?? 'free'
+  const subscriptionExpiry = (session.user as { subscriptionExpiry?: string | null })
+    .subscriptionExpiry
+  const isProExpired =
+    role === 'pro' && subscriptionExpiry && new Date(subscriptionExpiry) < new Date()
+  const isPro = !isProExpired && (role === 'pro' || role === 'analyst' || role === 'admin')
 
   return (
     <DashboardShell

@@ -18,7 +18,7 @@ export default function ProfileSettingsPage() {
   return (
     <>
       <div>
-        <h2 className="font-headline text-on-surface mb-2 text-[2.5rem] leading-tight font-bold tracking-[-0.04em]">
+        <h2 className="font-headline text-on-surface mb-2 text-2xl leading-tight font-bold tracking-[-0.04em] lg:text-3xl">
           Profile Settings
         </h2>
         <p className="text-on-surface-variant text-base">
