@@ -25,7 +25,7 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
 
   const tagName = (tag as unknown as { name: string }).name
 
-  const { docs } = await payload.find({
+  const { docs, hasNextPage } = await payload.find({
     collection: 'posts',
     where: {
       status: { equals: 'published' },
@@ -33,7 +33,7 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
     },
     sort: '-publishedAt',
     depth: 2,
-    limit: 50,
+    limit: 12,
     overrideAccess: true,
   })
 
@@ -63,7 +63,12 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
         </h1>
       </div>
 
-      <TagClient tagName={tagName} articles={articles} />
+      <TagClient
+        tagName={tagName}
+        articles={articles}
+        initialHasNextPage={hasNextPage}
+        fetchUrl={`/api/posts?tag=${encodeURIComponent(slug)}&limit=12`}
+      />
     </div>
   )
 }

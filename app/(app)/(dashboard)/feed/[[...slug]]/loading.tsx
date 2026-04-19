@@ -1,26 +1,29 @@
-import { FeedGridSkeleton } from '@/components/feed/article-card-skeleton'
-import { Skeleton } from '@/components/ui/skeleton'
+import Link from 'next/link'
+import { FilterChip } from '@/components/ui/filter-chip'
+import { getNavCategories } from '@/lib/categories/getCategories'
+import { FeedCardsSkeleton, FeedCardsSkeltonGrid } from '@/components/feed/feed-cards-skeleton'
 
-export default function FeedLoading() {
+export default async function FeedLoading() {
+  const navCategories = await getNavCategories()
+  const filters = navCategories.map((c) => ({ label: c.label, slug: c.slug }))
+
   return (
     <div className="mx-auto flex w-full flex-col gap-8">
-      {/* Header */}
-      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-        <div className="flex flex-col gap-3">
-          <Skeleton className="h-12 w-48 rounded-xl" />
-          <Skeleton className="h-5 w-72 rounded" />
-        </div>
-        <Skeleton className="h-9 w-20 rounded-lg" />
-      </div>
+      <FeedCardsSkeleton />
 
       {/* Filters */}
-      <div className="flex gap-3">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <Skeleton key={i} className="h-8 w-20 rounded-full" />
+      <div className="flex flex-wrap gap-3">
+        <Link href="/feed">
+          <FilterChip label="All" active={false} />
+        </Link>
+        {filters.map((filter) => (
+          <Link key={filter.slug} href={`/feed/${filter.slug}`}>
+            <FilterChip label={filter.label} active={false} />
+          </Link>
         ))}
       </div>
 
-      <FeedGridSkeleton />
+      <FeedCardsSkeltonGrid />
     </div>
   )
 }

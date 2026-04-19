@@ -1,10 +1,15 @@
 'use client'
 
-import { useState } from 'react'
 import { ViewToggle } from '@/components/feed/view-toggle'
 import { ArticleCard } from '@/components/feed/article-card'
 import { ArticleCardList } from '@/components/feed/article-card-list'
+import {
+  ArticleCardSkeleton,
+  ArticleCardListSkeleton,
+} from '@/components/feed/article-card-skeleton'
 import { EmptyState } from '@/components/common/empty-state'
+import { useInfiniteScroll } from '@/lib/hooks/useInfiniteScroll'
+import { useViewPreference } from '@/lib/hooks/useViewPreference'
 import type { ArticleCardProps } from '@/components/feed/article-card'
 
 interface TagClientProps {
@@ -13,20 +18,30 @@ interface TagClientProps {
   subtitle?: string
   emptyTitle?: string
   emptyMessage?: string
+  initialHasNextPage?: boolean
+  fetchUrl?: string
 }
 
 export function TagClient({
   tagName,
-  articles,
+  articles: initialArticles,
   subtitle,
   emptyTitle,
   emptyMessage,
+  initialHasNextPage = false,
+  fetchUrl = '/api/posts?limit=12',
 }: TagClientProps) {
-  const [view, setView] = useState<'grid' | 'list'>('grid')
+  const [view, setView] = useViewPreference()
+
+  const { articles, isLoading, hasNextPage, sentinelRef } = useInfiniteScroll({
+    initialArticles,
+    initialHasNextPage,
+    fetchUrl,
+  })
 
   const defaultSubtitle = tagName
-    ? `${articles.length} ${articles.length === 1 ? 'article' : 'articles'} tagged with #${tagName}`
-    : `${articles.length} ${articles.length === 1 ? 'article' : 'articles'}`
+    ? `Articles tagged with #${tagName}`
+    : `${initialArticles.length} ${initialArticles.length === 1 ? 'article' : 'articles'}`
 
   return (
     <>
@@ -37,16 +52,33 @@ export function TagClient({
 
       {articles.length > 0 ? (
         view === 'grid' ? (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 [&>*]:h-full">
-            {articles.map((article) => (
-              <ArticleCard key={article.slug} {...article} />
-            ))}
+          <div className="flex flex-col gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 [&>*]:h-full">
+              {articles.map((article) => (
+                <ArticleCard key={article.slug} {...article} />
+              ))}
+            </div>
+
+            {isLoading && (
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <ArticleCardSkeleton key={i} />
+                ))}
+              </div>
+            )}
+
+            {hasNextPage && <div ref={sentinelRef} className="h-1" />}
           </div>
         ) : (
           <div className="flex flex-col gap-4">
             {articles.map((article) => (
               <ArticleCardList key={article.slug} {...article} />
             ))}
+
+            {isLoading &&
+              Array.from({ length: 3 }).map((_, i) => <ArticleCardListSkeleton key={i} />)}
+
+            {hasNextPage && <div ref={sentinelRef} className="h-1" />}
           </div>
         )
       ) : (

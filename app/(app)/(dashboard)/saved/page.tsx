@@ -13,12 +13,12 @@ export default async function SavedPage() {
 
   const payload = await getPayload({ config: configPromise })
 
-  const { docs: bookmarks } = await payload.find({
+  const { docs: bookmarks, hasNextPage } = await payload.find({
     collection: 'bookmarks',
     where: { userId: { equals: session.user.id } },
     sort: '-createdAt',
     depth: 3,
-    limit: 50,
+    limit: 12,
     overrideAccess: true,
   })
 
@@ -47,6 +47,8 @@ export default async function SavedPage() {
         articles={articles}
         emptyTitle="No saved articles"
         emptyMessage="Articles you bookmark will appear here. Look for the bookmark icon on articles in your feed."
+        initialHasNextPage={hasNextPage}
+        fetchUrl="/api/posts?bookmarks=true&limit=12"
       />
     </div>
   )

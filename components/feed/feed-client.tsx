@@ -1,22 +1,45 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 import { FilterChip } from '@/components/ui/filter-chip'
 import { ViewToggle } from '@/components/feed/view-toggle'
 import { ArticleCard } from '@/components/feed/article-card'
 import { ArticleCardList } from '@/components/feed/article-card-list'
+import {
+  ArticleCardSkeleton,
+  ArticleCardListSkeleton,
+} from '@/components/feed/article-card-skeleton'
 import { EmptyState } from '@/components/common/empty-state'
+import { useInfiniteScroll } from '@/lib/hooks/useInfiniteScroll'
+import { useViewPreference } from '@/lib/hooks/useViewPreference'
 import type { ArticleCardProps } from '@/components/feed/article-card'
 
 interface FeedClientProps {
   articles: ArticleCardProps[]
   filters?: { label: string; slug: string }[]
   activeFilter?: string
+  initialHasNextPage?: boolean
+  categorySlug?: string
 }
 
-export function FeedClient({ articles, filters = [], activeFilter = 'All' }: FeedClientProps) {
-  const [view, setView] = useState<'grid' | 'list'>('grid')
+export function FeedClient({
+  articles: initialArticles,
+  filters = [],
+  activeFilter = 'All',
+  initialHasNextPage = false,
+  categorySlug,
+}: FeedClientProps) {
+  const [view, setView] = useViewPreference()
+
+  const fetchUrl = categorySlug
+    ? `/api/posts?category=${encodeURIComponent(categorySlug)}&limit=12`
+    : '/api/posts?limit=12'
+
+  const { articles, isLoading, hasNextPage, sentinelRef } = useInfiniteScroll({
+    initialArticles,
+    initialHasNextPage,
+    fetchUrl,
+  })
 
   return (
     <div className="mx-auto flex w-full flex-col gap-8">
@@ -55,12 +78,31 @@ export function FeedClient({ articles, filters = [], activeFilter = 'All' }: Fee
                 <ArticleCard key={article.slug} {...article} />
               ))}
             </div>
+
+            {/* Loading skeletons */}
+            {isLoading && (
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <ArticleCardSkeleton key={i} />
+                ))}
+              </div>
+            )}
+
+            {/* Sentinel for infinite scroll */}
+            {hasNextPage && <div ref={sentinelRef} className="h-1" />}
           </div>
         ) : (
           <div className="flex flex-col gap-4">
             {articles.map((article) => (
               <ArticleCardList key={article.slug} {...article} />
             ))}
+
+            {/* Loading skeletons */}
+            {isLoading &&
+              Array.from({ length: 3 }).map((_, i) => <ArticleCardListSkeleton key={i} />)}
+
+            {/* Sentinel for infinite scroll */}
+            {hasNextPage && <div ref={sentinelRef} className="h-1" />}
           </div>
         )
       ) : activeFilter === 'All' ? (

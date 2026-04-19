@@ -67,12 +67,12 @@ export default async function FeedPage({ params }: { params: Promise<{ slug?: st
     ? await getBookmarkedPostIds(session.user.id)
     : new Set<string>()
 
-  const { docs } = await payload.find({
+  const { docs, hasNextPage } = await payload.find({
     collection: 'posts',
     where,
     sort: '-publishedAt',
     depth: 2,
-    limit: 20,
+    limit: 12,
     overrideAccess: true,
   })
 
@@ -84,5 +84,13 @@ export default async function FeedPage({ params }: { params: Promise<{ slug?: st
 
   const filters = navCategories.map((c) => ({ label: c.label, slug: c.slug }))
 
-  return <FeedClient articles={articles} filters={filters} activeFilter={activeFilter} />
+  return (
+    <FeedClient
+      articles={articles}
+      filters={filters}
+      activeFilter={activeFilter}
+      initialHasNextPage={hasNextPage}
+      categorySlug={categorySlug}
+    />
+  )
 }
