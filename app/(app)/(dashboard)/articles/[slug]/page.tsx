@@ -3,11 +3,14 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
+import type { SerializedEditorState } from 'lexical'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Badge } from '@/components/ui/badge'
 import { PaywallGate } from '@/components/article/paywall-gate'
 import { auth } from '@/lib/auth'
 import type { Role } from '@/lib/auth/withRole'
+import { jsxConverters } from '@/lib/lexical/jsxConverters'
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -27,15 +30,6 @@ function formatDate(date: string | Date): string {
   })
 }
 
-function extractPlainText(node: unknown): string {
-  if (!node || typeof node !== 'object') return ''
-  const n = node as Record<string, unknown>
-  if (n.type === 'text' && typeof n.text === 'string') return n.text
-  if (n.root) return extractPlainText(n.root)
-  if (Array.isArray(n.children)) return n.children.map(extractPlainText).join(' ')
-  return ''
-}
-
 // ── Page ─────────────────────────────────────────────────────────────────────
 
 export default async function ArticleDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -49,8 +43,9 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       slug: { equals: slug },
       status: { equals: 'published' },
     },
-    depth: 1,
+    depth: 2,
     limit: 1,
+    overrideAccess: true,
   })
 
   const post = docs[0]
@@ -84,11 +79,17 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       ? ((post.featuredImage.alt as string) ?? 'Article image')
       : 'Article image'
 
-  // Extract hook paragraph (first paragraph from content) and body
-  const contentText = extractPlainText(post.content)
-  const sentences = contentText.split(/(?<=\.)\s+/)
-  const hookParagraph = sentences.slice(0, 3).join(' ')
-  const bodyText = sentences.slice(3).join(' ')
+  // Resolve category names from populated relationship
+  const categoryObj =
+    post.category && typeof post.category === 'object'
+      ? (post.category as Record<string, unknown>)
+      : null
+  const categoryName = (categoryObj?.name as string) ?? 'Research'
+  const parentObj =
+    categoryObj?.parent && typeof categoryObj.parent === 'object'
+      ? (categoryObj.parent as Record<string, unknown>)
+      : null
+  const parentName = (parentObj?.name as string) ?? categoryName
 
   return (
     <article className="mx-auto max-w-4xl">
@@ -96,7 +97,8 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       <Breadcrumb
         items={[
           { label: 'Home', href: '/feed' },
-          { label: (post.category as string) ?? 'Research', href: '/feed' },
+          { label: parentName, href: '/feed' },
+          { label: categoryName, href: '/feed' },
           { label: post.title as string },
         ]}
         className="mb-8"
@@ -107,7 +109,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         <div className="mb-6 flex items-center gap-3">
           {post.isProOnly && <Badge variant="pro">PRO</Badge>}
           <span className="text-primary text-sm font-semibold tracking-[0.05em] uppercase">
-            {(post.category as string) ?? 'Research'}
+            {categoryName}
           </span>
         </div>
 
@@ -165,18 +167,15 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
       )}
 
       {/* Content */}
-      <section className="prose prose-lg text-on-surface-variant max-w-none leading-[1.6]">
-        {hookParagraph && (
-          <p className="border-primary/40 text-on-background mb-8 border-l-[3px] py-2 pl-6 text-xl leading-relaxed font-medium">
-            {hookParagraph}
-          </p>
-        )}
-
-        {bodyText && !isLocked && <p className="mb-6">{bodyText}</p>}
-
-        {/* Paywall gate */}
-        {isLocked && <PaywallGate isAuthenticated={!!session?.user} />}
-      </section>
+      {isLocked ? (
+        <section className="article-body text-on-surface-variant max-w-none text-base leading-[1.6]">
+          <PaywallGate isAuthenticated={!!session?.user} />
+        </section>
+      ) : (
+        <section className="article-body text-on-surface-variant max-w-none text-base leading-[1.6]">
+          <RichText data={post.content as SerializedEditorState} converters={jsxConverters} />
+        </section>
+      )}
     </article>
   )
 }
