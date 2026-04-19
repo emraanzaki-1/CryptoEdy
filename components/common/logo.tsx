@@ -11,12 +11,19 @@ interface LogoProps {
   showText?: boolean
   className?: string
   textClassName?: string
+  iconClassName?: string
 }
 
-export function Logo({ size = 'md', showText = true, className, textClassName }: LogoProps) {
+export function Logo({
+  size = 'md',
+  showText = true,
+  className,
+  textClassName,
+  iconClassName,
+}: LogoProps) {
   return (
     <div className={cn('flex items-center gap-4', className)}>
-      <div className={cn('text-primary', sizes[size])}>
+      <div className={cn('text-primary', iconClassName, sizes[size])}>
         <svg
           className="h-full w-full"
           fill="none"

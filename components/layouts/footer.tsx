@@ -3,8 +3,8 @@ import { Logo } from '@/components/common/logo'
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-on-primary mt-auto rounded-t-[2rem] px-4 py-16 md:px-8 lg:px-40">
-      <div className="mx-auto max-w-[960px]">
+    <footer className="bg-primary text-on-primary mt-auto px-4 py-16 md:px-8 lg:px-40">
+      <div className="mx-auto max-w-[1200px]">
         <div className="mb-12 flex flex-col justify-between gap-12 md:flex-row">
           <div className="flex max-w-sm flex-col gap-4">
             <Logo textClassName="text-on-primary" className="text-on-primary" />

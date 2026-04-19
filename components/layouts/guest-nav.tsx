@@ -15,8 +15,8 @@ export function GuestNav() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <header className="bg-surface-container-highest/80 sticky top-4 z-50 mx-auto mb-6 flex max-w-[960px] flex-col rounded-xl shadow-[0_4px_32px_-4px_rgba(11,28,48,0.06)] backdrop-blur-md">
-      <div className="flex items-center justify-between px-4 py-4 whitespace-nowrap">
+    <header className="relative z-50 flex flex-col">
+      <div className="flex items-center justify-between py-4 whitespace-nowrap">
         <Link href="/">
           <Logo />
         </Link>
@@ -39,13 +39,13 @@ export function GuestNav() {
               href="/login"
               className="text-on-surface-variant hover:text-on-surface text-sm font-medium transition-colors"
             >
-              Log in
+              Sign In
             </Link>
             <Link
               href="/register"
               className="from-primary to-primary-container text-on-primary flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-gradient-to-b px-6 py-2 text-sm leading-normal font-bold tracking-[0.015em] shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-transform hover:-translate-y-0.5"
             >
-              Join Pro
+              Join Now
             </Link>
           </div>
         </div>
@@ -79,14 +79,14 @@ export function GuestNav() {
               onClick={() => setMobileOpen(false)}
               className="text-on-surface-variant hover:text-on-surface px-3 py-2.5 text-center text-sm font-medium transition-colors"
             >
-              Log in
+              Sign In
             </Link>
             <Link
               href="/register"
               onClick={() => setMobileOpen(false)}
               className="from-primary to-primary-container text-on-primary flex items-center justify-center rounded-xl bg-gradient-to-b px-6 py-3 text-sm font-bold tracking-[0.015em]"
             >
-              Join Pro
+              Join Now
             </Link>
           </div>
         </div>
