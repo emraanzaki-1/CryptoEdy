@@ -1,150 +1,48 @@
 {
-  "session_id": "session-2026-04-18-0142",
-  "started": "2026-04-18T20:12:28.211Z",
+  "session_id": "session-2026-04-19-2150",
+  "started": "2026-04-19T16:20:56.991Z",
   "files_read": {
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/page.tsx": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/constants/taxonomy.ts": {
       "count": 1,
-      "tokens": 335,
-      "first_read": "2026-04-18T20:14:32.932Z"
+      "tokens": 651,
+      "first_read": "2026-04-19T16:21:48.735Z"
     },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/landing_page_guest_experience/code.html": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/collections/Categories.ts": {
       "count": 1,
-      "tokens": 7208,
-      "first_read": "2026-04-18T20:14:33.702Z"
+      "tokens": 430,
+      "first_read": "2026-04-19T16:22:51.144Z"
     },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/value-props-section.tsx": {
-      "count": 1,
-      "tokens": 697,
-      "first_read": "2026-04-18T20:14:41.338Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/hero-section.tsx": {
-      "count": 1,
-      "tokens": 667,
-      "first_read": "2026-04-18T20:14:41.350Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/research-preview-section.tsx": {
-      "count": 1,
-      "tokens": 1298,
-      "first_read": "2026-04-18T20:14:41.381Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/faq-section.tsx": {
-      "count": 1,
-      "tokens": 554,
-      "first_read": "2026-04-18T20:14:42.331Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/pricing-section.tsx": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/feed-client.tsx": {
       "count": 1,
       "tokens": 800,
-      "first_read": "2026-04-18T20:14:42.350Z"
+      "first_read": "2026-04-19T16:23:07.558Z"
     },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/track-record-section.tsx": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx": {
       "count": 1,
-      "tokens": 655,
-      "first_read": "2026-04-18T20:14:42.506Z"
+      "tokens": 3466,
+      "first_read": "2026-04-19T16:23:12.642Z"
     },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/guest-nav.tsx": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/dashboard-shell.tsx": {
       "count": 1,
-      "tokens": 470,
-      "first_read": "2026-04-18T20:14:43.033Z"
+      "tokens": 511,
+      "first_read": "2026-04-19T16:23:27.683Z"
     },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/footer.tsx": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/layout.tsx": {
       "count": 1,
-      "tokens": 952,
-      "first_read": "2026-04-18T20:14:43.364Z"
+      "tokens": 262,
+      "first_read": "2026-04-19T16:23:36.163Z"
     },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/next.config.ts": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/feed/page.tsx": {
       "count": 1,
-      "tokens": 89,
-      "first_read": "2026-04-18T20:19:40.288Z"
+      "tokens": 706,
+      "first_read": "2026-04-19T16:23:43.298Z"
     }
   },
-  "files_written": [
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/guest-nav.tsx",
-      "action": "edit",
-      "tokens": 1076,
-      "at": "2026-04-18T20:18:33.773Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/hero-section.tsx",
-      "action": "edit",
-      "tokens": 602,
-      "at": "2026-04-18T20:19:12.906Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/value-props-section.tsx",
-      "action": "edit",
-      "tokens": 281,
-      "at": "2026-04-18T20:19:31.838Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/research-preview-section.tsx",
-      "action": "edit",
-      "tokens": 1380,
-      "at": "2026-04-18T20:20:56.495Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/track-record-section.tsx",
-      "action": "edit",
-      "tokens": 39,
-      "at": "2026-04-18T20:21:07.346Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/pricing-section.tsx",
-      "action": "edit",
-      "tokens": 34,
-      "at": "2026-04-18T20:21:22.292Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/page.tsx",
-      "action": "edit",
-      "tokens": 178,
-      "at": "2026-04-18T20:21:36.123Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/value-props-section.tsx",
-      "action": "edit",
-      "tokens": 32,
-      "at": "2026-04-18T20:21:44.403Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/research-preview-section.tsx",
-      "action": "edit",
-      "tokens": 8,
-      "at": "2026-04-18T20:21:49.631Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/track-record-section.tsx",
-      "action": "edit",
-      "tokens": 28,
-      "at": "2026-04-18T20:21:54.549Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/pricing-section.tsx",
-      "action": "edit",
-      "tokens": 33,
-      "at": "2026-04-18T20:22:00.507Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/faq-section.tsx",
-      "action": "edit",
-      "tokens": 24,
-      "at": "2026-04-18T20:22:06.583Z"
-    }
-  ],
-  "edit_counts": {
-    "components/layouts/guest-nav.tsx": 1,
-    "components/landing/hero-section.tsx": 1,
-    "components/landing/value-props-section.tsx": 2,
-    "components/landing/research-preview-section.tsx": 2,
-    "components/landing/track-record-section.tsx": 2,
-    "components/landing/pricing-section.tsx": 2,
-    "app/(app)/page.tsx": 1,
-    "components/landing/faq-section.tsx": 1
-  },
-  "anatomy_hits": 10,
+  "files_written": [],
+  "edit_counts": {},
+  "anatomy_hits": 7,
   "anatomy_misses": 0,
   "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 3
+  "stop_count": 1
 }

@@ -1,11 +1,11 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-19T13:46:17.414Z
-> Files: 218 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-19T16:03:32.844Z
+> Files: 234 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
-- `.DS_Store` (~1640 tok)
+- `.DS_Store` (~2732 tok)
 - `.gitignore` — Git ignore rules (~161 tok)
 - `.prettierrc` — Prettier configuration (~41 tok)
 - `AGENTS.md` — This is NOT the Next.js you know (~82 tok)
@@ -18,17 +18,17 @@
 - `next.config.ts` — Next.js configuration (~89 tok)
 - `package-lock.json` — npm lock file (~167654 tok)
 - `package.json` — Node.js package manifest (~639 tok)
-- `payload.config.ts` — API routes: GET (4 endpoints) (~2611 tok)
+- `payload.config.ts` — API routes: GET (4 endpoints) (~4613 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~980 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~210674 tok)
+- `tsconfig.tsbuildinfo` (~213121 tok)
 
 ## .claude/
 
 - `settings.json` (~442 tok)
-- `settings.local.json` — Declares p (~1069 tok)
+- `settings.local.json` — Declares p (~1092 tok)
 
 ## .claude/rules/
 
@@ -94,6 +94,11 @@
 
 - `code.html` — Billing Settings - CryptoEdy (~4611 tok)
 
+## HTML/community page/
+
+- `code.html` — Community - CryptoEdy Research (~3825 tok)
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
+
 ## HTML/dashboard_feed_authenticated_9_card_grid_2/
 
 - `code.html` — CryptoEdy - Dashboard (~7167 tok)
@@ -105,6 +110,15 @@
 ## HTML/email_verification_split_screen_sync/
 
 - `code.html` — CryptoEdy - Email Verification (~2565 tok)
+
+## HTML/empty_state/
+
+- `code.html` — Research Dashboard - No Insights (~4211 tok)
+
+## HTML/error_pages/
+
+- `code.html` (~2523 tok)
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
 
 ## HTML/landing_page_guest_experience/
 
@@ -134,14 +148,19 @@
 
 - `code.html` — CryptoEdy Research - Sign Up (~2491 tok)
 
+## HTML/tools_section/
+
+- `code.html` — Tools - CryptoEdy Research (~3958 tok)
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
+
 ## app/
 
-- `globals.css` — Styles: 7 rules, 256 vars (~3373 tok)
+- `globals.css` — Styles: 10 rules, 256 vars, 1 layers (~3950 tok)
 
 ## app/(app)/
 
-- `error.tsx` — AppError (~274 tok)
-- `global-error.tsx` — inter (~226 tok)
+- `error.tsx` — AppError (~276 tok)
+- `global-error.tsx` — inter (~228 tok)
 - `layout.tsx` — inter (~267 tok)
 - `not-found.tsx` — NotFound (~230 tok)
 - `page.tsx` — Home (~392 tok)
@@ -152,23 +171,23 @@
 
 ## app/(app)/(auth)/forgot-password/
 
-- `page.tsx` — ForgotPasswordPage — renders form (~1074 tok)
+- `page.tsx` — ForgotPasswordPage — renders form — uses useState (~1071 tok)
 
 ## app/(app)/(auth)/login/
 
-- `page.tsx` — LoginForm — renders form (~1590 tok)
+- `page.tsx` — LoginForm — renders form — uses useRouter, useSearchParams, useState (~1587 tok)
 
 ## app/(app)/(auth)/register/
 
-- `page.tsx` — RegisterPage — renders form (~1612 tok)
+- `page.tsx` — RegisterPage — renders form — uses useRouter, useState (~1612 tok)
 
 ## app/(app)/(auth)/reset-password/
 
-- `page.tsx` — ResetPasswordForm — renders form (~1865 tok)
+- `page.tsx` — ResetPasswordForm — renders form — uses useSearchParams, useRouter, useState, useEffect (~1855 tok)
 
 ## app/(app)/(auth)/verify-email/
 
-- `page.tsx` — VerifyEmailContent (~1788 tok)
+- `page.tsx` — VerifyEmailContent — uses useSearchParams, useRouter, useRef, useEffect (~1779 tok)
 
 ## app/(app)/(dashboard)/
 
@@ -179,16 +198,16 @@
 ## app/(app)/(dashboard)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — ── Helpers ────────────────────────────────────────────────────────────────── (~1915 tok)
+- `page.tsx` — ── Helpers ────────────────────────────────────────────────────────────────── (~1904 tok)
 
 ## app/(app)/(dashboard)/community/
 
-- `page.tsx` — FEATURES (~1889 tok)
+- `page.tsx` — FEATURES (~1879 tok)
 
 ## app/(app)/(dashboard)/feed/
 
 - `loading.tsx` — FeedLoading (~235 tok)
-- `page.tsx` — timeAgo (~566 tok)
+- `page.tsx` — timeAgo (~706 tok)
 
 ## app/(app)/(dashboard)/saved/
 
@@ -210,7 +229,7 @@
 
 ## app/(app)/(dashboard)/settings/notifications/
 
-- `page.tsx` — NotificationItem (~1302 tok)
+- `page.tsx` — NotificationItem — uses useState (~1302 tok)
 
 ## app/(app)/(dashboard)/settings/plans/
 
@@ -218,31 +237,31 @@
 
 ## app/(app)/(dashboard)/settings/profile/
 
-- `page.tsx` — ProfileSettingsPage (~1728 tok)
+- `page.tsx` — ProfileSettingsPage — uses useState (~1728 tok)
 
 ## app/(app)/(dashboard)/tools/
 
-- `page.tsx` — TOOLS (~1066 tok)
+- `page.tsx` — TOOLS — renders chart (~1057 tok)
 
 ## app/(app)/(dashboard)/tools/airdrops/
 
-- `page.tsx` — HIGHLIGHTS (~1030 tok)
+- `page.tsx` — HIGHLIGHTS (~1158 tok)
 
 ## app/(app)/(dashboard)/tools/market-direction/
 
-- `page.tsx` — HIGHLIGHTS (~1147 tok)
+- `page.tsx` — HIGHLIGHTS — renders chart (~1282 tok)
 
 ## app/(app)/(dashboard)/tools/picks/
 
-- `page.tsx` — HIGHLIGHTS (~1169 tok)
+- `page.tsx` — HIGHLIGHTS (~1306 tok)
 
 ## app/(app)/(dashboard)/tools/tracker/
 
-- `page.tsx` — HIGHLIGHTS (~1134 tok)
+- `page.tsx` — HIGHLIGHTS — renders chart (~1268 tok)
 
 ## app/(app)/(dashboard)/upgrade/
 
-- `page.tsx` — UpgradePage (~308 tok)
+- `page.tsx` — UpgradePage (~309 tok)
 
 ## app/(app)/[...catchAll]/
 
@@ -276,7 +295,7 @@
 
 ## app/(payload)/admin/
 
-- `importMap.js` — Exports importMap (~2188 tok)
+- `importMap.js` — Exports importMap (~2248 tok)
 
 ## app/(payload)/admin/[[...segments]]/
 
@@ -308,20 +327,29 @@
 ## components/admin/
 
 - `AdminDashboard.tsx` — ─── Types ──────────────────────────────────────────────────────────────────── (~3452 tok)
-- `AdminNavLinks.tsx` — AdminNavLinks (~270 tok)
+- `AdminNavLinks.tsx` — AdminNavLinks (~134 tok)
 - `DashboardBanner.tsx` — CryptoEdy dashboard welcome banner. (~566 tok)
 - `Icon.tsx` — CryptoEdy admin icon — shown in collapsed sidebar and browser tab favicon area. (~199 tok)
 - `Logo.tsx` — CryptoEdy admin sidebar logo. (~405 tok)
 
 ## components/admin/views/
 
-- `UserManagement.tsx` — UserManagement (~47 tok)
-- `UserManagementClient.tsx` — ROLES — uses useState, useCallback, useEffect (~4389 tok)
+- `UserManagement.tsx` — UserManagement (~236 tok)
+- `UserManagementClient.tsx` — ROLES — uses useState, useCallback, useEffect (~3775 tok)
+- `UserManagementEdit.tsx` — UserManagementEdit (~334 tok)
+- `UserManagementEditClient.tsx` — ROLES — uses useState, useCallback, useEffect (~4663 tok)
 
 ## components/article/
 
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
-- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1611 tok)
+- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1613 tok)
+
+## components/article/blocks/
+
+- `callout-block.tsx` — VARIANTS — renders chart (~445 tok)
+- `chart-embed-block.tsx` — ChartEmbedBlockComponent — renders chart — uses useEffect (~550 tok)
+- `performance-table-block.tsx` — STATUS_STYLES — renders table (~1192 tok)
+- `price-target-block.tsx` — RISK_STYLES (~1091 tok)
 
 ## components/auth/
 
@@ -330,37 +358,37 @@
 ## components/common/
 
 - `coming-soon.tsx` — ComingSoon (~600 tok)
-- `empty-state.tsx` — Primary CTA label (~745 tok)
-- `error-content.tsx` — Label for the primary CTA (~1176 tok)
+- `empty-state.tsx` — Primary CTA label (~744 tok)
+- `error-content.tsx` — Label for the primary CTA (~1178 tok)
 - `logo.tsx` — sizes (~328 tok)
 - `search-bar.tsx` — SearchBar (~289 tok)
 
 ## components/feed/
 
-- `article-card-list.tsx` — CategoryPill (~856 tok)
+- `article-card-list.tsx` — CategoryPill (~852 tok)
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~906 tok)
-- `article-card.tsx` — CategoryPill (~1152 tok)
-- `feed-client.tsx` — FILTERS (~805 tok)
+- `article-card.tsx` — CategoryPill (~1148 tok)
+- `feed-client.tsx` — FILTERS — uses useState (~800 tok)
 - `view-toggle.tsx` — ViewToggle (~337 tok)
 
 ## components/landing/
 
-- `faq-section.tsx` — FAQS (~676 tok)
+- `faq-section.tsx` — FAQS (~662 tok)
 - `hero-section.tsx` — HeroSection (~619 tok)
-- `pricing-section.tsx` — FEATURES (~1006 tok)
-- `research-preview-section.tsx` — ARTICLES (~1522 tok)
+- `pricing-section.tsx` — FEATURES — renders chart (~1006 tok)
+- `research-preview-section.tsx` — ARTICLES (~1524 tok)
 - `track-record-section.tsx` — TRADES (~1036 tok)
-- `value-props-section.tsx` — VALUE_PROPS (~796 tok)
+- `value-props-section.tsx` — VALUE_PROPS — renders chart (~787 tok)
 
 ## components/layouts/
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~570 tok)
-- `dashboard-shell.tsx` — DashboardShell (~519 tok)
+- `dashboard-shell.tsx` — DashboardShell — uses useState (~511 tok)
 - `footer.tsx` — Footer (~947 tok)
 - `guest-nav.tsx` — NAV_LINKS — uses useState (~1037 tok)
-- `settings-nav.tsx` — settingsGroups (~571 tok)
-- `sidebar.tsx` — TOOLS_ITEMS (~2179 tok)
-- `top-app-bar.tsx` — useClickOutside (~3469 tok)
+- `settings-nav.tsx` — settingsGroups (~572 tok)
+- `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2179 tok)
+- `top-app-bar.tsx` — useClickOutside — uses useEffect, useState (~3466 tok)
 
 ## components/providers/
 
@@ -378,9 +406,9 @@
 ## components/ui/
 
 - `alert.tsx` — alertVariants (~582 tok)
-- `badge.tsx` — badgeVariants (~639 tok)
+- `badge.tsx` — badgeVariants (~634 tok)
 - `breadcrumb.tsx` — Breadcrumb (~273 tok)
-- `button.tsx` — buttonVariants (~1043 tok)
+- `button.tsx` — buttonVariants (~1045 tok)
 - `card.tsx` — Card (~744 tok)
 - `checkbox.tsx` — Checkbox (~386 tok)
 - `filter-chip.tsx` — FilterChip (~168 tok)
@@ -425,11 +453,13 @@
 ## drizzle/
 
 - `0000_cuddly_anita_blake.sql` — SQL: tables: users, accounts, sessions, verification_tokens, 3 alter(s) (~686 tok)
+- `0001_perfect_post.sql` — SQL: 1 alter(s) (~21 tok)
 
 ## drizzle/meta/
 
-- `_journal.json` (~61 tok)
+- `_journal.json` (~101 tok)
 - `0000_snapshot.json` (~2660 tok)
+- `0001_snapshot.json` (~2710 tok)
 
 ## lib/
 
@@ -437,7 +467,7 @@
 
 ## lib/auth/
 
-- `config.ts` — Exports authConfig (~1110 tok)
+- `config.ts` — Exports authConfig (~1198 tok)
 - `index.ts` (~42 tok)
 - `rate-limit.ts` — Maximum requests allowed within the window (~434 tok)
 - `referral.ts` — Generates a unique 12-character alphanumeric referral code (~116 tok)
@@ -460,7 +490,7 @@
 
 - `index.ts` (~15 tok)
 - `sessions.ts` — NextAuth v5 Drizzle adapter schema — required by DrizzleAdapter. (~490 tok)
-- `users.ts` — Exports roleEnum, users, User, NewUser (~456 tok)
+- `users.ts` — Exports roleEnum, users, User, NewUser (~472 tok)
 
 ## lib/email/
 
@@ -475,6 +505,7 @@
 
 ## lib/lexical/
 
+- `jsxConverters.tsx` — jsxConverters — renders chart (~694 tok)
 - `richEditor.ts` — Full-featured Lexical editor for CryptoEdy content authors. (~914 tok)
 
 ## lib/notifications/
@@ -492,4 +523,4 @@
 
 ## types/
 
-- `next-auth.d.ts` — Declares Session (~135 tok)
+- `next-auth.d.ts` — Declares Session (~148 tok)

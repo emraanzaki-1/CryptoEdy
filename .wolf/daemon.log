@@ -148,3 +148,29 @@
 [2026-04-18T18:30:00.945Z] [INFO] Executing task: Full anatomy rescan
 [2026-04-18T18:30:01.143Z] [INFO] Task Full anatomy rescan completed in 197ms
 [2026-04-18T20:11:17.055Z] [INFO] WebSocket client connected
+[2026-04-18T20:30:00.379Z] [INFO] Executing task: Consolidate old memory
+[2026-04-18T20:30:00.463Z] [INFO] Task Consolidate old memory completed in 82ms
+[2026-04-18T20:49:34.326Z] [INFO] WebSocket client connected
+[2026-04-19T04:53:52.894Z] [INFO] WebSocket client connected
+[2026-04-19T04:53:55.092Z] [INFO] WebSocket client connected
+[2026-04-19T04:54:21.209Z] [INFO] Executing task: Full anatomy rescan
+[2026-04-19T04:54:21.355Z] [INFO] Task Full anatomy rescan completed in 145ms
+[2026-04-19T04:56:00.065Z] [INFO] WebSocket client connected
+[2026-04-19T05:03:06.168Z] [INFO] WebSocket client connected
+[2026-04-19T06:30:00.440Z] [INFO] Executing task: Full anatomy rescan
+[2026-04-19T06:30:00.580Z] [INFO] Task Full anatomy rescan completed in 140ms
+[2026-04-19T06:41:54.217Z] [INFO] WebSocket client connected
+[2026-04-19T08:35:18.768Z] [INFO] WebSocket client connected
+[2026-04-19T09:13:32.503Z] [INFO] WebSocket client connected
+[2026-04-19T11:22:08.997Z] [INFO] WebSocket client connected
+[2026-04-19T11:36:28.512Z] [INFO] WebSocket client connected
+[2026-04-19T11:53:54.371Z] [INFO] WebSocket client connected
+[2026-04-19T11:55:34.369Z] [INFO] WebSocket client connected
+[2026-04-19T12:30:00.274Z] [INFO] Executing task: Full anatomy rescan
+[2026-04-19T12:30:00.466Z] [INFO] Task Full anatomy rescan completed in 194ms
+[2026-04-19T14:37:30.009Z] [INFO] Executing task: Full anatomy rescan
+[2026-04-19T14:37:30.232Z] [INFO] Task Full anatomy rescan completed in 221ms
+[2026-04-19T14:47:42.178Z] [INFO] WebSocket client connected
+[2026-04-19T14:47:59.825Z] [INFO] WebSocket client connected
+[2026-04-19T16:05:17.606Z] [INFO] WebSocket client connected
+[2026-04-19T16:27:35.795Z] [INFO] WebSocket client connected

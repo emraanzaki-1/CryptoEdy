@@ -204,9 +204,10 @@ Middleware file: `middleware.ts` at project root (Next.js convention). Uses `mat
 ### Role Middleware
 
 - [x] Create `proxy.ts` at project root _(Next.js 16 uses `proxy.ts` instead of `middleware.ts`)_
-- [x] Configure matcher: auth routes, landing, dashboard, Pro routes
+- [x] Configure matcher: auth routes, landing, dashboard, Pro routes _(extended to also include `/community(.*)`, `/saved(.*)`, `/upgrade(.*)`_)
 - [x] Logic: unauthenticated → redirect `/login`; `subscriptionExpiry` re-validation for Pro routes; insufficient role → redirect `/upgrade` or 403
 - [x] Create `lib/auth/withRole.ts` — reusable `checkRole()` utility for API routes
+- [x] Fix `app/(app)/(dashboard)/layout.tsx` `isPro` computation — check `subscriptionExpiry` so expired Pro users get `isPro = false` (consistent with proxy.ts logic)
 - [ ] Test: unauthenticated access to `/feed` → redirects to `/login` _(runtime check)_
 - [ ] Test: `free` user access to Pro-only route → redirects to `/upgrade` _(runtime check)_
 

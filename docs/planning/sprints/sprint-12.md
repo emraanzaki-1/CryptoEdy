@@ -122,7 +122,9 @@ From `PROJECT_REQUIREMENTS.md §4F`:
 
 > "Admin Dashboard (Backend): Full CRUD, User Management, Subscription Analytics, Financial Reporting."
 
-**Route:** `/admin-dashboard` (separate from Payload `/admin`). Admin-role only. Uses the same visual design as the user-facing app (same Header, Shadcn components) but with an "Admin" badge in the header.
+> **Architecture Decision (implemented):** Admin features are built inside Payload CMS at `/admin` using Payload 3.x custom views and custom endpoints — not as a separate `/admin-dashboard` app route. Payload custom views (Server Components) query the Drizzle `public.users` table directly via `getDb()`. All admin API endpoints are Payload custom endpoints in `payload.config.ts`. This avoids a duplicate admin shell in the app.
+
+**Route:** `/admin/user-management` (inside Payload `/admin`). Access is controlled by Payload admin authentication/roles.
 
 **Tab 1 — User Management:**
 
@@ -212,25 +214,31 @@ From `PROJECT_REQUIREMENTS.md §4F`:
 - [ ] Theme selection wires to `next-themes` `setTheme`
 - [ ] Save theme preference to `users.themePreference` via `PATCH /api/user/profile`
 
-### Admin Dashboard
+### Admin Dashboard (Payload CMS Custom Views)
 
-- [ ] `app/(admin-dashboard)/layout.tsx` — admin-only guard, same Header with "Admin" badge
-- [ ] `app/(admin-dashboard)/page.tsx` — dashboard with 5 tabs
-- [ ] Install `@tanstack/react-table` for data tables
-- [ ] `components/admin/users/UsersTable.tsx` — paginated table with search, filter, row actions
-- [ ] `components/admin/users/EditRoleModal.tsx`
-- [ ] `components/admin/users/OverrideSubscriptionModal.tsx`
-- [ ] `components/admin/analytics/SubscriptionMetrics.tsx` — 4 metric cards
-- [ ] `components/admin/analytics/SubscriptionCharts.tsx` — 4 Recharts charts
-- [ ] `components/admin/financial/PaymentsTable.tsx` — full ledger with export
-- [ ] `components/admin/financial/ReferralPayoutsTable.tsx` — pending payouts + mark paid action
-- [ ] `components/admin/content/ContentOverview.tsx` — stats + recent posts table
-- [ ] `GET /api/admin/users` — paginated user list with search/filter
-- [ ] `PATCH /api/admin/users/:id/role` — update role
-- [ ] `PATCH /api/admin/users/:id/subscription` — override subscription
-- [ ] `GET /api/admin/payments` — full payment ledger
-- [ ] `GET /api/admin/payments/export` — CSV export
-- [ ] `PATCH /api/admin/referrals/:id/mark-paid` — (moved from Sprint 6 stub)
+> **Architecture Decision:** Admin features live inside Payload CMS at `/admin`, not a separate app route. Payload 3.x custom views query the Drizzle `public.users` table directly. No `/admin-dashboard` route group in the app.
+
+**User & Role Management — ✅ Complete**
+
+- [x] `components/admin/views/UserManagement.tsx` — Payload custom view registered at `/admin/user-management`
+- [x] `components/admin/views/UserManagementClient.tsx` — client component: search, role filter, pagination (15/page), inline role edit, subscription override
+- [x] `components/admin/AdminNavLinks.tsx` — "App Users" sidebar nav link registered via `admin.components.afterNavLinks`
+- [x] `GET /api/admin-users` — Payload custom endpoint: paginated user list with debounced search (email/username/displayName) and role filter, admin-guarded
+- [x] `PATCH /api/admin-users/:id/role` — Payload custom endpoint: role update with enum validation + last-admin protection
+- [x] `PATCH /api/admin-users/:id/subscription` — Payload custom endpoint: override to `role='pro'` with custom `subscriptionExpiry`
+- [x] Registered in `payload.config.ts` via `admin.components.views.userManagement` + root `endpoints[]`
+
+**Content Overview — ✅ Complete (existing)**
+
+- [x] `components/admin/AdminDashboard.tsx` — `beforeDashboard` component shows published/draft/review post counts, recent posts table, author/media/tag stats (built in Sprint 3)
+
+**Deferred — Subscription Analytics, Financial Reporting, Referral Payouts**
+_(Requires `payments` and `referrals` DB tables — deferred to Sprint 6+)_
+
+- [ ] Subscription analytics Payload view (active Pro count, churn rate, MRR approximation)
+- [ ] Payment ledger Payload view (tx hash, chain, asset, status, block explorer links)
+- [ ] CSV payment export endpoint
+- [ ] Referral payouts Payload view — "Mark as Paid" action with `rewardTxHash`
 - [ ] `GET /api/admin/analytics/subscriptions` — metrics + chart data
 
 ---
@@ -247,14 +255,14 @@ From `PROJECT_REQUIREMENTS.md §4F`:
 - [ ] Theme preference persists across page reloads and new sessions
 - [ ] Delete account modal requires email confirmation before proceeding
 - [ ] Deleted user is soft-deleted; their session is invalidated
-- [ ] Admin dashboard `/admin-dashboard` is inaccessible to non-admin users (returns 403)
-- [ ] User management table loads, searches, and filters correctly
-- [ ] Edit role modal saves the new role to the DB
-- [ ] Override subscription sets correct `role` and `subscriptionExpiry`
-- [ ] Subscription analytics charts render with real data
-- [ ] Payment ledger shows all transactions with correct block explorer links
-- [ ] CSV export downloads correctly and contains all expected columns
-- [ ] Pending referral payouts appear in the admin table and can be marked as paid
+- [x] Payload `/admin/user-management` is accessible only to admin-role Payload authors (Payload auth guards the entire `/admin` panel)
+- [x] User management table loads, searches, and filters correctly
+- [x] Edit role dropdown saves new role to DB with last-admin demotion protection
+- [x] Override subscription sets correct `role` and `subscriptionExpiry`
+- [ ] Subscription analytics charts render with real data _(deferred to Sprint 6)_
+- [ ] Payment ledger shows all transactions with correct block explorer links _(deferred to Sprint 6)_
+- [ ] CSV export downloads correctly and contains all expected columns _(deferred to Sprint 6)_
+- [ ] Pending referral payouts appear in the admin table and can be marked as paid _(deferred to Sprint 6)_
 
 ---
 

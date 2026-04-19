@@ -218,25 +218,25 @@ Implementation:
 
 ### Home Feed
 
-- [ ] `app/(dashboard)/feed/page.tsx` — SSR, fetches posts via Payload Local API
+- [x] `app/(app)/(dashboard)/feed/page.tsx` — fetches posts via Payload Local API, delegates to `<FeedClient>` for view toggle + filter interactivity
 - [ ] `components/feed/FeedHeader.tsx` — personalized username display
-- [ ] `components/feed/LayoutToggle.tsx` — Grid/List toggle, localStorage persistence
+- [x] `components/feed/view-toggle.tsx` — Grid/List toggle (filename differs from spec)
 - [ ] `components/feed/FilterPills.tsx` — All/Research/Analysis tabs, client-side filter logic
 - [ ] `components/feed/FeedGrid.tsx` — renders cards in grid layout
 - [ ] `components/feed/FeedList.tsx` — renders cards in list layout
-- [ ] `components/feed/FeedCard.tsx` — reusable card: image, PRO badge, category badge, title, excerpt, read time, date
+- [x] `components/feed/article-card.tsx` + `article-card-list.tsx` — grid and list variants (filenames differ from spec)
 - [ ] `components/feed/PortfolioCard.tsx` — static placeholder, blue gradient, wave pattern SVG
 - [ ] `components/feed/LoadMore.tsx` — client component for pagination
 
 ### Article Page
 
-- [ ] `app/(dashboard)/[categoryType]/[categorySlug]/[slug]/page.tsx` — SSG + ISR, `generateStaticParams`, `generateMetadata`
+- [x] `app/(app)/(dashboard)/articles/[slug]/page.tsx` — Payload Local API fetch, role-based gating with `ROLE_HIERARCHY`, subscription expiry downgrade, `PaywallGate` with `isAuthenticated` prop _(URL simplified to `/articles/[slug]`; SSG/ISR and `generateMetadata` deferred to Sprint 13)_
 - [ ] `components/article/Breadcrumbs.tsx`
 - [ ] `components/article/MetadataBar.tsx` — date, read time, share buttons
 - [ ] `components/article/ArticleBadges.tsx` — PRO badge + category badge
 - [ ] `components/article/RichTextRenderer.tsx` — Lexical JSON → React (use `@payloadcms/richtext-lexical/react`)
-- [ ] `components/article/ContentGate.tsx` — gating logic: detect role, truncate at 20%, apply blur mask
-- [ ] `components/article/ConversionWall.tsx` — heading, pricing card, checklist, secondary CTA for guests
+- [x] `components/article/paywall-gate.tsx` — content gating + conversion wall combined (filename differs from spec)
+- [x] `components/article/ConversionWall.tsx` — included in `paywall-gate.tsx`
 - [ ] `components/article/TrustBlocks.tsx` — 3X guarantee, track record grid, FAQ accordion
 - [ ] `components/article/RecommendedPosts.tsx` — 3 related posts from same category
 
@@ -263,11 +263,11 @@ Implementation:
 - [ ] Home feed loads with seed data posts in grid view
 - [ ] Layout toggle switches between Grid and List, preference persists on page reload
 - [ ] Filter pills filter feed cards client-side by Research / Analysis
-- [ ] Feed cards display PRO badge only on `isProOnly: true` posts
+- [x] Feed cards display PRO badge only on `isProOnly: true` posts
 - [ ] Clicking a feed card navigates to the correct article URL
-- [ ] Article page displays full content for Pro users
-- [ ] Article page shows 20% + blur + conversion wall for Free users
-- [ ] Article page shows 20% + blur + conversion wall with "Create account" CTA for guests
+- [x] Article page displays full content for Pro users
+- [x] Article page shows 20% + blur + conversion wall for Free users
+- [x] Article page shows 20% + blur + conversion wall with "Create account" CTA for guests
 - [ ] Breadcrumbs display the correct path and are all clickable links
 - [ ] Social share "Copy Link" copies the URL to clipboard
 - [ ] `generateMetadata` produces correct OG title and description for an article

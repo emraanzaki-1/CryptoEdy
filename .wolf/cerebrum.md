@@ -28,6 +28,7 @@
 - **Payload types:** `PayloadRequest.user` is `UntypedUser | null`. Cast to `{ role?: string }` before accessing role field.
 - **Feed page architecture:** Split into server component (Payload fetch) and client component (filter/view toggle interactivity) via `FeedClient` wrapper.
 - **Payload + Drizzle same DB:** Payload uses `payload` schema, app uses `public` schema. Admin endpoints can query `public.users` via `getDb()` directly.
+- **Category hierarchy:** Categories use parent-child self-referencing relationship (not a `type` enum). 3 parents (Research, Analysis, Education) with 12 children. Posts.category is a relationship to categories, not a select. Frontend resolves names via `depth: 2` on Payload queries. Feed filter pills match on `parentCategory` (the parent name like "Research"), not the child name.
 
 ## Do-Not-Repeat
 
@@ -58,3 +59,4 @@
 - [2026-04-19] Rate limiting: in-memory IP-based rate limiter at `lib/auth/rate-limit.ts`. Applied to all auth API routes. Limits: register 5/60s, forgot-password 5/300s, reset-password 5/300s, verify-email GET 10/60s, verify-email POST (resend) 3/300s.
 - [2026-04-19] Email verification uses link-only flow (no OTP). OTPInput component kept in `components/auth/otp-input.tsx` for future use but not wired to verify-email page.
 - [2026-04-19] Reset-password page pre-validates token via GET `/api/auth/reset-password?token=` on mount. Shows skeleton while checking, error state if invalid/expired, form only when valid.
+- [2026-04-19] Categories: parent-child hierarchy via self-referencing relationship. Replaced flat `type` enum and `CATEGORY_SELECT_OPTIONS` select on Posts with a `relationship` to Categories. Seed creates 3 parents first, then 12 children. `CATEGORY_SELECT_OPTIONS` removed from taxonomy.ts.
