@@ -10,7 +10,7 @@ const buttonVariants = cva(
       variant: {
         default: 'bg-primary text-primary-foreground [a]:hover:bg-primary/80',
         gradient:
-          'bg-gradient-to-b from-primary to-primary-container text-on-primary font-bold tracking-wide shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] hover:-translate-y-0.5 transition-transform',
+          'bg-gradient-to-b from-primary to-primary-container text-on-primary font-bold tracking-[0.015em] shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] hover:-translate-y-0.5 transition-transform',
         tonal:
           'bg-surface-container-high text-on-primary-fixed-variant font-bold hover:-translate-y-0.5 transition-transform',
         outline:

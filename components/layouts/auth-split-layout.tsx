@@ -19,7 +19,7 @@ export function AuthSplitLayout({ children }: AuthSplitLayoutProps) {
         />
         <div className="from-inverse-surface via-inverse-surface/80 absolute inset-0 bg-gradient-to-t to-transparent" />
         <div className="relative z-10">
-          <h1 className="text-inverse-on-surface mb-4 text-[3.5rem] leading-tight font-black tracking-[-0.04em]">
+          <h1 className="text-inverse-on-surface text-display mb-4 font-black">
             The Digital
             <br />
             Curator.

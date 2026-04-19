@@ -1,40 +1,103 @@
 import { Share, Bookmark, Clock } from 'lucide-react'
 import Image from 'next/image'
+import { notFound } from 'next/navigation'
+import { getPayload } from 'payload'
+import configPromise from '@payload-config'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Badge } from '@/components/ui/badge'
 import { PaywallGate } from '@/components/article/paywall-gate'
+import { auth } from '@/lib/auth'
+import type { Role } from '@/lib/auth/withRole'
 
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
+// ── Helpers ──────────────────────────────────────────────────────────────────
 
-// Mock article data — will be replaced with CMS fetch
-const ARTICLE = {
-  title: 'The Everything Exchange: Why Digital Assets are Re-pricing the World',
-  category: 'Research Report',
-  isPro: true,
-  author: 'CryptoEdy Research Desk',
-  date: 'Oct 24, 2024',
-  readTime: '18 min read',
-  imageUrl:
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuDQd8AZr3kuL0Gg2xoxakaTaJ4IM9SN8Y1ag5PQQeh3VaLe4VoZ0nIbf_avWKP2szhENY7bklhBhL4Mu3iLULDzT13c0740sCI0GSATd6aMb0YC4PclfXwwdfk0e2phogC3RwMlW2Ci2ays0pBMWNVOIA3NwjxFCyxLkY8Z4hiSt0gCf6ppGWZFWvbOFm6vNoaFxiAHuSWxSacuvKw6B5XD1XzxAcnt8O2tMcaR_SXXWsc-U-OdE7qyg9XyBg0NF5IvnzKA91N3_M6g',
-  hookParagraph:
-    'The structural mechanics of global liquidity are undergoing a profound, irreversible shift. As traditional safe havens fragment under demographic and fiscal pressures, a new asymmetric asset class is absorbing the overflow.',
-  bodyParagraphs: [
-    'To understand the current cycle, we must first abandon the outdated models of the 2010s. The introduction of spot ETFs was not merely a regulatory milestone; it fundamentally altered the market\'s microstructure. We are no longer operating in an isolated speculative sandbox. We have entered the era of the "Everything Exchange."',
-    'Our proprietary on-chain models indicate that the "smart money" accumulation phase ended in late Q2. What we are witnessing now is the systematic re-allocation of risk capital across major financial institutions.',
-  ],
-  isLocked: true,
+const ROLE_HIERARCHY: Record<Role, number> = {
+  guest: 0,
+  free: 1,
+  pro: 2,
+  analyst: 3,
+  admin: 4,
 }
 
-export default async function ArticleDetailPage() {
-  await sleep(1500)
+function formatDate(date: string | Date): string {
+  return new Date(date).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
+}
+
+function extractPlainText(node: unknown): string {
+  if (!node || typeof node !== 'object') return ''
+  const n = node as Record<string, unknown>
+  if (n.type === 'text' && typeof n.text === 'string') return n.text
+  if (n.root) return extractPlainText(n.root)
+  if (Array.isArray(n.children)) return n.children.map(extractPlainText).join(' ')
+  return ''
+}
+
+// ── Page ─────────────────────────────────────────────────────────────────────
+
+export default async function ArticleDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+
+  // Fetch post from CMS
+  const payload = await getPayload({ config: configPromise })
+  const { docs } = await payload.find({
+    collection: 'posts',
+    where: {
+      slug: { equals: slug },
+      status: { equals: 'published' },
+    },
+    depth: 1,
+    limit: 1,
+  })
+
+  const post = docs[0]
+  if (!post) notFound()
+
+  // Resolve user role
+  const session = await auth()
+  const userRole = (session?.user?.role as Role) ?? 'free'
+  const subscriptionExpiry = (session?.user as { subscriptionExpiry?: string | null } | undefined)
+    ?.subscriptionExpiry
+  const isProExpired =
+    userRole === 'pro' && subscriptionExpiry && new Date(subscriptionExpiry) < new Date()
+  const effectiveRole: Role = isProExpired ? 'free' : userRole
+
+  // Determine lock state
+  const isLocked = post.isProOnly === true && ROLE_HIERARCHY[effectiveRole] < ROLE_HIERARCHY['pro']
+
+  // Extract data
+  const author =
+    post.author && typeof post.author === 'object' && 'displayName' in post.author
+      ? ((post.author.displayName as string) ?? 'CryptoEdy Research')
+      : 'CryptoEdy Research'
+
+  const featuredImage =
+    post.featuredImage && typeof post.featuredImage === 'object' && 'url' in post.featuredImage
+      ? (post.featuredImage.url as string)
+      : null
+
+  const featuredImageAlt =
+    post.featuredImage && typeof post.featuredImage === 'object' && 'alt' in post.featuredImage
+      ? ((post.featuredImage.alt as string) ?? 'Article image')
+      : 'Article image'
+
+  // Extract hook paragraph (first paragraph from content) and body
+  const contentText = extractPlainText(post.content)
+  const sentences = contentText.split(/(?<=\.)\s+/)
+  const hookParagraph = sentences.slice(0, 3).join(' ')
+  const bodyText = sentences.slice(3).join(' ')
+
   return (
     <article className="mx-auto max-w-4xl">
       {/* Breadcrumbs */}
       <Breadcrumb
         items={[
           { label: 'Home', href: '/feed' },
-          { label: 'Research', href: '/feed' },
-          { label: ARTICLE.title },
+          { label: (post.category as string) ?? 'Research', href: '/feed' },
+          { label: post.title as string },
         ]}
         className="mb-8"
       />
@@ -42,14 +105,14 @@ export default async function ArticleDetailPage() {
       {/* Header */}
       <header className="mb-10">
         <div className="mb-6 flex items-center gap-3">
-          {ARTICLE.isPro && <Badge variant="pro">PRO</Badge>}
-          <span className="text-primary text-sm font-semibold tracking-wide uppercase">
-            {ARTICLE.category}
+          {post.isProOnly && <Badge variant="pro">PRO</Badge>}
+          <span className="text-primary text-sm font-semibold tracking-[0.05em] uppercase">
+            {(post.category as string) ?? 'Research'}
           </span>
         </div>
 
-        <h1 className="text-on-background mb-6 text-[2.5rem] leading-[1.1] font-black tracking-[-0.04em] md:text-[3rem]">
-          {ARTICLE.title}
+        <h1 className="text-on-background text-headline-md md:text-headline-lg mb-6 font-black">
+          {post.title as string}
         </h1>
 
         <div className="mb-6 flex flex-wrap items-center justify-between gap-6">
@@ -58,13 +121,15 @@ export default async function ArticleDetailPage() {
               CE
             </div>
             <div>
-              <div className="text-on-background font-bold">{ARTICLE.author}</div>
+              <div className="text-on-background font-bold">{author}</div>
               <div className="text-outline mt-1 flex items-center gap-3 text-sm">
-                <span>{ARTICLE.date}</span>
+                <span>
+                  {post.publishedAt ? formatDate(post.publishedAt as string) : 'Unpublished'}
+                </span>
                 <span className="bg-outline-variant size-1 rounded-full" />
                 <span className="flex items-center gap-1">
                   <Clock className="size-4" />
-                  {ARTICLE.readTime}
+                  {post.readTime ?? 5} min read
                 </span>
               </div>
             </div>
@@ -87,30 +152,30 @@ export default async function ArticleDetailPage() {
       </header>
 
       {/* Hero Image */}
-      <div className="border-outline-variant/15 relative mb-10 h-[400px] w-full overflow-hidden rounded-2xl border shadow-[0_32px_64px_-12px_rgba(11,28,48,0.06)]">
-        <Image
-          alt="Digital assets visualization"
-          className="object-cover"
-          src={ARTICLE.imageUrl}
-          fill
-          sizes="(max-width: 896px) 100vw, 896px"
-        />
-      </div>
+      {featuredImage && (
+        <div className="border-outline-variant/15 relative mb-10 h-[400px] w-full overflow-hidden rounded-2xl border shadow-[0_32px_64px_-12px_rgba(11,28,48,0.06)]">
+          <Image
+            alt={featuredImageAlt}
+            className="object-cover"
+            src={featuredImage}
+            fill
+            sizes="(max-width: 896px) 100vw, 896px"
+          />
+        </div>
+      )}
 
       {/* Content */}
       <section className="prose prose-lg text-on-surface-variant max-w-none leading-[1.6]">
-        <p className="border-primary/40 text-on-background mb-8 border-l-[3px] py-2 pl-6 text-xl leading-relaxed font-medium">
-          {ARTICLE.hookParagraph}
-        </p>
-
-        {ARTICLE.bodyParagraphs.map((paragraph, i) => (
-          <p key={i} className="mb-6">
-            {paragraph}
+        {hookParagraph && (
+          <p className="border-primary/40 text-on-background mb-8 border-l-[3px] py-2 pl-6 text-xl leading-relaxed font-medium">
+            {hookParagraph}
           </p>
-        ))}
+        )}
+
+        {bodyText && !isLocked && <p className="mb-6">{bodyText}</p>}
 
         {/* Paywall gate */}
-        {ARTICLE.isLocked && <PaywallGate />}
+        {isLocked && <PaywallGate isAuthenticated={!!session?.user} />}
       </section>
     </article>
   )

@@ -77,9 +77,7 @@ function VerifyEmailContent() {
         <div className="bg-secondary-container/20 mx-auto flex size-16 items-center justify-center rounded-full">
           <span className="text-secondary text-2xl">&#10003;</span>
         </div>
-        <h1 className="font-headline text-on-surface text-[32px] leading-tight font-bold tracking-tight">
-          Email verified
-        </h1>
+        <h1 className="font-headline text-on-surface text-headline font-bold">Email verified</h1>
         <p className="text-on-surface-variant text-base">Redirecting&hellip;</p>
       </div>
     )
@@ -89,7 +87,7 @@ function VerifyEmailContent() {
     return (
       <div className="flex flex-col gap-6">
         <header className="flex flex-col gap-2">
-          <h1 className="font-headline text-on-surface text-[32px] leading-tight font-bold tracking-tight">
+          <h1 className="font-headline text-on-surface text-headline font-bold">
             Verification failed
           </h1>
         </header>
@@ -101,7 +99,7 @@ function VerifyEmailContent() {
         <button
           onClick={handleResend}
           disabled={resendStatus === 'sending' || resendStatus === 'sent'}
-          className="from-primary to-primary-container text-on-primary w-full rounded-xl bg-gradient-to-b px-6 py-4 text-base font-bold tracking-wide shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-all disabled:opacity-50"
+          className="from-primary to-primary-container text-on-primary w-full rounded-xl bg-gradient-to-b px-6 py-4 text-base font-bold tracking-[0.015em] shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-all disabled:opacity-50"
         >
           {resendStatus === 'sending'
             ? 'Sending...'
@@ -122,9 +120,7 @@ function VerifyEmailContent() {
   return (
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-headline text-on-surface text-[32px] leading-tight font-bold tracking-tight">
-          Verify your email
-        </h1>
+        <h1 className="font-headline text-on-surface text-headline font-bold">Verify your email</h1>
         <p className="text-on-surface-variant text-base leading-relaxed">
           We sent a verification link to{' '}
           {session?.user?.email ? <strong>{session.user.email}</strong> : 'your email'}. Click the
@@ -137,7 +133,7 @@ function VerifyEmailContent() {
           type="button"
           onClick={handleResend}
           disabled={resendStatus === 'sending' || resendStatus === 'sent'}
-          className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container w-full rounded-xl bg-gradient-to-b px-6 py-4 text-base font-bold tracking-wide shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-all disabled:opacity-50"
+          className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container w-full rounded-xl bg-gradient-to-b px-6 py-4 text-base font-bold tracking-[0.015em] shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-all disabled:opacity-50"
         >
           {resendStatus === 'sending'
             ? 'Sending...'

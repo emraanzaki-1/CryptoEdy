@@ -69,9 +69,7 @@ function ResetPasswordForm() {
     return (
       <div className="flex flex-col gap-10">
         <header className="flex flex-col gap-2">
-          <h1 className="font-headline text-on-surface text-[32px] leading-tight font-bold tracking-tight">
-            Invalid link
-          </h1>
+          <h1 className="font-headline text-on-surface text-headline font-bold">Invalid link</h1>
           <p className="text-on-surface-variant text-base leading-relaxed">
             {tokenError || 'This reset link is invalid or has expired.'}
           </p>
@@ -102,9 +100,7 @@ function ResetPasswordForm() {
   return (
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-headline text-on-surface text-[32px] leading-tight font-bold tracking-tight">
-          Set new password
-        </h1>
+        <h1 className="font-headline text-on-surface text-headline font-bold">Set new password</h1>
         <p className="text-on-surface-variant text-base leading-relaxed">
           Choose a strong password for your account.
         </p>
@@ -119,7 +115,7 @@ function ResetPasswordForm() {
 
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <span className="text-on-surface text-xs font-medium tracking-widest uppercase">
+            <span className="text-on-surface text-xs font-medium tracking-[0.05em] uppercase">
               New Password
             </span>
             <input
@@ -135,7 +131,7 @@ function ResetPasswordForm() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <span className="text-on-surface text-xs font-medium tracking-widest uppercase">
+            <span className="text-on-surface text-xs font-medium tracking-[0.05em] uppercase">
               Confirm Password
             </span>
             <input
@@ -154,7 +150,7 @@ function ResetPasswordForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container shadow-cta mt-2 w-full rounded-xl bg-linear-to-b px-6 py-4 text-base font-bold tracking-wide transition-all disabled:opacity-50"
+          className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container shadow-cta mt-2 w-full rounded-xl bg-linear-to-b px-6 py-4 text-base font-bold tracking-[0.015em] transition-all disabled:opacity-50"
         >
           {isSubmitting ? 'Resetting...' : 'Reset password'}
         </button>

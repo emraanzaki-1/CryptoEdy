@@ -11,55 +11,75 @@ const FEATURES = [
 export function PricingSection() {
   return (
     <section
-      className="bg-surface-container-low flex flex-col items-center rounded-2xl px-4 py-16"
+      className="bg-surface-container-low flex flex-col gap-10 overflow-hidden rounded-2xl px-6 py-14 md:flex-row md:items-start md:gap-16 md:px-10"
       id="pricing"
     >
-      <div className="mb-10 text-center">
-        <h2 className="text-on-surface mb-4 text-[32px] font-black tracking-[-0.04em]">
-          Invest in an Edge
-        </h2>
-        <p className="text-on-surface-variant text-base">
-          Simple, transparent pricing for institutional-grade insights.
-        </p>
-      </div>
-      <div className="bg-surface-container-lowest relative w-full max-w-md overflow-hidden rounded-xl p-8 shadow-[0_32px_64px_-16px_rgba(11,28,48,0.08)]">
-        {/* Decorative blur */}
-        <div className="bg-primary/10 pointer-events-none absolute -top-20 -right-20 h-40 w-40 rounded-full blur-3xl" />
-
-        <div className="mb-6 flex items-center justify-between">
-          <h3 className="text-on-surface text-2xl font-bold">Pro Annual</h3>
-          <span className="bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full px-3 py-1 text-xs font-bold tracking-wider uppercase">
-            Most Popular
+      {/* Left — copy */}
+      <div className="flex flex-1 flex-col gap-6">
+        <div className="flex flex-col gap-3">
+          <span className="text-primary text-xs font-semibold tracking-[0.05em] uppercase">
+            Simple &middot; $0 on-chain
           </span>
+          <h2 className="font-headline text-on-surface text-headline md:text-headline-md font-black">
+            $100 a year.
+            <br />
+            Stablecoins only.
+          </h2>
+        </div>
+        <p className="text-on-surface-variant max-w-sm text-sm leading-relaxed">
+          Pay with any major stablecoin. Pass to wallet or USDT on chain of your choice.
+        </p>
+        <div>
+          <Link
+            href="/register"
+            className="from-primary to-primary-container text-on-primary inline-flex items-center justify-center rounded-xl bg-gradient-to-b px-8 py-3.5 text-sm font-bold tracking-[0.015em] shadow-lg transition-transform hover:-translate-y-1"
+          >
+            Subscribe Now
+          </Link>
+        </div>
+        <div className="text-on-surface-variant flex items-center gap-2 text-xs font-medium">
+          <Wallet className="size-4" />
+          <span>Pay with crypto: USDC / USDT</span>
+        </div>
+      </div>
+
+      {/* Right — pricing card */}
+      <div className="bg-surface-container-lowest relative flex-1 overflow-hidden rounded-2xl p-8 shadow-[0_16px_32px_-12px_rgba(11,28,48,0.04)]">
+        {/* Decorative chart */}
+        <div className="pointer-events-none absolute top-6 right-6 h-24 w-32 opacity-70">
+          <svg viewBox="0 0 112 80" fill="none" className="h-full w-full">
+            <path
+              d="M0,60 L14,55 L28,58 L42,40 L56,35 L70,38 L84,20 L98,12 L112,8"
+              stroke="var(--color-secondary)"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              fill="none"
+            />
+            <path
+              d="M0,60 L14,55 L28,58 L42,40 L56,35 L70,38 L84,20 L98,12 L112,8 L112,80 L0,80 Z"
+              fill="var(--color-secondary)"
+              opacity="0.12"
+            />
+          </svg>
         </div>
 
-        <div className="border-outline-variant/15 mb-8 border-b pb-8">
-          <div className="flex items-baseline gap-1">
-            <span className="text-on-surface text-5xl font-black tracking-[-0.04em]">$100</span>
-            <span className="text-on-surface-variant text-sm font-medium">/ year</span>
+        <div className="relative flex flex-col gap-6">
+          <div className="flex items-start gap-0.5">
+            <span className="text-on-surface-variant mt-2 text-2xl font-bold">$</span>
+            <span className="text-on-surface text-6xl font-black tracking-[-0.04em]">100</span>
           </div>
-          <p className="text-on-surface-variant mt-2 text-sm">Billed annually. Cancel anytime.</p>
-        </div>
+          <p className="text-on-surface-variant text-sm">Billed annually. Cancel anytime.</p>
 
-        <ul className="mb-10 flex flex-col gap-5">
-          {FEATURES.map((feature) => (
-            <li key={feature} className="flex items-start gap-3">
-              <CheckCircle className="text-primary mt-0.5 size-5" />
-              <span className="text-on-surface text-sm font-medium">{feature}</span>
-            </li>
-          ))}
-        </ul>
-
-        <Link
-          href="/register"
-          className="from-primary to-primary-container text-on-primary mb-4 flex w-full cursor-pointer items-center justify-center rounded-xl bg-gradient-to-b py-4 text-base font-bold tracking-[0.015em] shadow-lg transition-transform hover:-translate-y-1"
-        >
-          Subscribe Now
-        </Link>
-
-        <div className="text-on-surface-variant flex items-center justify-center gap-2 text-xs font-medium">
-          <span>Pay with crypto accepted:</span>
-          <Wallet className="size-4" /> USDC/USDT
+          <div className="mt-2 pt-6">
+            <ul className="flex flex-col gap-4">
+              {FEATURES.map((feature) => (
+                <li key={feature} className="flex items-start gap-3">
+                  <CheckCircle className="text-primary mt-0.5 size-4 shrink-0" />
+                  <span className="text-on-surface text-sm">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

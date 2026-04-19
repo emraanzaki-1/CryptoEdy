@@ -18,7 +18,7 @@ const badgeVariants = cva(
         link: 'text-primary underline-offset-4 hover:underline',
         pro: 'bg-tertiary-container/90 text-on-tertiary-container backdrop-blur-md text-xs font-bold uppercase tracking-wider',
         category:
-          'bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase tracking-[0.05em]',
+          'bg-surface-container-high text-on-surface-variant text-overline font-bold uppercase',
         status: 'bg-secondary-container/20 text-secondary text-xs font-medium',
       },
     },

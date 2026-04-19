@@ -3,10 +3,10 @@ import Link from 'next/link'
 export default function UpgradePage() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center py-32 text-center">
-      <div className="bg-tertiary-fixed text-on-tertiary-fixed mb-4 inline-block rounded-full px-3 py-1 text-xs font-bold tracking-widest uppercase">
+      <div className="bg-tertiary-fixed text-on-tertiary-fixed mb-4 inline-block rounded-full px-3 py-1 text-xs font-bold tracking-[0.05em] uppercase">
         Pro
       </div>
-      <h1 className="text-on-surface text-3xl font-bold tracking-[-0.04em]">
+      <h1 className="text-on-surface text-2xl font-bold tracking-[-0.04em] lg:text-3xl">
         Upgrade to CryptoEdy Pro
       </h1>
       <p className="text-on-surface-variant mt-4 max-w-md">

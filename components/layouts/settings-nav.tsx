@@ -31,7 +31,7 @@ export function SettingsNav() {
       <div className="flex flex-col gap-8">
         {settingsGroups.map((group) => (
           <div key={group.label}>
-            <h3 className="text-on-surface-variant mb-3 px-3 text-xs font-bold tracking-widest uppercase">
+            <h3 className="text-on-surface-variant mb-3 px-3 text-xs font-bold tracking-[0.05em] uppercase">
               {group.label}
             </h3>
             <div className="flex flex-col gap-1">

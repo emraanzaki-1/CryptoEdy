@@ -38,19 +38,33 @@ const ARTICLES = [
 
 export function ResearchPreviewSection() {
   return (
-    <section id="research">
-      <div className="mb-8 flex items-end justify-between">
-        <h2 className="text-on-surface text-[28px] leading-tight font-bold tracking-[-0.015em]">
-          Latest Research
-        </h2>
-        <Link href="/feed" className="text-primary text-sm font-bold hover:underline">
-          View All Archive
-        </Link>
+    <section className="flex flex-col gap-8" id="research">
+      {/* Header */}
+      <div className="flex flex-col gap-3">
+        <span className="text-primary text-xs font-semibold tracking-[0.05em] uppercase">
+          Free &amp; Pro &middot; Research
+        </span>
+        <div className="flex items-baseline justify-between">
+          <h2 className="font-headline text-on-surface text-headline md:text-headline-md font-black">
+            Latest research.
+          </h2>
+          <Link
+            href="/feed"
+            className="text-primary text-sm font-semibold underline-offset-4 hover:underline"
+          >
+            View All Archive
+          </Link>
+        </div>
       </div>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+
+      {/* Cards */}
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 [&>*]:h-full">
         {ARTICLES.map((article) => (
-          <div key={article.title} className="group flex cursor-pointer flex-col gap-4 pb-3">
-            <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+          <div
+            key={article.title}
+            className="border-outline-variant/[0.08] group flex cursor-pointer flex-col overflow-hidden rounded-2xl border transition-all duration-200 hover:shadow-[0_8px_24px_-8px_rgba(11,28,48,0.06)]"
+          >
+            <div className="relative aspect-[16/10] w-full overflow-hidden">
               <Image
                 src={article.imageUrl}
                 alt={article.title}
@@ -60,32 +74,32 @@ export function ResearchPreviewSection() {
               />
               <div className="bg-on-surface absolute inset-0 opacity-0 transition-opacity group-hover:opacity-10" />
               {article.isPro && (
-                <div className="bg-tertiary-fixed text-on-tertiary-fixed-variant absolute top-3 right-3 flex items-center gap-1 rounded-full px-3 py-1 text-xs font-bold tracking-wider uppercase shadow-sm">
+                <div className="bg-tertiary-fixed text-on-tertiary-fixed-variant absolute top-3 right-3 flex items-center gap-1 rounded-full px-3 py-1 text-xs font-bold tracking-[0.05em] uppercase shadow-sm">
                   <Lock className="size-3.5" /> PRO
                 </div>
               )}
             </div>
-            <div className="flex flex-col gap-2">
-              <div className="mb-1 flex items-center gap-2">
+            <div className="flex flex-1 flex-col gap-2 p-5">
+              <div className="flex items-center gap-2">
                 <Badge variant="category">{article.category}</Badge>
                 <span className="text-on-surface-variant text-xs">{article.date}</span>
               </div>
-              <p className="text-on-surface group-hover:text-primary text-lg leading-tight font-bold transition-colors">
+              <p className="text-on-surface group-hover:text-primary text-base leading-snug font-bold transition-colors">
                 {article.title}
               </p>
               {article.isPro ? (
                 <div className="relative">
-                  <p className="text-on-surface-variant text-sm leading-relaxed font-normal blur-[3px] select-none">
+                  <p className="text-on-surface-variant text-sm leading-relaxed blur-[3px] select-none">
                     {article.excerpt}
                   </p>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="bg-surface-container-lowest/90 text-primary rounded px-3 py-1 text-xs font-bold tracking-wider uppercase backdrop-blur-sm">
+                    <span className="bg-surface-container-lowest/90 text-primary rounded px-3 py-1 text-xs font-bold tracking-[0.05em] uppercase backdrop-blur-sm">
                       Unlock to Read
                     </span>
                   </div>
                 </div>
               ) : (
-                <p className="text-on-surface-variant line-clamp-2 text-sm leading-relaxed font-normal">
+                <p className="text-on-surface-variant line-clamp-2 text-sm leading-relaxed">
                   {article.excerpt}
                 </p>
               )}

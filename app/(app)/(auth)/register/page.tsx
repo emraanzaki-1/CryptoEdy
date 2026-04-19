@@ -45,7 +45,7 @@ export default function RegisterPage() {
   return (
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-headline text-on-surface text-3xl font-black tracking-[-0.033em] sm:text-4xl">
+        <h1 className="font-headline text-on-surface text-headline font-bold">
           Create your account
         </h1>
         <p className="text-on-surface-variant text-base leading-relaxed">

@@ -16,6 +16,9 @@
 - **shadcn/ui v4.2.0:** Uses `base-nova` style with `@base-ui/react` (headless). NOT Radix — no `asChild` prop on Button.
 - **M3 Tonal Palette:** 35+ color tokens mapped to Tailwind v4 via `@theme inline`. Shadcn bridge maps `--background`, `--foreground`, etc. to M3 equivalents.
 - **Design System:** No 1px borders (use tonal layering), ghost borders at 15% opacity max, gradient CTAs, glass navigation, no pure black, Inter font with -0.04em tracking.
+- **Typography Scale (in `@theme inline`):** `text-overline` (10px, badges), `text-label` (11px, category pills), `text-headline` (32px), `text-headline-md` (40px), `text-headline-lg` (48px), `text-display` (56px). All heading sizes include paired `--line-height` and `--letter-spacing: -0.04em`.
+- **Tracking tokens:** Headings: `-0.04em`. CTA buttons: `0.015em`. Uppercase labels: `0.05em`. Never use Tailwind shorthands (`tracking-tight`, `tracking-wider`, `tracking-widest`, `tracking-tighter`) — use explicit values.
+- **Font weight convention:** Landing/splash headings: `font-black`. Auth/dashboard page headings: `font-bold`. Never use `font-extrabold`.
 - **Icons:** Lucide React replaces Material Symbols from HTML templates.
 - **Route groups:** `(app)` for main, `(auth)` for auth, `(dashboard)` for protected, `(payload)` for CMS.
 
@@ -33,6 +36,9 @@
 - [2026-04-18] Registration API expected firstName/lastName but form sends username. Always check form payload matches API destructuring.
 - [2026-04-18] Next.js 16 uses `proxy.ts` NOT `middleware.ts` — middleware.ts is deprecated and renamed to proxy.ts.
 - [2026-04-17] Do NOT use `@apply border-border` in Tailwind v4 without registering `--color-border` in `@theme inline`.
+- [2026-04-19] Do NOT use Tailwind tracking shorthands (`tracking-tight`, `tracking-wider`, `tracking-widest`, `tracking-tighter`). Use explicit values: `tracking-[-0.04em]` for headings, `tracking-[0.015em]` for CTAs, `tracking-[0.05em]` for uppercase labels.
+- [2026-04-19] Do NOT use `font-extrabold` — use `font-black` (landing/splash) or `font-bold` (dashboard/auth). This project has only two weight tiers for headings.
+- [2026-04-19] Do NOT use arbitrary font sizes like `text-[32px]` or `text-[2rem]`. Use the typography scale tokens: `text-overline`, `text-label`, `text-headline`, `text-headline-md`, `text-headline-lg`, `text-display`.
 - [2026-04-17] Do NOT use `<Button asChild>` with @base-ui/react — Radix-only prop. Use plain `<Link>` with button classes.
 - [2026-04-18] Do NOT suggest Vercel — this project does not use Vercel. Hosting platform is TBD.
 - [2026-04-19] Do NOT implement OTP code verification without a real backend endpoint — the verify-email page previously had a fake `handleVerify()` that `setTimeout`'d to success without any server call. Always verify against real API.

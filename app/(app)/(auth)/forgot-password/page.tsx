@@ -33,9 +33,7 @@ export default function ForgotPasswordPage() {
   return (
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-headline text-on-surface text-[32px] leading-tight font-bold tracking-tight">
-          Forgot password
-        </h1>
+        <h1 className="font-headline text-on-surface text-headline font-bold">Forgot password</h1>
         <p className="text-on-surface-variant text-base leading-relaxed">
           Enter your email and we&apos;ll send you a reset link if an account exists.
         </p>
@@ -59,7 +57,7 @@ export default function ForgotPasswordPage() {
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
-            <span className="text-on-surface text-xs font-medium tracking-widest uppercase">
+            <span className="text-on-surface text-xs font-medium tracking-[0.05em] uppercase">
               Email Address
             </span>
             <input
@@ -77,7 +75,7 @@ export default function ForgotPasswordPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container shadow-cta mt-2 w-full rounded-xl bg-linear-to-b px-6 py-4 text-base font-bold tracking-wide transition-all disabled:opacity-50"
+            className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container shadow-cta mt-2 w-full rounded-xl bg-linear-to-b px-6 py-4 text-base font-bold tracking-[0.015em] transition-all disabled:opacity-50"
           >
             {isSubmitting ? 'Sending...' : 'Send reset link'}
           </button>

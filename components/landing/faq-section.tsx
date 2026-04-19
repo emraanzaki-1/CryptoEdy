@@ -22,24 +22,30 @@ const FAQS = [
 
 export function FAQSection() {
   return (
-    <section className="bg-surface-container-low rounded-2xl px-6 py-16 md:px-8">
-      <div className="mb-12 text-center">
-        <h2 className="text-on-surface mb-2 text-2xl font-bold">Trusted by 5,000+ Investors</h2>
-        <p className="text-on-surface-variant text-sm">
-          Frequently asked questions about CryptoEdy Pro.
+    <section className="bg-surface-container-low flex flex-col gap-10 rounded-2xl px-6 py-14 md:flex-row md:gap-16 md:px-10">
+      {/* Left — trust headline */}
+      <div className="flex flex-col gap-3 md:sticky md:top-24 md:max-w-xs md:self-start md:pt-2">
+        <span className="text-primary text-xs font-semibold tracking-[0.05em] uppercase">FAQ</span>
+        <h2 className="font-headline text-on-surface text-headline md:text-headline-md font-black">
+          Trusted by 5,000+ investors.
+        </h2>
+        <p className="text-on-surface-variant mt-1 text-sm leading-relaxed">
+          Still unsure? The team replies personally to every inquiry. Reach out anytime.
         </p>
       </div>
-      <div className="mx-auto flex max-w-2xl flex-col gap-4">
+
+      {/* Right — accordion */}
+      <div className="flex flex-1 flex-col gap-3">
         {FAQS.map((faq) => (
           <details
             key={faq.question}
-            className="group bg-surface-container-lowest cursor-pointer rounded-xl p-6 shadow-sm [&_summary::-webkit-details-marker]:hidden"
+            className="bg-surface-container-lowest group cursor-pointer rounded-2xl p-5 shadow-sm [&_summary::-webkit-details-marker]:hidden"
           >
-            <summary className="text-on-surface flex items-center justify-between text-base font-bold outline-none">
+            <summary className="text-on-surface flex items-center justify-between text-sm font-bold outline-none">
               {faq.question}
-              <ChevronDown className="text-on-surface-variant size-5 transition-transform group-open:rotate-180" />
+              <ChevronDown className="text-on-surface-variant size-4 shrink-0 transition-transform group-open:rotate-180" />
             </summary>
-            <p className="text-on-surface-variant mt-4 text-sm leading-relaxed">{faq.answer}</p>
+            <p className="text-on-surface-variant mt-3 text-sm leading-relaxed">{faq.answer}</p>
           </details>
         ))}
       </div>

@@ -13,7 +13,7 @@ export default function PlansSettingsPage() {
   return (
     <div className="max-w-4xl">
       <div>
-        <h2 className="font-headline text-on-surface mb-2 text-[2.5rem] leading-tight font-bold tracking-tight">
+        <h2 className="font-headline text-on-surface mb-2 text-2xl leading-tight font-bold tracking-[-0.04em] lg:text-3xl">
           Plans & Subscriptions
         </h2>
         <p className="text-on-surface-variant text-base">
@@ -39,7 +39,7 @@ export default function PlansSettingsPage() {
           </div>
           <div className="mb-8">
             <div className="flex items-baseline gap-2">
-              <span className="text-on-surface text-5xl font-extrabold tracking-tight">$100</span>
+              <span className="text-on-surface text-5xl font-black tracking-[-0.04em]">$100</span>
               <span className="text-on-surface-variant text-lg font-medium">/ year</span>
             </div>
             <p className="text-outline mt-2 text-sm">Billed annually. Cancel anytime.</p>

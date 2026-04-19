@@ -5,7 +5,7 @@ import type { ArticleCardProps } from './article-card'
 
 function CategoryPill({ category }: { category: string }) {
   return (
-    <span className="bg-surface-container text-on-surface-variant inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-wider uppercase">
+    <span className="bg-surface-container text-on-surface-variant text-label inline-flex items-center rounded-full px-2.5 py-0.5 font-semibold uppercase">
       {category}
     </span>
   )
@@ -41,7 +41,7 @@ export function ArticleCardList({
             )}
           </div>
           {isPro && (
-            <div className="absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm">
+            <div className="text-overline absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 font-semibold text-white backdrop-blur-sm">
               <Lock className="size-2.5" />
               Members only
             </div>

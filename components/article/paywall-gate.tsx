@@ -23,7 +23,7 @@ const FEATURES = [
   'Proprietary On-Chain Indicators',
 ] as const
 
-export function PaywallGate() {
+export function PaywallGate({ isAuthenticated = false }: { isAuthenticated?: boolean }) {
   return (
     <div className="relative mt-12 mb-16 pb-8">
       {/* Blurred preview */}
@@ -47,7 +47,7 @@ export function PaywallGate() {
         <div className="border-outline-variant/15 bg-surface-container-low/50 relative flex-1 overflow-hidden border-b p-8 md:border-r md:border-b-0 md:p-12">
           <div className="bg-primary/5 pointer-events-none absolute -top-1/2 right-1/4 h-64 w-64 translate-x-1/4 rounded-full blur-3xl" />
 
-          <div className="bg-tertiary-fixed text-on-tertiary-fixed mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold tracking-widest uppercase shadow-sm">
+          <div className="bg-tertiary-fixed text-on-tertiary-fixed mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold tracking-[0.05em] uppercase shadow-sm">
             <Lock className="size-4" />
             Exclusive Pro Research
           </div>
@@ -83,11 +83,11 @@ export function PaywallGate() {
 
         {/* Pricing side */}
         <div className="bg-surface-container-lowest flex w-full flex-col items-center justify-center p-8 text-center md:w-[380px] md:p-12">
-          <div className="text-primary mb-4 text-sm font-bold tracking-widest uppercase">
+          <div className="text-primary mb-4 text-sm font-bold tracking-[0.05em] uppercase">
             Annual Membership
           </div>
           <div className="mb-8 flex items-baseline justify-center gap-1">
-            <span className="text-on-background text-5xl font-black tracking-tighter">$100</span>
+            <span className="text-on-background text-5xl font-black tracking-[-0.04em]">$100</span>
             <span className="text-outline text-lg font-medium">/ year</span>
           </div>
           <ul className="text-on-surface-variant mx-auto mb-8 w-full max-w-[240px] space-y-4 text-left text-sm font-medium">
@@ -99,10 +99,10 @@ export function PaywallGate() {
             ))}
           </ul>
           <Link
-            href="/register"
+            href={isAuthenticated ? '/upgrade' : '/register'}
             className="from-primary to-primary-container text-on-primary w-full rounded-xl bg-gradient-to-b py-4 text-lg font-bold shadow-[0_8px_16px_-4px_rgba(0,62,199,0.3)] transition-opacity hover:opacity-90"
           >
-            Get Pro Access Now
+            {isAuthenticated ? 'Upgrade to Pro' : 'Create Account & Go Pro'}
           </Link>
           <div className="text-outline mt-6 flex items-center justify-center gap-3 text-xs">
             <span className="flex items-center gap-1">

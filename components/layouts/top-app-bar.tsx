@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
-import { Bell, Settings, LogOut, User, CreditCard, ChevronDown } from 'lucide-react'
+import { Bell, Bookmark, Settings, LogOut, User, CreditCard, ChevronDown } from 'lucide-react'
 import { Logo } from '@/components/common/logo'
 import { SearchBar } from '@/components/common/search-bar'
 import { cn } from '@/lib/utils'
@@ -195,7 +195,7 @@ function NotificationDropdown({ open, onClose }: { open: boolean; onClose: () =>
       <div className="border-outline-variant/15 flex items-center justify-between border-b px-5 py-4">
         <h3 className="text-on-surface text-sm font-bold">Notifications</h3>
         {unreadCount > 0 && (
-          <span className="bg-primary text-on-primary rounded-full px-2 py-0.5 text-[10px] font-bold">
+          <span className="bg-primary text-on-primary text-overline rounded-full px-2 py-0.5 font-bold">
             {unreadCount} new
           </span>
         )}
@@ -251,6 +251,7 @@ function UserDropdown({
 
   const menuItems = [
     { href: '/settings/profile', label: 'Profile', icon: User },
+    { href: '/saved', label: 'Saved', icon: Bookmark },
     { href: '/settings/plans', label: 'Plans & Subscription', icon: CreditCard },
     { href: '/settings', label: 'Settings', icon: Settings },
   ]
@@ -263,7 +264,7 @@ function UserDropdown({
       <div className="border-outline-variant/15 border-b px-5 py-4">
         <p className="text-on-surface text-sm font-bold">{user?.name ?? 'User'}</p>
         {user?.isPro && (
-          <span className="bg-tertiary-container/90 text-on-tertiary-container mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase">
+          <span className="bg-tertiary-container/90 text-on-tertiary-container text-overline mt-1 inline-block rounded-full px-2 py-0.5 font-bold uppercase">
             PRO
           </span>
         )}
