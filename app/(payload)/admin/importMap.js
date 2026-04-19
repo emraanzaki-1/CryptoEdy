@@ -26,7 +26,10 @@ import { MetaImageComponent as MetaImageComponent_a8a977ebc872c5d5ea7ee689724c08
 import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 } from '@payloadcms/plugin-seo/client'
 import { default as default_534076e2c753ea5d539a54b05f456b1b } from '@/components/admin/Icon'
 import { default as default_a44df17d0fc3dcd873dae43dc3bf66bd } from '@/components/admin/Logo'
+import { default as default_f5da5fa50c48fc2ef14afcb84f969fcf } from '@/components/admin/AdminNavLinks'
 import { default as default_805d8044a9399a3bb874e2f235b204e8 } from '@/components/admin/AdminDashboard'
+import { default as default_f836f8ff994e30d044d607ff058f53b2 } from '@/components/admin/views/UserManagement'
+import { default as default_d815ec9d0b814846dbecf647b2d0dcfb } from '@/components/admin/views/UserManagementEdit'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 export const importMap = {
@@ -84,6 +87,9 @@ export const importMap = {
     PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
   '@/components/admin/Icon#default': default_534076e2c753ea5d539a54b05f456b1b,
   '@/components/admin/Logo#default': default_a44df17d0fc3dcd873dae43dc3bf66bd,
+  '@/components/admin/AdminNavLinks#default': default_f5da5fa50c48fc2ef14afcb84f969fcf,
   '@/components/admin/AdminDashboard#default': default_805d8044a9399a3bb874e2f235b204e8,
+  '@/components/admin/views/UserManagement#default': default_f836f8ff994e30d044d607ff058f53b2,
+  '@/components/admin/views/UserManagementEdit#default': default_d815ec9d0b814846dbecf647b2d0dcfb,
   '@payloadcms/next/rsc#CollectionCards': CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1,
 }

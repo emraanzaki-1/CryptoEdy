@@ -32,6 +32,9 @@ export const authConfig: NextAuthConfig = {
 
         if (!user || !user.passwordHash) return null
 
+        // Block check — blocked users cannot sign in
+        if (user.blocked) return null
+
         const passwordMatch = await bcrypt.compare(
           credentials.password as string,
           user.passwordHash
@@ -47,13 +50,14 @@ export const authConfig: NextAuthConfig = {
           username: user.username,
           emailVerified: user.emailVerified ? new Date() : null,
           isEmailVerified: user.emailVerified,
+          blocked: user.blocked,
           subscriptionExpiry: user.subscriptionExpiry?.toISOString() ?? null,
         }
       },
     }),
   ],
   callbacks: {
-    async jwt({ token, user, trigger, session }) {
+    async jwt({ token, user, trigger, session: _session }) {
       // Initial sign-in — populate token from user object
       if (user) {
         token.id = user.id
@@ -62,6 +66,7 @@ export const authConfig: NextAuthConfig = {
         token.role = (user as Record<string, unknown>).role as string
         token.username = (user as Record<string, unknown>).username as string | null
         token.isEmailVerified = !!(user as Record<string, unknown>).isEmailVerified
+        token.blocked = !!(user as Record<string, unknown>).blocked
         token.subscriptionExpiry =
           ((user as Record<string, unknown>).subscriptionExpiry as string | null) ?? null
       }
@@ -83,6 +88,7 @@ export const authConfig: NextAuthConfig = {
           token.role = freshUser.role
           token.username = freshUser.username
           token.isEmailVerified = freshUser.emailVerified
+          token.blocked = freshUser.blocked
           token.subscriptionExpiry = freshUser.subscriptionExpiry?.toISOString() ?? null
         }
       }
@@ -97,6 +103,7 @@ export const authConfig: NextAuthConfig = {
         session.user.role = token.role as string
         session.user.username = (token.username as string) ?? null
         session.user.isEmailVerified = !!(token.isEmailVerified as boolean)
+        session.user.blocked = !!(token.blocked as boolean)
         session.user.subscriptionExpiry = (token.subscriptionExpiry as string | null) ?? null
       }
       return session

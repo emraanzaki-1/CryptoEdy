@@ -19,6 +19,13 @@
 - **Icons:** Lucide React replaces Material Symbols from HTML templates.
 - **Route groups:** `(app)` for main, `(auth)` for auth, `(dashboard)` for protected, `(payload)` for CMS.
 
+- **Payload 3.x custom views:** Register via `admin.components.views.{key}` with `Component` (string path) and `path` (URL). Custom views render in a bare Fragment — MUST wrap content in `DefaultTemplate` from `@payloadcms/next/templates` to keep sidebar/header. Pass `initPageResult` props (locale, permissions, req, visibleEntities) + `req.user ?? undefined` (null→undefined coercion required). Use `SetStepNav` from `@payloadcms/ui` for breadcrumbs.
+- **Payload 3.x custom endpoints:** Root-level `endpoints[]` in buildConfig. Handlers receive `PayloadRequest`, return Web API `Response`. Use `addDataAndFileToRequest(req)` to parse body, `req.routeParams` for URL params.
+- **Payload 3.x afterNavLinks:** `admin.components.afterNavLinks: ['@/path']` — renders after sidebar nav links.
+- **Payload types:** `PayloadRequest.user` is `UntypedUser | null`. Cast to `{ role?: string }` before accessing role field.
+- **Feed page architecture:** Split into server component (Payload fetch) and client component (filter/view toggle interactivity) via `FeedClient` wrapper.
+- **Payload + Drizzle same DB:** Payload uses `payload` schema, app uses `public` schema. Admin endpoints can query `public.users` via `getDb()` directly.
+
 ## Do-Not-Repeat
 
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->

@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 // Routes that require an active Pro (or higher) subscription
-const PRO_ROUTES = ['/tools']
+const PRO_ROUTES: string[] = []
 
 // Routes that only unauthenticated users should access (redirect to /feed if logged in)
 const AUTH_ROUTES = ['/login', '/register', '/forgot-password', '/reset-password']
@@ -56,6 +56,14 @@ export default auth(async function proxy(
     return NextResponse.redirect(loginUrl)
   }
 
+  // ── Blocked user gate ─────────────────────────────────────────────
+  if ((session.user as Record<string, unknown>).blocked) {
+    // Sign out handled client-side; redirect to login with blocked message
+    const blockedUrl = new URL('/login', req.url)
+    blockedUrl.searchParams.set('error', 'blocked')
+    return NextResponse.redirect(blockedUrl)
+  }
+
   // ── Email verification gate ───────────────────────────────────────
   if (!session.user.isEmailVerified) {
     return NextResponse.redirect(new URL('/verify-email', req.url))
@@ -98,5 +106,8 @@ export const config = {
     '/articles(.*)',
     '/settings(.*)',
     '/tools(.*)',
+    '/community(.*)',
+    '/saved(.*)',
+    '/upgrade(.*)',
   ],
 }

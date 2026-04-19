@@ -7,6 +7,7 @@ declare module 'next-auth' {
       role: string
       username: string | null
       isEmailVerified: boolean
+      blocked: boolean
       subscriptionExpiry: string | null
     } & DefaultSession['user']
   }
@@ -18,6 +19,7 @@ declare module 'next-auth/jwt' {
     role: string
     username: string | null
     isEmailVerified: boolean
+    blocked: boolean
     subscriptionExpiry: string | null
   }
 }

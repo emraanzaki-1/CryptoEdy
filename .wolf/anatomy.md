@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-18T20:22:06.568Z
-> Files: 206 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-19T13:46:17.414Z
+> Files: 218 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -14,21 +14,21 @@
 - `components.json` (~148 tok)
 - `drizzle.config.ts` — Drizzle ORM configuration (~79 tok)
 - `eslint.config.mjs` — ESLint flat configuration (~124 tok)
-- `next-env.d.ts` — / <reference types="next" /> (~72 tok)
+- `next-env.d.ts` — / <reference types="next" /> (~71 tok)
 - `next.config.ts` — Next.js configuration (~89 tok)
-- `package-lock.json` — npm lock file (~169519 tok)
-- `package.json` — Node.js package manifest (~637 tok)
-- `payload.config.ts` — Declares filename (~717 tok)
+- `package-lock.json` — npm lock file (~167654 tok)
+- `package.json` — Node.js package manifest (~639 tok)
+- `payload.config.ts` — API routes: GET (4 endpoints) (~2611 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
-- `proxy.ts` — Routes that require an active Pro (or higher) subscription (~860 tok)
+- `proxy.ts` — Routes that require an active Pro (or higher) subscription (~980 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~210562 tok)
+- `tsconfig.tsbuildinfo` (~210674 tok)
 
 ## .claude/
 
 - `settings.json` (~442 tok)
-- `settings.local.json` — Declares p (~1005 tok)
+- `settings.local.json` — Declares p (~1069 tok)
 
 ## .claude/rules/
 
@@ -136,13 +136,15 @@
 
 ## app/
 
-- `globals.css` — Styles: 7 rules, 235 vars, 1 layers (~2962 tok)
+- `globals.css` — Styles: 7 rules, 256 vars (~3373 tok)
 
 ## app/(app)/
 
-- `layout.tsx` — inter (~253 tok)
-- `not-found.tsx` — NotFound (~244 tok)
-- `page.tsx` — Home (~336 tok)
+- `error.tsx` — AppError (~274 tok)
+- `global-error.tsx` — inter (~226 tok)
+- `layout.tsx` — inter (~267 tok)
+- `not-found.tsx` — NotFound (~230 tok)
+- `page.tsx` — Home (~392 tok)
 
 ## app/(app)/(auth)/
 
@@ -150,41 +152,43 @@
 
 ## app/(app)/(auth)/forgot-password/
 
-- `page.tsx` — ForgotPasswordPage — renders form — uses useState (~1082 tok)
+- `page.tsx` — ForgotPasswordPage — renders form (~1074 tok)
 
 ## app/(app)/(auth)/login/
 
-- `page.tsx` — LoginForm — renders form — uses useRouter, useSearchParams, useState (~1522 tok)
+- `page.tsx` — LoginForm — renders form (~1590 tok)
 
 ## app/(app)/(auth)/register/
 
-- `page.tsx` — RegisterPage — renders form — uses useRouter, useState (~1627 tok)
+- `page.tsx` — RegisterPage — renders form (~1612 tok)
 
 ## app/(app)/(auth)/reset-password/
 
-- `page.tsx` — ResetPasswordForm — renders form — uses useSearchParams, useRouter, useState (~1519 tok)
+- `page.tsx` — ResetPasswordForm — renders form (~1865 tok)
 
 ## app/(app)/(auth)/verify-email/
 
-- `page.tsx` — VerifyEmailContent — uses useSearchParams, useRouter, useState, useEffect (~1800 tok)
+- `page.tsx` — VerifyEmailContent (~1788 tok)
 
 ## app/(app)/(dashboard)/
 
-- `layout.tsx` — DashboardLayout (~194 tok)
+- `error.tsx` — DashboardError (~148 tok)
+- `layout.tsx` — DashboardLayout (~262 tok)
+- `not-found.tsx` — DashboardNotFound (~104 tok)
 
 ## app/(app)/(dashboard)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — sleep (~1496 tok)
+- `page.tsx` — ── Helpers ────────────────────────────────────────────────────────────────── (~1915 tok)
 
 ## app/(app)/(dashboard)/community/
 
-- `page.tsx` — CommunityPage (~75 tok)
+- `page.tsx` — FEATURES (~1889 tok)
 
 ## app/(app)/(dashboard)/feed/
 
 - `loading.tsx` — FeedLoading (~235 tok)
-- `page.tsx` — FILTERS — renders chart — uses useState, useEffect (~2896 tok)
+- `page.tsx` — timeAgo (~566 tok)
 
 ## app/(app)/(dashboard)/saved/
 
@@ -198,47 +202,51 @@
 
 ## app/(app)/(dashboard)/settings/appearance/
 
-- `page.tsx` — THEMES (~1769 tok)
+- `page.tsx` — THEMES (~1771 tok)
 
 ## app/(app)/(dashboard)/settings/billing/
 
-- `page.tsx` — billingHistory (~890 tok)
+- `page.tsx` — billingHistory (~892 tok)
 
 ## app/(app)/(dashboard)/settings/notifications/
 
-- `page.tsx` — NotificationItem — uses useState (~1299 tok)
+- `page.tsx` — NotificationItem (~1302 tok)
 
 ## app/(app)/(dashboard)/settings/plans/
 
-- `page.tsx` — benefits (~1216 tok)
+- `page.tsx` — benefits (~1219 tok)
 
 ## app/(app)/(dashboard)/settings/profile/
 
-- `page.tsx` — ProfileSettingsPage — uses useState (~1726 tok)
+- `page.tsx` — ProfileSettingsPage (~1728 tok)
 
 ## app/(app)/(dashboard)/tools/
 
-- `page.tsx` — ToolsPage (~68 tok)
+- `page.tsx` — TOOLS (~1066 tok)
 
 ## app/(app)/(dashboard)/tools/airdrops/
 
-- `page.tsx` — AirdropsPage (~68 tok)
+- `page.tsx` — HIGHLIGHTS (~1030 tok)
 
 ## app/(app)/(dashboard)/tools/market-direction/
 
-- `page.tsx` — MarketDirectionPage (~75 tok)
+- `page.tsx` — HIGHLIGHTS (~1147 tok)
 
 ## app/(app)/(dashboard)/tools/picks/
 
-- `page.tsx` — PicksPage (~70 tok)
+- `page.tsx` — HIGHLIGHTS (~1169 tok)
 
 ## app/(app)/(dashboard)/tools/tracker/
 
-- `page.tsx` — TrackerPage (~76 tok)
+- `page.tsx` — HIGHLIGHTS (~1134 tok)
 
 ## app/(app)/(dashboard)/upgrade/
 
-- `page.tsx` — UpgradePage (~305 tok)
+- `page.tsx` — UpgradePage (~308 tok)
+
+## app/(app)/[...catchAll]/
+
+- `page.tsx` — CatchAllPage (~29 tok)
 
 ## app/(app)/api/auth/[...nextauth]/
 
@@ -246,19 +254,19 @@
 
 ## app/(app)/api/auth/forgot-password/
 
-- `route.ts` — Next.js API route: POST (~394 tok)
+- `route.ts` — Next.js API route: POST (~437 tok)
 
 ## app/(app)/api/auth/register/
 
-- `route.ts` — Next.js API route: POST (~632 tok)
+- `route.ts` — Next.js API route: POST (~674 tok)
 
 ## app/(app)/api/auth/reset-password/
 
-- `route.ts` — Next.js API route: POST (~416 tok)
+- `route.ts` — GET: Pre-validate reset token (does not consume the token) (~774 tok)
 
 ## app/(app)/api/auth/verify-email/
 
-- `route.ts` — GET: Token-based verification (email link flow) (~794 tok)
+- `route.ts` — GET: Token-based verification (email link flow) (~1028 tok)
 
 ## app/(payload)/
 
@@ -268,7 +276,7 @@
 
 ## app/(payload)/admin/
 
-- `importMap.js` — Exports importMap (~2104 tok)
+- `importMap.js` — Exports importMap (~2188 tok)
 
 ## app/(payload)/admin/[[...segments]]/
 
@@ -300,14 +308,20 @@
 ## components/admin/
 
 - `AdminDashboard.tsx` — ─── Types ──────────────────────────────────────────────────────────────────── (~3452 tok)
+- `AdminNavLinks.tsx` — AdminNavLinks (~270 tok)
 - `DashboardBanner.tsx` — CryptoEdy dashboard welcome banner. (~566 tok)
 - `Icon.tsx` — CryptoEdy admin icon — shown in collapsed sidebar and browser tab favicon area. (~199 tok)
 - `Logo.tsx` — CryptoEdy admin sidebar logo. (~405 tok)
 
+## components/admin/views/
+
+- `UserManagement.tsx` — UserManagement (~47 tok)
+- `UserManagementClient.tsx` — ROLES — uses useState, useCallback, useEffect (~4389 tok)
+
 ## components/article/
 
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
-- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1572 tok)
+- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1611 tok)
 
 ## components/auth/
 
@@ -315,8 +329,10 @@
 
 ## components/common/
 
-- `coming-soon.tsx` — ComingSoon (~213 tok)
-- `logo.tsx` — sizes (~310 tok)
+- `coming-soon.tsx` — ComingSoon (~600 tok)
+- `empty-state.tsx` — Primary CTA label (~745 tok)
+- `error-content.tsx` — Label for the primary CTA (~1176 tok)
+- `logo.tsx` — sizes (~328 tok)
 - `search-bar.tsx` — SearchBar (~289 tok)
 
 ## components/feed/
@@ -324,26 +340,27 @@
 - `article-card-list.tsx` — CategoryPill (~856 tok)
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~906 tok)
 - `article-card.tsx` — CategoryPill (~1152 tok)
+- `feed-client.tsx` — FILTERS (~805 tok)
 - `view-toggle.tsx` — ViewToggle (~337 tok)
 
 ## components/landing/
 
-- `faq-section.tsx` — FAQS (~555 tok)
-- `hero-section.tsx` — HeroSection (~602 tok)
-- `pricing-section.tsx` — FEATURES (~808 tok)
-- `research-preview-section.tsx` — ARTICLES (~1375 tok)
-- `track-record-section.tsx` — TRADES (~649 tok)
-- `value-props-section.tsx` — VALUE_PROPS (~755 tok)
+- `faq-section.tsx` — FAQS (~676 tok)
+- `hero-section.tsx` — HeroSection (~619 tok)
+- `pricing-section.tsx` — FEATURES (~1006 tok)
+- `research-preview-section.tsx` — ARTICLES (~1522 tok)
+- `track-record-section.tsx` — TRADES (~1036 tok)
+- `value-props-section.tsx` — VALUE_PROPS (~796 tok)
 
 ## components/layouts/
 
-- `auth-split-layout.tsx` — AuthSplitLayout (~580 tok)
-- `dashboard-shell.tsx` — DashboardShell — uses useState (~678 tok)
-- `footer.tsx` — Footer (~952 tok)
-- `guest-nav.tsx` — NAV_LINKS (~1076 tok)
+- `auth-split-layout.tsx` — AuthSplitLayout (~570 tok)
+- `dashboard-shell.tsx` — DashboardShell (~519 tok)
+- `footer.tsx` — Footer (~947 tok)
+- `guest-nav.tsx` — NAV_LINKS — uses useState (~1037 tok)
 - `settings-nav.tsx` — settingsGroups (~571 tok)
-- `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2025 tok)
-- `top-app-bar.tsx` — useClickOutside — uses useEffect, useState (~3450 tok)
+- `sidebar.tsx` — TOOLS_ITEMS (~2179 tok)
+- `top-app-bar.tsx` — useClickOutside (~3469 tok)
 
 ## components/providers/
 
@@ -384,10 +401,10 @@
 
 ## docs/planning/sprints/
 
-- `sprint-01.md` — Sprint 1 — Project Scaffolding (~2883 tok)
-- `sprint-02.md` — Sprint 2 — Data Layer & Auth Foundation (~3462 tok)
+- `sprint-01.md` — Sprint 1 — Project Scaffolding (~2884 tok)
+- `sprint-02.md` — Sprint 2 — Data Layer & Auth Foundation (~3523 tok)
 - `sprint-03.md` — Sprint 3 — CMS Collections & Content Model (~2888 tok)
-- `sprint-04.md` — Sprint 4 — Home Feed & Article Page (~4096 tok)
+- `sprint-04.md` — Sprint 4 — Home Feed & Article Page (~4151 tok)
 - `sprint-05.md` — Sprint 5 — Wallet Connection & Payment Flow (~3519 tok)
 - `sprint-06.md` — Sprint 6 — On-Chain Verification & Subscription Management (~3553 tok)
 - `sprint-07.md` — Sprint 7 — Market Direction Dashboard (~2528 tok)
@@ -395,7 +412,7 @@
 - `sprint-09.md` — Sprint 9 — Airdrop Hub (~2795 tok)
 - `sprint-10.md` — Sprint 10 — Notification Engine (~3723 tok)
 - `sprint-11.md` — Sprint 11 — Community Features (~3377 tok)
-- `sprint-12.md` — Sprint 12 — Settings & Admin Dashboard (~3406 tok)
+- `sprint-12.md` — Sprint 12 — Settings & Admin Dashboard (~3705 tok)
 - `sprint-13.md` — Sprint 13 — Performance, SEO & Mobile Polish (~3831 tok)
 - `sprint-14.md` — Sprint 14 — Hardening & Go-Live (~3654 tok)
 
@@ -420,8 +437,9 @@
 
 ## lib/auth/
 
-- `config.ts` — Exports authConfig (~1065 tok)
+- `config.ts` — Exports authConfig (~1110 tok)
 - `index.ts` (~42 tok)
+- `rate-limit.ts` — Maximum requests allowed within the window (~434 tok)
 - `referral.ts` — Generates a unique 12-character alphanumeric referral code (~116 tok)
 - `schemas.ts` — Zod schemas: loginSchema, registerSchema, forgotPasswordSchema (~374 tok)
 - `withRole.ts` — Checks if a user's effective role meets the required minimum role. (~624 tok)
@@ -441,7 +459,7 @@
 ## lib/db/schema/
 
 - `index.ts` (~15 tok)
-- `sessions.ts` — NextAuth v5 Drizzle adapter schema (~443 tok)
+- `sessions.ts` — NextAuth v5 Drizzle adapter schema — required by DrizzleAdapter. (~490 tok)
 - `users.ts` — Exports roleEnum, users, User, NewUser (~456 tok)
 
 ## lib/email/

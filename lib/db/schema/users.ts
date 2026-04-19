@@ -30,6 +30,7 @@ export const users = pgTable('users', {
   username: varchar('username', { length: 50 }).unique(),
   displayName: varchar('display_name', { length: 100 }),
   avatarUrl: text('avatar_url'),
+  blocked: boolean('blocked').default(false).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 })
