@@ -805,3 +805,15 @@
 | 12:39 | Edited components/article/article-faq.tsx                                                                       | inline fix                                                                                          | ~22        |
 | 12:39 | Seeded homepage+article FAQ groups, added ArticleFAQ to article detail page                                     | scripts/seed.ts, components/article/article-faq.tsx, app/(app)/(dashboard)/articles/[slug]/page.tsx | done       | ~400    |
 | 12:39 | Session end: 14 writes across 7 files (FAQs.ts, payload.config.ts, faq-section.tsx, faq-accordion.tsx, seed.ts) | 7 reads                                                                                             | ~43164 tok |
+
+## Session: 2026-04-20 13:02
+
+| Time  | Action                                                                                 | File(s)                                                                                                      | Outcome    | ~Tokens |
+| ----- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------- | ------- |
+| 13:24 | Created components/article/recommended-articles.tsx                                    | —                                                                                                            | ~1773      |
+| 13:25 | Edited app/globals.css                                                                 | CSS: -ms-overflow-style, scrollbar-width, display                                                            | ~69        |
+| 13:25 | Edited app/(app)/(dashboard)/articles/[slug]/page.tsx                                  | added 2 import(s)                                                                                            | ~59        |
+| 13:25 | Edited app/(app)/(dashboard)/articles/[slug]/page.tsx                                  | modified getBookmarkedPostIds()                                                                              | ~188       |
+| 13:25 | Edited app/(app)/(dashboard)/articles/[slug]/page.tsx                                  | CSS: isBookmarked                                                                                            | ~88        |
+| 13:26 | Added recommended articles carousel to article detail page                             | components/article/recommended-articles.tsx, app/(app)/(dashboard)/articles/[slug]/page.tsx, app/globals.css | done       | ~500    |
+| 13:26 | Session end: 5 writes across 3 files (recommended-articles.tsx, globals.css, page.tsx) | 5 reads                                                                                                      | ~10379 tok |

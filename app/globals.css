@@ -369,6 +369,15 @@ body {
   }
 }
 
+/* ── Scrollbar hide utility ── */
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* ── Article body typography (replaces @tailwindcss/typography prose) ── */
 .article-body h2 {
   font-size: 1.75rem;

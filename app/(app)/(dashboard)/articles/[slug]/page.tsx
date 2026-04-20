@@ -16,6 +16,8 @@ import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import type { Role } from '@/lib/auth/withRole'
 import { jsxConverters } from '@/lib/lexical/jsxConverters'
 import { ArticleFAQ } from '@/components/article/article-faq'
+import { RecommendedArticles } from '@/components/article/recommended-articles'
+import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -67,6 +69,22 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
   // Determine lock state
   const isLocked = post.isProOnly === true && ROLE_HIERARCHY[effectiveRole] < ROLE_HIERARCHY['pro']
+
+  // Fetch recommended articles (same category, excluding current post)
+  const categoryId =
+    post.category && typeof post.category === 'object' ? (post.category as { id: number }).id : null
+  const recommendedResult = await payload.find({
+    collection: 'posts',
+    where: {
+      status: { equals: 'published' },
+      id: { not_equals: post.id },
+      ...(categoryId ? { category: { equals: categoryId } } : {}),
+    },
+    sort: '-publishedAt',
+    depth: 2,
+    limit: 10,
+    overrideAccess: true,
+  })
 
   // Check bookmark state
   const bookmarkedIds = session?.user?.id
@@ -217,6 +235,15 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
           </div>
         </footer>
       )}
+      {/* Recommended Articles */}
+      <RecommendedArticles
+        articles={recommendedResult.docs.map((p) =>
+          mapPostToCardProps(p as Record<string, unknown>, {
+            isBookmarked: bookmarkedIds.has(String(p.id)),
+          })
+        )}
+      />
+
       {/* FAQ */}
       <ArticleFAQ />
     </article>
