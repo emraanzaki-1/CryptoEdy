@@ -26,17 +26,15 @@ export function useInfiniteScroll({
   const [hasNextPage, setHasNextPage] = useState(initialHasNextPage)
   const [isLoading, setIsLoading] = useState(false)
 
-  // Reset when initialArticles change (e.g. category filter navigation)
-  const prevFetchUrl = useRef(fetchUrl)
+  // Reset when content changes (category navigation, unbookmark, etc.)
+  const articlesKey = initialArticles.map((a) => a.slug).join(',')
   useEffect(() => {
-    if (prevFetchUrl.current !== fetchUrl) {
-      setArticles(initialArticles)
-      setPage(1)
-      setHasNextPage(initialHasNextPage)
-      setIsLoading(false)
-      prevFetchUrl.current = fetchUrl
-    }
-  }, [fetchUrl, initialArticles, initialHasNextPage])
+    setArticles(initialArticles)
+    setPage(1)
+    setHasNextPage(initialHasNextPage)
+    setIsLoading(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [articlesKey, fetchUrl])
 
   const loadMore = useCallback(async () => {
     if (isLoading || !hasNextPage) return
