@@ -91,6 +91,34 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [isOpen, onClose])
 
+  const handleResultClick = useCallback(
+    (result: SearchResult) => {
+      saveRecentSearch(query.trim())
+      onClose()
+      router.push(`/articles/${result.slug}`)
+    },
+    [query, onClose, router]
+  )
+
+  function handleRecentClick(search: string) {
+    setQuery(search)
+    inputRef.current?.focus()
+  }
+
+  function handleRemoveRecent(e: React.MouseEvent, search: string) {
+    e.stopPropagation()
+    removeRecentSearch(search)
+    setRecentSearches(getRecentSearches())
+  }
+
+  const handleActionClick = useCallback(
+    (href: string) => {
+      onClose()
+      router.push(href)
+    },
+    [onClose, router]
+  )
+
   // Build the flat list of navigable items for keyboard nav
   const getNavigableItems = useCallback((): Array<{
     type: 'recent' | 'action' | 'result'
@@ -155,34 +183,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   useEffect(() => {
     setActiveIndex(-1)
   }, [query, results.length])
-
-  const handleResultClick = useCallback(
-    (result: SearchResult) => {
-      saveRecentSearch(query.trim())
-      onClose()
-      router.push(`/articles/${result.slug}`)
-    },
-    [query, onClose, router]
-  )
-
-  function handleRecentClick(search: string) {
-    setQuery(search)
-    inputRef.current?.focus()
-  }
-
-  function handleRemoveRecent(e: React.MouseEvent, search: string) {
-    e.stopPropagation()
-    removeRecentSearch(search)
-    setRecentSearches(getRecentSearches())
-  }
-
-  const handleActionClick = useCallback(
-    (href: string) => {
-      onClose()
-      router.push(href)
-    },
-    [onClose, router]
-  )
 
   if (!isOpen) return null
 
