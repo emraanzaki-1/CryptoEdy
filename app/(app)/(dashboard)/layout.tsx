@@ -1,6 +1,7 @@
 import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import { DashboardShell } from '@/components/layouts/dashboard-shell'
+import { AvatarProvider } from '@/components/providers/avatar-provider'
 import { getNavCategories } from '@/lib/categories/getCategories'
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -17,15 +18,17 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const navCategories = await getNavCategories()
 
   return (
-    <DashboardShell
-      user={{
-        name: session.user.name ?? session.user.email?.split('@')[0] ?? 'User',
-        image: session.user.image ?? undefined,
-        isPro,
-      }}
-      navCategories={navCategories}
-    >
-      {children}
-    </DashboardShell>
+    <AvatarProvider initialUrl={session.user.image ?? null}>
+      <DashboardShell
+        user={{
+          name: session.user.name ?? session.user.email?.split('@')[0] ?? 'User',
+          image: session.user.image ?? undefined,
+          isPro,
+        }}
+        navCategories={navCategories}
+      >
+        {children}
+      </DashboardShell>
+    </AvatarProvider>
   )
 }

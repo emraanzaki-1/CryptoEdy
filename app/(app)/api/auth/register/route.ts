@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDb } from '@/lib/db'
-import { users } from '@/lib/db/schema'
+import { users, notificationPreferences } from '@/lib/db/schema'
 import { eq, or } from 'drizzle-orm'
 import bcrypt from 'bcryptjs'
 import { generateReferralCode, generateSecureToken } from '@/lib/auth/referral'
@@ -55,6 +55,9 @@ export async function POST(req: NextRequest) {
         verificationTokenExpiry,
       })
       .returning({ id: users.id, email: users.email })
+
+    // Seed default notification preferences
+    await getDb().insert(notificationPreferences).values({ userId: user.id }).onConflictDoNothing()
 
     await sendVerificationEmail(user.email, verificationToken)
 

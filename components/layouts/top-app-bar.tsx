@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
+import { useAvatar } from '@/components/providers/avatar-provider'
 import {
   Bell,
   Bookmark,
@@ -276,9 +277,16 @@ function UserDropdown({
 
 /* ─── Top App Bar ───────────────────────────────────────────────────────── */
 
-export function TopAppBar({ user, navCategories = [], onSearchClick }: TopAppBarProps) {
+export function TopAppBar({ user: serverUser, navCategories = [], onSearchClick }: TopAppBarProps) {
+  const { avatarUrl } = useAvatar()
   const [notifOpen, setNotifOpen] = useState(false)
   const [userOpen, setUserOpen] = useState(false)
+
+  // Use avatar context (updates instantly on upload) over server-passed prop
+  const user = {
+    ...serverUser,
+    image: avatarUrl ?? serverUser?.image,
+  }
 
   return (
     <header className="bg-surface sticky top-0 z-50 flex items-center gap-6 px-6 py-3 whitespace-nowrap lg:px-10">

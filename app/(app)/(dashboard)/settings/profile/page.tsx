@@ -1,19 +1,105 @@
 'use client'
 
-import { useState } from 'react'
-import { Pencil } from 'lucide-react'
+import { useState, useEffect, useCallback } from 'react'
+import { useSession } from 'next-auth/react'
+import { Pencil, Loader2, Check } from 'lucide-react'
 import { AvatarUpload } from '@/components/settings/avatar-upload'
 import {
   SettingsFormField,
   SettingsInput,
   SettingsTextarea,
-  SettingsSelect,
 } from '@/components/settings/settings-form-field'
-import { ToggleSwitch } from '@/components/ui/toggle-switch'
 import { DangerZone } from '@/components/settings/danger-zone'
+import { useAvatar } from '@/components/providers/avatar-provider'
+import { getProfile, updateProfile, type ProfileData } from '@/lib/profile/actions'
 
 export default function ProfileSettingsPage() {
-  const [hideCurrency, setHideCurrency] = useState(true)
+  const { update: updateSession } = useSession()
+  const { setAvatarUrl: setGlobalAvatar } = useAvatar()
+  const [profile, setProfile] = useState<ProfileData | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [saved, setSaved] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  // Form state
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [username, setUsername] = useState('')
+  const [displayName, setDisplayName] = useState('')
+  const [bio, setBio] = useState('')
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
+
+  const populateForm = useCallback((data: ProfileData) => {
+    setProfile(data)
+    setFirstName(data.firstName ?? '')
+    setLastName(data.lastName ?? '')
+    setUsername(data.username ? `@${data.username}` : '')
+    setDisplayName(data.displayName ?? '')
+    setBio(data.bio ?? '')
+    setAvatarUrl(data.avatarUrl)
+  }, [])
+
+  useEffect(() => {
+    getProfile().then((result) => {
+      if (result.ok) {
+        populateForm(result.data)
+      } else {
+        setError(result.error)
+      }
+      setLoading(false)
+    })
+  }, [populateForm])
+
+  const handleSave = async () => {
+    setSaving(true)
+    setError(null)
+    setSaved(false)
+
+    const result = await updateProfile({
+      firstName: firstName || null,
+      lastName: lastName || null,
+      username: username || null,
+      displayName: displayName || null,
+      bio: bio || null,
+    })
+
+    if (result.ok) {
+      populateForm(result.data)
+      await updateSession()
+      setSaved(true)
+      setTimeout(() => setSaved(false), 2000)
+    } else {
+      setError(result.error)
+    }
+
+    setSaving(false)
+  }
+
+  const handleCancel = () => {
+    if (!profile) return
+    setFirstName(profile.firstName ?? '')
+    setLastName(profile.lastName ?? '')
+    setUsername(profile.username ? `@${profile.username}` : '')
+    setDisplayName(profile.displayName ?? '')
+    setBio(profile.bio ?? '')
+    setError(null)
+  }
+
+  const hasChanges =
+    profile &&
+    (firstName !== (profile.firstName ?? '') ||
+      lastName !== (profile.lastName ?? '') ||
+      username !== (profile.username ? `@${profile.username}` : '') ||
+      displayName !== (profile.displayName ?? '') ||
+      bio !== (profile.bio ?? ''))
+
+  if (loading) {
+    return (
+      <div className="flex min-h-[400px] items-center justify-center">
+        <Loader2 className="text-on-surface-variant size-6 animate-spin" />
+      </div>
+    )
+  }
 
   return (
     <>
@@ -29,8 +115,26 @@ export default function ProfileSettingsPage() {
       <div className="space-y-10">
         {/* Avatar Upload */}
         <AvatarUpload
-          imageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuCKzOmMufbe-_T25aE_RIbQELKvoVSR2kqy2oF0aesjQ_RQMc3QqaOBUVKNvNwhAzScP66NwVskRiEqdtzojCdlAIWdQ-m3X9-HJfKBTp5OplRWGJn3QhkFT0Aflyxic8bVtzQJMnAHrLp3V2-HBZ-hc5_zrCniGTyMTzCztafIpYdG9uN4MccxwnptvRVyUAEpMP4_Jv_GxkgPWIYhqoNJVNMKqKIZzJUHT1Elue2PPqsa0cvbwdqGFOsJJTUKBw66tXZ07geijKQP"
+          imageUrl={avatarUrl}
+          fallbackInitial={(
+            displayName?.[0] ||
+            username?.[1] ||
+            profile?.email?.[0] ||
+            '?'
+          ).toUpperCase()}
           alt="Profile picture"
+          onUploaded={(url) => {
+            setAvatarUrl(url)
+            setGlobalAvatar(url)
+            setProfile((prev) => (prev ? { ...prev, avatarUrl: url } : prev))
+            updateSession()
+          }}
+          onRemoved={() => {
+            setAvatarUrl(null)
+            setGlobalAvatar(null)
+            setProfile((prev) => (prev ? { ...prev, avatarUrl: null } : prev))
+            updateSession()
+          }}
         />
 
         {/* Personal Information */}
@@ -38,35 +142,43 @@ export default function ProfileSettingsPage() {
           <h3 className="text-on-surface mb-5 text-base font-semibold">Personal Information</h3>
           <div className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
             <SettingsFormField label="First Name">
-              <SettingsInput type="text" defaultValue="John" />
+              <SettingsInput
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="First name"
+              />
             </SettingsFormField>
             <SettingsFormField label="Last Name">
-              <SettingsInput type="text" defaultValue="Doe" />
+              <SettingsInput
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Last name"
+              />
             </SettingsFormField>
             <SettingsFormField label="Email Address" className="relative sm:col-span-2">
               <div className="relative">
-                <SettingsInput type="email" defaultValue="john.doe@curator.app" readOnly />
+                <SettingsInput type="email" value={profile?.email ?? ''} readOnly />
                 <button className="text-primary hover:text-primary-container absolute top-1/2 right-4 -translate-y-1/2 p-1">
                   <Pencil className="size-4" />
                 </button>
               </div>
             </SettingsFormField>
             <SettingsFormField label="Username">
-              <SettingsInput type="text" defaultValue="@johndoe" />
-            </SettingsFormField>
-            <SettingsFormField label="Display Name">
-              <SettingsInput type="text" defaultValue="John Doe - Tech Analyst" />
-            </SettingsFormField>
-            <SettingsFormField label="Phone Number">
-              <SettingsInput type="tel" defaultValue="+1 (555) 123-4567" />
-            </SettingsFormField>
-            <SettingsFormField label="Company Name">
-              <SettingsInput type="text" defaultValue="Curator Capital" />
-            </SettingsFormField>
-            <SettingsFormField label="Full Address" className="sm:col-span-2">
               <SettingsInput
                 type="text"
-                defaultValue="123 Financial District, Suite 400, New York, NY 10004"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="@username"
+              />
+            </SettingsFormField>
+            <SettingsFormField label="Display Name">
+              <SettingsInput
+                type="text"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                placeholder="Display name"
               />
             </SettingsFormField>
           </div>
@@ -77,57 +189,44 @@ export default function ProfileSettingsPage() {
           <SettingsFormField label="Bio">
             <SettingsTextarea
               rows={4}
-              defaultValue="Senior technology analyst focusing on Web3 infrastructure and emerging consensus mechanisms. Previously at major investment firm."
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              placeholder="Tell us about yourself..."
             />
           </SettingsFormField>
         </section>
 
-        {/* Privacy Preferences */}
-        <section>
-          <h3 className="text-on-surface mb-5 text-base font-semibold">Privacy Preferences</h3>
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <SettingsFormField label="Profile Visibility">
-                <SettingsSelect defaultValue="public">
-                  <option value="public">Public (Visible to all users)</option>
-                  <option value="connections">Connections Only</option>
-                  <option value="private">Private</option>
-                </SettingsSelect>
-              </SettingsFormField>
-              <SettingsFormField label="Crypto Portfolio Visibility">
-                <SettingsSelect defaultValue="private">
-                  <option value="private">Private</option>
-                  <option value="connections">Shared with Connections</option>
-                  <option value="public">Public</option>
-                </SettingsSelect>
-              </SettingsFormField>
-            </div>
-            <div className="border-outline-variant/15 bg-surface-container-low flex items-center justify-between rounded-2xl border p-5">
-              <div>
-                <p className="text-on-surface text-base font-semibold">Hide Currency Amounts</p>
-                <p className="text-on-surface-variant mt-1 text-sm">
-                  Replaces exact portfolio values with percentages
-                </p>
-              </div>
-              <ToggleSwitch checked={hideCurrency} onChange={setHideCurrency} />
-            </div>
+        {/* Error */}
+        {error && (
+          <div className="bg-error-container/30 text-error rounded-2xl px-5 py-3 text-sm font-medium">
+            {error}
           </div>
-        </section>
+        )}
 
         {/* Actions */}
         <section className="border-outline-variant/15 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:flex-row">
           <div className="ml-auto flex w-full gap-4 sm:w-auto">
-            <button className="text-on-surface-variant hover:bg-surface-container w-full rounded-full px-8 py-3.5 text-sm font-bold transition-colors sm:w-auto">
+            <button
+              onClick={handleCancel}
+              disabled={!hasChanges || saving}
+              className="text-on-surface-variant hover:bg-surface-container w-full rounded-full px-8 py-3.5 text-sm font-bold transition-colors disabled:opacity-50 sm:w-auto"
+            >
               Cancel
             </button>
-            <button className="from-primary to-primary-container text-on-primary w-full rounded-full bg-gradient-to-b px-8 py-3.5 text-sm font-bold shadow-sm transition-opacity hover:opacity-90 sm:w-auto">
-              Save changes
+            <button
+              onClick={handleSave}
+              disabled={!hasChanges || saving}
+              className="from-primary to-primary-container text-on-primary flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b px-8 py-3.5 text-sm font-bold shadow-sm transition-opacity hover:opacity-90 disabled:opacity-50 sm:w-auto"
+            >
+              {saving && <Loader2 className="size-4 animate-spin" />}
+              {saved && <Check className="size-4" />}
+              {saved ? 'Saved' : 'Save changes'}
             </button>
           </div>
         </section>
       </div>
 
-      <DangerZone />
+      <DangerZone userEmail={profile?.email} />
     </>
   )
 }

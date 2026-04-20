@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-19T20:38:40.759Z
-> Files: 245 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T02:38:41.452Z
+> Files: 256 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../../.claude/plans/
 
@@ -157,6 +157,8 @@
 - `code.html` — Tools - CryptoEdy Research (~3958 tok)
 - `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
 
+## OpenWolf Session Notes
+
 ## app/
 
 - `globals.css` — Styles: 10 rules, 256 vars, 1 layers (~3950 tok)
@@ -165,7 +167,7 @@
 
 - `error.tsx` — AppError (~276 tok)
 - `global-error.tsx` — inter (~228 tok)
-- `layout.tsx` — inter (~267 tok)
+- `layout.tsx` — inter, Toaster (sonner) (~300 tok)
 - `not-found.tsx` — NotFound (~230 tok)
 - `page.tsx` — Home (~392 tok)
 
@@ -196,7 +198,7 @@
 ## app/(app)/(dashboard)/
 
 - `error.tsx` — DashboardError (~148 tok)
-- `layout.tsx` — DashboardLayout (~306 tok)
+- `layout.tsx` — DashboardLayout (~356 tok)
 - `not-found.tsx` — DashboardNotFound (~104 tok)
 
 ## app/(app)/(dashboard)/articles/[slug]/
@@ -237,7 +239,7 @@
 
 ## app/(app)/(dashboard)/settings/notifications/
 
-- `page.tsx` — NotificationItem — uses useState (~1302 tok)
+- `page.tsx` — NotificationSettingsPage — uses useState, useEffect, useCallback — fetches/persists prefs via API, auto-save with toast (~2200 tok)
 
 ## app/(app)/(dashboard)/settings/plans/
 
@@ -245,7 +247,7 @@
 
 ## app/(app)/(dashboard)/settings/profile/
 
-- `page.tsx` — ProfileSettingsPage — uses useState (~1728 tok)
+- `page.tsx` — ProfileSettingsPage (~2287 tok)
 
 ## app/(app)/(dashboard)/tag/[slug]/
 
@@ -289,7 +291,11 @@
 
 ## app/(app)/api/auth/register/
 
-- `route.ts` — Next.js API route: POST (~674 tok)
+- `route.ts` — Next.js API route: POST — seeds notification preferences after user insert (~750 tok)
+
+## app/(app)/api/user/notification-preferences/
+
+- `route.ts` — Next.js API route: GET, PATCH — auth-gated notification preference management (~550 tok)
 
 ## app/(app)/api/auth/reset-password/
 
@@ -298,6 +304,14 @@
 ## app/(app)/api/auth/verify-email/
 
 - `route.ts` — GET: Token-based verification (email link flow) (~1028 tok)
+
+## app/(app)/api/profile/
+
+- `route.ts` — Next.js API route: GET, PATCH (~746 tok)
+
+## app/(app)/api/search/
+
+- `route.ts` — GET /api/search?q=&limit= — PostgreSQL FTS with ts_rank, ts_headline, joins categories+media (~800 tok)
 
 ## app/(payload)/
 
@@ -347,8 +361,8 @@
 
 ## components/admin/views/
 
-- `CategoriesListView.tsx` — Server component: custom list view for Categories collection (DefaultTemplate, SetStepNav, tree structure) (~500 tok)
 - `CategoriesListClient.tsx` — Client component: hierarchical category list with expand/collapse + drag-and-drop reordering (~3500 tok)
+- `CategoriesListView.tsx` — Server component: custom list view for Categories collection (DefaultTemplate, SetStepNav, tree structure) (~500 tok)
 - `UserManagement.tsx` — UserManagement (~236 tok)
 - `UserManagementClient.tsx` — ROLES — uses useState, useCallback, useEffect (~3775 tok)
 - `UserManagementEdit.tsx` — UserManagementEdit (~334 tok)
@@ -377,7 +391,8 @@
 - `empty-state.tsx` — Primary CTA label (~744 tok)
 - `error-content.tsx` — Label for the primary CTA (~1178 tok)
 - `logo.tsx` — sizes (~328 tok)
-- `search-bar.tsx` — SearchBar (~289 tok)
+- `search-bar.tsx` — SearchBar button trigger, opens search modal (~289 tok)
+- `search-modal.tsx` — CMD+/ command palette: recent searches, quick actions, FTS results, keyboard nav (~1800 tok)
 
 ## components/feed/
 
@@ -406,18 +421,19 @@
 - `guest-nav.tsx` — NAV_LINKS — uses useState (~1037 tok)
 - `settings-nav.tsx` — settingsGroups (~572 tok)
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2179 tok)
-- `top-app-bar.tsx` — useClickOutside (~3220 tok)
+- `top-app-bar.tsx` — useClickOutside (~3426 tok)
 
 ## components/providers/
 
+- `avatar-provider.tsx` — AvatarContext (~221 tok)
 - `session-provider.tsx` — SessionProvider (~70 tok)
 - `theme-provider.tsx` — ThemeProvider (~103 tok)
 
 ## components/settings/
 
-- `avatar-upload.tsx` — AvatarUpload (~439 tok)
+- `avatar-upload.tsx` — getCroppedBlob (~2499 tok)
 - `billing-history-table.tsx` — BillingHistoryTable — renders table (~632 tok)
-- `danger-zone.tsx` — DangerZone (~162 tok)
+- `danger-zone.tsx` — DangerZone (~1010 tok)
 - `settings-form-field.tsx` — SettingsFormField (~533 tok)
 - `theme-card.tsx` — ThemeCard (~1002 tok)
 
@@ -434,7 +450,7 @@
 - `label.tsx` — Label (~148 tok)
 - `separator.tsx` — Separator (~154 tok)
 - `skeleton.tsx` — Skeleton (~79 tok)
-- `toggle-switch.tsx` — ToggleSwitch (~244 tok)
+- `toggle-switch.tsx` — ToggleSwitch — supports disabled prop (~280 tok)
 
 ## docs/
 
@@ -472,6 +488,7 @@
 
 - `0000_cuddly_anita_blake.sql` — SQL: tables: users, accounts, sessions, verification_tokens, 3 alter(s) (~686 tok)
 - `0001_perfect_post.sql` — SQL: 1 alter(s) (~21 tok)
+- `0002_majestic_ironclad.sql` — SQL: CREATE notification_preferences table, FK to users, unique index on user_id (~200 tok)
 
 ## drizzle/meta/
 
@@ -485,7 +502,7 @@
 
 ## lib/auth/
 
-- `config.ts` — Exports authConfig (~1198 tok)
+- `config.ts` — Exports authConfig (~1262 tok)
 - `index.ts` (~42 tok)
 - `rate-limit.ts` — Maximum requests allowed within the window (~434 tok)
 - `referral.ts` — Generates a unique 12-character alphanumeric referral code (~116 tok)
@@ -515,9 +532,10 @@
 
 ## lib/db/schema/
 
-- `index.ts` (~15 tok)
+- `index.ts` — Barrel export: users, sessions, notification-preferences (~20 tok)
+- `notification-preferences.ts` — notificationPreferences table: userId (unique FK), 4 boolean prefs, updatedAt (~300 tok)
 - `sessions.ts` — NextAuth v5 Drizzle adapter schema — required by DrizzleAdapter. (~490 tok)
-- `users.ts` — Exports roleEnum, users, User, NewUser (~472 tok)
+- `users.ts` — Exports roleEnum, users, User, NewUser (~478 tok)
 
 ## lib/email/
 
@@ -530,6 +548,12 @@
 - `reset-password.ts` — Exports resetPasswordTemplate (~241 tok)
 - `verify-email.ts` — Exports verifyEmailTemplate (~243 tok)
 
+## lib/hooks/
+
+- `useDebounce.ts` — Generic debounce hook, 300ms default (~50 tok)
+- `useSearch.ts` — Debounced FTS fetch hook with AbortController, derived isLoading (~300 tok)
+- `useSearchModal.ts` — Open/close state + CMD+/ keyboard shortcut (~100 tok)
+
 ## lib/lexical/
 
 - `jsxConverters.tsx` — jsxConverters — renders chart (~694 tok)
@@ -538,13 +562,19 @@
 ## lib/notifications/
 
 - `events.ts` — Sprint 3 stub — full notification engine built in Sprint 10. (~255 tok)
+- `preferences.ts` — getPreferences, updatePreference — upsert pattern for notification prefs (~700 tok)
 
 ## lib/posts/
 
 - `mapToCardProps.ts` — Exports timeAgo, mapPostToCardProps (~629 tok)
 
+## lib/profile/
+
+- `actions.ts` — API routes: GET (1 endpoints) (~1732 tok)
+
 ## scripts/
 
+- `add-search-vector.sql` — PostgreSQL migration: tsvector column, GIN index, update trigger on payload.posts (~200 tok)
 - `seed.ts` — CryptoEdy seed script — Sprint 3 (~8279 tok)
 
 ## styles/

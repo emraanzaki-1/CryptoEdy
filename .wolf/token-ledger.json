@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-04-17T20:46:01.631Z",
   "lifetime": {
-    "total_tokens_estimated": 2603757,
-    "total_reads": 1809,
-    "total_writes": 3369,
-    "total_sessions": 14,
-    "anatomy_hits": 1594,
+    "total_tokens_estimated": 3016208,
+    "total_reads": 2025,
+    "total_writes": 3569,
+    "total_sessions": 20,
+    "anatomy_hits": 1809,
     "anatomy_misses": 199,
-    "repeated_reads_blocked": 1013,
-    "estimated_savings_vs_bare_cli": 1858809
+    "repeated_reads_blocked": 1075,
+    "estimated_savings_vs_bare_cli": 2042198
   },
   "sessions": [
     {
@@ -29787,6 +29787,2540 @@
         "writes_count": 75,
         "repeated_reads_blocked": 50,
         "anatomy_lookups": 30
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:06:11.292Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 1728,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 10756,
+        "output_tokens_estimated": 3549,
+        "reads_count": 10,
+        "writes_count": 2,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 10
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:06:45.379Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 1728,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 10756,
+        "output_tokens_estimated": 4145,
+        "reads_count": 10,
+        "writes_count": 4,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 10
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:10:29.364Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 1728,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 15503,
+        "output_tokens_estimated": 4145,
+        "reads_count": 12,
+        "writes_count": 4,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 12
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:13:54.923Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2783,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/search/route.ts",
+          "tokens_estimated": 800,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 17358,
+        "output_tokens_estimated": 7553,
+        "reads_count": 13,
+        "writes_count": 6,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 13
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:15:05.932Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2783,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/search/route.ts",
+          "tokens_estimated": 800,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/index.ts",
+          "tokens_estimated": 231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/sessions.ts",
+          "tokens_estimated": 490,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 64,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 18909,
+        "output_tokens_estimated": 7617,
+        "reads_count": 16,
+        "writes_count": 7,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 16
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:16:02.314Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2783,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/search/route.ts",
+          "tokens_estimated": 800,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/index.ts",
+          "tokens_estimated": 231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/sessions.ts",
+          "tokens_estimated": 490,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 18909,
+        "output_tokens_estimated": 7662,
+        "reads_count": 16,
+        "writes_count": 9,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 16
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:17:32.933Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2783,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/search/route.ts",
+          "tokens_estimated": 800,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/index.ts",
+          "tokens_estimated": 231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/sessions.ts",
+          "tokens_estimated": 490,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 340,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 18909,
+        "output_tokens_estimated": 8277,
+        "reads_count": 16,
+        "writes_count": 11,
+        "repeated_reads_blocked": 3,
+        "anatomy_lookups": 16
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:21:49.865Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/search/route.ts",
+          "tokens_estimated": 800,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 841,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/index.ts",
+          "tokens_estimated": 231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/sessions.ts",
+          "tokens_estimated": 490,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 340,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 1229,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 1160,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2730,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 18715,
+        "output_tokens_estimated": 13427,
+        "reads_count": 16,
+        "writes_count": 15,
+        "repeated_reads_blocked": 5,
+        "anatomy_lookups": 16
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:22:52.553Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/search/route.ts",
+          "tokens_estimated": 800,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 841,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/index.ts",
+          "tokens_estimated": 231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/sessions.ts",
+          "tokens_estimated": 490,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 340,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 1229,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 1160,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2730,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 18715,
+        "output_tokens_estimated": 13427,
+        "reads_count": 16,
+        "writes_count": 15,
+        "repeated_reads_blocked": 5,
+        "anatomy_lookups": 16
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:24:16.032Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/search/route.ts",
+          "tokens_estimated": 800,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 841,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/index.ts",
+          "tokens_estimated": 231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/sessions.ts",
+          "tokens_estimated": 490,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 340,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 1229,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 1160,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2730,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 6,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 5,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 18715,
+        "output_tokens_estimated": 13472,
+        "reads_count": 16,
+        "writes_count": 18,
+        "repeated_reads_blocked": 5,
+        "anatomy_lookups": 16
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:26:08.622Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2225,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/search/route.ts",
+          "tokens_estimated": 800,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 1229,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/index.ts",
+          "tokens_estimated": 231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/sessions.ts",
+          "tokens_estimated": 490,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 340,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 1229,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 1160,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2730,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 6,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 5,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 1010,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 14,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 18750,
+        "output_tokens_estimated": 14719,
+        "reads_count": 16,
+        "writes_count": 21,
+        "repeated_reads_blocked": 8,
+        "anatomy_lookups": 16
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:30:33.567Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2225,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 439,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/search/route.ts",
+          "tokens_estimated": 800,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 1229,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/index.ts",
+          "tokens_estimated": 231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/sessions.ts",
+          "tokens_estimated": 490,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+          "tokens_estimated": 3220,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/dashboard-shell.tsx",
+          "tokens_estimated": 552,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/layout.tsx",
+          "tokens_estimated": 306,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 340,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 1229,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 1160,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2730,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 6,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 5,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 1010,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 2571,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+          "tokens_estimated": 141,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 22828,
+        "output_tokens_estimated": 17485,
+        "reads_count": 19,
+        "writes_count": 24,
+        "repeated_reads_blocked": 8,
+        "anatomy_lookups": 19
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:34:08.848Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2225,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 2571,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/search/route.ts",
+          "tokens_estimated": 800,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 1445,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/index.ts",
+          "tokens_estimated": 231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/sessions.ts",
+          "tokens_estimated": 490,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+          "tokens_estimated": 3220,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/dashboard-shell.tsx",
+          "tokens_estimated": 552,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/layout.tsx",
+          "tokens_estimated": 306,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 340,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 1229,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 1160,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2730,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 6,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 5,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 1010,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 2571,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+          "tokens_estimated": 141,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 71,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 270,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 198,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 181,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 11,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 25176,
+        "output_tokens_estimated": 18216,
+        "reads_count": 19,
+        "writes_count": 29,
+        "repeated_reads_blocked": 10,
+        "anatomy_lookups": 19
+      }
+    },
+    {
+      "id": "session-2026-04-20-0730",
+      "started": "2026-04-20T02:00:32.959Z",
+      "ended": "2026-04-20T02:39:00.432Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2268,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/HTML/profile_settings_verbatim_sync_2/code.html",
+          "tokens_estimated": 5832,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 1198,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/types/next-auth.d.ts",
+          "tokens_estimated": 148,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 2571,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/settings-form-field.tsx",
+          "tokens_estimated": 533,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 162,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/index.ts",
+          "tokens_estimated": 42,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/auth/register/route.ts",
+          "tokens_estimated": 674,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/payload.config.ts",
+          "tokens_estimated": 4631,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/search/route.ts",
+          "tokens_estimated": 800,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 1445,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/index.ts",
+          "tokens_estimated": 231,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/sessions.ts",
+          "tokens_estimated": 490,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+          "tokens_estimated": 3220,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/dashboard-shell.tsx",
+          "tokens_estimated": 552,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/layout.tsx",
+          "tokens_estimated": 306,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/providers/session-provider.tsx",
+          "tokens_estimated": 70,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/layout.tsx",
+          "tokens_estimated": 267,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/profile/route.ts",
+          "tokens_estimated": 746,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2803,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 75,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 521,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 830,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2578,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 275,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/auth/config.ts",
+          "tokens_estimated": 340,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
+          "tokens_estimated": 31,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 1229,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 1160,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 2730,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 6,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 34,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 5,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 223,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/danger-zone.tsx",
+          "tokens_estimated": 1010,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 14,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 2571,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+          "tokens_estimated": 54,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+          "tokens_estimated": 141,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 71,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 270,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
+          "tokens_estimated": 198,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 181,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/settings/avatar-upload.tsx",
+          "tokens_estimated": 11,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/providers/avatar-provider.tsx",
+          "tokens_estimated": 221,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/layout.tsx",
+          "tokens_estimated": 356,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+          "tokens_estimated": 70,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+          "tokens_estimated": 115,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 105,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
+          "tokens_estimated": 119,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 25556,
+        "output_tokens_estimated": 19202,
+        "reads_count": 21,
+        "writes_count": 35,
+        "repeated_reads_blocked": 12,
+        "anatomy_lookups": 20
       }
     }
   ],

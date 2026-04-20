@@ -57,7 +57,7 @@ export const authConfig: NextAuthConfig = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user, trigger, session: _session }) {
+    async jwt({ token, user, trigger }) {
       // Initial sign-in — populate token from user object
       if (user) {
         token.id = user.id
@@ -71,26 +71,33 @@ export const authConfig: NextAuthConfig = {
           ((user as Record<string, unknown>).subscriptionExpiry as string | null) ?? null
       }
 
-      // Session update trigger — allows client to refresh session data.
-      // Always re-fetch from DB regardless of whether session data was passed,
-      // so `updateSession()` (no args) still picks up DB changes like emailVerified.
-      if (trigger === 'update') {
-        // Re-fetch from DB for fresh data
+      // Re-verify user against DB on explicit update, or every 5 minutes.
+      // Catches deleted/blocked users without a DB hit on every request.
+      const REVALIDATE_INTERVAL = 5 * 60 * 1000
+      const lastVerified = (token.lastVerified as number) ?? 0
+      const needsRevalidation =
+        trigger === 'update' || Date.now() - lastVerified > REVALIDATE_INTERVAL
+
+      if (!user && needsRevalidation) {
         const [freshUser] = await getDb()
           .select()
           .from(users)
           .where(eq(users.id, token.id as string))
           .limit(1)
 
-        if (freshUser) {
-          token.name = freshUser.displayName || freshUser.username || freshUser.email.split('@')[0]
-          token.picture = freshUser.avatarUrl ?? null
-          token.role = freshUser.role
-          token.username = freshUser.username
-          token.isEmailVerified = freshUser.emailVerified
-          token.blocked = freshUser.blocked
-          token.subscriptionExpiry = freshUser.subscriptionExpiry?.toISOString() ?? null
+        // User deleted or blocked — invalidate session
+        if (!freshUser || freshUser.blocked) {
+          return null
         }
+
+        token.name = freshUser.displayName || freshUser.username || freshUser.email.split('@')[0]
+        token.picture = freshUser.avatarUrl ?? null
+        token.role = freshUser.role
+        token.username = freshUser.username
+        token.isEmailVerified = freshUser.emailVerified
+        token.blocked = freshUser.blocked
+        token.subscriptionExpiry = freshUser.subscriptionExpiry?.toISOString() ?? null
+        token.lastVerified = Date.now()
       }
 
       return token

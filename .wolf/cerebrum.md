@@ -48,6 +48,8 @@
 - [2026-04-19] AbortController does NOT prevent server-side execution — it only cancels the client promise. For React StrictMode double-mount, make the SERVER idempotent instead. Don't clear one-time tokens on consumption; keep them so duplicate requests succeed. Token expires naturally or gets overwritten on reissue.
 - [2026-04-19] useSession() starts with `{ status: 'loading', data: null }` on full page loads. If a useEffect reads `session` from its closure before loading finishes, the value is null even for logged-in users. Always wait for `sessionStatus !== 'loading'` before branching on session data. Add `sessionStatus` to the useEffect dependency array.
 - [2026-04-19] NextAuth v5 JWT callback: `updateSession()` called without arguments passes `session` as `undefined` to the jwt callback. If the callback has `if (trigger === 'update' && session)`, the DB re-fetch is skipped. Use `if (trigger === 'update')` instead.
+- [2026-04-20] Do NOT call setState synchronously in useEffect body — the `react-hooks/set-state-in-effect` lint rule flags this. Derive loading state from comparing `debouncedQuery` to `fetchedData.query` instead, or only call setState in async callbacks (.then/.catch).
+- [2026-04-20] Do NOT nest `<button>` inside `<button>` — causes hydration error. Use `<span role="button">` for inner interactive elements within a button container.
 
 ## Decision Log
 
@@ -62,3 +64,4 @@
 - [2026-04-19] Email verification uses link-only flow (no OTP). OTPInput component kept in `components/auth/otp-input.tsx` for future use but not wired to verify-email page.
 - [2026-04-19] Reset-password page pre-validates token via GET `/api/auth/reset-password?token=` on mount. Shows skeleton while checking, error state if invalid/expired, form only when valid.
 - [2026-04-19] Categories: parent-child hierarchy via self-referencing relationship. Replaced flat `type` enum and `CATEGORY_SELECT_OPTIONS` select on Posts with a `relationship` to Categories. Seed creates 3 parents first, then 12 children. `CATEGORY_SELECT_OPTIONS` removed from taxonomy.ts.
+- **Notification preferences:** Stored in Drizzle `notification_preferences` table (public schema), NOT a Payload collection. Flat row per user with 4 boolean columns (dailyBrief, proAlerts, marketDirection, assetsPicks). Auto-save per toggle with sonner toast. Upsert pattern for pre-existing users. Seeded on registration. Categories: Content Updates + Feed Alerts only (no Community, no Account).
