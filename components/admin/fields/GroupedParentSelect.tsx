@@ -58,14 +58,17 @@ export default function GroupedParentSelect() {
         options: parents,
       })
 
-      // Each parent's children — selecting these makes the new category an L3 grandchild
+      // Only Crypto School supports L3 grandchildren
       for (const parent of parents) {
         const children = childrenByParent[String(parent.id)] ?? []
-        if (children.length === 0) continue
-        built.push({
-          label: `${parent.name} › Children`,
-          options: children,
-        })
+        for (const child of children) {
+          if (child.slug !== 'crypto-school') continue
+          built.push({
+            label: `${parent.name} > ${child.name}`,
+            options: [child],
+          })
+          break
+        }
       }
 
       setGroups(built)
@@ -112,9 +115,7 @@ export default function GroupedParentSelect() {
             paddingRight: '32px',
           }}
         >
-          <option value="">
-            {loading ? 'Loading…' : '— None (top-level parent) —'}
-          </option>
+          <option value="">{loading ? 'Loading…' : '— None (top-level parent) —'}</option>
           {groups.map((group) => (
             <optgroup key={group.label} label={group.label}>
               {group.options.map((opt) => (

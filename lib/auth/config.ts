@@ -2,14 +2,19 @@ import type { NextAuthConfig } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import { DrizzleAdapter } from '@auth/drizzle-adapter'
 import { getDb } from '@/lib/db'
-import { users } from '@/lib/db/schema'
+import { users, accounts, sessions, verificationTokens } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import bcrypt from 'bcryptjs'
 
 export const authConfig: NextAuthConfig = {
   // DrizzleAdapter called lazily — getDb() only runs on first request, not at build time
   get adapter() {
-    return DrizzleAdapter(getDb())
+    return DrizzleAdapter(getDb(), {
+      usersTable: users,
+      accountsTable: accounts,
+      sessionsTable: sessions,
+      verificationTokensTable: verificationTokens,
+    })
   },
   session: { strategy: 'jwt' },
   pages: {

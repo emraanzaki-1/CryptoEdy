@@ -3,6 +3,9 @@ import { auth } from '@/lib/auth'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { enrollInCourse, getEnrollment } from '@/lib/courses/progress'
+import { getDb } from '@/lib/db'
+import { users } from '@/lib/db/schema'
+import { eq } from 'drizzle-orm'
 
 export async function GET(req: NextRequest) {
   const session = await auth()
@@ -34,6 +37,19 @@ export async function POST(req: NextRequest) {
     const { courseId } = await req.json()
     if (!courseId || typeof courseId !== 'number') {
       return NextResponse.json({ error: 'courseId (number) is required' }, { status: 400 })
+    }
+
+    // Verify user still exists in DB (JWT may outlive a DB reset)
+    const [dbUser] = await getDb()
+      .select({ id: users.id })
+      .from(users)
+      .where(eq(users.id, session.user.id))
+      .limit(1)
+    if (!dbUser) {
+      return NextResponse.json(
+        { error: 'User not found. Please sign out and sign in again.' },
+        { status: 401 }
+      )
     }
 
     // Verify course exists and check paywall
