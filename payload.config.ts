@@ -12,6 +12,7 @@ import { Media } from './collections/Media'
 import { Posts } from './collections/Posts'
 import { Tags } from './collections/Tags'
 import { Bookmarks } from './collections/Bookmarks'
+import { FAQs } from './collections/FAQs'
 import { richTextEditor } from './lib/lexical/richEditor'
 import { adminUserEndpoints } from './lib/api/admin-users'
 import { categoryReorderEndpoint } from './lib/api/category-reorder'
@@ -68,7 +69,7 @@ export default buildConfig({
     },
   },
   endpoints: [...adminUserEndpoints, categoryReorderEndpoint],
-  collections: [Authors, Categories, Tags, Media, Posts, Bookmarks],
+  collections: [Authors, Categories, Tags, Media, Posts, Bookmarks, FAQs],
   // Rich Lexical editor is the global default for all richText fields.
   // Posts.content overrides with the same editor (with custom crypto blocks).
   editor: richTextEditor,

@@ -15,6 +15,7 @@ import { auth } from '@/lib/auth'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import type { Role } from '@/lib/auth/withRole'
 import { jsxConverters } from '@/lib/lexical/jsxConverters'
+import { ArticleFAQ } from '@/components/article/article-faq'
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -216,6 +217,8 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
           </div>
         </footer>
       )}
+      {/* FAQ */}
+      <ArticleFAQ />
     </article>
   )
 }

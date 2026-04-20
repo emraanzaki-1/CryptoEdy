@@ -1,8 +1,8 @@
-'use client'
-
 import { ChevronDown } from 'lucide-react'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 
-const FAQS = [
+const FALLBACK_FAQS = [
   {
     question: 'How often do you publish reports?',
     answer:
@@ -18,9 +18,30 @@ const FAQS = [
     answer:
       'Yes. We accept USDC and USDT on Ethereum, Arbitrum, and Solana networks via our secure checkout portal.',
   },
-] as const
+]
 
-export function FAQSection() {
+export async function FAQSection() {
+  let faqs = FALLBACK_FAQS
+
+  try {
+    const payload = await getPayload({ config })
+    const result = await payload.find({
+      collection: 'faqs',
+      where: { slug: { equals: 'homepage' } },
+      limit: 1,
+    })
+
+    const group = result.docs[0]
+    if (group?.items && group.items.length > 0) {
+      faqs = group.items.map((item: { question: string; answer: string }) => ({
+        question: item.question,
+        answer: item.answer,
+      }))
+    }
+  } catch {
+    // Fall back to hardcoded FAQs
+  }
+
   return (
     <section className="bg-surface-container-low flex flex-col gap-10 rounded-2xl px-6 py-14 md:flex-row md:gap-16 md:px-10">
       {/* Left — trust headline */}
@@ -36,7 +57,7 @@ export function FAQSection() {
 
       {/* Right — accordion */}
       <div className="flex flex-1 flex-col gap-3">
-        {FAQS.map((faq) => (
+        {faqs.map((faq) => (
           <details
             key={faq.question}
             className="bg-surface-container-lowest group cursor-pointer rounded-2xl p-5 shadow-sm [&_summary::-webkit-details-marker]:hidden"

@@ -1,16 +1,12 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T02:38:41.452Z
-> Files: 256 tracked | Anatomy hits: 0 | Misses: 0
-
-## ../../../.claude/plans/
-
-- `binary-growing-pebble.md` — Bookmarking Feature Plan (~917 tok)
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T07:09:04.285Z
+> Files: 270 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
 - `.DS_Store` (~2732 tok)
-- `.gitignore` — Git ignore rules (~161 tok)
+- `.gitignore` — Git ignore rules (~165 tok)
 - `.prettierrc` — Prettier configuration (~41 tok)
 - `AGENTS.md` — This is NOT the Next.js you know (~82 tok)
 - `CLAUDE.md` — OpenWolf (~60 tok)
@@ -18,21 +14,21 @@
 - `components.json` (~148 tok)
 - `drizzle.config.ts` — Drizzle ORM configuration (~79 tok)
 - `eslint.config.mjs` — ESLint flat configuration (~124 tok)
-- `next-env.d.ts` — / <reference types="next" /> (~71 tok)
+- `next-env.d.ts` — / <reference types="next" /> (~72 tok)
 - `next.config.ts` — Next.js configuration (~89 tok)
-- `package-lock.json` — npm lock file (~167654 tok)
-- `package.json` — Node.js package manifest (~639 tok)
-- `payload.config.ts` — API routes: GET (4 endpoints) (~4631 tok)
+- `package-lock.json` — npm lock file (~168205 tok)
+- `package.json` — Node.js package manifest (~692 tok)
+- `payload.config.ts` — Declares filename (~1139 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~980 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~213121 tok)
+- `tsconfig.tsbuildinfo` (~212278 tok)
 
 ## .claude/
 
 - `settings.json` (~442 tok)
-- `settings.local.json` — Declares p (~1092 tok)
+- `settings.local.json` — Declares p (~1215 tok)
 
 ## .claude/rules/
 
@@ -98,10 +94,15 @@
 
 - `code.html` — Billing Settings - CryptoEdy (~4611 tok)
 
+## HTML/command_pallete_search/
+
+- `code.html` (~4614 tok)
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
+
 ## HTML/community page/
 
 - `code.html` — Community - CryptoEdy Research (~3825 tok)
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1355 tok)
 
 ## HTML/dashboard_feed_authenticated_9_card_grid_2/
 
@@ -122,7 +123,7 @@
 ## HTML/error_pages/
 
 - `code.html` (~2523 tok)
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1355 tok)
 
 ## HTML/landing_page_guest_experience/
 
@@ -155,9 +156,7 @@
 ## HTML/tools_section/
 
 - `code.html` — Tools - CryptoEdy Research (~3958 tok)
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
-
-## OpenWolf Session Notes
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1355 tok)
 
 ## app/
 
@@ -167,7 +166,7 @@
 
 - `error.tsx` — AppError (~276 tok)
 - `global-error.tsx` — inter (~228 tok)
-- `layout.tsx` — inter, Toaster (sonner) (~300 tok)
+- `layout.tsx` — inter (~292 tok)
 - `not-found.tsx` — NotFound (~230 tok)
 - `page.tsx` — Home (~392 tok)
 
@@ -204,24 +203,20 @@
 ## app/(app)/(dashboard)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — ROLE_HIERARCHY (~2263 tok)
+- `page.tsx` — ROLE_HIERARCHY (~2307 tok)
 
 ## app/(app)/(dashboard)/community/
 
 - `page.tsx` — FEATURES (~1879 tok)
 
-## app/(app)/(dashboard)/feed/
-
-- `loading.tsx` — FeedLoading (~235 tok)
-- `page.tsx` — timeAgo (~773 tok)
-
 ## app/(app)/(dashboard)/feed/[[...slug]]/
 
-- `page.tsx` — FeedPage (~780 tok)
+- `loading.tsx` — FeedLoading (~269 tok)
+- `page.tsx` — FeedPage (~814 tok)
 
 ## app/(app)/(dashboard)/saved/
 
-- `page.tsx` — SavedPage (~476 tok)
+- `page.tsx` — SavedPage (~497 tok)
 
 ## app/(app)/(dashboard)/settings/
 
@@ -239,7 +234,7 @@
 
 ## app/(app)/(dashboard)/settings/notifications/
 
-- `page.tsx` — NotificationSettingsPage — uses useState, useEffect, useCallback — fetches/persists prefs via API, auto-save with toast (~2200 tok)
+- `page.tsx` — NotificationItem — uses useState, useEffect, useCallback (~1712 tok)
 
 ## app/(app)/(dashboard)/settings/plans/
 
@@ -247,11 +242,11 @@
 
 ## app/(app)/(dashboard)/settings/profile/
 
-- `page.tsx` — ProfileSettingsPage (~2287 tok)
+- `page.tsx` — ProfileSettingsPage — uses useState, useCallback, useEffect (~2277 tok)
 
 ## app/(app)/(dashboard)/tag/[slug]/
 
-- `page.tsx` — TagPage (~581 tok)
+- `page.tsx` — TagPage (~624 tok)
 
 ## app/(app)/(dashboard)/tools/
 
@@ -291,11 +286,7 @@
 
 ## app/(app)/api/auth/register/
 
-- `route.ts` — Next.js API route: POST — seeds notification preferences after user insert (~750 tok)
-
-## app/(app)/api/user/notification-preferences/
-
-- `route.ts` — Next.js API route: GET, PATCH — auth-gated notification preference management (~550 tok)
+- `route.ts` — Next.js API route: POST (~723 tok)
 
 ## app/(app)/api/auth/reset-password/
 
@@ -305,13 +296,17 @@
 
 - `route.ts` — GET: Token-based verification (email link flow) (~1028 tok)
 
-## app/(app)/api/profile/
+## app/(app)/api/posts/
 
-- `route.ts` — Next.js API route: GET, PATCH (~746 tok)
+- `route.ts` — Next.js API route: GET (~1102 tok)
 
 ## app/(app)/api/search/
 
-- `route.ts` — GET /api/search?q=&limit= — PostgreSQL FTS with ts_rank, ts_headline, joins categories+media (~800 tok)
+- `route.ts` — Next.js API route: GET (~913 tok)
+
+## app/(app)/api/user/notification-preferences/
+
+- `route.ts` — Next.js API route: GET, PATCH (~415 tok)
 
 ## app/(payload)/
 
@@ -321,7 +316,7 @@
 
 ## app/(payload)/admin/
 
-- `importMap.js` — Exports importMap (~2248 tok)
+- `importMap.js` — Exports importMap (~2339 tok)
 
 ## app/(payload)/admin/[[...segments]]/
 
@@ -334,10 +329,11 @@
 ## collections/
 
 - `Authors.ts` — Payload's CMS editor accounts — separate from NextAuth app users. (~578 tok)
-- `Bookmarks.ts` — Exports Bookmarks (~382 tok)
-- `Categories.ts` — Exports Categories (~430 tok)
+- `Bookmarks.ts` — Exports Bookmarks (~373 tok)
+- `Categories.ts` — Exports Categories (~584 tok)
+- `FAQs.ts` — FAQ Groups collection: title, slug, items[] (question/answer). Fetch by slug per page. (~371 tok)
 - `Media.ts` — Exports Media (~285 tok)
-- `Posts.ts` — Exports Posts (~2592 tok)
+- `Posts.ts` — Exports Posts (~2561 tok)
 - `Tags.ts` — Exports Tags (~264 tok)
 
 ## collections/blocks/
@@ -353,7 +349,7 @@
 
 ## components/admin/
 
-- `AdminDashboard.tsx` — ─── Types ──────────────────────────────────────────────────────────────────── (~3452 tok)
+- `AdminDashboard.tsx` — ─── Types ──────────────────────────────────────────────────────────────────── (~3527 tok)
 - `AdminNavLinks.tsx` — AdminNavLinks (~134 tok)
 - `DashboardBanner.tsx` — CryptoEdy dashboard welcome banner. (~566 tok)
 - `Icon.tsx` — CryptoEdy admin icon — shown in collapsed sidebar and browser tab favicon area. (~199 tok)
@@ -361,8 +357,8 @@
 
 ## components/admin/views/
 
-- `CategoriesListClient.tsx` — Client component: hierarchical category list with expand/collapse + drag-and-drop reordering (~3500 tok)
-- `CategoriesListView.tsx` — Server component: custom list view for Categories collection (DefaultTemplate, SetStepNav, tree structure) (~500 tok)
+- `CategoriesListClient.tsx` — styles — renders table — uses useState, useCallback (~4370 tok)
+- `CategoriesListView.tsx` — CategoriesListView (~362 tok)
 - `UserManagement.tsx` — UserManagement (~236 tok)
 - `UserManagementClient.tsx` — ROLES — uses useState, useCallback, useEffect (~3775 tok)
 - `UserManagementEdit.tsx` — UserManagementEdit (~334 tok)
@@ -370,16 +366,17 @@
 
 ## components/article/
 
+- `article-faq.tsx` — ArticleFAQ (~419 tok)
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
 - `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1613 tok)
-- `share-button.tsx` — ShareButton (~339 tok)
+- `share-button.tsx` — ShareButton — uses useState (~339 tok)
 
 ## components/article/blocks/
 
-- `callout-block.tsx` — VARIANTS — renders chart (~445 tok)
+- `callout-block.tsx` — VARIANTS — renders chart (~426 tok)
 - `chart-embed-block.tsx` — ChartEmbedBlockComponent — renders chart — uses useEffect (~550 tok)
 - `performance-table-block.tsx` — STATUS_STYLES — renders table (~1192 tok)
-- `price-target-block.tsx` — RISK_STYLES (~1091 tok)
+- `price-target-block.tsx` — RISK_STYLES (~1096 tok)
 
 ## components/auth/
 
@@ -391,22 +388,24 @@
 - `empty-state.tsx` — Primary CTA label (~744 tok)
 - `error-content.tsx` — Label for the primary CTA (~1178 tok)
 - `logo.tsx` — sizes (~328 tok)
-- `search-bar.tsx` — SearchBar button trigger, opens search modal (~289 tok)
-- `search-modal.tsx` — CMD+/ command palette: recent searches, quick actions, FTS results, keyboard nav (~1800 tok)
+- `search-bar.tsx` — SearchBar (~209 tok)
+- `search-modal.tsx` — RECENT_SEARCHES_KEY — uses useRouter, useState, useEffect, useCallback (~4683 tok)
 
 ## components/feed/
 
 - `article-card-list.tsx` — CategoryPill (~805 tok)
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~906 tok)
 - `article-card.tsx` — CategoryPill (~1124 tok)
-- `bookmark-button.tsx` — BookmarkButton (~669 tok)
-- `feed-client.tsx` — FeedClient (~799 tok)
-- `tag-client.tsx` — TagClient (~533 tok)
+- `bookmark-button.tsx` — BookmarkButton — uses useState, useRouter (~669 tok)
+- `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~285 tok)
+- `feed-client.tsx` — FeedClient (~1174 tok)
+- `tag-client.tsx` — TagClient (~826 tok)
 - `view-toggle.tsx` — ViewToggle (~337 tok)
 
 ## components/landing/
 
-- `faq-section.tsx` — FAQS (~662 tok)
+- `faq-accordion.tsx` — FAQAccordion (~252 tok)
+- `faq-section.tsx` — FALLBACK_FAQS (~828 tok)
 - `hero-section.tsx` — HeroSection (~619 tok)
 - `pricing-section.tsx` — FEATURES — renders chart (~1006 tok)
 - `research-preview-section.tsx` — ARTICLES (~1524 tok)
@@ -416,24 +415,24 @@
 ## components/layouts/
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~570 tok)
-- `dashboard-shell.tsx` — DashboardShell (~552 tok)
+- `dashboard-shell.tsx` — DashboardShell — uses useState (~638 tok)
 - `footer.tsx` — Footer (~947 tok)
 - `guest-nav.tsx` — NAV_LINKS — uses useState (~1037 tok)
 - `settings-nav.tsx` — settingsGroups (~572 tok)
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2179 tok)
-- `top-app-bar.tsx` — useClickOutside (~3426 tok)
+- `top-app-bar.tsx` — useClickOutside — uses useEffect, useState (~3426 tok)
 
 ## components/providers/
 
-- `avatar-provider.tsx` — AvatarContext (~221 tok)
+- `avatar-provider.tsx` — AvatarContext — uses useState, useCallback, useContext (~218 tok)
 - `session-provider.tsx` — SessionProvider (~70 tok)
 - `theme-provider.tsx` — ThemeProvider (~103 tok)
 
 ## components/settings/
 
-- `avatar-upload.tsx` — getCroppedBlob (~2499 tok)
+- `avatar-upload.tsx` — getCroppedBlob — uses useState, useCallback (~2499 tok)
 - `billing-history-table.tsx` — BillingHistoryTable — renders table (~632 tok)
-- `danger-zone.tsx` — DangerZone (~1010 tok)
+- `danger-zone.tsx` — DangerZone — uses useState (~1004 tok)
 - `settings-form-field.tsx` — SettingsFormField (~533 tok)
 - `theme-card.tsx` — ThemeCard (~1002 tok)
 
@@ -450,7 +449,7 @@
 - `label.tsx` — Label (~148 tok)
 - `separator.tsx` — Separator (~154 tok)
 - `skeleton.tsx` — Skeleton (~79 tok)
-- `toggle-switch.tsx` — ToggleSwitch — supports disabled prop (~280 tok)
+- `toggle-switch.tsx` — ToggleSwitch (~289 tok)
 
 ## docs/
 
@@ -488,21 +487,27 @@
 
 - `0000_cuddly_anita_blake.sql` — SQL: tables: users, accounts, sessions, verification_tokens, 3 alter(s) (~686 tok)
 - `0001_perfect_post.sql` — SQL: 1 alter(s) (~21 tok)
-- `0002_majestic_ironclad.sql` — SQL: CREATE notification_preferences table, FK to users, unique index on user_id (~200 tok)
+- `0002_majestic_ironclad.sql` — SQL: tables: notification_preferences, 2 alter(s) (~227 tok)
 
 ## drizzle/meta/
 
-- `_journal.json` (~101 tok)
+- `_journal.json` (~143 tok)
 - `0000_snapshot.json` (~2660 tok)
 - `0001_snapshot.json` (~2710 tok)
+- `0002_snapshot.json` (~3424 tok)
 
 ## lib/
 
 - `utils.ts` — Exports cn (~48 tok)
 
+## lib/api/
+
+- `admin-users.ts` — API routes: GET (4 endpoints) (~3685 tok)
+- `category-reorder.ts` — Exports categoryReorderEndpoint (~421 tok)
+
 ## lib/auth/
 
-- `config.ts` — Exports authConfig (~1262 tok)
+- `config.ts` — Exports authConfig (~1256 tok)
 - `index.ts` (~42 tok)
 - `rate-limit.ts` — Maximum requests allowed within the window (~434 tok)
 - `referral.ts` — Generates a unique 12-character alphanumeric referral code (~116 tok)
@@ -511,12 +516,12 @@
 
 ## lib/bookmarks/
 
-- `actions.ts` — Exports toggleBookmark (~322 tok)
-- `getBookmarkedPostIds.ts` — Exports getBookmarkedPostIds (~177 tok)
+- `actions.ts` — Exports toggleBookmark (~315 tok)
+- `getBookmarkedPostIds.ts` — Exports getBookmarkedPostIds (~184 tok)
 
 ## lib/categories/
 
-- `getCategories.ts` — Exports NavCategory, getNavCategories (~502 tok)
+- `getCategories.ts` — Exports NavCategory, getNavCategories (~513 tok)
 
 ## lib/config/
 
@@ -524,7 +529,7 @@
 
 ## lib/constants/
 
-- `taxonomy.ts` — Exports TAXONOMY, ALL_CATEGORIES, CATEGORY_SELECT_OPTIONS, CategoryType + 2 more (~651 tok)
+- `taxonomy.ts` — Exports TAXONOMY, ALL_CATEGORIES, CategoryType, CategorySlug, SLUG_TO_TYPE (~606 tok)
 
 ## lib/db/
 
@@ -532,8 +537,8 @@
 
 ## lib/db/schema/
 
-- `index.ts` — Barrel export: users, sessions, notification-preferences (~20 tok)
-- `notification-preferences.ts` — notificationPreferences table: userId (unique FK), 4 boolean prefs, updatedAt (~300 tok)
+- `index.ts` (~27 tok)
+- `notification-preferences.ts` — Exports notificationPreferences, NotificationPreferences, NewNotificationPreferences (~270 tok)
 - `sessions.ts` — NextAuth v5 Drizzle adapter schema — required by DrizzleAdapter. (~490 tok)
 - `users.ts` — Exports roleEnum, users, User, NewUser (~478 tok)
 
@@ -550,23 +555,25 @@
 
 ## lib/hooks/
 
-- `useDebounce.ts` — Generic debounce hook, 300ms default (~50 tok)
-- `useSearch.ts` — Debounced FTS fetch hook with AbortController, derived isLoading (~300 tok)
-- `useSearchModal.ts` — Open/close state + CMD+/ keyboard shortcut (~100 tok)
+- `useDebounce.ts` — Exports useDebounce (~102 tok)
+- `useInfiniteScroll.ts` — Exports useInfiniteScroll (~786 tok)
+- `useSearch.ts` — Exports useSearch (~604 tok)
+- `useSearchModal.ts` — Exports useSearchModal (~212 tok)
+- `useViewPreference.ts` — Exports useViewPreference (~252 tok)
 
 ## lib/lexical/
 
-- `jsxConverters.tsx` — jsxConverters — renders chart (~694 tok)
+- `jsxConverters.tsx` — jsxConverters — renders chart (~683 tok)
 - `richEditor.ts` — Full-featured Lexical editor for CryptoEdy content authors. (~914 tok)
 
 ## lib/notifications/
 
-- `events.ts` — Sprint 3 stub — full notification engine built in Sprint 10. (~255 tok)
-- `preferences.ts` — getPreferences, updatePreference — upsert pattern for notification prefs (~700 tok)
+- `events.ts` — Sprint 3 stub — full notification engine built in Sprint 10. (~358 tok)
+- `preferences.ts` — Get notification preferences for a user. (~580 tok)
 
 ## lib/posts/
 
-- `mapToCardProps.ts` — Exports timeAgo, mapPostToCardProps (~629 tok)
+- `mapToCardProps.ts` — Exports timeAgo, mapPostToCardProps (~633 tok)
 
 ## lib/profile/
 
@@ -574,8 +581,9 @@
 
 ## scripts/
 
-- `add-search-vector.sql` — PostgreSQL migration: tsvector column, GIN index, update trigger on payload.posts (~200 tok)
-- `seed.ts` — CryptoEdy seed script — Sprint 3 (~8279 tok)
+- `add-search-vector.sql` — Search vector migration for full-text search on posts (~348 tok)
+- `patch-next-env.cjs` — Preload environment variables BEFORE any ESM imports (~241 tok)
+- `seed.ts` — CryptoEdy seed script — Sprint 3 (~34316 tok)
 
 ## styles/
 

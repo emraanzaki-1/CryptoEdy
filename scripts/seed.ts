@@ -465,7 +465,7 @@ async function main() {
 
   if (IS_RESET) {
     console.log('[seed] Resetting — deleting all content...')
-    for (const col of ['posts', 'media', 'categories', 'tags', 'authors'] as const) {
+    for (const col of ['bookmarks', 'posts', 'media', 'categories', 'tags', 'authors'] as const) {
       const existing = await payload.find({ collection: col, limit: 1000, pagination: false })
       for (const doc of existing.docs) {
         await payload.delete({ collection: col, id: doc.id })
@@ -1636,6 +1636,90 @@ async function main() {
   }
   console.log(
     `[seed] Posts: ${seededCount} created, ${POSTS.length - seededCount} already existed.`
+  )
+
+  // ─── FAQ Groups ──────────────────────────────────────────────────────────
+  const FAQ_GROUPS = [
+    {
+      title: 'Homepage',
+      slug: 'homepage',
+      items: [
+        {
+          question: 'How often do you publish reports?',
+          answer:
+            'We publish comprehensive deep-dives bi-weekly, alongside shorter, timely macro updates every Monday. Trade alerts are sent as opportunities arise.',
+        },
+        {
+          question: 'What is the 3X Value Guarantee?',
+          answer:
+            'If you follow our documented high-conviction calls with standard risk management for a full year and do not realize at least 3x the cost of your subscription in profit, we will refund your year or grant another year free.',
+        },
+        {
+          question: 'Can I pay with cryptocurrency?',
+          answer:
+            'Yes. We accept USDC and USDT on Ethereum, Arbitrum, and Solana networks via our secure checkout portal.',
+        },
+        {
+          question: 'Who writes the research?',
+          answer:
+            'Our team includes former institutional analysts, on-chain researchers, and DeFi-native traders with a combined 30+ years in traditional and crypto markets.',
+        },
+        {
+          question: 'Can I cancel anytime?',
+          answer:
+            'Yes. Cancel before your next billing cycle and you will retain access until the current period ends. No questions asked.',
+        },
+      ],
+    },
+    {
+      title: 'Article',
+      slug: 'article',
+      items: [
+        {
+          question: 'How should I use this research?',
+          answer:
+            'Our reports are educational and informational. They are not financial advice. Always do your own research and consult a financial advisor before making investment decisions.',
+        },
+        {
+          question: 'How often are articles updated?',
+          answer:
+            'Published articles are updated when material changes occur — price target hits, thesis invalidation, or new on-chain data. Updated articles are marked with a revision date.',
+        },
+        {
+          question: 'Can I share articles with others?',
+          answer:
+            'Free articles can be shared freely. Pro articles are for subscribers only — sharing paywalled content violates our terms of service.',
+        },
+        {
+          question: 'What does the risk rating mean?',
+          answer:
+            'Risk ratings (Low, Medium, High, Very High) reflect the volatility and uncertainty of the asset or thesis. Higher risk means larger potential swings in both directions. Position size accordingly.',
+        },
+      ],
+    },
+  ]
+
+  let faqSeeded = 0
+  for (const group of FAQ_GROUPS) {
+    const existing = await payload.find({
+      collection: 'faqs',
+      where: { slug: { equals: group.slug } },
+      limit: 1,
+    })
+    if (existing.docs.length > 0) continue
+
+    await payload.create({
+      collection: 'faqs',
+      data: {
+        title: group.title,
+        slug: group.slug,
+        items: group.items,
+      },
+    })
+    faqSeeded++
+  }
+  console.log(
+    `[seed] FAQ groups: ${faqSeeded} created, ${FAQ_GROUPS.length - faqSeeded} already existed.`
   )
 
   console.log('[seed] Done.')

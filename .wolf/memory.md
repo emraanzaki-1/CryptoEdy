@@ -779,3 +779,29 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 | ---- | ------ | ------- | ------- | ------- |
+
+## Session: 2026-04-20 11:50
+
+| Time  | Action                                                                                                          | File(s)                                                                                             | Outcome    | ~Tokens |
+| ----- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------- | ------- |
+| 12:21 | Created collections/FAQs.ts                                                                                     | —                                                                                                   | ~289       |
+| 12:21 | Edited payload.config.ts                                                                                        | added 1 import(s)                                                                                   | ~27        |
+| 12:21 | Edited payload.config.ts                                                                                        | inline fix                                                                                          | ~21        |
+| 12:22 | Created components/landing/faq-section.tsx                                                                      | —                                                                                                   | ~607       |
+| 12:22 | Created components/landing/faq-accordion.tsx                                                                    | —                                                                                                   | ~252       |
+| 12:22 | Created components/landing/faq-section.tsx                                                                      | —                                                                                                   | ~801       |
+| 12:23 | Added FAQs Payload collection + dynamic FAQ section                                                             | collections/FAQs.ts, payload.config.ts, components/landing/faq-section.tsx                          | done       | ~300    |
+| 12:23 | Session end: 6 writes across 4 files (FAQs.ts, payload.config.ts, faq-section.tsx, faq-accordion.tsx)           | 4 reads                                                                                             | ~4441 tok  |
+| 12:31 | Created collections/FAQs.ts                                                                                     | —                                                                                                   | ~371       |
+| 12:31 | Created components/landing/faq-section.tsx                                                                      | —                                                                                                   | ~817       |
+| 12:31 | Reworked FAQs to grouped model (title/slug + items array)                                                       | collections/FAQs.ts, components/landing/faq-section.tsx                                             | done       | ~200    |
+| 12:31 | Session end: 8 writes across 4 files (FAQs.ts, payload.config.ts, faq-section.tsx, faq-accordion.tsx)           | 5 reads                                                                                             | ~6057 tok  |
+| 12:34 | Session end: 8 writes across 4 files (FAQs.ts, payload.config.ts, faq-section.tsx, faq-accordion.tsx)           | 5 reads                                                                                             | ~6057 tok  |
+| 12:38 | Edited scripts/seed.ts                                                                                          | added 1 condition(s)                                                                                | ~926       |
+| 12:38 | Created components/article/article-faq.tsx                                                                      | —                                                                                                   | ~408       |
+| 12:38 | Edited app/(app)/(dashboard)/articles/[slug]/page.tsx                                                           | added 1 import(s)                                                                                   | ~35        |
+| 12:38 | Edited app/(app)/(dashboard)/articles/[slug]/page.tsx                                                           | 1→3 lines                                                                                           | ~16        |
+| 12:38 | Edited components/landing/faq-section.tsx                                                                       | inline fix                                                                                          | ~23        |
+| 12:39 | Edited components/article/article-faq.tsx                                                                       | inline fix                                                                                          | ~22        |
+| 12:39 | Seeded homepage+article FAQ groups, added ArticleFAQ to article detail page                                     | scripts/seed.ts, components/article/article-faq.tsx, app/(app)/(dashboard)/articles/[slug]/page.tsx | done       | ~400    |
+| 12:39 | Session end: 14 writes across 7 files (FAQs.ts, payload.config.ts, faq-section.tsx, faq-accordion.tsx, seed.ts) | 7 reads                                                                                             | ~43164 tok |
