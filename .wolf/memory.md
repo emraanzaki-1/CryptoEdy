@@ -1007,3 +1007,31 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 | ---- | ------ | ------- | ------- | ------- |
+
+## Session: 2026-04-21 — Code health refactor
+
+| Time | Action                                     | File(s)                                           | Outcome                                                                    | ~Tokens |
+| ---- | ------------------------------------------ | ------------------------------------------------- | -------------------------------------------------------------------------- | ------- |
+| —    | Extracted CategoryPill to shared component | components/feed/category-pill.tsx                 | Removed duplication from article-card.tsx + article-card-list.tsx          | ~80     |
+| —    | Extracted timeAgo to lib/utils/timeAgo.ts  | lib/utils/timeAgo.ts, lib/posts/mapToCardProps.ts | Single source of truth, re-export kept for compat                          | ~80     |
+| —    | Split avatar actions from profile actions  | lib/profile/avatar.ts, lib/profile/actions.ts     | uploadAvatar + removeAvatar in own file, avatar-upload.tsx imports updated | ~500    |
+| —    | Created layout constants config            | lib/config/layout.ts                              | dashboard-shell.tsx + top-app-bar.tsx use shared spacing tokens            | ~100    |
+| —    | Exported & documented TopAppBarProps       | components/layouts/top-app-bar.tsx                | Props interface exported + JSDoc lock comment added                        | ~20     |
+
+## Session: 2026-04-21 — Infrastructure hardening
+
+| Time | Action                                       | File(s)                  | Outcome                                                           | ~Tokens |
+| ---- | -------------------------------------------- | ------------------------ | ----------------------------------------------------------------- | ------- |
+| —    | proxy.ts: added /learn, /tag matchers        | proxy.ts                 | Protected routes now include learn + tag pages                    | ~20     |
+| —    | proxy.ts: blocked-user redirect loop fix     | proxy.ts                 | Blocked users on auth routes don't infinite-redirect              | ~30     |
+| —    | Auth JWT: try-catch on DB revalidation       | lib/auth/config.ts       | Transient DB errors keep stale token instead of signing user out  | ~40     |
+| —    | Rate limiter: keyed by IP+pathname           | lib/auth/rate-limit.ts   | Routes no longer share counters, added production warning comment | ~60     |
+| —    | Posts afterDelete: bookmark cleanup hook     | collections/Posts.ts     | Orphaned bookmarks deleted on post removal (cross-schema safety)  | ~50     |
+| —    | Deleted HTML/ reference directory            | HTML/ (deleted)          | 9.5MB local bloat removed, was already gitignored + untracked     | —       |
+| —    | Verified: all profile field migrations exist | drizzle/0000, 0001, 0002 | displayName, avatar_url, bio, blocked all present                 | —       |
+| —    | Verified: sharp not in package.json          | package.json             | No sharp dependency — concern was unfounded                       | —       |
+
+## Session: 2026-04-20 00:26
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+| ---- | ------ | ------- | ------- | ------- |

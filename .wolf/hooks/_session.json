@@ -1,10 +1,26 @@
 {
-  "session_id": "session-2026-04-20-0006",
-  "started": "2026-04-20T18:36:10.468Z",
-  "files_read": {},
+  "session_id": "session-2026-04-20-0026",
+  "started": "2026-04-20T18:56:31.806Z",
+  "files_read": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/globals.css": {
+      "count": 1,
+      "tokens": 3997,
+      "first_read": "2026-04-20T18:56:47.398Z"
+    },
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/ui/button.tsx": {
+      "count": 1,
+      "tokens": 1045,
+      "first_read": "2026-04-20T18:56:47.704Z"
+    },
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/config/layout.ts": {
+      "count": 1,
+      "tokens": 100,
+      "first_read": "2026-04-20T18:56:48.712Z"
+    }
+  },
   "files_written": [],
   "edit_counts": {},
-  "anatomy_hits": 0,
+  "anatomy_hits": 3,
   "anatomy_misses": 0,
   "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,

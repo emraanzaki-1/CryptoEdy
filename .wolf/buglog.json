@@ -2268,6 +2268,54 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-20T18:33:11.850Z"
+    },
+    {
+      "id": "bug-190",
+      "timestamp": "2026-04-21T00:00:00.000Z",
+      "error_message": "proxy.ts missing /learn and /tag route matchers",
+      "file": "proxy.ts",
+      "root_cause": "Dashboard routes /learn/* and /tag/* not in config.matcher — requests bypassed auth gate",
+      "fix": "Added '/learn(.*)' and '/tag(.*)' to config.matcher array",
+      "tags": ["security", "proxy", "route-matching"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T00:00:00.000Z"
+    },
+    {
+      "id": "bug-191",
+      "timestamp": "2026-04-21T00:00:00.000Z",
+      "error_message": "Blocked user redirect loop in proxy.ts",
+      "file": "proxy.ts",
+      "root_cause": "Blocked users redirected to /login, but /login is in AUTH_ROUTES which passes through before blocked check — however if session persists and matcher catches /login, infinite redirect possible",
+      "fix": "Added guard: if blocked user is already on an AUTH_ROUTE, allow through instead of redirecting",
+      "tags": ["security", "proxy", "redirect-loop"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T00:00:00.000Z"
+    },
+    {
+      "id": "bug-192",
+      "timestamp": "2026-04-21T00:00:00.000Z",
+      "error_message": "Rate limiter shared counter across all routes",
+      "file": "lib/auth/rate-limit.ts",
+      "root_cause": "Key was IP-only — hitting /register 5 times would block /forgot-password from same IP",
+      "fix": "Changed key to ip:pathname so each route has independent counter",
+      "tags": ["rate-limiting", "bug"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T00:00:00.000Z"
+    },
+    {
+      "id": "bug-193",
+      "timestamp": "2026-04-21T00:00:00.000Z",
+      "error_message": "JWT revalidation DB error crashes callback, signs out all users",
+      "file": "lib/auth/config.ts",
+      "root_cause": "No try-catch around DB query in jwt callback — transient DB error returns unhandled rejection",
+      "fix": "Wrapped revalidation block in try-catch — on error, keeps stale token",
+      "tags": ["auth", "resilience"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T00:00:00.000Z"
     }
   ]
 }

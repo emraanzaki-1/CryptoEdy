@@ -20,7 +20,7 @@
 - `package.json` — Node.js package manifest (~692 tok)
 - `payload.config.ts` — Declares filename (~1276 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
-- `proxy.ts` — Routes that require an active Pro (or higher) subscription (~980 tok)
+- `proxy.ts` — Auth gate for all dashboard routes, blocked-user guard, Pro subscription check (~1050 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
 - `tsconfig.tsbuildinfo` (~217113 tok)
@@ -495,10 +495,11 @@
 
 ## components/feed/
 
-- `article-card-list.tsx` — CategoryPill (~805 tok)
+- `article-card-list.tsx` — ArticleCardList, imports CategoryPill (~750 tok)
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~906 tok)
-- `article-card.tsx` — CategoryPill (~1124 tok)
+- `article-card.tsx` — ArticleCard, ArticleCardProps, imports CategoryPill (~1050 tok)
 - `bookmark-button.tsx` — BookmarkButton — uses useState, useRouter (~669 tok)
+- `category-pill.tsx` — CategoryPill — shared pill component (~80 tok)
 - `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~285 tok)
 - `feed-client.tsx` — FeedClient (~1174 tok)
 - `tag-client.tsx` — TagClient (~826 tok)
@@ -621,6 +622,10 @@
 
 - `utils.ts` — Exports cn (~48 tok)
 
+## lib/utils/
+
+- `timeAgo.ts` — Exports timeAgo — relative date formatting (~80 tok)
+
 ## lib/api/
 
 - `admin-subscribers.ts` — API routes: GET (5 endpoints) (~1192 tok)
@@ -648,6 +653,7 @@
 ## lib/config/
 
 - `env.ts` — Startup environment validator. (~266 tok)
+- `layout.ts` — LAYOUT constant: spacing/radius tokens for dashboard-shell + top-app-bar (~100 tok)
 
 ## lib/constants/
 
@@ -707,11 +713,12 @@
 
 ## lib/posts/
 
-- `mapToCardProps.ts` — Exports timeAgo, mapPostToCardProps (~633 tok)
+- `mapToCardProps.ts` — Exports mapPostToCardProps, re-exports timeAgo from lib/utils/timeAgo (~500 tok)
 
 ## lib/profile/
 
-- `actions.ts` — API routes: GET (1 endpoints) (~1732 tok)
+- `actions.ts` — getProfile, updateProfile, deleteAccount (~1100 tok)
+- `avatar.ts` — uploadAvatar, removeAvatar (~500 tok)
 
 ## scripts/
 

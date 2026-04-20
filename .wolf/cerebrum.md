@@ -54,6 +54,9 @@
 - [2026-04-19] NextAuth v5 JWT callback: `updateSession()` called without arguments passes `session` as `undefined` to the jwt callback. If the callback has `if (trigger === 'update' && session)`, the DB re-fetch is skipped. Use `if (trigger === 'update')` instead.
 - [2026-04-20] Do NOT call setState synchronously in useEffect body — the `react-hooks/set-state-in-effect` lint rule flags this. Derive loading state from comparing `debouncedQuery` to `fetchedData.query` instead, or only call setState in async callbacks (.then/.catch).
 - [2026-04-20] Do NOT nest `<button>` inside `<button>` — causes hydration error. Use `<span role="button">` for inner interactive elements within a button container.
+- [2026-04-21] Do NOT add dashboard routes under `(dashboard)/` without also adding to `config.matcher` in `proxy.ts`. Without it, the route is unprotected.
+- [2026-04-21] Do NOT key rate limiter by IP alone — all routes share counters. Key by `ip:pathname` so per-route limits are independent.
+- [2026-04-21] Do NOT let JWT revalidation DB errors crash the callback — wrap in try-catch and keep stale token on failure.
 
 ## Decision Log
 
@@ -69,3 +72,12 @@
 - [2026-04-19] Reset-password page pre-validates token via GET `/api/auth/reset-password?token=` on mount. Shows skeleton while checking, error state if invalid/expired, form only when valid.
 - [2026-04-19] Categories: parent-child hierarchy via self-referencing relationship. Replaced flat `type` enum and `CATEGORY_SELECT_OPTIONS` select on Posts with a `relationship` to Categories. Seed creates 3 parents first, then 12 children. `CATEGORY_SELECT_OPTIONS` removed from taxonomy.ts.
 - **Notification preferences:** Stored in Drizzle `notification_preferences` table (public schema), NOT a Payload collection. Flat row per user with 4 boolean columns (dailyBrief, proAlerts, marketDirection, assetsPicks). Auto-save per toggle with sonner toast. Upsert pattern for pre-existing users. Seeded on registration. Categories: Content Updates + Feed Alerts only (no Community, no Account).
+- **Shared feed components:** `CategoryPill` lives in `components/feed/category-pill.tsx` — imported by both `article-card.tsx` and `article-card-list.tsx`. Do NOT duplicate.
+- **timeAgo utility:** Single source of truth at `lib/utils/timeAgo.ts`. Re-exported from `lib/posts/mapToCardProps.ts` for backward compat.
+- **Profile actions split:** `lib/profile/actions.ts` = getProfile, updateProfile, deleteAccount. `lib/profile/avatar.ts` = uploadAvatar, removeAvatar. Avatar-upload component imports from `avatar.ts`.
+- **Layout constants:** `lib/config/layout.ts` exports `LAYOUT` object with spacing/radius tokens used by `dashboard-shell.tsx` and `top-app-bar.tsx`. Edit layout values there, not in component classNames.
+- **TopAppBarProps:** Exported from `components/layouts/top-app-bar.tsx`. Treat as a locked interface — changes cascade to DashboardShell and all layouts.
+- **Rate limiter keys by IP+path:** `lib/auth/rate-limit.ts` uses `ip:pathname` as key, so hitting `/register` doesn't exhaust the limit for `/forgot-password`. Still in-memory — for production multi-instance, swap to `@upstash/ratelimit` or Redis.
+- **JWT revalidation is try-caught:** If DB is unreachable during the 5-minute revalidation, the stale token is kept rather than signing the user out. See `lib/auth/config.ts`.
+- **Posts afterDelete cleans bookmarks:** `cleanupBookmarksOnDelete` hook in `collections/Posts.ts` deletes orphaned rows from `public.bookmarks` when a Payload post is deleted. Uses dynamic `import()` to avoid circular deps.
+- **Proxy matcher must cover all (dashboard) routes:** Currently: `/feed`, `/articles`, `/settings`, `/tools`, `/community`, `/saved`, `/upgrade`, `/learn`, `/tag`. When adding new dashboard routes, add to `config.matcher` in `proxy.ts`.
