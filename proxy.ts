@@ -58,7 +58,10 @@ export default auth(async function proxy(
 
   // ── Blocked user gate ─────────────────────────────────────────────
   if ((session.user as Record<string, unknown>).blocked) {
-    // Sign out handled client-side; redirect to login with blocked message
+    // Prevent redirect loop — if already heading to an auth route, allow through
+    if (AUTH_ROUTES.some((route) => pathname.startsWith(route))) {
+      return NextResponse.next()
+    }
     const blockedUrl = new URL('/login', req.url)
     blockedUrl.searchParams.set('error', 'blocked')
     return NextResponse.redirect(blockedUrl)
@@ -109,5 +112,7 @@ export const config = {
     '/community(.*)',
     '/saved(.*)',
     '/upgrade(.*)',
+    '/learn(.*)',
+    '/tag(.*)',
   ],
 }

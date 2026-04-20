@@ -25,23 +25,34 @@ interface RateLimitOptions {
   windowSec: number
 }
 
+function getClientIp(request: Request): string {
+  const forwarded = request.headers.get('x-forwarded-for')
+  return forwarded?.split(',')[0]?.trim() ?? 'unknown'
+}
+
 /**
- * In-memory sliding-window rate limiter keyed by IP address.
+ * In-memory fixed-window rate limiter keyed by IP + route path.
+ *
+ * ⚠️  In-memory: resets on restart, not shared across instances.
+ *     For production multi-instance deployments, swap to Redis-backed
+ *     implementation (e.g. @upstash/ratelimit).
+ *
  * Returns null if under limit, or a 429 NextResponse if exceeded.
  */
 export function rateLimit(
   request: Request,
   { maxRequests, windowSec }: RateLimitOptions
 ): NextResponse | null {
-  const forwarded = request.headers.get('x-forwarded-for')
-  const ip = forwarded?.split(',')[0]?.trim() ?? 'unknown'
+  const ip = getClientIp(request)
+  const url = new URL(request.url)
+  const key = `${ip}:${url.pathname}`
   const now = Date.now()
   const windowMs = windowSec * 1000
 
-  const entry = store.get(ip)
+  const entry = store.get(key)
 
   if (!entry || now > entry.resetAt) {
-    store.set(ip, { count: 1, resetAt: now + windowMs })
+    store.set(key, { count: 1, resetAt: now + windowMs })
     return null
   }
 

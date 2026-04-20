@@ -84,25 +84,30 @@ export const authConfig: NextAuthConfig = {
         trigger === 'update' || Date.now() - lastVerified > REVALIDATE_INTERVAL
 
       if (!user && needsRevalidation) {
-        const [freshUser] = await getDb()
-          .select()
-          .from(users)
-          .where(eq(users.id, token.id as string))
-          .limit(1)
+        try {
+          const [freshUser] = await getDb()
+            .select()
+            .from(users)
+            .where(eq(users.id, token.id as string))
+            .limit(1)
 
-        // User deleted or blocked — invalidate session
-        if (!freshUser || freshUser.blocked) {
-          return null
+          // User deleted or blocked — invalidate session
+          if (!freshUser || freshUser.blocked) {
+            return null
+          }
+
+          token.name = freshUser.displayName || freshUser.username || freshUser.email.split('@')[0]
+          token.picture = freshUser.avatarUrl ?? null
+          token.role = freshUser.role
+          token.username = freshUser.username
+          token.isEmailVerified = freshUser.emailVerified
+          token.blocked = freshUser.blocked
+          token.subscriptionExpiry = freshUser.subscriptionExpiry?.toISOString() ?? null
+          token.lastVerified = Date.now()
+        } catch {
+          // DB unreachable — keep stale token rather than signing user out
+          // Next revalidation cycle will retry
         }
-
-        token.name = freshUser.displayName || freshUser.username || freshUser.email.split('@')[0]
-        token.picture = freshUser.avatarUrl ?? null
-        token.role = freshUser.role
-        token.username = freshUser.username
-        token.isEmailVerified = freshUser.emailVerified
-        token.blocked = freshUser.blocked
-        token.subscriptionExpiry = freshUser.subscriptionExpiry?.toISOString() ?? null
-        token.lastVerified = Date.now()
       }
 
       return token

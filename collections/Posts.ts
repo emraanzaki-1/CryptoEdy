@@ -2,6 +2,7 @@ import type {
   CollectionConfig,
   CollectionBeforeChangeHook,
   CollectionAfterChangeHook,
+  CollectionAfterDeleteHook,
 } from 'payload'
 import { onPostPublished } from '../lib/notifications/events'
 import { richTextEditor } from '../lib/lexical/richEditor'
@@ -83,6 +84,20 @@ const firePublishedEvent: CollectionAfterChangeHook = async ({ doc, previousDoc 
   }
 }
 
+// Clean up orphaned bookmarks when a post is deleted (cross-schema: payload.posts → public.bookmarks)
+const cleanupBookmarksOnDelete: CollectionAfterDeleteHook = async ({ id }) => {
+  try {
+    const { getDb } = await import('../lib/db')
+    const { bookmarks } = await import('../lib/db/schema')
+    const { eq } = await import('drizzle-orm')
+    await getDb()
+      .delete(bookmarks)
+      .where(eq(bookmarks.postId, id as number))
+  } catch {
+    // Non-critical — orphaned bookmarks are harmless, just invisible in UI
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Collection
 // ---------------------------------------------------------------------------
@@ -117,6 +132,7 @@ export const Posts: CollectionConfig = {
   hooks: {
     beforeChange: [autoSlugOnCreate, autoReadTime, autoPublishedAt, guardStatusTransition],
     afterChange: [firePublishedEvent],
+    afterDelete: [cleanupBookmarksOnDelete],
   },
   access: {
     // Published posts are public; draft/review only for authenticated editors
