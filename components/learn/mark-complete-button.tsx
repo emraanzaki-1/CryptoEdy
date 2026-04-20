@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Check } from 'lucide-react'
+import { CheckCircle2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 interface MarkCompleteButtonProps {
@@ -35,7 +35,6 @@ export function MarkCompleteButton({
       })
       if (res.ok) {
         setIsCompleted(true)
-        // Navigate to next lesson after a short delay
         if (nextLessonSlug) {
           setTimeout(() => {
             router.push(`/learn/courses/${courseSlug}/${nextLessonSlug}`)
@@ -57,23 +56,23 @@ export function MarkCompleteButton({
 
   if (isCompleted) {
     return (
-      <div className="text-primary flex items-center gap-2 text-sm font-semibold">
-        <Check className="h-4 w-4" />
+      <div className="bg-secondary/10 text-secondary flex w-full items-center justify-center gap-2 rounded-xl py-5 text-lg font-bold">
+        <CheckCircle2 className="h-5 w-5" />
         Completed
       </div>
     )
   }
 
   return (
-    <div className="flex flex-col items-end gap-2">
+    <div className="flex flex-col gap-2">
       <button
         onClick={handleComplete}
         disabled={isLoading}
-        className="bg-primary hover:bg-primary/90 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold tracking-[0.015em] text-white transition-colors disabled:opacity-50"
+        className="from-primary to-primary-container text-on-primary hover:shadow-primary/20 w-full rounded-xl bg-gradient-to-b py-5 text-lg font-bold shadow-lg transition-all active:scale-[0.98] disabled:opacity-50"
       >
         {isLoading ? 'Saving...' : 'Mark as Complete'}
       </button>
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-center text-sm text-red-600">{error}</p>}
     </div>
   )
 }

@@ -1,11 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T12:40:04.382Z
-> Files: 307 tracked | Anatomy hits: 0 | Misses: 0
-
-## ../../../.claude/plans/
-
-- `atomic-painting-cherny.md` — LMS Visual Upgrade — Implementation Plan (~2273 tok)
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T18:33:11.807Z
+> Files: 329 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -22,12 +18,12 @@
 - `next.config.ts` — Next.js configuration (~89 tok)
 - `package-lock.json` — npm lock file (~168205 tok)
 - `package.json` — Node.js package manifest (~692 tok)
-- `payload.config.ts` — Declares filename (~1170 tok)
+- `payload.config.ts` — Declares filename (~1276 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~980 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~216144 tok)
+- `tsconfig.tsbuildinfo` (~217113 tok)
 
 ## .claude/
 
@@ -41,7 +37,7 @@
 ## .code-review-graph/
 
 - `.gitignore` — Git ignore rules (~38 tok)
-- `graph.db-shm` (~8739 tok)
+- `graph.db-shm` (~8738 tok)
 - `graph.db-wal` (~0 tok)
 
 ## .github/workflows/
@@ -149,6 +145,26 @@
 
 - `code.html` — Declares showing (~4272 tok)
 
+## HTML/legal/
+
+- `.DS_Store` (~1640 tok)
+
+## HTML/legal/apex_research/
+
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
+
+## HTML/legal/contact_us/
+
+- `code.html` — Contact Us | Digital Curator (~3485 tok)
+
+## HTML/legal/privacy_policy/
+
+- `code.html` — Declares elements (~3852 tok)
+
+## HTML/legal/terms_of_service/
+
+- `code.html` — Terms of Service | Digital Curator (~4544 tok)
+
 ## HTML/login/
 
 - `code.html` — Login - CryptoEdy Research (~2291 tok)
@@ -156,6 +172,11 @@
 ## HTML/notification_settings_content_updated/
 
 - `code.html` — Notification Settings - CryptoEdy (~5355 tok)
+
+## HTML/onboarding-popup/
+
+- `code.html` — Digital Curator | Get the God-Candle Alpha (~2972 tok)
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
 
 ## HTML/plans_subscription_verbatim_sync_v5/
 
@@ -186,9 +207,9 @@
 
 - `error.tsx` — AppError (~276 tok)
 - `global-error.tsx` — inter (~228 tok)
-- `layout.tsx` — inter (~292 tok)
+- `layout.tsx` — inter (~316 tok)
 - `not-found.tsx` — NotFound (~230 tok)
-- `page.tsx` — Home (~392 tok)
+- `page.tsx` — Home (~435 tok)
 
 ## app/(app)/(auth)/
 
@@ -245,15 +266,15 @@
 ## app/(app)/(dashboard)/learn/courses/
 
 - `loading.tsx` — CoursesLoading (~256 tok)
-- `page.tsx` — CoursesListingPage (~1050 tok)
+- `page.tsx` — CoursesListingPage (~1069 tok)
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/
 
-- `page.tsx` — difficultyColors — renders chart (~1778 tok)
+- `page.tsx` — CourseDetailPage (~1588 tok)
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/[lessonSlug]/
 
-- `page.tsx` — LessonPage (~2055 tok)
+- `page.tsx` — LessonPage (~2429 tok)
 
 ## app/(app)/(dashboard)/saved/
 
@@ -337,6 +358,10 @@
 
 - `route.ts` — GET: Token-based verification (email link flow) (~1028 tok)
 
+## app/(app)/api/contact/
+
+- `route.ts` — Next.js API route: POST (~297 tok)
+
 ## app/(app)/api/courses/enroll/
 
 - `route.ts` — Next.js API route: GET, POST (~788 tok)
@@ -353,9 +378,25 @@
 
 - `route.ts` — Next.js API route: GET (~913 tok)
 
+## app/(app)/api/subscribe/
+
+- `route.ts` — Next.js API route: POST (~517 tok)
+
 ## app/(app)/api/user/notification-preferences/
 
 - `route.ts` — Next.js API route: GET, PATCH (~415 tok)
+
+## app/(app)/contact/
+
+- `page.tsx` — SUBJECTS — renders form — uses useState (~2990 tok)
+
+## app/(app)/privacy/
+
+- `page.tsx` — metadata — renders table (~3140 tok)
+
+## app/(app)/terms/
+
+- `page.tsx` — metadata — renders chart (~3536 tok)
 
 ## app/(payload)/
 
@@ -365,7 +406,7 @@
 
 ## app/(payload)/admin/
 
-- `importMap.js` — Exports importMap (~2434 tok)
+- `importMap.js` — Exports importMap (~2496 tok)
 
 ## app/(payload)/admin/[[...segments]]/
 
@@ -401,7 +442,7 @@
 ## components/admin/
 
 - `AdminDashboard.tsx` — ─── Types ──────────────────────────────────────────────────────────────────── (~3527 tok)
-- `AdminNavLinks.tsx` — AdminNavLinks (~134 tok)
+- `AdminNavLinks.tsx` — AdminNavLinks (~179 tok)
 - `DashboardBanner.tsx` — CryptoEdy dashboard welcome banner. (~566 tok)
 - `Icon.tsx` — CryptoEdy admin icon — shown in collapsed sidebar and browser tab favicon area. (~199 tok)
 - `Logo.tsx` — CryptoEdy admin sidebar logo. (~405 tok)
@@ -415,6 +456,8 @@
 
 - `CategoriesListClient.tsx` — styles — renders table — uses useState, useCallback (~5744 tok)
 - `CategoriesListView.tsx` — CategoriesListView (~604 tok)
+- `SubscriberManagement.tsx` — SubscriberManagement (~244 tok)
+- `SubscriberManagementClient.tsx` — StatusBadge — uses useState, useCallback, useEffect (~2789 tok)
 - `UserManagement.tsx` — UserManagement (~236 tok)
 - `UserManagementClient.tsx` — ROLES — uses useState, useCallback, useEffect (~3796 tok)
 - `UserManagementEdit.tsx` — UserManagementEdit (~334 tok)
@@ -441,12 +484,14 @@
 
 ## components/common/
 
+- `back-to-top.tsx` — BackToTop — uses useState, useEffect (~308 tok)
 - `coming-soon.tsx` — ComingSoon (~600 tok)
 - `empty-state.tsx` — Primary CTA label (~744 tok)
 - `error-content.tsx` — Label for the primary CTA (~1178 tok)
 - `logo.tsx` — sizes (~328 tok)
 - `search-bar.tsx` — SearchBar (~209 tok)
 - `search-modal.tsx` — RECENT_SEARCHES_KEY — uses useRouter, useState, useEffect, useCallback (~4683 tok)
+- `sidebar-nav.tsx` — SidebarNav — uses useState, useEffect (~601 tok)
 
 ## components/feed/
 
@@ -463,6 +508,7 @@
 
 - `faq-section.tsx` — FALLBACK_FAQS (~828 tok)
 - `hero-section.tsx` — HeroSection (~619 tok)
+- `onboarding-popup.tsx` — DISMISSED_KEY — renders form — uses useState, useCallback, useEffect (~2510 tok)
 - `pricing-section.tsx` — FEATURES — renders chart (~1006 tok)
 - `research-preview-section.tsx` — ARTICLES (~1524 tok)
 - `track-record-section.tsx` — TRADES (~1036 tok)
@@ -471,8 +517,8 @@
 ## components/layouts/
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~570 tok)
-- `dashboard-shell.tsx` — DashboardShell — uses useState (~644 tok)
-- `footer.tsx` — Footer (~947 tok)
+- `dashboard-shell.tsx` — DashboardShell — uses useState (~647 tok)
+- `footer.tsx` — Footer (~962 tok)
 - `guest-nav.tsx` — NAV_LINKS — uses useState (~1037 tok)
 - `settings-nav.tsx` — settingsGroups (~572 tok)
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2179 tok)
@@ -480,14 +526,16 @@
 
 ## components/learn/
 
-- `course-card.tsx` — CourseCard (~1312 tok)
+- `active-course-card.tsx` — ActiveCourseCard (~1044 tok)
+- `course-card.tsx` — CourseCard (~1282 tok)
+- `courses-client.tsx` — DIFFICULTY_TABS (~1218 tok)
 - `crypto-school-client.tsx` — CryptoSchoolClient (~760 tok)
-- `enroll-button.tsx` — EnrollButton — uses useState, useRouter (~744 tok)
-- `lesson-nav.tsx` — LessonNav (~445 tok)
-- `mark-complete-button.tsx` — MarkCompleteButton — uses useState, useRouter (~638 tok)
-- `module-accordion.tsx` — LessonItem (~1972 tok)
+- `enroll-button.tsx` — EnrollButton — uses useState, useRouter (~904 tok)
+- `lesson-nav.tsx` — LessonNav (~607 tok)
+- `mark-complete-button.tsx` — MarkCompleteButton — uses useState, useRouter (~646 tok)
+- `module-accordion.tsx` — LessonItem (~1979 tok)
 - `progress-bar.tsx` — ProgressBar (~294 tok)
-- `video-player.tsx` — Generic video embed that auto-detects Vimeo vs Bunny from URL pattern. (~556 tok)
+- `video-player.tsx` — Generic video embed that auto-detects Vimeo vs Bunny from URL pattern. (~838 tok)
 
 ## components/providers/
 
@@ -557,15 +605,17 @@
 - `0002_majestic_ironclad.sql` — SQL: tables: notification_preferences, 2 alter(s) (~227 tok)
 - `0003_bookmarks_to_public.sql` — SQL: tables: bookmarks, 1 alter(s) (~144 tok)
 - `0004_dazzling_black_tarantula.sql` — SQL: tables: course_enrollments, lesson_progress, 2 alter(s) (~337 tok)
+- `0005_abandoned_dreaming_celestial.sql` — SQL: tables: marketing_subscribers (~110 tok)
 
 ## drizzle/meta/
 
-- `_journal.json` (~228 tok)
+- `_journal.json` (~273 tok)
 - `0000_snapshot.json` (~2660 tok)
 - `0001_snapshot.json` (~2710 tok)
 - `0002_snapshot.json` (~3424 tok)
 - `0003_snapshot.json` (~3947 tok)
 - `0004_snapshot.json` (~5120 tok)
+- `0005_snapshot.json` (~5575 tok)
 
 ## lib/
 
@@ -573,6 +623,7 @@
 
 ## lib/api/
 
+- `admin-subscribers.ts` — API routes: GET (5 endpoints) (~1192 tok)
 - `admin-users.ts` — API routes: GET (4 endpoints) (~3685 tok)
 - `category-reorder.ts` — Exports categoryReorderEndpoint (~421 tok)
 
@@ -618,8 +669,9 @@
 
 - `bookmarks.ts` — Exports bookmarks, Bookmark, NewBookmark (~181 tok)
 - `course-enrollments.ts` — Exports courseEnrollments, CourseEnrollment, NewCourseEnrollment (~232 tok)
-- `index.ts` (~56 tok)
+- `index.ts` (~67 tok)
 - `lesson-progress.ts` — Exports lessonProgress, LessonProgress, NewLessonProgress (~230 tok)
+- `marketing-subscribers.ts` — Exports marketingSubscribers, MarketingSubscriber, NewMarketingSubscriber (~197 tok)
 - `notification-preferences.ts` — Exports notificationPreferences, NotificationPreferences, NewNotificationPreferences (~270 tok)
 - `sessions.ts` — NextAuth v5 Drizzle adapter schema — required by DrizzleAdapter. (~490 tok)
 - `users.ts` — Exports roleEnum, users, User, NewUser (~478 tok)
@@ -669,7 +721,7 @@
 
 ## styles/
 
-- `admin-makeup.css` — Styles: 85 rules, 17 vars, 1 layers (~7504 tok)
+- `admin-makeup.css` — Styles: 85 rules, 17 vars, 1 layers (~7774 tok)
 - `admin.css` — CryptoEdy Admin Skin (~1596 tok)
 
 ## types/

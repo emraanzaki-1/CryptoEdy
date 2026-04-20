@@ -6,19 +6,10 @@ import { isLessonUnlocked } from '@/lib/courses/lessonAccess'
 import { ModuleAccordion } from '@/components/learn/module-accordion'
 import { EnrollButton } from '@/components/learn/enroll-button'
 import { ProgressBar } from '@/components/learn/progress-bar'
-import { Badge } from '@/components/ui/badge'
 import { auth } from '@/lib/auth'
-import { Clock, BarChart3 } from 'lucide-react'
+import { Breadcrumb } from '@/components/ui/breadcrumb'
+import { Clock, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
-import { RichText } from '@payloadcms/richtext-lexical/react'
-import { jsxConverters } from '@/lib/lexical/jsxConverters'
-import type { SerializedEditorState } from 'lexical'
-
-const difficultyColors = {
-  beginner: 'bg-green-500/15 text-green-700',
-  intermediate: 'bg-amber-500/15 text-amber-700',
-  advanced: 'bg-red-500/15 text-red-700',
-} as const
 
 export default async function CourseDetailPage({
   params,
@@ -39,103 +30,93 @@ export default async function CourseDetailPage({
     ? await getCompletedLessonIds(session.user.id, courseId)
     : new Set<number>()
 
+  // Compute which module the user is currently on
+  const flatLessons = modules.flatMap((m) => m.lessons)
+  const firstIncompleteIndex = flatLessons.findIndex((l) => !completedIds.has(l.id))
+  const currentModuleIndex =
+    firstIncompleteIndex >= 0
+      ? modules.findIndex((m) =>
+          m.lessons.some((l) => l.id === flatLessons[firstIncompleteIndex].id)
+        )
+      : -1
+
+  // Compute module status for each module
+  function getModuleStatus(
+    mod: (typeof modules)[number],
+    modIndex: number
+  ): 'completed' | 'active' | 'locked' {
+    if (!enrollment) return modIndex === 0 ? 'active' : 'locked'
+    const allComplete = mod.lessons.every((l) => completedIds.has(l.id))
+    if (allComplete && mod.lessons.length > 0) return 'completed'
+    const hasUnlocked = mod.lessons.some((l) => isLessonUnlocked(l.id, modules, completedIds))
+    if (hasUnlocked) return 'active'
+    return 'locked'
+  }
+
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-8">
       {/* Breadcrumb */}
-      <nav className="text-on-surface-variant flex items-center gap-1.5 text-sm">
-        <Link href="/learn" className="hover:text-on-surface transition-colors">
-          Learn
-        </Link>
-        <span>/</span>
-        <Link href="/learn/courses" className="hover:text-on-surface transition-colors">
-          Courses
-        </Link>
-        <span>/</span>
-        <span className="text-on-surface font-medium">{course.title}</span>
-      </nav>
+      <Breadcrumb
+        items={[
+          { label: 'Learn', href: '/learn' },
+          { label: 'Courses', href: '/learn/courses' },
+          { label: course.title },
+        ]}
+      />
 
       {/* Course Header */}
-      <div className="flex flex-col gap-6">
-        {/* Cover Image */}
-        {course.coverImage &&
-          typeof course.coverImage === 'object' &&
-          'url' in (course.coverImage as Record<string, unknown>) && (
-            <div className="bg-surface-container relative aspect-[21/9] overflow-hidden rounded-2xl">
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                role="img"
-                aria-label={
-                  ((course.coverImage as Record<string, unknown>).alt as string) ?? course.title
-                }
-                style={{
-                  backgroundImage: `url('${(course.coverImage as Record<string, unknown>).url as string}')`,
-                }}
-              />
-            </div>
-          )}
-
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-center gap-3">
-            {course.isProOnly && <Badge variant="pro">PRO</Badge>}
-            <span
-              className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize ${difficultyColors[course.difficulty as keyof typeof difficultyColors]}`}
-            >
-              {course.difficulty}
+      <header className="flex flex-col gap-6">
+        {/* Metadata badges */}
+        <div className="flex flex-wrap items-center gap-4">
+          <span className="bg-surface-container-high text-primary text-overline rounded-full px-3 py-1 font-bold tracking-[0.05em] uppercase">
+            {course.difficulty}
+          </span>
+          {course.estimatedDuration && (
+            <span className="text-on-surface-variant flex items-center gap-1 text-xs font-medium">
+              <Clock className="h-4 w-4" />
+              {course.estimatedDuration}
             </span>
-          </div>
-
-          <h1 className="text-on-surface text-2xl font-bold tracking-[-0.04em] lg:text-3xl">
-            {course.title}
-          </h1>
-
-          <p className="text-on-surface-variant text-base leading-relaxed">{course.excerpt}</p>
-
-          {course.description && (
-            <div className="prose prose-sm text-on-surface-variant max-w-none">
-              <RichText
-                data={course.description as SerializedEditorState}
-                converters={jsxConverters}
-              />
-            </div>
           )}
-
-          <div className="text-on-surface-variant flex flex-wrap items-center gap-4 text-sm">
-            {course.estimatedDuration && (
-              <span className="flex items-center gap-1.5">
-                <Clock className="h-4 w-4" />
-                {course.estimatedDuration}
-              </span>
-            )}
-            <span className="flex items-center gap-1.5">
-              <BarChart3 className="h-4 w-4" />
-              {modules.length} modules · {totalLessons} lessons
+          {enrollment && currentModuleIndex >= 0 && (
+            <span className="text-on-surface-variant flex items-center gap-1 text-xs font-medium">
+              <TrendingUp className="h-4 w-4" />
+              Module {currentModuleIndex + 1} of {modules.length}
             </span>
-          </div>
-
-          {/* Enrollment + Progress */}
-          <div className="flex flex-col gap-3 pt-2">
-            {enrollment && (
-              <ProgressBar completedCount={completedIds.size} totalCount={totalLessons} />
-            )}
-            <EnrollButton
-              courseId={courseId}
-              isEnrolled={!!enrollment}
-              courseSlug={courseSlug}
-              isProOnly={course.isProOnly ?? false}
-              userRole={session?.user?.role ?? 'free'}
-              firstIncompleteLessonSlug={
-                enrollment
-                  ? modules.flatMap((m) => m.lessons).find((l) => !completedIds.has(l.id))?.slug
-                  : undefined
-              }
-            />
-          </div>
+          )}
         </div>
-      </div>
 
-      {/* Modules */}
-      <div className="flex flex-col gap-4">
-        <h2 className="text-on-surface text-xl font-bold tracking-[-0.04em]">Course Content</h2>
+        {/* Large editorial heading */}
+        <h1 className="text-on-surface text-headline-md md:text-headline-lg max-w-2xl leading-tight font-black tracking-[-0.04em]">
+          {course.title}
+        </h1>
+
+        <p className="text-on-surface-variant max-w-2xl text-base leading-relaxed">
+          {course.excerpt}
+        </p>
+
+        {/* Enrollment + Progress */}
+        <div className="flex flex-col gap-3 pt-2">
+          {enrollment && (
+            <ProgressBar completedCount={completedIds.size} totalCount={totalLessons} />
+          )}
+          <EnrollButton
+            courseId={courseId}
+            isEnrolled={!!enrollment}
+            courseSlug={courseSlug}
+            isProOnly={course.isProOnly ?? false}
+            userRole={session?.user?.role ?? 'free'}
+            firstIncompleteLessonSlug={
+              enrollment ? flatLessons.find((l) => !completedIds.has(l.id))?.slug : undefined
+            }
+          />
+        </div>
+      </header>
+
+      {/* Curriculum Progression */}
+      <section id="curriculum" className="flex flex-col gap-6">
+        <h2 className="text-on-surface-variant text-overline font-bold tracking-[0.05em] uppercase">
+          Curriculum Progression
+        </h2>
         {modules.map((mod, index) => (
           <ModuleAccordion
             key={mod.id}
@@ -143,7 +124,8 @@ export default async function CourseDetailPage({
             description={mod.description}
             moduleIndex={index}
             courseSlug={courseSlug}
-            defaultOpen={index === 0}
+            defaultOpen={index === currentModuleIndex || (currentModuleIndex === -1 && index === 0)}
+            moduleStatus={getModuleStatus(mod, index)}
             lessons={mod.lessons.map((lesson) => ({
               id: lesson.id,
               title: lesson.title,
@@ -155,7 +137,7 @@ export default async function CourseDetailPage({
             }))}
           />
         ))}
-      </div>
+      </section>
     </div>
   )
 }

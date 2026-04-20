@@ -11,8 +11,10 @@ import { VideoPlayer } from '@/components/learn/video-player'
 import { MarkCompleteButton } from '@/components/learn/mark-complete-button'
 import { LessonNav } from '@/components/learn/lesson-nav'
 import { ModuleAccordion } from '@/components/learn/module-accordion'
+import { ProgressBar } from '@/components/learn/progress-bar'
 import { auth } from '@/lib/auth'
 import { jsxConverters } from '@/lib/lexical/jsxConverters'
+import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Clock } from 'lucide-react'
 
 export default async function LessonPage({
@@ -46,7 +48,7 @@ export default async function LessonPage({
   if (!enrollment && !isFreePreview) {
     return (
       <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 py-20 text-center">
-        <h1 className="text-on-surface text-2xl font-bold tracking-[-0.04em]">
+        <h1 className="text-on-surface text-headline font-bold tracking-[-0.04em]">
           Enroll to Access This Lesson
         </h1>
         <p className="text-on-surface-variant text-base">
@@ -54,7 +56,7 @@ export default async function LessonPage({
         </p>
         <Link
           href={`/learn/courses/${courseSlug}`}
-          className="bg-primary hover:bg-primary/90 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold tracking-[0.015em] text-white transition-colors"
+          className="from-primary to-primary-container inline-flex items-center justify-center rounded-xl bg-gradient-to-b px-6 py-3 font-bold text-white transition-all hover:shadow-lg"
         >
           View Course
         </Link>
@@ -65,13 +67,15 @@ export default async function LessonPage({
   if (!unlocked && !isFreePreview) {
     return (
       <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 py-20 text-center">
-        <h1 className="text-on-surface text-2xl font-bold tracking-[-0.04em]">Lesson Locked</h1>
+        <h1 className="text-on-surface text-headline font-bold tracking-[-0.04em]">
+          Lesson Locked
+        </h1>
         <p className="text-on-surface-variant text-base">
           Complete the previous lesson to unlock this one.
         </p>
         <Link
           href={`/learn/courses/${courseSlug}`}
-          className="bg-primary hover:bg-primary/90 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold tracking-[0.015em] text-white transition-colors"
+          className="from-primary to-primary-container inline-flex items-center justify-center rounded-xl bg-gradient-to-b px-6 py-3 font-bold text-white transition-all hover:shadow-lg"
         >
           Back to Course
         </Link>
@@ -83,42 +87,48 @@ export default async function LessonPage({
   const nextLesson = getNextLesson(lessonId, modules)
   const prevLesson = getPreviousLesson(lessonId, modules)
 
-  // Find which module this lesson belongs to
+  // Find which module this lesson belongs to + lesson index within module
   const currentModule = modules.find((m) => m.lessons.some((l) => l.id === lessonId))
+  const lessonIndexInModule = currentModule
+    ? currentModule.lessons.findIndex((l) => l.id === lessonId) + 1
+    : 0
+
+  const totalLessons = modules.reduce((sum, m) => sum + m.lessons.length, 0)
+  const completionPercent =
+    totalLessons > 0 ? Math.round((completedIds.size / totalLessons) * 100) : 0
+
+  // Build lesson label for video player
+  const lessonLabel = currentModule
+    ? `Lesson ${lessonIndexInModule}: ${currentModule.title}${lesson.estimatedDuration ? ` \u00B7 ${lesson.estimatedDuration} min` : ''}`
+    : undefined
+
+  // Compute module status
+  function getModuleStatus(mod: (typeof modules)[number]): 'completed' | 'active' | 'locked' {
+    if (!enrollment) return 'active'
+    const allComplete = mod.lessons.every((l) => completedIds.has(l.id))
+    if (allComplete && mod.lessons.length > 0) return 'completed'
+    const hasUnlocked = mod.lessons.some((l) => isLessonUnlocked(l.id, modules, completedIds))
+    if (hasUnlocked) return 'active'
+    return 'locked'
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-6xl gap-8">
       {/* Main content */}
       <div className="flex min-w-0 flex-1 flex-col gap-8">
         {/* Breadcrumb */}
-        <nav className="text-on-surface-variant flex flex-wrap items-center gap-1.5 text-sm">
-          <Link href="/learn" className="hover:text-on-surface transition-colors">
-            Learn
-          </Link>
-          <span>/</span>
-          <Link href="/learn/courses" className="hover:text-on-surface transition-colors">
-            Courses
-          </Link>
-          <span>/</span>
-          <Link
-            href={`/learn/courses/${courseSlug}`}
-            className="hover:text-on-surface transition-colors"
-          >
-            {course.title}
-          </Link>
-          {currentModule && (
-            <>
-              <span>/</span>
-              <span>{currentModule.title}</span>
-            </>
-          )}
-          <span>/</span>
-          <span className="text-on-surface font-medium">{lesson.title}</span>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: 'Learn', href: '/learn' },
+            { label: 'Courses', href: '/learn/courses' },
+            { label: course.title, href: `/learn/courses/${courseSlug}` },
+            { label: lesson.title },
+          ]}
+        />
 
         {/* Lesson title */}
         <div className="flex flex-col gap-2">
-          <h1 className="text-on-surface text-2xl font-bold tracking-[-0.04em] lg:text-3xl">
+          <h1 className="text-on-surface text-headline-md md:text-headline-lg leading-tight font-black tracking-[-0.04em]">
             {lesson.title}
           </h1>
           {lesson.estimatedDuration && (
@@ -130,7 +140,9 @@ export default async function LessonPage({
         </div>
 
         {/* Video */}
-        {lesson.videoUrl && <VideoPlayer url={lesson.videoUrl} title={lesson.title} />}
+        {lesson.videoUrl && (
+          <VideoPlayer url={lesson.videoUrl} title={lesson.title} lessonLabel={lessonLabel} />
+        )}
 
         {/* Content */}
         <article className="prose prose-neutral dark:prose-invert max-w-none">
@@ -140,15 +152,13 @@ export default async function LessonPage({
         {/* Mark Complete + Nav */}
         <div className="flex flex-col gap-6 pb-8">
           {enrollment && (
-            <div className="flex justify-end">
-              <MarkCompleteButton
-                lessonId={lessonId}
-                courseId={courseId}
-                isCompleted={isCompleted}
-                nextLessonSlug={nextLesson?.slug}
-                courseSlug={courseSlug}
-              />
-            </div>
+            <MarkCompleteButton
+              lessonId={lessonId}
+              courseId={courseId}
+              isCompleted={isCompleted}
+              nextLessonSlug={nextLesson?.slug}
+              courseSlug={courseSlug}
+            />
           )}
           <LessonNav courseSlug={courseSlug} prevLesson={prevLesson} nextLesson={nextLesson} />
         </div>
@@ -156,28 +166,49 @@ export default async function LessonPage({
 
       {/* Sidebar — course outline (desktop only) */}
       <aside className="hidden w-80 flex-shrink-0 lg:block">
-        <div className="sticky top-24 flex flex-col gap-4">
-          <h2 className="text-on-surface text-sm font-bold tracking-[-0.04em]">Course Outline</h2>
-          {modules.map((mod, index) => (
-            <ModuleAccordion
-              key={mod.id}
-              title={mod.title}
-              description={mod.description}
-              moduleIndex={index}
-              courseSlug={courseSlug}
-              defaultOpen={mod.id === currentModule?.id}
-              lessons={mod.lessons.map((l) => ({
-                id: l.id,
-                title: l.title,
-                slug: l.slug,
-                estimatedDuration: l.estimatedDuration,
-                isCompleted: completedIds.has(l.id),
-                isUnlocked: !!enrollment && isLessonUnlocked(l.id, modules, completedIds),
-                isCurrent: l.id === lessonId,
-                hasVideo: !!l.videoUrl,
-              }))}
-            />
-          ))}
+        <div className="sticky top-24 flex flex-col">
+          {/* Progress header */}
+          <div className="mb-6">
+            <h2 className="text-on-surface text-base font-bold tracking-[-0.04em]">
+              Course Outline
+            </h2>
+            <p className="text-on-surface-variant mt-1 text-xs font-medium">
+              {completionPercent}% Completed
+            </p>
+            <div className="mt-4">
+              <ProgressBar
+                completedCount={completedIds.size}
+                totalCount={totalLessons}
+                variant="secondary"
+                showPercent={false}
+              />
+            </div>
+          </div>
+
+          {/* Module list */}
+          <div className="flex flex-col gap-4">
+            {modules.map((mod, index) => (
+              <ModuleAccordion
+                key={mod.id}
+                title={mod.title}
+                description={mod.description}
+                moduleIndex={index}
+                courseSlug={courseSlug}
+                defaultOpen={mod.id === currentModule?.id}
+                moduleStatus={getModuleStatus(mod)}
+                lessons={mod.lessons.map((l) => ({
+                  id: l.id,
+                  title: l.title,
+                  slug: l.slug,
+                  estimatedDuration: l.estimatedDuration,
+                  isCompleted: completedIds.has(l.id),
+                  isUnlocked: !!enrollment && isLessonUnlocked(l.id, modules, completedIds),
+                  isCurrent: l.id === lessonId,
+                  hasVideo: !!l.videoUrl,
+                }))}
+              />
+            ))}
+          </div>
         </div>
       </aside>
     </div>

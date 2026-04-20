@@ -43,7 +43,7 @@ export function CourseCard({
             />
             {/* Level badge overlay */}
             <div className="absolute top-4 left-4">
-              <span className="bg-on-surface/80 rounded px-2 py-1 text-[length:var(--text-overline)] font-bold tracking-[0.05em] text-white uppercase backdrop-blur-md">
+              <span className="bg-on-surface/80 text-overline rounded px-2 py-1 font-bold tracking-[0.05em] text-white uppercase backdrop-blur-md">
                 Level: {difficulty}
               </span>
             </div>
@@ -53,7 +53,7 @@ export function CourseCard({
         {/* No cover image — show level badge inline */}
         {!coverImageUrl && (
           <div className="bg-surface-container flex h-48 items-center justify-center">
-            <span className="bg-on-surface/80 rounded px-2 py-1 text-[length:var(--text-overline)] font-bold tracking-[0.05em] text-white uppercase backdrop-blur-md">
+            <span className="bg-on-surface/80 text-overline rounded px-2 py-1 font-bold tracking-[0.05em] text-white uppercase backdrop-blur-md">
               Level: {difficulty}
             </span>
           </div>
@@ -64,16 +64,16 @@ export function CourseCard({
           {/* Tier badge + Duration row */}
           <div className="flex items-center justify-between">
             {isProOnly ? (
-              <span className="bg-secondary text-secondary-container rounded px-2 py-0.5 text-[length:var(--text-overline)] font-bold tracking-[0.05em] uppercase">
+              <span className="bg-secondary text-secondary-container text-overline rounded px-2 py-0.5 font-bold tracking-[0.05em] uppercase">
                 PRO ONLY
               </span>
             ) : (
-              <span className="bg-surface-container-high text-on-primary-fixed-variant rounded px-2 py-0.5 text-[length:var(--text-overline)] font-bold tracking-[0.05em] uppercase">
+              <span className="bg-surface-container-high text-on-primary-fixed-variant text-overline rounded px-2 py-0.5 font-bold tracking-[0.05em] uppercase">
                 ESSENTIAL
               </span>
             )}
             {estimatedDuration && (
-              <span className="text-outline flex items-center gap-1 text-[length:var(--text-overline)] font-bold tracking-[0.05em] uppercase">
+              <span className="text-outline text-overline flex items-center gap-1 font-bold tracking-[0.05em] uppercase">
                 <Clock className="h-3.5 w-3.5" />
                 {estimatedDuration}
               </span>

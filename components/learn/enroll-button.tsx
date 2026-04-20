@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { Play } from 'lucide-react'
 
 interface EnrollButtonProps {
   courseId: number
@@ -31,12 +33,23 @@ export function EnrollButton({
       : `/learn/courses/${courseSlug}`
 
     return (
-      <button
-        onClick={() => router.push(href)}
-        className="bg-primary hover:bg-primary/90 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold tracking-[0.015em] text-white transition-colors"
-      >
-        Continue Learning
-      </button>
+      <div className="flex flex-wrap gap-4">
+        <Link
+          href={href}
+          className="from-primary to-primary-container text-on-primary group inline-flex items-center gap-2 rounded-xl bg-gradient-to-b px-8 py-4 font-bold shadow-md transition-all hover:shadow-xl"
+        >
+          <span>Continue Learning</span>
+          <Play className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </Link>
+        <button
+          onClick={() =>
+            document.getElementById('curriculum')?.scrollIntoView({ behavior: 'smooth' })
+          }
+          className="bg-surface-container-lowest text-primary inline-flex items-center rounded-xl px-8 py-4 font-bold shadow-sm transition-all hover:shadow-md"
+        >
+          View Syllabus
+        </button>
+      </div>
     )
   }
 
@@ -44,7 +57,7 @@ export function EnrollButton({
     return (
       <button
         onClick={() => router.push('/settings/plans')}
-        className="from-primary to-primary/80 inline-flex items-center justify-center rounded-xl bg-gradient-to-r px-6 py-3 text-sm font-semibold tracking-[0.015em] text-white transition-opacity hover:opacity-90"
+        className="from-primary to-primary/80 inline-flex items-center justify-center rounded-xl bg-gradient-to-r px-8 py-4 font-bold tracking-[0.015em] text-white transition-opacity hover:opacity-90"
       >
         Upgrade to Enroll
       </button>
@@ -78,7 +91,7 @@ export function EnrollButton({
       <button
         onClick={handleEnroll}
         disabled={isLoading}
-        className="bg-primary hover:bg-primary/90 inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold tracking-[0.015em] text-white transition-colors disabled:opacity-50"
+        className="from-primary to-primary-container text-on-primary inline-flex items-center justify-center rounded-xl bg-gradient-to-b px-8 py-4 font-bold shadow-md transition-all hover:shadow-xl disabled:opacity-50"
       >
         {isLoading ? 'Enrolling...' : 'Enroll Now'}
       </button>

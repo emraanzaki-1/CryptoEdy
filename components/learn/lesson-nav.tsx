@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 
 interface LessonNavProps {
   courseSlug: string
@@ -11,16 +11,22 @@ interface LessonNavProps {
 
 export function LessonNav({ courseSlug, prevLesson, nextLesson }: LessonNavProps) {
   return (
-    <div className="border-outline-variant/10 flex items-center justify-between border-t pt-6">
+    <div className="border-surface-container-high flex items-center justify-between border-t py-12">
       {prevLesson ? (
         <Link
           href={`/learn/courses/${courseSlug}/${prevLesson.slug}`}
-          className="text-on-surface-variant hover:text-on-surface flex items-center gap-2 text-sm transition-colors"
+          className="group flex max-w-xs items-center gap-4 text-left"
         >
-          <ChevronLeft className="h-4 w-4" />
-          <div className="flex flex-col">
-            <span className="text-xs tracking-[0.05em] uppercase">Previous</span>
-            <span className="font-medium">{prevLesson.title}</span>
+          <div className="bg-surface-container text-primary group-hover:bg-primary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full transition-colors group-hover:text-white">
+            <ArrowLeft className="h-5 w-5" />
+          </div>
+          <div>
+            <span className="text-outline text-overline font-bold tracking-[0.05em] uppercase">
+              Previous Lesson
+            </span>
+            <p className="text-on-surface group-hover:text-primary text-sm font-bold transition-colors">
+              {prevLesson.title}
+            </p>
           </div>
         </Link>
       ) : (
@@ -30,13 +36,19 @@ export function LessonNav({ courseSlug, prevLesson, nextLesson }: LessonNavProps
       {nextLesson ? (
         <Link
           href={`/learn/courses/${courseSlug}/${nextLesson.slug}`}
-          className="text-on-surface-variant hover:text-on-surface flex items-center gap-2 text-right text-sm transition-colors"
+          className="group flex max-w-xs items-center gap-4 text-right"
         >
-          <div className="flex flex-col">
-            <span className="text-xs tracking-[0.05em] uppercase">Next</span>
-            <span className="font-medium">{nextLesson.title}</span>
+          <div>
+            <span className="text-outline text-overline font-bold tracking-[0.05em] uppercase">
+              Up Next
+            </span>
+            <p className="text-on-surface group-hover:text-primary text-sm font-bold transition-colors">
+              {nextLesson.title}
+            </p>
           </div>
-          <ChevronRight className="h-4 w-4" />
+          <div className="bg-surface-container text-primary group-hover:bg-primary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full transition-colors group-hover:text-white">
+            <ArrowRight className="h-5 w-5" />
+          </div>
         </Link>
       ) : (
         <div />

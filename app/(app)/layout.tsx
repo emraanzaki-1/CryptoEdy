@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { SessionProvider } from '@/components/providers/session-provider'
 import { Toaster } from 'sonner'
+import { BackToTop } from '@/components/common/back-to-top'
 import '../globals.css'
 
 const inter = Inter({
@@ -31,6 +32,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <SessionProvider>{children}</SessionProvider>
+        <BackToTop />
         <Toaster position="bottom-right" richColors />
       </body>
     </html>

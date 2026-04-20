@@ -7,7 +7,11 @@ export function Footer() {
       <div className="mx-auto max-w-[1200px]">
         <div className="mb-12 flex flex-col justify-between gap-12 md:flex-row">
           <div className="flex max-w-sm flex-col gap-4">
-            <Logo textClassName="text-on-primary" className="text-on-primary" />
+            <Logo
+              textClassName="text-on-primary"
+              className="text-on-primary"
+              iconClassName="text-on-primary"
+            />
             <p className="text-on-primary-container text-sm leading-relaxed opacity-80">
               The Digital Curator of institutional-grade financial intelligence for the modern
               digital asset investor.
@@ -41,19 +45,19 @@ export function Footer() {
             <div className="flex flex-col gap-4">
               <h4 className="text-on-primary text-sm font-bold tracking-wider uppercase">Legal</h4>
               <Link
-                href="#"
+                href="/terms"
                 className="text-on-primary-container hover:text-on-primary text-sm transition-colors"
               >
                 Terms of Service
               </Link>
               <Link
-                href="#"
+                href="/privacy"
                 className="text-on-primary-container hover:text-on-primary text-sm transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="#"
+                href="/contact"
                 className="text-on-primary-container hover:text-on-primary text-sm transition-colors"
               >
                 Contact

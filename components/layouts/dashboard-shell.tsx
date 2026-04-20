@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { TopAppBar } from '@/components/layouts/top-app-bar'
 import { Sidebar } from '@/components/layouts/sidebar'
@@ -38,13 +39,13 @@ export function DashboardShell({ user, navCategories, children }: DashboardShell
                 Help
               </a>{' '}
               &middot;{' '}
-              <a href="#" className="text-on-primary-container hover:text-on-primary">
+              <Link href="/terms" className="text-on-primary-container hover:text-on-primary">
                 Terms
-              </a>{' '}
+              </Link>{' '}
               &middot;{' '}
-              <a href="#" className="text-on-primary-container hover:text-on-primary">
+              <Link href="/privacy" className="text-on-primary-container hover:text-on-primary">
                 Privacy
-              </a>
+              </Link>
             </footer>
           </main>
         </div>

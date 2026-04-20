@@ -73,11 +73,11 @@ function LessonItem({
       {/* Right side status */}
       <div className="flex-shrink-0">
         {isCompleted ? (
-          <span className="text-secondary text-[length:var(--text-overline)] font-bold tracking-[0.05em] uppercase">
+          <span className="text-secondary text-overline font-bold tracking-[0.05em] uppercase">
             Completed
           </span>
         ) : isCurrent ? (
-          <span className="bg-primary rounded-lg px-4 py-2 text-[length:var(--text-overline)] font-bold text-white uppercase shadow-sm">
+          <span className="bg-primary text-overline rounded-lg px-4 py-2 font-bold text-white uppercase shadow-sm">
             Play Now
           </span>
         ) : !isUnlocked ? (
@@ -140,10 +140,10 @@ export function ModuleAccordion({
       <button
         onClick={() => !isLocked && setIsOpen(!isOpen)}
         className={cn(
-          'flex w-full items-center justify-between px-6 py-4 text-left transition-colors',
-          !isLocked && 'hover:bg-surface-container-low/50 cursor-pointer',
+          'flex w-full items-center justify-between px-6 py-5 text-left transition-colors',
+          !isLocked && 'hover:bg-surface-container-low cursor-pointer',
           isLocked && 'cursor-not-allowed',
-          isOpen && !isLocked && 'bg-surface-container-low/50'
+          isOpen && !isLocked ? 'bg-surface-container-low' : 'bg-surface-container'
         )}
         type="button"
         disabled={isLocked}
@@ -171,7 +171,7 @@ export function ModuleAccordion({
             <div className="flex items-center gap-2">
               <span
                 className={cn(
-                  'text-[length:var(--text-overline)] font-bold tracking-[0.05em] uppercase',
+                  'text-overline font-bold tracking-[0.05em] uppercase',
                   isCompleted && 'text-secondary',
                   moduleStatus === 'active' && 'text-primary',
                   isLocked && 'text-on-surface-variant'
