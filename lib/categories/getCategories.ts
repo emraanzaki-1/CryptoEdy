@@ -48,10 +48,20 @@ async function fetchNavCategories(): Promise<NavCategory[]> {
       childrenByParent.set(parentId, [])
     }
 
+    const parentSlug = typeof c.parent === 'object' ? c.parent.slug : undefined
+
+    // Education children link to /learn paths
+    let href: string
+    if (parentSlug === 'education') {
+      href = c.slug === 'trading-course' ? '/learn/courses' : '/learn'
+    } else {
+      href = `/feed/${c.slug}`
+    }
+
     childrenByParent.get(parentId)!.push({
       label: c.name,
       slug: c.slug,
-      href: `/feed/${c.slug}`,
+      href,
     })
   }
 
@@ -59,7 +69,9 @@ async function fetchNavCategories(): Promise<NavCategory[]> {
     label: p.name,
     slug: p.slug,
     items: [
-      { label: `All ${p.name}`, slug: p.slug, href: `/feed/${p.slug}` },
+      ...(p.slug === 'education'
+        ? []
+        : [{ label: `All ${p.name}`, slug: p.slug, href: `/feed/${p.slug}` }]),
       ...(childrenByParent.get(p.id) ?? []),
     ],
   }))

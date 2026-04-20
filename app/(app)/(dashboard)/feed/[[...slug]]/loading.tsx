@@ -5,7 +5,9 @@ import { FeedCardsSkeleton, FeedCardsSkeltonGrid } from '@/components/feed/feed-
 
 export default async function FeedLoading() {
   const navCategories = await getNavCategories()
-  const filters = navCategories.map((c) => ({ label: c.label, slug: c.slug }))
+  const filters = navCategories
+    .filter((c) => c.slug !== 'education')
+    .map((c) => ({ label: c.label, slug: c.slug }))
 
   return (
     <div className="mx-auto flex w-full flex-col gap-8">
