@@ -21,12 +21,19 @@ export const TAXONOMY = {
   education: {
     label: 'Education',
     items: [
-      { label: 'Courses', slug: 'courses', value: 'courses' },
-      { label: 'Resource Hub', slug: 'resource-hub', value: 'resource-hub' },
-      { label: 'Glossary', slug: 'glossary', value: 'glossary' },
+      { label: 'Crypto School', slug: 'crypto-school', value: 'crypto-school' },
+      { label: 'Trading Course', slug: 'trading-course', value: 'trading-course' },
     ],
   },
 } as const
+
+// Crypto School sub-categories (3rd level)
+export const CRYPTO_SCHOOL_CATEGORIES = [
+  { label: 'Simply Explained', slug: 'simply-explained', value: 'simply-explained' },
+  { label: 'Videos', slug: 'videos', value: 'videos' },
+  { label: 'Guides', slug: 'guides', value: 'guides' },
+  { label: 'Blueprint', slug: 'blueprint', value: 'blueprint' },
+] as const
 
 export const ALL_CATEGORIES = (
   Object.entries(TAXONOMY) as [CategoryType, (typeof TAXONOMY)[CategoryType]][]
@@ -43,9 +50,10 @@ export type CategorySlug =
   | 'market-direction'
   | 'market-pulse'
   | 'livestreams'
-  | 'courses'
-  | 'resource-hub'
-  | 'glossary'
+  | 'crypto-school'
+  | 'trading-course'
+
+export type CryptoSchoolSlug = 'simply-explained' | 'videos' | 'guides' | 'blueprint'
 
 // Map slug → top-level type, used for URL construction and breadcrumbs
 export const SLUG_TO_TYPE: Record<CategorySlug, CategoryType> = {
@@ -58,7 +66,6 @@ export const SLUG_TO_TYPE: Record<CategorySlug, CategoryType> = {
   'market-direction': 'analysis',
   'market-pulse': 'analysis',
   livestreams: 'analysis',
-  courses: 'education',
-  'resource-hub': 'education',
-  glossary: 'education',
+  'crypto-school': 'education',
+  'trading-course': 'education',
 }

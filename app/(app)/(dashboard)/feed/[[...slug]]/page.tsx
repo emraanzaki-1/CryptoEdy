@@ -67,6 +67,45 @@ export default async function FeedPage({ params }: { params: Promise<{ slug?: st
     ? await getBookmarkedPostIds(session.user.id)
     : new Set<string>()
 
+  // Exclude Education posts from the main feed (Education has its own /learn section)
+  if (!categorySlug) {
+    const { docs: eduParentDocs } = await payload.find({
+      collection: 'categories',
+      where: { slug: { equals: 'education' } },
+      limit: 1,
+      depth: 0,
+      overrideAccess: true,
+    })
+    const eduParentId = eduParentDocs[0]?.id
+    if (eduParentId) {
+      const { docs: eduChildren } = await payload.find({
+        collection: 'categories',
+        where: { parent: { equals: eduParentId } },
+        limit: 200,
+        depth: 0,
+        overrideAccess: true,
+      })
+      // Also fetch grandchildren (e.g. Simply Explained, Videos under Crypto School)
+      const childIds = eduChildren.map((c) => c.id)
+      let grandchildIds: (string | number)[] = []
+      if (childIds.length > 0) {
+        const { docs: grandchildren } = await payload.find({
+          collection: 'categories',
+          where: { parent: { in: childIds } },
+          limit: 200,
+          depth: 0,
+          overrideAccess: true,
+        })
+        grandchildIds = grandchildren.map((c) => c.id)
+      }
+      const eduCategoryIds = [eduParentId, ...childIds, ...grandchildIds]
+      where['category'] = {
+        ...(typeof where['category'] === 'object' ? where['category'] : {}),
+        not_in: eduCategoryIds,
+      }
+    }
+  }
+
   const { docs, hasNextPage } = await payload.find({
     collection: 'posts',
     where,
@@ -82,7 +121,9 @@ export default async function FeedPage({ params }: { params: Promise<{ slug?: st
     })
   )
 
-  const filters = navCategories.map((c) => ({ label: c.label, slug: c.slug }))
+  // Exclude Education from feed filter pills (Education lives under /learn)
+  const feedCategories = navCategories.filter((c) => c.slug !== 'education')
+  const filters = feedCategories.map((c) => ({ label: c.label, slug: c.slug }))
 
   return (
     <FeedClient

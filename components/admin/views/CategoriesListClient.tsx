@@ -15,6 +15,7 @@ type Category = {
 type Props = {
   initialParents: Category[]
   initialChildrenMap: Record<string, Category[]>
+  initialGrandchildrenMap: Record<string, Category[]>
 }
 
 // ── Inline styles (Payload admin tokens) ─────────────────────────────────────
@@ -173,9 +174,14 @@ function ChevronIcon({ expanded }: { expanded: boolean }) {
 
 // ── Component ────────────────────────────────────────────────────────────────
 
-export default function CategoriesListClient({ initialParents, initialChildrenMap }: Props) {
+export default function CategoriesListClient({
+  initialParents,
+  initialChildrenMap,
+  initialGrandchildrenMap,
+}: Props) {
   const [parents, setParents] = useState<Category[]>(initialParents)
   const [childrenMap, setChildrenMap] = useState<Record<string, Category[]>>(initialChildrenMap)
+  const [grandchildrenMap] = useState<Record<string, Category[]>>(initialGrandchildrenMap)
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set())
   const [saving, setSaving] = useState(false)
 
@@ -341,18 +347,29 @@ export default function CategoriesListClient({ initialParents, initialChildrenMa
                 onDragEnd={handleDragEnd}
               >
                 {isExpanded &&
-                  children.map((child) => (
-                    <ChildRow
-                      key={child.id}
-                      child={child}
-                      isDragOver={dragOverId === child.id}
-                      onDragStart={(e) => handleDragStart(e, child.id, 'child', pid)}
-                      onDragOver={(e) => handleDragOver(e, child.id)}
-                      onDragLeave={handleDragLeave}
-                      onDrop={(e) => handleDropChild(e, child.id, pid)}
-                      onDragEnd={handleDragEnd}
-                    />
-                  ))}
+                  children.map((child) => {
+                    const cid = String(child.id)
+                    const grandchildren = grandchildrenMap[cid] ?? []
+                    const isChildExpanded = expandedIds.has(cid)
+                    return (
+                      <ChildRow
+                        key={child.id}
+                        child={child}
+                        isDragOver={dragOverId === child.id}
+                        grandchildCount={grandchildren.length}
+                        isExpanded={isChildExpanded}
+                        onToggle={() => toggleExpand(child.id)}
+                        onDragStart={(e) => handleDragStart(e, child.id, 'child', pid)}
+                        onDragOver={(e) => handleDragOver(e, child.id)}
+                        onDragLeave={handleDragLeave}
+                        onDrop={(e) => handleDropChild(e, child.id, pid)}
+                        onDragEnd={handleDragEnd}
+                      >
+                        {isChildExpanded &&
+                          grandchildren.map((gc) => <GrandchildRow key={gc.id} grandchild={gc} />)}
+                      </ChildRow>
+                    )
+                  })}
               </ParentRow>
             )
           })}
@@ -469,52 +486,112 @@ function ParentRow({
 function ChildRow({
   child,
   isDragOver,
+  grandchildCount,
+  isExpanded,
+  onToggle,
   onDragStart,
   onDragOver,
   onDragLeave,
   onDrop,
   onDragEnd,
+  children,
 }: {
   child: Category
   isDragOver: boolean
+  grandchildCount: number
+  isExpanded: boolean
+  onToggle: () => void
   onDragStart: (e: React.DragEvent) => void
   onDragOver: (e: React.DragEvent) => void
   onDragLeave: () => void
   onDrop: (e: React.DragEvent) => void
   onDragEnd: () => void
+  children?: React.ReactNode
 }) {
+  return (
+    <>
+      <tr
+        style={{
+          ...styles.row(isDragOver),
+          background: isDragOver ? 'var(--theme-elevation-100)' : 'var(--theme-elevation-50)',
+        }}
+        draggable
+        onDragStart={onDragStart}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
+        onDragEnd={onDragEnd}
+      >
+        <td style={styles.cell}>
+          <span style={{ ...styles.dragHandle, ...styles.childIndent }}>
+            <GripIcon />
+          </span>
+        </td>
+        <td style={styles.cell}>
+          <div style={{ paddingLeft: '24px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+            {grandchildCount > 0 && (
+              <button
+                type="button"
+                style={styles.expandBtn}
+                onClick={onToggle}
+                title={isExpanded ? 'Collapse' : 'Expand'}
+              >
+                <ChevronIcon expanded={isExpanded} />
+              </button>
+            )}
+            <Link href={`/admin/collections/categories/${child.id}`} style={styles.nameLink}>
+              {child.name}
+            </Link>
+            {grandchildCount > 0 && <span style={styles.badge}>{grandchildCount}</span>}
+          </div>
+        </td>
+        <td style={styles.cell}>
+          <span style={styles.slug}>{child.slug}</span>
+        </td>
+        <td style={styles.cell}>{child.weight}</td>
+        <td style={styles.cell}>
+          <Link
+            href={`/admin/collections/categories/${child.id}`}
+            style={{
+              color: 'var(--theme-elevation-500)',
+              fontSize: '12px',
+              textDecoration: 'none',
+            }}
+          >
+            Edit
+          </Link>
+        </td>
+      </tr>
+      {children}
+    </>
+  )
+}
+
+// ── Grandchild row ───────────────────────────────────────────────────────────
+
+function GrandchildRow({ grandchild }: { grandchild: Category }) {
   return (
     <tr
       style={{
-        ...styles.row(isDragOver),
-        background: isDragOver ? 'var(--theme-elevation-100)' : 'var(--theme-elevation-50)',
+        ...styles.row(false),
+        background: 'var(--theme-elevation-75)',
       }}
-      draggable
-      onDragStart={onDragStart}
-      onDragOver={onDragOver}
-      onDragLeave={onDragLeave}
-      onDrop={onDrop}
-      onDragEnd={onDragEnd}
     >
+      <td style={styles.cell} />
       <td style={styles.cell}>
-        <span style={{ ...styles.dragHandle, ...styles.childIndent }}>
-          <GripIcon />
-        </span>
-      </td>
-      <td style={styles.cell}>
-        <div style={{ paddingLeft: '24px' }}>
-          <Link href={`/admin/collections/categories/${child.id}`} style={styles.nameLink}>
-            {child.name}
+        <div style={{ paddingLeft: '56px' }}>
+          <Link href={`/admin/collections/categories/${grandchild.id}`} style={styles.nameLink}>
+            {grandchild.name}
           </Link>
         </div>
       </td>
       <td style={styles.cell}>
-        <span style={styles.slug}>{child.slug}</span>
+        <span style={styles.slug}>{grandchild.slug}</span>
       </td>
-      <td style={styles.cell}>{child.weight}</td>
+      <td style={styles.cell}>{grandchild.weight}</td>
       <td style={styles.cell}>
         <Link
-          href={`/admin/collections/categories/${child.id}`}
+          href={`/admin/collections/categories/${grandchild.id}`}
           style={{ color: 'var(--theme-elevation-500)', fontSize: '12px', textDecoration: 'none' }}
         >
           Edit
