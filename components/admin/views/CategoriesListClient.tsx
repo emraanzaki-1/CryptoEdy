@@ -227,7 +227,7 @@ export default function CategoriesListClient({
   // ── Drag handlers ──────────────────────────────────────────────────────
 
   const handleDragStart = useCallback(
-    (e: React.DragEvent, id: string | number, level: 'parent' | 'child', parentId?: string) => {
+    (e: React.DragEvent, id: string | number, level: 'parent' | 'child' | 'grandchild', parentId?: string) => {
       dragItemRef.current = { id, level, parentId }
       e.dataTransfer.effectAllowed = 'move'
       // Transparent drag image

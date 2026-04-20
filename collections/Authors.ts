@@ -6,6 +6,7 @@ export const Authors: CollectionConfig = {
   slug: 'authors',
   auth: true,
   admin: {
+    group: 'Admin',
     useAsTitle: 'email',
     defaultColumns: ['email', 'displayName', 'role'],
     listSearchableFields: ['email', 'displayName'],

@@ -90,6 +90,7 @@ const firePublishedEvent: CollectionAfterChangeHook = async ({ doc, previousDoc 
 export const Posts: CollectionConfig = {
   slug: 'posts',
   admin: {
+    group: 'Content',
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'status', 'isProOnly', 'publishedAt', 'author'],
     listSearchableFields: ['title', 'excerpt'],
@@ -224,6 +225,9 @@ export const Posts: CollectionConfig = {
       admin: {
         position: 'sidebar',
         description: 'Primary content category. Determines URL path and feed filter pill.',
+        components: {
+          Field: '@/components/admin/fields/GroupedCategorySelect',
+        },
       },
     },
     {

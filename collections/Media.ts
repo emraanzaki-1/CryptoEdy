@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const Media: CollectionConfig = {
   slug: 'media',
   admin: {
+    group: 'Content',
     description: 'Images and media assets. Alt text is required on every upload for accessibility.',
   },
   upload: {

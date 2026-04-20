@@ -4,6 +4,7 @@ export const Categories: CollectionConfig = {
   slug: 'categories',
   defaultSort: 'weight',
   admin: {
+    group: 'Content',
     useAsTitle: 'name',
     defaultColumns: ['name', 'parent', 'slug', 'weight'],
     listSearchableFields: ['name', 'slug'],
@@ -47,6 +48,9 @@ export const Categories: CollectionConfig = {
       admin: {
         description:
           'Parent category for hierarchy. Leave empty for top-level categories (Research, Analysis, Education). Set to a parent for child categories (e.g. Top Picks → Research).',
+        components: {
+          Field: '@/components/admin/fields/GroupedParentSelect',
+        },
       },
     },
     {

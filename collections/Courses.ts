@@ -14,6 +14,7 @@ const autoSlugOnCreate: CollectionBeforeChangeHook = ({ data, operation }) => {
 export const Courses: CollectionConfig = {
   slug: 'courses',
   admin: {
+    group: 'Education',
     useAsTitle: 'title',
     defaultColumns: ['title', 'difficulty', 'status', 'isProOnly', 'order'],
     listSearchableFields: ['title', 'slug'],

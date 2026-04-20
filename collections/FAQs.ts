@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload'
 export const FAQs: CollectionConfig = {
   slug: 'faqs',
   admin: {
+    group: 'Content',
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
     listSearchableFields: ['title', 'slug'],
