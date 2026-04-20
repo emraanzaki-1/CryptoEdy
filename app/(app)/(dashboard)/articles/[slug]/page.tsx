@@ -133,109 +133,117 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
     : []
 
   return (
-    <article className="mx-auto max-w-4xl">
-      {/* Breadcrumbs */}
-      <Breadcrumb
-        items={[
-          { label: 'Home', href: '/feed' },
-          { label: parentName, href: `/feed/${parentSlug}` },
-          { label: categoryName, href: `/feed/${categorySlug}` },
-          { label: post.title as string },
-        ]}
-        className="mb-8"
-      />
+    <>
+      <article className="mx-auto max-w-4xl">
+        {/* Breadcrumbs */}
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/feed' },
+            { label: parentName, href: `/feed/${parentSlug}` },
+            { label: categoryName, href: `/feed/${categorySlug}` },
+            { label: post.title as string },
+          ]}
+          className="mb-8"
+        />
 
-      {/* Header */}
-      <header className="mb-10">
-        <div className="mb-6 flex items-center gap-3">
-          {post.isProOnly && <Badge variant="pro">PRO</Badge>}
-          <span className="text-primary text-sm font-semibold tracking-[0.05em] uppercase">
-            {categoryName}
-          </span>
-        </div>
+        {/* Header */}
+        <header className="mb-10">
+          <div className="mb-6 flex items-center gap-3">
+            {post.isProOnly && <Badge variant="pro">PRO</Badge>}
+            <span className="text-primary text-sm font-semibold tracking-[0.05em] uppercase">
+              {categoryName}
+            </span>
+          </div>
 
-        <h1 className="text-on-background text-headline-md md:text-headline-lg mb-6 font-black">
-          {post.title as string}
-        </h1>
+          <h1 className="text-on-background text-headline-md md:text-headline-lg mb-6 font-black">
+            {post.title as string}
+          </h1>
 
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="border-outline-variant/15 bg-surface-container-high text-primary flex size-12 items-center justify-center rounded-full border font-bold">
-              CE
-            </div>
-            <div>
-              <div className="text-on-background font-bold">{author}</div>
-              <div className="text-outline mt-1 flex items-center gap-3 text-sm">
-                <span>
-                  {post.publishedAt ? formatDate(post.publishedAt as string) : 'Unpublished'}
-                </span>
-                <span className="bg-outline-variant size-1 rounded-full" />
-                <span className="flex items-center gap-1">
-                  <Clock className="size-4" />
-                  {post.readTime ?? 5} min read
-                </span>
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="border-outline-variant/15 bg-surface-container-high text-primary flex size-12 items-center justify-center rounded-full border font-bold">
+                CE
+              </div>
+              <div>
+                <div className="text-on-background font-bold">{author}</div>
+                <div className="text-outline mt-1 flex items-center gap-3 text-sm">
+                  <span>
+                    {post.publishedAt ? formatDate(post.publishedAt as string) : 'Unpublished'}
+                  </span>
+                  <span className="bg-outline-variant size-1 rounded-full" />
+                  <span className="flex items-center gap-1">
+                    <Clock className="size-4" />
+                    {post.readTime ?? 5} min read
+                  </span>
+                </div>
               </div>
             </div>
+            <div className="flex items-center gap-2">
+              <ShareButton title={post.title as string} slug={(post.slug as string) ?? slug} />
+              <BookmarkButton
+                postId={String(post.id)}
+                initialBookmarked={isBookmarked}
+                variant="article"
+              />
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <ShareButton title={post.title as string} slug={(post.slug as string) ?? slug} />
-            <BookmarkButton
-              postId={String(post.id)}
-              initialBookmarked={isBookmarked}
-              variant="article"
+        </header>
+
+        {/* Hero Image */}
+        {featuredImage && (
+          <div className="border-outline-variant/15 relative mb-10 h-[400px] w-full overflow-hidden rounded-2xl border shadow-[0_32px_64px_-12px_rgba(11,28,48,0.06)]">
+            <Image
+              alt={featuredImageAlt}
+              className="object-cover"
+              src={featuredImage}
+              fill
+              sizes="(max-width: 896px) 100vw, 896px"
             />
           </div>
-        </div>
-      </header>
+        )}
 
-      {/* Hero Image */}
-      {featuredImage && (
-        <div className="border-outline-variant/15 relative mb-10 h-[400px] w-full overflow-hidden rounded-2xl border shadow-[0_32px_64px_-12px_rgba(11,28,48,0.06)]">
-          <Image
-            alt={featuredImageAlt}
-            className="object-cover"
-            src={featuredImage}
-            fill
-            sizes="(max-width: 896px) 100vw, 896px"
-          />
-        </div>
-      )}
+        {/* The Hook */}
+        {post.excerpt && (
+          <p className="border-primary text-on-background mb-10 border-l-4 py-2 pl-6 text-xl leading-relaxed font-medium md:text-2xl">
+            {post.excerpt as string}
+          </p>
+        )}
 
-      {/* The Hook */}
-      {post.excerpt && (
-        <p className="border-primary text-on-background mb-10 border-l-4 py-2 pl-6 text-xl leading-relaxed font-medium md:text-2xl">
-          {post.excerpt as string}
-        </p>
-      )}
+        {/* Content */}
+        {isLocked ? (
+          <section className="article-body text-on-surface-variant max-w-none text-base leading-[1.6]">
+            <PaywallGate isAuthenticated={!!session?.user} />
+          </section>
+        ) : (
+          <section className="article-body text-on-surface-variant max-w-none text-base leading-[1.6]">
+            <RichText data={post.content as SerializedEditorState} converters={jsxConverters} />
+          </section>
+        )}
 
-      {/* Content */}
-      {isLocked ? (
-        <section className="article-body text-on-surface-variant max-w-none text-base leading-[1.6]">
-          <PaywallGate isAuthenticated={!!session?.user} />
-        </section>
-      ) : (
-        <section className="article-body text-on-surface-variant max-w-none text-base leading-[1.6]">
-          <RichText data={post.content as SerializedEditorState} converters={jsxConverters} />
-        </section>
-      )}
+        {/* Tags */}
+        {tags.length > 0 && (
+          <footer className="mt-10 pt-6">
+            <div className="flex flex-wrap items-center gap-2">
+              {tags.map((tag) => (
+                <Link
+                  key={tag.slug}
+                  href={`/tag/${tag.slug}`}
+                  className="text-primary hover:bg-primary/10 rounded-full px-3 py-1 text-sm font-medium transition-colors"
+                >
+                  #{tag.name}
+                </Link>
+              ))}
+            </div>
+          </footer>
+        )}
+      </article>
 
-      {/* Tags */}
-      {tags.length > 0 && (
-        <footer className="border-outline-variant/15 mt-10 border-t pt-6">
-          <div className="flex flex-wrap items-center gap-2">
-            {tags.map((tag) => (
-              <Link
-                key={tag.slug}
-                href={`/tag/${tag.slug}`}
-                className="text-primary hover:bg-primary/10 rounded-full px-3 py-1 text-sm font-medium transition-colors"
-              >
-                #{tag.name}
-              </Link>
-            ))}
-          </div>
-        </footer>
-      )}
-      {/* Recommended Articles */}
+      {/* FAQ — not part of the article, constrained to article width */}
+      <div className="mx-auto max-w-4xl">
+        <ArticleFAQ />
+      </div>
+
+      {/* Recommended Articles — full width */}
       <RecommendedArticles
         articles={recommendedResult.docs.map((p) =>
           mapPostToCardProps(p as Record<string, unknown>, {
@@ -243,9 +251,6 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
           })
         )}
       />
-
-      {/* FAQ */}
-      <ArticleFAQ />
-    </article>
+    </>
   )
 }

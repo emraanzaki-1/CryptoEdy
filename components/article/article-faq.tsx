@@ -15,7 +15,7 @@ export async function ArticleFAQ() {
     if (!group?.items || group.items.length === 0) return null
 
     return (
-      <section className="border-outline-variant/15 mt-10 border-t pt-10">
+      <section className="mt-10 pt-10">
         <h2 className="text-on-background mb-6 text-lg font-bold">Frequently Asked Questions</h2>
         <div className="flex flex-col gap-3">
           {group.items.map((item: { question: string; answer: string }) => (

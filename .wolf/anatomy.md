@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T07:55:58.385Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T08:06:34.280Z
 > Files: 271 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -203,7 +203,7 @@
 ## app/(app)/(dashboard)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — ROLE_HIERARCHY (~2572 tok)
+- `page.tsx` — ROLE_HIERARCHY (~2596 tok)
 
 ## app/(app)/(dashboard)/community/
 
@@ -366,10 +366,10 @@
 
 ## components/article/
 
-- `article-faq.tsx` — ArticleFAQ (~419 tok)
+- `article-faq.tsx` — ArticleFAQ (~409 tok)
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
 - `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1613 tok)
-- `recommended-articles.tsx` — RecommendedCard (~1773 tok)
+- `recommended-articles.tsx` — AUTO_SCROLL_INTERVAL (~1182 tok)
 - `share-button.tsx` — ShareButton — uses useState (~339 tok)
 
 ## components/article/blocks/

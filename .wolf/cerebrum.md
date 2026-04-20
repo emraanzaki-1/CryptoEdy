@@ -8,6 +8,10 @@
 
 <!-- How the user likes things done. Code style, tools, patterns, communication. -->
 
+- **Reuse existing components:** Do not create new components that duplicate existing ones. If a component like `ArticleCard` already exists, wrap it in a layout container rather than rebuilding its markup. Focus on reusability.
+- **Semantic HTML matters:** Keep `<article>` tags strictly for article content. Supplementary sections (FAQ, recommendations) go outside the article element. Don't sacrifice semantic meaning for layout convenience.
+- **Consistent component sizing:** When reusing a component (e.g. ArticleCard) in a different context (carousel vs grid), match the sizing from the original context. Feed uses `grid-cols-3 gap-6` — carousel cards should use equivalent responsive widths.
+
 ## Key Learnings
 
 - **Project:** cryptoedy
