@@ -181,14 +181,15 @@ export default function CategoriesListClient({
 }: Props) {
   const [parents, setParents] = useState<Category[]>(initialParents)
   const [childrenMap, setChildrenMap] = useState<Record<string, Category[]>>(initialChildrenMap)
-  const [grandchildrenMap] = useState<Record<string, Category[]>>(initialGrandchildrenMap)
+  const [grandchildrenMap, setGrandchildrenMap] =
+    useState<Record<string, Category[]>>(initialGrandchildrenMap)
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set())
   const [saving, setSaving] = useState(false)
 
   // Drag state
   const dragItemRef = useRef<{
     id: string | number
-    level: 'parent' | 'child'
+    level: 'parent' | 'child' | 'grandchild'
     parentId?: string
   } | null>(null)
   const [dragOverId, setDragOverId] = useState<string | number | null>(null)
@@ -295,6 +296,30 @@ export default function CategoriesListClient({
     [childrenMap, saveOrder]
   )
 
+  const handleDropGrandchild = useCallback(
+    (e: React.DragEvent, targetId: string | number, childId: string) => {
+      e.preventDefault()
+      setDragOverId(null)
+      const drag = dragItemRef.current
+      if (!drag || drag.level !== 'grandchild' || drag.id === targetId || drag.parentId !== childId)
+        return
+
+      const grandchildren = [...(grandchildrenMap[childId] ?? [])]
+      const fromIdx = grandchildren.findIndex((gc) => gc.id === drag.id)
+      const toIdx = grandchildren.findIndex((gc) => gc.id === targetId)
+      if (fromIdx === -1 || toIdx === -1) return
+
+      const [moved] = grandchildren.splice(fromIdx, 1)
+      grandchildren.splice(toIdx, 0, moved)
+
+      const updates = grandchildren.map((gc, i) => ({ ...gc, weight: i }))
+      setGrandchildrenMap((prev) => ({ ...prev, [childId]: updates }))
+      saveOrder(updates.map((gc) => ({ id: gc.id, weight: gc.weight })))
+      dragItemRef.current = null
+    },
+    [grandchildrenMap, saveOrder]
+  )
+
   const handleDragEnd = useCallback(() => {
     dragItemRef.current = null
     setDragOverId(null)
@@ -366,7 +391,18 @@ export default function CategoriesListClient({
                         onDragEnd={handleDragEnd}
                       >
                         {isChildExpanded &&
-                          grandchildren.map((gc) => <GrandchildRow key={gc.id} grandchild={gc} />)}
+                          grandchildren.map((gc) => (
+                            <GrandchildRow
+                              key={gc.id}
+                              grandchild={gc}
+                              isDragOver={dragOverId === gc.id}
+                              onDragStart={(e) => handleDragStart(e, gc.id, 'grandchild', cid)}
+                              onDragOver={(e) => handleDragOver(e, gc.id)}
+                              onDragLeave={handleDragLeave}
+                              onDrop={(e) => handleDropGrandchild(e, gc.id, cid)}
+                              onDragEnd={handleDragEnd}
+                            />
+                          ))}
                       </ChildRow>
                     )
                   })}
@@ -569,15 +605,41 @@ function ChildRow({
 
 // ── Grandchild row ───────────────────────────────────────────────────────────
 
-function GrandchildRow({ grandchild }: { grandchild: Category }) {
+function GrandchildRow({
+  grandchild,
+  isDragOver,
+  onDragStart,
+  onDragOver,
+  onDragLeave,
+  onDrop,
+  onDragEnd,
+}: {
+  grandchild: Category
+  isDragOver: boolean
+  onDragStart: (e: React.DragEvent) => void
+  onDragOver: (e: React.DragEvent) => void
+  onDragLeave: () => void
+  onDrop: (e: React.DragEvent) => void
+  onDragEnd: () => void
+}) {
   return (
     <tr
       style={{
-        ...styles.row(false),
-        background: 'var(--theme-elevation-75)',
+        ...styles.row(isDragOver),
+        background: isDragOver ? 'var(--theme-elevation-100)' : 'var(--theme-elevation-75)',
       }}
+      draggable
+      onDragStart={onDragStart}
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      onDrop={onDrop}
+      onDragEnd={onDragEnd}
     >
-      <td style={styles.cell} />
+      <td style={styles.cell}>
+        <span style={{ ...styles.dragHandle, paddingLeft: '40px' }}>
+          <GripIcon />
+        </span>
+      </td>
       <td style={styles.cell}>
         <div style={{ paddingLeft: '56px' }}>
           <Link href={`/admin/collections/categories/${grandchild.id}`} style={styles.nameLink}>
