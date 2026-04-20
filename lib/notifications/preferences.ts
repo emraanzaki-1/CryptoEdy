@@ -9,14 +9,14 @@ export function isValidPreferenceKey(key: string): key is PreferenceKey {
   return PREFERENCE_KEYS.includes(key as PreferenceKey)
 }
 
-const DEFAULTS = {
+const DEFAULTS: PreferencesResult = {
   dailyBrief: true,
   proAlerts: true,
   marketDirection: true,
   assetsPicks: true,
-} as const
+}
 
-export type PreferencesResult = typeof DEFAULTS
+export type PreferencesResult = Record<PreferenceKey, boolean>
 
 /**
  * Get notification preferences for a user.
