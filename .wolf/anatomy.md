@@ -1,7 +1,11 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T08:06:34.280Z
-> Files: 271 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T09:37:03.541Z
+> Files: 295 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../../../.claude/plans/
+
+- `rippling-sparking-knuth.md` — Fix: Unbookmarked articles not removing from Saved page (~579 tok)
 
 ## ./
 
@@ -18,7 +22,7 @@
 - `next.config.ts` — Next.js configuration (~89 tok)
 - `package-lock.json` — npm lock file (~168205 tok)
 - `package.json` — Node.js package manifest (~692 tok)
-- `payload.config.ts` — Declares filename (~1139 tok)
+- `payload.config.ts` — Declares filename (~1170 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~980 tok)
 - `README.md` — Project documentation (~363 tok)
@@ -211,12 +215,32 @@
 
 ## app/(app)/(dashboard)/feed/[[...slug]]/
 
-- `loading.tsx` — FeedLoading (~269 tok)
+- `loading.tsx` — FeedLoading (~282 tok)
 - `page.tsx` — FeedPage (~814 tok)
+
+## app/(app)/(dashboard)/learn/
+
+- `page.tsx` — CryptoSchoolPage — Crypto School landing (posts grid + filter chips) (~600 tok)
+
+## app/(app)/(dashboard)/learn/[slug]/
+
+- `page.tsx` — CryptoSchoolSubPage — Crypto School sub-category page (~400 tok)
+
+## app/(app)/(dashboard)/learn/courses/
+
+- `page.tsx` — CoursesListingPage (~962 tok)
+
+## app/(app)/(dashboard)/learn/courses/[courseSlug]/
+
+- `page.tsx` — CourseDetailPage — Course overview, modules accordion, enroll button (~800 tok)
+
+## app/(app)/(dashboard)/learn/courses/[courseSlug]/[lessonSlug]/
+
+- `page.tsx` — LessonPage — Video player, rich text content, mark complete, lesson nav (~900 tok)
 
 ## app/(app)/(dashboard)/saved/
 
-- `page.tsx` — SavedPage (~497 tok)
+- `page.tsx` — SavedPage (~720 tok)
 
 ## app/(app)/(dashboard)/settings/
 
@@ -298,7 +322,7 @@
 
 ## app/(app)/api/posts/
 
-- `route.ts` — Next.js API route: GET (~1102 tok)
+- `route.ts` — Next.js API route: GET (~1253 tok)
 
 ## app/(app)/api/search/
 
@@ -331,8 +355,11 @@
 - `Authors.ts` — Payload's CMS editor accounts — separate from NextAuth app users. (~578 tok)
 - `Bookmarks.ts` — Exports Bookmarks (~373 tok)
 - `Categories.ts` — Exports Categories (~584 tok)
+- `Courses.ts` — Payload CMS: Trading courses with title, slug, difficulty, duration, coverImage (~600 tok)
 - `FAQs.ts` — FAQ Groups collection: title, slug, items[] (question/answer). Fetch by slug per page. (~371 tok)
+- `Lessons.ts` — Payload CMS: Course lessons with content (richText), videoUrl, sequential ordering (~550 tok)
 - `Media.ts` — Exports Media (~285 tok)
+- `Modules.ts` — Payload CMS: Course modules grouping lessons, ordered within a course (~400 tok)
 - `Posts.ts` — Exports Posts (~2561 tok)
 - `Tags.ts` — Exports Tags (~264 tok)
 
@@ -423,6 +450,17 @@
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2179 tok)
 - `top-app-bar.tsx` — useClickOutside — uses useEffect, useState (~3426 tok)
 
+## components/learn/
+
+- `course-card.tsx` — CourseCard — grid card with difficulty badge, enrollment progress (~500 tok)
+- `crypto-school-client.tsx` — CryptoSchoolClient (~760 tok)
+- `enroll-button.tsx` — EnrollButton — client component, enrolls user in course via API (~400 tok)
+- `lesson-nav.tsx` — LessonNav — prev/next lesson navigation links (~300 tok)
+- `mark-complete-button.tsx` — MarkCompleteButton — marks lesson complete, navigates to next (~400 tok)
+- `module-accordion.tsx` — ModuleAccordion — expandable module with lesson list and status icons (~600 tok)
+- `progress-bar.tsx` — ProgressBar — simple progress bar with completed/total count (~200 tok)
+- `video-player.tsx` — VideoPlayer — Vimeo/Bunny video embed with auto-detection (~300 tok)
+
 ## components/providers/
 
 - `avatar-provider.tsx` — AvatarContext — uses useState, useCallback, useContext (~218 tok)
@@ -489,6 +527,7 @@
 - `0000_cuddly_anita_blake.sql` — SQL: tables: users, accounts, sessions, verification_tokens, 3 alter(s) (~686 tok)
 - `0001_perfect_post.sql` — SQL: 1 alter(s) (~21 tok)
 - `0002_majestic_ironclad.sql` — SQL: tables: notification_preferences, 2 alter(s) (~227 tok)
+- `0003_bookmarks_to_public.sql` — SQL: tables: bookmarks (~135 tok)
 
 ## drizzle/meta/
 
@@ -517,12 +556,12 @@
 
 ## lib/bookmarks/
 
-- `actions.ts` — Exports toggleBookmark (~315 tok)
-- `getBookmarkedPostIds.ts` — Exports getBookmarkedPostIds (~184 tok)
+- `actions.ts` — Exports toggleBookmark (~247 tok)
+- `getBookmarkedPostIds.ts` — Exports getBookmarkedPostIds (~114 tok)
 
 ## lib/categories/
 
-- `getCategories.ts` — Exports NavCategory, getNavCategories (~513 tok)
+- `getCategories.ts` — Exports NavCategory, getNavCategories (~611 tok)
 
 ## lib/config/
 
@@ -530,7 +569,15 @@
 
 ## lib/constants/
 
-- `taxonomy.ts` — Exports TAXONOMY, ALL_CATEGORIES, CategoryType, CategorySlug, SLUG_TO_TYPE (~606 tok)
+- `taxonomy.ts` — Exports TAXONOMY, ALL_CATEGORIES, CategoryType, CategorySlug, CryptoSchoolSlug, SLUG_TO_TYPE, CRYPTO_SCHOOL_CATEGORIES (~700 tok)
+
+## lib/courses/
+
+- `getCourses.ts` — getCourses(), getCourseBySlug() — fetch published courses from Payload (~300 tok)
+- `getLesson.ts` — getLessonBySlug() — fetch single published lesson with depth:2 (~200 tok)
+- `getModules.ts` — getCourseModulesWithLessons() — modules with nested lessons sorted by order (~400 tok)
+- `lessonAccess.ts` — isLessonUnlocked(), getNextLesson(), getPreviousLesson() — sequential lesson gating (~350 tok)
+- `progress.ts` — getEnrollment(), enrollInCourse(), getCompletedLessonIds(), markLessonComplete(), getUserEnrollments() — Drizzle-based progress tracking (~500 tok)
 
 ## lib/db/
 
@@ -538,7 +585,8 @@
 
 ## lib/db/schema/
 
-- `index.ts` (~27 tok)
+- `bookmarks.ts` — Exports bookmarks, Bookmark, NewBookmark (~184 tok)
+- `index.ts` (~56 tok)
 - `notification-preferences.ts` — Exports notificationPreferences, NotificationPreferences, NewNotificationPreferences (~270 tok)
 - `sessions.ts` — NextAuth v5 Drizzle adapter schema — required by DrizzleAdapter. (~490 tok)
 - `users.ts` — Exports roleEnum, users, User, NewUser (~478 tok)
@@ -557,7 +605,7 @@
 ## lib/hooks/
 
 - `useDebounce.ts` — Exports useDebounce (~102 tok)
-- `useInfiniteScroll.ts` — Exports useInfiniteScroll (~786 tok)
+- `useInfiniteScroll.ts` — Exports useInfiniteScroll (~776 tok)
 - `useSearch.ts` — Exports useSearch (~604 tok)
 - `useSearchModal.ts` — Exports useSearchModal (~212 tok)
 - `useViewPreference.ts` — Exports useViewPreference (~252 tok)
@@ -584,7 +632,7 @@
 
 - `add-search-vector.sql` — Search vector migration for full-text search on posts (~348 tok)
 - `patch-next-env.cjs` — Preload environment variables BEFORE any ESM imports (~241 tok)
-- `seed.ts` — CryptoEdy seed script — Sprint 3 (~34316 tok)
+- `seed.ts` — CryptoEdy seed script — Sprint 3 (~34756 tok)
 
 ## styles/
 

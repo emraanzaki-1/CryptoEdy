@@ -11,7 +11,7 @@
 import { getPayload } from 'payload'
 import config from '../payload.config'
 import { getDb } from '../lib/db'
-import { users } from '../lib/db/schema'
+import { users, bookmarks } from '../lib/db/schema'
 import { eq } from 'drizzle-orm'
 import bcrypt from 'bcryptjs'
 import { generateReferralCode } from '../lib/auth/referral'
@@ -39,7 +39,7 @@ const PARENT_CATEGORIES = [
   {
     name: 'Education',
     slug: 'education',
-    description: 'Courses, guides, and crypto glossary.',
+    description: 'Crypto School and structured trading courses.',
     weight: 2,
   },
 ]
@@ -113,25 +113,50 @@ const CHILD_CATEGORIES = [
   },
   // Education children
   {
-    name: 'Courses',
-    slug: 'courses',
+    name: 'Crypto School',
+    slug: 'crypto-school',
     parentSlug: 'education',
-    description: 'Structured learning paths from crypto basics to advanced trading.',
+    description: 'Beginner-friendly crypto education and learning resources.',
     weight: 0,
   },
   {
-    name: 'Resource Hub',
-    slug: 'resource-hub',
+    name: 'Trading Course',
+    slug: 'trading-course',
     parentSlug: 'education',
-    description: 'Tutorials, guides, and curated resources.',
+    description: 'Structured trading courses with modules and lessons.',
+    weight: 1,
+  },
+]
+
+// Grandchild categories — children of "Crypto School" (3rd level)
+const GRANDCHILD_CATEGORIES = [
+  {
+    name: 'Simply Explained',
+    slug: 'simply-explained',
+    parentSlug: 'crypto-school',
+    description: 'Complex crypto concepts explained in plain language.',
+    weight: 0,
+  },
+  {
+    name: 'Videos',
+    slug: 'videos',
+    parentSlug: 'crypto-school',
+    description: 'Educational video content and tutorials.',
     weight: 1,
   },
   {
-    name: 'Glossary',
-    slug: 'glossary',
-    parentSlug: 'education',
-    description: 'Plain-language definitions of crypto and DeFi terms.',
+    name: 'Guides',
+    slug: 'guides',
+    parentSlug: 'crypto-school',
+    description: 'Step-by-step guides for crypto tools and strategies.',
     weight: 2,
+  },
+  {
+    name: 'Blueprint',
+    slug: 'blueprint',
+    parentSlug: 'crypto-school',
+    description: 'Detailed frameworks and playbooks for crypto investing.',
+    weight: 3,
   },
 ]
 
@@ -314,7 +339,7 @@ const MEDIA_ITEMS = [
     postSlug: 'livestream-macro-tuesday-fed-dxy',
     alt: 'Macro Tuesday livestream showing DXY chart and crypto correlation',
   },
-  // Courses
+  // Simply Explained
   {
     postSlug: 'bitcoin-basics-utxo-explained',
     alt: 'Bitcoin UTXO model diagram showing inputs outputs and change',
@@ -323,7 +348,7 @@ const MEDIA_ITEMS = [
     postSlug: 'how-to-read-crypto-whitepaper',
     alt: 'Crypto whitepaper review checklist with highlighted sections',
   },
-  // Resource Hub
+  // Guides
   {
     postSlug: 'defi-toolkit-20-essential-tools',
     alt: 'DeFi tool logos arranged in an essential toolkit grid',
@@ -336,7 +361,7 @@ const MEDIA_ITEMS = [
     postSlug: 'crypto-tax-basics-2024',
     alt: 'Crypto tax calculation spreadsheet with cost basis columns',
   },
-  // Glossary
+  // Simply Explained (Glossary-like)
   {
     postSlug: 'glossary-defi-terms',
     alt: 'DeFi glossary open book with blockchain terminology',
@@ -465,13 +490,23 @@ async function main() {
 
   if (IS_RESET) {
     console.log('[seed] Resetting — deleting all content...')
-    for (const col of ['bookmarks', 'posts', 'media', 'categories', 'tags', 'authors'] as const) {
+    for (const col of [
+      'lessons',
+      'modules',
+      'courses',
+      'posts',
+      'media',
+      'categories',
+      'tags',
+      'authors',
+    ] as const) {
       const existing = await payload.find({ collection: col, limit: 1000, pagination: false })
       for (const doc of existing.docs) {
         await payload.delete({ collection: col, id: doc.id })
       }
     }
-    // Reset app users in Drizzle
+    // Reset app data in Drizzle (bookmarks first due to FK)
+    await getDb().delete(bookmarks)
     await getDb().delete(users)
     console.log('[seed] Reset complete.')
   }
@@ -520,8 +555,32 @@ async function main() {
     })
     categoryIdMap[child.slug] = created.id as string
   }
+
+  // Seed grandchild categories (3rd level — children of Crypto School)
+  for (const grandchild of GRANDCHILD_CATEGORIES) {
+    const existing = await payload.find({
+      collection: 'categories',
+      where: { slug: { equals: grandchild.slug } },
+      limit: 1,
+    })
+    if (existing.docs.length > 0) {
+      categoryIdMap[grandchild.slug] = existing.docs[0].id as string
+      continue
+    }
+    const created = await payload.create({
+      collection: 'categories',
+      data: {
+        name: grandchild.name,
+        slug: grandchild.slug,
+        description: grandchild.description,
+        parent: categoryIdMap[grandchild.parentSlug],
+      },
+    })
+    categoryIdMap[grandchild.slug] = created.id as string
+  }
+
   console.log(
-    `[seed] Categories: ${Object.keys(categoryIdMap).length} ready (3 parents + 12 children).`
+    `[seed] Categories: ${Object.keys(categoryIdMap).length} ready (3 parents + children + grandchildren).`
   )
 
   // ---- Tags ----
@@ -796,13 +855,13 @@ async function main() {
         'Our Q3 positioning: 60% crypto core (BTC + ETH), 25% high-beta altcoins, 15% stable. This is more aggressive than Q2, reflecting our improving macro conviction. Adjust based on personal risk tolerance.',
       ]),
     },
-    // 1 × Education / Crypto School (free)
+    // 1 × Education / Simply Explained (free)
     {
       title: 'Understanding DeFi: How Automated Market Makers Work',
       slug: 'understanding-amm-defi-basics',
       excerpt:
         'Automated Market Makers replaced traditional order books in DeFi. This guide explains exactly how AMMs work, why they sometimes cause losses, and how to use them safely.',
-      category: categoryIdMap['courses'],
+      category: categoryIdMap['simply-explained'],
       isProOnly: false,
       status: 'published',
       publishedAt: daysAgo(30),
@@ -1464,13 +1523,13 @@ async function main() {
       ]),
     },
 
-    // ---- Education / Courses (2 more) ----
+    // ---- Education / Simply Explained (2 more) ----
     {
       title: 'Bitcoin Basics: What Is a UTXO and Why Does It Matter?',
       slug: 'bitcoin-basics-utxo-explained',
       excerpt:
         "Bitcoin doesn't use accounts like banks do. It uses Unspent Transaction Outputs (UTXOs). Understanding this model is fundamental to understanding how Bitcoin actually works.",
-      category: categoryIdMap['courses'],
+      category: categoryIdMap['simply-explained'],
       isProOnly: false,
       status: 'published',
       publishedAt: daysAgo(60),
@@ -1489,7 +1548,7 @@ async function main() {
       slug: 'how-to-read-crypto-whitepaper',
       excerpt:
         "Most crypto investors never read whitepapers. The ones who do have a significant edge. Here's a practical framework for evaluating any whitepaper in under 30 minutes.",
-      category: categoryIdMap['courses'],
+      category: categoryIdMap['simply-explained'],
       isProOnly: false,
       status: 'published',
       publishedAt: daysAgo(70),
@@ -1505,13 +1564,13 @@ async function main() {
       ]),
     },
 
-    // ---- Education / Resource Hub (3 new) ----
+    // ---- Education / Guides (3 new) ----
     {
       title: 'The Essential DeFi Toolkit: 20 Tools Every Crypto Investor Needs',
       slug: 'defi-toolkit-20-essential-tools',
       excerpt:
         'The right tools separate informed investors from those trading blind. From portfolio tracking to on-chain analytics, here are the 20 tools we use every day.',
-      category: categoryIdMap['resource-hub'],
+      category: categoryIdMap['guides'],
       isProOnly: false,
       status: 'published',
       publishedAt: daysAgo(52),
@@ -1530,7 +1589,7 @@ async function main() {
       slug: 'how-to-use-block-explorers',
       excerpt:
         'Block explorers let you verify any transaction, check wallet balances, and read smart contracts. This guide explains how to use them — including the parts most investors ignore.',
-      category: categoryIdMap['resource-hub'],
+      category: categoryIdMap['guides'],
       isProOnly: false,
       status: 'published',
       publishedAt: daysAgo(58),
@@ -1549,7 +1608,7 @@ async function main() {
       slug: 'crypto-tax-basics-2024',
       excerpt:
         'Crypto tax is complex but unavoidable. This guide covers the basics: what is taxable, how to calculate gains, and the tools that can automate most of the work.',
-      category: categoryIdMap['resource-hub'],
+      category: categoryIdMap['guides'],
       isProOnly: false,
       status: 'published',
       publishedAt: daysAgo(65),
@@ -1564,13 +1623,13 @@ async function main() {
       ]),
     },
 
-    // ---- Education / Glossary (2 new) ----
+    // ---- Education / Simply Explained (2 more) ----
     {
       title: 'DeFi Glossary: The 50 Terms Every Investor Must Know',
       slug: 'glossary-defi-terms',
       excerpt:
         'From AMM to yield farming, DeFi has its own vocabulary. This reference glossary covers the 50 most important DeFi terms — plain language, no jargon.',
-      category: categoryIdMap['glossary'],
+      category: categoryIdMap['simply-explained'],
       isProOnly: false,
       status: 'published',
       publishedAt: daysAgo(75),
@@ -1589,7 +1648,7 @@ async function main() {
       slug: 'glossary-layer2-scaling-terminology',
       excerpt:
         'Rollups, sequencers, data availability, and fraud proofs — Layer 2 scaling has its own dense vocabulary. This reference glossary explains every term clearly.',
-      category: categoryIdMap['glossary'],
+      category: categoryIdMap['simply-explained'],
       isProOnly: false,
       status: 'published',
       publishedAt: daysAgo(80),
@@ -1636,6 +1695,359 @@ async function main() {
   }
   console.log(
     `[seed] Posts: ${seededCount} created, ${POSTS.length - seededCount} already existed.`
+  )
+
+  // ─── Courses, Modules & Lessons ───────────────────────────────────────────
+  console.log('[seed] Seeding courses, modules & lessons...')
+
+  const SEED_COURSES = [
+    {
+      title: 'Crypto Trading 101',
+      slug: 'crypto-trading-101',
+      excerpt:
+        'Learn the foundations of cryptocurrency trading — from reading charts to placing your first trade.',
+      difficulty: 'beginner' as const,
+      estimatedDuration: '4 hours',
+      isProOnly: false,
+      status: 'published' as const,
+      order: 0,
+      modules: [
+        {
+          title: 'Getting Started',
+          slug: 'getting-started',
+          description: 'Set up your environment and understand the basics of crypto markets.',
+          order: 0,
+          status: 'published' as const,
+          lessons: [
+            {
+              title: 'What Is Cryptocurrency Trading?',
+              slug: 'what-is-crypto-trading',
+              order: 0,
+              estimatedDuration: 8,
+              isFreePreview: true,
+              status: 'published' as const,
+              content: makeBody([
+                'Cryptocurrency trading is the act of buying and selling digital assets on exchanges to profit from price movements.',
+                'Unlike traditional stock markets, crypto markets operate 24/7, offering continuous trading opportunities across hundreds of tokens.',
+                'In this lesson, we cover the basic mechanics: spot trading vs. derivatives, order types, and how exchanges match buyers with sellers.',
+                'By the end, you will understand how trades execute and what makes crypto markets unique compared to equities or forex.',
+              ]),
+            },
+            {
+              title: 'Setting Up Your First Exchange Account',
+              slug: 'setting-up-exchange-account',
+              order: 1,
+              estimatedDuration: 10,
+              isFreePreview: true,
+              status: 'published' as const,
+              content: makeBody([
+                'Before you can trade, you need an account on a cryptocurrency exchange. Popular choices include Binance, Coinbase, and Kraken.',
+                'We walk through the sign-up process, KYC verification, enabling two-factor authentication, and funding your account with fiat or stablecoins.',
+                'Security is paramount — never share your API keys, use a hardware wallet for long-term holdings, and enable withdrawal whitelists.',
+                'Once your account is funded, you are ready to explore the trading interface and place your first order.',
+              ]),
+            },
+            {
+              title: 'Understanding Market vs. Limit Orders',
+              slug: 'market-vs-limit-orders',
+              order: 2,
+              estimatedDuration: 7,
+              isFreePreview: false,
+              status: 'published' as const,
+              content: makeBody([
+                'A market order executes immediately at the best available price, while a limit order lets you specify the exact price you want.',
+                'Market orders guarantee execution but not price — useful when speed matters. Limit orders guarantee price but not execution — useful when precision matters.',
+                'Understanding the spread (the gap between the best bid and ask) helps you decide which order type to use in different market conditions.',
+                'We also cover stop-loss orders and take-profit orders, which automate your exits and help manage risk.',
+              ]),
+            },
+          ],
+        },
+        {
+          title: 'Reading Charts',
+          slug: 'reading-charts',
+          description: 'Learn to read candlestick charts and identify basic patterns.',
+          order: 1,
+          status: 'published' as const,
+          lessons: [
+            {
+              title: 'Introduction to Candlestick Charts',
+              slug: 'intro-candlestick-charts',
+              order: 0,
+              estimatedDuration: 12,
+              isFreePreview: false,
+              status: 'published' as const,
+              content: makeBody([
+                'Candlestick charts originated in 18th-century Japanese rice trading and remain the most popular chart type in crypto.',
+                'Each candle shows four data points: open, high, low, and close (OHLC). Green/white candles indicate the close was higher than the open; red/black candles indicate it was lower.',
+                'The body shows the range between open and close, while the wicks (shadows) show the highest and lowest prices during that period.',
+                'Learning to read candles at a glance is the first step toward technical analysis — you will start seeing supply and demand zones emerge naturally.',
+              ]),
+            },
+            {
+              title: 'Support and Resistance Levels',
+              slug: 'support-and-resistance',
+              order: 1,
+              estimatedDuration: 10,
+              isFreePreview: false,
+              status: 'published' as const,
+              content: makeBody([
+                'Support is a price level where demand is strong enough to prevent further decline. Resistance is where supply prevents further advance.',
+                'These levels are identified by looking at historical price action — areas where price has repeatedly bounced or reversed.',
+                'The more times a level is tested, the stronger it becomes. When broken, support often becomes resistance and vice versa (role reversal).',
+                'Plotting horizontal support and resistance lines on your chart is one of the simplest yet most effective techniques for timing entries and exits.',
+              ]),
+            },
+            {
+              title: 'Basic Chart Patterns',
+              slug: 'basic-chart-patterns',
+              order: 2,
+              estimatedDuration: 15,
+              isFreePreview: false,
+              status: 'published' as const,
+              content: makeBody([
+                'Chart patterns are geometric shapes formed by price action that tend to resolve in predictable ways.',
+                'Continuation patterns like flags, pennants, and wedges suggest the existing trend will resume after consolidation.',
+                'Reversal patterns like double tops, double bottoms, and head-and-shoulders signal a potential trend change.',
+                'While no pattern guarantees an outcome, combining pattern recognition with volume analysis and other indicators improves your probability of success.',
+              ]),
+            },
+          ],
+        },
+        {
+          title: 'Risk Management',
+          slug: 'risk-management',
+          description: 'Protect your capital with proven risk management strategies.',
+          order: 2,
+          status: 'published' as const,
+          lessons: [
+            {
+              title: 'Position Sizing and the 1% Rule',
+              slug: 'position-sizing-1-percent-rule',
+              order: 0,
+              estimatedDuration: 8,
+              isFreePreview: false,
+              status: 'published' as const,
+              content: makeBody([
+                'The number one rule in trading: never risk more than 1-2% of your total portfolio on a single trade.',
+                'Position sizing determines how much capital you allocate to each trade based on your stop-loss distance and risk tolerance.',
+                'For example, if your portfolio is $10,000 and you risk 1% per trade, your maximum loss per trade is $100. If your stop-loss is 5% below entry, your position size is $2,000.',
+                'Consistent position sizing ensures that no single trade can significantly damage your portfolio, even during losing streaks.',
+              ]),
+            },
+            {
+              title: 'Setting Stop-Losses Correctly',
+              slug: 'setting-stop-losses',
+              order: 1,
+              estimatedDuration: 10,
+              isFreePreview: false,
+              status: 'published' as const,
+              content: makeBody([
+                'A stop-loss is a predetermined price level at which you exit a losing trade. It removes emotion from the decision.',
+                'Place stop-losses at technically significant levels — below support for longs, above resistance for shorts — not arbitrary percentages.',
+                'Avoid placing stops at round numbers (e.g., $100.00) where many other traders cluster theirs, as market makers often hunt these levels.',
+                'Trailing stop-losses can lock in profits as a trade moves in your favor, automatically adjusting the exit point upward.',
+              ]),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Advanced Technical Analysis',
+      slug: 'advanced-technical-analysis',
+      excerpt:
+        'Master advanced TA concepts — indicators, volume profile, and multi-timeframe analysis for pro-level trading.',
+      difficulty: 'advanced' as const,
+      estimatedDuration: '8 hours',
+      isProOnly: true,
+      status: 'published' as const,
+      order: 1,
+      modules: [
+        {
+          title: 'Indicators & Oscillators',
+          slug: 'indicators-oscillators',
+          description:
+            'Deep dive into RSI, MACD, Bollinger Bands, and how to combine them effectively.',
+          order: 0,
+          status: 'published' as const,
+          lessons: [
+            {
+              title: 'RSI: Beyond Overbought and Oversold',
+              slug: 'rsi-beyond-overbought-oversold',
+              order: 0,
+              estimatedDuration: 15,
+              isFreePreview: true,
+              status: 'published' as const,
+              content: makeBody([
+                'The Relative Strength Index (RSI) measures the speed and magnitude of recent price changes to evaluate overbought or oversold conditions.',
+                'Most traders only look at the 30/70 levels, but RSI divergences — when price makes a new high but RSI does not — are far more powerful signals.',
+                'In strong uptrends, RSI can stay above 70 for extended periods. Using the 40-80 range during bull markets and 20-60 during bear markets improves accuracy.',
+                'Combine RSI with volume and price structure for confirmation rather than using it as a standalone signal.',
+              ]),
+            },
+            {
+              title: 'MACD: Trend and Momentum Combined',
+              slug: 'macd-trend-momentum',
+              order: 1,
+              estimatedDuration: 12,
+              isFreePreview: false,
+              status: 'published' as const,
+              content: makeBody([
+                'The Moving Average Convergence Divergence (MACD) combines two exponential moving averages to reveal trend direction and momentum.',
+                'A bullish signal occurs when the MACD line crosses above the signal line; bearish when it crosses below.',
+                'The MACD histogram visualises the distance between the two lines — expanding bars mean increasing momentum, shrinking bars mean momentum is fading.',
+                'Multi-timeframe MACD analysis — checking alignment on daily and 4-hour charts — significantly improves trade conviction.',
+              ]),
+            },
+            {
+              title: 'Bollinger Bands and Volatility Squeezes',
+              slug: 'bollinger-bands-volatility',
+              order: 2,
+              estimatedDuration: 10,
+              isFreePreview: false,
+              status: 'published' as const,
+              content: makeBody([
+                'Bollinger Bands plot a moving average with upper and lower bands set at two standard deviations from the mean.',
+                'When the bands contract (a "squeeze"), it indicates low volatility and often precedes a significant price move in either direction.',
+                'Price walking the upper band during a trend is a sign of strength, not overbought conditions — context matters.',
+                'Combining Bollinger Band width with RSI can help you time entries during squeeze breakouts.',
+              ]),
+            },
+          ],
+        },
+        {
+          title: 'Volume Profile Analysis',
+          slug: 'volume-profile-analysis',
+          description:
+            'Use volume-at-price to identify key support, resistance, and high-probability trading zones.',
+          order: 1,
+          status: 'published' as const,
+          lessons: [
+            {
+              title: 'What Is Volume Profile?',
+              slug: 'what-is-volume-profile',
+              order: 0,
+              estimatedDuration: 10,
+              isFreePreview: false,
+              status: 'published' as const,
+              content: makeBody([
+                'Volume Profile displays the amount of trading activity at each price level over a specified time period, shown as a horizontal histogram.',
+                'High-volume nodes (HVN) indicate prices where significant trading occurred — these act as magnets and often serve as support or resistance.',
+                'Low-volume nodes (LVN) represent price levels where little trading happened — price tends to move quickly through these areas.',
+                'The Point of Control (POC) is the price level with the highest volume — it represents the "fairest" price where most agreement occurred between buyers and sellers.',
+              ]),
+            },
+            {
+              title: 'Value Area and Trading Strategies',
+              slug: 'value-area-strategies',
+              order: 1,
+              estimatedDuration: 14,
+              isFreePreview: false,
+              status: 'published' as const,
+              content: makeBody([
+                'The Value Area encompasses the price range where 70% of trading volume occurred — typically between the Value Area High (VAH) and Value Area Low (VAL).',
+                'When price opens inside the value area, there is an 80% probability it will revisit the opposite boundary (the "80% rule").',
+                'When price opens outside the value area and fails to re-enter within the first 30 minutes, it signals a potential trend day.',
+                'Combining Volume Profile with traditional support/resistance and order flow gives you a three-dimensional view of market structure.',
+              ]),
+            },
+          ],
+        },
+      ],
+    },
+  ]
+
+  let coursesSeeded = 0
+  let modulesSeeded = 0
+  let lessonsSeeded = 0
+
+  for (const courseData of SEED_COURSES) {
+    // Check if course already exists
+    const existingCourse = await payload.find({
+      collection: 'courses',
+      where: { slug: { equals: courseData.slug } },
+      limit: 1,
+    })
+
+    let courseId: string | number
+    if (existingCourse.docs.length > 0) {
+      courseId = existingCourse.docs[0].id
+    } else {
+      const created = await payload.create({
+        collection: 'courses',
+        data: {
+          title: courseData.title,
+          slug: courseData.slug,
+          excerpt: courseData.excerpt,
+          difficulty: courseData.difficulty,
+          estimatedDuration: courseData.estimatedDuration,
+          isProOnly: courseData.isProOnly,
+          status: courseData.status,
+          order: courseData.order,
+        },
+      })
+      courseId = created.id
+      coursesSeeded++
+    }
+
+    // Seed modules for this course
+    for (const modData of courseData.modules) {
+      const existingModule = await payload.find({
+        collection: 'modules',
+        where: { slug: { equals: modData.slug } },
+        limit: 1,
+      })
+
+      let moduleId: string | number
+      if (existingModule.docs.length > 0) {
+        moduleId = existingModule.docs[0].id
+      } else {
+        const created = await payload.create({
+          collection: 'modules',
+          data: {
+            title: modData.title,
+            slug: modData.slug,
+            description: modData.description,
+            course: courseId,
+            order: modData.order,
+            status: modData.status,
+          },
+        })
+        moduleId = created.id
+        modulesSeeded++
+      }
+
+      // Seed lessons for this module
+      for (const lessonData of modData.lessons) {
+        const existingLesson = await payload.find({
+          collection: 'lessons',
+          where: { slug: { equals: lessonData.slug } },
+          limit: 1,
+        })
+
+        if (existingLesson.docs.length > 0) continue
+
+        await payload.create({
+          collection: 'lessons',
+          data: {
+            title: lessonData.title,
+            slug: lessonData.slug,
+            module: moduleId,
+            content: lessonData.content,
+            estimatedDuration: lessonData.estimatedDuration,
+            isFreePreview: lessonData.isFreePreview,
+            order: lessonData.order,
+            status: lessonData.status,
+          },
+        })
+        lessonsSeeded++
+      }
+    }
+  }
+
+  console.log(
+    `[seed] Courses: ${coursesSeeded} created. Modules: ${modulesSeeded} created. Lessons: ${lessonsSeeded} created.`
   )
 
   // ─── FAQ Groups ──────────────────────────────────────────────────────────

@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
+import { desc, eq } from 'drizzle-orm'
+import { getDb } from '@/lib/db'
+import { bookmarks } from '@/lib/db/schema'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { auth } from '@/lib/auth'
@@ -29,30 +32,36 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ docs: [], totalDocs: 0, totalPages: 0, page, hasNextPage: false })
     }
 
-    const {
-      docs: bookmarks,
-      totalDocs,
-      totalPages,
-      hasNextPage,
-    } = await payload.find({
-      collection: 'bookmarks',
-      where: { userId: { equals: userId } },
-      sort: '-createdAt',
-      depth: 3,
-      limit,
-      page,
+    const db = getDb()
+    const allBookmarks = await db
+      .select({ postId: bookmarks.postId })
+      .from(bookmarks)
+      .where(eq(bookmarks.userId, userId))
+      .orderBy(desc(bookmarks.createdAt))
+
+    const totalDocs = allBookmarks.length
+    const totalPages = Math.ceil(totalDocs / limit)
+    const hasNextPage = page < totalPages
+    const pageBookmarks = allBookmarks.slice((page - 1) * limit, page * limit)
+
+    if (pageBookmarks.length === 0) {
+      return NextResponse.json({ docs: [], totalDocs, totalPages, page, hasNextPage })
+    }
+
+    const postIds = pageBookmarks.map((b) => b.postId)
+    const { docs: posts } = await payload.find({
+      collection: 'posts',
+      where: { id: { in: postIds }, status: { equals: 'published' } },
+      depth: 2,
+      limit: postIds.length,
       overrideAccess: true,
     })
 
-    const articles = bookmarks
-      .map((bookmark) => {
-        const post = bookmark.post
-        if (!post || typeof post !== 'object' || !('title' in post)) return null
-        const p = post as Record<string, unknown>
-        if (p.status !== 'published') return null
-        return mapPostToCardProps(p, { isBookmarked: true })
-      })
-      .filter((a) => a !== null)
+    const postMap = new Map(posts.map((p) => [p.id, p]))
+    const articles = postIds
+      .map((id) => postMap.get(id))
+      .filter((p) => p != null)
+      .map((p) => mapPostToCardProps(p as Record<string, unknown>, { isBookmarked: true }))
 
     return NextResponse.json({ docs: articles, totalDocs, totalPages, page, hasNextPage })
   }

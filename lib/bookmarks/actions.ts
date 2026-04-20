@@ -1,7 +1,8 @@
 'use server'
 
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
+import { and, eq } from 'drizzle-orm'
+import { getDb } from '@/lib/db'
+import { bookmarks } from '@/lib/db/schema'
 import { auth } from '@/lib/auth'
 
 export async function toggleBookmark(postId: string): Promise<{ bookmarked: boolean }> {
@@ -10,34 +11,19 @@ export async function toggleBookmark(postId: string): Promise<{ bookmarked: bool
 
   const userId = session.user.id
   const numericPostId = Number(postId)
-  const payload = await getPayload({ config: configPromise })
+  const db = getDb()
 
-  // Check if bookmark already exists
-  const { docs } = await payload.find({
-    collection: 'bookmarks',
-    where: {
-      and: [{ userId: { equals: userId } }, { post: { equals: numericPostId } }],
-    },
-    limit: 1,
-    depth: 0,
-    overrideAccess: true,
-  })
+  const existing = await db
+    .select({ id: bookmarks.id })
+    .from(bookmarks)
+    .where(and(eq(bookmarks.userId, userId), eq(bookmarks.postId, numericPostId)))
+    .limit(1)
 
-  if (docs.length > 0) {
-    // Remove bookmark
-    await payload.delete({
-      collection: 'bookmarks',
-      id: docs[0].id,
-      overrideAccess: true,
-    })
+  if (existing.length > 0) {
+    await db.delete(bookmarks).where(eq(bookmarks.id, existing[0].id))
     return { bookmarked: false }
   }
 
-  // Create bookmark
-  await payload.create({
-    collection: 'bookmarks',
-    data: { userId, post: numericPostId },
-    overrideAccess: true,
-  })
+  await db.insert(bookmarks).values({ userId, postId: numericPostId })
   return { bookmarked: true }
 }

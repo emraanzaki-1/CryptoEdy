@@ -22,6 +22,20 @@
       "when": 1776654177853,
       "tag": "0002_majestic_ironclad",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1776674607129,
+      "tag": "0003_bookmarks_to_public",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1776676200758,
+      "tag": "0004_dazzling_black_tarantula",
+      "breakpoints": true
     }
   ]
 }
