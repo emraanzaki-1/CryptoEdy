@@ -6,6 +6,7 @@ import { ResearchPreviewSection } from '@/components/landing/research-preview-se
 import { TrackRecordSection } from '@/components/landing/track-record-section'
 import { PricingSection } from '@/components/landing/pricing-section'
 import { FAQSection } from '@/components/landing/faq-section'
+import { OnboardingPopup } from '@/components/landing/onboarding-popup'
 
 export default function Home() {
   return (
@@ -32,6 +33,9 @@ export default function Home() {
       </div>
 
       <Footer />
+
+      {/* Email capture popup for guest users */}
+      <OnboardingPopup />
     </div>
   )
 }

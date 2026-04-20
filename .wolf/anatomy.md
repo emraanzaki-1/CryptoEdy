@@ -1,23 +1,23 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T11:02:02.497Z
-> Files: 295 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T12:40:04.382Z
+> Files: 307 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../../.claude/plans/
 
-- `rippling-sparking-knuth.md` — Fix: Unbookmarked articles not removing from Saved page (~579 tok)
+- `atomic-painting-cherny.md` — LMS Visual Upgrade — Implementation Plan (~2273 tok)
 
 ## ./
 
 - `.DS_Store` (~2732 tok)
-- `.gitignore` — Git ignore rules (~165 tok)
+- `.gitignore` — Git ignore rules (~181 tok)
 - `.prettierrc` — Prettier configuration (~41 tok)
 - `AGENTS.md` — This is NOT the Next.js you know (~82 tok)
 - `CLAUDE.md` — OpenWolf (~60 tok)
 - `commitlint.config.ts` — Declares config (~90 tok)
 - `components.json` (~148 tok)
 - `drizzle.config.ts` — Drizzle ORM configuration (~79 tok)
-- `eslint.config.mjs` — ESLint flat configuration (~124 tok)
+- `eslint.config.mjs` — ESLint flat configuration (~131 tok)
 - `next-env.d.ts` — / <reference types="next" /> (~72 tok)
 - `next.config.ts` — Next.js configuration (~89 tok)
 - `package-lock.json` — npm lock file (~168205 tok)
@@ -27,12 +27,12 @@
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~980 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~212278 tok)
+- `tsconfig.tsbuildinfo` (~216144 tok)
 
 ## .claude/
 
 - `settings.json` (~442 tok)
-- `settings.local.json` — Declares p (~1215 tok)
+- `settings.local.json` — Declares p (~1234 tok)
 
 ## .claude/rules/
 
@@ -133,6 +133,22 @@
 
 - `code.html` — CryptoEdy - Institutional-Grade Crypto Research (~7208 tok)
 
+## HTML/learn/academy_overview/
+
+- `code.html` — Academy Overview | Apex Research (~7029 tok)
+
+## HTML/learn/apex_research/
+
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
+
+## HTML/learn/course_landing_page/
+
+- `code.html` — Crypto Trading 101 | Apex Research Academy (~5016 tok)
+
+## HTML/learn/lesson_view/
+
+- `code.html` — Declares showing (~4272 tok)
+
 ## HTML/login/
 
 - `code.html` — Login - CryptoEdy Research (~2291 tok)
@@ -164,7 +180,7 @@
 
 ## app/
 
-- `globals.css` — Styles: 10 rules, 256 vars (~3997 tok)
+- `globals.css` — Styles: 10 rules, 256 vars, 1 layers (~3997 tok)
 
 ## app/(app)/
 
@@ -207,7 +223,7 @@
 ## app/(app)/(dashboard)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — ROLE_HIERARCHY (~2596 tok)
+- `page.tsx` — ROLE_HIERARCHY (~2657 tok)
 
 ## app/(app)/(dashboard)/community/
 
@@ -216,28 +232,28 @@
 ## app/(app)/(dashboard)/feed/[[...slug]]/
 
 - `loading.tsx` — FeedLoading (~282 tok)
-- `page.tsx` — FeedPage (~814 tok)
+- `page.tsx` — FeedPage (~1243 tok)
 
 ## app/(app)/(dashboard)/learn/
 
-- `page.tsx` — CryptoSchoolPage — Crypto School landing (posts grid + filter chips) (~600 tok)
+- `page.tsx` — LearnPage (~581 tok)
 
 ## app/(app)/(dashboard)/learn/[slug]/
 
-- `page.tsx` — CryptoSchoolSubPage — Crypto School sub-category page (~400 tok)
+- `page.tsx` — CryptoSchoolCategoryPage (~576 tok)
 
 ## app/(app)/(dashboard)/learn/courses/
 
-- `page.tsx` — CoursesListingPage (~962 tok)
-- `loading.tsx` — CoursesLoading — skeleton grid for courses listing (~300 tok)
+- `loading.tsx` — CoursesLoading (~256 tok)
+- `page.tsx` — CoursesListingPage (~1050 tok)
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/
 
-- `page.tsx` — CourseDetailPage — Course overview, modules accordion, enroll button, richText description (~1000 tok)
+- `page.tsx` — difficultyColors — renders chart (~1778 tok)
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/[lessonSlug]/
 
-- `page.tsx` — LessonPage — Video player, rich text content, mark complete, lesson nav (~900 tok)
+- `page.tsx` — LessonPage (~2055 tok)
 
 ## app/(app)/(dashboard)/saved/
 
@@ -321,6 +337,14 @@
 
 - `route.ts` — GET: Token-based verification (email link flow) (~1028 tok)
 
+## app/(app)/api/courses/enroll/
+
+- `route.ts` — Next.js API route: GET, POST (~788 tok)
+
+## app/(app)/api/courses/progress/
+
+- `route.ts` — Next.js API route: GET, POST (~768 tok)
+
 ## app/(app)/api/posts/
 
 - `route.ts` — Next.js API route: GET (~1253 tok)
@@ -341,7 +365,7 @@
 
 ## app/(payload)/admin/
 
-- `importMap.js` — Exports importMap (~2339 tok)
+- `importMap.js` — Exports importMap (~2434 tok)
 
 ## app/(payload)/admin/[[...segments]]/
 
@@ -354,7 +378,6 @@
 ## collections/
 
 - `Authors.ts` — Payload's CMS editor accounts — separate from NextAuth app users. (~584 tok)
-- `Bookmarks.ts` — Exports Bookmarks (~373 tok)
 - `Categories.ts` — Exports Categories (~618 tok)
 - `Courses.ts` — Exports Courses (~988 tok)
 - `FAQs.ts` — Exports FAQs (~379 tok)
@@ -383,21 +406,26 @@
 - `Icon.tsx` — CryptoEdy admin icon — shown in collapsed sidebar and browser tab favicon area. (~199 tok)
 - `Logo.tsx` — CryptoEdy admin sidebar logo. (~405 tok)
 
+## components/admin/fields/
+
+- `GroupedCategorySelect.tsx` — Custom field component for the `category` relationship field. (~1560 tok)
+- `GroupedParentSelect.tsx` — Custom field component for the `parent` relationship on the Categories collection. (~1380 tok)
+
 ## components/admin/views/
 
-- `CategoriesListClient.tsx` — styles — renders table — uses useState, useCallback (~4370 tok)
-- `CategoriesListView.tsx` — CategoriesListView (~362 tok)
+- `CategoriesListClient.tsx` — styles — renders table — uses useState, useCallback (~5744 tok)
+- `CategoriesListView.tsx` — CategoriesListView (~604 tok)
 - `UserManagement.tsx` — UserManagement (~236 tok)
-- `UserManagementClient.tsx` — ROLES — uses useState, useCallback, useEffect (~3775 tok)
+- `UserManagementClient.tsx` — ROLES — uses useState, useCallback, useEffect (~3796 tok)
 - `UserManagementEdit.tsx` — UserManagementEdit (~334 tok)
-- `UserManagementEditClient.tsx` — ROLES — uses useState, useCallback, useEffect (~4663 tok)
+- `UserManagementEditClient.tsx` — ROLES — uses useState, useCallback, useEffect (~4682 tok)
 
 ## components/article/
 
 - `article-faq.tsx` — ArticleFAQ (~409 tok)
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
 - `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1613 tok)
-- `recommended-articles.tsx` — AUTO_SCROLL_INTERVAL (~1182 tok)
+- `recommended-articles.tsx` — AUTO_SCROLL_INTERVAL — uses useState, useCallback, useEffect (~1182 tok)
 - `share-button.tsx` — ShareButton — uses useState (~339 tok)
 
 ## components/article/blocks/
@@ -405,7 +433,7 @@
 - `callout-block.tsx` — VARIANTS — renders chart (~426 tok)
 - `chart-embed-block.tsx` — ChartEmbedBlockComponent — renders chart — uses useEffect (~550 tok)
 - `performance-table-block.tsx` — STATUS_STYLES — renders table (~1192 tok)
-- `price-target-block.tsx` — RISK_STYLES (~1096 tok)
+- `price-target-block.tsx` — RISK_STYLES (~1083 tok)
 
 ## components/auth/
 
@@ -433,7 +461,6 @@
 
 ## components/landing/
 
-- `faq-accordion.tsx` — FAQAccordion (~252 tok)
 - `faq-section.tsx` — FALLBACK_FAQS (~828 tok)
 - `hero-section.tsx` — HeroSection (~619 tok)
 - `pricing-section.tsx` — FEATURES — renders chart (~1006 tok)
@@ -444,23 +471,23 @@
 ## components/layouts/
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~570 tok)
-- `dashboard-shell.tsx` — DashboardShell (~644 tok)
+- `dashboard-shell.tsx` — DashboardShell — uses useState (~644 tok)
 - `footer.tsx` — Footer (~947 tok)
 - `guest-nav.tsx` — NAV_LINKS — uses useState (~1037 tok)
 - `settings-nav.tsx` — settingsGroups (~572 tok)
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2179 tok)
-- `top-app-bar.tsx` — useClickOutside (~3395 tok)
+- `top-app-bar.tsx` — useClickOutside — uses useEffect, useState (~3389 tok)
 
 ## components/learn/
 
-- `course-card.tsx` — CourseCard — grid card with difficulty badge, enrollment progress (~500 tok)
+- `course-card.tsx` — CourseCard (~1312 tok)
 - `crypto-school-client.tsx` — CryptoSchoolClient (~760 tok)
-- `enroll-button.tsx` — EnrollButton — enrolls user, "Continue Learning" navigates to first incomplete lesson, error feedback (~600 tok)
-- `lesson-nav.tsx` — LessonNav — prev/next lesson navigation links (~300 tok)
-- `mark-complete-button.tsx` — MarkCompleteButton — marks lesson complete, navigates to next, error feedback (~500 tok)
-- `module-accordion.tsx` — ModuleAccordion — expandable module with lesson list and status icons (~600 tok)
-- `progress-bar.tsx` — ProgressBar — simple progress bar with completed/total count (~200 tok)
-- `video-player.tsx` — VideoPlayer — Vimeo/Bunny video embed with auto-detection, fallback link for unrecognized URLs (~400 tok)
+- `enroll-button.tsx` — EnrollButton — uses useState, useRouter (~744 tok)
+- `lesson-nav.tsx` — LessonNav (~445 tok)
+- `mark-complete-button.tsx` — MarkCompleteButton — uses useState, useRouter (~638 tok)
+- `module-accordion.tsx` — LessonItem (~1972 tok)
+- `progress-bar.tsx` — ProgressBar (~294 tok)
+- `video-player.tsx` — Generic video embed that auto-detects Vimeo vs Bunny from URL pattern. (~556 tok)
 
 ## components/providers/
 
@@ -528,14 +555,17 @@
 - `0000_cuddly_anita_blake.sql` — SQL: tables: users, accounts, sessions, verification_tokens, 3 alter(s) (~686 tok)
 - `0001_perfect_post.sql` — SQL: 1 alter(s) (~21 tok)
 - `0002_majestic_ironclad.sql` — SQL: tables: notification_preferences, 2 alter(s) (~227 tok)
-- `0003_bookmarks_to_public.sql` — SQL: tables: bookmarks (~135 tok)
+- `0003_bookmarks_to_public.sql` — SQL: tables: bookmarks, 1 alter(s) (~144 tok)
+- `0004_dazzling_black_tarantula.sql` — SQL: tables: course_enrollments, lesson_progress, 2 alter(s) (~337 tok)
 
 ## drizzle/meta/
 
-- `_journal.json` (~143 tok)
+- `_journal.json` (~228 tok)
 - `0000_snapshot.json` (~2660 tok)
 - `0001_snapshot.json` (~2710 tok)
 - `0002_snapshot.json` (~3424 tok)
+- `0003_snapshot.json` (~3947 tok)
+- `0004_snapshot.json` (~5120 tok)
 
 ## lib/
 
@@ -548,7 +578,7 @@
 
 ## lib/auth/
 
-- `config.ts` — Exports authConfig (~1256 tok)
+- `config.ts` — Exports authConfig (~1310 tok)
 - `index.ts` (~42 tok)
 - `rate-limit.ts` — Maximum requests allowed within the window (~434 tok)
 - `referral.ts` — Generates a unique 12-character alphanumeric referral code (~116 tok)
@@ -570,15 +600,15 @@
 
 ## lib/constants/
 
-- `taxonomy.ts` — Exports TAXONOMY, ALL_CATEGORIES, CategoryType, CategorySlug, CryptoSchoolSlug, SLUG_TO_TYPE, CRYPTO_SCHOOL_CATEGORIES (~700 tok)
+- `taxonomy.ts` — Exports TAXONOMY, CRYPTO_SCHOOL_CATEGORIES, ALL_CATEGORIES, CategoryType + 3 more (~716 tok)
 
 ## lib/courses/
 
-- `getCourses.ts` — getCourses(), getCourseBySlug() — fetch published courses from Payload (~300 tok)
-- `getLesson.ts` — getLessonBySlug() + getLessonBySlugForCourse() — fetch lesson, optionally scoped to course (~500 tok)
-- `getModules.ts` — getCourseModulesWithLessons() — modules with nested lessons sorted by order (~400 tok)
-- `lessonAccess.ts` — isLessonUnlocked(), getNextLesson(), getPreviousLesson() — sequential lesson gating (~350 tok)
-- `progress.ts` — getEnrollment(), enrollInCourse(), getCompletedLessonIds(), markLessonComplete(), getUserEnrollments() — Drizzle-based progress tracking (~500 tok)
+- `getCourses.ts` — Exports getCourses, getCourseBySlug (~216 tok)
+- `getLesson.ts` — Fetch a lesson by slug, scoped to a specific course ID. (~413 tok)
+- `getModules.ts` — Get all published modules for a course, each with their published lessons. (~642 tok)
+- `lessonAccess.ts` — Determine if a lesson is unlocked (accessible) based on sequential completion rules. (~701 tok)
+- `progress.ts` — Get enrollment record for a user in a specific course. (~787 tok)
 
 ## lib/db/
 
@@ -586,8 +616,10 @@
 
 ## lib/db/schema/
 
-- `bookmarks.ts` — Exports bookmarks, Bookmark, NewBookmark (~184 tok)
+- `bookmarks.ts` — Exports bookmarks, Bookmark, NewBookmark (~181 tok)
+- `course-enrollments.ts` — Exports courseEnrollments, CourseEnrollment, NewCourseEnrollment (~232 tok)
 - `index.ts` (~56 tok)
+- `lesson-progress.ts` — Exports lessonProgress, LessonProgress, NewLessonProgress (~230 tok)
 - `notification-preferences.ts` — Exports notificationPreferences, NotificationPreferences, NewNotificationPreferences (~270 tok)
 - `sessions.ts` — NextAuth v5 Drizzle adapter schema — required by DrizzleAdapter. (~490 tok)
 - `users.ts` — Exports roleEnum, users, User, NewUser (~478 tok)
@@ -619,7 +651,7 @@
 ## lib/notifications/
 
 - `events.ts` — Sprint 3 stub — full notification engine built in Sprint 10. (~358 tok)
-- `preferences.ts` — Get notification preferences for a user. (~580 tok)
+- `preferences.ts` — Get notification preferences for a user. (~587 tok)
 
 ## lib/posts/
 
@@ -633,7 +665,7 @@
 
 - `add-search-vector.sql` — Search vector migration for full-text search on posts (~348 tok)
 - `patch-next-env.cjs` — Preload environment variables BEFORE any ESM imports (~241 tok)
-- `seed.ts` — CryptoEdy seed script — Sprint 3 (~34756 tok)
+- `seed.ts` — CryptoEdy seed script — Sprint 3 (~39656 tok)
 
 ## styles/
 

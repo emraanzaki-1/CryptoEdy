@@ -1,8 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Clock, ChevronRight } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
+import { Clock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface CourseCardProps {
@@ -18,12 +17,6 @@ interface CourseCardProps {
   progressPercent?: number
 }
 
-const difficultyColors = {
-  beginner: 'bg-green-500/15 text-green-700',
-  intermediate: 'bg-amber-500/15 text-amber-700',
-  advanced: 'bg-red-500/15 text-red-700',
-} as const
-
 export function CourseCard({
   title,
   excerpt,
@@ -38,66 +31,84 @@ export function CourseCard({
 }: CourseCardProps) {
   return (
     <Link href={`/learn/courses/${slug}`} className="flex h-full">
-      <article className="group border-outline-variant/[0.03] bg-surface-container-lowest relative flex w-full cursor-pointer flex-col overflow-hidden rounded-2xl border">
+      <article className="bg-surface-container-lowest group relative flex w-full cursor-pointer flex-col overflow-hidden rounded-xl shadow-sm">
         {/* Cover Image */}
         {coverImageUrl && (
-          <div className="bg-surface-container relative aspect-[16/9] overflow-hidden">
+          <div className="bg-surface-container relative h-48 overflow-hidden">
             <div
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
               role="img"
               aria-label={coverImageAlt ?? title}
               style={{ backgroundImage: `url('${coverImageUrl}')` }}
             />
-            <div className="absolute top-3 left-3 flex items-center gap-2">
-              {isProOnly && (
-                <Badge variant="pro" className="shadow-sm">
-                  PRO
-                </Badge>
-              )}
-              <span
-                className={cn(
-                  'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize',
-                  difficultyColors[difficulty]
-                )}
-              >
-                {difficulty}
+            {/* Level badge overlay */}
+            <div className="absolute top-4 left-4">
+              <span className="bg-on-surface/80 rounded px-2 py-1 text-[length:var(--text-overline)] font-bold tracking-[0.05em] text-white uppercase backdrop-blur-md">
+                Level: {difficulty}
               </span>
             </div>
           </div>
         )}
 
+        {/* No cover image — show level badge inline */}
+        {!coverImageUrl && (
+          <div className="bg-surface-container flex h-48 items-center justify-center">
+            <span className="bg-on-surface/80 rounded px-2 py-1 text-[length:var(--text-overline)] font-bold tracking-[0.05em] text-white uppercase backdrop-blur-md">
+              Level: {difficulty}
+            </span>
+          </div>
+        )}
+
         {/* Content */}
-        <div className="flex flex-1 flex-col gap-3 p-5">
-          <h3 className="text-on-surface group-hover:text-primary line-clamp-2 text-lg font-bold tracking-[-0.04em] transition-colors">
+        <div className="flex flex-1 flex-col gap-3 p-6">
+          {/* Tier badge + Duration row */}
+          <div className="flex items-center justify-between">
+            {isProOnly ? (
+              <span className="bg-secondary text-secondary-container rounded px-2 py-0.5 text-[length:var(--text-overline)] font-bold tracking-[0.05em] uppercase">
+                PRO ONLY
+              </span>
+            ) : (
+              <span className="bg-surface-container-high text-on-primary-fixed-variant rounded px-2 py-0.5 text-[length:var(--text-overline)] font-bold tracking-[0.05em] uppercase">
+                ESSENTIAL
+              </span>
+            )}
+            {estimatedDuration && (
+              <span className="text-outline flex items-center gap-1 text-[length:var(--text-overline)] font-bold tracking-[0.05em] uppercase">
+                <Clock className="h-3.5 w-3.5" />
+                {estimatedDuration}
+              </span>
+            )}
+          </div>
+
+          <h3 className="text-on-surface group-hover:text-primary line-clamp-2 text-lg leading-tight font-bold tracking-[-0.04em] transition-colors">
             {title}
           </h3>
           <p className="text-on-surface-variant line-clamp-2 text-sm leading-relaxed">{excerpt}</p>
 
-          <div className="mt-auto flex items-center justify-between pt-3">
-            <div className="text-on-surface-variant flex items-center gap-3 text-xs">
-              {estimatedDuration && (
-                <span className="flex items-center gap-1">
-                  <Clock className="h-3.5 w-3.5" />
-                  {estimatedDuration}
-                </span>
-              )}
-            </div>
-
+          {/* Bottom row */}
+          <div className="border-outline-variant/[0.1] mt-auto flex items-center justify-between border-t pt-6">
             {isEnrolled ? (
-              <div className="flex items-center gap-2">
-                <div className="bg-surface-container h-1.5 w-20 overflow-hidden rounded-full">
-                  <div
-                    className="bg-primary h-full rounded-full transition-all duration-300"
-                    style={{ width: `${progressPercent}%` }}
-                  />
+              <>
+                <div className="flex items-center gap-2">
+                  <div className="bg-surface-container h-1.5 w-20 overflow-hidden rounded-full">
+                    <div
+                      className="bg-secondary-container h-full rounded-full transition-all duration-300"
+                      style={{ width: `${progressPercent}%` }}
+                    />
+                  </div>
+                  <span className="text-secondary text-xs font-bold">{progressPercent}%</span>
                 </div>
-                <span className="text-on-surface-variant text-xs">{progressPercent}%</span>
-              </div>
+                <span className="bg-primary text-on-primary rounded-lg px-4 py-2 text-xs font-bold transition-colors">
+                  Resume
+                </span>
+              </>
             ) : (
-              <span className="text-primary flex items-center gap-1 text-xs font-semibold">
-                View Course
-                <ChevronRight className="h-3.5 w-3.5" />
-              </span>
+              <>
+                <div />
+                <span className="bg-surface-container-high hover:bg-surface-container text-primary rounded-lg px-4 py-2 text-xs font-bold transition-colors">
+                  View Course
+                </span>
+              </>
             )}
           </div>
         </div>

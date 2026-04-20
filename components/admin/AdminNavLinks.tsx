@@ -14,6 +14,9 @@ export default function AdminNavLinks() {
       <Link href="/admin/user-management" className="nav__link" id="nav-user-management">
         <span className="nav__link-label">App Users</span>
       </Link>
+      <Link href="/admin/subscribers" className="nav__link" id="nav-subscribers">
+        <span className="nav__link-label">Subscribers</span>
+      </Link>
     </div>
   )
 }

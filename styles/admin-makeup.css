@@ -762,3 +762,33 @@ html[data-theme='dark'] .nav__link:hover {
   mask-image: url('https://cdn.jsdelivr.net/npm/lucide-static@0.562.0/icons/calendar-clock.svg');
   content: '';
 }
+
+.nav-group .nav__link[id*='course']::before {
+  mask-image: url('https://cdn.jsdelivr.net/npm/lucide-static@0.562.0/icons/graduation-cap.svg');
+  content: '';
+}
+
+.nav-group .nav__link[id*='module']::before {
+  mask-image: url('https://cdn.jsdelivr.net/npm/lucide-static@0.562.0/icons/layout-list.svg');
+  content: '';
+}
+
+.nav-group .nav__link[id*='lesson']::before {
+  mask-image: url('https://cdn.jsdelivr.net/npm/lucide-static@0.562.0/icons/book-open.svg');
+  content: '';
+}
+
+.nav-group .nav__link[id*='faq']::before {
+  mask-image: url('https://cdn.jsdelivr.net/npm/lucide-static@0.562.0/icons/circle-help.svg');
+  content: '';
+}
+
+.nav-group .nav__link[id*='author']::before {
+  mask-image: url('https://cdn.jsdelivr.net/npm/lucide-static@0.562.0/icons/pen-tool.svg');
+  content: '';
+}
+
+.nav-group .nav__link[id*='subscriber']::before {
+  mask-image: url('https://cdn.jsdelivr.net/npm/lucide-static@0.562.0/icons/mail.svg');
+  content: '';
+}

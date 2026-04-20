@@ -36,6 +36,13 @@
       "when": 1776676200758,
       "tag": "0004_dazzling_black_tarantula",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1776689997096,
+      "tag": "0005_abandoned_dreaming_celestial",
+      "breakpoints": true
     }
   ]
 }

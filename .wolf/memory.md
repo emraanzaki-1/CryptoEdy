@@ -921,15 +921,21 @@
 
 ### LMS Review — 10 Issues Fixed
 
-| Time | Action                     | Detail                                                                  |
-| ---- | -------------------------- | ----------------------------------------------------------------------- |
-| —    | #1 Auto-complete course    | markLessonComplete accepts totalLessons, sets completedAt when all done |
-| —    | #2 Fix N+1 courses listing | Promise.all parallel batch for modules + progress                       |
-| —    | #3 Scope lesson by course  | getLessonBySlugForCourse() validates module belongs to course           |
-| —    | #4 Rate limiting           | enroll 10/60s, progress 30/60s via rateLimit()                          |
-| —    | #5 Validate lesson→course  | getLessonBySlugForCourse wired into lesson page                         |
-| —    | #6 Continue Learning nav   | EnrollButton navigates to first incomplete lesson slug                  |
-| —    | #7 Error feedback          | Error state + message on EnrollButton and MarkCompleteButton            |
-| —    | #8 Loading skeleton        | Created learn/courses/loading.tsx with card grid skeleton               |
-| —    | #9 VideoPlayer fallback    | Shows message + link instead of null for unrecognized URLs              |
-| —    | #10 Course description     | RichText rendering of course.description on detail page                 |
+| Time  | Action                                                                                  | Detail                                                                  |
+| ----- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------- |
+| —     | #1 Auto-complete course                                                                 | markLessonComplete accepts totalLessons, sets completedAt when all done |
+| —     | #2 Fix N+1 courses listing                                                              | Promise.all parallel batch for modules + progress                       |
+| —     | #3 Scope lesson by course                                                               | getLessonBySlugForCourse() validates module belongs to course           |
+| —     | #4 Rate limiting                                                                        | enroll 10/60s, progress 30/60s via rateLimit()                          |
+| —     | #5 Validate lesson→course                                                               | getLessonBySlugForCourse wired into lesson page                         |
+| —     | #6 Continue Learning nav                                                                | EnrollButton navigates to first incomplete lesson slug                  |
+| —     | #7 Error feedback                                                                       | Error state + message on EnrollButton and MarkCompleteButton            |
+| —     | #8 Loading skeleton                                                                     | Created learn/courses/loading.tsx with card grid skeleton               |
+| —     | #9 VideoPlayer fallback                                                                 | Shows message + link instead of null for unrecognized URLs              |
+| —     | #10 Course description                                                                  | RichText rendering of course.description on detail page                 |
+| 16:57 | Session end: 5 writes across 3 files (top-app-bar.tsx, layout.tsx, dashboard-shell.tsx) | 18 reads                                                                | ~9726 tok  |
+| 16:58 | Session end: 5 writes across 3 files (top-app-bar.tsx, layout.tsx, dashboard-shell.tsx) | 25 reads                                                                | ~14388 tok |
+| 18:07 | Created ../../../.claude/plans/atomic-painting-cherny.md                                | —                                                                       | ~2425      |
+| 18:08 | Edited components/learn/progress-bar.tsx                                                | modified ProgressBar()                                                  | ~294       |
+| 18:09 | Created components/learn/course-card.tsx                                                | —                                                                       | ~1312      |
+| 18:10 | Created components/learn/module-accordion.tsx                                           | —                                                                       | ~1972      |

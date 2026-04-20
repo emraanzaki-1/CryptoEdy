@@ -17,6 +17,7 @@ import { Modules } from './collections/Modules'
 import { Lessons } from './collections/Lessons'
 import { richTextEditor } from './lib/lexical/richEditor'
 import { adminUserEndpoints } from './lib/api/admin-users'
+import { adminSubscriberEndpoints } from './lib/api/admin-subscribers'
 import { categoryReorderEndpoint } from './lib/api/category-reorder'
 
 const filename = fileURLToPath(import.meta.url)
@@ -67,10 +68,18 @@ export default buildConfig({
             description: 'Edit application user details',
           },
         },
+        subscriberManagement: {
+          Component: '@/components/admin/views/SubscriberManagement',
+          path: '/subscribers',
+          meta: {
+            title: 'Subscribers',
+            description: 'View marketing email subscribers',
+          },
+        },
       },
     },
   },
-  endpoints: [...adminUserEndpoints, categoryReorderEndpoint],
+  endpoints: [...adminUserEndpoints, ...adminSubscriberEndpoints, categoryReorderEndpoint],
   collections: [Authors, Categories, Tags, Media, Posts, FAQs, Courses, Modules, Lessons],
   // Rich Lexical editor is the global default for all richText fields.
   // Posts.content overrides with the same editor (with custom crypto blocks).
