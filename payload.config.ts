@@ -2,6 +2,7 @@ import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import { customType } from 'drizzle-orm/pg-core'
+import sharp from 'sharp'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -109,4 +110,5 @@ export default buildConfig({
       },
     }),
   ],
+  sharp,
 })
