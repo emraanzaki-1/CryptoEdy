@@ -879,3 +879,57 @@
 | 15:07      | Edited lib/hooks/useInfiniteScroll.ts                                                                                                                      | 11→9 lines                                                                                                                                                                                        | ~103                                                   |
 | 15:07      | Session end: 39 writes across 17 files (recommended-articles.tsx, globals.css, page.tsx, article-faq.tsx, bookmarks.ts)                                    | 31 reads                                                                                                                                                                                          | ~67289 tok                                             |
 | 15:11      | Session end: 39 writes across 17 files (recommended-articles.tsx, globals.css, page.tsx, article-faq.tsx, bookmarks.ts)                                    | 31 reads                                                                                                                                                                                          | ~67289 tok                                             |
+
+## Session: 2026-04-20 15:32
+
+| Time  | Action                                                                                              | File(s)             | Outcome   | ~Tokens |
+| ----- | --------------------------------------------------------------------------------------------------- | ------------------- | --------- | ------- |
+| 15:34 | Edited collections/Courses.ts                                                                       | 4→5 lines           | ~50       |
+| 15:34 | Edited collections/Modules.ts                                                                       | 4→5 lines           | ~46       |
+| 15:34 | Edited collections/Lessons.ts                                                                       | 4→5 lines           | ~50       |
+| 15:35 | Session end: 3 writes across 3 files (Courses.ts, Modules.ts, Lessons.ts)                           | 4 reads             | ~2866 tok |
+| 15:41 | Session end: 3 writes across 3 files (Courses.ts, Modules.ts, Lessons.ts)                           | 4 reads             | ~2866 tok |
+| 15:42 | Edited collections/Posts.ts                                                                         | 4→5 lines           | ~56       |
+| 15:42 | Edited collections/Categories.ts                                                                    | 4→5 lines           | ~46       |
+| 15:42 | Edited collections/Tags.ts                                                                          | 4→5 lines           | ~40       |
+| 15:43 | Edited collections/FAQs.ts                                                                          | 4→5 lines           | ~44       |
+| 15:43 | Edited collections/Media.ts                                                                         | 3→4 lines           | ~40       |
+| 15:43 | Edited collections/Authors.ts                                                                       | 3→4 lines           | ~32       |
+| 15:43 | Edited collections/Courses.ts                                                                       | "LMS" → "Education" | ~7        |
+| 15:43 | Edited collections/Modules.ts                                                                       | "LMS" → "Education" | ~7        |
+| 15:43 | Edited collections/Lessons.ts                                                                       | "LMS" → "Education" | ~7        |
+| 15:43 | Session end: 12 writes across 9 files (Courses.ts, Modules.ts, Lessons.ts, Posts.ts, Categories.ts) | 10 reads            | ~7788 tok |
+| 15:46 | Session end: 12 writes across 9 files (Courses.ts, Modules.ts, Lessons.ts, Posts.ts, Categories.ts) | 10 reads            | ~7788 tok |
+
+## Session: 2026-04-20 16:14
+
+| Time  | Action                                               | File(s)                                                                                                                                                                                | Outcome        | ~Tokens |
+| ----- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------- |
+| 16:16 | designqc: captured 6 screenshots (160KB, ~15000 tok) | /, /(app)/error, /(app)/global-error, /(app)/not-found, /(app), /(payload)/actions, /(payload)/importMap, /(app)/(dashboard)/error, /(app)/(dashboard)/not-found, /(app)/[...catchAll] | ready for eval | ~0      |
+
+## Session: 2026-04-20 16:16
+
+| Time  | Action                                                                                  | File(s)         | Outcome   | ~Tokens |
+| ----- | --------------------------------------------------------------------------------------- | --------------- | --------- | ------- |
+| 16:18 | Edited components/layouts/top-app-bar.tsx                                               | removed 8 lines | ~8        |
+| 16:18 | Session end: 1 writes across 1 files (top-app-bar.tsx)                                  | 16 reads        | ~8547 tok |
+| 16:31 | Edited app/(app)/(dashboard)/layout.tsx                                                 | CSS: email      | ~57       |
+| 16:31 | Edited components/layouts/dashboard-shell.tsx                                           | 5→6 lines       | ~25       |
+| 16:31 | Edited components/layouts/top-app-bar.tsx                                               | 5→6 lines       | ~26       |
+| 16:32 | Edited components/layouts/top-app-bar.tsx                                               | 8→13 lines      | ~164      |
+| 16:32 | Session end: 5 writes across 3 files (top-app-bar.tsx, layout.tsx, dashboard-shell.tsx) | 18 reads        | ~9726 tok |
+
+### LMS Review — 10 Issues Fixed
+
+| Time | Action                     | Detail                                                                  |
+| ---- | -------------------------- | ----------------------------------------------------------------------- |
+| —    | #1 Auto-complete course    | markLessonComplete accepts totalLessons, sets completedAt when all done |
+| —    | #2 Fix N+1 courses listing | Promise.all parallel batch for modules + progress                       |
+| —    | #3 Scope lesson by course  | getLessonBySlugForCourse() validates module belongs to course           |
+| —    | #4 Rate limiting           | enroll 10/60s, progress 30/60s via rateLimit()                          |
+| —    | #5 Validate lesson→course  | getLessonBySlugForCourse wired into lesson page                         |
+| —    | #6 Continue Learning nav   | EnrollButton navigates to first incomplete lesson slug                  |
+| —    | #7 Error feedback          | Error state + message on EnrollButton and MarkCompleteButton            |
+| —    | #8 Loading skeleton        | Created learn/courses/loading.tsx with card grid skeleton               |
+| —    | #9 VideoPlayer fallback    | Shows message + link instead of null for unrecognized URLs              |
+| —    | #10 Course description     | RichText rendering of course.description on detail page                 |

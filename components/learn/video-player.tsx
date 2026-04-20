@@ -13,7 +13,19 @@ export function VideoPlayer({ url, title }: VideoPlayerProps) {
   const embedUrl = getEmbedUrl(url)
 
   if (!embedUrl) {
-    return null
+    return (
+      <div className="bg-surface-container-low flex flex-col items-center justify-center gap-3 rounded-xl p-8 text-center">
+        <p className="text-on-surface-variant text-sm">Unable to embed this video.</p>
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:text-primary/80 text-sm font-medium underline"
+        >
+          Open video in new tab
+        </a>
+      </div>
+    )
   }
 
   return (

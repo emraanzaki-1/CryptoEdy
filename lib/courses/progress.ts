@@ -1,6 +1,6 @@
 import { getDb } from '@/lib/db'
 import { courseEnrollments, lessonProgress } from '@/lib/db/schema'
-import { eq, and } from 'drizzle-orm'
+import { eq, and, count } from 'drizzle-orm'
 
 /**
  * Get enrollment record for a user in a specific course.
@@ -47,8 +47,14 @@ export async function getCompletedLessonIds(
 
 /**
  * Mark a lesson as completed. Idempotent.
+ * Automatically sets course completedAt when all lessons are done.
  */
-export async function markLessonComplete(userId: string, lessonId: number, courseId: number) {
+export async function markLessonComplete(
+  userId: string,
+  lessonId: number,
+  courseId: number,
+  totalLessons: number
+) {
   const db = getDb()
 
   // Check if already completed
@@ -64,6 +70,19 @@ export async function markLessonComplete(userId: string, lessonId: number, cours
     .insert(lessonProgress)
     .values({ userId, lessonId, courseId })
     .returning()
+
+  // Check if all lessons in the course are now completed
+  const [{ completedCount }] = await db
+    .select({ completedCount: count() })
+    .from(lessonProgress)
+    .where(and(eq(lessonProgress.userId, userId), eq(lessonProgress.courseId, courseId)))
+
+  if (completedCount >= totalLessons) {
+    await db
+      .update(courseEnrollments)
+      .set({ completedAt: new Date() })
+      .where(and(eq(courseEnrollments.userId, userId), eq(courseEnrollments.courseId, courseId)))
+  }
 
   return record
 }

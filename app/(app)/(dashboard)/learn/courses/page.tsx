@@ -13,13 +13,21 @@ export default async function CoursesListingPage() {
   const enrollmentMap = new Map<number, { enrolled: boolean; progressPercent: number }>()
   if (session?.user?.id) {
     const enrollments = await getUserEnrollments(session.user.id)
-    for (const enrollment of enrollments) {
-      const modules = await getCourseModulesWithLessons(enrollment.courseId)
-      const totalLessons = modules.reduce((sum, m) => sum + m.lessons.length, 0)
-      const completedIds = await getCompletedLessonIds(session.user.id, enrollment.courseId)
-      const progressPercent =
-        totalLessons > 0 ? Math.round((completedIds.size / totalLessons) * 100) : 0
-      enrollmentMap.set(enrollment.courseId, { enrolled: true, progressPercent })
+    if (enrollments.length > 0) {
+      const enrolledCourseIds = enrollments.map((e) => e.courseId)
+
+      // Batch: fetch modules + lessons for all enrolled courses in parallel
+      const [allModules, allCompleted] = await Promise.all([
+        Promise.all(enrolledCourseIds.map((id) => getCourseModulesWithLessons(id))),
+        Promise.all(enrolledCourseIds.map((id) => getCompletedLessonIds(session.user!.id!, id))),
+      ])
+
+      for (let i = 0; i < enrollments.length; i++) {
+        const totalLessons = allModules[i].reduce((sum, m) => sum + m.lessons.length, 0)
+        const progressPercent =
+          totalLessons > 0 ? Math.round((allCompleted[i].size / totalLessons) * 100) : 0
+        enrollmentMap.set(enrollments[i].courseId, { enrolled: true, progressPercent })
+      }
     }
   }
 

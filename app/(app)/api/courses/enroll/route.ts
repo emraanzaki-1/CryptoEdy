@@ -6,6 +6,7 @@ import { enrollInCourse, getEnrollment } from '@/lib/courses/progress'
 import { getDb } from '@/lib/db'
 import { users } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
+import { rateLimit } from '@/lib/auth/rate-limit'
 
 export async function GET(req: NextRequest) {
   const session = await auth()
@@ -28,6 +29,9 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  const blocked = rateLimit(req, { maxRequests: 10, windowSec: 60 })
+  if (blocked) return blocked
+
   const session = await auth()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

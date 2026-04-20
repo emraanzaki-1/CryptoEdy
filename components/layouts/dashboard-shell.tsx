@@ -12,6 +12,7 @@ import type { NavCategory } from '@/lib/categories/getCategories'
 interface DashboardShellProps {
   user: {
     name: string
+    email?: string
     image?: string
     isPro: boolean
   }

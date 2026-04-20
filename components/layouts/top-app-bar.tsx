@@ -23,6 +23,7 @@ import type { NavCategory } from '@/lib/categories/getCategories'
 interface TopAppBarProps {
   user?: {
     name?: string
+    email?: string
     image?: string
     isPro?: boolean
   }
@@ -242,12 +243,15 @@ function UserDropdown({
       className="border-outline-variant/15 bg-surface-container-lowest absolute top-full right-0 mt-2 w-64 overflow-hidden rounded-2xl border shadow-lg"
     >
       <div className="border-outline-variant/15 border-b px-5 py-4">
-        <p className="text-on-surface text-sm font-bold">{user?.name ?? 'User'}</p>
-        {user?.isPro && (
-          <span className="bg-tertiary-container/90 text-on-tertiary-container text-overline mt-1 inline-block rounded-full px-2 py-0.5 font-bold uppercase">
-            PRO
-          </span>
-        )}
+        <div className="flex items-center gap-2">
+          <p className="text-on-surface text-sm font-bold">{user?.name ?? 'User'}</p>
+          {user?.isPro && (
+            <span className="bg-tertiary-container/90 text-on-tertiary-container text-overline rounded-full px-2 py-0.5 font-bold uppercase">
+              PRO
+            </span>
+          )}
+        </div>
+        {user?.email && <p className="text-on-surface-variant mt-0.5 text-xs">{user.email}</p>}
       </div>
       <div className="py-2">
         {menuItems.map((item) => (
@@ -327,13 +331,6 @@ export function TopAppBar({ user: serverUser, navCategories = [], onSearchClick 
           </button>
           <NotificationDropdown open={notifOpen} onClose={() => setNotifOpen(false)} />
         </div>
-
-        {/* PRO badge */}
-        {user?.isPro && (
-          <button className="bg-surface-container text-primary hover:bg-surface-container-high flex h-10 items-center justify-center overflow-hidden rounded-full px-4 text-sm font-bold transition-colors">
-            PRO
-          </button>
-        )}
 
         {/* User avatar */}
         <div className="relative">

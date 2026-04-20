@@ -10,6 +10,9 @@ import { Badge } from '@/components/ui/badge'
 import { auth } from '@/lib/auth'
 import { Clock, BarChart3 } from 'lucide-react'
 import Link from 'next/link'
+import { RichText } from '@payloadcms/richtext-lexical/react'
+import { jsxConverters } from '@/lib/lexical/jsxConverters'
+import type { SerializedEditorState } from 'lexical'
 
 const difficultyColors = {
   beginner: 'bg-green-500/15 text-green-700',
@@ -87,6 +90,15 @@ export default async function CourseDetailPage({
 
           <p className="text-on-surface-variant text-base leading-relaxed">{course.excerpt}</p>
 
+          {course.description && (
+            <div className="prose prose-sm text-on-surface-variant max-w-none">
+              <RichText
+                data={course.description as SerializedEditorState}
+                converters={jsxConverters}
+              />
+            </div>
+          )}
+
           <div className="text-on-surface-variant flex flex-wrap items-center gap-4 text-sm">
             {course.estimatedDuration && (
               <span className="flex items-center gap-1.5">
@@ -111,6 +123,11 @@ export default async function CourseDetailPage({
               courseSlug={courseSlug}
               isProOnly={course.isProOnly ?? false}
               userRole={session?.user?.role ?? 'free'}
+              firstIncompleteLessonSlug={
+                enrollment
+                  ? modules.flatMap((m) => m.lessons).find((l) => !completedIds.has(l.id))?.slug
+                  : undefined
+              }
             />
           </div>
         </div>

@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T09:37:03.541Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T11:02:02.497Z
 > Files: 295 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../../.claude/plans/
@@ -201,7 +201,7 @@
 ## app/(app)/(dashboard)/
 
 - `error.tsx` — DashboardError (~148 tok)
-- `layout.tsx` — DashboardLayout (~356 tok)
+- `layout.tsx` — DashboardLayout (~370 tok)
 - `not-found.tsx` — DashboardNotFound (~104 tok)
 
 ## app/(app)/(dashboard)/articles/[slug]/
@@ -229,10 +229,11 @@
 ## app/(app)/(dashboard)/learn/courses/
 
 - `page.tsx` — CoursesListingPage (~962 tok)
+- `loading.tsx` — CoursesLoading — skeleton grid for courses listing (~300 tok)
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/
 
-- `page.tsx` — CourseDetailPage — Course overview, modules accordion, enroll button (~800 tok)
+- `page.tsx` — CourseDetailPage — Course overview, modules accordion, enroll button, richText description (~1000 tok)
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/[lessonSlug]/
 
@@ -352,16 +353,16 @@
 
 ## collections/
 
-- `Authors.ts` — Payload's CMS editor accounts — separate from NextAuth app users. (~578 tok)
+- `Authors.ts` — Payload's CMS editor accounts — separate from NextAuth app users. (~584 tok)
 - `Bookmarks.ts` — Exports Bookmarks (~373 tok)
-- `Categories.ts` — Exports Categories (~584 tok)
-- `Courses.ts` — Payload CMS: Trading courses with title, slug, difficulty, duration, coverImage (~600 tok)
-- `FAQs.ts` — FAQ Groups collection: title, slug, items[] (question/answer). Fetch by slug per page. (~371 tok)
-- `Lessons.ts` — Payload CMS: Course lessons with content (richText), videoUrl, sequential ordering (~550 tok)
-- `Media.ts` — Exports Media (~285 tok)
-- `Modules.ts` — Payload CMS: Course modules grouping lessons, ordered within a course (~400 tok)
-- `Posts.ts` — Exports Posts (~2561 tok)
-- `Tags.ts` — Exports Tags (~264 tok)
+- `Categories.ts` — Exports Categories (~618 tok)
+- `Courses.ts` — Exports Courses (~988 tok)
+- `FAQs.ts` — Exports FAQs (~379 tok)
+- `Lessons.ts` — Exports Lessons (~901 tok)
+- `Media.ts` — Exports Media (~292 tok)
+- `Modules.ts` — Exports Modules (~674 tok)
+- `Posts.ts` — Exports Posts (~2596 tok)
+- `Tags.ts` — Exports Tags (~270 tok)
 
 ## collections/blocks/
 
@@ -443,23 +444,23 @@
 ## components/layouts/
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~570 tok)
-- `dashboard-shell.tsx` — DashboardShell — uses useState (~638 tok)
+- `dashboard-shell.tsx` — DashboardShell (~644 tok)
 - `footer.tsx` — Footer (~947 tok)
 - `guest-nav.tsx` — NAV_LINKS — uses useState (~1037 tok)
 - `settings-nav.tsx` — settingsGroups (~572 tok)
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2179 tok)
-- `top-app-bar.tsx` — useClickOutside — uses useEffect, useState (~3426 tok)
+- `top-app-bar.tsx` — useClickOutside (~3395 tok)
 
 ## components/learn/
 
 - `course-card.tsx` — CourseCard — grid card with difficulty badge, enrollment progress (~500 tok)
 - `crypto-school-client.tsx` — CryptoSchoolClient (~760 tok)
-- `enroll-button.tsx` — EnrollButton — client component, enrolls user in course via API (~400 tok)
+- `enroll-button.tsx` — EnrollButton — enrolls user, "Continue Learning" navigates to first incomplete lesson, error feedback (~600 tok)
 - `lesson-nav.tsx` — LessonNav — prev/next lesson navigation links (~300 tok)
-- `mark-complete-button.tsx` — MarkCompleteButton — marks lesson complete, navigates to next (~400 tok)
+- `mark-complete-button.tsx` — MarkCompleteButton — marks lesson complete, navigates to next, error feedback (~500 tok)
 - `module-accordion.tsx` — ModuleAccordion — expandable module with lesson list and status icons (~600 tok)
 - `progress-bar.tsx` — ProgressBar — simple progress bar with completed/total count (~200 tok)
-- `video-player.tsx` — VideoPlayer — Vimeo/Bunny video embed with auto-detection (~300 tok)
+- `video-player.tsx` — VideoPlayer — Vimeo/Bunny video embed with auto-detection, fallback link for unrecognized URLs (~400 tok)
 
 ## components/providers/
 
@@ -574,7 +575,7 @@
 ## lib/courses/
 
 - `getCourses.ts` — getCourses(), getCourseBySlug() — fetch published courses from Payload (~300 tok)
-- `getLesson.ts` — getLessonBySlug() — fetch single published lesson with depth:2 (~200 tok)
+- `getLesson.ts` — getLessonBySlug() + getLessonBySlugForCourse() — fetch lesson, optionally scoped to course (~500 tok)
 - `getModules.ts` — getCourseModulesWithLessons() — modules with nested lessons sorted by order (~400 tok)
 - `lessonAccess.ts` — isLessonUnlocked(), getNextLesson(), getPreviousLesson() — sequential lesson gating (~350 tok)
 - `progress.ts` — getEnrollment(), enrollInCourse(), getCompletedLessonIds(), markLessonComplete(), getUserEnrollments() — Drizzle-based progress tracking (~500 tok)

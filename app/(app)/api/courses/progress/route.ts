@@ -3,6 +3,7 @@ import { auth } from '@/lib/auth'
 import { getCompletedLessonIds, markLessonComplete, getEnrollment } from '@/lib/courses/progress'
 import { getCourseModulesWithLessons } from '@/lib/courses/getModules'
 import { isLessonUnlocked } from '@/lib/courses/lessonAccess'
+import { rateLimit } from '@/lib/auth/rate-limit'
 
 export async function GET(req: NextRequest) {
   const session = await auth()
@@ -25,6 +26,9 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  const blocked = rateLimit(req, { maxRequests: 30, windowSec: 60 })
+  if (blocked) return blocked
+
   const session = await auth()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -53,7 +57,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Complete the previous lesson first' }, { status: 403 })
     }
 
-    const record = await markLessonComplete(session.user.id, lessonId, courseId)
+    const totalLessons = modules.reduce((sum, m) => sum + m.lessons.length, 0)
+    const record = await markLessonComplete(session.user.id, lessonId, courseId, totalLessons)
     return NextResponse.json({ completed: true, record })
   } catch (err) {
     console.error('[courses/progress] POST error:', err)

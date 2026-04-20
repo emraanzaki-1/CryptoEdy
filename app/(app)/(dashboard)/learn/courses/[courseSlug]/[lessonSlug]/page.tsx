@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { SerializedEditorState } from 'lexical'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import { getLessonBySlug } from '@/lib/courses/getLesson'
+import { getLessonBySlugForCourse } from '@/lib/courses/getLesson'
 import { getCourseBySlug } from '@/lib/courses/getCourses'
 import { getCourseModulesWithLessons } from '@/lib/courses/getModules'
 import { getEnrollment, getCompletedLessonIds } from '@/lib/courses/progress'
@@ -25,10 +25,10 @@ export default async function LessonPage({
   const course = await getCourseBySlug(courseSlug)
   if (!course) notFound()
 
-  const lesson = await getLessonBySlug(lessonSlug)
+  const courseId = course.id as number
+  const lesson = await getLessonBySlugForCourse(lessonSlug, courseId)
   if (!lesson) notFound()
 
-  const courseId = course.id as number
   const lessonId = lesson.id as number
   const modules = await getCourseModulesWithLessons(courseId)
 
