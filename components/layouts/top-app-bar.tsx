@@ -18,9 +18,11 @@ import {
 import { Logo } from '@/components/common/logo'
 import { SearchBar } from '@/components/common/search-bar'
 import { cn } from '@/lib/utils'
+import { LAYOUT } from '@/lib/config/layout'
 import type { NavCategory } from '@/lib/categories/getCategories'
 
-interface TopAppBarProps {
+/** Locked props interface — changes here affect DashboardShell and all consumers. */
+export interface TopAppBarProps {
   user?: {
     name?: string
     email?: string
@@ -293,7 +295,9 @@ export function TopAppBar({ user: serverUser, navCategories = [], onSearchClick 
   }
 
   return (
-    <header className="bg-surface sticky top-0 z-50 flex items-center gap-6 px-6 py-3 whitespace-nowrap lg:px-10">
+    <header
+      className={`bg-surface sticky top-0 z-50 flex items-center gap-6 ${LAYOUT.appBar.px} ${LAYOUT.appBar.py} whitespace-nowrap`}
+    >
       {/* Logo */}
       <Link href="/feed" className="shrink-0">
         <Logo />

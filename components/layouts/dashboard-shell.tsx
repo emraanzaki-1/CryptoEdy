@@ -7,6 +7,7 @@ import { TopAppBar } from '@/components/layouts/top-app-bar'
 import { Sidebar } from '@/components/layouts/sidebar'
 import { SearchModal } from '@/components/common/search-modal'
 import { useSearchModal } from '@/lib/hooks/useSearchModal'
+import { LAYOUT } from '@/lib/config/layout'
 
 import type { NavCategory } from '@/lib/categories/getCategories'
 
@@ -31,9 +32,17 @@ export function DashboardShell({ user, navCategories, children }: DashboardShell
         <TopAppBar user={user} navCategories={navCategories} onSearchClick={openSearch} />
         <div className="relative flex min-h-0 flex-1">
           <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed((c) => !c)} />
-          <main className="bg-surface-container-lowest flex min-h-0 flex-1 flex-col overflow-y-auto rounded-tl-3xl">
-            <div className="flex-1 px-6 pt-6 pb-6 lg:px-10 lg:pt-8 lg:pb-10">{children}</div>
-            <footer className="from-primary to-primary-container text-on-primary-container bg-gradient-to-r px-6 py-4 text-center text-xs lg:px-10">
+          <main
+            className={`bg-surface-container-lowest flex min-h-0 flex-1 flex-col overflow-y-auto ${LAYOUT.mainRadius}`}
+          >
+            <div
+              className={`flex-1 ${LAYOUT.content.px} ${LAYOUT.content.pt} ${LAYOUT.content.pb}`}
+            >
+              {children}
+            </div>
+            <footer
+              className={`from-primary to-primary-container text-on-primary-container bg-gradient-to-r ${LAYOUT.content.px} py-4 text-center text-xs`}
+            >
               &copy; {new Date().getFullYear()} CryptoEdy Research &middot;{' '}
               <a href="#" className="text-on-primary-container hover:text-on-primary">
                 Help

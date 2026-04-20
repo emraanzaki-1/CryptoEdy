@@ -75,7 +75,7 @@ export function AvatarUpload({
     setUploading(true)
     try {
       const blob = await getCroppedBlob(cropSrc, croppedArea)
-      const { uploadAvatar } = await import('@/lib/profile/actions')
+      const { uploadAvatar } = await import('@/lib/profile/avatar')
       const formData = new FormData()
       formData.append('avatar', blob, 'avatar.jpg')
       const result = await uploadAvatar(formData)
@@ -95,7 +95,7 @@ export function AvatarUpload({
   const handleRemove = async () => {
     setRemoving(true)
     try {
-      const { removeAvatar } = await import('@/lib/profile/actions')
+      const { removeAvatar } = await import('@/lib/profile/avatar')
       const result = await removeAvatar()
       if (result.ok) {
         onRemoved?.()

@@ -2,15 +2,8 @@ import Link from 'next/link'
 import { Clock, Lock } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { BookmarkButton } from '@/components/feed/bookmark-button'
+import { CategoryPill } from '@/components/feed/category-pill'
 import type { ArticleCardProps } from './article-card'
-
-function CategoryPill({ category }: { category: string }) {
-  return (
-    <span className="bg-surface-container text-on-surface-variant text-label inline-flex items-center rounded-full px-2.5 py-0.5 font-semibold uppercase">
-      {category}
-    </span>
-  )
-}
 
 export function ArticleCardList({
   title,
