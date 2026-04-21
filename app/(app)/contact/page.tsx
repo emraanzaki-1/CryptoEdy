@@ -59,10 +59,10 @@ export default function ContactPage() {
           <span className="text-primary text-overline mb-4 block font-bold tracking-[0.05em] uppercase">
             Contact
           </span>
-          <h1 className="text-headline-lg text-on-surface mb-6 leading-[0.95] font-black">
+          <h1 className="text-headline-lg text-on-surface mb-6 font-black">
             Get in Touch with the <span className="text-primary">CryptoEdy</span> Team.
           </h1>
-          <p className="text-on-surface-variant max-w-2xl text-lg leading-relaxed">
+          <p className="text-on-surface-variant text-subtitle max-w-2xl">
             For research inquiries, editorial feedback, or partnership opportunities, our team is
             standing by to provide the clarity you require.
           </p>

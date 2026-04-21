@@ -240,9 +240,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search research, assets, or actions..."
-            className="text-on-surface placeholder:text-on-surface-variant/50 w-full border-none bg-transparent text-lg font-medium focus:ring-0 focus:outline-none"
+            className="text-on-surface placeholder:text-on-surface-variant/50 text-subtitle w-full border-none bg-transparent font-medium focus:ring-0 focus:outline-none"
           />
-          <div className="bg-surface-container-low text-on-surface-variant/60 text-overline flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 font-bold tracking-[-0.04em]">
+          <div className="bg-surface-container-low text-on-surface-variant/60 text-overline flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 font-bold">
             <span>⌘</span>
             <span>/</span>
           </div>
@@ -270,14 +270,14 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 </div>
               ) : error ? (
                 <div className="px-8 py-8 text-center">
-                  <p className="text-on-surface-variant text-sm">{error}</p>
+                  <p className="text-on-surface-variant text-body-sm">{error}</p>
                 </div>
               ) : results.length === 0 ? (
                 <div className="px-8 py-8 text-center">
-                  <p className="text-on-surface-variant text-sm">
+                  <p className="text-on-surface-variant text-body-sm">
                     No results found for &ldquo;{query.trim()}&rdquo;
                   </p>
-                  <p className="text-on-surface-variant/60 mt-1 text-xs">
+                  <p className="text-on-surface-variant/60 text-label mt-1">
                     Try different keywords or check for typos
                   </p>
                 </div>
@@ -288,7 +288,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     const GroupIcon = config.icon
                     return (
                       <section key={group.type} className="mb-4 px-3 last:mb-0">
-                        <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black tracking-[0.05em] uppercase">
+                        <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black uppercase">
                           {config.label}
                         </h4>
                         <div className="space-y-0.5">
@@ -318,7 +318,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                 <div className="min-w-0 flex-1">
                                   <div className="mb-0.5 flex items-center gap-2">
                                     <span
-                                      className="text-on-surface truncate text-sm font-bold"
+                                      className="text-on-surface text-body-sm truncate font-bold"
                                       dangerouslySetInnerHTML={{ __html: result.highlightedTitle }}
                                     />
                                     {isNew && (
@@ -344,7 +344,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                   </div>
                                   {result.highlightedExcerpt && (
                                     <p
-                                      className="text-on-surface-variant/70 truncate text-xs"
+                                      className="text-on-surface-variant/70 text-label truncate"
                                       dangerouslySetInnerHTML={{
                                         __html: result.highlightedExcerpt,
                                       }}
@@ -368,7 +368,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               {/* Recent Searches */}
               {recentSearches.length > 0 && (
                 <section className="mb-6 px-3">
-                  <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black tracking-[0.05em] uppercase">
+                  <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black uppercase">
                     Recent Searches
                   </h4>
                   <div className="space-y-0.5">
@@ -386,7 +386,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           }`}
                         >
                           <Clock className="text-on-surface-variant/40 group-hover:text-primary size-5 shrink-0 transition-colors" />
-                          <span className="text-on-surface-variant group-hover:text-on-surface min-w-0 flex-1 truncate text-sm font-medium">
+                          <span className="text-on-surface-variant group-hover:text-on-surface text-body-sm min-w-0 flex-1 truncate font-medium">
                             {search}
                           </span>
                           <span
@@ -411,7 +411,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
               {/* Quick Actions */}
               <section className="px-3">
-                <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black tracking-[0.05em] uppercase">
+                <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black uppercase">
                   Quick Actions
                 </h4>
                 <div className="grid grid-cols-2 gap-2 p-1">
@@ -430,7 +430,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                         }`}
                       >
                         <Icon className="text-primary size-5 transition-transform group-hover:scale-110" />
-                        <span className="text-on-surface-variant group-hover:text-on-surface text-xs font-bold">
+                        <span className="text-on-surface-variant group-hover:text-on-surface text-label font-bold">
                           {action.label}
                         </span>
                       </button>

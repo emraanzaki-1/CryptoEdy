@@ -90,7 +90,7 @@ export function ArticleCard({
           {/* Title first */}
           <h3
             className={cn(
-              'text-on-surface group-hover:text-primary leading-snug font-bold transition-colors',
+              'text-on-surface group-hover:text-primary font-bold transition-colors',
               hero ? 'text-headline' : 'text-subtitle'
             )}
           >
@@ -99,7 +99,7 @@ export function ArticleCard({
 
           <p
             className={cn(
-              'text-on-surface-variant leading-relaxed',
+              'text-on-surface-variant',
               hero ? 'text-body-lg line-clamp-3' : 'text-body-sm line-clamp-2'
             )}
           >
@@ -110,9 +110,9 @@ export function ArticleCard({
           <div className="mt-auto flex items-center justify-between gap-2 pt-2">
             <div className="flex items-center gap-2">
               <CategoryPill category={category} />
-              <span className="text-outline text-xs">{date}</span>
+              <span className="text-outline text-label">{date}</span>
             </div>
-            <span className="text-outline flex shrink-0 items-center gap-1 text-xs">
+            <span className="text-outline text-label flex shrink-0 items-center gap-1">
               <Clock className="size-3.5" />
               {readTime}
             </span>
