@@ -47,7 +47,7 @@ function Card({
       data-slot="card"
       data-size={size}
       className={cn(
-        'group/card text-card-foreground flex flex-col overflow-hidden text-sm',
+        'group/card text-card-foreground text-body-sm flex flex-col overflow-hidden',
         cardVariants[variant],
         radiusMap[resolvedRadius],
         shadow && shadowMap[shadow],
@@ -76,7 +76,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot="card-title"
       className={cn(
-        'font-heading text-base leading-snug font-medium group-data-[size=sm]/card:text-sm',
+        'font-heading text-body-lg group-data-[size=sm]/card:text-body-sm leading-snug font-medium',
         className
       )}
       {...props}
@@ -88,7 +88,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot="card-description"
-      className={cn('text-muted-foreground text-sm', className)}
+      className={cn('text-muted-foreground text-body-sm', className)}
       {...props}
     />
   )
