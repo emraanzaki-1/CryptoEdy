@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T22:06:43.092Z
-> Files: 303 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T22:19:31.195Z
+> Files: 321 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -20,15 +20,15 @@
 - `package.json` — Node.js package manifest (~692 tok)
 - `payload.config.ts` — Declares filename (~1354 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
-- `proxy.ts` — Routes that require an active Pro (or higher) subscription (~1022 tok)
+- `proxy.ts` — Routes that require an active Pro (or higher) subscription (~1128 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~223124 tok)
+- `tsconfig.tsbuildinfo` (~215766 tok)
 
 ## .claude/
 
 - `settings.json` (~442 tok)
-- `settings.local.json` — Declares p (~1242 tok)
+- `settings.local.json` — Declares p (~1271 tok)
 
 ## .claude/rules/
 
@@ -37,7 +37,7 @@
 ## .code-review-graph/
 
 - `.gitignore` — Git ignore rules (~38 tok)
-- `graph.db-shm` (~8739 tok)
+- `graph.db-shm` (~8738 tok)
 - `graph.db-wal` (~0 tok)
 
 ## .github/workflows/
@@ -92,7 +92,7 @@
 
 ## app/(app)/(auth)/login/
 
-- `page.tsx` — LoginForm — renders form (~1315 tok)
+- `page.tsx` — LoginForm — renders form — uses useRouter, useSearchParams, useState (~1315 tok)
 
 ## app/(app)/(auth)/register/
 
@@ -108,37 +108,37 @@
 
 ## app/(app)/(browsable)/
 
-- `layout.tsx` — BrowsableLayout — conditional GuestShell or DashboardShell (~400 tok)
+- `layout.tsx` — BrowsableLayout (~466 tok)
 
 ## app/(app)/(browsable)/analysis/
 
-- `page.tsx` — AnalysisPage — hub for analysis categories, dynamic metadata (~200 tok)
+- `page.tsx` — generateMetadata (~82 tok)
 
 ## app/(app)/(browsable)/analysis/[slug]/
 
-- `page.tsx` — AnalysisChildPage — single analysis child category, dynamic metadata (~300 tok)
+- `page.tsx` — generateMetadata (~151 tok)
 
 ## app/(app)/(browsable)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — ROLE_HIERARCHY — guest gating + pro gating (~2800 tok)
+- `page.tsx` — generateMetadata (~3150 tok)
 
 ## app/(app)/(browsable)/feed/[[...slug]]/
 
-- `loading.tsx` — FeedLoading (~282 tok)
-- `page.tsx` — FeedPage — passes isAuthenticated (~1280 tok)
+- `loading.tsx` — FeedLoading (~324 tok)
+- `page.tsx` — FeedPage (~1340 tok)
 
 ## app/(app)/(browsable)/research/
 
-- `page.tsx` — ResearchPage — hub for research categories, dynamic metadata (~200 tok)
+- `page.tsx` — generateMetadata (~82 tok)
 
 ## app/(app)/(browsable)/research/[slug]/
 
-- `page.tsx` — ResearchChildPage — single research child category, dynamic metadata (~300 tok)
+- `page.tsx` — generateMetadata (~151 tok)
 
 ## app/(app)/(browsable)/tag/[slug]/
 
-- `page.tsx` — TagPage — passes isAuthenticated (~650 tok)
+- `page.tsx` — TagPage (~630 tok)
 
 ## app/(app)/(dashboard)/
 
@@ -147,6 +147,61 @@
 - `not-found.tsx` — DashboardNotFound (~104 tok)
 
 ## app/(app)/(dashboard)/community/
+
+- `page.tsx` — HIGHLIGHTS (~714 tok)
+
+## app/(app)/(dashboard)/learn/
+
+- `page.tsx` — LearnPage (~600 tok)
+
+## app/(app)/(dashboard)/learn/[slug]/
+
+- `page.tsx` — CryptoSchoolCategoryPage (~653 tok)
+
+## app/(app)/(dashboard)/learn/courses/
+
+- `loading.tsx` — CoursesLoading (~256 tok)
+- `page.tsx` — CoursesListingPage (~1027 tok)
+
+## app/(app)/(dashboard)/learn/courses/[courseSlug]/
+
+- `page.tsx` — CourseDetailPage (~1568 tok)
+
+## app/(app)/(dashboard)/learn/courses/[courseSlug]/[lessonSlug]/
+
+- `page.tsx` — LessonPage (~2297 tok)
+
+## app/(app)/(dashboard)/saved/
+
+- `page.tsx` — SavedPage (~724 tok)
+
+## app/(app)/(dashboard)/settings/
+
+- `layout.tsx` — SettingsLayout (~100 tok)
+- `loading.tsx` — SettingsLoading (~327 tok)
+- `page.tsx` — SettingsPage (~34 tok)
+
+## app/(app)/(dashboard)/settings/appearance/
+
+- `page.tsx` — THEMES (~1782 tok)
+
+## app/(app)/(dashboard)/settings/billing/
+
+- `page.tsx` — billingHistory (~900 tok)
+
+## app/(app)/(dashboard)/settings/notifications/
+
+- `page.tsx` — CATEGORIES — renders chart — uses useState, useEffect, useCallback (~2824 tok)
+
+## app/(app)/(dashboard)/settings/plans/
+
+- `page.tsx` — benefits (~1208 tok)
+
+## app/(app)/(dashboard)/settings/profile/
+
+- `page.tsx` — ProfileSettingsPage — renders form — uses useState, useCallback, useEffect (~2361 tok)
+
+## app/(app)/(dashboard)/tools/
 
 - `page.tsx` — TOOLS — renders chart (~1022 tok)
 
@@ -218,6 +273,10 @@
 
 - `route.ts` — PATCH — marks all unread notifications as read. Optionally scoped by ?type= (~411 tok)
 
+## app/(app)/api/notifications/stream/
+
+- `route.ts` — SSE endpoint — keeps a long-lived connection open and pushes (~495 tok)
+
 ## app/(app)/api/notifications/unread-count/
 
 - `route.ts` — GET — returns total unread count and per-type breakdown. (~356 tok)
@@ -248,7 +307,7 @@
 
 ## app/(app)/terms/
 
-- `page.tsx` — metadata (~3364 tok)
+- `page.tsx` — metadata — renders chart (~3364 tok)
 
 ## app/(payload)/
 
@@ -271,7 +330,7 @@
 ## collections/
 
 - `Authors.ts` — Payload's CMS editor accounts — separate from NextAuth app users. (~584 tok)
-- `Categories.ts` — Exports Categories (~618 tok)
+- `Categories.ts` — Exports Categories (~843 tok)
 - `Courses.ts` — Exports Courses (~988 tok)
 - `FAQs.ts` — Exports FAQs (~379 tok)
 - `Lessons.ts` — Exports Lessons (~901 tok)
@@ -319,7 +378,7 @@
 
 - `article-faq.tsx` — ArticleFAQ (~414 tok)
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
-- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1592 tok)
+- `paywall-gate.tsx` — "guest" gates all content for unauthenticated users; "pro" gates Pro-only content for free users (~3183 tok)
 - `recommended-articles.tsx` — AUTO_SCROLL_INTERVAL — uses useState, useCallback, useEffect (~1165 tok)
 - `share-button.tsx` — ShareButton — uses useState (~350 tok)
 
@@ -348,22 +407,22 @@
 ## components/feed/
 
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~900 tok)
-- `article-card.tsx` — ArticleCard (~1487 tok)
+- `article-card.tsx` — ArticleCard (~1508 tok)
 - `bookmark-button.tsx` — BookmarkButton — uses useState, useRouter (~686 tok)
-- `category-hub-client.tsx` — CategoryHubClient — shared client for Research/Analysis hubs (~900 tok)
+- `category-hub-client.tsx` — CategoryHubClient (~818 tok)
 - `category-pill.tsx` — CategoryPill (~49 tok)
-- `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~276 tok)
-- `feed-client.tsx` — FeedClient (~1124 tok)
-- `tag-client.tsx` — TagClient (~809 tok)
+- `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~288 tok)
+- `feed-client.tsx` — FeedClient (~1213 tok)
+- `tag-client.tsx` — TagClient (~866 tok)
 - `view-toggle.tsx` — ViewToggle (~433 tok)
 
 ## components/landing/
 
 - `faq-section.tsx` — FALLBACK_FAQS (~804 tok)
-- `hero-section.tsx` — HERO_IMAGE (~688 tok)
+- `hero-section.tsx` — HERO_IMAGE (~689 tok)
 - `onboarding-popup.tsx` — DISMISSED_KEY — renders form — uses useState, useCallback, useEffect (~2471 tok)
 - `pricing-section.tsx` — FEATURES — renders chart (~953 tok)
-- `research-preview-section.tsx` — FALLBACK_ARTICLES (~2120 tok)
+- `research-preview-section.tsx` — FALLBACK_ARTICLES (~2122 tok)
 - `track-record-section.tsx` — TRADES (~954 tok)
 - `value-props-section.tsx` — VALUE_PROPS — renders chart (~713 tok)
 
@@ -371,13 +430,13 @@
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~579 tok)
 - `dashboard-shell.tsx` — DashboardShell — uses useState, useCallback (~816 tok)
-- `footer.tsx` — Footer (~1015 tok)
-- `guest-nav.tsx` — NAV_LINKS — uses useState (~947 tok)
-- `guest-shell.tsx` — Additional className on the <main> element (~484 tok)
+- `footer.tsx` — Footer (~1064 tok)
+- `guest-nav.tsx` — Icon map keyed by routePrefix — add new entries when new hub sections are created (~2590 tok)
+- `guest-shell.tsx` — Additional className on the <main> element (~567 tok)
 - `mobile-nav.tsx` — TOOLS_ITEMS — renders chart (~2042 tok)
 - `settings-nav.tsx` — settingsGroups (~572 tok)
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2215 tok)
-- `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~2878 tok)
+- `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~2873 tok)
 
 ## components/learn/
 
@@ -508,8 +567,8 @@
 
 ## lib/categories/
 
-- `categoryHub.tsx` — Shared server helpers: renderCategoryHub, renderCategoryChild, generateCategoryHubMetadata, generateCategoryChildMetadata (~1400 tok)
-- `getCategories.ts` — Exports NavCategory, getNavCategories (~621 tok)
+- `categoryHub.tsx` — getParentCategory (~1437 tok)
+- `getCategories.ts` — URL prefix for the hub page, e.g. "research" or "analysis". Null for custom-routed parents. (~897 tok)
 
 ## lib/config/
 
@@ -560,7 +619,7 @@
 
 - `useDebounce.ts` — Exports useDebounce (~102 tok)
 - `useInfiniteScroll.ts` — Exports useInfiniteScroll (~776 tok)
-- `useNotifications.ts` — Exports useNotifications (~1556 tok)
+- `useNotifications.ts` — Exports useNotifications (~1813 tok)
 - `useSearch.ts` — Exports useSearch (~604 tok)
 - `useSearchModal.ts` — Exports useSearchModal (~212 tok)
 - `useViewPreference.ts` — Exports useViewPreference (~252 tok)
@@ -573,6 +632,7 @@
 ## lib/notifications/
 
 - `create.ts` — Filter recipients by role. If omitted, all users receive it. (~2227 tok)
+- `emitter.ts` — In-process notification event emitter. (~462 tok)
 - `events.ts` — Notification event handlers. (~1697 tok)
 - `preferences.ts` — All subtype definitions grouped by type — single source of truth. (~1459 tok)
 - `rate-limit.ts` — In-memory email rate limiter for notifications. (~317 tok)

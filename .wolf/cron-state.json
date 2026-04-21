@@ -153,6 +153,30 @@
       "status": "success",
       "timestamp": "2026-04-21T20:30:00.435Z",
       "duration_ms": 78
+    },
+    {
+      "task_id": "memory-consolidation",
+      "status": "success",
+      "timestamp": "2026-04-21T22:12:08.595Z",
+      "duration_ms": 17
+    },
+    {
+      "task_id": "anatomy-rescan",
+      "status": "success",
+      "timestamp": "2026-04-21T22:15:55.807Z",
+      "duration_ms": 195
+    },
+    {
+      "task_id": "memory-consolidation",
+      "status": "success",
+      "timestamp": "2026-04-21T22:16:00.149Z",
+      "duration_ms": 9
+    },
+    {
+      "task_id": "token-audit",
+      "status": "success",
+      "timestamp": "2026-04-21T22:16:03.726Z",
+      "duration_ms": 68
     }
   ],
   "dead_letter_queue": [],

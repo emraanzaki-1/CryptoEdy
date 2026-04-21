@@ -2767,6 +2767,30 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-21T22:06:37.134Z"
+    },
+    {
+      "id": "bug-231",
+      "timestamp": "2026-04-21T22:17:26.187Z",
+      "error_message": "Missing guard clause",
+      "file": "app/(app)/(browsable)/feed/[[...slug]]/page.tsx",
+      "root_cause": "No early return/throw for edge case: !categorySlug",
+      "fix": "Added guard clause: if (!categorySlug)",
+      "tags": ["auto-detected", "guard-clause", "tsx"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T22:17:26.187Z"
+    },
+    {
+      "id": "bug-232",
+      "timestamp": "2026-04-21T22:17:59.726Z",
+      "error_message": "Null/undefined access in ",
+      "file": "components/layouts/guest-nav.tsx",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": ["auto-detected", "null-safety", "tsx"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T22:17:59.726Z"
     }
   ]
 }

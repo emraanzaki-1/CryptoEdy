@@ -60,6 +60,8 @@
 
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->
 
+- [2026-04-22] Do NOT hardcode category slugs ('research', 'analysis', 'education') in application logic. Use Payload fields: `routePrefix` (text) for hub routing, `excludeFromMainFeed` (checkbox) for feed exclusion. Both are set on parent categories in the DB.
+- [2026-04-22] Do NOT use taxonomy.ts as a source of truth for category data — it was deleted. All category data comes from Payload via getNavCategories(). GuestNav and Footer now receive navCategories as props from GuestShell (which is async and fetches them server-side).
 - [2026-04-22] Do NOT add custom columns to Payload tables via manual SQL scripts alone. They MUST also be declared in `afterSchemaInit` in `payload.config.ts`, or Payload will drop them on next schema sync.
 - [2026-04-22] Do NOT create standalone `new Pool()` instances for raw SQL queries. Use `getPool()` from `lib/db/index.ts` to share the singleton connection pool across Drizzle ORM and raw queries.
 
