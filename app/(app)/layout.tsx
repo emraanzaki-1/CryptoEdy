@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { SessionProvider } from '@/components/providers/session-provider'
+import { ThemeProvider } from '@/components/providers/theme-provider'
 import { Toaster } from 'sonner'
 import { BackToTop } from '@/components/common/back-to-top'
 import '../globals.css'
@@ -31,7 +32,9 @@ export default function RootLayout({
         className="bg-surface text-on-surface font-body flex min-h-full flex-col"
         suppressHydrationWarning
       >
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </SessionProvider>
         <BackToTop />
         <Toaster position="bottom-right" richColors />
       </body>
