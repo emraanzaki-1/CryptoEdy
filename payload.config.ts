@@ -97,13 +97,17 @@ export default buildConfig({
     schemaName: 'payload',
     afterSchemaInit: [
       ({ extendTable, schema }) => {
-        if (schema.tables.posts) {
-          extendTable({
-            table: schema.tables.posts,
-            columns: {
-              search_vector: tsvector('search_vector'),
-            },
-          })
+        // Declare search_vector on every collection that supports full-text search.
+        // Without this, Payload's schema sync drops manually-added columns.
+        for (const tableName of ['posts', 'courses', 'lessons'] as const) {
+          if (schema.tables[tableName]) {
+            extendTable({
+              table: schema.tables[tableName],
+              columns: {
+                search_vector: tsvector('search_vector'),
+              },
+            })
+          }
         }
         return schema
       },

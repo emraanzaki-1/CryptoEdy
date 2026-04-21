@@ -10,7 +10,10 @@ export const authConfig: NextAuthConfig = {
   // DrizzleAdapter called lazily — getDb() only runs on first request, not at build time
   get adapter() {
     return DrizzleAdapter(getDb(), {
-      usersTable: users,
+      // Cast required: our schema uses displayName/avatarUrl instead of NextAuth's name/image.
+      // Field mapping is handled in the jwt/session callbacks above.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      usersTable: users as any,
       accountsTable: accounts,
       sessionsTable: sessions,
       verificationTokensTable: verificationTokens,

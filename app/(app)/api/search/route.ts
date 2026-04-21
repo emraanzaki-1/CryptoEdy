@@ -1,17 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Pool } from 'pg'
+import { getPool } from '@/lib/db'
 
 const MAX_LIMIT = 20
 const DEFAULT_LIMIT = 8
 const MAX_QUERY_LENGTH = 100
-
-let _pool: Pool | null = null
-function getPool(): Pool {
-  if (!_pool) {
-    _pool = new Pool({ connectionString: process.env.DATABASE_URL })
-  }
-  return _pool
-}
 
 export type SearchResultType = 'post' | 'course' | 'lesson'
 
@@ -53,7 +45,7 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const pool = getPool()
+    const pool = getPool() // shared singleton — no duplicate connections
 
     // --- Posts ---
     const postsQuery = pool.query<{

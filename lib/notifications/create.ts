@@ -219,7 +219,7 @@ export async function broadcastNotification(input: BroadcastNotificationInput): 
     let subCursor: string | null = null
 
     while (true) {
-      const subQuery = db
+      const subBatch = await db
         .select({ id: marketingSubscribers.id, email: marketingSubscribers.email })
         .from(marketingSubscribers)
         .where(
@@ -229,8 +229,6 @@ export async function broadcastNotification(input: BroadcastNotificationInput): 
         )
         .orderBy(marketingSubscribers.id)
         .limit(BATCH_SIZE)
-
-      const subBatch = await subQuery
 
       if (subBatch.length === 0) break
 
