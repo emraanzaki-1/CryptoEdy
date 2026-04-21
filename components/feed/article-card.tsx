@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Clock, Lock } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { BookmarkButton } from '@/components/feed/bookmark-button'
@@ -46,7 +47,7 @@ export function ArticleCard({
       <article
         className={cn(
           'group border-outline-variant/[0.03] bg-surface-container-lowest relative flex w-full cursor-pointer overflow-hidden rounded-2xl border',
-          isList ? 'flex-row' : 'flex-col',
+          isList ? 'flex-col sm:flex-row' : 'flex-col',
           hero && !isList && 'md:flex-row'
         )}
       >
@@ -55,18 +56,27 @@ export function ArticleCard({
           className={cn(
             'bg-surface-container relative overflow-hidden',
             isList
-              ? 'w-56 flex-shrink-0 sm:w-64'
+              ? 'aspect-[16/10] sm:aspect-auto sm:w-56 sm:shrink-0 md:w-64'
               : hero
                 ? 'aspect-[16/9] md:aspect-auto md:w-1/2 md:flex-shrink-0'
                 : 'aspect-[16/10]'
           )}
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-            role="img"
-            aria-label={imageAlt}
-            style={{ backgroundImage: `url('${imageUrl}')` }}
-          />
+          <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105">
+            <Image
+              src={imageUrl}
+              alt={imageAlt}
+              fill
+              sizes={
+                isList
+                  ? '(max-width: 640px) 224px, 256px'
+                  : hero
+                    ? '(max-width: 768px) 100vw, 50vw'
+                    : '(max-width: 768px) 100vw, 33vw'
+              }
+              className="object-cover object-center"
+            />
+          </div>
 
           {/* Gradient overlay for locked articles */}
           {isPro && !isList && (

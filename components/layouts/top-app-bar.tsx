@@ -14,9 +14,12 @@ import {
   CreditCard,
   ChevronDown,
   Search,
+  Menu,
 } from 'lucide-react'
 import { Logo } from '@/components/common/logo'
 import { SearchBar } from '@/components/common/search-bar'
+import { NotificationDropdown } from '@/components/notifications/notification-dropdown'
+import { useNotifications } from '@/lib/hooks/useNotifications'
 import { cn } from '@/lib/utils'
 import { LAYOUT } from '@/lib/config/layout'
 import type { NavCategory } from '@/lib/categories/getCategories'
@@ -31,6 +34,7 @@ export interface TopAppBarProps {
   }
   navCategories?: NavCategory[]
   onSearchClick?: () => void
+  onMenuClick?: () => void
 }
 
 function useClickOutside(ref: React.RefObject<HTMLElement | null>, onClose: () => void) {
@@ -129,95 +133,6 @@ function CategoryNav({ categories }: { categories: NavCategory[] }) {
   )
 }
 
-/* ─── Notification Dropdown ─────────────────────────────────────────────── */
-
-const mockNotifications = [
-  {
-    id: '1',
-    title: 'New Pro Research Alert',
-    description: 'Bitcoin Dominance Cycle Analysis is now available.',
-    time: '2m ago',
-    unread: true,
-  },
-  {
-    id: '2',
-    title: 'Daily Market Brief',
-    description: 'Your morning market summary is ready.',
-    time: '1h ago',
-    unread: true,
-  },
-  {
-    id: '3',
-    title: 'Price Target Hit',
-    description: 'ETH reached your $4,200 price alert.',
-    time: '3h ago',
-    unread: false,
-  },
-  {
-    id: '4',
-    title: 'New Follower',
-    description: 'CryptoWhale42 started following your portfolio.',
-    time: '5h ago',
-    unread: false,
-  },
-]
-
-function NotificationDropdown({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const ref = useRef<HTMLDivElement>(null)
-  useClickOutside(ref, onClose)
-
-  if (!open) return null
-
-  const unreadCount = mockNotifications.filter((n) => n.unread).length
-
-  return (
-    <div
-      ref={ref}
-      className="border-outline-variant/15 bg-surface-container-lowest absolute top-full right-0 mt-2 w-96 overflow-hidden rounded-2xl border shadow-lg"
-    >
-      <div className="border-outline-variant/15 flex items-center justify-between border-b px-5 py-4">
-        <h3 className="text-on-surface text-body-sm font-bold">Notifications</h3>
-        {unreadCount > 0 && (
-          <span className="bg-primary text-on-primary text-overline rounded-full px-2 py-0.5 font-bold">
-            {unreadCount} new
-          </span>
-        )}
-      </div>
-      <div className="max-h-80 overflow-y-auto">
-        {mockNotifications.map((notification) => (
-          <button
-            key={notification.id}
-            className="hover:bg-surface-container-low flex w-full items-start gap-3 px-5 py-3.5 text-left transition-colors"
-          >
-            {notification.unread && (
-              <span className="bg-primary mt-2 size-2 shrink-0 rounded-full" />
-            )}
-            {!notification.unread && <span className="mt-2 size-2 shrink-0" />}
-            <div className="min-w-0 flex-1">
-              <p className="text-on-surface text-body-sm truncate font-semibold">
-                {notification.title}
-              </p>
-              <p className="text-on-surface-variant text-body-sm mt-0.5 truncate">
-                {notification.description}
-              </p>
-              <p className="text-outline text-micro mt-1">{notification.time}</p>
-            </div>
-          </button>
-        ))}
-      </div>
-      <div className="border-outline-variant/15 border-t px-5 py-3">
-        <Link
-          href="/settings/notifications"
-          className="text-primary hover:text-primary-container text-body-sm block text-center font-semibold transition-colors"
-          onClick={onClose}
-        >
-          View all notifications
-        </Link>
-      </div>
-    </div>
-  )
-}
-
 /* ─── User Dropdown ─────────────────────────────────────────────────────── */
 
 function UserDropdown({
@@ -244,7 +159,7 @@ function UserDropdown({
   return (
     <div
       ref={ref}
-      className="border-outline-variant/15 bg-surface-container-lowest absolute top-full right-0 mt-2 w-64 overflow-hidden rounded-2xl border shadow-lg"
+      className="border-outline-variant/15 bg-surface-container-lowest absolute top-full right-0 mt-2 w-64 max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border shadow-lg"
     >
       <div className="border-outline-variant/15 border-b px-5 py-4">
         <div className="flex items-center gap-2">
@@ -285,10 +200,16 @@ function UserDropdown({
 
 /* ─── Top App Bar ───────────────────────────────────────────────────────── */
 
-export function TopAppBar({ user: serverUser, navCategories = [], onSearchClick }: TopAppBarProps) {
+export function TopAppBar({
+  user: serverUser,
+  navCategories = [],
+  onSearchClick,
+  onMenuClick,
+}: TopAppBarProps) {
   const { avatarUrl } = useAvatar()
   const [notifOpen, setNotifOpen] = useState(false)
   const [userOpen, setUserOpen] = useState(false)
+  const { unreadCount } = useNotifications()
 
   // Use avatar context (updates instantly on upload) over server-passed prop
   const user = {
@@ -300,6 +221,18 @@ export function TopAppBar({ user: serverUser, navCategories = [], onSearchClick 
     <header
       className={`bg-surface sticky top-0 z-50 flex items-center gap-6 ${LAYOUT.appBar.px} ${LAYOUT.appBar.py} whitespace-nowrap`}
     >
+      {/* Mobile menu button */}
+      {onMenuClick && (
+        <button
+          type="button"
+          onClick={onMenuClick}
+          className="bg-surface-container text-on-surface hover:bg-surface-container-high border-outline-variant/15 flex size-10 cursor-pointer items-center justify-center rounded-full border transition-colors lg:hidden"
+          aria-label="Open menu"
+        >
+          <Menu className="size-5" />
+        </button>
+      )}
+
       {/* Logo */}
       <Link href="/feed" className="shrink-0">
         <Logo />
@@ -330,10 +263,14 @@ export function TopAppBar({ user: serverUser, navCategories = [], onSearchClick 
               setNotifOpen((v) => !v)
               setUserOpen(false)
             }}
-            className="bg-surface-container text-on-surface hover:bg-surface-container-high relative flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-full transition-colors"
+            className="bg-surface-container text-on-surface hover:bg-surface-container-high relative flex size-10 cursor-pointer items-center justify-center rounded-full transition-colors"
           >
             <Bell className="size-5" />
-            <span className="bg-error ring-surface-container-lowest absolute top-2 right-2 size-2 rounded-full ring-2" />
+            {unreadCount > 0 && (
+              <span className="bg-error text-on-error absolute -top-0.5 -right-0.5 flex min-w-[18px] items-center justify-center rounded-full px-1 py-0.5 text-[10px] leading-none font-bold">
+                {unreadCount > 99 ? '99+' : unreadCount}
+              </span>
+            )}
           </button>
           <NotificationDropdown open={notifOpen} onClose={() => setNotifOpen(false)} />
         </div>

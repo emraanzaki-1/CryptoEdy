@@ -72,7 +72,7 @@ export function CoursesClient({ courses, enrollmentMap }: CoursesClientProps) {
       {/* Filter Tabs + Course Grid */}
       <section>
         <div className="border-outline-variant/[0.15] mb-8 flex items-center justify-between border-b pb-4">
-          <div className="flex gap-8">
+          <div className="flex gap-4 overflow-x-auto sm:gap-8">
             {DIFFICULTY_TABS.map((tab) => (
               <button
                 key={tab}

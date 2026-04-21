@@ -77,6 +77,42 @@ Migrated ~150 generic Tailwind text utilities → design-system tokens across ~4
 - Files: plans, billing, notifications, profile, appearance, tools, upgrade, community, articles/[slug], courses/[courseSlug], [lessonSlug], tag/[slug]
 - 32 replacements total, all successful
 
+## 2026-04-21 — Responsiveness audit & fixes (13 items)
+
+### Phase 1 — Touch-Safe Dashboard Navigation (HIGH)
+
+- Added mobile sidebar drawer to `dashboard-shell.tsx` — below `lg` (1024px), sidebar is `hidden lg:flex`, a hamburger button appears in `top-app-bar.tsx`, and sidebar content renders in a fixed off-canvas overlay
+- Added `onClick` toggle to collapsed Tools button in `sidebar.tsx` (was hover-only via `onMouseEnter`/`onMouseLeave`) — now tap-accessible on touch devices
+- Added `mobile` prop to `Sidebar` — when true, all links close the drawer on click
+- Swapped `h-screen` → `h-dvh` on `DashboardShell` outer wrapper — fixes iOS Safari address-bar viewport mismatch
+- Added `Menu` icon import and `onMenuClick` prop to `TopAppBar`
+
+### Phase 2 — Modal & Dropdown Viewport Safety (HIGH)
+
+- Fixed onboarding modal — added `max-h-[90dvh]`, `overflow-y-auto`, `overscroll-contain` (was `overflow-hidden` with no height constraint)
+- Fixed notification dropdown — added `max-w-[calc(100vw-2rem)]` to `w-96` container (was overflowing on 320–375px devices)
+- Fixed user dropdown — same `max-w-[calc(100vw-2rem)]` treatment on `w-64`
+- Fixed search modal — `pt-[12vh]` → `pt-[12dvh]`, `max-h-[60vh]` → `max-h-[60dvh]`, added `overscroll-contain`
+
+### Phase 3 — Table Overflow (MEDIUM)
+
+- Wrapped billing table in `<div className="overflow-x-auto">` inside Card
+- Fixed privacy table — `overflow-hidden` → `overflow-x-auto` on wrapper div
+
+### Phase 4 — Image Optimization (MEDIUM)
+
+- Migrated hero-section from CSS `background-image` → `next/image` with `fill`, `priority`, `sizes="100vw"`
+- Migrated article-card from CSS `background-image` → `next/image` with `fill`, responsive `sizes` per layout mode
+- Gradient overlay now in a separate absolutely-positioned div over the image
+
+### Phase 5 — Responsive Polish (LOWER)
+
+- Tokenized footer padding — `px-4 md:px-8 lg:px-40` → `LAYOUT.guest.px` (was inconsistent with guest container)
+- Made `guest.pagePy` responsive — `pt-16 pb-24` → `pt-10 pb-16 md:pt-16 md:pb-24`
+- Added `overscroll-contain` to dashboard main scroll area, notification dropdown scroll, search modal results
+
+Files changed: `dashboard-shell.tsx`, `sidebar.tsx`, `top-app-bar.tsx`, `onboarding-popup.tsx`, `search-modal.tsx`, `billing-history-table.tsx`, `privacy/page.tsx`, `hero-section.tsx`, `article-card.tsx`, `footer.tsx`, `layout.ts`
+
 ## 2026-04-21 — Form control standardization
 
 - Added `ghost` and `danger` variants to `components/ui/form-field.tsx` `inputVariants`
@@ -87,6 +123,18 @@ Migrated ~150 generic Tailwind text utilities → design-system tokens across ~4
 - Migrated `onboarding-popup.tsx` raw `<input>` → `<FormInput variant="tonal">` with className overrides
 - Deleted `components/ui/input.tsx` — zero imports, dead code (shadcn-generated, never adopted)
 - Raw `<input>` remains only for structural chrome: toggle-switch (sr-only), theme-card (sr-only radio), avatar-upload (hidden file + range), otp-input (specialized cells)
+
+## 2026-04-21 — Responsiveness Round 2 fixes (7 items)
+
+- **Breadcrumb**: Added `flex-wrap` and `gap-y-1` to prevent horizontal overflow on narrow screens
+- **List view cards**: Changed `flex-row` → `flex-col sm:flex-row` for list layout; image uses `aspect-[16/10]` on mobile, fixed width on `sm:`
+- **Hamburger button**: Added `border-outline-variant/15` border for visual clarity of circular shape
+- **Notification dropdown**: Added `max-sm:-right-2 max-sm:left-auto` to prevent left-side clipping on mobile
+- **Category nav in mobile menu**: Added `navCategories` prop to Sidebar; renders category sections (Research/Analysis/Education) with sub-links when `mobile` is true; passed from DashboardShell
+- **Courses page**: ActiveCourseCard now stacks vertically on mobile (`flex-col sm:flex-row`), thumbnail goes full-width; difficulty tabs container has `overflow-x-auto` and reduced gap on mobile
+- **Profile settings**: Reviewed — already responsive with `grid-cols-1 sm:grid-cols-2` and `flex-col sm:flex-row` actions
+
+Files changed: `breadcrumb.tsx`, `article-card.tsx`, `top-app-bar.tsx`, `sidebar.tsx`, `dashboard-shell.tsx`, `active-course-card.tsx`, `courses-client.tsx`
 
 ## 2026-04-21 — Add courses/lessons to command palette search
 
@@ -1288,3 +1336,36 @@ Migrated ~150 generic Tailwind text utilities → design-system tokens across ~4
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 | ---- | ------ | ------- | ------- | ------- |
+
+## Session: 2026-04-21 18:15
+
+| Time  | Action                                                        | File(s)              | Outcome | ~Tokens |
+| ----- | ------------------------------------------------------------- | -------------------- | ------- | ------- |
+| 18:21 | Created ../../../.claude/plans/agile-percolating-moonbeam.md  | —                    | ~2398   |
+| 18:29 | Created lib/db/schema/notifications.ts                        | —                    | ~497    |
+| 18:30 | Created lib/db/schema/notification-preferences.ts             | —                    | ~298    |
+| 18:30 | Edited lib/db/schema/index.ts                                 | 7→8 lines            | ~76     |
+| 18:30 | Edited app/(app)/api/auth/register/route.ts                   | added 1 import(s)    | ~130    |
+| 18:30 | Edited app/(app)/api/auth/register/route.ts                   | 2→2 lines            | ~33     |
+| 18:31 | Created lib/notifications/preferences.ts                      | —                    | ~1474   |
+| 18:32 | Created drizzle/0006_notification_engine.sql                  | —                    | ~921    |
+| 18:32 | Edited drizzle/meta/\_journal.json                            | expanded (+7 lines)  | ~88     |
+| 18:32 | Created app/(app)/api/user/notification-preferences/route.ts  | —                    | ~1038   |
+| 18:33 | Created lib/notifications/rate-limit.ts                       | —                    | ~317    |
+| 18:33 | Created lib/email/templates/notification.ts                   | —                    | ~187    |
+| 18:33 | Edited lib/email/send.ts                                      | added 1 import(s)    | ~75     |
+| 18:33 | Edited lib/email/send.ts                                      | added 1 condition(s) | ~286    |
+| 18:34 | Created lib/notifications/create.ts                           | —                    | ~1852   |
+| 18:35 | Created lib/notifications/events.ts                           | —                    | ~1696   |
+| 18:40 | Created app/(app)/api/notifications/route.ts                  | —                    | ~638    |
+| 18:41 | Created app/(app)/api/notifications/unread-count/route.ts     | —                    | ~371    |
+| 18:41 | Created app/(app)/api/notifications/read-all/route.ts         | —                    | ~416    |
+| 18:41 | Created app/(app)/api/notifications/[id]/read/route.ts        | —                    | ~330    |
+| 18:43 | Created lib/hooks/useNotifications.ts                         | —                    | ~1463   |
+| 18:43 | Created components/notifications/notification-dropdown.tsx    | —                    | ~2419   |
+| 18:44 | Edited components/layouts/top-app-bar.tsx                     | added 2 import(s)    | ~115    |
+| 18:44 | Edited components/layouts/top-app-bar.tsx                     | removed 90 lines     | ~23     |
+| 18:45 | Edited components/layouts/top-app-bar.tsx                     | modified TopAppBar() | ~85     |
+| 18:45 | Edited components/layouts/top-app-bar.tsx                     | 14→18 lines          | ~253    |
+| 18:47 | Created components/ui/toggle-switch.tsx                       | —                    | ~444    |
+| 18:47 | Created app/(app)/(dashboard)/settings/notifications/page.tsx | —                    | ~2824   |

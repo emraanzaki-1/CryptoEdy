@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import { TopAppBar } from '@/components/layouts/top-app-bar'
 import { Sidebar } from '@/components/layouts/sidebar'
@@ -23,16 +23,42 @@ interface DashboardShellProps {
 
 export function DashboardShell({ user, navCategories, children }: DashboardShellProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true)
+  const [mobileOpen, setMobileOpen] = useState(false)
   const { isOpen: searchOpen, open: openSearch, close: closeSearch } = useSearchModal()
+  const closeMobile = useCallback(() => setMobileOpen(false), [])
 
   return (
-    <div className="bg-surface flex h-screen flex-col overflow-hidden">
-      <TopAppBar user={user} navCategories={navCategories} onSearchClick={openSearch} />
+    <div className="bg-surface flex h-dvh flex-col overflow-hidden">
+      <TopAppBar
+        user={user}
+        navCategories={navCategories}
+        onSearchClick={openSearch}
+        onMenuClick={() => setMobileOpen((v) => !v)}
+      />
       <div className="relative flex min-h-0 flex-1">
-        <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed((c) => !c)} />
+        {/* Desktop sidebar */}
+        <div className="hidden lg:flex">
+          <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed((c) => !c)} />
+        </div>
+
+        {/* Mobile sidebar drawer */}
+        {mobileOpen && (
+          <div className="fixed inset-0 z-40 lg:hidden">
+            <div className="bg-on-surface/40 absolute inset-0" onClick={closeMobile} />
+            <div className="bg-surface relative z-10 h-full w-64 overflow-y-auto shadow-lg">
+              <Sidebar
+                collapsed={false}
+                onToggle={closeMobile}
+                mobile
+                navCategories={navCategories}
+              />
+            </div>
+          </div>
+        )}
+
         <main
           id="main-scroll"
-          className={`bg-surface-container-lowest flex min-h-0 flex-1 flex-col overflow-y-auto ${LAYOUT.mainRadius}`}
+          className={`bg-surface-container-lowest flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain ${LAYOUT.mainRadius}`}
         >
           <div className={`flex-1 ${LAYOUT.content.px} ${LAYOUT.content.pt} ${LAYOUT.content.pb}`}>
             {children}

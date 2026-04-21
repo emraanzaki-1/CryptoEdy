@@ -29,12 +29,12 @@ export function ActiveCourseCard({
 
   return (
     <Link href={href} className="group block">
-      <div className="bg-surface-container-lowest relative flex items-center gap-8 overflow-hidden rounded-xl p-8 shadow-sm">
+      <div className="bg-surface-container-lowest relative flex flex-col items-center gap-6 overflow-hidden rounded-xl p-6 shadow-sm sm:flex-row sm:gap-8 sm:p-8">
         {/* Decorative background circle */}
         <div className="bg-secondary-container/10 absolute top-0 right-0 -mt-16 -mr-16 h-32 w-32 rounded-full transition-transform group-hover:scale-110" />
 
         {/* Thumbnail */}
-        <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-xl">
+        <div className="relative h-32 w-full flex-shrink-0 overflow-hidden rounded-xl sm:w-32">
           {coverImageUrl ? (
             <div
               className="absolute inset-0 bg-cover bg-center"

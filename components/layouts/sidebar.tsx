@@ -17,6 +17,7 @@ import {
   PanelLeftClose,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import type { NavCategory } from '@/lib/categories/getCategories'
 
 const TOOLS_ITEMS = [
   { href: '/tools/market-direction', label: 'Market Direction', icon: BarChart2 },
@@ -33,6 +34,10 @@ const TOP_NAV = [
 interface SidebarProps {
   collapsed: boolean
   onToggle: () => void
+  /** When true, sidebar is rendered inside the mobile drawer overlay */
+  mobile?: boolean
+  /** Category nav items to show in mobile drawer */
+  navCategories?: NavCategory[]
 }
 
 /* ─── Hover slide-out panel for collapsed Tools ─────────────────────────── */
@@ -63,7 +68,7 @@ function ToolsSlideOut({ visible }: { visible: boolean }) {
   )
 }
 
-export function Sidebar({ collapsed, onToggle }: SidebarProps) {
+export function Sidebar({ collapsed, onToggle, mobile, navCategories }: SidebarProps) {
   const pathname = usePathname()
   const [toolsOpen, setToolsOpen] = useState(false)
   const [toolsHover, setToolsHover] = useState(false)
@@ -108,6 +113,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
               key={item.href}
               href={item.href}
               title={collapsed ? item.label : undefined}
+              onClick={mobile ? onToggle : undefined}
               className={cn(
                 'flex items-center gap-3 rounded-lg px-3 py-3 transition-colors',
                 isActive
@@ -123,6 +129,38 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
           )
         })}
 
+        {/* Category nav — mobile only */}
+        {mobile && navCategories && navCategories.length > 0 && (
+          <>
+            <div className="border-outline-variant/15 my-2 border-t" />
+            {navCategories.map((cat) => (
+              <div key={cat.label}>
+                <p className="text-on-surface-variant text-overline mt-2 mb-1 px-3 font-bold uppercase">
+                  {cat.label}
+                </p>
+                {cat.items.map((item) => {
+                  const isActive = pathname.startsWith(item.href)
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={onToggle}
+                      className={cn(
+                        'text-body-sm flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors',
+                        isActive
+                          ? 'text-primary font-medium'
+                          : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                })}
+              </div>
+            ))}
+          </>
+        )}
+
         {/* Tools — expandable (expanded) or hover slide-out (collapsed) */}
         {collapsed ? (
           <div
@@ -132,6 +170,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
           >
             <button
               title="Tools"
+              onClick={() => setToolsHover((v) => !v)}
               className={cn(
                 'flex w-full items-center justify-center rounded-lg px-3 py-3 transition-colors',
                 isToolsActive
@@ -172,6 +211,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
                     <Link
                       key={item.href}
                       href={item.href}
+                      onClick={mobile ? onToggle : undefined}
                       className={cn(
                         'text-body-sm flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors',
                         isActive
@@ -195,6 +235,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
         <Link
           href="/settings/profile"
           title={collapsed ? 'Settings' : undefined}
+          onClick={mobile ? onToggle : undefined}
           className={cn(
             'flex items-center gap-3 rounded-lg px-3 py-3 transition-colors',
             pathname.startsWith('/settings')
