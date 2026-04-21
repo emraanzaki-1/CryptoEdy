@@ -26,7 +26,9 @@ export default async function SavedPage() {
   if (userBookmarks.length === 0) {
     return (
       <div className="mx-auto flex w-full flex-col gap-8">
-        <SectionHeading>Saved articles</SectionHeading>
+        <SectionHeading subtitle="Articles you've saved for later, in the order you bookmarked them.">
+          Bookmarks
+        </SectionHeading>
         <EmptyState
           title="No saved articles"
           message="Articles you bookmark will appear here. Look for the bookmark icon on articles in your feed."
@@ -58,7 +60,9 @@ export default async function SavedPage() {
 
   return (
     <div className="mx-auto flex w-full flex-col gap-8">
-      <SectionHeading>Saved articles</SectionHeading>
+      <SectionHeading subtitle="Articles you've saved for later, in the order you bookmarked them.">
+        Bookmarks
+      </SectionHeading>
 
       <TagClient
         tagName=""

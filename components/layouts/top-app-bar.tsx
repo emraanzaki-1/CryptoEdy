@@ -5,17 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import { useAvatar } from '@/components/providers/avatar-provider'
-import {
-  Bell,
-  Bookmark,
-  Settings,
-  LogOut,
-  User,
-  CreditCard,
-  ChevronDown,
-  Search,
-  Menu,
-} from 'lucide-react'
+import { Bell, Bookmark, LogOut, User, CreditCard, ChevronDown, Search, Menu } from 'lucide-react'
 import { Logo } from '@/components/common/logo'
 import { SearchBar } from '@/components/common/search-bar'
 import { NotificationDropdown } from '@/components/notifications/notification-dropdown'
@@ -150,10 +140,9 @@ function UserDropdown({
   if (!open) return null
 
   const menuItems = [
-    { href: '/settings/profile', label: 'Profile', icon: User },
-    { href: '/saved', label: 'Saved', icon: Bookmark },
+    { href: '/settings/profile', label: 'Profile & Settings', icon: User },
+    { href: '/saved', label: 'Bookmarks', icon: Bookmark },
     { href: '/settings/plans', label: 'Plans & Subscription', icon: CreditCard },
-    { href: '/settings', label: 'Settings', icon: Settings },
   ]
 
   return (
