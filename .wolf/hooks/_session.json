@@ -103,23 +103,23 @@
       "first_read": "2026-04-21T22:09:53.327Z"
     },
     "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/research/page.tsx": {
-      "count": 1,
-      "tokens": 200,
+      "count": 2,
+      "tokens": 82,
       "first_read": "2026-04-21T22:09:53.879Z"
     },
     "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/research/[slug]/page.tsx": {
-      "count": 1,
-      "tokens": 300,
+      "count": 2,
+      "tokens": 151,
       "first_read": "2026-04-21T22:09:53.888Z"
     },
     "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/analysis/page.tsx": {
-      "count": 1,
-      "tokens": 200,
+      "count": 2,
+      "tokens": 82,
       "first_read": "2026-04-21T22:09:56.739Z"
     },
     "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/analysis/[slug]/page.tsx": {
-      "count": 1,
-      "tokens": 300,
+      "count": 2,
+      "tokens": 151,
       "first_read": "2026-04-21T22:09:56.932Z"
     },
     "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/feed-client.tsx": {
@@ -178,8 +178,8 @@
       "first_read": "2026-04-21T22:10:22.689Z"
     },
     "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/feed/[[...slug]]/loading.tsx": {
-      "count": 1,
-      "tokens": 282,
+      "count": 2,
+      "tokens": 324,
       "first_read": "2026-04-21T22:10:22.738Z"
     },
     "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/learn/page.tsx": {
@@ -216,6 +216,21 @@
       "count": 1,
       "tokens": 350,
       "first_read": "2026-04-21T22:15:00.219Z"
+    },
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/notifications/events.ts": {
+      "count": 1,
+      "tokens": 1697,
+      "first_read": "2026-04-21T22:23:47.056Z"
+    },
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/admin/fields/GroupedCategorySelect.tsx": {
+      "count": 1,
+      "tokens": 1560,
+      "first_read": "2026-04-21T22:23:47.453Z"
+    },
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/admin/fields/GroupedParentSelect.tsx": {
+      "count": 1,
+      "tokens": 1380,
+      "first_read": "2026-04-21T22:23:48.118Z"
     }
   },
   "files_written": [
@@ -320,6 +335,36 @@
       "action": "create",
       "tokens": 653,
       "at": "2026-04-21T22:19:31.215Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/feed/[[...slug]]/loading.tsx",
+      "action": "edit",
+      "tokens": 12,
+      "at": "2026-04-21T22:25:23.266Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/notifications/events.ts",
+      "action": "edit",
+      "tokens": 737,
+      "at": "2026-04-21T22:25:46.314Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/admin/fields/GroupedCategorySelect.tsx",
+      "action": "edit",
+      "tokens": 50,
+      "at": "2026-04-21T22:25:53.197Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/admin/fields/GroupedCategorySelect.tsx",
+      "action": "edit",
+      "tokens": 148,
+      "at": "2026-04-21T22:26:09.922Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/admin/fields/GroupedParentSelect.tsx",
+      "action": "edit",
+      "tokens": 183,
+      "at": "2026-04-21T22:26:19.873Z"
     }
   ],
   "edit_counts": {
@@ -335,11 +380,15 @@
     "components/layouts/guest-nav.tsx": 3,
     "components/layouts/footer.tsx": 1,
     "app/(app)/(dashboard)/learn/page.tsx": 1,
-    "app/(app)/(dashboard)/learn/[slug]/page.tsx": 1
+    "app/(app)/(dashboard)/learn/[slug]/page.tsx": 1,
+    "app/(app)/(browsable)/feed/[[...slug]]/loading.tsx": 1,
+    "lib/notifications/events.ts": 1,
+    "components/admin/fields/GroupedCategorySelect.tsx": 2,
+    "components/admin/fields/GroupedParentSelect.tsx": 1
   },
-  "anatomy_hits": 39,
+  "anatomy_hits": 42,
   "anatomy_misses": 3,
-  "repeated_reads_warned": 17,
+  "repeated_reads_warned": 22,
   "cerebrum_warnings": 0,
-  "stop_count": 4
+  "stop_count": 5
 }

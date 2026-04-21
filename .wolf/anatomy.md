@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T22:19:31.195Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T22:26:19.857Z
 > Files: 321 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -360,8 +360,8 @@
 
 ## components/admin/fields/
 
-- `GroupedCategorySelect.tsx` — Custom field component for the `category` relationship field. (~1560 tok)
-- `GroupedParentSelect.tsx` — Custom field component for the `parent` relationship on the Categories collection. (~1380 tok)
+- `GroupedCategorySelect.tsx` — Custom field component for the `category` relationship field. (~1595 tok)
+- `GroupedParentSelect.tsx` — Custom field component for the `parent` relationship on the Categories collection. (~1447 tok)
 
 ## components/admin/views/
 
@@ -633,7 +633,7 @@
 
 - `create.ts` — Filter recipients by role. If omitted, all users receive it. (~2227 tok)
 - `emitter.ts` — In-process notification event emitter. (~462 tok)
-- `events.ts` — Notification event handlers. (~1697 tok)
+- `events.ts` — Notification event handlers. (~1854 tok)
 - `preferences.ts` — All subtype definitions grouped by type — single source of truth. (~1459 tok)
 - `rate-limit.ts` — In-memory email rate limiter for notifications. (~317 tok)
 
