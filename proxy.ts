@@ -14,6 +14,9 @@ const LANDING_ROUTE = '/'
 // Verify email page — needs special handling
 const VERIFY_ROUTE = '/verify-email'
 
+// Routes that guests (unauthenticated) can browse — content gating handled at page level
+const BROWSABLE_ROUTES = ['/feed', '/articles', '/tag']
+
 export default auth(async function proxy(
   req: NextRequest & {
     auth: {
@@ -49,8 +52,12 @@ export default auth(async function proxy(
     return NextResponse.next()
   }
 
+  // ── Browsable routes: allow guests through, apply gates for authed ─
+  const isBrowsable = BROWSABLE_ROUTES.some((route) => pathname.startsWith(route))
+
   // ── Protected routes: require authentication ──────────────────────
   if (!session?.user) {
+    if (isBrowsable) return NextResponse.next()
     const loginUrl = new URL('/login', req.url)
     loginUrl.searchParams.set('callbackUrl', pathname)
     return NextResponse.redirect(loginUrl)

@@ -106,82 +106,31 @@
 
 - `page.tsx` — VerifyEmailContent — uses useSearchParams, useRouter, useRef, useEffect (~1641 tok)
 
+## app/(app)/(browsable)/
+
+- `layout.tsx` — BrowsableLayout — conditional GuestShell or DashboardShell (~400 tok)
+
+## app/(app)/(browsable)/articles/[slug]/
+
+- `loading.tsx` — ArticleLoading (~42 tok)
+- `page.tsx` — ROLE_HIERARCHY — guest gating + pro gating (~2800 tok)
+
+## app/(app)/(browsable)/feed/[[...slug]]/
+
+- `loading.tsx` — FeedLoading (~282 tok)
+- `page.tsx` — FeedPage — passes isAuthenticated (~1280 tok)
+
+## app/(app)/(browsable)/tag/[slug]/
+
+- `page.tsx` — TagPage — passes isAuthenticated (~650 tok)
+
 ## app/(app)/(dashboard)/
 
 - `error.tsx` — DashboardError (~148 tok)
 - `layout.tsx` — DashboardLayout (~370 tok)
 - `not-found.tsx` — DashboardNotFound (~104 tok)
 
-## app/(app)/(dashboard)/articles/[slug]/
-
-- `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — ROLE_HIERARCHY (~2662 tok)
-
 ## app/(app)/(dashboard)/community/
-
-- `page.tsx` — HIGHLIGHTS (~714 tok)
-
-## app/(app)/(dashboard)/feed/[[...slug]]/
-
-- `loading.tsx` — FeedLoading (~282 tok)
-- `page.tsx` — FeedPage (~1243 tok)
-
-## app/(app)/(dashboard)/learn/
-
-- `page.tsx` — LearnPage (~581 tok)
-
-## app/(app)/(dashboard)/learn/[slug]/
-
-- `page.tsx` — CryptoSchoolCategoryPage (~576 tok)
-
-## app/(app)/(dashboard)/learn/courses/
-
-- `loading.tsx` — CoursesLoading (~256 tok)
-- `page.tsx` — CoursesListingPage (~1027 tok)
-
-## app/(app)/(dashboard)/learn/courses/[courseSlug]/
-
-- `page.tsx` — CourseDetailPage (~1568 tok)
-
-## app/(app)/(dashboard)/learn/courses/[courseSlug]/[lessonSlug]/
-
-- `page.tsx` — LessonPage (~2297 tok)
-
-## app/(app)/(dashboard)/saved/
-
-- `page.tsx` — SavedPage (~725 tok)
-
-## app/(app)/(dashboard)/settings/
-
-- `layout.tsx` — SettingsLayout (~100 tok)
-- `loading.tsx` — SettingsLoading (~327 tok)
-- `page.tsx` — SettingsPage (~34 tok)
-
-## app/(app)/(dashboard)/settings/appearance/
-
-- `page.tsx` — THEMES (~1782 tok)
-
-## app/(app)/(dashboard)/settings/billing/
-
-- `page.tsx` — billingHistory (~900 tok)
-
-## app/(app)/(dashboard)/settings/notifications/
-
-- `page.tsx` — CATEGORIES — renders chart — uses useState, useEffect, useCallback (~2824 tok)
-
-## app/(app)/(dashboard)/settings/plans/
-
-- `page.tsx` — benefits (~1208 tok)
-
-## app/(app)/(dashboard)/settings/profile/
-
-- `page.tsx` — ProfileSettingsPage — renders form — uses useState, useCallback, useEffect (~2361 tok)
-
-## app/(app)/(dashboard)/tag/[slug]/
-
-- `page.tsx` — TagPage (~620 tok)
-
-## app/(app)/(dashboard)/tools/
 
 - `page.tsx` — TOOLS — renders chart (~1022 tok)
 

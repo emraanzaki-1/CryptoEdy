@@ -20,6 +20,7 @@ interface FeedClientProps {
   activeFilter?: string
   initialHasNextPage?: boolean
   categorySlug?: string
+  isAuthenticated?: boolean
 }
 
 export function FeedClient({
@@ -28,6 +29,7 @@ export function FeedClient({
   activeFilter = 'All',
   initialHasNextPage = false,
   categorySlug,
+  isAuthenticated = true,
 }: FeedClientProps) {
   const [view, setView] = useViewPreference()
 
@@ -45,7 +47,7 @@ export function FeedClient({
     <div className="mx-auto flex w-full flex-col gap-8">
       {/* Header */}
       <SectionHeading subtitle="Curated financial intelligence and market analysis.">
-        Your feed
+        {isAuthenticated ? 'Your feed' : activeFilter === 'All' ? 'All Articles' : activeFilter}
       </SectionHeading>
 
       {/* Filters + View Toggle */}
@@ -67,10 +69,10 @@ export function FeedClient({
       {articles.length > 0 ? (
         view === 'grid' ? (
           <div className="flex flex-col gap-6">
-            {articles[0] && <ArticleCard {...articles[0]} hero />}
+            {articles[0] && <ArticleCard {...articles[0]} hero isAuthenticated={isAuthenticated} />}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 [&>*]:h-full">
               {articles.slice(1).map((article) => (
-                <ArticleCard key={article.slug} {...article} />
+                <ArticleCard key={article.slug} {...article} isAuthenticated={isAuthenticated} />
               ))}
             </div>
 
@@ -89,7 +91,12 @@ export function FeedClient({
         ) : (
           <div className="flex flex-col gap-4">
             {articles.map((article) => (
-              <ArticleCard key={article.slug} {...article} layout="list" />
+              <ArticleCard
+                key={article.slug}
+                {...article}
+                layout="list"
+                isAuthenticated={isAuthenticated}
+              />
             ))}
 
             {/* Loading skeletons */}

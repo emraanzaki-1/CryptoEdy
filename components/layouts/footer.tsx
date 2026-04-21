@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Logo } from '@/components/common/logo'
 import { LAYOUT } from '@/lib/config/layout'
+import { TAXONOMY } from '@/lib/constants/taxonomy'
 
 export function Footer() {
   return (
@@ -19,29 +20,34 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 md:gap-16">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 md:gap-16">
             <div className="flex flex-col gap-4">
               <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
-                Platform
+                Research
               </h4>
-              <Link
-                href="/feed"
-                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
-              >
-                Research Archive
-              </Link>
-              <Link
-                href="/#performance"
-                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
-              >
-                Track Record
-              </Link>
-              <Link
-                href="/upgrade"
-                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
-              >
-                Pricing
-              </Link>
+              {TAXONOMY.research.items.map((item) => (
+                <Link
+                  key={item.slug}
+                  href={`/feed/${item.slug}`}
+                  className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            <div className="flex flex-col gap-4">
+              <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
+                Analysis
+              </h4>
+              {TAXONOMY.analysis.items.map((item) => (
+                <Link
+                  key={item.slug}
+                  href={`/feed/${item.slug}`}
+                  className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
             <div className="flex flex-col gap-4">
               <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">

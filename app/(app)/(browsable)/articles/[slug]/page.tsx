@@ -61,15 +61,21 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
   // Resolve user role
   const session = await auth()
-  const userRole = (session?.user?.role as Role) ?? 'free'
+  const isAuthenticated = !!session?.user
+  const userRole = (session?.user?.role as Role) ?? 'guest'
   const subscriptionExpiry = (session?.user as { subscriptionExpiry?: string | null } | undefined)
     ?.subscriptionExpiry
   const isProExpired =
     userRole === 'pro' && subscriptionExpiry && new Date(subscriptionExpiry) < new Date()
   const effectiveRole: Role = isProExpired ? 'free' : userRole
 
-  // Determine lock state
-  const isLocked = post.isProOnly === true && ROLE_HIERARCHY[effectiveRole] < ROLE_HIERARCHY['pro']
+  // Determine lock state — guests are gated on ALL articles, free users only on Pro articles
+  const isGuestGated = !isAuthenticated
+  const isProLocked =
+    isAuthenticated &&
+    post.isProOnly === true &&
+    ROLE_HIERARCHY[effectiveRole] < ROLE_HIERARCHY['pro']
+  const isLocked = isGuestGated || isProLocked
 
   // Fetch recommended articles (same category, excluding current post)
   const categoryId =
@@ -136,16 +142,18 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
   return (
     <>
       <article className="mx-auto max-w-4xl">
-        {/* Breadcrumbs */}
-        <Breadcrumb
-          items={[
-            { label: 'Home', href: '/feed' },
-            { label: parentName, href: `/feed/${parentSlug}` },
-            { label: categoryName, href: `/feed/${categorySlug}` },
-            { label: post.title as string },
-          ]}
-          className="mb-8"
-        />
+        {/* Breadcrumbs — authenticated only */}
+        {isAuthenticated && (
+          <Breadcrumb
+            items={[
+              { label: 'Home', href: '/feed' },
+              { label: parentName, href: `/feed/${parentSlug}` },
+              { label: categoryName, href: `/feed/${categorySlug}` },
+              { label: post.title as string },
+            ]}
+            className="mb-8"
+          />
+        )}
 
         {/* Header */}
         <header className="mb-10">
@@ -183,11 +191,13 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
             </div>
             <div className="flex items-center gap-2">
               <ShareButton title={post.title as string} slug={(post.slug as string) ?? slug} />
-              <BookmarkButton
-                postId={String(post.id)}
-                initialBookmarked={isBookmarked}
-                variant="article"
-              />
+              {isAuthenticated && (
+                <BookmarkButton
+                  postId={String(post.id)}
+                  initialBookmarked={isBookmarked}
+                  variant="article"
+                />
+              )}
             </div>
           </div>
         </header>
@@ -214,9 +224,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
         {/* Content */}
         {isLocked ? (
-          <section className="article-body text-on-surface-variant text-body-lg max-w-none">
-            <PaywallGate isAuthenticated={!!session?.user} />
-          </section>
+          <PaywallGate isAuthenticated={isAuthenticated} variant={isGuestGated ? 'guest' : 'pro'} />
         ) : (
           <section className="article-body text-on-surface-variant text-body-lg max-w-none">
             <RichText data={post.content as SerializedEditorState} converters={jsxConverters} />
@@ -248,11 +256,12 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
       {/* Recommended Articles — full width */}
       <RecommendedArticles
-        articles={recommendedResult.docs.map((p) =>
-          mapPostToCardProps(p as Record<string, unknown>, {
+        articles={recommendedResult.docs.map((p) => ({
+          ...mapPostToCardProps(p as Record<string, unknown>, {
             isBookmarked: bookmarkedIds.has(String(p.id)),
-          })
-        )}
+          }),
+          isAuthenticated,
+        }))}
       />
     </>
   )

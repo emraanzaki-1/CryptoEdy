@@ -3,6 +3,19 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+## 2026-04-22 — Guest Catalog & Content Gating
+
+- **proxy.ts**: Added `BROWSABLE_ROUTES` (`/feed`, `/articles`, `/tag`) — guests bypass login redirect on these routes.
+- **New route group `(browsable)`**: Created `app/(app)/(browsable)/layout.tsx` with conditional layout — `GuestShell` for guests, `DashboardShell` for authenticated users.
+- **Moved routes**: `feed/`, `articles/`, `tag/` moved from `(dashboard)` to `(browsable)`.
+- **Feed page**: Passes `isAuthenticated` to `FeedClient`; bookmarks still resolved from session (empty set for guests).
+- **Article page**: Guests gated on ALL article bodies (not just Pro). Uses `PaywallGate variant="guest"`. Bookmark button hidden for guests. Pro paywall unchanged for authenticated free users.
+- **Tag page**: Passes `isAuthenticated` to `TagClient`.
+- **PaywallGate**: Added `variant` prop (`"guest"` | `"pro"`). Guest variant shows "Join CryptoEdy to Read This Article" with "Create Free Account" CTA → `/register`. No pricing section. Pro variant unchanged.
+- **ArticleCard**: Added `isAuthenticated` prop (default `true`). Bookmark button hidden when `false`.
+- **FeedClient / TagClient**: Accept and propagate `isAuthenticated` to `ArticleCard` children.
+- **RecommendedArticles**: Receives `isAuthenticated` via spread props from article page.
+
 | 12:45 | Added sliding pill animation to ViewToggle | components/feed/view-toggle.tsx | done | ~50 |
 
 ## 2026-04-21 — Design system audit remediation (Pass 1 + Pass 2)

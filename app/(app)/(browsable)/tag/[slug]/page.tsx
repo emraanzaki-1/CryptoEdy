@@ -67,6 +67,7 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
         articles={articles}
         initialHasNextPage={hasNextPage}
         fetchUrl={`/api/posts?tag=${encodeURIComponent(slug)}&limit=12`}
+        isAuthenticated={!!session?.user}
       />
     </div>
   )

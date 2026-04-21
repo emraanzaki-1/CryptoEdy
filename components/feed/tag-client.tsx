@@ -19,6 +19,7 @@ interface TagClientProps {
   emptyMessage?: string
   initialHasNextPage?: boolean
   fetchUrl?: string
+  isAuthenticated?: boolean
 }
 
 export function TagClient({
@@ -29,6 +30,7 @@ export function TagClient({
   emptyMessage,
   initialHasNextPage = false,
   fetchUrl = '/api/posts?limit=12',
+  isAuthenticated = true,
 }: TagClientProps) {
   const [view, setView] = useViewPreference()
 
@@ -54,7 +56,7 @@ export function TagClient({
           <div className="flex flex-col gap-6">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 [&>*]:h-full">
               {articles.map((article) => (
-                <ArticleCard key={article.slug} {...article} />
+                <ArticleCard key={article.slug} {...article} isAuthenticated={isAuthenticated} />
               ))}
             </div>
 
@@ -71,7 +73,12 @@ export function TagClient({
         ) : (
           <div className="flex flex-col gap-4">
             {articles.map((article) => (
-              <ArticleCard key={article.slug} {...article} layout="list" />
+              <ArticleCard
+                key={article.slug}
+                {...article}
+                layout="list"
+                isAuthenticated={isAuthenticated}
+              />
             ))}
 
             {isLoading &&

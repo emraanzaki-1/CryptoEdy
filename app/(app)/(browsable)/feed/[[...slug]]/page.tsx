@@ -132,6 +132,7 @@ export default async function FeedPage({ params }: { params: Promise<{ slug?: st
       activeFilter={activeFilter}
       initialHasNextPage={hasNextPage}
       categorySlug={categorySlug}
+      isAuthenticated={!!session?.user}
     />
   )
 }

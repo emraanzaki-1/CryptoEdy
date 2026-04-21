@@ -37,7 +37,10 @@
 - **Tracking tokens:** Headings: `-0.04em`. CTA buttons: `0.015em`. Uppercase labels: `0.05em`. Never use Tailwind shorthands (`tracking-tight`, `tracking-wider`, `tracking-widest`, `tracking-tighter`) — use explicit values.
 - **Font weight convention:** Landing/splash headings: `font-black`. Auth/dashboard page headings: `font-bold`. Never use `font-extrabold`.
 - **Icons:** Lucide React replaces Material Symbols from HTML templates.
-- **Route groups:** `(app)` for main, `(auth)` for auth, `(dashboard)` for protected, `(payload)` for CMS.
+- **Route groups:** `(app)` for main, `(auth)` for auth, `(dashboard)` for protected, `(browsable)` for guest-accessible catalog pages (feed, articles, tag), `(payload)` for CMS.
+- **Browsable route group `(browsable)`:** `/feed`, `/articles/[slug]`, `/tag/[slug]` are accessible by both guests and authenticated users. Layout conditionally renders `GuestShell` (guests) or `DashboardShell` (authenticated). Content gating is handled at the page level, not the layout level.
+- **Guest content gating:** ALL article bodies are gated for unauthenticated users. Guests see article header (title, image, author, date, excerpt) but the body is replaced by `PaywallGate variant="guest"` — a registration gate (not a pricing gate). Pro content is additionally gated for authenticated free users via `PaywallGate variant="pro"`.
+- **BookmarkButton guest handling:** `ArticleCard` accepts `isAuthenticated` prop (default `true`). When `false`, bookmark buttons are hidden entirely (not disabled). Propagated from page → `FeedClient`/`TagClient` → `ArticleCard`.
 
 - **Payload 3.x custom views:** Register via `admin.components.views.{key}` with `Component` (string path) and `path` (URL). Custom views render in a bare Fragment — MUST wrap content in `DefaultTemplate` from `@payloadcms/next/templates` to keep sidebar/header. Pass `initPageResult` props (locale, permissions, req, visibleEntities) + `req.user ?? undefined` (null→undefined coercion required). Use `SetStepNav` from `@payloadcms/ui` for breadcrumbs.
 - **Payload 3.x custom endpoints:** Root-level `endpoints[]` in buildConfig. Handlers receive `PayloadRequest`, return Web API `Response`. Use `addDataAndFileToRequest(req)` to parse body, `req.routeParams` for URL params.

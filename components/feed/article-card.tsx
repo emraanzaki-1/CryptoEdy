@@ -21,6 +21,7 @@ export interface ArticleCardProps {
   slug: string
   postId?: string
   isBookmarked?: boolean
+  isAuthenticated?: boolean
   hero?: boolean
   layout?: 'card' | 'list'
 }
@@ -37,6 +38,7 @@ export function ArticleCard({
   slug,
   postId,
   isBookmarked = false,
+  isAuthenticated = true,
   hero = false,
   layout = 'card',
 }: ArticleCardProps) {
@@ -107,7 +109,7 @@ export function ArticleCard({
           )}
 
           {/* Bookmark on hover */}
-          {postId && (
+          {isAuthenticated && postId && (
             <BookmarkButton postId={postId} initialBookmarked={isBookmarked} variant="card" />
           )}
         </div>
