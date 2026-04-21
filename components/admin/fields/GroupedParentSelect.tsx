@@ -58,16 +58,18 @@ export default function GroupedParentSelect() {
         options: parents,
       })
 
-      // Only Crypto School supports L3 grandchildren
+      // Show L2 children that already have their own children (grandchildren) as
+      // selectable parents — this makes the relationship data-driven rather than
+      // hardcoding which categories support L3 nesting.
       for (const parent of parents) {
         const children = childrenByParent[String(parent.id)] ?? []
         for (const child of children) {
-          if (child.slug !== 'crypto-school') continue
+          const grandchildren = childrenByParent[String(child.id)]
+          if (!grandchildren || grandchildren.length === 0) continue
           built.push({
             label: `${parent.name} > ${child.name}`,
             options: [child],
           })
-          break
         }
       }
 

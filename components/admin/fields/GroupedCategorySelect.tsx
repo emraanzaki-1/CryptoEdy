@@ -8,6 +8,7 @@ type CategoryOption = {
   name: string
   slug: string
   parent?: { id: number | string; name: string } | null
+  excludeFromMainFeed?: boolean | null
 }
 
 type Group = {
@@ -22,7 +23,9 @@ type Group = {
  * Only leaf categories (children / grandchildren) are selectable.
  */
 export default function GroupedCategorySelect() {
-  const { value, setValue, showError, errorMessage, path } = useField<number | string>({ path: 'category' })
+  const { value, setValue, showError, errorMessage, path } = useField<number | string>({
+    path: 'category',
+  })
   const [groups, setGroups] = useState<Group[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -40,7 +43,8 @@ export default function GroupedCategorySelect() {
         if (!cat.parent) {
           parents.push(cat)
         } else {
-          const parentId = typeof cat.parent === 'object' ? String(cat.parent.id) : String(cat.parent)
+          const parentId =
+            typeof cat.parent === 'object' ? String(cat.parent.id) : String(cat.parent)
           if (!childrenByParent[parentId]) childrenByParent[parentId] = []
           childrenByParent[parentId].push(cat)
         }
@@ -51,15 +55,16 @@ export default function GroupedCategorySelect() {
       const built: Group[] = []
 
       for (const parent of parents) {
+        // Skip parents excluded from the main feed (e.g. Education) — their content
+        // uses dedicated sections (Courses/Modules/Lessons), not Posts
+        if (parent.excludeFromMainFeed) continue
+
         const children = childrenByParent[String(parent.id)] ?? []
         if (children.length === 0) continue
 
         // Check if any children are themselves parents of grandchildren
         const leafOptions: CategoryOption[] = []
         for (const child of children) {
-          // Trading Course uses Courses/Modules/Lessons, not Posts
-          if (child.slug === 'trading-course') continue
-
           const grandchildren = childrenByParent[String(child.id)]
           if (grandchildren && grandchildren.length > 0) {
             // This child has grandchildren — create a sub-group

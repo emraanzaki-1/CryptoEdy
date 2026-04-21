@@ -5,6 +5,7 @@
  */
 
 import { createNotification, broadcastNotification } from './create'
+import type { NotificationSubtype } from '@/lib/db/schema/notifications'
 
 /* ─── Types ─────────────────────────────────────────────────────────────── */
 
@@ -19,6 +20,9 @@ export interface PostPublishedEvent {
   publishedAt: string
 }
 
+/** Valid notification subtypes for content notifications. */
+const CONTENT_SUBTYPES = new Set<string>(['research', 'analysis'])
+
 /* ─── Post Published ────────────────────────────────────────────────────── */
 
 /**
@@ -26,15 +30,18 @@ export interface PostPublishedEvent {
  * Called from collections/Posts.ts afterChange hook.
  */
 export async function onPostPublished(post: Record<string, unknown>): Promise<void> {
-  // Resolve category name from populated relationship
+  // Resolve category name and parent routePrefix from populated relationship
   let categoryName = 'Unknown'
   let parentCategoryName = 'Unknown'
+  let parentRoutePrefix: string | null = null
   if (post.category && typeof post.category === 'object' && post.category !== null) {
     const cat = post.category as Record<string, unknown>
     categoryName = (cat.name as string) ?? 'Unknown'
-    // Resolve parent category
+    // Resolve parent category — use routePrefix for subtype mapping (not name)
     if (cat.parent && typeof cat.parent === 'object' && cat.parent !== null) {
-      parentCategoryName = ((cat.parent as Record<string, unknown>).name as string) ?? 'Unknown'
+      const parent = cat.parent as Record<string, unknown>
+      parentCategoryName = (parent.name as string) ?? 'Unknown'
+      parentRoutePrefix = (parent.routePrefix as string) ?? null
     } else if (typeof cat.parent === 'string') {
       parentCategoryName = categoryName // fallback — leaf is also parent
     }
@@ -56,9 +63,10 @@ export async function onPostPublished(post: Record<string, unknown>): Promise<vo
     publishedAt: post.publishedAt as string,
   }
 
-  // Map parent category to notification subtype
-  const subtype =
-    parentCategoryName.toLowerCase() === 'research' ? ('research' as const) : ('analysis' as const)
+  // Map parent routePrefix to notification subtype — uses the Payload field, not the category name
+  const subtype: NotificationSubtype = CONTENT_SUBTYPES.has(parentRoutePrefix ?? '')
+    ? (parentRoutePrefix as NotificationSubtype)
+    : 'analysis' // fallback for categories without a matching subtype
   const link = `/articles/${event.slug}`
 
   if (event.isProOnly) {

@@ -7,7 +7,7 @@ import { auth } from '@/lib/auth'
 export default async function FeedLoading() {
   const [navCategories, session] = await Promise.all([getNavCategories(), auth()])
   const filters = navCategories
-    .filter((c) => c.slug !== 'education')
+    .filter((c) => !c.excludeFromMainFeed)
     .map((c) => ({ label: c.label, slug: c.slug }))
 
   const title = session?.user ? 'Your feed' : 'All Articles'
