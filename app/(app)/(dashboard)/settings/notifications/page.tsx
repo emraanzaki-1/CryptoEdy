@@ -2,7 +2,10 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { ToggleSwitch } from '@/components/ui/toggle-switch'
+import { PageHeading } from '@/components/common/page-heading'
+import { SectionTitle } from '@/components/settings/section-title'
 import { Badge } from '@/components/ui/badge'
+import { Card } from '@/components/ui/card'
 import { toast } from 'sonner'
 
 type PreferenceKey = 'dailyBrief' | 'proAlerts' | 'marketDirection' | 'assetsPicks'
@@ -32,7 +35,7 @@ function NotificationItem({
   disabled,
 }: NotificationItemProps) {
   return (
-    <div className="border-outline-variant/20 bg-surface-container-low flex items-center justify-between rounded-2xl border p-5">
+    <Card variant="surface" className="flex-row items-center justify-between p-5">
       <div>
         <div className="flex items-center gap-2">
           <p className="text-on-surface text-base font-semibold">{title}</p>
@@ -41,7 +44,7 @@ function NotificationItem({
         <p className="text-on-surface-variant mt-1 text-sm">{description}</p>
       </div>
       <ToggleSwitch checked={checked} onChange={onChange} disabled={disabled} />
-    </div>
+    </Card>
   )
 }
 
@@ -50,12 +53,12 @@ function NotificationSkeleton() {
     <div className="space-y-10">
       {[1, 2].map((section) => (
         <div key={section}>
-          <div className="bg-surface-container mb-5 h-5 w-32 animate-pulse rounded" />
+          <div className="bg-surface-container mb-6 h-5 w-32 animate-pulse rounded" />
           <div className="space-y-4">
             {[1, 2].map((item) => (
               <div
                 key={item}
-                className="border-outline-variant/20 bg-surface-container-low flex items-center justify-between rounded-2xl border p-5"
+                className="border-outline-variant/15 bg-surface-container-low flex items-center justify-between rounded-2xl border p-5"
               >
                 <div className="space-y-2">
                   <div className="bg-surface-container h-4 w-40 animate-pulse rounded" />
@@ -121,14 +124,13 @@ export default function NotificationSettingsPage() {
 
   return (
     <>
-      <div>
-        <h2 className="font-headline text-on-surface mb-2 text-2xl leading-tight font-bold tracking-[-0.04em] lg:text-3xl">
-          Notification Preferences
-        </h2>
-        <p className="text-on-surface-variant text-base">
-          Manage how and when you receive updates from CryptoEdy.
-        </p>
-      </div>
+      <PageHeading
+        as="h2"
+        variant="settings"
+        subtitle="Manage how and when you receive updates from CryptoEdy."
+      >
+        Notification Preferences
+      </PageHeading>
 
       {loading || !prefs ? (
         <NotificationSkeleton />
@@ -136,7 +138,7 @@ export default function NotificationSettingsPage() {
         <div className="space-y-10">
           {/* Content Updates */}
           <section>
-            <h3 className="text-on-surface mb-5 text-base font-semibold">Content Updates</h3>
+            <SectionTitle>Content Updates</SectionTitle>
             <div className="space-y-4">
               <NotificationItem
                 title="Daily Market Brief"
@@ -158,7 +160,7 @@ export default function NotificationSettingsPage() {
 
           {/* Feed Alerts */}
           <section>
-            <h3 className="text-on-surface mb-5 text-base font-semibold">Feed Alerts</h3>
+            <SectionTitle>Feed Alerts</SectionTitle>
             <div className="space-y-4">
               <NotificationItem
                 title="Market Direction"

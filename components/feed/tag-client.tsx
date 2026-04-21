@@ -46,7 +46,7 @@ export function TagClient({
   return (
     <>
       <div className="flex items-end justify-between">
-        <p className="text-on-surface-variant text-base">{subtitle ?? defaultSubtitle}</p>
+        <p className="text-on-surface-variant text-body-lg">{subtitle ?? defaultSubtitle}</p>
         <ViewToggle view={view} onViewChange={setView} />
       </div>
 

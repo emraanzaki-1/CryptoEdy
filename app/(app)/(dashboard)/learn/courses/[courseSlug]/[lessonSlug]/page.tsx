@@ -8,6 +8,7 @@ import { getCourseModulesWithLessons } from '@/lib/courses/getModules'
 import { getEnrollment, getCompletedLessonIds } from '@/lib/courses/progress'
 import { isLessonUnlocked, getNextLesson, getPreviousLesson } from '@/lib/courses/lessonAccess'
 import { VideoPlayer } from '@/components/learn/video-player'
+import { ButtonLink } from '@/components/ui/button-link'
 import { MarkCompleteButton } from '@/components/learn/mark-complete-button'
 import { LessonNav } from '@/components/learn/lesson-nav'
 import { ModuleAccordion } from '@/components/learn/module-accordion'
@@ -54,12 +55,9 @@ export default async function LessonPage({
         <p className="text-on-surface-variant text-base">
           You need to enroll in this course to access its lessons.
         </p>
-        <Link
-          href={`/learn/courses/${courseSlug}`}
-          className="from-primary to-primary-container inline-flex items-center justify-center rounded-xl bg-gradient-to-b px-6 py-3 font-bold text-white transition-all hover:shadow-lg"
-        >
+        <ButtonLink href={`/learn/courses/${courseSlug}`} variant="gradient" size="xl">
           View Course
-        </Link>
+        </ButtonLink>
       </div>
     )
   }
@@ -73,12 +71,9 @@ export default async function LessonPage({
         <p className="text-on-surface-variant text-base">
           Complete the previous lesson to unlock this one.
         </p>
-        <Link
-          href={`/learn/courses/${courseSlug}`}
-          className="from-primary to-primary-container inline-flex items-center justify-center rounded-xl bg-gradient-to-b px-6 py-3 font-bold text-white transition-all hover:shadow-lg"
-        >
+        <ButtonLink href={`/learn/courses/${courseSlug}`} variant="gradient" size="xl">
           Back to Course
-        </Link>
+        </ButtonLink>
       </div>
     )
   }

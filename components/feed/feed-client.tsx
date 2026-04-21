@@ -10,6 +10,7 @@ import {
   ArticleCardListSkeleton,
 } from '@/components/feed/article-card-skeleton'
 import { EmptyState } from '@/components/common/empty-state'
+import { SectionHeader } from '@/components/common/section-header'
 import { useInfiniteScroll } from '@/lib/hooks/useInfiniteScroll'
 import { useViewPreference } from '@/lib/hooks/useViewPreference'
 import type { ArticleCardProps } from '@/components/feed/article-card'
@@ -44,17 +45,11 @@ export function FeedClient({
   return (
     <div className="mx-auto flex w-full flex-col gap-8">
       {/* Header */}
-      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-        <div>
-          <h1 className="text-on-surface text-2xl leading-tight font-bold tracking-[-0.04em] lg:text-3xl">
-            Your feed
-          </h1>
-          <p className="text-on-surface-variant mt-2 text-base">
-            Curated financial intelligence and market analysis.
-          </p>
-        </div>
-        <ViewToggle view={view} onViewChange={setView} />
-      </div>
+      <SectionHeader
+        title="Your feed"
+        subtitle="Curated financial intelligence and market analysis."
+        action={<ViewToggle view={view} onViewChange={setView} />}
+      />
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3">

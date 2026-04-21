@@ -36,7 +36,7 @@ export function SidebarNav({ links }: { links: SidebarLink[] }) {
   return (
     <aside className="sticky top-32 hidden h-fit lg:col-span-3 lg:block">
       <nav className="space-y-6">
-        <div className="text-outline text-overline font-black tracking-[0.2em] uppercase">
+        <div className="text-outline text-overline font-black tracking-[0.05em] uppercase">
           Document Navigation
         </div>
         <ul className="space-y-4">

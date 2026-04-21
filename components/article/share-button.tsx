@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Share, Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 interface ShareButtonProps {
   title: string
@@ -32,15 +33,17 @@ export function ShareButton({ title, slug }: ShareButtonProps) {
   }
 
   return (
-    <button
+    <Button
+      variant="ghost"
+      size="icon-lg"
       onClick={handleClick}
       aria-label={copied ? 'Link copied' : 'Share'}
       className={cn(
-        'border-outline-variant/15 bg-surface hover:bg-surface-container-low flex size-10 items-center justify-center rounded-full border transition-colors',
+        'border-outline-variant/15 bg-surface hover:bg-surface-container-low size-10 rounded-full border',
         copied ? 'text-primary' : 'text-on-surface-variant'
       )}
     >
       {copied ? <Check className="size-5" /> : <Share className="size-5" />}
-    </button>
+    </Button>
   )
 }

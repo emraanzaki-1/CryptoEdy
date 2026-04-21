@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { signOut } from 'next-auth/react'
-import { Loader2, AlertTriangle } from 'lucide-react'
+import { AlertTriangle } from 'lucide-react'
 import { deleteAccount } from '@/lib/profile/actions'
+import { Button } from '@/components/ui/button'
 
 interface DangerZoneProps {
   userEmail?: string
@@ -37,12 +38,13 @@ export function DangerZone({ userEmail }: DangerZoneProps) {
       </p>
 
       {!confirming ? (
-        <button
+        <Button
+          variant="danger"
           onClick={() => setConfirming(true)}
-          className="bg-error text-on-error hover:bg-error/90 rounded-full px-6 py-3 text-sm font-bold shadow-sm transition-colors"
+          className="rounded-full px-6 py-3 text-sm font-bold"
         >
           Delete account
-        </button>
+        </Button>
       ) : (
         <div className="space-y-4">
           <div className="bg-error/10 flex items-start gap-3 rounded-2xl p-4">
@@ -64,31 +66,33 @@ export function DangerZone({ userEmail }: DangerZoneProps) {
               setError(null)
             }}
             placeholder="Type your email to confirm"
-            className="border-error/30 text-on-surface placeholder:text-outline focus:border-error focus:ring-error w-full rounded-2xl border bg-transparent px-5 py-3.5 text-base transition-all focus:ring-2"
+            className="border-error/30 text-on-surface placeholder:text-outline focus:border-error focus:ring-error w-full rounded-2xl border bg-transparent px-4 py-3.5 text-base transition-all focus:ring-2"
           />
 
           {error && <p className="text-error text-sm font-medium">{error}</p>}
 
           <div className="flex gap-3">
-            <button
+            <Button
+              variant="ghost"
               onClick={() => {
                 setConfirming(false)
                 setConfirmEmail('')
                 setError(null)
               }}
               disabled={deleting}
-              className="text-on-surface-variant hover:bg-surface-container rounded-full px-6 py-3 text-sm font-bold transition-colors"
+              className="rounded-full px-6 py-3 text-sm font-bold"
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="danger"
               onClick={handleDelete}
               disabled={deleting || !confirmEmail.trim()}
-              className="bg-error text-on-error hover:bg-error/90 flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-sm transition-colors disabled:opacity-50"
+              loading={deleting}
+              className="rounded-full px-6 py-3 text-sm font-bold"
             >
-              {deleting && <Loader2 className="size-4 animate-spin" />}
               {deleting ? 'Deleting…' : 'Permanently delete'}
-            </button>
+            </Button>
           </div>
         </div>
       )}

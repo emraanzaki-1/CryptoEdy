@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import { AlertCircle, ArrowLeft, HelpCircle, FileQuestion, ShieldAlert } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { ButtonLink } from '@/components/ui/button-link'
 
 interface ErrorContentProps {
   code: number
@@ -51,7 +52,7 @@ export function ErrorContent({
         </div>
 
         {/* Heading */}
-        <h2 className="text-on-surface md:text-display mb-6 text-4xl font-black tracking-[-0.04em]">
+        <h2 className="text-on-surface md:text-display text-headline-lg mb-6 font-black tracking-[-0.04em]">
           {title}
         </h2>
 
@@ -62,29 +63,30 @@ export function ErrorContent({
 
         {/* Buttons */}
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link
-            href={backHref}
-            className="from-primary to-primary-container text-on-primary flex items-center gap-2 rounded-xl bg-gradient-to-b px-8 py-4 text-lg font-bold shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-transform active:scale-95"
-          >
+          <ButtonLink href={backHref} variant="gradient" size="xl" className="text-lg">
             <ArrowLeft className="size-5" />
             {backLabel}
-          </Link>
+          </ButtonLink>
           {onRetry && (
-            <button
+            <Button
+              variant="tonal"
+              size="xl"
               onClick={onRetry}
-              className="bg-surface-container-high text-on-surface hover:bg-surface-container-highest flex items-center gap-2 rounded-xl px-8 py-4 text-lg font-bold transition-colors active:scale-95"
+              className="text-lg hover:translate-y-0 active:scale-95"
             >
               Try Again
-            </button>
+            </Button>
           )}
           {!onRetry && (
-            <Link
+            <ButtonLink
               href="/login"
-              className="bg-surface-container-high text-on-surface hover:bg-surface-container-highest flex items-center gap-2 rounded-xl px-8 py-4 text-lg font-bold transition-colors active:scale-95"
+              variant="tonal"
+              size="xl"
+              className="text-lg hover:translate-y-0 active:scale-95"
             >
               <HelpCircle className="size-5" />
               Contact Support
-            </Link>
+            </ButtonLink>
           )}
         </div>
 
@@ -94,7 +96,7 @@ export function ErrorContent({
             <span className="bg-error absolute inline-flex size-full animate-ping rounded-full opacity-75" />
             <span className="bg-error relative inline-flex size-3 rounded-full" />
           </span>
-          <span className="text-on-surface-variant text-sm font-bold tracking-wider uppercase">
+          <span className="text-on-surface-variant text-sm font-bold tracking-[0.05em] uppercase">
             System Incident: {meta.incident}
           </span>
         </div>

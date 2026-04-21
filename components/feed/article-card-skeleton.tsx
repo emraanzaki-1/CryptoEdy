@@ -24,7 +24,7 @@ export function ArticleCardSkeleton({ hero = false }: { hero?: boolean }) {
   return (
     <div className="border-outline-variant/10 bg-surface-container-lowest flex flex-col overflow-hidden rounded-2xl border">
       <Skeleton className="aspect-[16/10] w-full" />
-      <div className="flex flex-col gap-3 p-5">
+      <div className="flex flex-col gap-3 p-6">
         <Skeleton className="h-5 w-full rounded-lg" />
         <Skeleton className="h-5 w-4/5 rounded-lg" />
         <Skeleton className="h-4 w-full rounded" />
@@ -44,8 +44,8 @@ export function ArticleCardSkeleton({ hero = false }: { hero?: boolean }) {
 export function ArticleCardListSkeleton() {
   return (
     <div className="border-outline-variant/10 bg-surface-container-lowest flex overflow-hidden rounded-2xl border">
-      <Skeleton className="w-56 flex-shrink-0 sm:w-64" style={{ minHeight: '160px' }} />
-      <div className="flex flex-1 flex-col justify-center gap-3 p-5">
+      <Skeleton className="min-h-40 w-56 flex-shrink-0 sm:w-64" />
+      <div className="flex flex-1 flex-col justify-center gap-3 p-6">
         <Skeleton className="h-5 w-full rounded-lg" />
         <Skeleton className="h-5 w-4/5 rounded-lg" />
         <Skeleton className="h-4 w-full rounded" />

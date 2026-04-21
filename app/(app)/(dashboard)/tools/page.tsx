@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { PageHeading } from '@/components/common/page-heading'
 import { Gift, BarChart2, TrendingUp, Layers, ArrowRight } from 'lucide-react'
 
 const TOOLS = [
@@ -52,13 +53,9 @@ export default function ToolsPage() {
         <span className="bg-secondary-container text-on-secondary-container text-overline mb-4 inline-block rounded-full px-3 py-1 font-bold uppercase">
           Coming Soon
         </span>
-        <h1 className="text-on-surface mb-4 text-2xl font-bold tracking-[-0.04em] lg:text-3xl">
+        <PageHeading subtitle="We are engineering the next generation of crypto analytics. From real-time airdrop tracking to deep-asset databases, our tools are designed for the serious researcher.">
           Intelligence Tools
-        </h1>
-        <p className="text-on-surface-variant max-w-xl text-base leading-relaxed">
-          We are engineering the next generation of crypto analytics. From real-time airdrop
-          tracking to deep-asset databases, our tools are designed for the serious researcher.
-        </p>
+        </PageHeading>
       </div>
 
       {/* Tool cards grid */}

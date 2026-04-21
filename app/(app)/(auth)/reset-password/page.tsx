@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { resetPasswordSchema, type ResetPasswordFormValues } from '@/lib/auth/schemas'
+import { Button } from '@/components/ui/button'
+import { FormField, FormInput } from '@/components/ui/form-field'
 
 function ResetPasswordForm() {
   const searchParams = useSearchParams()
@@ -114,46 +116,40 @@ function ResetPasswordForm() {
         )}
 
         <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <span className="text-on-surface text-xs font-medium tracking-[0.05em] uppercase">
-              New Password
-            </span>
-            <input
+          <FormField label="New Password" htmlFor="password" error={errors.password?.message}>
+            <FormInput
+              id="password"
               type="password"
               placeholder="Min. 8 characters"
               autoComplete="new-password"
               {...register('password')}
-              className="bg-surface-container-high text-on-surface placeholder:text-on-surface-variant/50 focus:bg-surface-container-lowest focus:ring-primary w-full rounded-xl border-none px-5 py-4 text-base transition-all focus:ring-2 focus:outline-none"
             />
-            {errors.password && (
-              <p className="text-error text-xs font-medium">{errors.password.message}</p>
-            )}
-          </div>
+          </FormField>
 
-          <div className="flex flex-col gap-2">
-            <span className="text-on-surface text-xs font-medium tracking-[0.05em] uppercase">
-              Confirm Password
-            </span>
-            <input
+          <FormField
+            label="Confirm Password"
+            htmlFor="confirmPassword"
+            error={errors.confirmPassword?.message}
+          >
+            <FormInput
+              id="confirmPassword"
               type="password"
               placeholder="••••••••"
               autoComplete="new-password"
               {...register('confirmPassword')}
-              className="bg-surface-container-high text-on-surface placeholder:text-on-surface-variant/50 focus:bg-surface-container-lowest focus:ring-primary w-full rounded-xl border-none px-5 py-4 text-base transition-all focus:ring-2 focus:outline-none"
             />
-            {errors.confirmPassword && (
-              <p className="text-error text-xs font-medium">{errors.confirmPassword.message}</p>
-            )}
-          </div>
+          </FormField>
         </div>
 
-        <button
+        <Button
           type="submit"
-          disabled={isSubmitting}
-          className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container shadow-cta mt-2 w-full rounded-xl bg-linear-to-b px-6 py-4 text-base font-bold tracking-[0.015em] transition-all disabled:opacity-50"
+          variant="gradient"
+          size="xxl"
+          loading={isSubmitting}
+          className="mt-2 w-full"
         >
           {isSubmitting ? 'Resetting...' : 'Reset password'}
-        </button>
+        </Button>
       </form>
 
       <div className="mt-4 text-center">

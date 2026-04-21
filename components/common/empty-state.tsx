@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Search } from 'lucide-react'
+import { ButtonLink } from '@/components/ui/button-link'
 
 interface EmptyStateProps {
   title: string
@@ -41,12 +42,9 @@ export function EmptyState({ title, message, actionLabel, actionHref }: EmptySta
 
         {/* Primary CTA */}
         {actionLabel && actionHref && (
-          <Link
-            href={actionHref}
-            className="from-primary to-primary-container text-on-primary shadow-primary/20 relative mt-6 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-b px-8 py-3.5 text-sm font-bold tracking-[0.015em] shadow-lg transition-transform hover:scale-[1.02] active:scale-[0.98]"
-          >
+          <ButtonLink href={actionHref} variant="gradient" size="xl" className="relative mt-6">
             {actionLabel}
-          </Link>
+          </ButtonLink>
         )}
       </div>
     </div>

@@ -1,4 +1,6 @@
 import { Download } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 
 interface BillingEntry {
   date: string
@@ -12,20 +14,20 @@ interface BillingHistoryTableProps {
 
 export function BillingHistoryTable({ entries }: BillingHistoryTableProps) {
   return (
-    <div className="border-outline-variant/15 bg-surface-container-low overflow-hidden rounded-2xl border">
+    <Card variant="surface">
       <table className="w-full border-collapse text-left">
         <thead>
           <tr className="border-outline-variant/15 bg-surface-container-lowest/50 border-b">
-            <th className="text-on-surface px-6 py-4 text-xs font-bold tracking-wider uppercase">
+            <th className="text-on-surface px-6 py-4 text-xs font-bold tracking-[0.05em] uppercase">
               Date
             </th>
-            <th className="text-on-surface px-6 py-4 text-xs font-bold tracking-wider uppercase">
+            <th className="text-on-surface px-6 py-4 text-xs font-bold tracking-[0.05em] uppercase">
               Amount
             </th>
-            <th className="text-on-surface px-6 py-4 text-xs font-bold tracking-wider uppercase">
+            <th className="text-on-surface px-6 py-4 text-xs font-bold tracking-[0.05em] uppercase">
               Status
             </th>
-            <th className="text-on-surface px-6 py-4 text-right text-xs font-bold tracking-wider uppercase">
+            <th className="text-on-surface px-6 py-4 text-right text-xs font-bold tracking-[0.05em] uppercase">
               Invoice
             </th>
           </tr>
@@ -41,15 +43,19 @@ export function BillingHistoryTable({ entries }: BillingHistoryTableProps) {
                 </span>
               </td>
               <td className="px-6 py-4 text-right text-sm">
-                <button className="text-primary hover:text-primary-container inline-flex items-center gap-1 font-medium transition-colors">
+                <Button
+                  variant="link"
+                  size="sm"
+                  className="text-primary hover:text-primary-container"
+                >
                   <Download className="size-[18px]" />
                   PDF
-                </button>
+                </Button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+    </Card>
   )
 }

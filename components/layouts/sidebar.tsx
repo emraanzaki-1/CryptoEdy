@@ -46,7 +46,7 @@ function ToolsSlideOut({ visible }: { visible: boolean }) {
           : 'pointer-events-none -translate-x-1 opacity-0'
       )}
     >
-      <p className="border-outline-variant/10 text-on-surface-variant border-b px-4 py-2.5 text-xs font-bold tracking-wider uppercase">
+      <p className="border-outline-variant/10 text-on-surface-variant border-b px-4 py-2.5 text-xs font-bold tracking-[0.05em] uppercase">
         Tools
       </p>
       {TOOLS_ITEMS.map((item) => (

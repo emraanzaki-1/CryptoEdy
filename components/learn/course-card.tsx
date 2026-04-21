@@ -43,7 +43,7 @@ export function CourseCard({
             />
             {/* Level badge overlay */}
             <div className="absolute top-4 left-4">
-              <span className="bg-on-surface/80 text-overline rounded px-2 py-1 font-bold tracking-[0.05em] text-white uppercase backdrop-blur-md">
+              <span className="bg-on-surface/80 text-overline text-on-primary rounded px-2 py-1 font-bold tracking-[0.05em] uppercase backdrop-blur-md">
                 Level: {difficulty}
               </span>
             </div>
@@ -53,7 +53,7 @@ export function CourseCard({
         {/* No cover image — show level badge inline */}
         {!coverImageUrl && (
           <div className="bg-surface-container flex h-48 items-center justify-center">
-            <span className="bg-on-surface/80 text-overline rounded px-2 py-1 font-bold tracking-[0.05em] text-white uppercase backdrop-blur-md">
+            <span className="bg-on-surface/80 text-overline text-on-primary rounded px-2 py-1 font-bold tracking-[0.05em] uppercase backdrop-blur-md">
               Level: {difficulty}
             </span>
           </div>

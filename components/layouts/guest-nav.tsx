@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { ButtonLink } from '@/components/ui/button-link'
 import { Logo } from '@/components/common/logo'
 
 const NAV_LINKS = [
@@ -23,7 +25,7 @@ export function GuestNav() {
 
         {/* Desktop nav */}
         <div className="hidden flex-1 justify-end gap-8 md:flex">
-          <div className="flex items-center gap-9">
+          <div className="flex items-center gap-8">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -41,23 +43,22 @@ export function GuestNav() {
             >
               Sign In
             </Link>
-            <Link
-              href="/register"
-              className="from-primary to-primary-container text-on-primary flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-gradient-to-b px-6 py-2 text-sm leading-normal font-bold tracking-[0.015em] shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-transform hover:-translate-y-0.5"
-            >
+            <ButtonLink href="/register" variant="gradient" size="default" className="min-w-[84px]">
               Join Now
-            </Link>
+            </ButtonLink>
           </div>
         </div>
 
         {/* Mobile hamburger */}
-        <button
+        <Button
+          variant="ghost"
+          size="icon"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="text-on-surface-variant hover:text-on-surface flex size-10 items-center justify-center rounded-lg transition-colors md:hidden"
+          className="text-on-surface-variant hover:text-on-surface md:hidden"
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
         >
           {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+        </Button>
       </div>
 
       {/* Mobile menu */}
@@ -81,13 +82,14 @@ export function GuestNav() {
             >
               Sign In
             </Link>
-            <Link
+            <ButtonLink
               href="/register"
+              variant="gradient"
+              size="lg"
               onClick={() => setMobileOpen(false)}
-              className="from-primary to-primary-container text-on-primary flex items-center justify-center rounded-xl bg-gradient-to-b px-6 py-3 text-sm font-bold tracking-[0.015em]"
             >
               Join Now
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       )}

@@ -30,7 +30,7 @@ export function ToggleSwitch({
         disabled={disabled}
         onChange={(e) => onChange?.(e.target.checked)}
       />
-      <div className="peer bg-outline-variant/50 peer-checked:bg-primary h-6 w-12 rounded-full after:absolute after:top-[2px] after:left-[2px] after:size-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all peer-checked:after:translate-x-full peer-checked:after:border-white" />
+      <div className="peer bg-outline-variant/50 peer-checked:bg-primary after:border-outline-variant/30 after:bg-surface-container-lowest peer-checked:after:border-on-primary h-6 w-12 rounded-full after:absolute after:top-[2px] after:left-[2px] after:size-5 after:rounded-full after:border after:transition-all peer-checked:after:translate-x-full" />
     </label>
   )
 }

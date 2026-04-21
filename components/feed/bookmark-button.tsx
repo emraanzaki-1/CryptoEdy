@@ -5,6 +5,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { Bookmark } from 'lucide-react'
 import { toggleBookmark } from '@/lib/bookmarks/actions'
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 interface BookmarkButtonProps {
   postId: string
@@ -41,34 +42,38 @@ export function BookmarkButton({ postId, initialBookmarked, variant }: BookmarkB
 
   if (variant === 'article') {
     return (
-      <button
+      <Button
+        variant="ghost"
+        size="icon-lg"
         onClick={handleClick}
         disabled={isPending}
         aria-label={isBookmarked ? 'Remove bookmark' : 'Bookmark'}
         className={cn(
-          'border-outline-variant/15 bg-surface hover:bg-surface-container-low flex size-10 items-center justify-center rounded-full border transition-colors',
+          'border-outline-variant/15 bg-surface hover:bg-surface-container-low size-10 rounded-full border',
           isBookmarked ? 'text-primary' : 'text-on-surface-variant'
         )}
       >
         <Bookmark className={cn('size-5', isBookmarked && 'fill-current')} />
-      </button>
+      </Button>
     )
   }
 
   // card variant — used in both grid and list cards
   return (
-    <button
+    <Button
+      variant="ghost"
+      size="icon"
       onClick={handleClick}
       disabled={isPending}
       aria-label={isBookmarked ? 'Remove bookmark' : 'Bookmark'}
       className={cn(
-        'absolute top-3 right-3 flex size-8 items-center justify-center rounded-full backdrop-blur-sm transition-opacity',
+        'absolute top-3 right-3 rounded-full backdrop-blur-sm transition-opacity',
         isBookmarked
           ? 'bg-primary/80 text-on-primary opacity-100'
-          : 'bg-black/40 text-white opacity-0 group-hover:opacity-100 hover:bg-black/60'
+          : 'bg-on-surface/40 text-on-primary hover:bg-on-surface/60 opacity-0 group-hover:opacity-100'
       )}
     >
       <Bookmark className={cn('size-4', isBookmarked && 'fill-current')} />
-    </button>
+    </Button>
   )
 }

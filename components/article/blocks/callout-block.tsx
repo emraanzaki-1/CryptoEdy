@@ -46,8 +46,10 @@ export function CalloutBlockComponent({ type, heading, body }: CalloutBlockProps
     <aside className={cn('my-8 flex gap-4 rounded-xl border p-6', variant.bg, variant.border)}>
       <Icon className={cn('mt-0.5 size-5 shrink-0', variant.iconColor)} />
       <div className="min-w-0">
-        {heading && <p className={cn('mb-1 text-sm font-bold', variant.headingColor)}>{heading}</p>}
-        <p className="text-on-surface-variant text-sm leading-relaxed">{body}</p>
+        {heading && (
+          <p className={cn('text-body-sm mb-1 font-bold', variant.headingColor)}>{heading}</p>
+        )}
+        <p className="text-on-surface-variant text-body-sm">{body}</p>
       </div>
     </aside>
   )

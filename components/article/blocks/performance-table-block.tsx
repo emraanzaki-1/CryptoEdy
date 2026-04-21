@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { SurfaceCard } from '@/components/ui/surface-card'
 
 const STATUS_STYLES = {
   open: { label: 'Open', className: 'bg-primary/10 text-primary' },
@@ -28,12 +29,10 @@ export function PerformanceTableBlockComponent({
   footnote,
 }: PerformanceTableBlockProps) {
   return (
-    <div className="border-outline-variant/15 bg-surface-container-lowest my-8 overflow-hidden rounded-2xl border shadow-[0_8px_32px_-8px_rgba(11,28,48,0.06)]">
+    <SurfaceCard border shadow="card" className="my-8">
       {title && (
         <div className="bg-surface-container-low/50 px-6 py-4">
-          <h4 className="text-on-background text-sm font-bold tracking-[0.05em] uppercase">
-            {title}
-          </h4>
+          <h4 className="text-on-background text-overline font-bold uppercase">{title}</h4>
         </div>
       )}
 
@@ -111,6 +110,6 @@ export function PerformanceTableBlockComponent({
           <p className="text-on-surface-variant text-xs italic">{footnote}</p>
         </div>
       )}
-    </div>
+    </SurfaceCard>
   )
 }

@@ -4,7 +4,7 @@ import { Logo } from '@/components/common/logo'
 export function Footer() {
   return (
     <footer className="bg-primary text-on-primary mt-auto px-4 py-16 md:px-8 lg:px-40">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="max-w-site mx-auto">
         <div className="mb-12 flex flex-col justify-between gap-12 md:flex-row">
           <div className="flex max-w-sm flex-col gap-4">
             <Logo
@@ -20,7 +20,7 @@ export function Footer() {
 
           <div className="grid grid-cols-2 gap-8 md:gap-16">
             <div className="flex flex-col gap-4">
-              <h4 className="text-on-primary text-sm font-bold tracking-wider uppercase">
+              <h4 className="text-on-primary text-sm font-bold tracking-[0.05em] uppercase">
                 Platform
               </h4>
               <Link
@@ -30,7 +30,7 @@ export function Footer() {
                 Research Archive
               </Link>
               <Link
-                href="#"
+                href="/#performance"
                 className="text-on-primary-container hover:text-on-primary text-sm transition-colors"
               >
                 Track Record
@@ -43,7 +43,9 @@ export function Footer() {
               </Link>
             </div>
             <div className="flex flex-col gap-4">
-              <h4 className="text-on-primary text-sm font-bold tracking-wider uppercase">Legal</h4>
+              <h4 className="text-on-primary text-sm font-bold tracking-[0.05em] uppercase">
+                Legal
+              </h4>
               <Link
                 href="/terms"
                 className="text-on-primary-container hover:text-on-primary text-sm transition-colors"

@@ -16,7 +16,7 @@ const badgeVariants = cva(
         outline: 'border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground',
         ghost: 'hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50',
         link: 'text-primary underline-offset-4 hover:underline',
-        pro: 'bg-tertiary-container/90 text-on-tertiary-container backdrop-blur-md text-xs font-bold uppercase tracking-wider',
+        pro: 'bg-tertiary-container/90 text-on-tertiary-container backdrop-blur-md text-xs font-bold uppercase tracking-[0.05em]',
         category:
           'bg-surface-container-high text-on-surface-variant text-overline font-bold uppercase',
         status: 'bg-secondary-container/20 text-secondary text-xs font-medium',

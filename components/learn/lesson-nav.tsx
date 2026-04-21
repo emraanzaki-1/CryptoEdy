@@ -17,7 +17,7 @@ export function LessonNav({ courseSlug, prevLesson, nextLesson }: LessonNavProps
           href={`/learn/courses/${courseSlug}/${prevLesson.slug}`}
           className="group flex max-w-xs items-center gap-4 text-left"
         >
-          <div className="bg-surface-container text-primary group-hover:bg-primary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full transition-colors group-hover:text-white">
+          <div className="bg-surface-container text-primary group-hover:bg-primary group-hover:text-on-primary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full transition-colors">
             <ArrowLeft className="h-5 w-5" />
           </div>
           <div>
@@ -46,7 +46,7 @@ export function LessonNav({ courseSlug, prevLesson, nextLesson }: LessonNavProps
               {nextLesson.title}
             </p>
           </div>
-          <div className="bg-surface-container text-primary group-hover:bg-primary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full transition-colors group-hover:text-white">
+          <div className="bg-surface-container text-primary group-hover:bg-primary group-hover:text-on-primary flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full transition-colors">
             <ArrowRight className="h-5 w-5" />
           </div>
         </Link>

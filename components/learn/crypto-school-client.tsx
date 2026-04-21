@@ -6,6 +6,7 @@ import { ViewToggle } from '@/components/feed/view-toggle'
 import { ArticleCard } from '@/components/feed/article-card'
 import { ArticleCardList } from '@/components/feed/article-card-list'
 import { EmptyState } from '@/components/common/empty-state'
+import { SectionHeader } from '@/components/common/section-header'
 import { useViewPreference } from '@/lib/hooks/useViewPreference'
 import type { ArticleCardProps } from '@/components/feed/article-card'
 
@@ -25,17 +26,11 @@ export function CryptoSchoolClient({
   return (
     <div className="mx-auto flex w-full flex-col gap-8">
       {/* Header */}
-      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-        <div>
-          <h1 className="text-on-surface text-2xl leading-tight font-bold tracking-[-0.04em] lg:text-3xl">
-            Crypto School
-          </h1>
-          <p className="text-on-surface-variant mt-2 text-base">
-            Learn crypto from the ground up — simply explained, guides, videos, and blueprints.
-          </p>
-        </div>
-        <ViewToggle view={view} onViewChange={setView} />
-      </div>
+      <SectionHeader
+        title="Crypto School"
+        subtitle="Learn crypto from the ground up — simply explained, guides, videos, and blueprints."
+        action={<ViewToggle view={view} onViewChange={setView} />}
+      />
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3">

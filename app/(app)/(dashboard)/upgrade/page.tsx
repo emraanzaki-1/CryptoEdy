@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { PageHeading } from '@/components/common/page-heading'
+import { ButtonLink } from '@/components/ui/button-link'
 
 export default function UpgradePage() {
   return (
@@ -6,20 +8,15 @@ export default function UpgradePage() {
       <div className="bg-tertiary-fixed text-on-tertiary-fixed mb-4 inline-block rounded-full px-3 py-1 text-xs font-bold tracking-[0.05em] uppercase">
         Pro
       </div>
-      <h1 className="text-on-surface text-2xl font-bold tracking-[-0.04em] lg:text-3xl">
-        Upgrade to CryptoEdy Pro
-      </h1>
+      <PageHeading>Upgrade to CryptoEdy Pro</PageHeading>
       <p className="text-on-surface-variant mt-4 max-w-md">
         Full access to token picks, deep research, airdrop guides, and all Pro tools for{' '}
         <strong>$100 / year</strong>.
       </p>
       <p className="text-on-surface-variant mt-2 text-sm">Full payment flow coming soon.</p>
-      <Link
-        href="/feed"
-        className="from-primary to-primary-container text-on-primary mt-8 inline-flex items-center justify-center rounded-full bg-gradient-to-b px-6 py-3 text-sm font-bold transition-opacity hover:opacity-90"
-      >
+      <ButtonLink href="/feed" variant="gradient" size="xl" className="mt-8 rounded-full">
         Back to feed
-      </Link>
+      </ButtonLink>
     </div>
   )
 }

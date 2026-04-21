@@ -16,18 +16,20 @@ export async function ArticleFAQ() {
 
     return (
       <section className="mt-10 pt-10">
-        <h2 className="text-on-background mb-6 text-lg font-bold">Frequently Asked Questions</h2>
+        <h2 className="text-on-background text-subtitle mb-6 font-bold">
+          Frequently Asked Questions
+        </h2>
         <div className="flex flex-col gap-3">
           {group.items.map((item: { question: string; answer: string }) => (
             <details
               key={item.question}
-              className="bg-surface-container-low group cursor-pointer rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden"
+              className="bg-surface-container-low group cursor-pointer rounded-2xl p-6 [&_summary::-webkit-details-marker]:hidden"
             >
-              <summary className="text-on-surface flex items-center justify-between text-sm font-bold outline-none">
+              <summary className="text-on-surface text-body-sm flex items-center justify-between font-bold outline-none">
                 {item.question}
                 <ChevronDown className="text-on-surface-variant size-4 shrink-0 transition-transform group-open:rotate-180" />
               </summary>
-              <p className="text-on-surface-variant mt-3 text-sm leading-relaxed">{item.answer}</p>
+              <p className="text-on-surface-variant text-body-sm mt-3">{item.answer}</p>
             </details>
           ))}
         </div>

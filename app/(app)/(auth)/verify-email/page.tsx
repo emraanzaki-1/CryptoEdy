@@ -4,6 +4,7 @@ import { Suspense, useEffect, useRef, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 function VerifyEmailContent() {
   const searchParams = useSearchParams()
@@ -75,7 +76,7 @@ function VerifyEmailContent() {
     return (
       <div className="flex flex-col gap-6 text-center">
         <div className="bg-secondary-container/20 mx-auto flex size-16 items-center justify-center rounded-full">
-          <span className="text-secondary text-2xl">&#10003;</span>
+          <span className="text-secondary text-headline">&#10003;</span>
         </div>
         <h1 className="font-headline text-on-surface text-headline font-bold">Email verified</h1>
         <p className="text-on-surface-variant text-base">Redirecting&hellip;</p>
@@ -96,17 +97,20 @@ function VerifyEmailContent() {
             ? 'This verification link has expired. Request a new one below.'
             : 'Invalid or missing verification token.'}
         </div>
-        <button
+        <Button
+          variant="gradient"
+          size="xxl"
           onClick={handleResend}
-          disabled={resendStatus === 'sending' || resendStatus === 'sent'}
-          className="from-primary to-primary-container text-on-primary w-full rounded-xl bg-gradient-to-b px-6 py-4 text-base font-bold tracking-[0.015em] shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-all disabled:opacity-50"
+          loading={resendStatus === 'sending'}
+          disabled={resendStatus === 'sent'}
+          className="w-full"
         >
           {resendStatus === 'sending'
             ? 'Sending...'
             : resendStatus === 'sent'
               ? 'Email sent! Check your inbox.'
               : 'Resend verification email'}
-        </button>
+        </Button>
         <Link
           href="/login"
           className="bg-surface-container-high text-on-surface hover:bg-surface-container-highest flex h-14 w-full items-center justify-center rounded-xl text-base font-bold transition-colors"
@@ -129,18 +133,20 @@ function VerifyEmailContent() {
       </header>
 
       <div className="flex flex-col gap-4">
-        <button
-          type="button"
+        <Button
+          variant="gradient"
+          size="xxl"
           onClick={handleResend}
-          disabled={resendStatus === 'sending' || resendStatus === 'sent'}
-          className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container w-full rounded-xl bg-gradient-to-b px-6 py-4 text-base font-bold tracking-[0.015em] shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-all disabled:opacity-50"
+          loading={resendStatus === 'sending'}
+          disabled={resendStatus === 'sent'}
+          className="w-full"
         >
           {resendStatus === 'sending'
             ? 'Sending...'
             : resendStatus === 'sent'
               ? 'Email sent! Check your inbox.'
               : 'Resend verification email'}
-        </button>
+        </Button>
       </div>
 
       <div className="mt-2 text-center">

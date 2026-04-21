@@ -195,9 +195,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       <div className="bg-on-surface/40 absolute inset-0 backdrop-blur-md" onClick={onClose} />
 
       {/* Modal */}
-      <div className="bg-surface-container-lowest border-outline-variant/10 relative w-full max-w-2xl overflow-hidden rounded-2xl border shadow-[0_32px_64px_-12px_rgba(11,28,48,0.2)]">
+      <div className="bg-surface-container-lowest border-outline-variant/10 shadow-modal relative w-full max-w-2xl overflow-hidden rounded-2xl border">
         {/* Search Header */}
-        <div className="bg-surface-container-lowest relative flex items-center px-6 py-5">
+        <div className="bg-surface-container-lowest relative flex items-center px-6 py-6">
           <Search className="text-primary mr-4 size-6 shrink-0" />
           <input
             ref={inputRef}
@@ -207,7 +207,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             placeholder="Search research, assets, or actions..."
             className="text-on-surface placeholder:text-on-surface-variant/50 w-full border-none bg-transparent text-lg font-medium focus:ring-0 focus:outline-none"
           />
-          <div className="bg-surface-container-low text-on-surface-variant/60 flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[10px] font-bold tracking-[-0.02em]">
+          <div className="bg-surface-container-low text-on-surface-variant/60 text-overline flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 font-bold tracking-[-0.04em]">
             <span>⌘</span>
             <span>/</span>
           </div>
@@ -234,11 +234,11 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   ))}
                 </div>
               ) : error ? (
-                <div className="px-7 py-8 text-center">
+                <div className="px-8 py-8 text-center">
                   <p className="text-on-surface-variant text-sm">{error}</p>
                 </div>
               ) : results.length === 0 ? (
-                <div className="px-7 py-8 text-center">
+                <div className="px-8 py-8 text-center">
                   <p className="text-on-surface-variant text-sm">
                     No results found for &ldquo;{query.trim()}&rdquo;
                   </p>
@@ -248,7 +248,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 </div>
               ) : (
                 <section className="px-3">
-                  <h4 className="text-on-surface-variant/60 mb-2 px-4 text-[10px] font-black tracking-[0.05em] uppercase">
+                  <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black tracking-[0.05em] uppercase">
                     Research Reports
                   </h4>
                   <div className="space-y-0.5">
@@ -280,12 +280,12 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                 dangerouslySetInnerHTML={{ __html: result.highlightedTitle }}
                               />
                               {isNew && (
-                                <span className="bg-secondary-container/20 text-on-secondary-container shrink-0 rounded px-1.5 py-0.5 text-[8px] font-bold uppercase">
+                                <span className="bg-secondary-container/20 text-on-secondary-container text-overline shrink-0 rounded px-1.5 py-0.5 font-bold uppercase">
                                   NEW
                                 </span>
                               )}
                               {result.isProOnly && (
-                                <span className="bg-tertiary-fixed text-on-tertiary-fixed shrink-0 rounded px-1.5 py-0.5 text-[8px] font-bold uppercase">
+                                <span className="bg-tertiary-fixed text-on-tertiary-fixed text-overline shrink-0 rounded px-1.5 py-0.5 font-bold uppercase">
                                   PRO
                                 </span>
                               )}
@@ -309,7 +309,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               {/* Recent Searches */}
               {recentSearches.length > 0 && (
                 <section className="mb-6 px-3">
-                  <h4 className="text-on-surface-variant/60 mb-2 px-4 text-[10px] font-black tracking-[0.05em] uppercase">
+                  <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black tracking-[0.05em] uppercase">
                     Recent Searches
                   </h4>
                   <div className="space-y-0.5">
@@ -352,7 +352,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
               {/* Quick Actions */}
               <section className="px-3">
-                <h4 className="text-on-surface-variant/60 mb-2 px-4 text-[10px] font-black tracking-[0.05em] uppercase">
+                <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black tracking-[0.05em] uppercase">
                   Quick Actions
                 </h4>
                 <div className="grid grid-cols-2 gap-2 p-1">
@@ -385,15 +385,15 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
         {/* Footer */}
         <div className="bg-surface-container-low/80 border-outline-variant/10 flex items-center justify-between border-t px-6 py-4">
-          <div className="text-on-surface-variant/50 flex items-center gap-4 text-[10px] font-bold">
+          <div className="text-on-surface-variant/50 text-overline flex items-center gap-4 font-bold">
             <div className="flex items-center gap-1.5">
-              <span className="bg-surface-container-lowest border-outline-variant/20 rounded border px-1.5 py-0.5 text-[9px] shadow-sm">
+              <span className="bg-surface-container-lowest border-outline-variant/20 text-overline rounded border px-1.5 py-0.5 shadow-sm">
                 ESC
               </span>
               <span>to close</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="bg-surface-container-lowest border-outline-variant/20 rounded border px-1.5 py-0.5 text-[9px] shadow-sm">
+              <span className="bg-surface-container-lowest border-outline-variant/20 text-overline rounded border px-1.5 py-0.5 shadow-sm">
                 ↵
               </span>
               <span>to select</span>

@@ -1,16 +1,9 @@
-import { GuestNav } from '@/components/layouts/guest-nav'
-import { Footer } from '@/components/layouts/footer'
+import { GuestShell } from '@/components/layouts/guest-shell'
 import { ErrorContent } from '@/components/common/error-content'
 
 export default function NotFound() {
   return (
-    <div className="bg-surface relative flex min-h-screen w-full flex-col overflow-x-clip">
-      <div className="bg-surface-container-highest/80 sticky top-0 z-50 w-full backdrop-blur-md">
-        <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-          <GuestNav />
-        </div>
-      </div>
-
+    <GuestShell>
       <ErrorContent
         code={404}
         title="PAGE NOT FOUND"
@@ -18,8 +11,6 @@ export default function NotFound() {
         backLabel="Back to Home"
         backHref="/"
       />
-
-      <Footer />
-    </div>
+    </GuestShell>
   )
 }

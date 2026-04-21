@@ -205,3 +205,9 @@
 [2026-04-20T15:03:35.681Z] [INFO] WebSocket client connected
 [2026-04-20T18:30:00.389Z] [INFO] Executing task: Full anatomy rescan
 [2026-04-20T18:30:00.649Z] [INFO] Task Full anatomy rescan completed in 262ms
+[2026-04-20T19:58:14.703Z] [INFO] WebSocket client connected
+[2026-04-20T20:30:00.814Z] [INFO] Executing task: Consolidate old memory
+[2026-04-20T20:30:00.840Z] [INFO] Task Consolidate old memory completed in 24ms
+[2026-04-20T21:31:14.902Z] [INFO] WebSocket client connected
+[2026-04-21T02:01:40.250Z] [INFO] WebSocket client connected
+[2026-04-21T02:01:51.891Z] [INFO] WebSocket client connected

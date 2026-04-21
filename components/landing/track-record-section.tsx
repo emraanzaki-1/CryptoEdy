@@ -1,4 +1,5 @@
 import { TrendingUp, Rocket } from 'lucide-react'
+import { SectionHeading } from '@/components/landing/section-heading'
 
 const TRADES = [
   {
@@ -38,34 +39,30 @@ export function TrackRecordSection() {
       id="performance"
     >
       {/* Split header */}
-      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <div className="flex flex-col gap-3 md:max-w-sm">
-          <span className="text-primary text-xs font-semibold tracking-[0.05em] uppercase">
-            Track Record
-          </span>
-          <h2 className="font-headline text-on-surface text-headline md:text-headline-md font-black">
+      <SectionHeading
+        align="split"
+        overline="Track Record"
+        title={
+          <>
             Seven years.
             <br />
             All on the record.
-          </h2>
-        </div>
-        <p className="text-on-surface-variant max-w-sm text-sm leading-relaxed">
-          We don&apos;t just talk trends — we document entries, exits, and actualized yield. Here
-          are recent closed calls.
-        </p>
-      </div>
+          </>
+        }
+        subtitle="We don't just talk trends — we document entries, exits, and actualized yield. Here are recent closed calls."
+      />
 
       {/* Trade cards */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {TRADES.map((trade) => (
           <div
             key={trade.name}
-            className="bg-surface-container-lowest flex flex-col gap-5 rounded-2xl p-6 shadow-[0_16px_32px_-12px_rgba(11,28,48,0.04)]"
+            className="bg-surface-container-lowest shadow-ambient flex flex-col gap-6 rounded-2xl p-6"
           >
             {/* Header row */}
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-on-surface text-base font-bold">{trade.name}</h3>
+                <h3 className="text-on-surface text-body-lg font-bold">{trade.name}</h3>
               </div>
               <div className="bg-surface-container-low text-primary rounded-lg p-1.5">
                 <trade.icon className="size-4" />
@@ -98,9 +95,7 @@ export function TrackRecordSection() {
 
             {/* Gain */}
             <div className="flex items-end justify-between">
-              <div className="text-secondary text-3xl font-black tracking-[-0.04em]">
-                {trade.gain}
-              </div>
+              <div className="text-secondary text-headline font-black">{trade.gain}</div>
               <p className="text-on-surface-variant text-label">
                 {trade.entry} → {trade.exit}
               </p>

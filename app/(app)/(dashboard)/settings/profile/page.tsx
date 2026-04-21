@@ -3,12 +3,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { Pencil, Loader2, Check } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { AvatarUpload } from '@/components/settings/avatar-upload'
-import {
-  SettingsFormField,
-  SettingsInput,
-  SettingsTextarea,
-} from '@/components/settings/settings-form-field'
+import { PageHeading } from '@/components/common/page-heading'
+import { FormField, FormInput, FormTextarea } from '@/components/ui/form-field'
+import { SectionTitle } from '@/components/settings/section-title'
 import { DangerZone } from '@/components/settings/danger-zone'
 import { useAvatar } from '@/components/providers/avatar-provider'
 import { getProfile, updateProfile, type ProfileData } from '@/lib/profile/actions'
@@ -103,14 +102,13 @@ export default function ProfileSettingsPage() {
 
   return (
     <>
-      <div>
-        <h2 className="font-headline text-on-surface mb-2 text-2xl leading-tight font-bold tracking-[-0.04em] lg:text-3xl">
-          Profile Settings
-        </h2>
-        <p className="text-on-surface-variant text-base">
-          Manage your personal information and application preferences.
-        </p>
-      </div>
+      <PageHeading
+        as="h2"
+        variant="settings"
+        subtitle="Manage your personal information and application preferences."
+      >
+        Profile Settings
+      </PageHeading>
 
       <div className="space-y-10">
         {/* Avatar Upload */}
@@ -139,61 +137,81 @@ export default function ProfileSettingsPage() {
 
         {/* Personal Information */}
         <section>
-          <h3 className="text-on-surface mb-5 text-base font-semibold">Personal Information</h3>
+          <SectionTitle>Personal Information</SectionTitle>
           <div className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
-            <SettingsFormField label="First Name">
-              <SettingsInput
+            <FormField label="First Name" htmlFor="firstName">
+              <FormInput
+                id="firstName"
+                variant="outlined"
                 type="text"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 placeholder="First name"
               />
-            </SettingsFormField>
-            <SettingsFormField label="Last Name">
-              <SettingsInput
+            </FormField>
+            <FormField label="Last Name" htmlFor="lastName">
+              <FormInput
+                id="lastName"
+                variant="outlined"
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 placeholder="Last name"
               />
-            </SettingsFormField>
-            <SettingsFormField label="Email Address" className="relative sm:col-span-2">
+            </FormField>
+            <FormField label="Email Address" htmlFor="email" className="relative sm:col-span-2">
               <div className="relative">
-                <SettingsInput type="email" value={profile?.email ?? ''} readOnly />
-                <button className="text-primary hover:text-primary-container absolute top-1/2 right-4 -translate-y-1/2 p-1">
+                <FormInput
+                  id="email"
+                  variant="outlined"
+                  type="email"
+                  value={profile?.email ?? ''}
+                  readOnly
+                />
+                <Button
+                  variant="ghost"
+                  size="icon-xs"
+                  className="text-primary hover:text-primary-container absolute top-1/2 right-4 -translate-y-1/2"
+                >
                   <Pencil className="size-4" />
-                </button>
+                </Button>
               </div>
-            </SettingsFormField>
-            <SettingsFormField label="Username">
-              <SettingsInput
+            </FormField>
+            <FormField label="Username" htmlFor="username">
+              <FormInput
+                id="username"
+                variant="outlined"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="@username"
               />
-            </SettingsFormField>
-            <SettingsFormField label="Display Name">
-              <SettingsInput
+            </FormField>
+            <FormField label="Display Name" htmlFor="displayName">
+              <FormInput
+                id="displayName"
+                variant="outlined"
                 type="text"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 placeholder="Display name"
               />
-            </SettingsFormField>
+            </FormField>
           </div>
         </section>
 
         {/* Bio */}
         <section>
-          <SettingsFormField label="Bio">
-            <SettingsTextarea
+          <FormField label="Bio" htmlFor="bio">
+            <FormTextarea
+              id="bio"
+              variant="outlined"
               rows={4}
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               placeholder="Tell us about yourself..."
             />
-          </SettingsFormField>
+          </FormField>
         </section>
 
         {/* Error */}
@@ -206,22 +224,26 @@ export default function ProfileSettingsPage() {
         {/* Actions */}
         <section className="border-outline-variant/15 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:flex-row">
           <div className="ml-auto flex w-full gap-4 sm:w-auto">
-            <button
+            <Button
+              variant="ghost"
+              size="lg"
               onClick={handleCancel}
               disabled={!hasChanges || saving}
-              className="text-on-surface-variant hover:bg-surface-container w-full rounded-full px-8 py-3.5 text-sm font-bold transition-colors disabled:opacity-50 sm:w-auto"
+              className="text-on-surface-variant hover:bg-surface-container w-full rounded-full px-8 font-bold sm:w-auto"
             >
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
+              variant="gradient"
+              size="default"
               onClick={handleSave}
-              disabled={!hasChanges || saving}
-              className="from-primary to-primary-container text-on-primary flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b px-8 py-3.5 text-sm font-bold shadow-sm transition-opacity hover:opacity-90 disabled:opacity-50 sm:w-auto"
+              loading={saving}
+              disabled={!hasChanges}
+              className="w-full rounded-full sm:w-auto"
             >
-              {saving && <Loader2 className="size-4 animate-spin" />}
               {saved && <Check className="size-4" />}
               {saved ? 'Saved' : 'Save changes'}
-            </button>
+            </Button>
           </div>
         </section>
       </div>

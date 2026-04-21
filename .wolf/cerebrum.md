@@ -20,6 +20,13 @@
 - **shadcn/ui v4.2.0:** Uses `base-nova` style with `@base-ui/react` (headless). NOT Radix — no `asChild` prop on Button.
 - **M3 Tonal Palette:** 35+ color tokens mapped to Tailwind v4 via `@theme inline`. Shadcn bridge maps `--background`, `--foreground`, etc. to M3 equivalents.
 - **Design System:** No 1px borders (use tonal layering), ghost borders at 15% opacity max, gradient CTAs, glass navigation, no pure black, Inter font with -0.04em tracking.
+- **Shadow tokens (in `@theme inline`):** `shadow-ambient` (cards at rest), `shadow-ambient-hover`, `shadow-card` (article blocks), `shadow-elevated` (modals), `shadow-elevated-emphasis`, `shadow-modal` (search), `shadow-cta` (CTA glow). Never use inline rgba shadows.
+- **Layout token:** `--container-site: 1200px` → use `max-w-site` utility class. Never hardcode `max-w-[1200px]`.
+- **Button variants:** default, gradient, tonal, outline, secondary, ghost, destructive (tonal), danger (solid bg-error), link. Use `danger` for critical actions (delete account), `destructive` for mild warnings. All action buttons MUST compose from `Button` or `ButtonLink`. Raw `<button>` is reserved for structural chrome only (accordion headers, tab filters, dropdown triggers, nav toggles).
+- **Form system:** Single source of truth in `components/ui/form-field.tsx`. `FormField` wraps label+error+children with optional `labelAction` slot. `FormInput`/`FormTextarea`/`FormSelect` accept `variant` prop: `tonal` (auth — bg-fill, no border) or `outlined` (settings/contact — bordered). Never inline raw `<label>` + `<input>` + error `<p>` — always use these primitives.
+- **Layout shells:** Guest (non-dashboard) pages use `<GuestShell>` from `components/layouts/guest-shell.tsx` (provides sticky nav + `<main>` + footer). Pass page-specific main padding via `className` prop. Dashboard pages use `<DashboardShell>`. Never inline the nav+footer boilerplate in page files.
+- **Section headers:** Feed/Learn index pages use `<SectionHeader>` from `components/common/section-header.tsx` (title + subtitle + action slot). Never inline `<h1>` + `<p>` + action rows when SectionHeader fits.
+- **Card variants:** `default` (shadcn — ring, rounded-xl, bg-card) and `surface` (M3 tonal — border-outline-variant/15, rounded-2xl, bg-surface-container-low). Settings surfaces, notification items, billing tables, and trust blocks all use `<Card variant="surface">`. The pricing hero card overrides via className (rounded-3xl, bg-surface, shadow-sm). Never hand-build card surfaces with inline border/bg/radius — always compose from Card.
 - **Typography Scale (in `@theme inline`):** `text-overline` (10px, badges), `text-label` (11px, category pills), `text-headline` (32px), `text-headline-md` (40px), `text-headline-lg` (48px), `text-display` (56px). All heading sizes include paired `--line-height` and `--letter-spacing: -0.04em`.
 - **Tracking tokens:** Headings: `-0.04em`. CTA buttons: `0.015em`. Uppercase labels: `0.05em`. Never use Tailwind shorthands (`tracking-tight`, `tracking-wider`, `tracking-widest`, `tracking-tighter`) — use explicit values.
 - **Font weight convention:** Landing/splash headings: `font-black`. Auth/dashboard page headings: `font-bold`. Never use `font-extrabold`.
@@ -40,6 +47,7 @@
 
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->
 
+- [2026-04-21] Do NOT create parallel form field/input implementations in different folders. All form primitives live in `components/ui/form-field.tsx`. Settings, auth, and contact pages all import from the same file.
 - [2026-04-18] Registration API expected firstName/lastName but form sends username. Always check form payload matches API destructuring.
 - [2026-04-18] Next.js 16 uses `proxy.ts` NOT `middleware.ts` — middleware.ts is deprecated and renamed to proxy.ts.
 - [2026-04-17] Do NOT use `@apply border-border` in Tailwind v4 without registering `--color-border` in `@theme inline`.

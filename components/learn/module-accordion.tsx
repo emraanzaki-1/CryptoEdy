@@ -77,7 +77,7 @@ function LessonItem({
             Completed
           </span>
         ) : isCurrent ? (
-          <span className="bg-primary text-overline rounded-lg px-4 py-2 font-bold text-white uppercase shadow-sm">
+          <span className="bg-primary text-overline text-on-primary rounded-lg px-4 py-2 font-bold uppercase shadow-sm">
             Play Now
           </span>
         ) : !isUnlocked ? (
@@ -140,7 +140,7 @@ export function ModuleAccordion({
       <button
         onClick={() => !isLocked && setIsOpen(!isOpen)}
         className={cn(
-          'flex w-full items-center justify-between px-6 py-5 text-left transition-colors',
+          'flex w-full items-center justify-between px-6 py-6 text-left transition-colors',
           !isLocked && 'hover:bg-surface-container-low cursor-pointer',
           isLocked && 'cursor-not-allowed',
           isOpen && !isLocked ? 'bg-surface-container-low' : 'bg-surface-container'
@@ -154,7 +154,7 @@ export function ModuleAccordion({
             className={cn(
               'flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full',
               isCompleted && 'bg-secondary-container text-on-secondary-container',
-              moduleStatus === 'active' && 'bg-primary-container text-white',
+              moduleStatus === 'active' && 'bg-primary-container text-on-primary-container',
               isLocked && 'bg-surface-container-high text-on-surface-variant'
             )}
           >

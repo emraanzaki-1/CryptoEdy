@@ -6,6 +6,8 @@ import { ArrowLeft } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { forgotPasswordSchema, type ForgotPasswordFormValues } from '@/lib/auth/schemas'
+import { Button } from '@/components/ui/button'
+import { FormField, FormInput } from '@/components/ui/form-field'
 
 export default function ForgotPasswordPage() {
   const [sent, setSent] = useState(false)
@@ -56,29 +58,25 @@ export default function ForgotPasswordPage() {
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-          <div className="flex flex-col gap-2">
-            <span className="text-on-surface text-xs font-medium tracking-[0.05em] uppercase">
-              Email Address
-            </span>
-            <input
+          <FormField label="Email Address" htmlFor="email" error={errors.email?.message}>
+            <FormInput
+              id="email"
               type="email"
               placeholder="researcher@cryptoedy.com"
               autoComplete="email"
               {...register('email')}
-              className="bg-surface-container-high text-on-surface placeholder:text-on-surface-variant/50 focus:bg-surface-container-lowest focus:ring-primary w-full rounded-xl border-none px-5 py-4 text-base transition-all focus:ring-2 focus:outline-none"
             />
-            {errors.email && (
-              <p className="text-error text-xs font-medium">{errors.email.message}</p>
-            )}
-          </div>
+          </FormField>
 
-          <button
+          <Button
             type="submit"
-            disabled={isSubmitting}
-            className="from-primary to-primary-container text-on-primary hover:from-primary-container hover:to-primary-container shadow-cta mt-2 w-full rounded-xl bg-linear-to-b px-6 py-4 text-base font-bold tracking-[0.015em] transition-all disabled:opacity-50"
+            variant="gradient"
+            size="xxl"
+            loading={isSubmitting}
+            className="mt-2 w-full"
           >
             {isSubmitting ? 'Sending...' : 'Send reset link'}
-          </button>
+          </Button>
         </form>
       )}
 

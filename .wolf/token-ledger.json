@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-04-17T20:46:01.631Z",
   "lifetime": {
-    "total_tokens_estimated": 4113942,
-    "total_reads": 2626,
+    "total_tokens_estimated": 4128024,
+    "total_reads": 2640,
     "total_writes": 4262,
-    "total_sessions": 29,
-    "anatomy_hits": 2331,
-    "anatomy_misses": 268,
+    "total_sessions": 30,
+    "anatomy_hits": 2343,
+    "anatomy_misses": 270,
     "repeated_reads_blocked": 1457,
-    "estimated_savings_vs_bare_cli": 3362233
+    "estimated_savings_vs_bare_cli": 3364633
   },
   "sessions": [
     {
@@ -40037,6 +40037,106 @@
         "writes_count": 32,
         "repeated_reads_blocked": 10,
         "anatomy_lookups": 14
+      }
+    },
+    {
+      "id": "session-2026-04-21-0725",
+      "started": "2026-04-21T01:55:07.426Z",
+      "ended": "2026-04-21T01:57:47.893Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/globals.css",
+          "tokens_estimated": 3997,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/ui/button.tsx",
+          "tokens_estimated": 1100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/ui/input.tsx",
+          "tokens_estimated": 298,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/ui/card.tsx",
+          "tokens_estimated": 744,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/ui/surface-card.tsx",
+          "tokens_estimated": 350,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/config/layout.ts",
+          "tokens_estimated": 100,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/common/page-heading.tsx",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/landing/section-heading.tsx",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/common/coming-soon.tsx",
+          "tokens_estimated": 600,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/tools/airdrops/page.tsx",
+          "tokens_estimated": 1158,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/tools/market-direction/page.tsx",
+          "tokens_estimated": 1282,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/tools/picks/page.tsx",
+          "tokens_estimated": 1306,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/tools/tracker/page.tsx",
+          "tokens_estimated": 1268,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/community/page.tsx",
+          "tokens_estimated": 1879,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 14082,
+        "output_tokens_estimated": 0,
+        "reads_count": 14,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 12
       }
     }
   ],

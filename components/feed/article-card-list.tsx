@@ -37,7 +37,7 @@ export function ArticleCardList({
             )}
           </div>
           {isPro && (
-            <div className="text-overline absolute bottom-3 left-3 flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 font-semibold text-white backdrop-blur-sm">
+            <div className="text-overline bg-on-surface/50 text-on-primary absolute bottom-3 left-3 flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold backdrop-blur-sm">
               <Lock className="size-2.5" />
               Members only
             </div>
@@ -48,11 +48,11 @@ export function ArticleCardList({
         </div>
 
         {/* Content */}
-        <div className="flex flex-1 flex-col justify-center gap-3 p-5">
-          <h3 className="text-on-surface group-hover:text-primary text-lg leading-snug font-bold transition-colors">
+        <div className="flex flex-1 flex-col justify-center gap-3 p-6">
+          <h3 className="text-on-surface group-hover:text-primary text-subtitle font-bold transition-colors">
             {title}
           </h3>
-          <p className="text-on-surface-variant line-clamp-2 text-sm leading-relaxed">{excerpt}</p>
+          <p className="text-on-surface-variant text-body-sm line-clamp-2">{excerpt}</p>
           <div className="mt-1 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <CategoryPill category={category} />

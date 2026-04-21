@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-20T18:33:11.807Z
-> Files: 329 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T02:15:58.401Z
+> Files: 338 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -201,7 +201,7 @@
 
 ## app/
 
-- `globals.css` — Styles: 10 rules, 256 vars, 1 layers (~3997 tok)
+- `globals.css` — Styles: 6 rules, 269 vars (~4300 tok)
 
 ## app/(app)/
 
@@ -288,15 +288,15 @@
 
 ## app/(app)/(dashboard)/settings/appearance/
 
-- `page.tsx` — THEMES (~1771 tok)
+- `page.tsx` — THEMES (~1750 tok)
 
 ## app/(app)/(dashboard)/settings/billing/
 
-- `page.tsx` — billingHistory (~892 tok)
+- `page.tsx` — billingHistory (~850 tok)
 
 ## app/(app)/(dashboard)/settings/notifications/
 
-- `page.tsx` — NotificationItem — uses useState, useEffect, useCallback (~1712 tok)
+- `page.tsx` — NotificationItem (~1680 tok)
 
 ## app/(app)/(dashboard)/settings/plans/
 
@@ -304,7 +304,7 @@
 
 ## app/(app)/(dashboard)/settings/profile/
 
-- `page.tsx` — ProfileSettingsPage — uses useState, useCallback, useEffect (~2277 tok)
+- `page.tsx` — ProfileSettingsPage — renders form (~2304 tok)
 
 ## app/(app)/(dashboard)/tag/[slug]/
 
@@ -316,19 +316,19 @@
 
 ## app/(app)/(dashboard)/tools/airdrops/
 
-- `page.tsx` — HIGHLIGHTS (~1158 tok)
+- `page.tsx` — HIGHLIGHTS (~303 tok)
 
 ## app/(app)/(dashboard)/tools/market-direction/
 
-- `page.tsx` — HIGHLIGHTS — renders chart (~1282 tok)
+- `page.tsx` — HIGHLIGHTS (~421 tok)
 
 ## app/(app)/(dashboard)/tools/picks/
 
-- `page.tsx` — HIGHLIGHTS (~1306 tok)
+- `page.tsx` — HIGHLIGHTS (~441 tok)
 
 ## app/(app)/(dashboard)/tools/tracker/
 
-- `page.tsx` — HIGHLIGHTS — renders chart (~1268 tok)
+- `page.tsx` — HIGHLIGHTS (~406 tok)
 
 ## app/(app)/(dashboard)/upgrade/
 
@@ -467,16 +467,16 @@
 
 - `article-faq.tsx` — ArticleFAQ (~409 tok)
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
-- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1613 tok)
-- `recommended-articles.tsx` — AUTO_SCROLL_INTERVAL — uses useState, useCallback, useEffect (~1182 tok)
+- `paywall-gate.tsx` — SUMMARY_POINTS (~1583 tok)
+- `recommended-articles.tsx` — AUTO_SCROLL_INTERVAL (~1183 tok)
 - `share-button.tsx` — ShareButton — uses useState (~339 tok)
 
 ## components/article/blocks/
 
-- `callout-block.tsx` — VARIANTS — renders chart (~426 tok)
+- `callout-block.tsx` — VARIANTS (~425 tok)
 - `chart-embed-block.tsx` — ChartEmbedBlockComponent — renders chart — uses useEffect (~550 tok)
-- `performance-table-block.tsx` — STATUS_STYLES — renders table (~1192 tok)
-- `price-target-block.tsx` — RISK_STYLES (~1083 tok)
+- `performance-table-block.tsx` — STATUS_STYLES — renders table (~1178 tok)
+- `price-target-block.tsx` — RISK_STYLES (~1070 tok)
 
 ## components/auth/
 
@@ -489,31 +489,34 @@
 - `empty-state.tsx` — Primary CTA label (~744 tok)
 - `error-content.tsx` — Label for the primary CTA (~1178 tok)
 - `logo.tsx` — sizes (~328 tok)
+- `page-heading.tsx` — PageHeading (~200 tok)
 - `search-bar.tsx` — SearchBar (~209 tok)
 - `search-modal.tsx` — RECENT_SEARCHES_KEY — uses useRouter, useState, useEffect, useCallback (~4683 tok)
+- `section-header.tsx` — SectionHeader — title + subtitle + action slot for page headers (~150 tok)
 - `sidebar-nav.tsx` — SidebarNav — uses useState, useEffect (~601 tok)
 
 ## components/feed/
 
-- `article-card-list.tsx` — ArticleCardList, imports CategoryPill (~750 tok)
+- `article-card-list.tsx` — ArticleCardList (~746 tok)
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~906 tok)
-- `article-card.tsx` — ArticleCard, ArticleCardProps, imports CategoryPill (~1050 tok)
+- `article-card.tsx` — ArticleCard (~1074 tok)
 - `bookmark-button.tsx` — BookmarkButton — uses useState, useRouter (~669 tok)
 - `category-pill.tsx` — CategoryPill — shared pill component (~80 tok)
-- `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~285 tok)
-- `feed-client.tsx` — FeedClient (~1174 tok)
+- `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~275 tok)
+- `feed-client.tsx` — FeedClient (~1164 tok)
 - `tag-client.tsx` — TagClient (~826 tok)
 - `view-toggle.tsx` — ViewToggle (~337 tok)
 
 ## components/landing/
 
-- `faq-section.tsx` — FALLBACK_FAQS (~828 tok)
-- `hero-section.tsx` — HeroSection (~619 tok)
+- `faq-section.tsx` — FALLBACK_FAQS (~769 tok)
+- `hero-section.tsx` — HeroSection (~608 tok)
 - `onboarding-popup.tsx` — DISMISSED_KEY — renders form — uses useState, useCallback, useEffect (~2510 tok)
-- `pricing-section.tsx` — FEATURES — renders chart (~1006 tok)
-- `research-preview-section.tsx` — ARTICLES (~1524 tok)
-- `track-record-section.tsx` — TRADES (~1036 tok)
-- `value-props-section.tsx` — VALUE_PROPS — renders chart (~787 tok)
+- `pricing-section.tsx` — FEATURES (~921 tok)
+- `research-preview-section.tsx` — ARTICLES (~1518 tok)
+- `section-heading.tsx` — SectionHeading (~480 tok)
+- `track-record-section.tsx` — TRADES (~914 tok)
+- `value-props-section.tsx` — VALUE_PROPS (~665 tok)
 
 ## components/layouts/
 
@@ -521,6 +524,7 @@
 - `dashboard-shell.tsx` — DashboardShell — uses useState (~647 tok)
 - `footer.tsx` — Footer (~962 tok)
 - `guest-nav.tsx` — NAV_LINKS — uses useState (~1037 tok)
+- `guest-shell.tsx` — GuestShell — shared guest page wrapper (nav + main + footer) (~200 tok)
 - `settings-nav.tsx` — settingsGroups (~572 tok)
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2179 tok)
 - `top-app-bar.tsx` — useClickOutside — uses useEffect, useState (~3389 tok)
@@ -546,25 +550,31 @@
 
 ## components/settings/
 
-- `avatar-upload.tsx` — getCroppedBlob — uses useState, useCallback (~2499 tok)
+- `avatar-upload.tsx` — getCroppedBlob (~2464 tok)
 - `billing-history-table.tsx` — BillingHistoryTable — renders table (~632 tok)
 - `danger-zone.tsx` — DangerZone — uses useState (~1004 tok)
-- `settings-form-field.tsx` — SettingsFormField (~533 tok)
+- `section-title.tsx` — SectionTitle (~85 tok)
 - `theme-card.tsx` — ThemeCard (~1002 tok)
+
+## components/tools/
+
+- `tool-preview-layout.tsx` — Extra decorative elements rendered inside the visual panel (~1496 tok)
 
 ## components/ui/
 
 - `alert.tsx` — alertVariants (~582 tok)
 - `badge.tsx` — badgeVariants (~634 tok)
 - `breadcrumb.tsx` — Breadcrumb (~273 tok)
-- `button.tsx` — buttonVariants (~1045 tok)
+- `button.tsx` — buttonVariants: default, gradient, tonal, outline, secondary, ghost, destructive, danger, link (~1100 tok)
 - `card.tsx` — Card (~744 tok)
 - `checkbox.tsx` — Checkbox (~386 tok)
 - `filter-chip.tsx` — FilterChip (~168 tok)
+- `form-field.tsx` — FormField, FormInput, FormTextarea, FormSelect — single source of truth for all forms. tonal/outlined variants (~800 tok)
 - `input.tsx` — Input (~298 tok)
 - `label.tsx` — Label (~148 tok)
 - `separator.tsx` — Separator (~154 tok)
 - `skeleton.tsx` — Skeleton (~79 tok)
+- `surface-card.tsx` — SurfaceCard: lowest/low variants, none/sm/ambient/card/elevated shadows, border, hover (~350 tok)
 - `toggle-switch.tsx` — ToggleSwitch (~289 tok)
 
 ## docs/
@@ -621,10 +631,6 @@
 ## lib/
 
 - `utils.ts` — Exports cn (~48 tok)
-
-## lib/utils/
-
-- `timeAgo.ts` — Exports timeAgo — relative date formatting (~80 tok)
 
 ## lib/api/
 
@@ -719,6 +725,10 @@
 
 - `actions.ts` — getProfile, updateProfile, deleteAccount (~1100 tok)
 - `avatar.ts` — uploadAvatar, removeAvatar (~500 tok)
+
+## lib/utils/
+
+- `timeAgo.ts` — Exports timeAgo — relative date formatting (~80 tok)
 
 ## scripts/
 

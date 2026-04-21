@@ -41,11 +41,11 @@ export function ResearchPreviewSection() {
     <section className="flex flex-col gap-8" id="research">
       {/* Header */}
       <div className="flex flex-col gap-3">
-        <span className="text-primary text-xs font-semibold tracking-[0.05em] uppercase">
+        <span className="text-primary text-overline font-bold uppercase">
           Free &amp; Pro &middot; Research
         </span>
         <div className="flex items-baseline justify-between">
-          <h2 className="font-headline text-on-surface text-headline md:text-headline-md font-black">
+          <h2 className="font-headline text-on-surface text-headline md:text-headline-md font-black tracking-[-0.04em] md:tracking-[unset]">
             Latest research.
           </h2>
           <Link
@@ -58,11 +58,11 @@ export function ResearchPreviewSection() {
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 [&>*]:h-full">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 [&>*]:h-full">
         {ARTICLES.map((article) => (
           <div
             key={article.title}
-            className="border-outline-variant/[0.08] group flex cursor-pointer flex-col overflow-hidden rounded-2xl border transition-all duration-200 hover:shadow-[0_8px_24px_-8px_rgba(11,28,48,0.06)]"
+            className="border-outline-variant/[0.08] group hover:shadow-ambient-hover flex cursor-pointer flex-col overflow-hidden rounded-2xl border transition-all duration-200"
           >
             <div className="relative aspect-[16/10] w-full overflow-hidden">
               <Image
@@ -79,17 +79,17 @@ export function ResearchPreviewSection() {
                 </div>
               )}
             </div>
-            <div className="flex flex-1 flex-col gap-2 p-5">
+            <div className="flex flex-1 flex-col gap-2 p-6">
               <div className="flex items-center gap-2">
                 <Badge variant="category">{article.category}</Badge>
                 <span className="text-on-surface-variant text-xs">{article.date}</span>
               </div>
-              <p className="text-on-surface group-hover:text-primary text-base leading-snug font-bold transition-colors">
+              <p className="text-on-surface group-hover:text-primary text-body-lg leading-snug font-bold transition-colors">
                 {article.title}
               </p>
               {article.isPro ? (
                 <div className="relative">
-                  <p className="text-on-surface-variant text-sm leading-relaxed blur-[3px] select-none">
+                  <p className="text-on-surface-variant text-body-sm blur-[3px] select-none">
                     {article.excerpt}
                   </p>
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -99,7 +99,7 @@ export function ResearchPreviewSection() {
                   </div>
                 </div>
               ) : (
-                <p className="text-on-surface-variant line-clamp-2 text-sm leading-relaxed">
+                <p className="text-on-surface-variant text-body-sm line-clamp-2">
                   {article.excerpt}
                 </p>
               )}

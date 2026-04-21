@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { CheckCircle2 } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 
 interface MarkCompleteButtonProps {
@@ -56,7 +57,7 @@ export function MarkCompleteButton({
 
   if (isCompleted) {
     return (
-      <div className="bg-secondary/10 text-secondary flex w-full items-center justify-center gap-2 rounded-xl py-5 text-lg font-bold">
+      <div className="bg-secondary/10 text-secondary flex w-full items-center justify-center gap-2 rounded-xl py-6 text-lg font-bold">
         <CheckCircle2 className="h-5 w-5" />
         Completed
       </div>
@@ -65,14 +66,16 @@ export function MarkCompleteButton({
 
   return (
     <div className="flex flex-col gap-2">
-      <button
+      <Button
         onClick={handleComplete}
-        disabled={isLoading}
-        className="from-primary to-primary-container text-on-primary hover:shadow-primary/20 w-full rounded-xl bg-gradient-to-b py-5 text-lg font-bold shadow-lg transition-all active:scale-[0.98] disabled:opacity-50"
+        variant="gradient"
+        size="xxl"
+        loading={isLoading}
+        className="w-full text-lg"
       >
         {isLoading ? 'Saving...' : 'Mark as Complete'}
-      </button>
-      {error && <p className="text-center text-sm text-red-600">{error}</p>}
+      </Button>
+      {error && <p className="text-error text-center text-sm">{error}</p>}
     </div>
   )
 }

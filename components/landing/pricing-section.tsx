@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { CheckCircle, Wallet } from 'lucide-react'
+import { SectionHeading } from '@/components/landing/section-heading'
+import { ButtonLink } from '@/components/ui/button-link'
 
 const FEATURES = [
   'Full access to deep-dive research reports',
@@ -16,26 +18,28 @@ export function PricingSection() {
     >
       {/* Left — copy */}
       <div className="flex flex-1 flex-col gap-6">
-        <div className="flex flex-col gap-3">
-          <span className="text-primary text-xs font-semibold tracking-[0.05em] uppercase">
-            Simple &middot; $0 on-chain
-          </span>
-          <h2 className="font-headline text-on-surface text-headline md:text-headline-md font-black">
-            $100 a year.
-            <br />
-            Stablecoins only.
-          </h2>
-        </div>
-        <p className="text-on-surface-variant max-w-sm text-sm leading-relaxed">
+        <SectionHeading
+          overline="Simple &middot; $0 on-chain"
+          title={
+            <>
+              $100 a year.
+              <br />
+              Stablecoins only.
+            </>
+          }
+        />
+        <p className="text-on-surface-variant text-body-sm max-w-sm">
           Pay with any major stablecoin. Pass to wallet or USDT on chain of your choice.
         </p>
         <div>
-          <Link
+          <ButtonLink
             href="/register"
-            className="from-primary to-primary-container text-on-primary inline-flex items-center justify-center rounded-xl bg-gradient-to-b px-8 py-3.5 text-sm font-bold tracking-[0.015em] shadow-lg transition-transform hover:-translate-y-1"
+            variant="gradient"
+            size="xl"
+            className="shadow-lg hover:-translate-y-1"
           >
             Subscribe Now
-          </Link>
+          </ButtonLink>
         </div>
         <div className="text-on-surface-variant flex items-center gap-2 text-xs font-medium">
           <Wallet className="size-4" />
@@ -44,7 +48,7 @@ export function PricingSection() {
       </div>
 
       {/* Right — pricing card */}
-      <div className="bg-surface-container-lowest relative flex-1 overflow-hidden rounded-2xl p-8 shadow-[0_16px_32px_-12px_rgba(11,28,48,0.04)]">
+      <div className="bg-surface-container-lowest shadow-ambient relative flex-1 overflow-hidden rounded-2xl p-8">
         {/* Decorative chart */}
         <div className="pointer-events-none absolute top-6 right-6 h-24 w-32 opacity-70">
           <svg viewBox="0 0 112 80" fill="none" className="h-full w-full">
@@ -65,17 +69,17 @@ export function PricingSection() {
 
         <div className="relative flex flex-col gap-6">
           <div className="flex items-start gap-0.5">
-            <span className="text-on-surface-variant mt-2 text-2xl font-bold">$</span>
-            <span className="text-on-surface text-6xl font-black tracking-[-0.04em]">100</span>
+            <span className="text-on-surface-variant text-headline mt-2 font-bold">$</span>
+            <span className="text-on-surface text-display font-black">100</span>
           </div>
-          <p className="text-on-surface-variant text-sm">Billed annually. Cancel anytime.</p>
+          <p className="text-on-surface-variant text-body-sm">Billed annually. Cancel anytime.</p>
 
           <div className="mt-2 pt-6">
             <ul className="flex flex-col gap-4">
               {FEATURES.map((feature) => (
                 <li key={feature} className="flex items-start gap-3">
                   <CheckCircle className="text-primary mt-0.5 size-4 shrink-0" />
-                  <span className="text-on-surface text-sm">{feature}</span>
+                  <span className="text-on-surface text-body-sm">{feature}</span>
                 </li>
               ))}
             </ul>

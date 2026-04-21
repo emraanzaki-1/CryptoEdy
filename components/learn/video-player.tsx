@@ -51,14 +51,14 @@ export function VideoPlayer({ url, title, lessonLabel }: VideoPlayerProps) {
           className="bg-on-surface/40 hover:bg-on-surface/30 absolute inset-0 z-10 flex items-center justify-center transition-all"
           onClick={() => setIsPlaying(true)}
         >
-          <div className="bg-primary flex h-20 w-20 transform items-center justify-center rounded-full text-white shadow-xl transition-transform hover:scale-110">
+          <div className="bg-primary text-on-primary flex h-20 w-20 transform items-center justify-center rounded-full shadow-xl transition-transform hover:scale-110">
             <Play className="h-9 w-9" fill="currentColor" />
           </div>
 
           {/* Bottom gradient metadata */}
           {lessonLabel && (
             <div className="from-on-surface/80 absolute right-0 bottom-0 left-0 bg-gradient-to-t to-transparent p-6">
-              <p className="text-sm font-medium text-white">{lessonLabel}</p>
+              <p className="text-on-primary text-sm font-medium">{lessonLabel}</p>
             </div>
           )}
         </div>

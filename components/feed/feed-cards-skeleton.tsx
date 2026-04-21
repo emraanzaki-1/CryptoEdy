@@ -12,10 +12,8 @@ export function FeedCardsSkeleton() {
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <h1 className="text-on-surface text-2xl leading-tight font-bold tracking-[-0.04em] lg:text-3xl">
-            Your feed
-          </h1>
-          <p className="text-on-surface-variant mt-2 text-base">
+          <h1 className="text-on-surface text-headline font-bold">Your feed</h1>
+          <p className="text-on-surface-variant text-body-lg mt-2">
             Curated financial intelligence and market analysis.
           </p>
         </div>

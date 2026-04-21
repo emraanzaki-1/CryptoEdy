@@ -61,7 +61,7 @@ export function ArticleCard({
 
           {/* Gradient overlay for locked articles */}
           {isPro && (
-            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="from-on-surface/40 absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t to-transparent" />
           )}
 
           {/* Badges row */}
@@ -72,7 +72,7 @@ export function ArticleCard({
               </Badge>
             )}
             {isPro && (
-              <span className="text-overline flex items-center gap-1 rounded-full bg-black/50 px-2 py-0.5 font-semibold text-white backdrop-blur-sm">
+              <span className="text-overline bg-on-surface/50 text-on-primary flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold backdrop-blur-sm">
                 <Lock className="size-2.5" />
                 Members only
               </span>
@@ -86,12 +86,12 @@ export function ArticleCard({
         </div>
 
         {/* Content */}
-        <div className={cn('flex flex-1 flex-col gap-3 p-5', hero && 'md:justify-center md:p-8')}>
+        <div className={cn('flex flex-1 flex-col gap-3 p-6', hero && 'md:justify-center md:p-8')}>
           {/* Title first */}
           <h3
             className={cn(
               'text-on-surface group-hover:text-primary leading-snug font-bold transition-colors',
-              hero ? 'text-2xl md:text-3xl' : 'text-lg'
+              hero ? 'text-headline' : 'text-subtitle'
             )}
           >
             {title}
@@ -100,7 +100,7 @@ export function ArticleCard({
           <p
             className={cn(
               'text-on-surface-variant leading-relaxed',
-              hero ? 'line-clamp-3 text-base' : 'line-clamp-2 text-sm'
+              hero ? 'text-body-lg line-clamp-3' : 'text-body-sm line-clamp-2'
             )}
           >
             {excerpt}

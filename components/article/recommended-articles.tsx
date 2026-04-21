@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { ArticleCard, type ArticleCardProps } from '@/components/feed/article-card'
+import { Button } from '@/components/ui/button'
 
 const AUTO_SCROLL_INTERVAL = 4000
 
@@ -71,24 +72,28 @@ export function RecommendedArticles({ articles }: { articles: ArticleCardProps[]
   return (
     <section className="mt-10 pt-10">
       <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-on-background text-lg font-bold">Recommended from CryptoEdy</h2>
+        <h2 className="text-on-background text-subtitle font-bold">Recommended from CryptoEdy</h2>
         <div className="flex items-center gap-2">
-          <button
+          <Button
+            variant="ghost"
+            size="icon-lg"
             onClick={() => handleNav('left')}
             disabled={!canScrollLeft}
             aria-label="Scroll left"
-            className="border-outline-variant/15 text-on-surface-variant hover:bg-surface-container-high disabled:text-outline/30 flex size-9 items-center justify-center rounded-full border transition-colors disabled:cursor-not-allowed"
+            className="border-outline-variant/15 text-on-surface-variant hover:bg-surface-container-high rounded-full border"
           >
             <ChevronLeft className="size-4" />
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon-lg"
             onClick={() => handleNav('right')}
             disabled={!canScrollRight}
             aria-label="Scroll right"
-            className="border-outline-variant/15 text-on-surface-variant hover:bg-surface-container-high disabled:text-outline/30 flex size-9 items-center justify-center rounded-full border transition-colors disabled:cursor-not-allowed"
+            className="border-outline-variant/15 text-on-surface-variant hover:bg-surface-container-high rounded-full border"
           >
             <ChevronRight className="size-4" />
-          </button>
+          </Button>
         </div>
       </div>
 

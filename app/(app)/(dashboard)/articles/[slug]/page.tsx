@@ -191,7 +191,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
         {/* Hero Image */}
         {featuredImage && (
-          <div className="border-outline-variant/15 relative mb-10 h-[400px] w-full overflow-hidden rounded-2xl border shadow-[0_32px_64px_-12px_rgba(11,28,48,0.06)]">
+          <div className="border-outline-variant/15 shadow-elevated relative mb-10 h-[400px] w-full overflow-hidden rounded-2xl border">
             <Image
               alt={featuredImageAlt}
               className="object-cover"
@@ -204,7 +204,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
         {/* The Hook */}
         {post.excerpt && (
-          <p className="border-primary text-on-background mb-10 border-l-4 py-2 pl-6 text-xl leading-relaxed font-medium md:text-2xl">
+          <p className="border-primary text-on-background md:text-subtitle mb-10 border-l-4 py-2 pl-6 text-xl leading-relaxed font-medium">
             {post.excerpt as string}
           </p>
         )}

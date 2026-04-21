@@ -7,6 +7,7 @@ import { TagClient } from '@/components/feed/tag-client'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
 import { auth } from '@/lib/auth'
+import { PageHeading } from '@/components/common/page-heading'
 
 export default async function TagPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -58,9 +59,7 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
           <ArrowLeft className="size-4" />
           Back to feed
         </Link>
-        <h1 className="text-on-surface text-2xl leading-tight font-bold tracking-[-0.04em] lg:text-3xl">
-          #{tagName}
-        </h1>
+        <PageHeading>#{tagName}</PageHeading>
       </div>
 
       <TagClient

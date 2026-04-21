@@ -3,6 +3,8 @@
 import { useTheme } from 'next-themes'
 import { useSyncExternalStore } from 'react'
 import { Sun, Moon, Monitor, Check } from 'lucide-react'
+import { PageHeading } from '@/components/common/page-heading'
+import { SectionTitle } from '@/components/settings/section-title'
 import { cn } from '@/lib/utils'
 
 const THEMES = [
@@ -86,18 +88,17 @@ export default function AppearanceSettingsPage() {
 
   return (
     <>
-      <div>
-        <h2 className="font-headline text-on-surface mb-2 text-2xl leading-tight font-bold tracking-[-0.04em] lg:text-3xl">
-          Appearance
-        </h2>
-        <p className="text-on-surface-variant text-base">
-          Customize the look and feel of the CryptoEdy platform.
-        </p>
-      </div>
+      <PageHeading
+        as="h2"
+        variant="settings"
+        subtitle="Customize the look and feel of the CryptoEdy platform."
+      >
+        Appearance
+      </PageHeading>
 
       <div className="space-y-10">
         <section>
-          <h3 className="text-on-surface mb-5 text-base font-semibold">Interface Theme</h3>
+          <SectionTitle>Interface Theme</SectionTitle>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {THEMES.map((t) => {
               const Icon = t.icon

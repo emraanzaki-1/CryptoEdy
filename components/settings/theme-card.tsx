@@ -61,16 +61,16 @@ export function ThemeCard({
 
 export function LightThemePreview() {
   return (
-    <div className="absolute inset-0 bg-white">
-      <div className="h-4 border-b border-gray-200 bg-gray-100" />
+    <div className="bg-surface-container-lowest absolute inset-0">
+      <div className="border-outline-variant/15 bg-surface-container-low h-4 border-b" />
       <div className="flex h-full">
-        <div className="w-1/4 border-r border-gray-200 bg-gray-50 p-2">
-          <div className="mb-2 h-2 rounded bg-gray-200" />
-          <div className="mb-2 h-2 w-3/4 rounded bg-gray-200" />
+        <div className="border-outline-variant/15 bg-surface-container-lowest w-1/4 border-r p-2">
+          <div className="bg-outline-variant/30 mb-2 h-2 rounded" />
+          <div className="bg-outline-variant/30 mb-2 h-2 w-3/4 rounded" />
         </div>
         <div className="flex-1 p-2">
-          <div className="mb-2 h-8 rounded bg-blue-50" />
-          <div className="h-20 rounded bg-gray-50" />
+          <div className="bg-primary-fixed/30 mb-2 h-8 rounded" />
+          <div className="bg-surface-container-lowest h-20 rounded" />
         </div>
       </div>
     </div>
@@ -79,16 +79,16 @@ export function LightThemePreview() {
 
 export function DarkThemePreview() {
   return (
-    <div className="absolute inset-0 bg-slate-900">
-      <div className="h-4 border-b border-slate-700 bg-slate-800" />
+    <div className="bg-surface-dim absolute inset-0">
+      <div className="border-outline-variant/15 bg-surface-container h-4 border-b" />
       <div className="flex h-full">
-        <div className="w-1/4 border-r border-slate-700 bg-slate-800 p-2">
-          <div className="mb-2 h-2 rounded bg-slate-700" />
-          <div className="mb-2 h-2 w-3/4 rounded bg-slate-700" />
+        <div className="border-outline-variant/15 bg-surface-container w-1/4 border-r p-2">
+          <div className="bg-outline-variant/30 mb-2 h-2 rounded" />
+          <div className="bg-outline-variant/30 mb-2 h-2 w-3/4 rounded" />
         </div>
         <div className="flex-1 p-2">
-          <div className="mb-2 h-8 rounded bg-blue-900/30" />
-          <div className="h-20 rounded bg-slate-800" />
+          <div className="bg-primary-container/30 mb-2 h-8 rounded" />
+          <div className="bg-surface-container h-20 rounded" />
         </div>
       </div>
     </div>
@@ -98,13 +98,13 @@ export function DarkThemePreview() {
 export function SystemThemePreview() {
   return (
     <div className="absolute inset-0 flex">
-      <div className="relative h-full w-1/2 bg-white">
-        <div className="h-4 border-b border-gray-200 bg-gray-100" />
-        <div className="absolute top-4 left-0 h-full w-1/2 border-r border-gray-200 bg-gray-50" />
+      <div className="bg-surface-container-lowest relative h-full w-1/2">
+        <div className="border-outline-variant/15 bg-surface-container-low h-4 border-b" />
+        <div className="border-outline-variant/15 bg-surface-container-lowest absolute top-4 left-0 h-full w-1/2 border-r" />
       </div>
-      <div className="relative h-full w-1/2 bg-slate-900">
-        <div className="h-4 border-b border-slate-700 bg-slate-800" />
-        <div className="absolute top-4 right-0 h-full w-full border-l border-slate-700/50 bg-slate-800" />
+      <div className="bg-surface-dim relative h-full w-1/2">
+        <div className="border-outline-variant/15 bg-surface-container h-4 border-b" />
+        <div className="border-outline-variant/15 bg-surface-container absolute top-4 right-0 h-full w-full border-l" />
       </div>
     </div>
   )

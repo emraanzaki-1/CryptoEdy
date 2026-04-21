@@ -1,4 +1,5 @@
 import { Users, ShieldCheck, Bell, Zap } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const FEATURES = [
   {
@@ -36,7 +37,7 @@ export default function CommunityPage() {
           </div>
 
           {/* Feature highlights */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-6">
             {FEATURES.map((feature) => (
               <div key={feature.title} className="flex items-start gap-4">
                 <div className="bg-surface-container-high text-primary flex size-10 shrink-0 items-center justify-center rounded-xl">
@@ -52,10 +53,10 @@ export default function CommunityPage() {
 
           {/* CTAs */}
           <div>
-            <button className="from-primary to-primary-container text-on-primary flex items-center justify-center gap-2 rounded-xl bg-gradient-to-b px-6 py-3.5 text-sm font-bold shadow-[0_8px_24px_-8px_rgba(0,62,199,0.4)] transition-transform active:scale-[0.98]">
+            <Button variant="gradient" size="xl">
               <Bell className="size-4" />
               Notify Me
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -66,7 +67,7 @@ export default function CommunityPage() {
           <div className="bg-secondary-container/20 absolute -right-12 -bottom-12 -z-10 size-64 rounded-full blur-3xl" />
 
           {/* Glass card */}
-          <div className="border-outline-variant/15 shadow-primary/5 overflow-hidden rounded-3xl border bg-white/70 p-3 shadow-2xl backdrop-blur-2xl">
+          <div className="border-outline-variant/15 shadow-primary/5 bg-surface-container-lowest/70 overflow-hidden rounded-3xl border p-3 shadow-2xl backdrop-blur-2xl">
             {/* Placeholder visual — abstract network representation */}
             <div className="from-primary-container/30 via-surface-container-high to-surface-container-low relative flex aspect-square items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br">
               {/* Decorative nodes */}
@@ -92,18 +93,18 @@ export default function CommunityPage() {
               </div>
 
               {/* Bottom overlay */}
-              <div className="absolute inset-x-0 bottom-0 flex flex-col gap-2 bg-gradient-to-t from-[#0B1C30]/60 to-transparent p-6 pt-16">
+              <div className="from-on-surface/60 absolute inset-x-0 bottom-0 flex flex-col gap-2 bg-gradient-to-t to-transparent p-6 pt-16">
                 <div className="flex items-center gap-2">
                   <div className="flex -space-x-2">
-                    <div className="bg-surface-container-high size-7 rounded-full ring-2 ring-white" />
-                    <div className="bg-surface-container size-7 rounded-full ring-2 ring-white" />
-                    <div className="bg-surface-container-low size-7 rounded-full ring-2 ring-white" />
+                    <div className="bg-surface-container-high ring-surface-container-lowest size-7 rounded-full ring-2" />
+                    <div className="bg-surface-container ring-surface-container-lowest size-7 rounded-full ring-2" />
+                    <div className="bg-surface-container-low ring-surface-container-lowest size-7 rounded-full ring-2" />
                   </div>
-                  <span className="text-xs font-medium text-white/90">
+                  <span className="text-on-primary/90 text-xs font-medium">
                     Community members waiting
                   </span>
                 </div>
-                <p className="text-xs text-white/60 italic">
+                <p className="text-on-primary/60 text-xs italic">
                   &ldquo;The most anticipated feature of the Q4 research cycle.&rdquo;
                 </p>
               </div>

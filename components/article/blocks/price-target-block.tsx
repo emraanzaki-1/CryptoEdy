@@ -1,5 +1,6 @@
 import { Target, TrendingUp, ShieldAlert, Clock } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { SurfaceCard } from '@/components/ui/surface-card'
 
 const RISK_STYLES = {
   low: { label: 'Low Risk', className: 'bg-secondary/10 text-secondary' },
@@ -34,7 +35,7 @@ export function PriceTargetBlockComponent({
   const risk = RISK_STYLES[riskRating] ?? RISK_STYLES.medium
 
   return (
-    <div className="border-outline-variant/15 bg-surface-container-lowest my-8 overflow-hidden rounded-2xl border shadow-[0_8px_32px_-8px_rgba(11,28,48,0.06)]">
+    <SurfaceCard border shadow="card" className="my-8">
       {/* Header */}
       <div className="bg-surface-container-low/50 flex items-center justify-between gap-4 px-6 py-4">
         <div className="flex items-center gap-3">
@@ -42,7 +43,7 @@ export function PriceTargetBlockComponent({
             <Target className="size-5" />
           </div>
           <div>
-            <h4 className="text-on-background text-lg font-bold">{token}</h4>
+            <h4 className="text-on-background text-subtitle font-bold">{token}</h4>
             {tokenName && <p className="text-on-surface-variant text-xs">{tokenName}</p>}
           </div>
         </div>
@@ -62,14 +63,14 @@ export function PriceTargetBlockComponent({
       {/* Catalysts */}
       {catalysts && catalysts.length > 0 && (
         <div className="border-outline-variant/10 border-t px-6 py-4">
-          <p className="text-on-surface-variant mb-2 text-xs font-bold tracking-[0.05em] uppercase">
+          <p className="text-on-surface-variant text-overline mb-2 font-bold uppercase">
             Key Catalysts
           </p>
           <ul className="space-y-1.5">
             {catalysts.map((c, i) => (
               <li
                 key={c.id ?? i}
-                className="text-on-surface-variant flex items-start gap-2 text-sm"
+                className="text-on-surface-variant text-body-sm flex items-start gap-2"
               >
                 <span className="bg-primary mt-1.5 size-1.5 shrink-0 rounded-full" />
                 {c.catalyst}
@@ -82,10 +83,10 @@ export function PriceTargetBlockComponent({
       {/* Rationale */}
       {rationale && (
         <div className="border-outline-variant/10 border-t px-6 py-4">
-          <p className="text-on-surface-variant text-sm leading-relaxed">{rationale}</p>
+          <p className="text-on-surface-variant text-body-sm">{rationale}</p>
         </div>
       )}
-    </div>
+    </SurfaceCard>
   )
 }
 
@@ -106,7 +107,7 @@ function MetricCell({
         <Icon className="size-3.5" />
         {label}
       </div>
-      <p className={cn('text-sm font-bold', accent ? 'text-primary' : 'text-on-background')}>
+      <p className={cn('text-body-sm font-bold', accent ? 'text-primary' : 'text-on-background')}>
         {value}
       </p>
     </div>

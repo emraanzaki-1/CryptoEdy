@@ -4,6 +4,8 @@ import { useRef, useState, useCallback } from 'react'
 import Cropper from 'react-easy-crop'
 import type { Area } from 'react-easy-crop'
 import { Camera, Loader2, ZoomIn, ZoomOut, RotateCw } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { SectionTitle } from '@/components/settings/section-title'
 
 interface AvatarUploadProps {
   imageUrl: string | null
@@ -108,7 +110,7 @@ export function AvatarUpload({
   return (
     <>
       <section>
-        <h3 className="text-on-surface mb-5 text-base font-semibold">Profile Image</h3>
+        <SectionTitle>Profile Image</SectionTitle>
         <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
           <div
             className="group bg-surface-container ring-surface-container-low relative size-24 cursor-pointer overflow-hidden rounded-full ring-4"
@@ -118,37 +120,39 @@ export function AvatarUpload({
               // eslint-disable-next-line @next/next/no-img-element
               <img alt={alt} className="size-full object-cover" src={imageUrl} />
             ) : (
-              <div className="bg-primary text-on-primary flex size-full items-center justify-center text-2xl font-bold">
+              <div className="bg-primary text-on-primary text-headline flex size-full items-center justify-center font-bold">
                 {fallbackInitial}
               </div>
             )}
-            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
+            <div className="bg-on-surface/40 absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
               {uploading ? (
-                <Loader2 className="size-6 animate-spin text-white" />
+                <Loader2 className="text-on-primary size-6 animate-spin" />
               ) : (
-                <Camera className="size-6 text-white" />
+                <Camera className="text-on-primary size-6" />
               )}
             </div>
           </div>
           <div className="space-y-3">
             <div className="flex gap-3">
-              <button
-                type="button"
+              <Button
+                variant="tonal"
+                size="lg"
                 disabled={uploading}
                 onClick={() => fileInputRef.current?.click()}
-                className="bg-surface-container-high text-on-surface hover:bg-outline-variant/20 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50"
+                className="text-on-surface hover:bg-outline-variant/20 rounded-full px-5 font-semibold hover:translate-y-0"
               >
                 {uploading ? 'Uploading…' : 'Upload new'}
-              </button>
+              </Button>
               {imageUrl && (
-                <button
-                  type="button"
+                <Button
+                  variant="ghost"
+                  size="lg"
                   disabled={removing}
                   onClick={handleRemove}
-                  className="text-error hover:bg-error-container/50 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors disabled:opacity-50"
+                  className="text-error hover:bg-error-container/50 rounded-full px-5 font-semibold"
                 >
                   {removing ? 'Removing…' : 'Remove'}
-                </button>
+                </Button>
               )}
             </div>
             <p className="text-outline text-sm">Supports WEBP, SVG, PNG, JPG (Max 5MB)</p>
@@ -165,7 +169,7 @@ export function AvatarUpload({
 
       {/* Crop Modal */}
       {cropSrc && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div className="bg-on-surface/60 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
           <div className="bg-surface-container-lowest border-outline-variant/15 mx-4 w-full max-w-lg overflow-hidden rounded-3xl border shadow-2xl">
             <div className="border-outline-variant/15 border-b px-6 py-4">
               <h3 className="text-on-surface text-base font-bold">Adjust Photo</h3>
@@ -174,7 +178,7 @@ export function AvatarUpload({
               </p>
             </div>
 
-            <div className="relative aspect-square bg-black">
+            <div className="bg-on-surface relative aspect-square">
               <Cropper
                 image={cropSrc}
                 crop={crop}
@@ -205,34 +209,36 @@ export function AvatarUpload({
                 />
                 <ZoomIn className="text-on-surface-variant size-4" />
               </div>
-              <button
-                type="button"
+              <Button
+                variant="ghost"
+                size="icon"
                 onClick={() => setRotation((r) => (r + 90) % 360)}
-                className="text-on-surface-variant hover:bg-surface-container rounded-full p-2 transition-colors"
+                className="text-on-surface-variant hover:bg-surface-container rounded-full"
               >
                 <RotateCw className="size-4" />
-              </button>
+              </Button>
             </div>
 
             {/* Actions */}
             <div className="border-outline-variant/15 flex justify-end gap-3 border-t px-6 py-4">
-              <button
-                type="button"
+              <Button
+                variant="ghost"
+                size="lg"
                 onClick={handleCropCancel}
                 disabled={uploading}
-                className="text-on-surface-variant hover:bg-surface-container rounded-full px-6 py-2.5 text-sm font-bold transition-colors"
+                className="text-on-surface-variant hover:bg-surface-container rounded-full px-6 font-bold"
               >
                 Cancel
-              </button>
-              <button
-                type="button"
+              </Button>
+              <Button
+                variant="gradient"
+                size="default"
+                loading={uploading}
                 onClick={handleCropConfirm}
-                disabled={uploading}
-                className="from-primary to-primary-container text-on-primary flex items-center gap-2 rounded-full bg-gradient-to-b px-6 py-2.5 text-sm font-bold shadow-sm transition-opacity hover:opacity-90 disabled:opacity-50"
+                className="rounded-full"
               >
-                {uploading && <Loader2 className="size-4 animate-spin" />}
                 {uploading ? 'Saving…' : 'Save photo'}
-              </button>
+              </Button>
             </div>
           </div>
         </div>

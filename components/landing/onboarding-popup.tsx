@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { X, Sparkles, TrendingUp, Lock } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const DISMISSED_KEY = 'cryptoedy_onboarding_dismissed'
 const POPUP_DELAY_MS = 10_000
@@ -118,15 +119,17 @@ export function OnboardingPopup() {
       />
 
       {/* Modal */}
-      <div className="bg-surface-container-lowest ring-on-surface/5 relative flex w-full max-w-4xl flex-col overflow-hidden rounded-lg shadow-[0_32px_64px_-12px_rgba(11,28,48,0.15)] ring-1 md:flex-row">
+      <div className="bg-surface-container-lowest ring-on-surface/5 shadow-elevated-emphasis relative flex w-full max-w-4xl flex-col overflow-hidden rounded-lg ring-1 md:flex-row">
         {/* Close Button */}
-        <button
+        <Button
+          variant="ghost"
+          size="icon"
           onClick={handleDismiss}
           aria-label="Close"
-          className="text-on-surface-variant hover:text-on-surface absolute top-6 right-6 z-50 cursor-pointer p-1 transition-colors"
+          className="text-on-surface-variant hover:text-on-surface absolute top-6 right-6 z-50"
         >
           <X className="h-6 w-6" />
-        </button>
+        </Button>
 
         {/* Left Column: Branded Visual */}
         <div className="bg-primary-container relative flex w-full flex-col justify-between overflow-hidden p-10 md:w-[45%]">
@@ -136,10 +139,10 @@ export function OnboardingPopup() {
           {/* Branding */}
           <div className="relative z-10">
             <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20 backdrop-blur-md">
-                <Sparkles className="h-5 w-5 text-white" />
+              <div className="bg-surface-container-lowest/20 flex h-10 w-10 items-center justify-center rounded-lg backdrop-blur-md">
+                <Sparkles className="text-on-primary h-5 w-5" />
               </div>
-              <div className="text-overline font-bold tracking-[0.15em] text-white uppercase">
+              <div className="text-overline text-on-primary font-bold tracking-[0.05em] uppercase">
                 CryptoEdy Intelligence
               </div>
             </div>
@@ -148,18 +151,18 @@ export function OnboardingPopup() {
           {/* Visual Context/Stats */}
           <div className="relative z-10 mt-auto">
             <div className="space-y-4">
-              <div className="rounded-lg border border-white/10 bg-white/10 p-4 backdrop-blur-md">
-                <div className="text-overline mb-1 font-bold tracking-[0.05em] text-white/60 uppercase">
+              <div className="border-outline-variant/10 bg-surface-container-lowest/10 rounded-lg border p-4 backdrop-blur-md">
+                <div className="text-overline text-on-primary/60 mb-1 font-bold tracking-[0.05em] uppercase">
                   Network Growth
                 </div>
                 <div className="flex items-end gap-2">
-                  <div className="text-2xl font-black text-white">15,000+</div>
+                  <div className="text-headline text-on-primary font-black">15,000+</div>
                   <div className="text-secondary-fixed-dim text-overline flex items-center pb-1 font-bold">
                     <TrendingUp className="mr-0.5 h-3 w-3" /> 12% MoM
                   </div>
                 </div>
               </div>
-              <p className="text-sm font-medium text-white/80">
+              <p className="text-on-primary/80 text-sm font-medium">
                 Join the elite network of institutional researchers decoding the next market cycle.
               </p>
             </div>
@@ -205,7 +208,7 @@ export function OnboardingPopup() {
                       setEmail(e.target.value)
                       if (error) setError('')
                     }}
-                    className="bg-surface-container-low text-on-background placeholder:text-outline focus:ring-primary focus:bg-surface-container-lowest h-14 w-full rounded-lg border-none px-5 transition-all duration-300 outline-none focus:ring-2"
+                    className="bg-surface-container-low text-on-background placeholder:text-outline focus:ring-primary focus:bg-surface-container-lowest h-14 w-full rounded-lg border-none px-4 transition-all duration-300 outline-none focus:ring-2"
                     placeholder="Enter your work email"
                     autoComplete="email"
                     disabled={submitting}
@@ -214,13 +217,15 @@ export function OnboardingPopup() {
 
                 {error && <p className="text-error text-sm font-medium">{error}</p>}
 
-                <button
+                <Button
                   type="submit"
-                  disabled={submitting}
-                  className="from-primary to-primary-container text-on-primary shadow-primary/20 hover:shadow-primary/30 h-14 w-full cursor-pointer rounded-lg bg-linear-to-b text-lg font-bold shadow-lg transition-all duration-200 hover:shadow-xl active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+                  variant="gradient"
+                  size="xxl"
+                  loading={submitting}
+                  className="w-full rounded-lg text-lg"
                 >
                   {submitting ? 'Subscribing...' : 'Send Me Insights'}
-                </button>
+                </Button>
               </form>
             )}
 

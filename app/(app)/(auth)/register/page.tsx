@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { registerSchema, type RegisterFormValues } from '@/lib/auth/schemas'
+import { Button } from '@/components/ui/button'
+import { FormField, FormInput } from '@/components/ui/form-field'
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -60,77 +62,45 @@ export default function RegisterPage() {
           </div>
         )}
 
-        <div className="flex flex-col gap-2">
-          <label
-            className="text-on-surface-variant text-xs font-bold tracking-[0.05em] uppercase"
-            htmlFor="email"
-          >
-            Email Address
-          </label>
-          <div className="bg-surface-container-high focus-within:bg-surface-container-lowest h-14 w-full overflow-hidden rounded-xl transition-colors duration-200 focus-within:shadow-[0_0_0_2px_rgba(0,62,199,0.15)]">
-            <input
-              id="email"
-              type="email"
-              placeholder="name@company.com"
-              autoComplete="email"
-              {...register('email')}
-              className="text-on-surface placeholder:text-on-surface-variant/50 h-full w-full border-none bg-transparent px-4 text-base focus:ring-0 focus:outline-none"
-            />
-          </div>
-          {errors.email && <p className="text-error text-xs font-medium">{errors.email.message}</p>}
-        </div>
+        <FormField label="Email Address" htmlFor="email" error={errors.email?.message}>
+          <FormInput
+            id="email"
+            type="email"
+            placeholder="name@company.com"
+            autoComplete="email"
+            {...register('email')}
+          />
+        </FormField>
 
-        <div className="flex flex-col gap-2">
-          <label
-            className="text-on-surface-variant text-xs font-bold tracking-[0.05em] uppercase"
-            htmlFor="username"
-          >
-            Username
-          </label>
-          <div className="bg-surface-container-high focus-within:bg-surface-container-lowest h-14 w-full overflow-hidden rounded-xl transition-colors duration-200 focus-within:shadow-[0_0_0_2px_rgba(0,62,199,0.15)]">
-            <input
-              id="username"
-              type="text"
-              placeholder="Choose a display name"
-              {...register('username')}
-              className="text-on-surface placeholder:text-on-surface-variant/50 h-full w-full border-none bg-transparent px-4 text-base focus:ring-0 focus:outline-none"
-            />
-          </div>
-          {errors.username && (
-            <p className="text-error text-xs font-medium">{errors.username.message}</p>
-          )}
-        </div>
+        <FormField label="Username" htmlFor="username" error={errors.username?.message}>
+          <FormInput
+            id="username"
+            type="text"
+            placeholder="Choose a display name"
+            {...register('username')}
+          />
+        </FormField>
 
-        <div className="flex flex-col gap-2">
-          <label
-            className="text-on-surface-variant text-xs font-bold tracking-[0.05em] uppercase"
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <div className="bg-surface-container-high focus-within:bg-surface-container-lowest h-14 w-full overflow-hidden rounded-xl transition-colors duration-200 focus-within:shadow-[0_0_0_2px_rgba(0,62,199,0.15)]">
-            <input
-              id="password"
-              type="password"
-              placeholder="Minimum 8 characters"
-              autoComplete="new-password"
-              {...register('password')}
-              className="text-on-surface placeholder:text-on-surface-variant/50 h-full w-full border-none bg-transparent px-4 text-base focus:ring-0 focus:outline-none"
-            />
-          </div>
-          {errors.password && (
-            <p className="text-error text-xs font-medium">{errors.password.message}</p>
-          )}
-        </div>
+        <FormField label="Password" htmlFor="password" error={errors.password?.message}>
+          <FormInput
+            id="password"
+            type="password"
+            placeholder="Minimum 8 characters"
+            autoComplete="new-password"
+            {...register('password')}
+          />
+        </FormField>
 
         <div className="mt-6 flex flex-col gap-4">
-          <button
+          <Button
             type="submit"
-            disabled={isSubmitting}
-            className="from-primary to-primary-container text-on-primary flex h-14 w-full items-center justify-center rounded-xl bg-linear-to-b text-base font-bold tracking-[0.015em] shadow-sm transition-opacity hover:opacity-95 disabled:opacity-50"
+            variant="gradient"
+            size="xxl"
+            loading={isSubmitting}
+            className="w-full"
           >
             {isSubmitting ? 'Creating account...' : 'Sign Up'}
-          </button>
+          </Button>
         </div>
       </form>
 
