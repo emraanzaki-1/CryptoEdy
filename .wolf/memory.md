@@ -3,6 +3,12 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+## 2026-04-21 — Add courses/lessons to command palette search
+
+- Created `scripts/add-course-search-vectors.sql` — adds tsvector columns, GIN indexes, and triggers to `payload.courses` (title+excerpt) and `payload.lessons` (title)
+- Updated `app/(app)/api/search/route.ts` — `SearchResult` type now includes `type` discriminator (`post|course|lesson`), `courseSlug`, `difficulty`, `isFreePreview`. API queries all three tables in parallel, merges by rank.
+- Updated `components/common/search-modal.tsx` — results grouped by type (Articles, Courses, Lessons) with per-type icons (FileText, BookOpen, Play), colors, and badges (difficulty for courses, FREE for preview lessons). Routing: posts→`/articles/`, courses→`/learn/courses/`, lessons→`/learn/courses/[courseSlug]/[lessonSlug]`.
+
 | Time       | Description                                                                                      | File(s)                                                                                                                                                                                                         | Outcome                                                                                                                                                                             | ~Tokens |
 | ---------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | 2026-04-19 | Updated Sprint 2/4/12 docs for completed role implementation and Payload-only admin architecture | docs/planning/sprints/sprint-02.md, sprint-04.md, sprint-12.md                                                                                                                                                  | Checklists and acceptance criteria now match implemented state                                                                                                                      | ~600    |

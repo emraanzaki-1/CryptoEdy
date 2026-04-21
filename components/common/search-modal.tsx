@@ -13,9 +13,44 @@ import {
   Settings,
   Zap,
   X,
+  BookOpen,
+  Play,
 } from 'lucide-react'
 import { useSearch } from '@/lib/hooks/useSearch'
-import type { SearchResult } from '@/app/(app)/api/search/route'
+import type { SearchResult, SearchResultType } from '@/app/(app)/api/search/route'
+
+const RESULT_TYPE_CONFIG: Record<
+  SearchResultType,
+  { label: string; icon: typeof FileText; colorClass: string }
+> = {
+  post: { label: 'Articles', icon: FileText, colorClass: 'bg-primary/10 text-primary' },
+  course: { label: 'Courses', icon: BookOpen, colorClass: 'bg-tertiary/10 text-tertiary' },
+  lesson: { label: 'Lessons', icon: Play, colorClass: 'bg-secondary/10 text-secondary' },
+}
+
+function getResultHref(result: SearchResult): string {
+  switch (result.type) {
+    case 'course':
+      return `/learn/courses/${result.slug}`
+    case 'lesson':
+      return `/learn/courses/${result.courseSlug}/${result.slug}`
+    default:
+      return `/articles/${result.slug}`
+  }
+}
+
+function groupResultsByType(
+  results: SearchResult[]
+): { type: SearchResultType; results: SearchResult[] }[] {
+  const order: SearchResultType[] = ['post', 'course', 'lesson']
+  const map = new Map<SearchResultType, SearchResult[]>()
+  for (const r of results) {
+    const arr = map.get(r.type) ?? []
+    arr.push(r)
+    map.set(r.type, arr)
+  }
+  return order.filter((t) => map.has(t)).map((t) => ({ type: t, results: map.get(t)! }))
+}
 
 const RECENT_SEARCHES_KEY = 'cryptoedy-recent-searches'
 const MAX_RECENT = 5
@@ -95,7 +130,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     (result: SearchResult) => {
       saveRecentSearch(query.trim())
       onClose()
-      router.push(`/articles/${result.slug}`)
+      router.push(getResultHref(result))
     },
     [query, onClose, router]
   )
@@ -247,60 +282,84 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   </p>
                 </div>
               ) : (
-                <section className="px-3">
-                  <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black tracking-[0.05em] uppercase">
-                    Research Reports
-                  </h4>
-                  <div className="space-y-0.5">
-                    {results.map((result, i) => {
-                      const idx = i
-                      const isNew =
-                        result.publishedAt &&
-                        Date.now() - new Date(result.publishedAt).getTime() <
-                          7 * 24 * 60 * 60 * 1000
+                <>
+                  {groupResultsByType(results).map((group) => {
+                    const config = RESULT_TYPE_CONFIG[group.type]
+                    const GroupIcon = config.icon
+                    return (
+                      <section key={group.type} className="mb-4 px-3 last:mb-0">
+                        <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black tracking-[0.05em] uppercase">
+                          {config.label}
+                        </h4>
+                        <div className="space-y-0.5">
+                          {group.results.map((result) => {
+                            const idx = results.indexOf(result)
+                            const isNew =
+                              result.publishedAt &&
+                              Date.now() - new Date(result.publishedAt).getTime() <
+                                7 * 24 * 60 * 60 * 1000
 
-                      return (
-                        <button
-                          key={result.id}
-                          data-nav-index={idx}
-                          onClick={() => handleResultClick(result)}
-                          className={`group flex w-full items-start gap-4 rounded-xl px-4 py-3 text-left transition-all ${
-                            activeIndex === idx
-                              ? 'bg-surface-container-low'
-                              : 'hover:bg-surface-container-low'
-                          }`}
-                        >
-                          <div className="bg-primary/10 mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-lg">
-                            <FileText className="text-primary size-5" />
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            <div className="mb-0.5 flex items-center gap-2">
-                              <span
-                                className="text-on-surface truncate text-sm font-bold"
-                                dangerouslySetInnerHTML={{ __html: result.highlightedTitle }}
-                              />
-                              {isNew && (
-                                <span className="bg-secondary-container/20 text-on-secondary-container text-overline shrink-0 rounded px-1.5 py-0.5 font-bold uppercase">
-                                  NEW
-                                </span>
-                              )}
-                              {result.isProOnly && (
-                                <span className="bg-tertiary-fixed text-on-tertiary-fixed text-overline shrink-0 rounded px-1.5 py-0.5 font-bold uppercase">
-                                  PRO
-                                </span>
-                              )}
-                            </div>
-                            <p
-                              className="text-on-surface-variant/70 truncate text-xs"
-                              dangerouslySetInnerHTML={{ __html: result.highlightedExcerpt }}
-                            />
-                          </div>
-                          <ChevronRight className="text-on-surface-variant/30 group-hover:text-primary mt-2.5 size-4 shrink-0 transition-colors" />
-                        </button>
-                      )
-                    })}
-                  </div>
-                </section>
+                            return (
+                              <button
+                                key={`${result.type}-${result.id}`}
+                                data-nav-index={idx}
+                                onClick={() => handleResultClick(result)}
+                                className={`group flex w-full items-start gap-4 rounded-xl px-4 py-3 text-left transition-all ${
+                                  activeIndex === idx
+                                    ? 'bg-surface-container-low'
+                                    : 'hover:bg-surface-container-low'
+                                }`}
+                              >
+                                <div
+                                  className={`${config.colorClass} mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-lg`}
+                                >
+                                  <GroupIcon className="size-5" />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                  <div className="mb-0.5 flex items-center gap-2">
+                                    <span
+                                      className="text-on-surface truncate text-sm font-bold"
+                                      dangerouslySetInnerHTML={{ __html: result.highlightedTitle }}
+                                    />
+                                    {isNew && (
+                                      <span className="bg-secondary-container/20 text-on-secondary-container text-overline shrink-0 rounded px-1.5 py-0.5 font-bold uppercase">
+                                        NEW
+                                      </span>
+                                    )}
+                                    {result.isProOnly && (
+                                      <span className="bg-tertiary-fixed text-on-tertiary-fixed text-overline shrink-0 rounded px-1.5 py-0.5 font-bold uppercase">
+                                        PRO
+                                      </span>
+                                    )}
+                                    {result.type === 'course' && result.difficulty && (
+                                      <span className="bg-surface-container-low text-on-surface-variant text-overline shrink-0 rounded px-1.5 py-0.5 font-bold capitalize">
+                                        {result.difficulty}
+                                      </span>
+                                    )}
+                                    {result.type === 'lesson' && result.isFreePreview && (
+                                      <span className="bg-secondary-container/20 text-on-secondary-container text-overline shrink-0 rounded px-1.5 py-0.5 font-bold uppercase">
+                                        FREE
+                                      </span>
+                                    )}
+                                  </div>
+                                  {result.highlightedExcerpt && (
+                                    <p
+                                      className="text-on-surface-variant/70 truncate text-xs"
+                                      dangerouslySetInnerHTML={{
+                                        __html: result.highlightedExcerpt,
+                                      }}
+                                    />
+                                  )}
+                                </div>
+                                <ChevronRight className="text-on-surface-variant/30 group-hover:text-primary mt-2.5 size-4 shrink-0 transition-colors" />
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </section>
+                    )
+                  })}
+                </>
               )}
             </>
           ) : (

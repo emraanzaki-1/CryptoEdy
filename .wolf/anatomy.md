@@ -733,6 +733,7 @@
 ## scripts/
 
 - `add-search-vector.sql` — Search vector migration for full-text search on posts (~348 tok)
+- `add-course-search-vectors.sql` — Search vector migration for full-text search on courses and lessons (~450 tok)
 - `patch-next-env.cjs` — Preload environment variables BEFORE any ESM imports (~241 tok)
 - `seed.ts` — CryptoEdy seed script — Sprint 3 (~39656 tok)
 
