@@ -135,7 +135,7 @@ export default function AppearanceSettingsPage() {
                         >
                           {t.name}
                         </p>
-                        <p className="text-on-surface-variant mt-0.5 text-xs">{t.description}</p>
+                        <p className="text-on-surface-variant text-micro mt-0.5">{t.description}</p>
                       </div>
                     </div>
 

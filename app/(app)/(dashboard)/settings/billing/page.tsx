@@ -27,7 +27,7 @@ export default function BillingSettingsPage() {
             <div>
               <div className="mb-1 flex items-center gap-3">
                 <Title as="h4">Pro Annual</Title>
-                <span className="bg-secondary-container/20 text-secondary rounded-md px-2.5 py-1 text-xs font-bold">
+                <span className="bg-secondary-container/20 text-secondary text-micro rounded-md px-2.5 py-1 font-bold">
                   Active
                 </span>
               </div>
@@ -54,7 +54,7 @@ export default function BillingSettingsPage() {
           >
             <div className="flex items-center gap-4">
               <div className="border-outline-variant/15 bg-surface-container-highest flex h-8 w-12 items-center justify-center rounded border">
-                <span className="text-primary text-xs font-bold">VISA</span>
+                <span className="text-primary text-micro font-bold">VISA</span>
               </div>
               <div>
                 <p className="text-on-surface text-body-lg font-medium">Visa ending in 4242</p>

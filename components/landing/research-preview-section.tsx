@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Lock } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Heading } from '@/components/ui/typography'
+import { LAYOUT } from '@/lib/config/layout'
 
 const ARTICLES = [
   {
@@ -59,7 +60,7 @@ export function ResearchPreviewSection() {
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 [&>*]:h-full">
+      <div className={`grid grid-cols-1 md:grid-cols-3 [&>*]:h-full ${LAYOUT.spacing.gridGap}`}>
         {ARTICLES.map((article) => (
           <div
             key={article.title}
@@ -80,10 +81,10 @@ export function ResearchPreviewSection() {
                 </div>
               )}
             </div>
-            <div className="flex flex-1 flex-col gap-2 p-6">
+            <div className={`flex flex-1 flex-col gap-2 ${LAYOUT.spacing.card}`}>
               <div className="flex items-center gap-2">
                 <Badge variant="category">{article.category}</Badge>
-                <span className="text-on-surface-variant text-xs">{article.date}</span>
+                <span className="text-on-surface-variant text-micro">{article.date}</span>
               </div>
               <p className="text-on-surface group-hover:text-primary text-body-lg leading-snug font-bold transition-colors">
                 {article.title}

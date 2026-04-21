@@ -44,10 +44,10 @@ export function PriceTargetBlockComponent({
           </div>
           <div>
             <h4 className="text-on-background text-subtitle font-bold">{token}</h4>
-            {tokenName && <p className="text-on-surface-variant text-xs">{tokenName}</p>}
+            {tokenName && <p className="text-on-surface-variant text-micro">{tokenName}</p>}
           </div>
         </div>
-        <span className={cn('rounded-full px-3 py-1 text-xs font-bold', risk.className)}>
+        <span className={cn('text-micro rounded-full px-3 py-1 font-bold', risk.className)}>
           {risk.label}
         </span>
       </div>
@@ -103,7 +103,7 @@ function MetricCell({
 }) {
   return (
     <div className="bg-surface-container-lowest flex flex-col gap-1 px-6 py-4">
-      <div className="text-on-surface-variant flex items-center gap-1.5 text-xs">
+      <div className="text-on-surface-variant text-micro flex items-center gap-1.5">
         <Icon className="size-3.5" />
         {label}
       </div>

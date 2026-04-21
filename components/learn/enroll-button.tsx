@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { Play } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ButtonLink } from '@/components/ui/button-link'

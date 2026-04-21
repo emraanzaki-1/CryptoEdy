@@ -26,7 +26,7 @@ function FormField({ label, htmlFor, error, className, labelAction, children }: 
         {labelAction}
       </div>
       {children}
-      {error && <p className="text-error text-xs font-medium">{error}</p>}
+      {error && <p className="text-error text-micro font-medium">{error}</p>}
     </div>
   )
 }

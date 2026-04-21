@@ -95,16 +95,16 @@ export function CourseCard({
                       style={{ width: `${progressPercent}%` }}
                     />
                   </div>
-                  <span className="text-secondary text-xs font-bold">{progressPercent}%</span>
+                  <span className="text-secondary text-micro font-bold">{progressPercent}%</span>
                 </div>
-                <span className="bg-primary text-on-primary rounded-lg px-4 py-2 text-xs font-bold transition-colors">
+                <span className="bg-primary text-on-primary text-micro rounded-lg px-4 py-2 font-bold transition-colors">
                   Resume
                 </span>
               </>
             ) : (
               <>
                 <div />
-                <span className="bg-surface-container-high hover:bg-surface-container text-primary rounded-lg px-4 py-2 text-xs font-bold transition-colors">
+                <span className="bg-surface-container-high hover:bg-surface-container text-primary text-micro rounded-lg px-4 py-2 font-bold transition-colors">
                   View Course
                 </span>
               </>

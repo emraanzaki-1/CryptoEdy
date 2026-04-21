@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { forgotPasswordSchema, type ForgotPasswordFormValues } from '@/lib/auth/schemas'
 import { Button } from '@/components/ui/button'
+import { ButtonLink } from '@/components/ui/button-link'
 import { FormField, FormInput } from '@/components/ui/form-field'
 import { Heading, Body } from '@/components/ui/typography'
 
@@ -49,13 +50,10 @@ export default function ForgotPasswordPage() {
             Check your inbox.
           </div>
 
-          <Link
-            href="/login"
-            className="bg-surface-container-high text-on-surface hover:bg-surface-container-highest text-body-lg flex w-full items-center justify-center gap-2 rounded-xl px-6 py-4 font-bold transition-colors"
-          >
+          <ButtonLink href="/login" variant="tonal" size="xxl" className="w-full">
             <ArrowLeft className="size-4" />
             Back to login
-          </Link>
+          </ButtonLink>
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">

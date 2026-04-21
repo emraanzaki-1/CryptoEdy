@@ -30,7 +30,7 @@ export function ProgressBar({
           style={{ width: `${percent}%` }}
         />
       </div>
-      <span className="text-on-surface-variant text-xs font-medium">
+      <span className="text-on-surface-variant text-micro font-medium">
         {showPercent ? `${percent}%` : `${completedCount}/${totalCount} lessons`}
       </span>
     </div>

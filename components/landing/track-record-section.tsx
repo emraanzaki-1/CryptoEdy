@@ -54,11 +54,11 @@ export function TrackRecordSection() {
       </SectionHeading>
 
       {/* Trade cards */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className={`grid grid-cols-1 md:grid-cols-3 ${LAYOUT.spacing.gridGap}`}>
         {TRADES.map((trade) => (
           <div
             key={trade.name}
-            className="bg-surface-container-lowest shadow-ambient flex flex-col gap-6 rounded-2xl p-6"
+            className={`bg-surface-container-lowest shadow-ambient flex flex-col gap-6 rounded-2xl ${LAYOUT.spacing.card}`}
           >
             {/* Header row */}
             <div className="flex items-center justify-between">

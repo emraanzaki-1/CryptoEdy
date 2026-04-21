@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import type { SerializedEditorState } from 'lexical'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { getLessonBySlugForCourse } from '@/lib/courses/getLesson'
@@ -162,7 +161,7 @@ export default async function LessonPage({
           {/* Progress header */}
           <div className="mb-6">
             <h2 className="text-on-surface text-body-lg font-bold">Course Outline</h2>
-            <p className="text-on-surface-variant mt-1 text-xs font-medium">
+            <p className="text-on-surface-variant text-micro mt-1 font-medium">
               {completionPercent}% Completed
             </p>
             <div className="mt-4">

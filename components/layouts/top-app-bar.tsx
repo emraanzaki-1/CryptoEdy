@@ -200,7 +200,7 @@ function NotificationDropdown({ open, onClose }: { open: boolean; onClose: () =>
               <p className="text-on-surface-variant text-body-sm mt-0.5 truncate">
                 {notification.description}
               </p>
-              <p className="text-outline mt-1 text-xs">{notification.time}</p>
+              <p className="text-outline text-micro mt-1">{notification.time}</p>
             </div>
           </button>
         ))}
@@ -255,7 +255,7 @@ function UserDropdown({
             </span>
           )}
         </div>
-        {user?.email && <p className="text-on-surface-variant mt-0.5 text-xs">{user.email}</p>}
+        {user?.email && <p className="text-on-surface-variant text-micro mt-0.5">{user.email}</p>}
       </div>
       <div className="py-2">
         {menuItems.map((item) => (

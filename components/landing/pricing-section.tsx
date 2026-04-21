@@ -38,7 +38,7 @@ export function PricingSection() {
             Subscribe Now
           </ButtonLink>
         </div>
-        <div className="text-on-surface-variant flex items-center gap-2 text-xs font-medium">
+        <div className="text-on-surface-variant text-micro flex items-center gap-2 font-medium">
           <Wallet className="size-4" />
           <span>Pay with crypto: USDC / USDT</span>
         </div>
@@ -72,7 +72,7 @@ export function PricingSection() {
           <p className="text-on-surface-variant text-body-sm">Billed annually. Cancel anytime.</p>
 
           <div className="mt-2 pt-6">
-            <ul className="flex flex-col gap-4">
+            <ul className={`flex flex-col ${LAYOUT.spacing.cardGap}`}>
               {FEATURES.map((feature) => (
                 <li key={feature} className="flex items-start gap-3">
                   <CheckCircle className="text-primary mt-0.5 size-4 shrink-0" />

@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { ButtonLink } from '@/components/ui/button-link'
 import { Heading, Body } from '@/components/ui/typography'
 
 function VerifyEmailContent() {
@@ -112,12 +113,9 @@ function VerifyEmailContent() {
               ? 'Email sent! Check your inbox.'
               : 'Resend verification email'}
         </Button>
-        <Link
-          href="/login"
-          className="bg-surface-container-high text-on-surface hover:bg-surface-container-highest text-body-lg flex h-14 w-full items-center justify-center rounded-xl font-bold transition-colors"
-        >
+        <ButtonLink href="/login" variant="tonal" size="xxl" className="w-full">
           Back to login
-        </Link>
+        </ButtonLink>
       </div>
     )
   }

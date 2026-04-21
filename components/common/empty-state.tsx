@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { ButtonLink } from '@/components/ui/button-link'
 import { Title } from '@/components/ui/typography'

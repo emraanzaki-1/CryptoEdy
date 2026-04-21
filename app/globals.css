@@ -294,6 +294,10 @@
   --text-label--line-height: 1.2;
   --text-label--letter-spacing: 0.05em;
 
+  /* Micro — metadata, timestamps, captions, helper text */
+  --text-micro: 0.75rem; /* 12px */
+  --text-micro--line-height: 1.4;
+
   /* Display — hero headings */
   --text-display: 3.5rem; /* 56px */
   --text-display--line-height: 1.05;

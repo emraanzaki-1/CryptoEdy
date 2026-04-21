@@ -70,7 +70,7 @@ export function ActiveCourseCard({
 
           {/* Progress bar */}
           <div className="space-y-2">
-            <div className="flex justify-between text-xs font-bold">
+            <div className="text-micro flex justify-between font-bold">
               <span className="text-on-surface-variant">Course Progress</span>
               <span className={isStarted ? 'text-secondary' : 'text-outline'}>
                 {progressPercent}%

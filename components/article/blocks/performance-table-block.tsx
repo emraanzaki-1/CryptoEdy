@@ -84,14 +84,14 @@ export function PerformanceTableBlockComponent({
                   <td className="px-6 py-3">
                     <span
                       className={cn(
-                        'inline-block rounded-full px-2.5 py-0.5 text-xs font-bold',
+                        'text-micro inline-block rounded-full px-2.5 py-0.5 font-bold',
                         status.className
                       )}
                     >
                       {status.label}
                     </span>
                   </td>
-                  <td className="text-on-surface-variant px-6 py-3 text-xs">
+                  <td className="text-on-surface-variant text-micro px-6 py-3">
                     {new Date(row.pickedAt).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
@@ -107,7 +107,7 @@ export function PerformanceTableBlockComponent({
 
       {footnote && (
         <div className="border-outline-variant/10 border-t px-6 py-3">
-          <p className="text-on-surface-variant text-xs italic">{footnote}</p>
+          <p className="text-on-surface-variant text-micro italic">{footnote}</p>
         </div>
       )}
     </Card>

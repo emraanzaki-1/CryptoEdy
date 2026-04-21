@@ -63,7 +63,7 @@ export async function FAQSection() {
         {faqs.map((faq) => (
           <details
             key={faq.question}
-            className="bg-surface-container-lowest group cursor-pointer rounded-2xl p-6 shadow-sm [&_summary::-webkit-details-marker]:hidden"
+            className={`bg-surface-container-lowest group cursor-pointer rounded-2xl shadow-sm [&_summary::-webkit-details-marker]:hidden ${LAYOUT.spacing.card}`}
           >
             <summary className="text-on-surface text-body-sm flex items-center justify-between font-bold outline-none">
               {faq.question}

@@ -65,7 +65,7 @@ function LessonItem({
             {title}
           </p>
           {estimatedDuration && (
-            <p className="text-on-surface-variant/60 text-xs">{estimatedDuration} min</p>
+            <p className="text-on-surface-variant/60 text-micro">{estimatedDuration} min</p>
           )}
         </div>
       </div>
@@ -177,7 +177,7 @@ export function ModuleAccordion({
               >
                 Module {String(moduleIndex + 1).padStart(2, '0')}
               </span>
-              <span className="text-on-surface-variant text-xs">
+              <span className="text-on-surface-variant text-micro">
                 {completedCount}/{totalCount} lessons
               </span>
             </div>

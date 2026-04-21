@@ -38,7 +38,7 @@ export function DashboardShell({ user, navCategories, children }: DashboardShell
             {children}
           </div>
           <footer
-            className={`from-primary to-primary-container text-on-primary-container bg-gradient-to-r ${LAYOUT.content.px} py-4 text-center text-xs`}
+            className={`from-primary to-primary-container text-on-primary-container bg-gradient-to-r ${LAYOUT.content.px} text-micro py-4 text-center`}
           >
             &copy; {new Date().getFullYear()} CryptoEdy Research &middot;{' '}
             <Link href="/contact" className="text-on-primary-container hover:text-on-primary">

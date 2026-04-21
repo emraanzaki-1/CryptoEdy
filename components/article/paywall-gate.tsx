@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Lock, LineChart, CheckCircle, CreditCard, Wallet } from 'lucide-react'
 import { ButtonLink } from '@/components/ui/button-link'
 import { Heading } from '@/components/ui/typography'
@@ -108,7 +107,7 @@ export function PaywallGate({ isAuthenticated = false }: { isAuthenticated?: boo
           >
             {isAuthenticated ? 'Upgrade to Pro' : 'Create Account & Go Pro'}
           </ButtonLink>
-          <div className="text-outline mt-6 flex items-center justify-center gap-3 text-xs">
+          <div className="text-outline text-micro mt-6 flex items-center justify-center gap-3">
             <span className="flex items-center gap-1">
               <Wallet className="size-3.5" /> Crypto Accepted
             </span>

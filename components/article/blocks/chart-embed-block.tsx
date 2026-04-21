@@ -68,7 +68,7 @@ export function ChartEmbedBlockComponent({
         style={{ height: `${height ?? 450}px` }}
       />
       {caption && (
-        <figcaption className="text-on-surface-variant mt-2 text-center text-xs">
+        <figcaption className="text-on-surface-variant text-micro mt-2 text-center">
           {caption}
         </figcaption>
       )}

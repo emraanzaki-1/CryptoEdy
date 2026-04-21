@@ -32,7 +32,7 @@ export function BillingHistoryTable({ entries }: BillingHistoryTableProps) {
               <td className="text-on-surface text-body-sm px-6 py-4">{entry.date}</td>
               <td className="text-on-surface text-body-sm px-6 py-4 font-medium">{entry.amount}</td>
               <td className="px-6 py-4">
-                <span className="bg-secondary-container/20 text-secondary inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium">
+                <span className="bg-secondary-container/20 text-secondary text-micro inline-flex items-center rounded-full px-2.5 py-0.5 font-medium">
                   {entry.status}
                 </span>
               </td>

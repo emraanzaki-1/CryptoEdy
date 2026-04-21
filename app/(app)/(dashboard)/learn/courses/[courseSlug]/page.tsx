@@ -9,7 +9,6 @@ import { ProgressBar } from '@/components/learn/progress-bar'
 import { auth } from '@/lib/auth'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Clock, TrendingUp } from 'lucide-react'
-import Link from 'next/link'
 import { Heading, Overline } from '@/components/ui/typography'
 
 export default async function CourseDetailPage({
@@ -73,13 +72,13 @@ export default async function CourseDetailPage({
             {course.difficulty}
           </span>
           {course.estimatedDuration && (
-            <span className="text-on-surface-variant flex items-center gap-1 text-xs font-medium">
+            <span className="text-on-surface-variant text-micro flex items-center gap-1 font-medium">
               <Clock className="h-4 w-4" />
               {course.estimatedDuration}
             </span>
           )}
           {enrollment && currentModuleIndex >= 0 && (
-            <span className="text-on-surface-variant flex items-center gap-1 text-xs font-medium">
+            <span className="text-on-surface-variant text-micro flex items-center gap-1 font-medium">
               <TrendingUp className="h-4 w-4" />
               Module {currentModuleIndex + 1} of {modules.length}
             </span>

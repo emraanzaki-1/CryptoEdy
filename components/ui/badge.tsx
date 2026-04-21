@@ -19,7 +19,7 @@ const badgeVariants = cva(
         pro: 'bg-tertiary-container/90 text-on-tertiary-container backdrop-blur-md text-overline font-bold uppercase',
         category:
           'bg-surface-container text-on-surface-variant text-label font-semibold uppercase rounded-full px-2.5',
-        status: 'bg-secondary-container/20 text-secondary text-xs font-medium',
+        status: 'bg-secondary-container/20 text-secondary text-micro font-medium',
       },
     },
     defaultVariants: {
