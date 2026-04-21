@@ -25,10 +25,16 @@ export function Footer() {
               <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
                 Research
               </h4>
+              <Link
+                href="/research"
+                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+              >
+                All Research
+              </Link>
               {TAXONOMY.research.items.map((item) => (
                 <Link
                   key={item.slug}
-                  href={`/feed/${item.slug}`}
+                  href={`/research/${item.slug}`}
                   className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
                 >
                   {item.label}
@@ -39,10 +45,16 @@ export function Footer() {
               <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
                 Analysis
               </h4>
+              <Link
+                href="/analysis"
+                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+              >
+                All Analysis
+              </Link>
               {TAXONOMY.analysis.items.map((item) => (
                 <Link
                   key={item.slug}
-                  href={`/feed/${item.slug}`}
+                  href={`/analysis/${item.slug}`}
                   className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
                 >
                   {item.label}

@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import type { SerializedEditorState } from 'lexical'
+import type { Metadata } from 'next'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Badge } from '@/components/ui/badge'
@@ -19,6 +20,49 @@ import { jsxConverters } from '@/lib/lexical/jsxConverters'
 import { ArticleFAQ } from '@/components/article/article-faq'
 import { RecommendedArticles } from '@/components/article/recommended-articles'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
+
+// ── Metadata ─────────────────────────────────────────────────────────────────
+
+interface PageProps {
+  params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const payload = await getPayload({ config: configPromise })
+  const { docs } = await payload.find({
+    collection: 'posts',
+    where: { slug: { equals: slug }, status: { equals: 'published' } },
+    depth: 1,
+    limit: 1,
+    overrideAccess: true,
+  })
+  const post = docs[0]
+  if (!post) return {}
+
+  const title = `${post.title as string} | CryptoEdy`
+  const description = (post.excerpt as string) ?? undefined
+  const coverImage =
+    post.coverImage && typeof post.coverImage === 'object'
+      ? (post.coverImage as { url?: string }).url
+      : undefined
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      ...(coverImage ? { images: [{ url: coverImage }] } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      ...(coverImage ? { images: [coverImage] } : {}),
+    },
+  }
+}
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -40,7 +84,7 @@ function formatDate(date: string | Date): string {
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 
-export default async function ArticleDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ArticleDetailPage({ params }: PageProps) {
   const { slug } = await params
 
   // Fetch post from CMS
@@ -139,6 +183,14 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         })
     : []
 
+  // Resolve breadcrumb hub path from parent category
+  const hubPathMap: Record<string, string> = {
+    research: '/research',
+    analysis: '/analysis',
+    education: '/learn',
+  }
+  const hubPath = hubPathMap[parentSlug] ?? '/feed'
+
   return (
     <>
       <article className="mx-auto max-w-4xl">
@@ -147,8 +199,8 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
           <Breadcrumb
             items={[
               { label: 'Home', href: '/feed' },
-              { label: parentName, href: `/feed/${parentSlug}` },
-              { label: categoryName, href: `/feed/${categorySlug}` },
+              { label: parentName, href: hubPath },
+              { label: categoryName, href: `${hubPath}/${categorySlug}` },
               { label: post.title as string },
             ]}
             className="mb-8"

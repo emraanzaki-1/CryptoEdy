@@ -1447,3 +1447,19 @@ Files changed: `breadcrumb.tsx`, `article-card.tsx`, `top-app-bar.tsx`, `sidebar
 | 01:06 | Edited app/(app)/(dashboard)/saved/page.tsx                      | 1→3 lines  | ~40       |
 | 01:06 | Session end: 5 writes across 2 files (top-app-bar.tsx, page.tsx) | 3 reads    | ~4613 tok |
 | 01:07 | Session end: 5 writes across 2 files (top-app-bar.tsx, page.tsx) | 3 reads    | ~4613 tok |
+
+### Research & Analysis Hub Implementation
+
+| Time | Action                                                 | Detail                                                                          | Tokens |
+| ---- | ------------------------------------------------------ | ------------------------------------------------------------------------------- | ------ |
+| —    | Created components/feed/category-hub-client.tsx        | Shared client component for Research/Analysis hubs (mirrors CryptoSchoolClient) | ~900   |
+| —    | Created lib/categories/categoryHub.tsx                 | Server helpers: renderCategoryHub, renderCategoryChild, metadata generators     | ~1400  |
+| —    | Created app/(app)/(browsable)/research/page.tsx        | Research hub page with generateMetadata                                         | ~200   |
+| —    | Created app/(app)/(browsable)/research/[slug]/page.tsx | Research child page with generateMetadata                                       | ~300   |
+| —    | Created app/(app)/(browsable)/analysis/page.tsx        | Analysis hub page with generateMetadata                                         | ~200   |
+| —    | Created app/(app)/(browsable)/analysis/[slug]/page.tsx | Analysis child page with generateMetadata                                       | ~300   |
+| —    | Updated proxy.ts                                       | Added /research, /analysis to BROWSABLE_ROUTES                                  | ~10    |
+| —    | Updated lib/categories/getCategories.ts                | Research → /research/slug, Analysis → /analysis/slug hrefs                      | ~50    |
+| —    | Updated components/layouts/guest-nav.tsx               | Drill-down links → /research/_, /analysis/_, added "All" items                  | ~80    |
+| —    | Updated components/layouts/footer.tsx                  | Links → /research/_, /analysis/_                                                | ~20    |
+| —    | Updated app/(app)/(browsable)/articles/[slug]/page.tsx | Added generateMetadata with OG/Twitter card from post title/excerpt/cover       | ~400   |

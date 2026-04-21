@@ -15,7 +15,7 @@ const LANDING_ROUTE = '/'
 const VERIFY_ROUTE = '/verify-email'
 
 // Routes that guests (unauthenticated) can browse — content gating handled at page level
-const BROWSABLE_ROUTES = ['/feed', '/articles', '/tag']
+const BROWSABLE_ROUTES = ['/articles', '/tag', '/research', '/analysis']
 
 export default auth(async function proxy(
   req: NextRequest & {

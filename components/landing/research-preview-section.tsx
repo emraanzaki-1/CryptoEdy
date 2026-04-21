@@ -114,7 +114,7 @@ export async function ResearchPreviewSection() {
             Latest research.
           </Heading>
           <Link
-            href="/feed"
+            href="/research"
             className="text-primary text-body-sm font-semibold underline-offset-4 hover:underline"
           >
             View All Archive

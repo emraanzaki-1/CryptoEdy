@@ -124,6 +124,22 @@
 
 - `page.tsx` — TagPage — passes isAuthenticated (~650 tok)
 
+## app/(app)/(browsable)/research/
+
+- `page.tsx` — ResearchPage — hub for research categories, dynamic metadata (~200 tok)
+
+## app/(app)/(browsable)/research/[slug]/
+
+- `page.tsx` — ResearchChildPage — single research child category, dynamic metadata (~300 tok)
+
+## app/(app)/(browsable)/analysis/
+
+- `page.tsx` — AnalysisPage — hub for analysis categories, dynamic metadata (~200 tok)
+
+## app/(app)/(browsable)/analysis/[slug]/
+
+- `page.tsx` — AnalysisChildPage — single analysis child category, dynamic metadata (~300 tok)
+
 ## app/(app)/(dashboard)/
 
 - `error.tsx` — DashboardError (~148 tok)
@@ -337,6 +353,7 @@
 - `category-pill.tsx` — CategoryPill (~49 tok)
 - `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~276 tok)
 - `feed-client.tsx` — FeedClient (~1124 tok)
+- `category-hub-client.tsx` — CategoryHubClient — shared client for Research/Analysis hubs (~900 tok)
 - `tag-client.tsx` — TagClient (~809 tok)
 - `view-toggle.tsx` — ViewToggle (~433 tok)
 
@@ -492,6 +509,7 @@
 ## lib/categories/
 
 - `getCategories.ts` — Exports NavCategory, getNavCategories (~621 tok)
+- `categoryHub.tsx` — Shared server helpers: renderCategoryHub, renderCategoryChild, generateCategoryHubMetadata, generateCategoryChildMetadata (~1400 tok)
 
 ## lib/config/
 

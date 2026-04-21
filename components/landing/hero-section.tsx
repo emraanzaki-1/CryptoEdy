@@ -44,7 +44,7 @@ export function HeroSection() {
           Join CryptoEdy Pro
         </ButtonLink>
         <ButtonLink
-          href="/feed"
+          href="/research"
           variant="outline"
           size="xl"
           className="border-on-primary/30 bg-surface-container-lowest/10 text-on-primary hover:bg-surface-container-lowest/20 hover:text-on-primary min-w-[140px] border-2 backdrop-blur-sm hover:-translate-y-1"

@@ -171,10 +171,13 @@ function GuestMobileMenu({ onClose }: { onClose: () => void }) {
                   onClick={() =>
                     openSub({
                       label: section.label,
-                      items: section.items.map((i) => ({
-                        label: i.label,
-                        href: `/feed/${i.slug}`,
-                      })),
+                      items: [
+                        { label: `All ${section.label}`, href: `/${section.key}` },
+                        ...section.items.map((i) => ({
+                          label: i.label,
+                          href: `/${section.key}/${i.slug}`,
+                        })),
+                      ],
                     })
                   }
                   className={drillClass}

@@ -53,11 +53,11 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
     <div className="mx-auto flex w-full flex-col gap-8">
       <div>
         <Link
-          href="/feed"
+          href="/research"
           className="text-on-surface-variant hover:text-on-surface text-body-sm mb-4 inline-flex items-center gap-1.5 transition-colors"
         >
           <ArrowLeft className="size-4" />
-          Back to feed
+          Back
         </Link>
         <SectionHeading>#{tagName}</SectionHeading>
       </div>
