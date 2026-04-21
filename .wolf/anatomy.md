@@ -1,11 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T17:30:47.719Z
-> Files: 313 tracked | Anatomy hits: 0 | Misses: 0
-
-## ../../../.claude/plans/
-
-- `agile-percolating-moonbeam.md` — Notification Engine — Sprint 10 Implementation Plan (~2248 tok)
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T19:36:15.264Z
+> Files: 312 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -27,12 +23,12 @@
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~1022 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~216474 tok)
+- `tsconfig.tsbuildinfo` (~223124 tok)
 
 ## .claude/
 
 - `settings.json` (~442 tok)
-- `settings.local.json` — Declares p (~1234 tok)
+- `settings.local.json` — Declares p (~1242 tok)
 
 ## .claude/rules/
 
@@ -41,7 +37,7 @@
 ## .code-review-graph/
 
 - `.gitignore` — Git ignore rules (~38 tok)
-- `graph.db-shm` (~8738 tok)
+- `graph.db-shm` (~8739 tok)
 - `graph.db-wal` (~0 tok)
 
 ## .github/workflows/
@@ -76,7 +72,7 @@
 
 ## app/
 
-- `globals.css` — Styles: 6 rules, 269 vars (~4300 tok)
+- `globals.css` — Styles: 6 rules, 263 vars (~4548 tok)
 
 ## app/(app)/
 
@@ -92,11 +88,11 @@
 
 ## app/(app)/(auth)/forgot-password/
 
-- `page.tsx` — ForgotPasswordPage — renders form — uses useState (~923 tok)
+- `page.tsx` — ForgotPasswordPage — renders form — uses useState (~889 tok)
 
 ## app/(app)/(auth)/login/
 
-- `page.tsx` — LoginForm — renders form — uses useRouter, useSearchParams, useState (~1316 tok)
+- `page.tsx` — LoginForm — renders form (~1315 tok)
 
 ## app/(app)/(auth)/register/
 
@@ -108,7 +104,7 @@
 
 ## app/(app)/(auth)/verify-email/
 
-- `page.tsx` — VerifyEmailContent — uses useSearchParams, useRouter, useRef, useEffect (~1669 tok)
+- `page.tsx` — VerifyEmailContent — uses useSearchParams, useRouter, useRef, useEffect (~1641 tok)
 
 ## app/(app)/(dashboard)/
 
@@ -123,7 +119,7 @@
 
 ## app/(app)/(dashboard)/community/
 
-- `page.tsx` — FEATURES (~1880 tok)
+- `page.tsx` — HIGHLIGHTS (~714 tok)
 
 ## app/(app)/(dashboard)/feed/[[...slug]]/
 
@@ -145,15 +141,15 @@
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/
 
-- `page.tsx` — CourseDetailPage (~1577 tok)
+- `page.tsx` — CourseDetailPage (~1568 tok)
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/[lessonSlug]/
 
-- `page.tsx` — LessonPage (~2307 tok)
+- `page.tsx` — LessonPage (~2297 tok)
 
 ## app/(app)/(dashboard)/saved/
 
-- `page.tsx` — SavedPage (~672 tok)
+- `page.tsx` — SavedPage (~725 tok)
 
 ## app/(app)/(dashboard)/settings/
 
@@ -167,11 +163,11 @@
 
 ## app/(app)/(dashboard)/settings/billing/
 
-- `page.tsx` — billingHistory (~898 tok)
+- `page.tsx` — billingHistory (~900 tok)
 
 ## app/(app)/(dashboard)/settings/notifications/
 
-- `page.tsx` — CATEGORIES (~2824 tok)
+- `page.tsx` — CATEGORIES — renders chart — uses useState, useEffect, useCallback (~2824 tok)
 
 ## app/(app)/(dashboard)/settings/plans/
 
@@ -179,7 +175,7 @@
 
 ## app/(app)/(dashboard)/settings/profile/
 
-- `page.tsx` — ProfileSettingsPage — renders form — uses useState, useCallback, useEffect (~2355 tok)
+- `page.tsx` — ProfileSettingsPage — renders form — uses useState, useCallback, useEffect (~2361 tok)
 
 ## app/(app)/(dashboard)/tag/[slug]/
 
@@ -207,7 +203,7 @@
 
 ## app/(app)/(dashboard)/upgrade/
 
-- `page.tsx` — UpgradePage (~279 tok)
+- `page.tsx` — UpgradePage (~271 tok)
 
 ## app/(app)/[...catchAll]/
 
@@ -247,19 +243,19 @@
 
 ## app/(app)/api/notifications/
 
-- `route.ts` — GET — paginated notifications for the current user. Supports ?type= and ?cursor= (~638 tok)
+- `route.ts` — GET — paginated notifications for the current user. Supports ?type= and ?cursor= (~640 tok)
 
 ## app/(app)/api/notifications/[id]/read/
 
-- `route.ts` — PATCH — marks a single notification as read. (~326 tok)
+- `route.ts` — PATCH — marks a single notification as read. (~311 tok)
 
 ## app/(app)/api/notifications/read-all/
 
-- `route.ts` — PATCH — marks all unread notifications as read. Optionally scoped by ?type= (~416 tok)
+- `route.ts` — PATCH — marks all unread notifications as read. Optionally scoped by ?type= (~411 tok)
 
 ## app/(app)/api/notifications/unread-count/
 
-- `route.ts` — GET — returns total unread count and per-type breakdown. (~369 tok)
+- `route.ts` — GET — returns total unread count and per-type breakdown. (~356 tok)
 
 ## app/(app)/api/posts/
 
@@ -275,19 +271,19 @@
 
 ## app/(app)/api/user/notification-preferences/
 
-- `route.ts` — GET — returns all preferences grouped by type. (~1038 tok)
+- `route.ts` — GET — returns all preferences grouped by type. (~1051 tok)
 
 ## app/(app)/contact/
 
-- `page.tsx` — SUBJECTS — renders form — uses useState (~2194 tok)
+- `page.tsx` — SUBJECTS — renders form — uses useState (~2195 tok)
 
 ## app/(app)/privacy/
 
-- `page.tsx` — metadata — renders table (~2895 tok)
+- `page.tsx` — metadata — renders table (~2896 tok)
 
 ## app/(app)/terms/
 
-- `page.tsx` — metadata — renders chart (~3256 tok)
+- `page.tsx` — metadata (~3364 tok)
 
 ## app/(payload)/
 
@@ -297,7 +293,7 @@
 
 ## app/(payload)/admin/
 
-- `importMap.js` — Exports importMap (~2528 tok)
+- `importMap.js` — Exports importMap (~2496 tok)
 
 ## app/(payload)/admin/[[...segments]]/
 
@@ -358,16 +354,16 @@
 
 - `article-faq.tsx` — ArticleFAQ (~414 tok)
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
-- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1600 tok)
+- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1592 tok)
 - `recommended-articles.tsx` — AUTO_SCROLL_INTERVAL — uses useState, useCallback, useEffect (~1165 tok)
 - `share-button.tsx` — ShareButton — uses useState (~350 tok)
 
 ## components/article/blocks/
 
 - `callout-block.tsx` — VARIANTS — renders chart (~431 tok)
-- `chart-embed-block.tsx` — ChartEmbedBlockComponent — renders chart — uses useEffect (~550 tok)
-- `performance-table-block.tsx` — STATUS_STYLES — renders table (~1149 tok)
-- `price-target-block.tsx` — RISK_STYLES (~1067 tok)
+- `chart-embed-block.tsx` — ChartEmbedBlockComponent — renders chart — uses useEffect (~551 tok)
+- `performance-table-block.tsx` — STATUS_STYLES — renders table (~1151 tok)
+- `price-target-block.tsx` — RISK_STYLES (~1070 tok)
 
 ## components/auth/
 
@@ -376,63 +372,63 @@
 ## components/common/
 
 - `back-to-top.tsx` — Supports both window-level scroll (guest pages) and overflow container (~720 tok)
-- `empty-state.tsx` — Primary CTA label (~684 tok)
-- `error-content.tsx` — Label for the primary CTA (~1106 tok)
+- `empty-state.tsx` — Primary CTA label (~675 tok)
+- `error-content.tsx` — Label for the primary CTA (~1104 tok)
 - `logo.tsx` — sizes (~299 tok)
 - `search-bar.tsx` — SearchBar (~210 tok)
-- `search-modal.tsx` — RESULT_TYPE_CONFIG — renders form — uses useRouter, useState, useEffect, useCallback (~5488 tok)
-- `section-heading.tsx` — headingStyles (~832 tok)
+- `search-modal.tsx` — RESULT_TYPE_CONFIG — renders form — uses useRouter, useState, useEffect, useCallback (~5495 tok)
+- `section-heading.tsx` — headingVariantProps (~932 tok)
 - `sidebar-nav.tsx` — SidebarNav — uses useState, useEffect (~592 tok)
 
 ## components/feed/
 
-- `article-card-list.tsx` — ArticleCardList (~746 tok)
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~900 tok)
-- `article-card.tsx` — ArticleCard (~1067 tok)
+- `article-card.tsx` — ArticleCard (~1487 tok)
 - `bookmark-button.tsx` — BookmarkButton — uses useState, useRouter (~686 tok)
-- `category-pill.tsx` — CategoryPill (~77 tok)
+- `category-pill.tsx` — CategoryPill (~49 tok)
 - `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~276 tok)
-- `feed-client.tsx` — FeedClient (~1118 tok)
-- `tag-client.tsx` — TagClient (~826 tok)
+- `feed-client.tsx` — FeedClient (~1124 tok)
+- `tag-client.tsx` — TagClient (~809 tok)
 - `view-toggle.tsx` — ViewToggle (~433 tok)
 
 ## components/landing/
 
-- `faq-section.tsx` — FALLBACK_FAQS (~780 tok)
-- `hero-section.tsx` — HeroSection (~591 tok)
-- `onboarding-popup.tsx` — DISMISSED_KEY — renders form — uses useState, useCallback, useEffect (~2461 tok)
-- `pricing-section.tsx` — FEATURES — renders chart (~939 tok)
-- `research-preview-section.tsx` — ARTICLES (~1500 tok)
-- `track-record-section.tsx` — TRADES (~927 tok)
-- `value-props-section.tsx` — VALUE_PROPS — renders chart (~676 tok)
+- `faq-section.tsx` — FALLBACK_FAQS (~804 tok)
+- `hero-section.tsx` — HERO_IMAGE (~688 tok)
+- `onboarding-popup.tsx` — DISMISSED_KEY — renders form — uses useState, useCallback, useEffect (~2471 tok)
+- `pricing-section.tsx` — FEATURES — renders chart (~953 tok)
+- `research-preview-section.tsx` — FALLBACK_ARTICLES (~2120 tok)
+- `track-record-section.tsx` — TRADES (~954 tok)
+- `value-props-section.tsx` — VALUE_PROPS — renders chart (~713 tok)
 
 ## components/layouts/
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~579 tok)
-- `dashboard-shell.tsx` — DashboardShell — uses useState (~668 tok)
-- `footer.tsx` — Footer (~999 tok)
+- `dashboard-shell.tsx` — DashboardShell — uses useState, useCallback (~816 tok)
+- `footer.tsx` — Footer (~1015 tok)
 - `guest-nav.tsx` — NAV_LINKS — uses useState (~947 tok)
 - `guest-shell.tsx` — Additional className on the <main> element (~484 tok)
-- `settings-nav.tsx` — settingsGroups (~570 tok)
-- `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2200 tok)
-- `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~2885 tok)
+- `mobile-nav.tsx` — TOOLS_ITEMS — renders chart (~2042 tok)
+- `settings-nav.tsx` — settingsGroups (~572 tok)
+- `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2215 tok)
+- `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~2878 tok)
 
 ## components/learn/
 
-- `active-course-card.tsx` — ActiveCourseCard (~1025 tok)
-- `course-card.tsx` — CourseCard (~1247 tok)
-- `courses-client.tsx` — DIFFICULTY_TABS (~1210 tok)
-- `crypto-school-client.tsx` — CryptoSchoolClient (~704 tok)
-- `enroll-button.tsx` — EnrollButton — uses useState, useRouter (~816 tok)
-- `lesson-nav.tsx` — LessonNav (~586 tok)
+- `active-course-card.tsx` — ActiveCourseCard (~1040 tok)
+- `course-card.tsx` — CourseCard (~1242 tok)
+- `courses-client.tsx` — DIFFICULTY_TABS (~1217 tok)
+- `crypto-school-client.tsx` — CryptoSchoolClient (~687 tok)
+- `enroll-button.tsx` — EnrollButton — uses useState, useRouter (~807 tok)
+- `lesson-nav.tsx` — LessonNav (~587 tok)
 - `mark-complete-button.tsx` — MarkCompleteButton — uses useState, useRouter (~625 tok)
-- `module-accordion.tsx` — LessonItem — uses useState (~1973 tok)
-- `progress-bar.tsx` — ProgressBar (~294 tok)
+- `module-accordion.tsx` — LessonItem — uses useState (~1976 tok)
+- `progress-bar.tsx` — ProgressBar (~295 tok)
 - `video-player.tsx` — Generic video embed that auto-detects Vimeo vs Bunny from URL pattern. (~845 tok)
 
 ## components/notifications/
 
-- `notification-dropdown.tsx` — TABS (~2419 tok)
+- `notification-dropdown.tsx` — TABS — uses useRouter, useEffect (~2416 tok)
 
 ## components/providers/
 
@@ -443,7 +439,7 @@
 ## components/settings/
 
 - `avatar-upload.tsx` — getCroppedBlob — uses useState, useCallback (~2461 tok)
-- `billing-history-table.tsx` — BillingHistoryTable — renders table (~616 tok)
+- `billing-history-table.tsx` — BillingHistoryTable — renders table (~694 tok)
 - `danger-zone.tsx` — DangerZone — renders form — uses useState (~932 tok)
 - `theme-card.tsx` — ThemeCard (~1087 tok)
 
@@ -453,20 +449,20 @@
 
 ## components/ui/
 
-- `alert.tsx` — alertVariants (~582 tok)
-- `badge.tsx` — badgeVariants (~632 tok)
-- `breadcrumb.tsx` — Breadcrumb (~273 tok)
+- `alert.tsx` — alertVariants (~585 tok)
+- `badge.tsx` — badgeVariants (~639 tok)
+- `breadcrumb.tsx` — Breadcrumb (~290 tok)
 - `button-link.tsx` — ButtonLink (~155 tok)
-- `button.tsx` — buttonVariants (~1140 tok)
-- `card.tsx` — cardVariants (~1041 tok)
+- `button.tsx` — buttonVariants (~1144 tok)
+- `card.tsx` — cardVariants (~1046 tok)
 - `checkbox.tsx` — Checkbox (~385 tok)
 - `filter-chip.tsx` — FilterChip (~168 tok)
-- `form-field.tsx` — Slot between label and children — e.g. a "Forgot password?" link (~1005 tok)
-- `label.tsx` — Label (~148 tok)
+- `form-field.tsx` — Slot between label and children — e.g. a "Forgot password?" link (~1006 tok)
+- `label.tsx` — Label (~150 tok)
 - `separator.tsx` — Separator (~154 tok)
 - `skeleton.tsx` — Skeleton (~79 tok)
 - `toggle-switch.tsx` — Shows a dash indicator when subtypes are in a mixed state. (~444 tok)
-- `typography.tsx` — Display (~738 tok)
+- `typography.tsx` — Display (~871 tok)
 
 ## docs/
 
@@ -508,7 +504,7 @@
 - `0003_bookmarks_to_public.sql` — SQL: tables: bookmarks, 1 alter(s) (~144 tok)
 - `0004_dazzling_black_tarantula.sql` — SQL: tables: course_enrollments, lesson_progress, 2 alter(s) (~337 tok)
 - `0005_abandoned_dreaming_celestial.sql` — SQL: tables: marketing_subscribers (~110 tok)
-- `0006_notification_engine.sql` — Sprint 10: Notification Engine (~921 tok)
+- `0006_notification_engine.sql` — Sprint 10: Notification Engine (~987 tok)
 
 ## drizzle/meta/
 
@@ -522,7 +518,7 @@
 
 ## lib/
 
-- `utils.ts` — Exports cn (~48 tok)
+- `utils.ts` — Exports cn (~172 tok)
 
 ## lib/api/
 
@@ -551,7 +547,7 @@
 ## lib/config/
 
 - `env.ts` — Startup environment validator. (~266 tok)
-- `layout.ts` — Shared layout constants to reduce churn across edits. (~223 tok)
+- `layout.ts` — Shared layout constants to reduce churn across edits. (~364 tok)
 
 ## lib/constants/
 
@@ -597,7 +593,7 @@
 
 - `useDebounce.ts` — Exports useDebounce (~102 tok)
 - `useInfiniteScroll.ts` — Exports useInfiniteScroll (~776 tok)
-- `useNotifications.ts` — Exports useNotifications (~1560 tok)
+- `useNotifications.ts` — Exports useNotifications (~1556 tok)
 - `useSearch.ts` — Exports useSearch (~604 tok)
 - `useSearchModal.ts` — Exports useSearchModal (~212 tok)
 - `useViewPreference.ts` — Exports useViewPreference (~252 tok)
@@ -609,9 +605,9 @@
 
 ## lib/notifications/
 
-- `create.ts` — Filter recipients by role. If omitted, all users receive it. (~1838 tok)
-- `events.ts` — Notification event handlers. (~1696 tok)
-- `preferences.ts` — All subtype definitions grouped by type — single source of truth. (~1474 tok)
+- `create.ts` — Filter recipients by role. If omitted, all users receive it. (~1823 tok)
+- `events.ts` — Notification event handlers. (~1697 tok)
+- `preferences.ts` — All subtype definitions grouped by type — single source of truth. (~1459 tok)
 - `rate-limit.ts` — In-memory email rate limiter for notifications. (~317 tok)
 
 ## lib/posts/

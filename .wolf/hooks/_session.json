@@ -1,12 +1,62 @@
 {
-  "session_id": "session-2026-04-21-1459",
-  "started": "2026-04-21T09:29:44.880Z",
-  "files_read": {},
-  "files_written": [],
-  "edit_counts": {},
-  "anatomy_hits": 0,
+  "session_id": "session-2026-04-21-0034",
+  "started": "2026-04-21T19:04:09.861Z",
+  "files_read": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx": {
+      "count": 2,
+      "tokens": 2880,
+      "first_read": "2026-04-21T19:33:44.133Z"
+    },
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/saved/page.tsx": {
+      "count": 1,
+      "tokens": 672,
+      "first_read": "2026-04-21T19:35:56.733Z"
+    },
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/common/section-heading.tsx": {
+      "count": 1,
+      "tokens": 932,
+      "first_read": "2026-04-21T19:36:03.682Z"
+    }
+  },
+  "files_written": [
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+      "action": "edit",
+      "tokens": 61,
+      "at": "2026-04-21T19:33:57.856Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+      "action": "edit",
+      "tokens": 9,
+      "at": "2026-04-21T19:34:16.195Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
+      "action": "edit",
+      "tokens": 16,
+      "at": "2026-04-21T19:34:41.773Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/saved/page.tsx",
+      "action": "edit",
+      "tokens": 3,
+      "at": "2026-04-21T19:36:09.451Z"
+    },
+    {
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/saved/page.tsx",
+      "action": "edit",
+      "tokens": 40,
+      "at": "2026-04-21T19:36:15.288Z"
+    }
+  ],
+  "edit_counts": {
+    "components/layouts/top-app-bar.tsx": 3,
+    "app/(app)/(dashboard)/saved/page.tsx": 2
+  },
+  "anatomy_hits": 3,
   "anatomy_misses": 0,
-  "repeated_reads_warned": 0,
+  "repeated_reads_warned": 1,
   "cerebrum_warnings": 0,
-  "stop_count": 1
+  "stop_count": 6
 }

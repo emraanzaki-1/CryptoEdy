@@ -1,46 +1,38 @@
 {
-  "generated_at": "2026-04-20T02:47:45.186Z",
+  "generated_at": "2026-04-21T19:04:55.268Z",
   "achievements": [
-    "Full auth system: login, register, forgot/reset password, email verification (link-based), rate limiting, role-based access with proxy.ts",
-    "CMS integration: Payload 3.x with custom admin views (UserManagement, CategoriesListView with drag-reorder), Lexical RichText rendering, 4 custom blocks (Callout, ChartEmbed, PerformanceTable, PriceTarget)",
-    "Content feed: server/client split architecture, infinite scroll, category filtering via parent-child hierarchy, grid/list view toggle, tag pages",
-    "Bookmarking system: Bookmarks collection, toggle action, saved page with empty states",
-    "CMD+/ search command palette with PostgreSQL full-text search (tsvector + GIN index, ts_rank/ts_headline)",
-    "Landing page redesign: Cryptonary-style hero, editorial two-column headers, SVG sparklines, responsive across all sections",
-    "Design system audit: M3 tonal palette, typography scale tokens, tracking tokens standardized across 30+ files",
-    "Profile settings: avatar upload with crop, profile update server actions, AvatarProvider context for real-time updates across layout",
-    "Admin panel: user management (block/unblock/delete, role/subscription editing), custom category list with drag-and-drop reorder",
-    "Error/empty state system: shared ErrorContent component, not-found/error pages for both guest and dashboard layouts, EmptyState with illustrations"
+    "Design system audit (3 passes): ~200 files tokenized — all text-sm/base/lg/xl replaced with design tokens, spacing tokens registered in @theme inline, twMerge extended to prevent token conflicts",
+    "Sprint 10 notification engine: full stack — DB schema (notifications + preferences tables), email rate limiter, 6 event handlers, 4 API routes, useNotifications hook, notification dropdown UI, redesigned settings page",
+    "LMS: Courses/Modules/Lessons collections, Drizzle progress tables, enrollment/progress APIs with rate limiting, 10 frontend components, 3 lesson pages, search vector SQL for courses+lessons",
+    "Mobile responsive polish (2 rounds): mobile sidebar drawer, h-dvh fix, modal/dropdown viewport safety, table overflow, next/image migration, breadcrumb wrap, list card stacking",
+    "Component unification: SectionHeading (4 old components → 1), FormField/FormInput/FormTextarea, Button/ButtonLink (24 raw buttons), Card variants (surface/elevated/surface-lowest), GuestShell, CategoryPill single source",
+    "CMD+K search palette: PostgreSQL full-text search across posts + courses + lessons, grouped results with type icons, keyboard nav, recent searches",
+    "Infrastructure: proxy matchers for /learn + /tag, block redirect loop fix, JWT try-catch on DB revalidation, rate limiter keyed by IP+pathname, post afterDelete bookmark cleanup"
   ],
   "improvements": [
-    "top-app-bar.tsx has been rewritten 10+ times across sessions — consider stabilizing the component API and locking its props interface",
-    "dashboard-shell.tsx similarly over-edited — extract layout constants (spacing, breakpoints) into a shared config to reduce churn",
-    "Feed page exists at both /feed/page.tsx AND /feed/[[...slug]]/page.tsx — consolidate to avoid route conflicts",
-    "Multiple files created then immediately recreated (sidebar.tsx, avatar-upload.tsx, profile/page.tsx) — indicates unclear specs before coding; plan before implementing",
-    "Article card has separate grid (article-card.tsx) and list (article-card-list.tsx) components with duplicated CategoryPill — extract shared logic",
-    "mapToCardProps.ts duplicates timeAgo function also present in feed/page.tsx — single source of truth needed",
-    "lib/profile/actions.ts handles both profile updates and avatar uploads in one file (~1732 tok) — consider splitting concerns"
+    "In-memory rate limiters (lib/notifications/rate-limit.ts, lib/auth/rate-limit.ts) reset on every server restart — replace with Redis or DB-backed counters before production",
+    "lib/notifications/create.ts broadcastNotification queries all users into memory — add cursor-based batching for large user bases",
+    "Tool preview pages (airdrops, market-direction, picks, tracker) render static HIGHLIGHTS arrays with no real data — wire up to actual Payload collections or external APIs",
+    "scripts/seed.ts is 39k tokens — split into per-collection seed modules to keep it maintainable",
+    "useNotifications polls on a fixed interval — switch to SSE or WebSocket to reduce unnecessary requests once user base grows",
+    "Email templates (lib/email/templates/) are plain strings — move to a proper template engine (React Email / MJML) for easier design iteration"
   ],
   "next_tasks": [
-    "Sprint 5: Wallet connection & payment flow — Stripe or on-chain subscription integration for Pro tier",
-    "Sprint 6: On-chain verification & subscription management — tie payments to role upgrades",
-    "Wire up settings pages that are still static: notifications (no backend), billing (mock data), plans (no checkout flow)",
-    "Add real data to tools pages (market-direction, picks, tracker, airdrops) — currently placeholder/coming-soon",
-    "Community page has static mock features — needs backend (posts, comments, reactions)",
-    "Implement saved/bookmarks pagination and sorting",
-    "Add SEO metadata (generateMetadata) to article and feed pages",
-    "Write integration tests for auth flows and Payload API endpoints",
-    "Set up CI to run build + lint checks (build.yml and ci.yml exist but may need test steps)"
+    "Sprint 11 — Community Features: wire real community feed (forum posts or Discord embed), member list, community notifications",
+    "Sprint 5/6 — Wallet + Payment: connect wallet (wagmi/viem), on-chain Pro verification, Stripe/crypto checkout, subscription state synced to users table",
+    "Sprint 7/8 — Live tool data: Market Direction page needs real signal source, Picks needs Payload Posts integration, Portfolio Tracker needs price API",
+    "Sprint 9 — Airdrop Hub: replace static HIGHLIGHTS with a live Airdrops Payload collection + eligibility checker",
+    "Drizzle migration for notification_preferences v2: the schema was redesigned from flat booleans to per-subtype rows (0006) but seed.ts may still insert old format — verify register flow seeds correctly",
+    "public/illustrations/ directory is untracked — audit what's there and commit or gitignore",
+    "End-to-end auth flow test: verify email → dashboard redirect, blocked user redirect, expired Pro → isPro=false path"
   ],
   "risks": [
-    "No tests exist — 0 test files in the project. Auth flows, API routes, and role gating are untested and high-risk for regressions",
-    "proxy.ts (Next.js 16 replacement for middleware) has been patched 5+ times — edge cases around blocked users, expired subscriptions, and route matching could slip through",
-    "Auth config (lib/auth/config.ts) has complex JWT callback logic with session refresh — the Do-Not-Repeat log shows multiple bugs around null session, updateSession() args, and StrictMode double-mount",
-    "In-memory rate limiter (lib/auth/rate-limit.ts) won't survive restarts or scale across instances — needs Redis or similar for production",
-    "No database migrations for profile fields (displayName, bio, website, avatar) — schema changes via Drizzle may not be applied",
-    "Payload and app share the same PostgreSQL database (different schemas) — no foreign key safety between payload.posts and public.users/bookmarks",
-    "HTML/ directory contains 15+ reference HTML files (~100K+ tokens) still in the repo — .gitignore added but local bloat remains",
-    "13 bugs logged in buglog.json, mostly auto-detected style/value fixes — suggests rapid iteration without design specs locked down first",
-    "sharp dependency was just added (latest commit) for Payload image resizing — verify it works in the target deployment environment (e.g., Docker/serverless may need native binaries)"
+    "CRITICAL — No automated tests: zero test files found across the entire codebase; auth flows, payment gating, and notification delivery have no regression coverage",
+    "HIGH — In-memory rate limiters will silently stop working under multi-instance deploys (Vercel edge replicas, Docker Swarm) — state is not shared across processes",
+    "HIGH — Drizzle migration journal (drizzle/meta/_journal.json) only goes to 0006 but 0006_notification_engine.sql rewrites the notification_preferences schema; existing dev DBs need a fresh migration run",
+    "MEDIUM — broadcastNotification fetches all user IDs in one query (no pagination) — will cause OOM or timeouts at scale if triggered for article-published events with large user bases",
+    "MEDIUM — LMS sequential unlock logic (lib/courses/lessonAccess.ts) is checked client-side via props — a user could call the progress API directly to mark lessons complete out of order; add server-side enforcement in the PATCH /api/courses/progress route",
+    "MEDIUM — public/illustrations/ is untracked in git — if these are referenced by components, production builds on CI will fail or silently serve 404s",
+    "LOW — tsconfig.tsbuildinfo is 223k tokens and committed to the repo — should be gitignored to avoid bloating git history"
   ]
 }
