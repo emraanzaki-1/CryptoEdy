@@ -121,7 +121,7 @@ export function OnboardingPopup() {
       />
 
       {/* Modal */}
-      <div className="bg-surface-container-lowest ring-on-surface/5 shadow-elevated-emphasis relative flex w-full max-w-4xl flex-col overflow-hidden rounded-lg ring-1 md:flex-row">
+      <div className="bg-surface-container-lowest ring-on-surface/5 shadow-elevated-emphasis relative flex max-h-[90dvh] w-full max-w-4xl flex-col overflow-y-auto overscroll-contain rounded-lg ring-1 md:flex-row">
         {/* Close Button */}
         <Button
           variant="ghost"

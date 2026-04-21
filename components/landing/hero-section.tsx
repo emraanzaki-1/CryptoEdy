@@ -1,16 +1,31 @@
+import Image from 'next/image'
 import { ButtonLink } from '@/components/ui/button-link'
 import { Display } from '@/components/ui/typography'
 
+const HERO_IMAGE =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuDuWmH5pPRQOqtA7h8xEfRxdDasSxUnl5cu8g71R_okh_LUO4zwIaFGbXN0evggqJmlTP4hw3PmmJnaLviE9m4wdCcrxACscuPsiRAGboxKFxQTMLSr5TvbIJMfctlEaDV7RxZ9l3p0AMRcUgFnevihmeCFjdSgejBCOzcvKSLbEfdW3KFPSyhes5esEHm0tRgak-n1ki7Y4b2e03omKFyGi-M5RaSmqdwwen39vnR3dpQZtE2I3wZd3n4V-1u2lRZIrsnRfJtKT1rm'
+
 export function HeroSection() {
   return (
-    <div
-      className="flex min-h-[480px] flex-col items-center justify-center gap-8 bg-cover bg-center bg-no-repeat p-8 md:min-h-[540px] md:p-12"
-      style={{
-        backgroundImage:
-          "linear-gradient(to bottom, color-mix(in srgb, var(--color-on-surface) 40%, transparent), color-mix(in srgb, var(--color-primary) 60%, transparent)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDuWmH5pPRQOqtA7h8xEfRxdDasSxUnl5cu8g71R_okh_LUO4zwIaFGbXN0evggqJmlTP4hw3PmmJnaLviE9m4wdCcrxACscuPsiRAGboxKFxQTMLSr5TvbIJMfctlEaDV7RxZ9l3p0AMRcUgFnevihmeCFjdSgejBCOzcvKSLbEfdW3KFPSyhes5esEHm0tRgak-n1ki7Y4b2e03omKFyGi-M5RaSmqdwwen39vnR3dpQZtE2I3wZd3n4V-1u2lRZIrsnRfJtKT1rm')",
-      }}
-    >
-      <div className="flex max-w-3xl flex-col gap-4 text-center">
+    <div className="relative flex min-h-[480px] flex-col items-center justify-center gap-8 p-8 md:min-h-[540px] md:p-12">
+      {/* Background image via next/image */}
+      <Image
+        src={HERO_IMAGE}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+      />
+      {/* Gradient overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(to bottom, color-mix(in srgb, var(--color-on-surface) 40%, transparent), color-mix(in srgb, var(--color-primary) 60%, transparent))',
+        }}
+      />
+      <div className="relative z-10 flex max-w-3xl flex-col gap-4 text-center">
         <Display responsive className="text-on-primary">
           Institutional-Grade Crypto Research for the Modern Investor
         </Display>
@@ -19,7 +34,7 @@ export function HeroSection() {
           the noise and deliver measurable edge.
         </p>
       </div>
-      <div className="mt-2 flex w-full flex-col justify-center gap-4 px-4 sm:w-auto sm:flex-row sm:px-0">
+      <div className="relative z-10 mt-2 flex w-full flex-col justify-center gap-4 px-4 sm:w-auto sm:flex-row sm:px-0">
         <ButtonLink
           href="/register"
           variant="gradient"

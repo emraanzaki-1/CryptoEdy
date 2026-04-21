@@ -114,7 +114,7 @@ export default function PrivacyPage() {
               <Cookie className="text-primary size-7" />
               <Heading className="font-black">Cookie Usage</Heading>
             </div>
-            <div className="bg-surface-container-lowest border-outline-variant/15 overflow-hidden rounded-xl border">
+            <div className="bg-surface-container-lowest border-outline-variant/15 overflow-x-auto rounded-xl border">
               <table className="w-full text-left">
                 <thead className="bg-surface-container-low">
                   <tr>

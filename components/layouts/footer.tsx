@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { Logo } from '@/components/common/logo'
+import { LAYOUT } from '@/lib/config/layout'
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-on-primary mt-auto px-4 py-16 md:px-8 lg:px-40">
+    <footer className={`bg-primary text-on-primary mt-auto py-16 ${LAYOUT.guest.px}`}>
       <div className="max-w-site mx-auto">
         <div className="mb-12 flex flex-col justify-between gap-12 md:flex-row">
           <div className="flex max-w-sm flex-col gap-4">
