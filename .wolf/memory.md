@@ -3,6 +3,8 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| 12:45 | Added sliding pill animation to ViewToggle | components/feed/view-toggle.tsx | done | ~50 |
+
 ## 2026-04-21 — Heading system consolidation
 
 - Created unified `components/common/section-heading.tsx` with 3 variants: `page` (default), `landing`, `subsection`
@@ -1229,3 +1231,22 @@ Migrated ~150 generic Tailwind text utilities → design-system tokens across ~4
 | —    | Full typography migration: replaced all raw heading elements across 20+ files with Display/Heading/Title/Body/Caption/Overline primitives | auth pages (5), guest pages (3), landing (4), dashboard (6), feed/article (3), common (2) | standardized | ~600    |
 | —    | Changed Title default from font-semibold to font-bold (100% of consumers use font-bold)                                                   | components/ui/typography.tsx                                                              | corrected    | ~10     |
 | —    | Deleted dead Field/FieldLabel/FieldControl/FieldMessage from form-field.tsx (zero consumers)                                              | components/ui/form-field.tsx                                                              | cleaned      | ~-200   |
+
+## Session: 2026-04-21 14:45
+
+| Time  | Action                                                 | File(s)                                                   | Outcome   | ~Tokens |
+| ----- | ------------------------------------------------------ | --------------------------------------------------------- | --------- | ------- |
+| 14:48 | Created components/feed/view-toggle.tsx                | —                                                         | ~447      |
+| 14:49 | Session end: 1 writes across 1 files (view-toggle.tsx) | 2 reads                                                   | ~1043 tok |
+| 14:50 | Edited components/feed/view-toggle.tsx                 | "bg-surface-container-lowe" → "bg-surface-container-lowe" | ~27       |
+| 14:50 | Edited components/feed/view-toggle.tsx                 | 2→2 lines                                                 | ~43       |
+| 14:50 | Edited components/feed/view-toggle.tsx                 | 2→2 lines                                                 | ~43       |
+| 14:50 | Session end: 4 writes across 1 files (view-toggle.tsx) | 2 reads                                                   | ~1156 tok |
+| 14:51 | Edited components/feed/view-toggle.tsx                 | 9→9 lines                                                 | ~122      |
+| 14:51 | Session end: 5 writes across 1 files (view-toggle.tsx) | 2 reads                                                   | ~1380 tok |
+| 14:54 | Session end: 5 writes across 1 files (view-toggle.tsx) | 2 reads                                                   | ~1380 tok |
+
+## Session: 2026-04-21 14:59
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+| ---- | ------ | ------- | ------- | ------- |

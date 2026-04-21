@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T07:03:07.224Z
-> Files: 306 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T09:29:36.657Z
+> Files: 301 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -23,7 +23,7 @@
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~1022 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~217115 tok)
+- `tsconfig.tsbuildinfo` (~216474 tok)
 
 ## .claude/
 
@@ -37,7 +37,7 @@
 ## .code-review-graph/
 
 - `.gitignore` — Git ignore rules (~38 tok)
-- `graph.db-shm` (~8737 tok)
+- `graph.db-shm` (~8738 tok)
 - `graph.db-wal` (~0 tok)
 
 ## .github/workflows/
@@ -80,7 +80,7 @@
 - `global-error.tsx` — inter (~228 tok)
 - `layout.tsx` — inter (~350 tok)
 - `not-found.tsx` — NotFound (~131 tok)
-- `page.tsx` — Home (~326 tok)
+- `page.tsx` — Home (~341 tok)
 
 ## app/(app)/(auth)/
 
@@ -88,23 +88,23 @@
 
 ## app/(app)/(auth)/forgot-password/
 
-- `page.tsx` — ForgotPasswordPage — renders form — uses useState (~919 tok)
+- `page.tsx` — ForgotPasswordPage — renders form — uses useState (~923 tok)
 
 ## app/(app)/(auth)/login/
 
-- `page.tsx` — LoginForm — renders form — uses useRouter, useSearchParams, useState (~1312 tok)
+- `page.tsx` — LoginForm — renders form — uses useRouter, useSearchParams, useState (~1316 tok)
 
 ## app/(app)/(auth)/register/
 
-- `page.tsx` — RegisterPage — renders form — uses useRouter, useState (~1008 tok)
+- `page.tsx` — RegisterPage — renders form — uses useRouter, useState (~1006 tok)
 
 ## app/(app)/(auth)/reset-password/
 
-- `page.tsx` — ResetPasswordForm — renders form — uses useSearchParams, useRouter, useState, useEffect (~1590 tok)
+- `page.tsx` — ResetPasswordForm — renders form — uses useSearchParams, useRouter, useState, useEffect (~1581 tok)
 
 ## app/(app)/(auth)/verify-email/
 
-- `page.tsx` — VerifyEmailContent — uses useSearchParams, useRouter, useRef, useEffect (~1693 tok)
+- `page.tsx` — VerifyEmailContent — uses useSearchParams, useRouter, useRef, useEffect (~1669 tok)
 
 ## app/(app)/(dashboard)/
 
@@ -115,11 +115,11 @@
 ## app/(app)/(dashboard)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — ROLE_HIERARCHY (~2638 tok)
+- `page.tsx` — ROLE_HIERARCHY (~2662 tok)
 
 ## app/(app)/(dashboard)/community/
 
-- `page.tsx` — FEATURES (~1857 tok)
+- `page.tsx` — FEATURES (~1880 tok)
 
 ## app/(app)/(dashboard)/feed/[[...slug]]/
 
@@ -137,19 +137,19 @@
 ## app/(app)/(dashboard)/learn/courses/
 
 - `loading.tsx` — CoursesLoading (~256 tok)
-- `page.tsx` — CoursesListingPage (~1023 tok)
+- `page.tsx` — CoursesListingPage (~1027 tok)
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/
 
-- `page.tsx` — CourseDetailPage (~1570 tok)
+- `page.tsx` — CourseDetailPage (~1577 tok)
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/[lessonSlug]/
 
-- `page.tsx` — LessonPage (~2328 tok)
+- `page.tsx` — LessonPage (~2307 tok)
 
 ## app/(app)/(dashboard)/saved/
 
-- `page.tsx` — SavedPage (~667 tok)
+- `page.tsx` — SavedPage (~672 tok)
 
 ## app/(app)/(dashboard)/settings/
 
@@ -159,31 +159,31 @@
 
 ## app/(app)/(dashboard)/settings/appearance/
 
-- `page.tsx` — THEMES (~1760 tok)
+- `page.tsx` — THEMES (~1782 tok)
 
 ## app/(app)/(dashboard)/settings/billing/
 
-- `page.tsx` — billingHistory (~902 tok)
+- `page.tsx` — billingHistory (~898 tok)
 
 ## app/(app)/(dashboard)/settings/notifications/
 
-- `page.tsx` — NotificationItem — uses useState, useEffect, useCallback (~1691 tok)
+- `page.tsx` — NotificationItem — uses useState, useEffect, useCallback (~1675 tok)
 
 ## app/(app)/(dashboard)/settings/plans/
 
-- `page.tsx` — benefits (~1216 tok)
+- `page.tsx` — benefits (~1208 tok)
 
 ## app/(app)/(dashboard)/settings/profile/
 
-- `page.tsx` — ProfileSettingsPage — renders form — uses useState, useCallback, useEffect (~2371 tok)
+- `page.tsx` — ProfileSettingsPage — renders form — uses useState, useCallback, useEffect (~2355 tok)
 
 ## app/(app)/(dashboard)/tag/[slug]/
 
-- `page.tsx` — TagPage (~616 tok)
+- `page.tsx` — TagPage (~620 tok)
 
 ## app/(app)/(dashboard)/tools/
 
-- `page.tsx` — TOOLS — renders chart (~1026 tok)
+- `page.tsx` — TOOLS — renders chart (~1022 tok)
 
 ## app/(app)/(dashboard)/tools/airdrops/
 
@@ -203,7 +203,7 @@
 
 ## app/(app)/(dashboard)/upgrade/
 
-- `page.tsx` — UpgradePage (~276 tok)
+- `page.tsx` — UpgradePage (~279 tok)
 
 ## app/(app)/[...catchAll]/
 
@@ -259,15 +259,15 @@
 
 ## app/(app)/contact/
 
-- `page.tsx` — SUBJECTS — renders form (~2170 tok)
+- `page.tsx` — SUBJECTS — renders form — uses useState (~2194 tok)
 
 ## app/(app)/privacy/
 
-- `page.tsx` — metadata — renders table (~2899 tok)
+- `page.tsx` — metadata — renders table (~2895 tok)
 
 ## app/(app)/terms/
 
-- `page.tsx` — metadata (~3196 tok)
+- `page.tsx` — metadata — renders chart (~3256 tok)
 
 ## app/(payload)/
 
@@ -277,7 +277,7 @@
 
 ## app/(payload)/admin/
 
-- `importMap.js` — Exports importMap (~2496 tok)
+- `importMap.js` — Exports importMap (~2528 tok)
 
 ## app/(payload)/admin/[[...segments]]/
 
@@ -338,7 +338,7 @@
 
 - `article-faq.tsx` — ArticleFAQ (~414 tok)
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
-- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1583 tok)
+- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1600 tok)
 - `recommended-articles.tsx` — AUTO_SCROLL_INTERVAL — uses useState, useCallback, useEffect (~1165 tok)
 - `share-button.tsx` — ShareButton — uses useState (~350 tok)
 
@@ -346,8 +346,8 @@
 
 - `callout-block.tsx` — VARIANTS — renders chart (~431 tok)
 - `chart-embed-block.tsx` — ChartEmbedBlockComponent — renders chart — uses useEffect (~550 tok)
-- `performance-table-block.tsx` — STATUS_STYLES — renders table (~1152 tok)
-- `price-target-block.tsx` — RISK_STYLES (~1070 tok)
+- `performance-table-block.tsx` — STATUS_STYLES — renders table (~1149 tok)
+- `price-target-block.tsx` — RISK_STYLES (~1067 tok)
 
 ## components/auth/
 
@@ -356,14 +356,13 @@
 ## components/common/
 
 - `back-to-top.tsx` — Supports both window-level scroll (guest pages) and overflow container (~720 tok)
-- `coming-soon.tsx` — ComingSoon (~592 tok)
-- `empty-state.tsx` — Primary CTA label (~681 tok)
-- `error-content.tsx` — Label for the primary CTA (~1094 tok)
-- `logo.tsx` — sizes (~320 tok)
+- `empty-state.tsx` — Primary CTA label (~684 tok)
+- `error-content.tsx` — Label for the primary CTA (~1106 tok)
+- `logo.tsx` — sizes (~299 tok)
 - `search-bar.tsx` — SearchBar (~210 tok)
-- `search-modal.tsx` — RESULT_TYPE_CONFIG — uses useRouter, useState, useEffect, useCallback (~5498 tok)
-- `section-heading.tsx` — SectionHeading (variants: page/landing/subsection, action slot, overline, split layout) (~900 tok)
-- `sidebar-nav.tsx` — SidebarNav (~597 tok)
+- `search-modal.tsx` — RESULT_TYPE_CONFIG — renders form — uses useRouter, useState, useEffect, useCallback (~5488 tok)
+- `section-heading.tsx` — headingStyles (~832 tok)
+- `sidebar-nav.tsx` — SidebarNav — uses useState, useEffect (~592 tok)
 
 ## components/feed/
 
@@ -372,42 +371,42 @@
 - `article-card.tsx` — ArticleCard (~1067 tok)
 - `bookmark-button.tsx` — BookmarkButton — uses useState, useRouter (~686 tok)
 - `category-pill.tsx` — CategoryPill (~77 tok)
-- `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~268 tok)
-- `feed-client.tsx` — FeedClient (~1113 tok)
+- `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~276 tok)
+- `feed-client.tsx` — FeedClient (~1118 tok)
 - `tag-client.tsx` — TagClient (~826 tok)
-- `view-toggle.tsx` — ViewToggle (~344 tok)
+- `view-toggle.tsx` — ViewToggle (~433 tok)
 
 ## components/landing/
 
-- `faq-section.tsx` — FALLBACK_FAQS (~769 tok)
-- `hero-section.tsx` — HeroSection (~576 tok)
-- `onboarding-popup.tsx` — DISMISSED_KEY — renders form (~2464 tok)
-- `pricing-section.tsx` — FEATURES — renders chart (~944 tok)
-- `research-preview-section.tsx` — ARTICLES (~1501 tok)
-- `track-record-section.tsx` — TRADES (~924 tok)
-- `value-props-section.tsx` — VALUE_PROPS — renders chart (~665 tok)
+- `faq-section.tsx` — FALLBACK_FAQS (~780 tok)
+- `hero-section.tsx` — HeroSection (~591 tok)
+- `onboarding-popup.tsx` — DISMISSED_KEY — renders form — uses useState, useCallback, useEffect (~2461 tok)
+- `pricing-section.tsx` — FEATURES — renders chart (~939 tok)
+- `research-preview-section.tsx` — ARTICLES (~1500 tok)
+- `track-record-section.tsx` — TRADES (~927 tok)
+- `value-props-section.tsx` — VALUE_PROPS — renders chart (~676 tok)
 
 ## components/layouts/
 
-- `auth-split-layout.tsx` — AuthSplitLayout (~568 tok)
+- `auth-split-layout.tsx` — AuthSplitLayout (~579 tok)
 - `dashboard-shell.tsx` — DashboardShell — uses useState (~668 tok)
 - `footer.tsx` — Footer (~999 tok)
 - `guest-nav.tsx` — NAV_LINKS — uses useState (~947 tok)
-- `guest-shell.tsx` — Additional className on the <main> element (~218 tok)
+- `guest-shell.tsx` — Additional className on the <main> element (~484 tok)
 - `settings-nav.tsx` — settingsGroups (~570 tok)
-- `sidebar.tsx` — TOOLS_ITEMS (~2184 tok)
-- `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~3452 tok)
+- `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2200 tok)
+- `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~3461 tok)
 
 ## components/learn/
 
 - `active-course-card.tsx` — ActiveCourseCard (~1025 tok)
 - `course-card.tsx` — CourseCard (~1247 tok)
-- `courses-client.tsx` — DIFFICULTY_TABS (~1207 tok)
-- `crypto-school-client.tsx` — CryptoSchoolClient (~699 tok)
+- `courses-client.tsx` — DIFFICULTY_TABS (~1210 tok)
+- `crypto-school-client.tsx` — CryptoSchoolClient (~704 tok)
 - `enroll-button.tsx` — EnrollButton — uses useState, useRouter (~816 tok)
-- `lesson-nav.tsx` — LessonNav (~602 tok)
+- `lesson-nav.tsx` — LessonNav (~586 tok)
 - `mark-complete-button.tsx` — MarkCompleteButton — uses useState, useRouter (~625 tok)
-- `module-accordion.tsx` — LessonItem (~1972 tok)
+- `module-accordion.tsx` — LessonItem — uses useState (~1973 tok)
 - `progress-bar.tsx` — ProgressBar (~294 tok)
 - `video-player.tsx` — Generic video embed that auto-detects Vimeo vs Bunny from URL pattern. (~845 tok)
 
@@ -419,14 +418,14 @@
 
 ## components/settings/
 
-- `avatar-upload.tsx` — getCroppedBlob — uses useState, useCallback (~2453 tok)
-- `billing-history-table.tsx` — BillingHistoryTable — renders table (~640 tok)
-- `danger-zone.tsx` — DangerZone — uses useState (~967 tok)
+- `avatar-upload.tsx` — getCroppedBlob — uses useState, useCallback (~2461 tok)
+- `billing-history-table.tsx` — BillingHistoryTable — renders table (~616 tok)
+- `danger-zone.tsx` — DangerZone — renders form — uses useState (~932 tok)
 - `theme-card.tsx` — ThemeCard (~1087 tok)
 
 ## components/tools/
 
-- `tool-preview-layout.tsx` — Extra decorative elements rendered inside the visual panel (~1496 tok)
+- `tool-preview-layout.tsx` — Extra decorative elements rendered inside the visual panel (~1508 tok)
 
 ## components/ui/
 
@@ -435,15 +434,15 @@
 - `breadcrumb.tsx` — Breadcrumb (~273 tok)
 - `button-link.tsx` — ButtonLink (~155 tok)
 - `button.tsx` — buttonVariants (~1140 tok)
-- `card.tsx` — cardVariants (default/surface/surface-lowest/elevated), shadowMap, radiusMap, polymorphic `as` (~1400 tok)
+- `card.tsx` — cardVariants (~1041 tok)
 - `checkbox.tsx` — Checkbox (~385 tok)
 - `filter-chip.tsx` — FilterChip (~168 tok)
-- `form-field.tsx` — Field/FieldLabel/FieldControl/FieldMessage (compositional) + FormField, FormInput (tonal/outlined/ghost/danger), FormTextarea, FormSelect (~1600 tok)
+- `form-field.tsx` — Slot between label and children — e.g. a "Forgot password?" link (~1005 tok)
 - `label.tsx` — Label (~148 tok)
 - `separator.tsx` — Separator (~154 tok)
 - `skeleton.tsx` — Skeleton (~79 tok)
 - `toggle-switch.tsx` — ToggleSwitch (~298 tok)
-- `typography.tsx` — Display, Heading, Title, Body, Caption, Overline (polymorphic) (~800 tok)
+- `typography.tsx` — Display (~738 tok)
 
 ## docs/
 
@@ -527,7 +526,7 @@
 ## lib/config/
 
 - `env.ts` — Startup environment validator. (~266 tok)
-- `layout.ts` — LAYOUT constants for dashboard (content/appBar padding) + guest routes (px, container, pagePy). (~180 tok)
+- `layout.ts` — Shared layout constants to reduce churn across edits. (~223 tok)
 
 ## lib/constants/
 

@@ -2568,6 +2568,18 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-21T07:03:07.268Z"
+    },
+    {
+      "id": "bug-215",
+      "timestamp": "2026-04-21T09:20:10.138Z",
+      "error_message": "Incorrect value in code",
+      "file": "components/feed/view-toggle.tsx",
+      "root_cause": "Had 'bg-surface-container-lowest absolute top-1 bottom",
+      "fix": "Changed to 'bg-surface-container-lowest absolute top-1 bottom",
+      "tags": ["auto-detected", "wrong-value", "tsx"],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-04-21T09:20:13.448Z"
     }
   ]
 }

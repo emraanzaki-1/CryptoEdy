@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-04-17T20:46:01.631Z",
   "lifetime": {
-    "total_tokens_estimated": 4172959,
-    "total_reads": 2676,
-    "total_writes": 4301,
-    "total_sessions": 31,
-    "anatomy_hits": 2373,
+    "total_tokens_estimated": 4177918,
+    "total_reads": 2684,
+    "total_writes": 4316,
+    "total_sessions": 33,
+    "anatomy_hits": 2381,
     "anatomy_misses": 276,
-    "repeated_reads_blocked": 1457,
-    "estimated_savings_vs_bare_cli": 3370633
+    "repeated_reads_blocked": 1459,
+    "estimated_savings_vs_bare_cli": 3373125
   },
   "sessions": [
     {
@@ -40566,190 +40566,389 @@
         "repeated_reads_blocked": 0,
         "anatomy_lookups": 30
       }
+    },
+    {
+      "id": "session-2026-04-21-1445",
+      "started": "2026-04-21T09:15:52.489Z",
+      "ended": "2026-04-21T09:19:08.312Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 344,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/hooks/useViewPreference.ts",
+          "tokens_estimated": 252,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 447,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 596,
+        "output_tokens_estimated": 447,
+        "reads_count": 2,
+        "writes_count": 1,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      }
+    },
+    {
+      "id": "session-2026-04-21-1445",
+      "started": "2026-04-21T09:15:52.489Z",
+      "ended": "2026-04-21T09:20:19.876Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 344,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/hooks/useViewPreference.ts",
+          "tokens_estimated": 252,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 27,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 43,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 596,
+        "output_tokens_estimated": 560,
+        "reads_count": 2,
+        "writes_count": 4,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      }
+    },
+    {
+      "id": "session-2026-04-21-1445",
+      "started": "2026-04-21T09:15:52.489Z",
+      "ended": "2026-04-21T09:21:45.368Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 446,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/hooks/useViewPreference.ts",
+          "tokens_estimated": 252,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 27,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 122,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 698,
+        "output_tokens_estimated": 682,
+        "reads_count": 2,
+        "writes_count": 5,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 2
+      }
+    },
+    {
+      "id": "session-2026-04-21-1445",
+      "started": "2026-04-21T09:15:52.489Z",
+      "ended": "2026-04-21T09:24:32.136Z",
+      "reads": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 446,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/hooks/useViewPreference.ts",
+          "tokens_estimated": 252,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 447,
+          "action": "create"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 27,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 43,
+          "action": "edit"
+        },
+        {
+          "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
+          "tokens_estimated": 122,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 698,
+        "output_tokens_estimated": 682,
+        "reads_count": 2,
+        "writes_count": 5,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 2
+      }
     }
   ],
   "daemon_usage": [],
   "waste_flags": [
     {
       "pattern": "memory_bloat",
-      "description": "memory.md is ~57835 tokens",
-      "tokens_wasted": 52835,
+      "description": "memory.md is ~71904 tokens",
+      "tokens_wasted": 66904,
       "suggestion": "memory.md is growing large. Consolidation should run more frequently.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "21% of file lookups missed anatomy in session session-2026-04-18-2041",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "21% of file lookups missed anatomy in session session-2026-04-18-2041",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "30% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "30% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "36% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "36% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "33% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "31% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "31% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "31% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "31% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "31% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "29% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "22% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "22% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "21% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "29% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "29% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "29% of file lookups missed anatomy in session session-2026-04-19-1702",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "33% of file lookups missed anatomy in session session-2026-04-20-1616",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "31% of file lookups missed anatomy in session session-2026-04-20-1616",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "28% of file lookups missed anatomy in session session-2026-04-20-1616",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "28% of file lookups missed anatomy in session session-2026-04-20-1616",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
     },
     {
       "pattern": "anatomy_miss_rate",
       "description": "24% of file lookups missed anatomy in session session-2026-04-20-1616",
       "tokens_wasted": 0,
       "suggestion": "Run openwolf scan to refresh anatomy.md.",
-      "detected_at": "2026-04-20T11:58:30.746Z"
+      "detected_at": "2026-04-21T09:29:40.306Z"
+    },
+    {
+      "pattern": "anatomy_miss_rate",
+      "description": "36% of file lookups missed anatomy in session session-2026-04-20-1616",
+      "tokens_wasted": 0,
+      "suggestion": "Run openwolf scan to refresh anatomy.md.",
+      "detected_at": "2026-04-21T09:29:40.306Z"
     }
   ],
   "optimization_report": {
-    "last_generated": "2026-04-20T11:58:30.812Z",
+    "last_generated": "2026-04-21T09:29:40.413Z",
     "patterns": [
       "memory_bloat",
+      "anatomy_miss_rate",
       "anatomy_miss_rate",
       "anatomy_miss_rate",
       "anatomy_miss_rate",
