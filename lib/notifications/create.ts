@@ -8,6 +8,7 @@ import {
 import { eq, and, inArray, gt } from 'drizzle-orm'
 import { canSendEmail } from './rate-limit'
 import { sendNotificationEmail } from '@/lib/email/send'
+import { emitToUser } from './emitter'
 import type { NotificationType, NotificationSubtype } from '@/lib/db/schema/notifications'
 
 interface CreateNotificationInput {
@@ -63,16 +64,22 @@ export async function createNotification(input: CreateNotificationInput): Promis
 
   // Insert in-app notification
   if (inAppEnabled) {
-    await db.insert(notifications).values({
-      userId,
-      type,
-      subtype,
-      title,
-      body,
-      link,
-      actorId,
-      actorAvatar,
-    })
+    const [inserted] = await db
+      .insert(notifications)
+      .values({
+        userId,
+        type,
+        subtype,
+        title,
+        body,
+        link,
+        actorId,
+        actorAvatar,
+      })
+      .returning()
+
+    // Push to any open SSE connections for this user
+    emitToUser(userId, 'notification', inserted)
   }
 
   // Send email if enabled and rate limit allows
@@ -106,23 +113,24 @@ export async function broadcastNotification(input: BroadcastNotificationInput): 
   const { type, subtype, title, body, link, actorId, actorAvatar, filter, emailNewsletter } = input
 
   const BATCH_SIZE = 500
+  const EMAIL_CONCURRENCY = 25
   let cursor: string | null = null
+  const fullLink = link ? `${process.env.NEXTAUTH_URL}${link}` : undefined
 
   // Process users in batches
   while (true) {
-    // Build user query with optional role filter
-    let userQuery = db.select({ id: users.id, email: users.email }).from(users).$dynamic()
-
+    // Build WHERE conditions up-front, then apply once
+    const conditions = []
     if (filter?.roles && filter.roles.length > 0) {
-      userQuery = userQuery.where(inArray(users.role, filter.roles))
+      conditions.push(inArray(users.role, filter.roles))
+    }
+    if (cursor) {
+      conditions.push(gt(users.id, cursor))
     }
 
-    if (cursor) {
-      userQuery = userQuery.where(
-        filter?.roles && filter.roles.length > 0
-          ? and(inArray(users.role, filter.roles), gt(users.id, cursor))
-          : gt(users.id, cursor)
-      )
+    let userQuery = db.select({ id: users.id, email: users.email }).from(users).$dynamic()
+    if (conditions.length > 0) {
+      userQuery = userQuery.where(and(...conditions))
     }
 
     const batch = await userQuery.orderBy(users.id).limit(BATCH_SIZE)
@@ -149,18 +157,26 @@ export async function broadcastNotification(input: BroadcastNotificationInput): 
 
     // Batch insert notifications for in-app enabled users
     if (inAppUserIds.length > 0) {
-      await db.insert(notifications).values(
-        inAppUserIds.map((userId) => ({
-          userId,
-          type,
-          subtype,
-          title,
-          body,
-          link,
-          actorId,
-          actorAvatar,
-        }))
-      )
+      const inserted = await db
+        .insert(notifications)
+        .values(
+          inAppUserIds.map((userId) => ({
+            userId,
+            type,
+            subtype,
+            title,
+            body,
+            link,
+            actorId,
+            actorAvatar,
+          }))
+        )
+        .returning()
+
+      // Push to any open SSE connections for each recipient
+      for (const row of inserted) {
+        emitToUser(row.userId, 'notification', row)
+      }
     }
 
     // Send emails to users who have email enabled
@@ -182,42 +198,77 @@ export async function broadcastNotification(input: BroadcastNotificationInput): 
       (u) => !disabledEmail.has(u.id) && canSendEmail(u.id, subtype)
     )
 
-    const fullLink = link ? `${process.env.NEXTAUTH_URL}${link}` : undefined
-
-    // Send emails in parallel (per batch)
-    await Promise.allSettled(
-      emailRecipients.map((u) =>
-        sendNotificationEmail({
-          email: u.email,
-          title,
-          body,
-          link: fullLink,
-          subtype,
-        })
-      )
+    // Send emails with bounded concurrency
+    await sendEmailsThrottled(
+      emailRecipients.map((u) => u.email),
+      {
+        title,
+        body,
+        link: fullLink,
+        subtype,
+      },
+      EMAIL_CONCURRENCY
     )
 
     cursor = batch[batch.length - 1].id
     if (batch.length < BATCH_SIZE) break
   }
 
-  // Email newsletter subscribers for content subtypes
+  // Email newsletter subscribers for content subtypes (paginated)
   if (emailNewsletter && (subtype === 'research' || subtype === 'analysis')) {
-    const subscribers = await db
-      .select({ email: marketingSubscribers.email })
-      .from(marketingSubscribers)
-      .where(eq(marketingSubscribers.active, true))
+    let subCursor: string | null = null
 
-    const fullLink = link ? `${process.env.NEXTAUTH_URL}${link}` : undefined
+    while (true) {
+      const subQuery = db
+        .select({ id: marketingSubscribers.id, email: marketingSubscribers.email })
+        .from(marketingSubscribers)
+        .where(
+          subCursor
+            ? and(eq(marketingSubscribers.active, true), gt(marketingSubscribers.id, subCursor))
+            : eq(marketingSubscribers.active, true)
+        )
+        .orderBy(marketingSubscribers.id)
+        .limit(BATCH_SIZE)
 
-    await Promise.allSettled(
-      subscribers.map((s) =>
-        sendNotificationEmail({
-          email: s.email,
+      const subBatch = await subQuery
+
+      if (subBatch.length === 0) break
+
+      await sendEmailsThrottled(
+        subBatch.map((s) => s.email),
+        {
           title,
           body,
           link: fullLink,
           subtype,
+        },
+        EMAIL_CONCURRENCY
+      )
+
+      subCursor = subBatch[subBatch.length - 1].id
+      if (subBatch.length < BATCH_SIZE) break
+    }
+  }
+}
+
+/**
+ * Send emails with bounded concurrency to avoid overwhelming the provider.
+ */
+async function sendEmailsThrottled(
+  emails: string[],
+  payload: { title: string; body: string; link?: string; subtype: NotificationSubtype },
+  concurrency: number
+): Promise<void> {
+  for (let i = 0; i < emails.length; i += concurrency) {
+    const chunk = emails.slice(i, i + concurrency)
+    await Promise.allSettled(
+      chunk.map((email) =>
+        sendNotificationEmail({
+          email,
+          title: payload.title,
+          body: payload.body,
+          link: payload.link,
+          subtype: payload.subtype,
         })
       )
     )
