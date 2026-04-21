@@ -1,5 +1,5 @@
 import { Lightbulb, TrendingUp, Globe, ShieldCheck } from 'lucide-react'
-import { SectionHeading } from '@/components/landing/section-heading'
+import { SectionHeading } from '@/components/common/section-heading'
 
 const VALUE_PROPS = [
   {
@@ -33,11 +33,13 @@ export function ValuePropsSection() {
     <section className="bg-surface-container-low flex flex-col gap-12 rounded-2xl px-6 py-14 md:px-10">
       {/* Split header */}
       <SectionHeading
+        variant="landing"
         align="split"
         overline="The Advantage"
-        title="An edge, built on rigor."
         subtitle="Your capabilities rival competitors. No weaknesses. So how do we help you find an edge? We provide the research to position early, backed by a team operating since 2022."
-      />
+      >
+        An edge, built on rigor.
+      </SectionHeading>
 
       {/* Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

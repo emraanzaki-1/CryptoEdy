@@ -89,7 +89,7 @@ function CategoryDropdown({
       <button
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          'flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+          'text-body-sm flex items-center gap-1 rounded-lg px-3 py-2 font-medium transition-colors',
           isActive
             ? 'text-on-surface font-semibold'
             : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
@@ -107,7 +107,7 @@ function CategoryDropdown({
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface block px-4 py-2.5 text-sm transition-colors"
+                className="text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface text-body-sm block px-4 py-2.5 transition-colors"
               >
                 {item.label}
               </Link>
@@ -176,7 +176,7 @@ function NotificationDropdown({ open, onClose }: { open: boolean; onClose: () =>
       className="border-outline-variant/15 bg-surface-container-lowest absolute top-full right-0 mt-2 w-96 overflow-hidden rounded-2xl border shadow-lg"
     >
       <div className="border-outline-variant/15 flex items-center justify-between border-b px-5 py-4">
-        <h3 className="text-on-surface text-sm font-bold">Notifications</h3>
+        <h3 className="text-on-surface text-body-sm font-bold">Notifications</h3>
         {unreadCount > 0 && (
           <span className="bg-primary text-on-primary text-overline rounded-full px-2 py-0.5 font-bold">
             {unreadCount} new
@@ -194,8 +194,10 @@ function NotificationDropdown({ open, onClose }: { open: boolean; onClose: () =>
             )}
             {!notification.unread && <span className="mt-2 size-2 shrink-0" />}
             <div className="min-w-0 flex-1">
-              <p className="text-on-surface truncate text-sm font-semibold">{notification.title}</p>
-              <p className="text-on-surface-variant mt-0.5 truncate text-sm">
+              <p className="text-on-surface text-body-sm truncate font-semibold">
+                {notification.title}
+              </p>
+              <p className="text-on-surface-variant text-body-sm mt-0.5 truncate">
                 {notification.description}
               </p>
               <p className="text-outline mt-1 text-xs">{notification.time}</p>
@@ -206,7 +208,7 @@ function NotificationDropdown({ open, onClose }: { open: boolean; onClose: () =>
       <div className="border-outline-variant/15 border-t px-5 py-3">
         <Link
           href="/settings/notifications"
-          className="text-primary hover:text-primary-container block text-center text-sm font-semibold transition-colors"
+          className="text-primary hover:text-primary-container text-body-sm block text-center font-semibold transition-colors"
           onClick={onClose}
         >
           View all notifications
@@ -246,7 +248,7 @@ function UserDropdown({
     >
       <div className="border-outline-variant/15 border-b px-5 py-4">
         <div className="flex items-center gap-2">
-          <p className="text-on-surface text-sm font-bold">{user?.name ?? 'User'}</p>
+          <p className="text-on-surface text-body-sm font-bold">{user?.name ?? 'User'}</p>
           {user?.isPro && (
             <span className="bg-tertiary-container/90 text-on-tertiary-container text-overline rounded-full px-2 py-0.5 font-bold uppercase">
               PRO
@@ -260,7 +262,7 @@ function UserDropdown({
           <Link
             key={item.href}
             href={item.href}
-            className="text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface flex items-center gap-3 px-5 py-2.5 text-sm font-medium transition-colors"
+            className="text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface text-body-sm flex items-center gap-3 px-5 py-2.5 font-medium transition-colors"
             onClick={onClose}
           >
             <item.icon className="size-4" />
@@ -271,7 +273,7 @@ function UserDropdown({
       <div className="border-outline-variant/15 border-t py-2">
         <button
           onClick={() => signOut({ callbackUrl: '/login' })}
-          className="text-error hover:bg-error-container/20 flex w-full items-center gap-3 px-5 py-2.5 text-sm font-medium transition-colors"
+          className="text-error hover:bg-error-container/20 text-body-sm flex w-full items-center gap-3 px-5 py-2.5 font-medium transition-colors"
         >
           <LogOut className="size-4" />
           Sign out
@@ -347,7 +349,7 @@ export function TopAppBar({ user: serverUser, navCategories = [], onSearchClick 
             style={{ backgroundImage: user?.image ? `url("${user.image}")` : undefined }}
           >
             {!user?.image && (
-              <div className="bg-primary-fixed text-on-primary-fixed flex size-full items-center justify-center rounded-full text-sm font-bold">
+              <div className="bg-primary-fixed text-on-primary-fixed text-body-sm flex size-full items-center justify-center rounded-full font-bold">
                 {user?.name?.[0]?.toUpperCase() ?? 'U'}
               </div>
             )}

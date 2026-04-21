@@ -3,6 +3,56 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+## 2026-04-21 — Heading system consolidation
+
+- Created unified `components/common/section-heading.tsx` with 3 variants: `page` (default), `landing`, `subsection`
+- Migrated 21 consumer sites across 16 files
+- `PageHeading` (10 pages) → `SectionHeading` (dropped `variant="settings"`, no-op)
+- `SectionHeader` (2 files: feed-client, crypto-school-client) → `SectionHeading` with `action` prop
+- Landing `SectionHeading` (4 files: value-props, track-record, pricing, faq) → `SectionHeading variant="landing"` (title moved from prop to children)
+- `SectionTitle` (5 files: appearance, billing, notifications, profile, avatar-upload) → `SectionHeading variant="subsection"`
+- Deleted 4 old files: `page-heading.tsx`, `section-header.tsx`, `settings/section-title.tsx`, `landing/section-heading.tsx`
+
+## 2026-04-21 — Redundant tracking/leading cleanup + consistency fixes
+
+- Removed `tracking-[0.05em]` from all `text-overline` instances (~25 occurrences across 15+ files)
+- Removed `tracking-[-0.04em]` from all `text-headline*`/`text-title`/`text-subtitle` instances (~15 occurrences)
+- Migrated remaining `text-xs font-bold tracking-[0.05em] uppercase` → `text-overline font-bold uppercase`
+- Fixed privacy page h2 weights: `font-bold` → `font-black` (match terms page)
+- Deleted unused `components/common/coming-soon.tsx`
+- Updated cerebrum.md with new Do-Not-Repeat entries
+
+## 2026-04-21 — Typography token migration (full sweep)
+
+Migrated ~150 generic Tailwind text utilities → design-system tokens across ~40 files:
+
+- `text-sm` → `text-body-sm`, `text-base` → `text-body-lg`, `text-lg` → `text-subtitle`, `text-xl` → `text-title`
+- Removed paired `leading-relaxed`/`leading-loose` (bundled in tokens)
+- Kept `text-xs` (no 12px token), `leading-tight`/`leading-none` (intentional overrides), OTP input `text-xl` (dimensional)
+- Files: auth pages (5), privacy/terms/contact, error-content, dashboard pages (12), settings components (4), learn components (8), layout components (6), landing (2), common (4), article blocks (1)
+- Result: 0 remaining `text-sm/base/lg/xl` outside `components/ui/`; 347 tokenized vs 55 generic (all `text-xs`/OTP)
+- Files: theme-card, danger-zone, avatar-upload, billing-history-table, research-preview-section, onboarding-popup, course-card, module-accordion, courses-client, enroll-button, active-course-card, video-player, lesson-nav, mark-complete-button, empty-state, coming-soon, search-bar, logo, sidebar-nav, performance-table-block
+- Skipped: paywall-gate (already tokenized), progress-bar (only text-xs)
+
+## 2026-04-21 — Typography token migration (dashboard pages)
+
+- Replaced generic Tailwind text utilities with design system tokens across 12 dashboard page files
+- Token mapping: `text-sm` → `text-body-sm`, `text-base` → `text-body-lg`, `text-lg` → `text-subtitle`, `text-xl` → `text-title`
+- Removed paired `leading-relaxed` / `leading-[1.6]` utilities where tokens bundle line-height
+- Files: plans, billing, notifications, profile, appearance, tools, upgrade, community, articles/[slug], courses/[courseSlug], [lessonSlug], tag/[slug]
+- 32 replacements total, all successful
+
+## 2026-04-21 — Form control standardization
+
+- Added `ghost` and `danger` variants to `components/ui/form-field.tsx` `inputVariants`
+- `ghost`: no border, no background, no ring — used by search modal
+- `danger`: error-colored border/ring, transparent bg — used by delete confirmation
+- Migrated `danger-zone.tsx` raw `<input>` → `<FormInput variant="danger">`
+- Migrated `search-modal.tsx` raw `<input>` → `<FormInput variant="ghost">`
+- Migrated `onboarding-popup.tsx` raw `<input>` → `<FormInput variant="tonal">` with className overrides
+- Deleted `components/ui/input.tsx` — zero imports, dead code (shadcn-generated, never adopted)
+- Raw `<input>` remains only for structural chrome: toggle-switch (sr-only), theme-card (sr-only radio), avatar-upload (hidden file + range), otp-input (specialized cells)
+
 ## 2026-04-21 — Add courses/lessons to command palette search
 
 - Created `scripts/add-course-search-vectors.sql` — adds tsvector columns, GIN indexes, and triggers to `payload.courses` (title+excerpt) and `payload.lessons` (title)
@@ -45,6 +95,8 @@
 | 2026-04-21 | Button primitive unification: 24 raw buttons → Button/ButtonLink                                 | hero-section, billing, plans, view-toggle, recommended-articles, billing-history, avatar-upload, enroll-button, error-content, guest-nav, onboarding-popup, share-button, bookmark-button, back-to-top, profile | 24 raw <button>/<Link> replaced with Button/ButtonLink. Remaining raw buttons are structural (accordion headers, tabs, dropdown triggers, nav chrome).                              | ~700    |
 | 2026-04-21 | Layout deduplication: GuestShell + SectionHeader components                                      | guest-shell.tsx, section-header.tsx, page.tsx, privacy, terms, contact, error.tsx, not-found.tsx, feed-client.tsx, crypto-school-client.tsx                                                                     | Extracted shared GuestShell (nav+footer+min-h-screen wrapper) used by 6 pages. SectionHeader (title+subtitle+action slot) used by feed + learn.                                     | ~400    |
 | 2026-04-21 | Card surface unification: surface variant on Card primitive                                      | card.tsx, billing/page.tsx, plans/page.tsx, notifications/page.tsx, billing-history-table.tsx                                                                                                                   | Added `variant="surface"` to Card (M3 tonal: border-outline-variant/15, rounded-2xl, bg-surface-container-low). Replaced 7 hand-built surfaces. Standardized border opacity to /15. | ~200    |
+| 2026-04-21 | Card consolidation: absorbed SurfaceCard, added elevated/surface-lowest variants                 | card.tsx, surface-card.tsx (deleted), price-target-block.tsx, performance-table-block.tsx, contact/page.tsx, terms/page.tsx                                                                                     | Added `surface-lowest`, `elevated` variants + `shadow` prop (none/sm/ambient/card/elevated) + polymorphic `as` prop. Migrated 4 consumers. Deleted surface-card.tsx.                | ~400    |
+| 2026-04-21 | Guest layout spacing tokenization                                                                | layout.ts, guest-shell.tsx, page.tsx, privacy/page.tsx, terms/page.tsx, contact/page.tsx                                                                                                                        | Added `LAYOUT.guest.px/container/pagePy` tokens. Replaced 7 hardcoded spacing formulas across 5 files. Responsive spacing changes now single-source.                                | ~150    |
 
 | Time | Description                              | File(s)                                           | Outcome                                                               | ~Tokens |
 | ---- | ---------------------------------------- | ------------------------------------------------- | --------------------------------------------------------------------- | ------- |
@@ -1118,3 +1170,62 @@
 | 07:45 | Edited components/landing/track-record-section.tsx            | "text-secondary text-headl" → "text-secondary text-headl"                  | ~21     |
 | 07:45 | Edited components/landing/section-heading.tsx                 | inline fix                                                                 | ~14     |
 | 07:45 | Edited components/landing/section-heading.tsx                 | inline fix                                                                 | ~13     |
+
+## Session: 2026-04-21 12:04
+
+| Time  | Action                                                                                                                                     | File(s)    | Outcome    | ~Tokens |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | ---------- | ------- |
+| 12:05 | Edited components/learn/active-course-card.tsx                                                                                             | —          | ~0         |
+| 12:05 | Edited components/learn/active-course-card.tsx                                                                                             | inline fix | ~7         |
+| 12:05 | Edited components/learn/module-accordion.tsx                                                                                               | —          | ~0         |
+| 12:05 | Edited components/learn/course-card.tsx                                                                                                    | —          | ~0         |
+| 12:05 | Edited components/learn/course-card.tsx                                                                                                    | inline fix | ~7         |
+| 12:05 | Edited components/learn/lesson-nav.tsx                                                                                                     | —          | ~0         |
+| 12:06 | Edited components/learn/courses-client.tsx                                                                                                 | inline fix | ~6         |
+| 12:06 | Edited components/common/sidebar-nav.tsx                                                                                                   | inline fix | ~6         |
+| 12:06 | Edited components/common/error-content.tsx                                                                                                 | inline fix | ~15        |
+| 12:06 | Edited components/common/error-content.tsx                                                                                                 | inline fix | ~14        |
+| 12:06 | Edited components/common/error-content.tsx                                                                                                 | inline fix | ~6         |
+| 12:06 | Edited components/common/empty-state.tsx                                                                                                   | inline fix | ~6         |
+| 12:06 | Edited components/common/coming-soon.tsx                                                                                                   | inline fix | ~6         |
+| 12:06 | Edited components/common/logo.tsx                                                                                                          | inline fix | ~7         |
+| 12:07 | Edited components/settings/billing-history-table.tsx                                                                                       | inline fix | ~10        |
+| 12:07 | Edited app/(app)/terms/page.tsx                                                                                                            | —          | ~0         |
+| 12:07 | Edited app/(app)/terms/page.tsx                                                                                                            | inline fix | ~9         |
+| 12:07 | Edited app/(app)/privacy/page.tsx                                                                                                          | —          | ~0         |
+| 12:07 | Edited app/(app)/contact/page.tsx                                                                                                          | —          | ~0         |
+| 12:07 | Edited app/(app)/(dashboard)/upgrade/page.tsx                                                                                              | inline fix | ~10        |
+| 12:07 | Edited app/(app)/(dashboard)/settings/plans/page.tsx                                                                                       | inline fix | ~10        |
+| 12:07 | Edited app/(app)/(dashboard)/settings/plans/page.tsx                                                                                       | inline fix | ~8         |
+| 12:07 | Edited app/(app)/(dashboard)/articles/[slug]/page.tsx                                                                                      | inline fix | ~10        |
+| 12:08 | Edited app/(app)/(dashboard)/learn/courses/[courseSlug]/page.tsx                                                                           | —          | ~0         |
+| 12:08 | Edited app/(app)/(dashboard)/learn/courses/[courseSlug]/page.tsx                                                                           | inline fix | ~6         |
+| 12:08 | Edited app/(app)/(dashboard)/learn/courses/[courseSlug]/[lessonSlug]/page.tsx                                                              | —          | ~0         |
+| 12:08 | Edited app/(app)/(dashboard)/learn/courses/[courseSlug]/[lessonSlug]/page.tsx                                                              | —          | ~0         |
+| 12:08 | Edited app/(app)/privacy/page.tsx                                                                                                          | 4→4 lines  | ~61        |
+| 12:08 | Edited app/(app)/privacy/page.tsx                                                                                                          | 4→4 lines  | ~59        |
+| 12:31 | Edited components/layouts/sidebar.tsx                                                                                                      | inline fix | ~10        |
+| 12:31 | Edited components/layouts/settings-nav.tsx                                                                                                 | inline fix | ~10        |
+| 12:31 | Edited components/landing/onboarding-popup.tsx                                                                                             | —          | ~0         |
+| 12:31 | Edited components/landing/onboarding-popup.tsx                                                                                             | inline fix | ~8         |
+| 12:31 | Edited components/ui/badge.tsx                                                                                                             | inline fix | ~10        |
+| 12:31 | Edited components/ui/form-field.tsx                                                                                                        | inline fix | ~10        |
+| 12:31 | Edited components/article/blocks/performance-table-block.tsx                                                                               | inline fix | ~10        |
+| 12:31 | Edited components/landing/research-preview-section.tsx                                                                                     | inline fix | ~3         |
+| 12:32 | Edited components/landing/research-preview-section.tsx                                                                                     | inline fix | ~10        |
+| 12:33 | Edited app/(app)/privacy/page.tsx                                                                                                          | inline fix | ~12        |
+| 12:35 | Session end: 39 writes across 19 files (active-course-card.tsx, module-accordion.tsx, course-card.tsx, lesson-nav.tsx, courses-client.tsx) | 36 reads   | ~44935 tok |
+
+## 2026-04-21 — Design system refactor (5-step)
+
+| Time | Action                                                                                                                                    | File(s)                                                                                   | Outcome      | ~Tokens |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------ | ------- |
+| —    | Created semantic typography layer: Display, Heading, Title, Body, Caption, Overline                                                       | components/ui/typography.tsx                                                              | new file     | ~800    |
+| —    | Added compositional Field/FieldLabel/FieldControl/FieldMessage to form-field.tsx                                                          | components/ui/form-field.tsx                                                              | extended     | ~300    |
+| —    | Added radius prop + radiusMap to Card, moved rounding out of variant strings                                                              | components/ui/card.tsx                                                                    | enhanced     | ~200    |
+| —    | Added GuestPage + GuestSection wrappers to guest-shell.tsx                                                                                | components/layouts/guest-shell.tsx                                                        | extended     | ~250    |
+| —    | Migrated terms/privacy pages to GuestPage, contact sections to GuestSection                                                               | app/(app)/terms, privacy, contact                                                         | simplified   | ~100    |
+| —    | Replaced hardcoded hex swatches in appearance settings with CSS variable classes                                                          | app/(app)/(dashboard)/settings/appearance/page.tsx                                        | token-based  | ~200    |
+| —    | Full typography migration: replaced all raw heading elements across 20+ files with Display/Heading/Title/Body/Caption/Overline primitives | auth pages (5), guest pages (3), landing (4), dashboard (6), feed/article (3), common (2) | standardized | ~600    |
+| —    | Changed Title default from font-semibold to font-bold (100% of consumers use font-bold)                                                   | components/ui/typography.tsx                                                              | corrected    | ~10     |
+| —    | Deleted dead Field/FieldLabel/FieldControl/FieldMessage from form-field.tsx (zero consumers)                                              | components/ui/form-field.tsx                                                              | cleaned      | ~-200   |

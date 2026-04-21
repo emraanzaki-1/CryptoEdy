@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Lock, LineChart, CheckCircle, CreditCard, Wallet } from 'lucide-react'
 import { ButtonLink } from '@/components/ui/button-link'
+import { Heading } from '@/components/ui/typography'
 
 const SUMMARY_POINTS = [
   {
@@ -53,11 +54,11 @@ export function PaywallGate({ isAuthenticated = false }: { isAuthenticated?: boo
             Exclusive Pro Research
           </div>
 
-          <h3 className="text-on-background text-headline mb-4 font-black">
+          <Heading as="h3" className="text-on-background mb-4 font-black">
             Don&apos;t Trade in the Dark.
             <br />
             <span className="text-primary">Unlock the Full Report.</span>
-          </h3>
+          </Heading>
 
           <p className="text-on-surface-variant mb-8 font-medium">
             Join 15,000+ professional investors receiving institutional-grade analysis, real-time

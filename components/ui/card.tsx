@@ -5,28 +5,55 @@ import { cn } from '@/lib/utils'
 const cardVariants = {
   default:
     'bg-card ring-foreground/10 gap-4 rounded-xl py-4 ring-1 has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:gap-3 data-[size=sm]:py-3 data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl',
-  surface: 'bg-surface-container-low border-outline-variant/15 rounded-2xl border',
+  surface: 'bg-surface-container-low border-outline-variant/15 border',
+  'surface-lowest': 'bg-surface-container-lowest border-outline-variant/15 border',
+  elevated: 'bg-surface-container-lowest shadow-elevated',
+} as const
+
+const shadowMap = {
+  none: '',
+  sm: 'shadow-sm',
+  ambient: 'shadow-ambient',
+  card: 'shadow-card',
+  elevated: 'shadow-elevated',
+} as const
+
+const radiusMap = {
+  xl: 'rounded-xl',
+  '2xl': 'rounded-2xl',
+  '3xl': 'rounded-3xl',
 } as const
 
 function Card({
   className,
   size = 'default',
   variant = 'default',
+  shadow,
+  radius,
+  as: Tag = 'div',
   ...props
-}: React.ComponentProps<'div'> & {
+}: Omit<React.ComponentProps<'div'>, 'ref'> & {
+  ref?: React.Ref<HTMLDivElement>
   size?: 'default' | 'sm'
   variant?: keyof typeof cardVariants
+  shadow?: keyof typeof shadowMap
+  radius?: keyof typeof radiusMap
+  as?: 'div' | 'article' | 'section'
 }) {
+  const defaultRadius = variant === 'default' || variant === 'elevated' ? 'xl' : '2xl'
+  const resolvedRadius = radius ?? defaultRadius
   return (
-    <div
+    <Tag
       data-slot="card"
       data-size={size}
       className={cn(
         'group/card text-card-foreground flex flex-col overflow-hidden text-sm',
         cardVariants[variant],
+        radiusMap[resolvedRadius],
+        shadow && shadowMap[shadow],
         className
       )}
-      {...props}
+      {...(props as React.ComponentProps<'div'>)}
     />
   )
 }

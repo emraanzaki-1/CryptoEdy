@@ -4,7 +4,7 @@ import { getCourseModulesWithLessons } from '@/lib/courses/getModules'
 import { CoursesClient } from '@/components/learn/courses-client'
 import { EmptyState } from '@/components/common/empty-state'
 import { auth } from '@/lib/auth'
-import { PageHeading } from '@/components/common/page-heading'
+import { SectionHeading } from '@/components/common/section-heading'
 
 export default async function CoursesListingPage() {
   const courses = await getCourses()
@@ -83,9 +83,9 @@ export default async function CoursesListingPage() {
   return (
     <div className="mx-auto flex w-full flex-col gap-8">
       {/* Header */}
-      <PageHeading subtitle="Master the digital economy with expert-led courses designed for institutional-grade research and tactical market analysis.">
+      <SectionHeading subtitle="Master the digital economy with expert-led courses designed for institutional-grade research and tactical market analysis.">
         Courses
-      </PageHeading>
+      </SectionHeading>
 
       {courses.length > 0 ? (
         <CoursesClient courses={courseData} enrollmentMap={enrollmentMap} />

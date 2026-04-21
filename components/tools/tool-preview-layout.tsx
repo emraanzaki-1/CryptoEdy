@@ -1,5 +1,6 @@
 import { Zap, type LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { Heading } from '@/components/ui/typography'
 
 type Highlight = {
   icon: LucideIcon
@@ -64,9 +65,9 @@ export function ToolPreviewLayout({
             <span className="bg-secondary-container text-on-secondary-container text-overline mb-4 inline-block rounded-full px-3 py-1 font-bold uppercase">
               Coming Soon
             </span>
-            <h1 className="text-on-surface text-headline lg:text-headline-lg mb-4 font-black">
+            <Heading as="h1" className="lg:text-headline-lg mb-4 font-black">
               {title}
-            </h1>
+            </Heading>
             <p className="text-on-surface-variant text-body-lg max-w-md">{description}</p>
           </div>
 

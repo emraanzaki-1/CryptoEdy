@@ -30,7 +30,7 @@ export function GuestNav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-on-surface-variant hover:text-primary text-sm leading-normal font-medium transition-colors"
+                className="text-on-surface-variant hover:text-primary text-body-sm font-medium transition-colors"
               >
                 {link.label}
               </Link>
@@ -39,7 +39,7 @@ export function GuestNav() {
           <div className="flex items-center gap-3">
             <Link
               href="/login"
-              className="text-on-surface-variant hover:text-on-surface text-sm font-medium transition-colors"
+              className="text-on-surface-variant hover:text-on-surface text-body-sm font-medium transition-colors"
             >
               Sign In
             </Link>
@@ -69,7 +69,7 @@ export function GuestNav() {
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface rounded-lg px-3 py-2.5 text-sm font-medium transition-colors"
+              className="text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface text-body-sm rounded-lg px-3 py-2.5 font-medium transition-colors"
             >
               {link.label}
             </Link>
@@ -78,7 +78,7 @@ export function GuestNav() {
             <Link
               href="/login"
               onClick={() => setMobileOpen(false)}
-              className="text-on-surface-variant hover:text-on-surface px-3 py-2.5 text-center text-sm font-medium transition-colors"
+              className="text-on-surface-variant hover:text-on-surface text-body-sm px-3 py-2.5 text-center font-medium transition-colors"
             >
               Sign In
             </Link>

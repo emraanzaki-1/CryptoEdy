@@ -17,6 +17,7 @@ import { auth } from '@/lib/auth'
 import { jsxConverters } from '@/lib/lexical/jsxConverters'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Clock } from 'lucide-react'
+import { Heading, Body } from '@/components/ui/typography'
 
 export default async function LessonPage({
   params,
@@ -49,12 +50,10 @@ export default async function LessonPage({
   if (!enrollment && !isFreePreview) {
     return (
       <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 py-20 text-center">
-        <h1 className="text-on-surface text-headline font-bold tracking-[-0.04em]">
-          Enroll to Access This Lesson
-        </h1>
-        <p className="text-on-surface-variant text-base">
+        <Heading as="h1">Enroll to Access This Lesson</Heading>
+        <Body size="lg" className="text-on-surface-variant">
           You need to enroll in this course to access its lessons.
-        </p>
+        </Body>
         <ButtonLink href={`/learn/courses/${courseSlug}`} variant="gradient" size="xl">
           View Course
         </ButtonLink>
@@ -65,12 +64,10 @@ export default async function LessonPage({
   if (!unlocked && !isFreePreview) {
     return (
       <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 py-20 text-center">
-        <h1 className="text-on-surface text-headline font-bold tracking-[-0.04em]">
-          Lesson Locked
-        </h1>
-        <p className="text-on-surface-variant text-base">
+        <Heading as="h1">Lesson Locked</Heading>
+        <Body size="lg" className="text-on-surface-variant">
           Complete the previous lesson to unlock this one.
-        </p>
+        </Body>
         <ButtonLink href={`/learn/courses/${courseSlug}`} variant="gradient" size="xl">
           Back to Course
         </ButtonLink>
@@ -123,11 +120,11 @@ export default async function LessonPage({
 
         {/* Lesson title */}
         <div className="flex flex-col gap-2">
-          <h1 className="text-on-surface text-headline-md md:text-headline-lg leading-tight font-black tracking-[-0.04em]">
+          <Heading as="h1" size="md" className="md:text-headline-lg font-black">
             {lesson.title}
-          </h1>
+          </Heading>
           {lesson.estimatedDuration && (
-            <div className="text-on-surface-variant flex items-center gap-1.5 text-sm">
+            <div className="text-on-surface-variant text-body-sm flex items-center gap-1.5">
               <Clock className="h-4 w-4" />
               {lesson.estimatedDuration} min
             </div>
@@ -164,9 +161,7 @@ export default async function LessonPage({
         <div className="sticky top-24 flex flex-col">
           {/* Progress header */}
           <div className="mb-6">
-            <h2 className="text-on-surface text-base font-bold tracking-[-0.04em]">
-              Course Outline
-            </h2>
+            <h2 className="text-on-surface text-body-lg font-bold">Course Outline</h2>
             <p className="text-on-surface-variant mt-1 text-xs font-medium">
               {completionPercent}% Completed
             </p>

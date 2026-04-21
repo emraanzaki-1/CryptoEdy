@@ -1,5 +1,5 @@
 import { ChevronDown } from 'lucide-react'
-import { SectionHeading } from '@/components/landing/section-heading'
+import { SectionHeading } from '@/components/common/section-heading'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
@@ -47,11 +47,13 @@ export async function FAQSection() {
     <section className="bg-surface-container-low flex flex-col gap-10 rounded-2xl px-6 py-14 md:flex-row md:gap-16 md:px-10">
       {/* Left — trust headline */}
       <SectionHeading
+        variant="landing"
         overline="FAQ"
-        title="Trusted by 5,000+ investors."
         subtitle="Still unsure? The team replies personally to every inquiry. Reach out anytime."
         className="md:sticky md:top-24 md:max-w-xs md:self-start md:pt-2"
-      />
+      >
+        Trusted by 5,000+ investors.
+      </SectionHeading>
 
       {/* Right — accordion */}
       <div className="flex flex-1 flex-col gap-3">

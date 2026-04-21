@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Search } from 'lucide-react'
 import { ButtonLink } from '@/components/ui/button-link'
+import { Title } from '@/components/ui/typography'
 
 interface EmptyStateProps {
   title: string
@@ -36,8 +37,8 @@ export function EmptyState({ title, message, actionLabel, actionHref }: EmptySta
 
         {/* Text */}
         <div className="relative flex flex-col items-center gap-2 text-center">
-          <h2 className="text-on-surface text-xl font-bold tracking-[-0.04em]">{title}</h2>
-          <p className="text-on-surface-variant max-w-sm text-sm leading-relaxed">{message}</p>
+          <Title>{title}</Title>
+          <p className="text-on-surface-variant text-body-sm max-w-sm">{message}</p>
         </div>
 
         {/* Primary CTA */}

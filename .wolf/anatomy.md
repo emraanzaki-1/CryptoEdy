@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T02:15:58.401Z
-> Files: 338 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T07:03:07.224Z
+> Files: 306 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -20,10 +20,10 @@
 - `package.json` — Node.js package manifest (~692 tok)
 - `payload.config.ts` — Declares filename (~1276 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
-- `proxy.ts` — Auth gate for all dashboard routes, blocked-user guard, Pro subscription check (~1050 tok)
+- `proxy.ts` — Routes that require an active Pro (or higher) subscription (~1022 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~217113 tok)
+- `tsconfig.tsbuildinfo` (~217115 tok)
 
 ## .claude/
 
@@ -37,7 +37,7 @@
 ## .code-review-graph/
 
 - `.gitignore` — Git ignore rules (~38 tok)
-- `graph.db-shm` (~8738 tok)
+- `graph.db-shm` (~8737 tok)
 - `graph.db-wal` (~0 tok)
 
 ## .github/workflows/
@@ -70,146 +70,17 @@
 - `pre-rebase` (~11 tok)
 - `prepare-commit-msg` (~11 tok)
 
-## HTML/
-
-- `.DS_Store` (~1640 tok)
-
-## HTML/apex_research/
-
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1355 tok)
-
-## HTML/appearance_settings_verbatim_sync/
-
-- `code.html` — Appearance Settings - CryptoEdy (~4848 tok)
-
-## HTML/article_detail_full_width_footer/
-
-- `code.html` — The Everything Exchange: Why Digital Assets are Re-pricing the World - Digital Curator (~9707 tok)
-
-## HTML/article_detail_unlocked_fixed_layout/
-
-- `code.html` — The Digital Curator - Crypto Alpha (~7008 tok)
-
-## HTML/billing_verbatim_sync/
-
-- `code.html` — Billing Settings - CryptoEdy (~4611 tok)
-
-## HTML/command_pallete_search/
-
-- `code.html` (~4614 tok)
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
-
-## HTML/community page/
-
-- `code.html` — Community - CryptoEdy Research (~3825 tok)
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1355 tok)
-
-## HTML/dashboard_feed_authenticated_9_card_grid_2/
-
-- `code.html` — CryptoEdy - Dashboard (~7167 tok)
-
-## HTML/dashboard_feed_authenticated_list_view_update/
-
-- `code.html` — CryptoEdy - Dashboard (~7297 tok)
-
-## HTML/email_verification_split_screen_sync/
-
-- `code.html` — CryptoEdy - Email Verification (~2565 tok)
-
-## HTML/empty_state/
-
-- `code.html` — Research Dashboard - No Insights (~4211 tok)
-
-## HTML/error_pages/
-
-- `code.html` (~2523 tok)
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1355 tok)
-
-## HTML/landing_page_guest_experience/
-
-- `code.html` — CryptoEdy - Institutional-Grade Crypto Research (~7208 tok)
-
-## HTML/learn/academy_overview/
-
-- `code.html` — Academy Overview | Apex Research (~7029 tok)
-
-## HTML/learn/apex_research/
-
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
-
-## HTML/learn/course_landing_page/
-
-- `code.html` — Crypto Trading 101 | Apex Research Academy (~5016 tok)
-
-## HTML/learn/lesson_view/
-
-- `code.html` — Declares showing (~4272 tok)
-
-## HTML/legal/
-
-- `.DS_Store` (~1640 tok)
-
-## HTML/legal/apex_research/
-
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
-
-## HTML/legal/contact_us/
-
-- `code.html` — Contact Us | Digital Curator (~3485 tok)
-
-## HTML/legal/privacy_policy/
-
-- `code.html` — Declares elements (~3852 tok)
-
-## HTML/legal/terms_of_service/
-
-- `code.html` — Terms of Service | Digital Curator (~4544 tok)
-
-## HTML/login/
-
-- `code.html` — Login - CryptoEdy Research (~2291 tok)
-
-## HTML/notification_settings_content_updated/
-
-- `code.html` — Notification Settings - CryptoEdy (~5355 tok)
-
-## HTML/onboarding-popup/
-
-- `code.html` — Digital Curator | Get the God-Candle Alpha (~2972 tok)
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
-
-## HTML/plans_subscription_verbatim_sync_v5/
-
-- `code.html` — Plans &amp; Subscriptions - CryptoEdy (~4750 tok)
-
-## HTML/profile_settings_verbatim_sync_1/
-
-- `code.html` — Profile Settings - CryptoEdy (~5832 tok)
-
-## HTML/profile_settings_verbatim_sync_2/
-
-- `code.html` — Profile Settings - CryptoEdy (~5832 tok)
-
-## HTML/sign_up/
-
-- `code.html` — CryptoEdy Research - Sign Up (~2491 tok)
-
-## HTML/tools_section/
-
-- `code.html` — Tools - CryptoEdy Research (~3958 tok)
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1355 tok)
-
 ## app/
 
 - `globals.css` — Styles: 6 rules, 269 vars (~4300 tok)
 
 ## app/(app)/
 
-- `error.tsx` — AppError (~276 tok)
+- `error.tsx` — AppError (~177 tok)
 - `global-error.tsx` — inter (~228 tok)
-- `layout.tsx` — inter (~316 tok)
-- `not-found.tsx` — NotFound (~230 tok)
-- `page.tsx` — Home (~435 tok)
+- `layout.tsx` — inter (~350 tok)
+- `not-found.tsx` — NotFound (~131 tok)
+- `page.tsx` — Home (~326 tok)
 
 ## app/(app)/(auth)/
 
@@ -217,23 +88,23 @@
 
 ## app/(app)/(auth)/forgot-password/
 
-- `page.tsx` — ForgotPasswordPage — renders form — uses useState (~1071 tok)
+- `page.tsx` — ForgotPasswordPage — renders form — uses useState (~919 tok)
 
 ## app/(app)/(auth)/login/
 
-- `page.tsx` — LoginForm — renders form — uses useRouter, useSearchParams, useState (~1587 tok)
+- `page.tsx` — LoginForm — renders form — uses useRouter, useSearchParams, useState (~1312 tok)
 
 ## app/(app)/(auth)/register/
 
-- `page.tsx` — RegisterPage — renders form — uses useRouter, useState (~1612 tok)
+- `page.tsx` — RegisterPage — renders form — uses useRouter, useState (~1008 tok)
 
 ## app/(app)/(auth)/reset-password/
 
-- `page.tsx` — ResetPasswordForm — renders form — uses useSearchParams, useRouter, useState, useEffect (~1855 tok)
+- `page.tsx` — ResetPasswordForm — renders form — uses useSearchParams, useRouter, useState, useEffect (~1590 tok)
 
 ## app/(app)/(auth)/verify-email/
 
-- `page.tsx` — VerifyEmailContent — uses useSearchParams, useRouter, useRef, useEffect (~1779 tok)
+- `page.tsx` — VerifyEmailContent — uses useSearchParams, useRouter, useRef, useEffect (~1693 tok)
 
 ## app/(app)/(dashboard)/
 
@@ -244,11 +115,11 @@
 ## app/(app)/(dashboard)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — ROLE_HIERARCHY (~2657 tok)
+- `page.tsx` — ROLE_HIERARCHY (~2638 tok)
 
 ## app/(app)/(dashboard)/community/
 
-- `page.tsx` — FEATURES (~1879 tok)
+- `page.tsx` — FEATURES (~1857 tok)
 
 ## app/(app)/(dashboard)/feed/[[...slug]]/
 
@@ -266,19 +137,19 @@
 ## app/(app)/(dashboard)/learn/courses/
 
 - `loading.tsx` — CoursesLoading (~256 tok)
-- `page.tsx` — CoursesListingPage (~1069 tok)
+- `page.tsx` — CoursesListingPage (~1023 tok)
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/
 
-- `page.tsx` — CourseDetailPage (~1588 tok)
+- `page.tsx` — CourseDetailPage (~1570 tok)
 
 ## app/(app)/(dashboard)/learn/courses/[courseSlug]/[lessonSlug]/
 
-- `page.tsx` — LessonPage (~2429 tok)
+- `page.tsx` — LessonPage (~2328 tok)
 
 ## app/(app)/(dashboard)/saved/
 
-- `page.tsx` — SavedPage (~720 tok)
+- `page.tsx` — SavedPage (~667 tok)
 
 ## app/(app)/(dashboard)/settings/
 
@@ -288,31 +159,31 @@
 
 ## app/(app)/(dashboard)/settings/appearance/
 
-- `page.tsx` — THEMES (~1750 tok)
+- `page.tsx` — THEMES (~1760 tok)
 
 ## app/(app)/(dashboard)/settings/billing/
 
-- `page.tsx` — billingHistory (~850 tok)
+- `page.tsx` — billingHistory (~902 tok)
 
 ## app/(app)/(dashboard)/settings/notifications/
 
-- `page.tsx` — NotificationItem (~1680 tok)
+- `page.tsx` — NotificationItem — uses useState, useEffect, useCallback (~1691 tok)
 
 ## app/(app)/(dashboard)/settings/plans/
 
-- `page.tsx` — benefits (~1219 tok)
+- `page.tsx` — benefits (~1216 tok)
 
 ## app/(app)/(dashboard)/settings/profile/
 
-- `page.tsx` — ProfileSettingsPage — renders form (~2304 tok)
+- `page.tsx` — ProfileSettingsPage — renders form — uses useState, useCallback, useEffect (~2371 tok)
 
 ## app/(app)/(dashboard)/tag/[slug]/
 
-- `page.tsx` — TagPage (~624 tok)
+- `page.tsx` — TagPage (~616 tok)
 
 ## app/(app)/(dashboard)/tools/
 
-- `page.tsx` — TOOLS — renders chart (~1057 tok)
+- `page.tsx` — TOOLS — renders chart (~1026 tok)
 
 ## app/(app)/(dashboard)/tools/airdrops/
 
@@ -320,7 +191,7 @@
 
 ## app/(app)/(dashboard)/tools/market-direction/
 
-- `page.tsx` — HIGHLIGHTS (~421 tok)
+- `page.tsx` — HIGHLIGHTS — renders chart (~421 tok)
 
 ## app/(app)/(dashboard)/tools/picks/
 
@@ -328,11 +199,11 @@
 
 ## app/(app)/(dashboard)/tools/tracker/
 
-- `page.tsx` — HIGHLIGHTS (~406 tok)
+- `page.tsx` — HIGHLIGHTS — renders chart (~406 tok)
 
 ## app/(app)/(dashboard)/upgrade/
 
-- `page.tsx` — UpgradePage (~309 tok)
+- `page.tsx` — UpgradePage (~276 tok)
 
 ## app/(app)/[...catchAll]/
 
@@ -376,7 +247,7 @@
 
 ## app/(app)/api/search/
 
-- `route.ts` — Next.js API route: GET (~913 tok)
+- `route.ts` — Course slug — present on lessons for routing to /learn/courses/[courseSlug]/[lessonSlug] (~2258 tok)
 
 ## app/(app)/api/subscribe/
 
@@ -388,15 +259,15 @@
 
 ## app/(app)/contact/
 
-- `page.tsx` — SUBJECTS — renders form — uses useState (~2990 tok)
+- `page.tsx` — SUBJECTS — renders form (~2170 tok)
 
 ## app/(app)/privacy/
 
-- `page.tsx` — metadata — renders table (~3140 tok)
+- `page.tsx` — metadata — renders table (~2899 tok)
 
 ## app/(app)/terms/
 
-- `page.tsx` — metadata — renders chart (~3536 tok)
+- `page.tsx` — metadata (~3196 tok)
 
 ## app/(payload)/
 
@@ -425,7 +296,7 @@
 - `Lessons.ts` — Exports Lessons (~901 tok)
 - `Media.ts` — Exports Media (~292 tok)
 - `Modules.ts` — Exports Modules (~674 tok)
-- `Posts.ts` — Exports Posts (~2596 tok)
+- `Posts.ts` — Exports Posts (~2769 tok)
 - `Tags.ts` — Exports Tags (~270 tok)
 
 ## collections/blocks/
@@ -465,17 +336,17 @@
 
 ## components/article/
 
-- `article-faq.tsx` — ArticleFAQ (~409 tok)
+- `article-faq.tsx` — ArticleFAQ (~414 tok)
 - `article-skeleton.tsx` — ArticleSkeleton (~550 tok)
-- `paywall-gate.tsx` — SUMMARY_POINTS (~1583 tok)
-- `recommended-articles.tsx` — AUTO_SCROLL_INTERVAL (~1183 tok)
-- `share-button.tsx` — ShareButton — uses useState (~339 tok)
+- `paywall-gate.tsx` — SUMMARY_POINTS — renders chart (~1583 tok)
+- `recommended-articles.tsx` — AUTO_SCROLL_INTERVAL — uses useState, useCallback, useEffect (~1165 tok)
+- `share-button.tsx` — ShareButton — uses useState (~350 tok)
 
 ## components/article/blocks/
 
-- `callout-block.tsx` — VARIANTS (~425 tok)
+- `callout-block.tsx` — VARIANTS — renders chart (~431 tok)
 - `chart-embed-block.tsx` — ChartEmbedBlockComponent — renders chart — uses useEffect (~550 tok)
-- `performance-table-block.tsx` — STATUS_STYLES — renders table (~1178 tok)
+- `performance-table-block.tsx` — STATUS_STYLES — renders table (~1152 tok)
 - `price-target-block.tsx` — RISK_STYLES (~1070 tok)
 
 ## components/auth/
@@ -484,63 +355,61 @@
 
 ## components/common/
 
-- `back-to-top.tsx` — BackToTop — uses useState, useEffect (~308 tok)
-- `coming-soon.tsx` — ComingSoon (~600 tok)
-- `empty-state.tsx` — Primary CTA label (~744 tok)
-- `error-content.tsx` — Label for the primary CTA (~1178 tok)
-- `logo.tsx` — sizes (~328 tok)
-- `page-heading.tsx` — PageHeading (~200 tok)
-- `search-bar.tsx` — SearchBar (~209 tok)
-- `search-modal.tsx` — RECENT_SEARCHES_KEY — uses useRouter, useState, useEffect, useCallback (~4683 tok)
-- `section-header.tsx` — SectionHeader — title + subtitle + action slot for page headers (~150 tok)
-- `sidebar-nav.tsx` — SidebarNav — uses useState, useEffect (~601 tok)
+- `back-to-top.tsx` — Supports both window-level scroll (guest pages) and overflow container (~720 tok)
+- `coming-soon.tsx` — ComingSoon (~592 tok)
+- `empty-state.tsx` — Primary CTA label (~681 tok)
+- `error-content.tsx` — Label for the primary CTA (~1094 tok)
+- `logo.tsx` — sizes (~320 tok)
+- `search-bar.tsx` — SearchBar (~210 tok)
+- `search-modal.tsx` — RESULT_TYPE_CONFIG — uses useRouter, useState, useEffect, useCallback (~5498 tok)
+- `section-heading.tsx` — SectionHeading (variants: page/landing/subsection, action slot, overline, split layout) (~900 tok)
+- `sidebar-nav.tsx` — SidebarNav (~597 tok)
 
 ## components/feed/
 
 - `article-card-list.tsx` — ArticleCardList (~746 tok)
-- `article-card-skeleton.tsx` — ArticleCardSkeleton (~906 tok)
-- `article-card.tsx` — ArticleCard (~1074 tok)
-- `bookmark-button.tsx` — BookmarkButton — uses useState, useRouter (~669 tok)
-- `category-pill.tsx` — CategoryPill — shared pill component (~80 tok)
-- `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~275 tok)
-- `feed-client.tsx` — FeedClient (~1164 tok)
+- `article-card-skeleton.tsx` — ArticleCardSkeleton (~900 tok)
+- `article-card.tsx` — ArticleCard (~1067 tok)
+- `bookmark-button.tsx` — BookmarkButton — uses useState, useRouter (~686 tok)
+- `category-pill.tsx` — CategoryPill (~77 tok)
+- `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~268 tok)
+- `feed-client.tsx` — FeedClient (~1113 tok)
 - `tag-client.tsx` — TagClient (~826 tok)
-- `view-toggle.tsx` — ViewToggle (~337 tok)
+- `view-toggle.tsx` — ViewToggle (~344 tok)
 
 ## components/landing/
 
 - `faq-section.tsx` — FALLBACK_FAQS (~769 tok)
-- `hero-section.tsx` — HeroSection (~608 tok)
-- `onboarding-popup.tsx` — DISMISSED_KEY — renders form — uses useState, useCallback, useEffect (~2510 tok)
-- `pricing-section.tsx` — FEATURES (~921 tok)
-- `research-preview-section.tsx` — ARTICLES (~1518 tok)
-- `section-heading.tsx` — SectionHeading (~480 tok)
-- `track-record-section.tsx` — TRADES (~914 tok)
-- `value-props-section.tsx` — VALUE_PROPS (~665 tok)
+- `hero-section.tsx` — HeroSection (~576 tok)
+- `onboarding-popup.tsx` — DISMISSED_KEY — renders form (~2464 tok)
+- `pricing-section.tsx` — FEATURES — renders chart (~944 tok)
+- `research-preview-section.tsx` — ARTICLES (~1501 tok)
+- `track-record-section.tsx` — TRADES (~924 tok)
+- `value-props-section.tsx` — VALUE_PROPS — renders chart (~665 tok)
 
 ## components/layouts/
 
-- `auth-split-layout.tsx` — AuthSplitLayout (~570 tok)
-- `dashboard-shell.tsx` — DashboardShell — uses useState (~647 tok)
-- `footer.tsx` — Footer (~962 tok)
-- `guest-nav.tsx` — NAV_LINKS — uses useState (~1037 tok)
-- `guest-shell.tsx` — GuestShell — shared guest page wrapper (nav + main + footer) (~200 tok)
-- `settings-nav.tsx` — settingsGroups (~572 tok)
-- `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2179 tok)
-- `top-app-bar.tsx` — useClickOutside — uses useEffect, useState (~3389 tok)
+- `auth-split-layout.tsx` — AuthSplitLayout (~568 tok)
+- `dashboard-shell.tsx` — DashboardShell — uses useState (~668 tok)
+- `footer.tsx` — Footer (~999 tok)
+- `guest-nav.tsx` — NAV_LINKS — uses useState (~947 tok)
+- `guest-shell.tsx` — Additional className on the <main> element (~218 tok)
+- `settings-nav.tsx` — settingsGroups (~570 tok)
+- `sidebar.tsx` — TOOLS_ITEMS (~2184 tok)
+- `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~3452 tok)
 
 ## components/learn/
 
-- `active-course-card.tsx` — ActiveCourseCard (~1044 tok)
-- `course-card.tsx` — CourseCard (~1282 tok)
-- `courses-client.tsx` — DIFFICULTY_TABS (~1218 tok)
-- `crypto-school-client.tsx` — CryptoSchoolClient (~760 tok)
-- `enroll-button.tsx` — EnrollButton — uses useState, useRouter (~904 tok)
-- `lesson-nav.tsx` — LessonNav (~607 tok)
-- `mark-complete-button.tsx` — MarkCompleteButton — uses useState, useRouter (~646 tok)
-- `module-accordion.tsx` — LessonItem (~1979 tok)
+- `active-course-card.tsx` — ActiveCourseCard (~1025 tok)
+- `course-card.tsx` — CourseCard (~1247 tok)
+- `courses-client.tsx` — DIFFICULTY_TABS (~1207 tok)
+- `crypto-school-client.tsx` — CryptoSchoolClient (~699 tok)
+- `enroll-button.tsx` — EnrollButton — uses useState, useRouter (~816 tok)
+- `lesson-nav.tsx` — LessonNav (~602 tok)
+- `mark-complete-button.tsx` — MarkCompleteButton — uses useState, useRouter (~625 tok)
+- `module-accordion.tsx` — LessonItem (~1972 tok)
 - `progress-bar.tsx` — ProgressBar (~294 tok)
-- `video-player.tsx` — Generic video embed that auto-detects Vimeo vs Bunny from URL pattern. (~838 tok)
+- `video-player.tsx` — Generic video embed that auto-detects Vimeo vs Bunny from URL pattern. (~845 tok)
 
 ## components/providers/
 
@@ -550,11 +419,10 @@
 
 ## components/settings/
 
-- `avatar-upload.tsx` — getCroppedBlob (~2464 tok)
-- `billing-history-table.tsx` — BillingHistoryTable — renders table (~632 tok)
-- `danger-zone.tsx` — DangerZone — uses useState (~1004 tok)
-- `section-title.tsx` — SectionTitle (~85 tok)
-- `theme-card.tsx` — ThemeCard (~1002 tok)
+- `avatar-upload.tsx` — getCroppedBlob — uses useState, useCallback (~2453 tok)
+- `billing-history-table.tsx` — BillingHistoryTable — renders table (~640 tok)
+- `danger-zone.tsx` — DangerZone — uses useState (~967 tok)
+- `theme-card.tsx` — ThemeCard (~1087 tok)
 
 ## components/tools/
 
@@ -563,19 +431,19 @@
 ## components/ui/
 
 - `alert.tsx` — alertVariants (~582 tok)
-- `badge.tsx` — badgeVariants (~634 tok)
+- `badge.tsx` — badgeVariants (~632 tok)
 - `breadcrumb.tsx` — Breadcrumb (~273 tok)
-- `button.tsx` — buttonVariants: default, gradient, tonal, outline, secondary, ghost, destructive, danger, link (~1100 tok)
-- `card.tsx` — Card (~744 tok)
-- `checkbox.tsx` — Checkbox (~386 tok)
+- `button-link.tsx` — ButtonLink (~155 tok)
+- `button.tsx` — buttonVariants (~1140 tok)
+- `card.tsx` — cardVariants (default/surface/surface-lowest/elevated), shadowMap, radiusMap, polymorphic `as` (~1400 tok)
+- `checkbox.tsx` — Checkbox (~385 tok)
 - `filter-chip.tsx` — FilterChip (~168 tok)
-- `form-field.tsx` — FormField, FormInput, FormTextarea, FormSelect — single source of truth for all forms. tonal/outlined variants (~800 tok)
-- `input.tsx` — Input (~298 tok)
+- `form-field.tsx` — Field/FieldLabel/FieldControl/FieldMessage (compositional) + FormField, FormInput (tonal/outlined/ghost/danger), FormTextarea, FormSelect (~1600 tok)
 - `label.tsx` — Label (~148 tok)
 - `separator.tsx` — Separator (~154 tok)
 - `skeleton.tsx` — Skeleton (~79 tok)
-- `surface-card.tsx` — SurfaceCard: lowest/low variants, none/sm/ambient/card/elevated shadows, border, hover (~350 tok)
-- `toggle-switch.tsx` — ToggleSwitch (~289 tok)
+- `toggle-switch.tsx` — ToggleSwitch (~298 tok)
+- `typography.tsx` — Display, Heading, Title, Body, Caption, Overline (polymorphic) (~800 tok)
 
 ## docs/
 
@@ -640,9 +508,9 @@
 
 ## lib/auth/
 
-- `config.ts` — Exports authConfig (~1310 tok)
+- `config.ts` — Exports authConfig (~1367 tok)
 - `index.ts` (~42 tok)
-- `rate-limit.ts` — Maximum requests allowed within the window (~434 tok)
+- `rate-limit.ts` — Maximum requests allowed within the window (~534 tok)
 - `referral.ts` — Generates a unique 12-character alphanumeric referral code (~116 tok)
 - `schemas.ts` — Zod schemas: loginSchema, registerSchema, forgotPasswordSchema (~374 tok)
 - `withRole.ts` — Checks if a user's effective role meets the required minimum role. (~624 tok)
@@ -654,12 +522,12 @@
 
 ## lib/categories/
 
-- `getCategories.ts` — Exports NavCategory, getNavCategories (~611 tok)
+- `getCategories.ts` — Exports NavCategory, getNavCategories (~621 tok)
 
 ## lib/config/
 
 - `env.ts` — Startup environment validator. (~266 tok)
-- `layout.ts` — LAYOUT constant: spacing/radius tokens for dashboard-shell + top-app-bar (~100 tok)
+- `layout.ts` — LAYOUT constants for dashboard (content/appBar padding) + guest routes (px, container, pagePy). (~180 tok)
 
 ## lib/constants/
 
@@ -719,21 +587,21 @@
 
 ## lib/posts/
 
-- `mapToCardProps.ts` — Exports mapPostToCardProps, re-exports timeAgo from lib/utils/timeAgo (~500 tok)
+- `mapToCardProps.ts` — Exports mapPostToCardProps (~506 tok)
 
 ## lib/profile/
 
-- `actions.ts` — getProfile, updateProfile, deleteAccount (~1100 tok)
-- `avatar.ts` — uploadAvatar, removeAvatar (~500 tok)
+- `actions.ts` — Exports ProfileData, getProfile, updateProfile, deleteAccount (~1021 tok)
+- `avatar.ts` — API routes: GET (1 endpoints) (~756 tok)
 
 ## lib/utils/
 
-- `timeAgo.ts` — Exports timeAgo — relative date formatting (~80 tok)
+- `timeAgo.ts` — Exports timeAgo (~154 tok)
 
 ## scripts/
 
+- `add-course-search-vectors.sql` — Search vector migration for full-text search on courses and lessons (~730 tok)
 - `add-search-vector.sql` — Search vector migration for full-text search on posts (~348 tok)
-- `add-course-search-vectors.sql` — Search vector migration for full-text search on courses and lessons (~450 tok)
 - `patch-next-env.cjs` — Preload environment variables BEFORE any ESM imports (~241 tok)
 - `seed.ts` — CryptoEdy seed script — Sprint 3 (~39656 tok)
 

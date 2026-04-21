@@ -36,9 +36,7 @@ export function SidebarNav({ links }: { links: SidebarLink[] }) {
   return (
     <aside className="sticky top-32 hidden h-fit lg:col-span-3 lg:block">
       <nav className="space-y-6">
-        <div className="text-outline text-overline font-black tracking-[0.05em] uppercase">
-          Document Navigation
-        </div>
+        <div className="text-outline text-overline font-black uppercase">Document Navigation</div>
         <ul className="space-y-4">
           {links.map((link) => {
             const isActive = link.id === activeId
@@ -46,7 +44,7 @@ export function SidebarNav({ links }: { links: SidebarLink[] }) {
               <li key={link.id}>
                 <a
                   href={`#${link.id}`}
-                  className={`flex items-center gap-3 text-sm transition-colors ${
+                  className={`text-body-sm flex items-center gap-3 transition-colors ${
                     isActive
                       ? 'text-primary font-bold'
                       : 'text-on-surface-variant hover:text-primary font-medium'

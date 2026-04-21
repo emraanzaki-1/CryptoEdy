@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Lock } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import { Heading } from '@/components/ui/typography'
 
 const ARTICLES = [
   {
@@ -45,12 +46,10 @@ export function ResearchPreviewSection() {
           Free &amp; Pro &middot; Research
         </span>
         <div className="flex items-baseline justify-between">
-          <h2 className="font-headline text-on-surface text-headline md:text-headline-md font-black tracking-[-0.04em] md:tracking-[unset]">
-            Latest research.
-          </h2>
+          <Heading className="md:text-headline-md font-black">Latest research.</Heading>
           <Link
             href="/feed"
-            className="text-primary text-sm font-semibold underline-offset-4 hover:underline"
+            className="text-primary text-body-sm font-semibold underline-offset-4 hover:underline"
           >
             View All Archive
           </Link>
@@ -74,7 +73,7 @@ export function ResearchPreviewSection() {
               />
               <div className="bg-on-surface absolute inset-0 opacity-0 transition-opacity group-hover:opacity-10" />
               {article.isPro && (
-                <div className="bg-tertiary-fixed text-on-tertiary-fixed-variant absolute top-3 right-3 flex items-center gap-1 rounded-full px-3 py-1 text-xs font-bold tracking-[0.05em] uppercase shadow-sm">
+                <div className="bg-tertiary-fixed text-on-tertiary-fixed-variant text-overline absolute top-3 right-3 flex items-center gap-1 rounded-full px-3 py-1 font-bold uppercase shadow-sm">
                   <Lock className="size-3.5" /> PRO
                 </div>
               )}
@@ -93,7 +92,7 @@ export function ResearchPreviewSection() {
                     {article.excerpt}
                   </p>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="bg-surface-container-lowest/90 text-primary rounded px-3 py-1 text-xs font-bold tracking-[0.05em] uppercase backdrop-blur-sm">
+                    <span className="bg-surface-container-lowest/90 text-primary text-overline rounded px-3 py-1 font-bold uppercase backdrop-blur-sm">
                       Unlock to Read
                     </span>
                   </div>

@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { registerSchema, type RegisterFormValues } from '@/lib/auth/schemas'
 import { Button } from '@/components/ui/button'
 import { FormField, FormInput } from '@/components/ui/form-field'
+import { Heading, Body } from '@/components/ui/typography'
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -47,17 +48,15 @@ export default function RegisterPage() {
   return (
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-headline text-on-surface text-headline font-bold">
-          Create your account
-        </h1>
-        <p className="text-on-surface-variant text-base leading-relaxed">
+        <Heading as="h1">Create your account</Heading>
+        <Body size="lg" className="text-on-surface-variant">
           Join CryptoEdy Research to unlock premium market insights.
-        </p>
+        </Body>
       </header>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
         {serverError && (
-          <div className="bg-error-container text-on-error-container rounded-xl px-5 py-3 text-sm font-medium">
+          <div className="bg-error-container text-on-error-container text-body-sm rounded-xl px-5 py-3 font-medium">
             {serverError}
           </div>
         )}
@@ -105,7 +104,7 @@ export default function RegisterPage() {
       </form>
 
       <div className="mt-2 text-center">
-        <p className="text-on-surface-variant text-sm leading-relaxed">
+        <p className="text-on-surface-variant text-body-sm">
           Already have an account?{' '}
           <Link
             href="/login"

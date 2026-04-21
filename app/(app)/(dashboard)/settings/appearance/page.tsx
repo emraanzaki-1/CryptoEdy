@@ -3,8 +3,7 @@
 import { useTheme } from 'next-themes'
 import { useSyncExternalStore } from 'react'
 import { Sun, Moon, Monitor, Check } from 'lucide-react'
-import { PageHeading } from '@/components/common/page-heading'
-import { SectionTitle } from '@/components/settings/section-title'
+import { SectionHeading } from '@/components/common/section-heading'
 import { cn } from '@/lib/utils'
 
 const THEMES = [
@@ -14,20 +13,20 @@ const THEMES = [
     description: 'Classic light interface with high readability',
     icon: Sun,
     preview: (
-      <div className="flex h-full flex-col gap-1.5 rounded-lg bg-[#f8f9ff] p-3">
+      <div className="bg-surface-bright flex h-full flex-col gap-1.5 rounded-lg p-3">
         <div className="flex gap-1.5">
-          <div className="h-2 w-2 rounded-full bg-[#003ec7]" />
-          <div className="h-2 w-12 rounded bg-[#0b1c30]" />
+          <div className="bg-primary h-2 w-2 rounded-full" />
+          <div className="bg-on-surface h-2 w-12 rounded" />
         </div>
         <div className="flex flex-1 gap-1.5">
-          <div className="w-8 rounded bg-[#eff4ff]" />
-          <div className="flex flex-1 flex-col gap-1 rounded bg-white p-1.5">
-            <div className="h-1.5 w-full rounded bg-[#dce9ff]" />
-            <div className="h-1.5 w-4/5 rounded bg-[#dce9ff]" />
-            <div className="mt-1 h-1.5 w-3/5 rounded bg-[#e5eeff]" />
+          <div className="bg-surface-container-low w-8 rounded" />
+          <div className="bg-surface-container-lowest flex flex-1 flex-col gap-1 rounded p-1.5">
+            <div className="bg-surface-container-high h-1.5 w-full rounded" />
+            <div className="bg-surface-container-high h-1.5 w-4/5 rounded" />
+            <div className="bg-surface-container mt-1 h-1.5 w-3/5 rounded" />
           </div>
         </div>
-        <div className="h-2 w-full rounded bg-[#003ec7]" />
+        <div className="bg-primary h-2 w-full rounded" />
       </div>
     ),
   },
@@ -37,20 +36,20 @@ const THEMES = [
     description: 'High-contrast dark mode for low-light environments',
     icon: Moon,
     preview: (
-      <div className="flex h-full flex-col gap-1.5 rounded-lg bg-[#0d1117] p-3">
+      <div className="dark bg-surface flex h-full flex-col gap-1.5 rounded-lg p-3">
         <div className="flex gap-1.5">
-          <div className="h-2 w-2 rounded-full bg-[#b7c4ff]" />
-          <div className="h-2 w-12 rounded bg-[#eaf1ff]" />
+          <div className="bg-primary h-2 w-2 rounded-full" />
+          <div className="bg-on-surface h-2 w-12 rounded" />
         </div>
         <div className="flex flex-1 gap-1.5">
-          <div className="w-8 rounded bg-[#111827]" />
-          <div className="flex flex-1 flex-col gap-1 rounded bg-[#161f2e] p-1.5">
-            <div className="h-1.5 w-full rounded bg-[#1d2739]" />
-            <div className="h-1.5 w-4/5 rounded bg-[#1d2739]" />
-            <div className="mt-1 h-1.5 w-3/5 rounded bg-[#263044]" />
+          <div className="bg-surface-container-low w-8 rounded" />
+          <div className="bg-surface-container flex flex-1 flex-col gap-1 rounded p-1.5">
+            <div className="bg-surface-container-high h-1.5 w-full rounded" />
+            <div className="bg-surface-container-high h-1.5 w-4/5 rounded" />
+            <div className="bg-surface-container-highest mt-1 h-1.5 w-3/5 rounded" />
           </div>
         </div>
-        <div className="h-2 w-full rounded bg-[#b7c4ff]" />
+        <div className="bg-primary h-2 w-full rounded" />
       </div>
     ),
   },
@@ -62,16 +61,16 @@ const THEMES = [
     preview: (
       <div className="flex h-full overflow-hidden rounded-lg">
         {/* Left half — light */}
-        <div className="flex flex-1 flex-col gap-1.5 bg-[#f8f9ff] p-3">
-          <div className="h-2 w-8 rounded bg-[#0b1c30]" />
-          <div className="flex-1 rounded bg-[#eff4ff]" />
-          <div className="h-2 w-full rounded bg-[#003ec7]" />
+        <div className="bg-surface-bright flex flex-1 flex-col gap-1.5 p-3">
+          <div className="bg-on-surface h-2 w-8 rounded" />
+          <div className="bg-surface-container-low flex-1 rounded" />
+          <div className="bg-primary h-2 w-full rounded" />
         </div>
         {/* Right half — dark */}
-        <div className="flex flex-1 flex-col gap-1.5 bg-[#0d1117] p-3">
-          <div className="h-2 w-8 rounded bg-[#eaf1ff]" />
-          <div className="flex-1 rounded bg-[#161f2e]" />
-          <div className="h-2 w-full rounded bg-[#b7c4ff]" />
+        <div className="dark bg-surface flex flex-1 flex-col gap-1.5 p-3">
+          <div className="bg-on-surface h-2 w-8 rounded" />
+          <div className="bg-surface-container flex-1 rounded" />
+          <div className="bg-primary h-2 w-full rounded" />
         </div>
       </div>
     ),
@@ -88,17 +87,13 @@ export default function AppearanceSettingsPage() {
 
   return (
     <>
-      <PageHeading
-        as="h2"
-        variant="settings"
-        subtitle="Customize the look and feel of the CryptoEdy platform."
-      >
+      <SectionHeading as="h2" subtitle="Customize the look and feel of the CryptoEdy platform.">
         Appearance
-      </PageHeading>
+      </SectionHeading>
 
       <div className="space-y-10">
         <section>
-          <SectionTitle>Interface Theme</SectionTitle>
+          <SectionHeading variant="subsection">Interface Theme</SectionHeading>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {THEMES.map((t) => {
               const Icon = t.icon
@@ -134,7 +129,7 @@ export default function AppearanceSettingsPage() {
                       <div>
                         <p
                           className={cn(
-                            'text-sm font-semibold',
+                            'text-body-sm font-semibold',
                             isSelected ? 'text-primary' : 'text-on-surface'
                           )}
                         >

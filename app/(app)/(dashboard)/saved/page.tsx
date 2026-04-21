@@ -7,7 +7,7 @@ import { bookmarks } from '@/lib/db/schema'
 import { TagClient } from '@/components/feed/tag-client'
 import { EmptyState } from '@/components/common/empty-state'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
-import { PageHeading } from '@/components/common/page-heading'
+import { SectionHeading } from '@/components/common/section-heading'
 
 export default async function SavedPage() {
   const session = await auth()
@@ -26,7 +26,7 @@ export default async function SavedPage() {
   if (userBookmarks.length === 0) {
     return (
       <div className="mx-auto flex w-full flex-col gap-8">
-        <PageHeading>Saved articles</PageHeading>
+        <SectionHeading>Saved articles</SectionHeading>
         <EmptyState
           title="No saved articles"
           message="Articles you bookmark will appear here. Look for the bookmark icon on articles in your feed."
@@ -58,7 +58,7 @@ export default async function SavedPage() {
 
   return (
     <div className="mx-auto flex w-full flex-col gap-8">
-      <PageHeading>Saved articles</PageHeading>
+      <SectionHeading>Saved articles</SectionHeading>
 
       <TagClient
         tagName=""

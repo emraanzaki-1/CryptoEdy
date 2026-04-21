@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { PageHeading } from '@/components/common/page-heading'
+import { SectionHeading } from '@/components/common/section-heading'
 import { Gift, BarChart2, TrendingUp, Layers, ArrowRight } from 'lucide-react'
 
 const TOOLS = [
@@ -53,9 +53,9 @@ export default function ToolsPage() {
         <span className="bg-secondary-container text-on-secondary-container text-overline mb-4 inline-block rounded-full px-3 py-1 font-bold uppercase">
           Coming Soon
         </span>
-        <PageHeading subtitle="We are engineering the next generation of crypto analytics. From real-time airdrop tracking to deep-asset databases, our tools are designed for the serious researcher.">
+        <SectionHeading subtitle="We are engineering the next generation of crypto analytics. From real-time airdrop tracking to deep-asset databases, our tools are designed for the serious researcher.">
           Intelligence Tools
-        </PageHeading>
+        </SectionHeading>
       </div>
 
       {/* Tool cards grid */}
@@ -79,16 +79,14 @@ export default function ToolsPage() {
               <div className="bg-surface-container-high flex size-10 shrink-0 items-center justify-center rounded-xl">
                 <tool.icon className={`size-5 ${tool.labelColor}`} />
               </div>
-              <h3 className="text-on-surface text-lg font-bold">{tool.title}</h3>
+              <h3 className="text-on-surface text-subtitle font-bold">{tool.title}</h3>
             </div>
 
             {/* Description */}
-            <p className="text-on-surface-variant mb-4 flex-1 text-sm leading-relaxed">
-              {tool.description}
-            </p>
+            <p className="text-on-surface-variant text-body-sm mb-4 flex-1">{tool.description}</p>
 
             {/* CTA hint */}
-            <div className="text-primary flex items-center gap-1 text-sm font-semibold opacity-0 transition-opacity group-hover:opacity-100">
+            <div className="text-primary text-body-sm flex items-center gap-1 font-semibold opacity-0 transition-opacity group-hover:opacity-100">
               Learn more <ArrowRight className="size-3.5" />
             </div>
           </Link>

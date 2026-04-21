@@ -53,20 +53,20 @@ export function ActiveCourseCard({
         <div className="relative flex-grow">
           <div className="mb-2 flex items-center gap-2">
             {isStarted ? (
-              <span className="bg-secondary-container text-on-secondary-container text-overline rounded-full px-2 py-0.5 font-bold tracking-[0.05em] uppercase">
+              <span className="bg-secondary-container text-on-secondary-container text-overline font-bolduppercase rounded-full px-2 py-0.5">
                 In Progress
               </span>
             ) : (
-              <span className="bg-surface-container-high text-on-primary-fixed-variant text-overline rounded-full px-2 py-0.5 font-bold tracking-[0.05em] uppercase">
+              <span className="bg-surface-container-high text-on-primary-fixed-variant text-overline font-bolduppercase rounded-full px-2 py-0.5">
                 Up Next
               </span>
             )}
-            <span className="text-outline text-overline font-bold tracking-[0.05em] uppercase">
+            <span className="text-outline text-overline font-bolduppercase">
               {moduleCount} modules
             </span>
           </div>
 
-          <h3 className="text-on-surface mb-4 text-lg font-bold tracking-[-0.04em]">{title}</h3>
+          <h3 className="text-on-surface text-subtitle mb-4 font-bold">{title}</h3>
 
           {/* Progress bar */}
           <div className="space-y-2">
@@ -84,7 +84,7 @@ export function ActiveCourseCard({
             </div>
           </div>
 
-          <div className="text-primary mt-6 flex items-center gap-2 text-sm font-bold">
+          <div className="text-primary text-body-sm mt-6 flex items-center gap-2 font-bold">
             {isStarted ? (
               <>
                 Resume Learning <ArrowRight className="h-4 w-4" />

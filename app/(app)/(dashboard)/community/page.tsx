@@ -1,5 +1,6 @@
 import { Users, ShieldCheck, Bell, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Heading } from '@/components/ui/typography'
 
 const FEATURES = [
   {
@@ -26,10 +27,10 @@ export default function CommunityPage() {
             <span className="bg-secondary-container text-on-secondary-container text-overline mb-4 inline-block rounded-full px-3 py-1 font-bold uppercase">
               Coming Soon
             </span>
-            <h1 className="text-on-surface text-headline lg:text-headline-lg mb-4 font-black">
+            <Heading as="h1" className="lg:text-headline-lg mb-4 font-black">
               The Inner <span className="text-primary">Circle.</span>
-            </h1>
-            <p className="text-on-surface-variant max-w-md text-base leading-relaxed">
+            </Heading>
+            <p className="text-on-surface-variant text-body-lg max-w-md">
               We&apos;re building a high-fidelity forum and networking space designed exclusively
               for CryptoEdy members. Real-time alpha, vetted insights, and direct access to our
               editorial researchers.
@@ -44,8 +45,10 @@ export default function CommunityPage() {
                   <feature.icon className="size-5" />
                 </div>
                 <div>
-                  <h3 className="text-on-surface text-sm font-bold">{feature.title}</h3>
-                  <p className="text-on-surface-variant mt-0.5 text-sm">{feature.description}</p>
+                  <h3 className="text-on-surface text-body-sm font-bold">{feature.title}</h3>
+                  <p className="text-on-surface-variant text-body-sm mt-0.5">
+                    {feature.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -118,7 +121,7 @@ export default function CommunityPage() {
             </div>
             <div>
               <p className="text-on-surface-variant text-overline font-bold uppercase">Status</p>
-              <p className="text-on-surface text-sm font-bold">Coming Soon</p>
+              <p className="text-on-surface text-body-sm font-bold">Coming Soon</p>
             </div>
           </div>
         </div>

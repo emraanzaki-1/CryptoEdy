@@ -46,14 +46,14 @@ function ToolsSlideOut({ visible }: { visible: boolean }) {
           : 'pointer-events-none -translate-x-1 opacity-0'
       )}
     >
-      <p className="border-outline-variant/10 text-on-surface-variant border-b px-4 py-2.5 text-xs font-bold tracking-[0.05em] uppercase">
+      <p className="border-outline-variant/10 text-on-surface-variant text-overline border-b px-4 py-2.5 font-bold uppercase">
         Tools
       </p>
       {TOOLS_ITEMS.map((item) => (
         <Link
           key={item.href}
           href={item.href}
-          className="text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface flex items-center gap-3 px-4 py-2.5 text-sm transition-colors"
+          className="text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface text-body-sm flex items-center gap-3 px-4 py-2.5 transition-colors"
         >
           <item.icon className="size-4 shrink-0" />
           {item.label}
@@ -117,7 +117,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
             >
               <item.icon className="size-5 shrink-0" />
               {!collapsed && (
-                <span className="text-sm font-medium whitespace-nowrap">{item.label}</span>
+                <span className="text-body-sm font-medium whitespace-nowrap">{item.label}</span>
               )}
             </Link>
           )
@@ -155,7 +155,9 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
               )}
             >
               <Wrench className="size-5 shrink-0" />
-              <span className="flex-1 text-left text-sm font-medium whitespace-nowrap">Tools</span>
+              <span className="text-body-sm flex-1 text-left font-medium whitespace-nowrap">
+                Tools
+              </span>
               <ChevronDown
                 className={cn('size-4 shrink-0 transition-transform', toolsOpen && 'rotate-180')}
               />
@@ -171,7 +173,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors',
+                        'text-body-sm flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors',
                         isActive
                           ? 'text-primary font-medium'
                           : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
@@ -201,7 +203,9 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
           )}
         >
           <Settings className="size-5 shrink-0" />
-          {!collapsed && <span className="text-sm font-medium whitespace-nowrap">Settings</span>}
+          {!collapsed && (
+            <span className="text-body-sm font-medium whitespace-nowrap">Settings</span>
+          )}
         </Link>
       </div>
     </nav>

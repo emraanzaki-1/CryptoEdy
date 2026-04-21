@@ -17,6 +17,7 @@ import {
   Play,
 } from 'lucide-react'
 import { useSearch } from '@/lib/hooks/useSearch'
+import { FormInput } from '@/components/ui/form-field'
 import type { SearchResult, SearchResultType } from '@/app/(app)/api/search/route'
 
 const RESULT_TYPE_CONFIG: Record<
@@ -234,13 +235,14 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         {/* Search Header */}
         <div className="bg-surface-container-lowest relative flex items-center px-6 py-6">
           <Search className="text-primary mr-4 size-6 shrink-0" />
-          <input
+          <FormInput
             ref={inputRef}
             type="text"
+            variant="ghost"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search research, assets, or actions..."
-            className="text-on-surface placeholder:text-on-surface-variant/50 text-subtitle w-full border-none bg-transparent font-medium focus:ring-0 focus:outline-none"
+            className="text-subtitle font-medium"
           />
           <div className="bg-surface-container-low text-on-surface-variant/60 text-overline flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 font-bold">
             <span>⌘</span>

@@ -39,14 +39,7 @@ export function Logo({
         </svg>
       </div>
       {showText && (
-        <h2
-          className={cn(
-            'text-on-surface text-lg leading-tight font-bold tracking-[-0.015em]',
-            textClassName
-          )}
-        >
-          CryptoEdy
-        </h2>
+        <h2 className={cn('text-on-surface text-subtitle font-bold', textClassName)}>CryptoEdy</h2>
       )}
     </div>
   )

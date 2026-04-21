@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { ToggleSwitch } from '@/components/ui/toggle-switch'
-import { PageHeading } from '@/components/common/page-heading'
-import { SectionTitle } from '@/components/settings/section-title'
+import { SectionHeading } from '@/components/common/section-heading'
 import { Badge } from '@/components/ui/badge'
 import { Card } from '@/components/ui/card'
 import { toast } from 'sonner'
@@ -38,10 +37,10 @@ function NotificationItem({
     <Card variant="surface" className="flex-row items-center justify-between p-5">
       <div>
         <div className="flex items-center gap-2">
-          <p className="text-on-surface text-base font-semibold">{title}</p>
+          <p className="text-on-surface text-body-lg font-semibold">{title}</p>
           {isPro && <Badge variant="pro">PRO</Badge>}
         </div>
-        <p className="text-on-surface-variant mt-1 text-sm">{description}</p>
+        <p className="text-on-surface-variant text-body-sm mt-1">{description}</p>
       </div>
       <ToggleSwitch checked={checked} onChange={onChange} disabled={disabled} />
     </Card>
@@ -124,13 +123,9 @@ export default function NotificationSettingsPage() {
 
   return (
     <>
-      <PageHeading
-        as="h2"
-        variant="settings"
-        subtitle="Manage how and when you receive updates from CryptoEdy."
-      >
+      <SectionHeading as="h2" subtitle="Manage how and when you receive updates from CryptoEdy.">
         Notification Preferences
-      </PageHeading>
+      </SectionHeading>
 
       {loading || !prefs ? (
         <NotificationSkeleton />
@@ -138,7 +133,7 @@ export default function NotificationSettingsPage() {
         <div className="space-y-10">
           {/* Content Updates */}
           <section>
-            <SectionTitle>Content Updates</SectionTitle>
+            <SectionHeading variant="subsection">Content Updates</SectionHeading>
             <div className="space-y-4">
               <NotificationItem
                 title="Daily Market Brief"
@@ -160,7 +155,7 @@ export default function NotificationSettingsPage() {
 
           {/* Feed Alerts */}
           <section>
-            <SectionTitle>Feed Alerts</SectionTitle>
+            <SectionHeading variant="subsection">Feed Alerts</SectionHeading>
             <div className="space-y-4">
               <NotificationItem
                 title="Market Direction"

@@ -20,12 +20,12 @@ export function VideoPlayer({ url, title, lessonLabel }: VideoPlayerProps) {
   if (!embedUrl) {
     return (
       <div className="bg-surface-container-low flex flex-col items-center justify-center gap-3 rounded-xl p-8 text-center">
-        <p className="text-on-surface-variant text-sm">Unable to embed this video.</p>
+        <p className="text-on-surface-variant text-body-sm">Unable to embed this video.</p>
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-primary hover:text-primary/80 text-sm font-medium underline"
+          className="text-primary hover:text-primary/80 text-body-sm font-medium underline"
         >
           Open video in new tab
         </a>
@@ -58,7 +58,7 @@ export function VideoPlayer({ url, title, lessonLabel }: VideoPlayerProps) {
           {/* Bottom gradient metadata */}
           {lessonLabel && (
             <div className="from-on-surface/80 absolute right-0 bottom-0 left-0 bg-gradient-to-t to-transparent p-6">
-              <p className="text-on-primary text-sm font-medium">{lessonLabel}</p>
+              <p className="text-on-primary text-body-sm font-medium">{lessonLabel}</p>
             </div>
           )}
         </div>

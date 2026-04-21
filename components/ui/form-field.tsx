@@ -19,7 +19,7 @@ function FormField({ label, htmlFor, error, className, labelAction, children }: 
       <div className="flex items-center justify-between">
         <label
           htmlFor={htmlFor}
-          className="text-on-surface-variant text-xs font-bold tracking-[0.05em] uppercase"
+          className="text-on-surface-variant text-overline font-bold uppercase"
         >
           {label}
         </label>
@@ -40,6 +40,10 @@ const inputVariants = {
     'bg-surface-container-high placeholder:text-on-surface-variant/50 focus:bg-surface-container-lowest rounded-xl border-none px-4 py-4 focus:ring-2 focus:ring-primary focus:outline-none',
   outlined:
     'bg-surface placeholder:text-outline border border-outline-variant/30 rounded-2xl px-4 py-3.5 focus:border-primary focus:ring-2 focus:ring-primary',
+  ghost:
+    'bg-transparent placeholder:text-on-surface-variant/50 border-none px-0 py-0 font-medium focus:ring-0 focus:outline-none',
+  danger:
+    'bg-transparent placeholder:text-outline border border-error/30 rounded-2xl px-4 py-3.5 focus:border-error focus:ring-2 focus:ring-error',
 } as const
 
 type Variant = keyof typeof inputVariants

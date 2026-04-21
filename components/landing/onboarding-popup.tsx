@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from 'react'
 import { useSession } from 'next-auth/react'
 import { X, Sparkles, TrendingUp, Lock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { FormInput } from '@/components/ui/form-field'
+import { Heading } from '@/components/ui/typography'
 
 const DISMISSED_KEY = 'cryptoedy_onboarding_dismissed'
 const POPUP_DELAY_MS = 10_000
@@ -142,7 +144,7 @@ export function OnboardingPopup() {
               <div className="bg-surface-container-lowest/20 flex h-10 w-10 items-center justify-center rounded-lg backdrop-blur-md">
                 <Sparkles className="text-on-primary h-5 w-5" />
               </div>
-              <div className="text-overline text-on-primary font-bold tracking-[0.05em] uppercase">
+              <div className="text-overline text-on-primary font-bolduppercase">
                 CryptoEdy Intelligence
               </div>
             </div>
@@ -152,7 +154,7 @@ export function OnboardingPopup() {
           <div className="relative z-10 mt-auto">
             <div className="space-y-4">
               <div className="border-outline-variant/10 bg-surface-container-lowest/10 rounded-lg border p-4 backdrop-blur-md">
-                <div className="text-overline text-on-primary/60 mb-1 font-bold tracking-[0.05em] uppercase">
+                <div className="text-overline text-on-primary/60 font-bolduppercase mb-1">
                   Network Growth
                 </div>
                 <div className="flex items-end gap-2">
@@ -162,7 +164,7 @@ export function OnboardingPopup() {
                   </div>
                 </div>
               </div>
-              <p className="text-on-primary/80 text-sm font-medium">
+              <p className="text-on-primary/80 text-body-sm font-medium">
                 Join the elite network of institutional researchers decoding the next market cycle.
               </p>
             </div>
@@ -173,10 +175,10 @@ export function OnboardingPopup() {
         <div className="flex w-full flex-col justify-center p-10 md:w-[55%] md:p-14">
           <div className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-on-background text-headline-lg leading-[1.05] font-black tracking-[-0.04em]">
+              <Heading size="lg" className="font-black">
                 Get the God-Candle Alpha
-              </h2>
-              <p className="text-on-surface-variant text-base leading-relaxed font-normal">
+              </Heading>
+              <p className="text-on-surface-variant text-body-lg font-normal">
                 Access daily market insights, entry zones, and high-conviction picks delivered
                 directly to your inbox.
               </p>
@@ -185,7 +187,7 @@ export function OnboardingPopup() {
             {/* Form */}
             {submitted ? (
               <div className="space-y-3">
-                <div className="bg-secondary-fixed/10 text-secondary flex items-center gap-2 rounded-lg p-4 text-sm font-medium">
+                <div className="bg-secondary-fixed/10 text-secondary text-body-sm flex items-center gap-2 rounded-lg p-4 font-medium">
                   <svg
                     className="h-5 w-5 shrink-0"
                     fill="none"
@@ -201,28 +203,29 @@ export function OnboardingPopup() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="relative">
-                  <input
+                  <FormInput
                     type="email"
+                    variant="tonal"
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value)
                       if (error) setError('')
                     }}
-                    className="bg-surface-container-low text-on-background placeholder:text-outline focus:ring-primary focus:bg-surface-container-lowest h-14 w-full rounded-lg border-none px-4 transition-all duration-300 outline-none focus:ring-2"
+                    className="bg-surface-container-low focus:bg-surface-container-lowest h-14 rounded-lg"
                     placeholder="Enter your work email"
                     autoComplete="email"
                     disabled={submitting}
                   />
                 </div>
 
-                {error && <p className="text-error text-sm font-medium">{error}</p>}
+                {error && <p className="text-error text-body-sm font-medium">{error}</p>}
 
                 <Button
                   type="submit"
                   variant="gradient"
                   size="xxl"
                   loading={submitting}
-                  className="w-full rounded-lg text-lg"
+                  className="text-subtitle w-full rounded-lg"
                 >
                   {submitting ? 'Subscribing...' : 'Send Me Insights'}
                 </Button>
@@ -232,7 +235,7 @@ export function OnboardingPopup() {
             {/* Trust Signals */}
             <div className="flex items-center gap-1.5">
               <Lock className="text-outline h-3.5 w-3.5" />
-              <span className="text-overline text-outline font-medium tracking-[0.05em] uppercase">
+              <span className="text-overline text-outline font-mediumuppercase">
                 No spam. Unsubscribe anytime.
               </span>
             </div>

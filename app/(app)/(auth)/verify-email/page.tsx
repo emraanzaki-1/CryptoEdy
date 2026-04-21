@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Heading, Body } from '@/components/ui/typography'
 
 function VerifyEmailContent() {
   const searchParams = useSearchParams()
@@ -78,8 +79,10 @@ function VerifyEmailContent() {
         <div className="bg-secondary-container/20 mx-auto flex size-16 items-center justify-center rounded-full">
           <span className="text-secondary text-headline">&#10003;</span>
         </div>
-        <h1 className="font-headline text-on-surface text-headline font-bold">Email verified</h1>
-        <p className="text-on-surface-variant text-base">Redirecting&hellip;</p>
+        <Heading as="h1">Email verified</Heading>
+        <Body size="lg" className="text-on-surface-variant">
+          Redirecting&hellip;
+        </Body>
       </div>
     )
   }
@@ -88,11 +91,9 @@ function VerifyEmailContent() {
     return (
       <div className="flex flex-col gap-6">
         <header className="flex flex-col gap-2">
-          <h1 className="font-headline text-on-surface text-headline font-bold">
-            Verification failed
-          </h1>
+          <Heading as="h1">Verification failed</Heading>
         </header>
-        <div className="bg-error-container text-on-error-container rounded-xl px-5 py-4 text-sm font-medium">
+        <div className="bg-error-container text-on-error-container text-body-sm rounded-xl px-5 py-4 font-medium">
           {status === 'expired'
             ? 'This verification link has expired. Request a new one below.'
             : 'Invalid or missing verification token.'}
@@ -113,7 +114,7 @@ function VerifyEmailContent() {
         </Button>
         <Link
           href="/login"
-          className="bg-surface-container-high text-on-surface hover:bg-surface-container-highest flex h-14 w-full items-center justify-center rounded-xl text-base font-bold transition-colors"
+          className="bg-surface-container-high text-on-surface hover:bg-surface-container-highest text-body-lg flex h-14 w-full items-center justify-center rounded-xl font-bold transition-colors"
         >
           Back to login
         </Link>
@@ -124,12 +125,12 @@ function VerifyEmailContent() {
   return (
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-headline text-on-surface text-headline font-bold">Verify your email</h1>
-        <p className="text-on-surface-variant text-base leading-relaxed">
+        <Heading as="h1">Verify your email</Heading>
+        <Body size="lg" className="text-on-surface-variant">
           We sent a verification link to{' '}
           {session?.user?.email ? <strong>{session.user.email}</strong> : 'your email'}. Click the
           link in the email to verify your account.
-        </p>
+        </Body>
       </header>
 
       <div className="flex flex-col gap-4">
@@ -150,7 +151,7 @@ function VerifyEmailContent() {
       </div>
 
       <div className="mt-2 text-center">
-        <p className="text-on-surface-variant text-sm">
+        <p className="text-on-surface-variant text-body-sm">
           Wrong email?{' '}
           <Link
             href="/login"

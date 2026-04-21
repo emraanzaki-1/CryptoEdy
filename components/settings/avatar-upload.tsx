@@ -5,7 +5,7 @@ import Cropper from 'react-easy-crop'
 import type { Area } from 'react-easy-crop'
 import { Camera, Loader2, ZoomIn, ZoomOut, RotateCw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { SectionTitle } from '@/components/settings/section-title'
+import { SectionHeading } from '@/components/common/section-heading'
 
 interface AvatarUploadProps {
   imageUrl: string | null
@@ -110,7 +110,7 @@ export function AvatarUpload({
   return (
     <>
       <section>
-        <SectionTitle>Profile Image</SectionTitle>
+        <SectionHeading variant="subsection">Profile Image</SectionHeading>
         <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
           <div
             className="group bg-surface-container ring-surface-container-low relative size-24 cursor-pointer overflow-hidden rounded-full ring-4"
@@ -155,7 +155,7 @@ export function AvatarUpload({
                 </Button>
               )}
             </div>
-            <p className="text-outline text-sm">Supports WEBP, SVG, PNG, JPG (Max 5MB)</p>
+            <p className="text-outline text-body-sm">Supports WEBP, SVG, PNG, JPG (Max 5MB)</p>
           </div>
           <input
             ref={fileInputRef}
@@ -172,8 +172,8 @@ export function AvatarUpload({
         <div className="bg-on-surface/60 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
           <div className="bg-surface-container-lowest border-outline-variant/15 mx-4 w-full max-w-lg overflow-hidden rounded-3xl border shadow-2xl">
             <div className="border-outline-variant/15 border-b px-6 py-4">
-              <h3 className="text-on-surface text-base font-bold">Adjust Photo</h3>
-              <p className="text-on-surface-variant mt-1 text-sm">
+              <h3 className="text-on-surface text-body-lg font-bold">Adjust Photo</h3>
+              <p className="text-on-surface-variant text-body-sm mt-1">
                 Drag to reposition, scroll to zoom
               </p>
             </div>

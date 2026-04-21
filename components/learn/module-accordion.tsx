@@ -55,7 +55,7 @@ function LessonItem({
         <div>
           <p
             className={cn(
-              'text-sm',
+              'text-body-sm',
               isCompleted && 'font-semibold',
               isCurrent && 'text-primary font-bold',
               !isUnlocked && !isCurrent && 'text-on-surface-variant',
@@ -73,9 +73,7 @@ function LessonItem({
       {/* Right side status */}
       <div className="flex-shrink-0">
         {isCompleted ? (
-          <span className="text-secondary text-overline font-bold tracking-[0.05em] uppercase">
-            Completed
-          </span>
+          <span className="text-secondary text-overline font-bolduppercase">Completed</span>
         ) : isCurrent ? (
           <span className="bg-primary text-overline text-on-primary rounded-lg px-4 py-2 font-bold uppercase shadow-sm">
             Play Now
@@ -171,7 +169,7 @@ export function ModuleAccordion({
             <div className="flex items-center gap-2">
               <span
                 className={cn(
-                  'text-overline font-bold tracking-[0.05em] uppercase',
+                  'text-overline font-bolduppercase',
                   isCompleted && 'text-secondary',
                   moduleStatus === 'active' && 'text-primary',
                   isLocked && 'text-on-surface-variant'
@@ -185,13 +183,15 @@ export function ModuleAccordion({
             </div>
             <h3
               className={cn(
-                'text-on-surface text-lg font-bold',
+                'text-on-surface text-subtitle font-bold',
                 isLocked && 'text-on-surface-variant'
               )}
             >
               {title}
             </h3>
-            {description && <p className="text-on-surface-variant mt-0.5 text-sm">{description}</p>}
+            {description && (
+              <p className="text-on-surface-variant text-body-sm mt-0.5">{description}</p>
+            )}
           </div>
         </div>
 

@@ -18,16 +18,10 @@ export function BillingHistoryTable({ entries }: BillingHistoryTableProps) {
       <table className="w-full border-collapse text-left">
         <thead>
           <tr className="border-outline-variant/15 bg-surface-container-lowest/50 border-b">
-            <th className="text-on-surface px-6 py-4 text-xs font-bold tracking-[0.05em] uppercase">
-              Date
-            </th>
-            <th className="text-on-surface px-6 py-4 text-xs font-bold tracking-[0.05em] uppercase">
-              Amount
-            </th>
-            <th className="text-on-surface px-6 py-4 text-xs font-bold tracking-[0.05em] uppercase">
-              Status
-            </th>
-            <th className="text-on-surface px-6 py-4 text-right text-xs font-bold tracking-[0.05em] uppercase">
+            <th className="text-on-surface text-overline px-6 py-4 font-bold uppercase">Date</th>
+            <th className="text-on-surface text-overline px-6 py-4 font-bold uppercase">Amount</th>
+            <th className="text-on-surface text-overline px-6 py-4 font-bold uppercase">Status</th>
+            <th className="text-on-surface text-overline px-6 py-4 text-right font-bold uppercase">
               Invoice
             </th>
           </tr>
@@ -35,14 +29,14 @@ export function BillingHistoryTable({ entries }: BillingHistoryTableProps) {
         <tbody className="divide-outline-variant/15 divide-y">
           {entries.map((entry) => (
             <tr key={entry.date} className="hover:bg-surface-container-lowest/50 transition-colors">
-              <td className="text-on-surface px-6 py-4 text-sm">{entry.date}</td>
-              <td className="text-on-surface px-6 py-4 text-sm font-medium">{entry.amount}</td>
+              <td className="text-on-surface text-body-sm px-6 py-4">{entry.date}</td>
+              <td className="text-on-surface text-body-sm px-6 py-4 font-medium">{entry.amount}</td>
               <td className="px-6 py-4">
                 <span className="bg-secondary-container/20 text-secondary inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium">
                   {entry.status}
                 </span>
               </td>
-              <td className="px-6 py-4 text-right text-sm">
+              <td className="text-body-sm px-6 py-4 text-right">
                 <Button
                   variant="link"
                   size="sm"

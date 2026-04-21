@@ -5,9 +5,12 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { AtSign, Briefcase } from 'lucide-react'
-import { GuestShell } from '@/components/layouts/guest-shell'
+import { GuestShell, GuestSection } from '@/components/layouts/guest-shell'
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 import { FormField, FormInput, FormTextarea, FormSelect } from '@/components/ui/form-field'
+import { LAYOUT } from '@/lib/config/layout'
+import { Heading, Title } from '@/components/ui/typography'
 
 const SUBJECTS = ['Editorial Inquiry', 'Technical Support', 'Partnership', 'Other'] as const
 
@@ -52,50 +55,48 @@ export default function ContactPage() {
   }
 
   return (
-    <GuestShell className="pt-16 pb-24">
+    <GuestShell className={LAYOUT.guest.pagePy}>
       {/* ── Hero Section ── */}
-      <section className="max-w-site mx-auto mb-20 px-4 md:px-8">
+      <GuestSection className="mb-20">
         <div>
-          <span className="text-primary text-overline mb-4 block font-bold tracking-[0.05em] uppercase">
-            Contact
-          </span>
-          <h1 className="text-headline-lg text-on-surface mb-6 font-black">
+          <span className="text-primary text-overline font-bolduppercase mb-4 block">Contact</span>
+          <Heading as="h1" size="lg" className="mb-6 font-black">
             Get in Touch with the <span className="text-primary">CryptoEdy</span> Team.
-          </h1>
+          </Heading>
           <p className="text-on-surface-variant text-subtitle max-w-2xl">
             For research inquiries, editorial feedback, or partnership opportunities, our team is
             standing by to provide the clarity you require.
           </p>
         </div>
-      </section>
+      </GuestSection>
 
       {/* ── Contact & Form Grid ── */}
-      <section className="max-w-site mx-auto grid grid-cols-1 gap-16 px-4 md:px-8 lg:grid-cols-12">
+      <GuestSection className="grid grid-cols-1 gap-16 lg:grid-cols-12">
         {/* Information Panel */}
         <div className="space-y-12 lg:col-span-4">
           <div>
-            <h3 className="text-on-surface-variant text-overline mb-6 font-bold tracking-[0.05em] uppercase">
+            <h3 className="text-on-surface-variant text-overline font-bolduppercase mb-6">
               Contact Channels
             </h3>
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
                 <AtSign className="text-primary mt-1 size-5" />
                 <div>
-                  <p className="text-sm font-bold">Research &amp; Insights</p>
+                  <p className="text-body-sm font-bold">Research &amp; Insights</p>
                   <p className="text-on-surface-variant">research@cryptoedy.com</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
                 <Briefcase className="text-primary mt-1 size-5" />
                 <div>
-                  <p className="text-sm font-bold">General Inquiries</p>
+                  <p className="text-body-sm font-bold">General Inquiries</p>
                   <p className="text-on-surface-variant">hello@cryptoedy.com</p>
                 </div>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="text-on-surface-variant text-overline mb-6 font-bold tracking-[0.05em] uppercase">
+            <h3 className="text-on-surface-variant text-overline font-bolduppercase mb-6">
               Social
             </h3>
             <div className="grid grid-cols-2 gap-4">
@@ -103,34 +104,36 @@ export default function ContactPage() {
                 href="#"
                 className="bg-surface-container-lowest hover:bg-surface-container-high flex items-center gap-3 rounded-xl p-4 transition-colors"
               >
-                <span className="text-sm font-bold">Twitter / X</span>
+                <span className="text-body-sm font-bold">Twitter / X</span>
               </a>
               <a
                 href="#"
                 className="bg-surface-container-lowest hover:bg-surface-container-high flex items-center gap-3 rounded-xl p-4 transition-colors"
               >
-                <span className="text-sm font-bold">LinkedIn</span>
+                <span className="text-body-sm font-bold">LinkedIn</span>
               </a>
             </div>
           </div>
         </div>
 
         {/* Form Panel */}
-        <div className="bg-surface-container-lowest shadow-elevated rounded-xl p-8 md:p-12 lg:col-span-8">
+        <Card variant="elevated" className="p-8 md:p-12 lg:col-span-8">
           {submitted ? (
             <div className="flex min-h-[400px] flex-col items-center justify-center text-center">
               <div className="bg-primary/10 text-primary text-headline mb-4 flex size-16 items-center justify-center rounded-full">
                 ✓
               </div>
-              <h2 className="text-on-surface mb-2 text-xl font-black">Message Sent</h2>
-              <p className="text-on-surface-variant max-w-sm text-sm">
+              <Title as="h2" className="mb-2 font-black">
+                Message Sent
+              </Title>
+              <p className="text-on-surface-variant text-body-sm max-w-sm">
                 Thank you for reaching out. We&apos;ll get back to you as soon as possible.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
               {serverError && (
-                <div className="bg-error-container text-on-error-container rounded-xl px-4 py-3 text-sm">
+                <div className="bg-error-container text-on-error-container text-body-sm rounded-xl px-4 py-3">
                   {serverError}
                 </div>
               )}
@@ -189,8 +192,8 @@ export default function ContactPage() {
               </div>
             </form>
           )}
-        </div>
-      </section>
+        </Card>
+      </GuestSection>
     </GuestShell>
   )
 }

@@ -1,5 +1,5 @@
 import { TrendingUp, Rocket } from 'lucide-react'
-import { SectionHeading } from '@/components/landing/section-heading'
+import { SectionHeading } from '@/components/common/section-heading'
 
 const TRADES = [
   {
@@ -40,17 +40,17 @@ export function TrackRecordSection() {
     >
       {/* Split header */}
       <SectionHeading
+        variant="landing"
         align="split"
         overline="Track Record"
-        title={
-          <>
-            Seven years.
-            <br />
-            All on the record.
-          </>
-        }
         subtitle="We don't just talk trends — we document entries, exits, and actualized yield. Here are recent closed calls."
-      />
+      >
+        <>
+          Seven years.
+          <br />
+          All on the record.
+        </>
+      </SectionHeading>
 
       {/* Trade cards */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">

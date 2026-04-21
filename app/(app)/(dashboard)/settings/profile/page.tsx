@@ -5,9 +5,8 @@ import { useSession } from 'next-auth/react'
 import { Pencil, Loader2, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AvatarUpload } from '@/components/settings/avatar-upload'
-import { PageHeading } from '@/components/common/page-heading'
+import { SectionHeading } from '@/components/common/section-heading'
 import { FormField, FormInput, FormTextarea } from '@/components/ui/form-field'
-import { SectionTitle } from '@/components/settings/section-title'
 import { DangerZone } from '@/components/settings/danger-zone'
 import { useAvatar } from '@/components/providers/avatar-provider'
 import { getProfile, updateProfile, type ProfileData } from '@/lib/profile/actions'
@@ -102,13 +101,12 @@ export default function ProfileSettingsPage() {
 
   return (
     <>
-      <PageHeading
+      <SectionHeading
         as="h2"
-        variant="settings"
         subtitle="Manage your personal information and application preferences."
       >
         Profile Settings
-      </PageHeading>
+      </SectionHeading>
 
       <div className="space-y-10">
         {/* Avatar Upload */}
@@ -137,7 +135,7 @@ export default function ProfileSettingsPage() {
 
         {/* Personal Information */}
         <section>
-          <SectionTitle>Personal Information</SectionTitle>
+          <SectionHeading variant="subsection">Personal Information</SectionHeading>
           <div className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
             <FormField label="First Name" htmlFor="firstName">
               <FormInput
@@ -216,7 +214,7 @@ export default function ProfileSettingsPage() {
 
         {/* Error */}
         {error && (
-          <div className="bg-error-container/30 text-error rounded-2xl px-5 py-3 text-sm font-medium">
+          <div className="bg-error-container/30 text-error text-body-sm rounded-2xl px-5 py-3 font-medium">
             {error}
           </div>
         )}

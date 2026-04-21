@@ -10,6 +10,7 @@ import { auth } from '@/lib/auth'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Clock, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
+import { Heading, Overline } from '@/components/ui/typography'
 
 export default async function CourseDetailPage({
   params,
@@ -68,7 +69,7 @@ export default async function CourseDetailPage({
       <header className="flex flex-col gap-6">
         {/* Metadata badges */}
         <div className="flex flex-wrap items-center gap-4">
-          <span className="bg-surface-container-high text-primary text-overline rounded-full px-3 py-1 font-bold tracking-[0.05em] uppercase">
+          <span className="bg-surface-container-high text-primary text-overline font-bolduppercase rounded-full px-3 py-1">
             {course.difficulty}
           </span>
           {course.estimatedDuration && (
@@ -86,13 +87,11 @@ export default async function CourseDetailPage({
         </div>
 
         {/* Large editorial heading */}
-        <h1 className="text-on-surface text-headline-md md:text-headline-lg max-w-2xl leading-tight font-black tracking-[-0.04em]">
+        <Heading as="h1" size="md" className="md:text-headline-lg max-w-2xl font-black">
           {course.title}
-        </h1>
+        </Heading>
 
-        <p className="text-on-surface-variant max-w-2xl text-base leading-relaxed">
-          {course.excerpt}
-        </p>
+        <p className="text-on-surface-variant text-body-lg max-w-2xl">{course.excerpt}</p>
 
         {/* Enrollment + Progress */}
         <div className="flex flex-col gap-3 pt-2">
@@ -114,9 +113,9 @@ export default async function CourseDetailPage({
 
       {/* Curriculum Progression */}
       <section id="curriculum" className="flex flex-col gap-6">
-        <h2 className="text-on-surface-variant text-overline font-bold tracking-[0.05em] uppercase">
+        <Overline as="h2" className="text-on-surface-variant">
           Curriculum Progression
-        </h2>
+        </Overline>
         {modules.map((mod, index) => (
           <ModuleAccordion
             key={mod.id}

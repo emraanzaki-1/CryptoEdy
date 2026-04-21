@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { Database, Shield, Cookie, Scale, CircleCheck } from 'lucide-react'
-import { GuestShell } from '@/components/layouts/guest-shell'
+import { GuestPage } from '@/components/layouts/guest-shell'
 import { SidebarNav } from '@/components/common/sidebar-nav'
+import { Heading, Title } from '@/components/ui/typography'
 
 export const metadata = {
   title: 'Privacy Policy – CryptoEdy',
@@ -17,15 +18,17 @@ const sidebarLinks = [
 
 export default function PrivacyPage() {
   return (
-    <GuestShell className="max-w-site mx-auto w-full px-4 pt-16 pb-24 md:px-8">
+    <GuestPage>
       {/* ── Hero Header ── */}
       <header className="mb-20">
-        <div className="bg-surface-container text-primary text-overline mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-bold tracking-[0.05em] uppercase">
+        <div className="bg-surface-container text-primary text-overline font-bolduppercase mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1">
           <Shield className="size-3.5" />
           Legal Framework
         </div>
-        <h1 className="text-headline-lg text-on-surface mb-8 font-black">Privacy Policy</h1>
-        <p className="text-on-surface-variant max-w-3xl text-lg leading-relaxed font-medium">
+        <Heading as="h1" size="lg" className="mb-8 font-black">
+          Privacy Policy
+        </Heading>
+        <p className="text-on-surface-variant text-subtitle max-w-3xl font-medium">
           Ensuring institutional-grade data security and absolute transparency in the CryptoEdy
           digital ecosystem. Last updated: April 20, 2026.
         </p>
@@ -42,10 +45,10 @@ export default function PrivacyPage() {
           <section id="collection" className="scroll-mt-32">
             <div className="mb-8 flex items-center gap-4">
               <Database className="text-primary size-7" />
-              <h2 className="text-headline text-on-surface font-bold">Data Collection</h2>
+              <Heading className="font-black">Data Collection</Heading>
             </div>
             <div className="bg-surface-container-lowest space-y-6 rounded-xl p-8">
-              <p className="text-on-surface-variant leading-relaxed">
+              <p className="text-on-surface-variant text-body">
                 At CryptoEdy, we prioritize your privacy. We collect minimal personal information
                 necessary to provide our research and analysis services. This typically includes:
               </p>
@@ -79,20 +82,24 @@ export default function PrivacyPage() {
           <section id="security" className="scroll-mt-32">
             <div className="mb-8 flex items-center gap-4">
               <Shield className="text-primary size-7" />
-              <h2 className="text-headline text-on-surface font-bold">Data Security</h2>
+              <Heading className="font-black">Data Security</Heading>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div className="bg-surface-container-low rounded-xl p-8">
-                <h3 className="mb-4 text-xl font-bold">Encryption Standards</h3>
-                <p className="text-on-surface-variant text-sm leading-relaxed">
+                <Title as="h3" className="mb-4">
+                  Encryption Standards
+                </Title>
+                <p className="text-on-surface-variant text-body-sm">
                   We implement industry-standard security measures to protect your information,
                   including encryption in transit and at rest. We do not sell your personal
                   information to third parties.
                 </p>
               </div>
               <div className="bg-primary text-on-primary shadow-primary/10 rounded-xl p-8 shadow-xl">
-                <h3 className="mb-4 text-xl font-bold">Third-Party Providers</h3>
-                <p className="text-sm leading-relaxed opacity-90">
+                <Title as="h3" className="mb-4">
+                  Third-Party Providers
+                </Title>
+                <p className="text-body-sm opacity-90">
                   We may share data with trusted service providers who assist in operating the
                   Service (e.g., payment processing, email delivery, analytics). These providers are
                   bound by confidentiality obligations.
@@ -105,38 +112,38 @@ export default function PrivacyPage() {
           <section id="cookies" className="scroll-mt-32">
             <div className="mb-8 flex items-center gap-4">
               <Cookie className="text-primary size-7" />
-              <h2 className="text-headline text-on-surface font-bold">Cookie Usage</h2>
+              <Heading className="font-black">Cookie Usage</Heading>
             </div>
             <div className="bg-surface-container-lowest border-outline-variant/15 overflow-hidden rounded-xl border">
               <table className="w-full text-left">
                 <thead className="bg-surface-container-low">
                   <tr>
-                    <th className="text-on-surface-variant text-overline px-6 py-4 font-black tracking-[0.05em] uppercase">
+                    <th className="text-on-surface-variant text-overline font-blackuppercase px-6 py-4">
                       Type
                     </th>
-                    <th className="text-on-surface-variant text-overline px-6 py-4 font-black tracking-[0.05em] uppercase">
+                    <th className="text-on-surface-variant text-overline font-blackuppercase px-6 py-4">
                       Purpose
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-outline-variant/10 divide-y">
                   <tr>
-                    <td className="px-6 py-6 text-sm font-bold">Essential</td>
-                    <td className="text-on-surface-variant px-6 py-6 text-sm leading-relaxed">
+                    <td className="text-body-sm px-6 py-6 font-bold">Essential</td>
+                    <td className="text-on-surface-variant text-body-sm px-6 py-6">
                       Maintaining secure session states and authentication tokens. Required for the
                       Service to function.
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-6 text-sm font-bold">Performance</td>
-                    <td className="text-on-surface-variant px-6 py-6 text-sm leading-relaxed">
+                    <td className="text-body-sm px-6 py-6 font-bold">Performance</td>
+                    <td className="text-on-surface-variant text-body-sm px-6 py-6">
                       Aggregated, anonymous analytics to optimize platform performance and
                       understand usage patterns.
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-6 text-sm font-bold">Preference</td>
-                    <td className="text-on-surface-variant px-6 py-6 text-sm leading-relaxed">
+                    <td className="text-body-sm px-6 py-6 font-bold">Preference</td>
+                    <td className="text-on-surface-variant text-body-sm px-6 py-6">
                       Remembering your settings such as theme, notification preferences, and content
                       display choices.
                     </td>
@@ -144,7 +151,7 @@ export default function PrivacyPage() {
                 </tbody>
               </table>
             </div>
-            <p className="text-on-surface-variant mt-4 text-sm">
+            <p className="text-on-surface-variant text-body-sm mt-4">
               You can manage cookie settings through your browser. Disabling cookies may affect some
               features of the Service.
             </p>
@@ -154,32 +161,32 @@ export default function PrivacyPage() {
           <section id="rights" className="scroll-mt-32">
             <div className="mb-8 flex items-center gap-4">
               <Scale className="text-primary size-7" />
-              <h2 className="text-headline text-on-surface font-bold">Your Rights</h2>
+              <Heading className="font-black">Your Rights</Heading>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               <div className="bg-surface-container-low rounded-xl p-6">
                 <h4 className="mb-2 font-bold">Access</h4>
-                <p className="text-on-surface-variant text-xs">
+                <p className="text-on-surface-variant text-body-sm">
                   Request a full copy of all personal data we hold about you, delivered in a
                   structured, portable format.
                 </p>
               </div>
               <div className="bg-surface-container-low rounded-xl p-6">
                 <h4 className="mb-2 font-bold">Rectify</h4>
-                <p className="text-on-surface-variant text-xs">
+                <p className="text-on-surface-variant text-body-sm">
                   Correct inaccurate or incomplete personal information associated with your account
                   at any time.
                 </p>
               </div>
               <div className="bg-surface-container-low rounded-xl p-6">
                 <h4 className="mb-2 font-bold">Erasure</h4>
-                <p className="text-on-surface-variant text-xs">
+                <p className="text-on-surface-variant text-body-sm">
                   Request deletion of your account and all associated personal data. We retain data
                   only as long as your account is active or as legally required.
                 </p>
               </div>
             </div>
-            <p className="text-on-surface-variant mt-6 text-sm leading-relaxed">
+            <p className="text-on-surface-variant text-body-sm mt-6">
               The Service is not intended for users under the age of 18. We do not knowingly collect
               personal information from children. Your information may be transferred
               internationally with appropriate safeguards in place.
@@ -188,7 +195,7 @@ export default function PrivacyPage() {
 
           {/* Bottom CTA */}
           <div className="border-outline-variant/30 border-t pt-12 text-center">
-            <p className="text-outline text-sm font-medium">
+            <p className="text-outline text-body-sm font-medium">
               Questions about this policy?{' '}
               <Link
                 href="/contact"
@@ -200,6 +207,6 @@ export default function PrivacyPage() {
           </div>
         </article>
       </div>
-    </GuestShell>
+    </GuestPage>
   )
 }

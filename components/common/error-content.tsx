@@ -1,6 +1,7 @@
 import { AlertCircle, ArrowLeft, HelpCircle, FileQuestion, ShieldAlert } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ButtonLink } from '@/components/ui/button-link'
+import { Heading } from '@/components/ui/typography'
 
 interface ErrorContentProps {
   code: number
@@ -42,7 +43,7 @@ export function ErrorContent({
 
       <div className="relative z-10 w-full max-w-3xl text-center">
         {/* Giant faded code */}
-        <h1 className="text-on-surface pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[8rem] leading-none font-black tracking-[-0.04em] opacity-[0.03] select-none md:text-[12rem]">
+        <h1 className="text-on-surface pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[8rem] leading-none font-black opacity-[0.03] select-none md:text-[12rem]">
           {code}
         </h1>
 
@@ -52,18 +53,18 @@ export function ErrorContent({
         </div>
 
         {/* Heading */}
-        <h2 className="text-on-surface md:text-display text-headline-lg mb-6 font-black tracking-[-0.04em]">
+        <Heading size="lg" className="md:text-display mb-6 font-black">
           {title}
-        </h2>
+        </Heading>
 
         {/* Message */}
         <div className="mx-auto mb-12 max-w-xl">
-          <p className="text-on-surface-variant text-lg leading-relaxed md:text-xl">{message}</p>
+          <p className="text-on-surface-variant text-subtitle md:text-title">{message}</p>
         </div>
 
         {/* Buttons */}
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <ButtonLink href={backHref} variant="gradient" size="xl" className="text-lg">
+          <ButtonLink href={backHref} variant="gradient" size="xl" className="text-body-lg">
             <ArrowLeft className="size-5" />
             {backLabel}
           </ButtonLink>
@@ -72,7 +73,7 @@ export function ErrorContent({
               variant="tonal"
               size="xl"
               onClick={onRetry}
-              className="text-lg hover:translate-y-0 active:scale-95"
+              className="text-body-lg hover:translate-y-0 active:scale-95"
             >
               Try Again
             </Button>
@@ -82,7 +83,7 @@ export function ErrorContent({
               href="/login"
               variant="tonal"
               size="xl"
-              className="text-lg hover:translate-y-0 active:scale-95"
+              className="text-body-lg hover:translate-y-0 active:scale-95"
             >
               <HelpCircle className="size-5" />
               Contact Support
@@ -96,7 +97,7 @@ export function ErrorContent({
             <span className="bg-error absolute inline-flex size-full animate-ping rounded-full opacity-75" />
             <span className="bg-error relative inline-flex size-3 rounded-full" />
           </span>
-          <span className="text-on-surface-variant text-sm font-bold tracking-[0.05em] uppercase">
+          <span className="text-on-surface-variant text-body-sm font-bold uppercase">
             System Incident: {meta.incident}
           </span>
         </div>

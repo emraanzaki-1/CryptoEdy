@@ -1,4 +1,5 @@
 import { ButtonLink } from '@/components/ui/button-link'
+import { Display } from '@/components/ui/typography'
 
 export function HeroSection() {
   return (
@@ -10,9 +11,9 @@ export function HeroSection() {
       }}
     >
       <div className="flex max-w-3xl flex-col gap-4 text-center">
-        <h1 className="text-on-primary md:text-display text-headline-lg font-black">
+        <Display className="text-on-primary md:text-display text-headline-lg">
           Institutional-Grade Crypto Research for the Modern Investor
-        </h1>
+        </Display>
         <p className="text-inverse-primary text-body-lg md:text-subtitle mx-auto max-w-2xl font-normal">
           Actionable insights, high-conviction picks, and expert analysis designed to cut through
           the noise and deliver measurable edge.

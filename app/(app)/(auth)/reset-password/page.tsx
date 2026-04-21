@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { resetPasswordSchema, type ResetPasswordFormValues } from '@/lib/auth/schemas'
 import { Button } from '@/components/ui/button'
 import { FormField, FormInput } from '@/components/ui/form-field'
+import { Heading, Body } from '@/components/ui/typography'
 
 function ResetPasswordForm() {
   const searchParams = useSearchParams()
@@ -71,13 +72,13 @@ function ResetPasswordForm() {
     return (
       <div className="flex flex-col gap-10">
         <header className="flex flex-col gap-2">
-          <h1 className="font-headline text-on-surface text-headline font-bold">Invalid link</h1>
-          <p className="text-on-surface-variant text-base leading-relaxed">
+          <Heading as="h1">Invalid link</Heading>
+          <Body size="lg" className="text-on-surface-variant">
             {tokenError || 'This reset link is invalid or has expired.'}
-          </p>
+          </Body>
         </header>
 
-        <div className="bg-error-container text-on-error-container rounded-xl px-5 py-4 text-sm font-medium">
+        <div className="bg-error-container text-on-error-container text-body-sm rounded-xl px-5 py-4 font-medium">
           {tokenError || 'Invalid reset link.'}{' '}
           <Link href="/forgot-password" className="font-semibold underline underline-offset-4">
             Request a new one
@@ -102,15 +103,15 @@ function ResetPasswordForm() {
   return (
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-headline text-on-surface text-headline font-bold">Set new password</h1>
-        <p className="text-on-surface-variant text-base leading-relaxed">
+        <Heading as="h1">Set new password</Heading>
+        <Body size="lg" className="text-on-surface-variant">
           Choose a strong password for your account.
-        </p>
+        </Body>
       </header>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
         {serverError && (
-          <div className="bg-error-container text-on-error-container rounded-xl px-5 py-3 text-sm font-medium">
+          <div className="bg-error-container text-on-error-container text-body-sm rounded-xl px-5 py-3 font-medium">
             {serverError}
           </div>
         )}
@@ -153,7 +154,7 @@ function ResetPasswordForm() {
       </form>
 
       <div className="mt-4 text-center">
-        <p className="text-on-surface-variant text-sm">
+        <p className="text-on-surface-variant text-body-sm">
           Remember your password?{' '}
           <Link
             href="/login"

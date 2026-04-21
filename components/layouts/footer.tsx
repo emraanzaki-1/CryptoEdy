@@ -12,7 +12,7 @@ export function Footer() {
               className="text-on-primary"
               iconClassName="text-on-primary"
             />
-            <p className="text-on-primary-container text-sm leading-relaxed opacity-80">
+            <p className="text-on-primary-container text-body-sm opacity-80">
               The Digital Curator of institutional-grade financial intelligence for the modern
               digital asset investor.
             </p>
@@ -20,47 +20,47 @@ export function Footer() {
 
           <div className="grid grid-cols-2 gap-8 md:gap-16">
             <div className="flex flex-col gap-4">
-              <h4 className="text-on-primary text-sm font-bold tracking-[0.05em] uppercase">
+              <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
                 Platform
               </h4>
               <Link
                 href="/feed"
-                className="text-on-primary-container hover:text-on-primary text-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
               >
                 Research Archive
               </Link>
               <Link
                 href="/#performance"
-                className="text-on-primary-container hover:text-on-primary text-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
               >
                 Track Record
               </Link>
               <Link
                 href="/upgrade"
-                className="text-on-primary-container hover:text-on-primary text-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
               >
                 Pricing
               </Link>
             </div>
             <div className="flex flex-col gap-4">
-              <h4 className="text-on-primary text-sm font-bold tracking-[0.05em] uppercase">
+              <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
                 Legal
               </h4>
               <Link
                 href="/terms"
-                className="text-on-primary-container hover:text-on-primary text-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
               >
                 Terms of Service
               </Link>
               <Link
                 href="/privacy"
-                className="text-on-primary-container hover:text-on-primary text-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/contact"
-                className="text-on-primary-container hover:text-on-primary text-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
               >
                 Contact
               </Link>

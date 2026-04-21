@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { forgotPasswordSchema, type ForgotPasswordFormValues } from '@/lib/auth/schemas'
 import { Button } from '@/components/ui/button'
 import { FormField, FormInput } from '@/components/ui/form-field'
+import { Heading, Body } from '@/components/ui/typography'
 
 export default function ForgotPasswordPage() {
   const [sent, setSent] = useState(false)
@@ -35,22 +36,22 @@ export default function ForgotPasswordPage() {
   return (
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-headline text-on-surface text-headline font-bold">Forgot password</h1>
-        <p className="text-on-surface-variant text-base leading-relaxed">
+        <Heading as="h1">Forgot password</Heading>
+        <Body size="lg" className="text-on-surface-variant">
           Enter your email and we&apos;ll send you a reset link if an account exists.
-        </p>
+        </Body>
       </header>
 
       {sent ? (
         <div className="flex flex-col gap-6">
-          <div className="bg-secondary-container/20 text-on-surface rounded-xl px-5 py-4 text-sm leading-relaxed font-medium">
+          <div className="bg-secondary-container/20 text-on-surface text-body-sm rounded-xl px-5 py-4 font-medium">
             If an account exists for <strong>{submittedEmail}</strong>, a reset link has been sent.
             Check your inbox.
           </div>
 
           <Link
             href="/login"
-            className="bg-surface-container-high text-on-surface hover:bg-surface-container-highest flex w-full items-center justify-center gap-2 rounded-xl px-6 py-4 text-base font-bold transition-colors"
+            className="bg-surface-container-high text-on-surface hover:bg-surface-container-highest text-body-lg flex w-full items-center justify-center gap-2 rounded-xl px-6 py-4 font-bold transition-colors"
           >
             <ArrowLeft className="size-4" />
             Back to login
@@ -81,7 +82,7 @@ export default function ForgotPasswordPage() {
       )}
 
       <div className="mt-4 text-center">
-        <p className="text-on-surface-variant text-sm">
+        <p className="text-on-surface-variant text-body-sm">
           Remember your password?{' '}
           <Link
             href="/login"

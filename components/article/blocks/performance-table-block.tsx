@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { SurfaceCard } from '@/components/ui/surface-card'
+import { Card } from '@/components/ui/card'
 
 const STATUS_STYLES = {
   open: { label: 'Open', className: 'bg-primary/10 text-primary' },
@@ -29,7 +29,7 @@ export function PerformanceTableBlockComponent({
   footnote,
 }: PerformanceTableBlockProps) {
   return (
-    <SurfaceCard border shadow="card" className="my-8">
+    <Card variant="surface-lowest" shadow="card" className="my-8">
       {title && (
         <div className="bg-surface-container-low/50 px-6 py-4">
           <h4 className="text-on-background text-overline font-bold uppercase">{title}</h4>
@@ -37,25 +37,25 @@ export function PerformanceTableBlockComponent({
       )}
 
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm">
+        <table className="text-body-sm w-full text-left">
           <thead>
             <tr className="border-outline-variant/10 border-b">
-              <th className="text-on-surface-variant px-6 py-3 text-xs font-bold tracking-[0.05em] uppercase">
+              <th className="text-on-surface-variant text-overline px-6 py-3 font-bold uppercase">
                 Token
               </th>
-              <th className="text-on-surface-variant px-6 py-3 text-xs font-bold tracking-[0.05em] uppercase">
+              <th className="text-on-surface-variant text-overline px-6 py-3 font-bold uppercase">
                 Entry
               </th>
-              <th className="text-on-surface-variant px-6 py-3 text-xs font-bold tracking-[0.05em] uppercase">
+              <th className="text-on-surface-variant text-overline px-6 py-3 font-bold uppercase">
                 Exit
               </th>
-              <th className="text-on-surface-variant px-6 py-3 text-xs font-bold tracking-[0.05em] uppercase">
+              <th className="text-on-surface-variant text-overline px-6 py-3 font-bold uppercase">
                 Gain
               </th>
-              <th className="text-on-surface-variant px-6 py-3 text-xs font-bold tracking-[0.05em] uppercase">
+              <th className="text-on-surface-variant text-overline px-6 py-3 font-bold uppercase">
                 Status
               </th>
-              <th className="text-on-surface-variant px-6 py-3 text-xs font-bold tracking-[0.05em] uppercase">
+              <th className="text-on-surface-variant text-overline px-6 py-3 font-bold uppercase">
                 Date
               </th>
             </tr>
@@ -110,6 +110,6 @@ export function PerformanceTableBlockComponent({
           <p className="text-on-surface-variant text-xs italic">{footnote}</p>
         </div>
       )}
-    </SurfaceCard>
+    </Card>
   )
 }

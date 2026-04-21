@@ -33,7 +33,7 @@ export function ThemeCard({
       </div>
       <span className="flex items-center">
         <span className="flex flex-col">
-          <span className="text-on-surface flex w-full items-center justify-between text-sm font-bold">
+          <span className="text-on-surface text-body-sm flex w-full items-center justify-between font-bold">
             {name}
             <span
               className={cn(
@@ -44,7 +44,7 @@ export function ThemeCard({
               {selected && <span className="bg-primary size-2.5 rounded-full" />}
             </span>
           </span>
-          <span className="text-on-surface-variant mt-1 text-sm">{description}</span>
+          <span className="text-on-surface-variant text-body-sm mt-1">{description}</span>
         </span>
       </span>
       <input

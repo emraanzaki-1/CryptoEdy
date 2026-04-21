@@ -31,7 +31,7 @@ export function SettingsNav() {
       <div className="flex flex-col gap-8">
         {settingsGroups.map((group) => (
           <div key={group.label}>
-            <h3 className="text-on-surface-variant mb-3 px-3 text-xs font-bold tracking-[0.05em] uppercase">
+            <h3 className="text-on-surface-variant text-overline mb-3 px-3 font-bold uppercase">
               {group.label}
             </h3>
             <div className="flex flex-col gap-1">
@@ -42,7 +42,7 @@ export function SettingsNav() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
+                      'text-body-sm flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium transition-colors',
                       isActive
                         ? 'bg-primary-container/10 text-primary font-semibold'
                         : 'text-on-surface-variant hover:bg-surface-container'

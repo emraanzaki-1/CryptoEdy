@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { Display } from '@/components/ui/typography'
 
 interface AuthSplitLayoutProps {
   children: React.ReactNode
@@ -19,12 +20,12 @@ export function AuthSplitLayout({ children }: AuthSplitLayoutProps) {
         />
         <div className="from-inverse-surface via-inverse-surface/80 absolute inset-0 bg-gradient-to-t to-transparent" />
         <div className="relative z-10">
-          <h1 className="text-inverse-on-surface text-display mb-4 font-black">
+          <Display className="text-inverse-on-surface mb-4">
             The Digital
             <br />
             Curator.
-          </h1>
-          <p className="text-inverse-on-surface/70 max-w-md text-base leading-relaxed">
+          </Display>
+          <p className="text-inverse-on-surface/70 text-body-lg max-w-md">
             Institutional-grade crypto research and market intelligence, curated for the modern
             investor.
           </p>
@@ -35,7 +36,7 @@ export function AuthSplitLayout({ children }: AuthSplitLayoutProps) {
       <div className="bg-surface relative flex w-full flex-1 flex-col items-center justify-center px-6 py-12 lg:w-1/2">
         <Link
           href="/"
-          className="text-on-surface-variant hover:text-primary absolute top-6 left-6 flex items-center gap-2 text-sm font-medium transition-colors"
+          className="text-on-surface-variant hover:text-primary text-body-sm absolute top-6 left-6 flex items-center gap-2 font-medium transition-colors"
         >
           <ArrowLeft className="size-4" />
           Return

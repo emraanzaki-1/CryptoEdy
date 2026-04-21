@@ -1,8 +1,8 @@
 import { BillingHistoryTable } from '@/components/settings/billing-history-table'
-import { PageHeading } from '@/components/common/page-heading'
-import { SectionTitle } from '@/components/settings/section-title'
+import { SectionHeading } from '@/components/common/section-heading'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { Title } from '@/components/ui/typography'
 
 const billingHistory = [
   { date: 'Oct 15, 2023', amount: '$299.00', status: 'Paid' as const },
@@ -12,30 +12,26 @@ const billingHistory = [
 export default function BillingSettingsPage() {
   return (
     <>
-      <PageHeading
-        as="h2"
-        variant="settings"
-        subtitle="Manage your billing information and view past invoices."
-      >
+      <SectionHeading as="h2" subtitle="Manage your billing information and view past invoices.">
         Billing
-      </PageHeading>
+      </SectionHeading>
 
       <div className="space-y-10">
         {/* Current Plan */}
         <section>
-          <SectionTitle>Current Plan</SectionTitle>
+          <SectionHeading variant="subsection">Current Plan</SectionHeading>
           <Card
             variant="surface"
             className="flex-col items-start justify-between gap-4 p-6 sm:flex-row sm:items-center"
           >
             <div>
               <div className="mb-1 flex items-center gap-3">
-                <h4 className="text-on-surface text-xl font-bold">Pro Annual</h4>
+                <Title as="h4">Pro Annual</Title>
                 <span className="bg-secondary-container/20 text-secondary rounded-md px-2.5 py-1 text-xs font-bold">
                   Active
                 </span>
               </div>
-              <p className="text-on-surface-variant text-sm">
+              <p className="text-on-surface-variant text-body-sm">
                 Your next billing date is <strong>Oct 15, 2024</strong> for $299.00.
               </p>
             </div>
@@ -51,7 +47,7 @@ export default function BillingSettingsPage() {
 
         {/* Payment Method */}
         <section>
-          <SectionTitle>Payment Method</SectionTitle>
+          <SectionHeading variant="subsection">Payment Method</SectionHeading>
           <Card
             variant="surface"
             className="flex-col items-start justify-between gap-4 p-6 sm:flex-row sm:items-center"
@@ -61,8 +57,8 @@ export default function BillingSettingsPage() {
                 <span className="text-primary text-xs font-bold">VISA</span>
               </div>
               <div>
-                <p className="text-on-surface text-base font-medium">Visa ending in 4242</p>
-                <p className="text-on-surface-variant text-sm">Expires 12/2025</p>
+                <p className="text-on-surface text-body-lg font-medium">Visa ending in 4242</p>
+                <p className="text-on-surface-variant text-body-sm">Expires 12/2025</p>
               </div>
             </div>
             <Button
@@ -77,7 +73,7 @@ export default function BillingSettingsPage() {
 
         {/* Billing History */}
         <section>
-          <SectionTitle>Billing History</SectionTitle>
+          <SectionHeading variant="subsection">Billing History</SectionHeading>
           <BillingHistoryTable entries={billingHistory} />
         </section>
       </div>

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { CheckCircle, Wallet } from 'lucide-react'
-import { SectionHeading } from '@/components/landing/section-heading'
+import { SectionHeading } from '@/components/common/section-heading'
 import { ButtonLink } from '@/components/ui/button-link'
 
 const FEATURES = [
@@ -18,16 +18,13 @@ export function PricingSection() {
     >
       {/* Left — copy */}
       <div className="flex flex-1 flex-col gap-6">
-        <SectionHeading
-          overline="Simple &middot; $0 on-chain"
-          title={
-            <>
-              $100 a year.
-              <br />
-              Stablecoins only.
-            </>
-          }
-        />
+        <SectionHeading variant="landing" overline="Simple &middot; $0 on-chain">
+          <>
+            $100 a year.
+            <br />
+            Stablecoins only.
+          </>
+        </SectionHeading>
         <p className="text-on-surface-variant text-body-sm max-w-sm">
           Pay with any major stablecoin. Pass to wallet or USDT on chain of your choice.
         </p>

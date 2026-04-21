@@ -1,6 +1,6 @@
 import { Target, TrendingUp, ShieldAlert, Clock } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { SurfaceCard } from '@/components/ui/surface-card'
+import { Card } from '@/components/ui/card'
 
 const RISK_STYLES = {
   low: { label: 'Low Risk', className: 'bg-secondary/10 text-secondary' },
@@ -35,7 +35,7 @@ export function PriceTargetBlockComponent({
   const risk = RISK_STYLES[riskRating] ?? RISK_STYLES.medium
 
   return (
-    <SurfaceCard border shadow="card" className="my-8">
+    <Card variant="surface-lowest" shadow="card" className="my-8">
       {/* Header */}
       <div className="bg-surface-container-low/50 flex items-center justify-between gap-4 px-6 py-4">
         <div className="flex items-center gap-3">
@@ -86,7 +86,7 @@ export function PriceTargetBlockComponent({
           <p className="text-on-surface-variant text-body-sm">{rationale}</p>
         </div>
       )}
-    </SurfaceCard>
+    </Card>
   )
 }
 

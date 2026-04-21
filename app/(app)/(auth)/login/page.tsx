@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { loginSchema, type LoginFormValues } from '@/lib/auth/schemas'
 import { Button } from '@/components/ui/button'
 import { FormField, FormInput } from '@/components/ui/form-field'
+import { Heading, Body } from '@/components/ui/typography'
 
 function LoginForm() {
   const router = useRouter()
@@ -49,33 +50,33 @@ function LoginForm() {
   return (
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-2">
-        <h1 className="font-headline text-on-surface text-headline font-bold">Welcome back</h1>
-        <p className="text-on-surface-variant text-base leading-relaxed">
+        <Heading as="h1">Welcome back</Heading>
+        <Body size="lg" className="text-on-surface-variant">
           Use your email address to enter the research gallery.
-        </p>
+        </Body>
       </header>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
         {registered && (
-          <div className="bg-secondary-container/20 text-on-surface rounded-xl px-5 py-3 text-sm font-medium">
+          <div className="bg-secondary-container/20 text-on-surface text-body-sm rounded-xl px-5 py-3 font-medium">
             Account created! Check your email to verify, then log in.
           </div>
         )}
 
         {reset && (
-          <div className="bg-secondary-container/20 text-on-surface rounded-xl px-5 py-3 text-sm font-medium">
+          <div className="bg-secondary-container/20 text-on-surface text-body-sm rounded-xl px-5 py-3 font-medium">
             Password reset successfully. You can now log in with your new password.
           </div>
         )}
 
         {verified && (
-          <div className="bg-secondary-container/20 text-on-surface rounded-xl px-5 py-3 text-sm font-medium">
+          <div className="bg-secondary-container/20 text-on-surface text-body-sm rounded-xl px-5 py-3 font-medium">
             Email verified! You can now log in.
           </div>
         )}
 
         {serverError && (
-          <div className="bg-error-container text-on-error-container rounded-xl px-5 py-3 text-sm font-medium">
+          <div className="bg-error-container text-on-error-container text-body-sm rounded-xl px-5 py-3 font-medium">
             {serverError}
           </div>
         )}
@@ -126,7 +127,7 @@ function LoginForm() {
       </form>
 
       <div className="mt-4 text-center">
-        <p className="text-on-surface-variant text-sm">
+        <p className="text-on-surface-variant text-body-sm">
           Don&apos;t have an account?{' '}
           <Link
             href="/register"

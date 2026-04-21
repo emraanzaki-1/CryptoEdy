@@ -14,7 +14,7 @@ export function SearchBar({ className, onClick }: SearchBarProps) {
       type="button"
       onClick={onClick}
       className={cn(
-        'bg-surface-container-low hover:bg-surface-container-lowest hover:ring-primary/20 flex h-10 w-full max-w-md cursor-pointer items-center gap-2 rounded-full pr-4 pl-4 text-sm transition-all hover:ring-2',
+        'bg-surface-container-low hover:bg-surface-container-lowest hover:ring-primary/20 text-body-sm flex h-10 w-full max-w-md cursor-pointer items-center gap-2 rounded-full pr-4 pl-4 transition-all hover:ring-2',
         className
       )}
     >

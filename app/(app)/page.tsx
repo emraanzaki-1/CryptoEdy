@@ -1,4 +1,5 @@
 import { GuestShell } from '@/components/layouts/guest-shell'
+import { LAYOUT } from '@/lib/config/layout'
 import { HeroSection } from '@/components/landing/hero-section'
 import { ValuePropsSection } from '@/components/landing/value-props-section'
 import { ResearchPreviewSection } from '@/components/landing/research-preview-section'
@@ -14,7 +15,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Content sections */}
-      <div className="flex flex-1 justify-center px-4 md:px-8">
+      <div className={`flex flex-1 justify-center ${LAYOUT.guest.px}`}>
         <div className="max-w-site flex flex-1 flex-col gap-16 py-16">
           <ValuePropsSection />
           <ResearchPreviewSection />

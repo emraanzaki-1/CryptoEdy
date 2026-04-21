@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { CourseCard } from '@/components/learn/course-card'
 import { ActiveCourseCard } from '@/components/learn/active-course-card'
+import { Title } from '@/components/ui/typography'
 import { EmptyState } from '@/components/common/empty-state'
 import { cn } from '@/lib/utils'
 
@@ -46,7 +47,7 @@ export function CoursesClient({ courses, enrollmentMap }: CoursesClientProps) {
       {activeCourses.length > 0 && (
         <section className="mb-16">
           <div className="mb-8 flex items-center justify-between">
-            <h2 className="text-on-surface text-xl font-bold tracking-[-0.04em]">Active Courses</h2>
+            <Title>Active Courses</Title>
           </div>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {activeCourses.map((course) => {
@@ -77,7 +78,7 @@ export function CoursesClient({ courses, enrollmentMap }: CoursesClientProps) {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={cn(
-                  '-mb-[17px] pb-4 text-sm font-bold transition-colors',
+                  'text-body-sm -mb-[17px] pb-4 font-bold transition-colors',
                   activeTab === tab
                     ? 'text-primary border-primary border-b-2'
                     : 'text-outline hover:text-on-surface'

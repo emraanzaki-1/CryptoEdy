@@ -8,6 +8,7 @@ import type { SerializedEditorState } from 'lexical'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 import { Badge } from '@/components/ui/badge'
+import { Heading } from '@/components/ui/typography'
 import { BookmarkButton } from '@/components/feed/bookmark-button'
 import { ShareButton } from '@/components/article/share-button'
 import { PaywallGate } from '@/components/article/paywall-gate'
@@ -150,14 +151,16 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         <header className="mb-10">
           <div className="mb-6 flex items-center gap-3">
             {post.isProOnly && <Badge variant="pro">PRO</Badge>}
-            <span className="text-primary text-sm font-semibold tracking-[0.05em] uppercase">
-              {categoryName}
-            </span>
+            <span className="text-primary text-overline font-bold uppercase">{categoryName}</span>
           </div>
 
-          <h1 className="text-on-background text-headline-md md:text-headline-lg mb-6 font-black">
+          <Heading
+            as="h1"
+            size="md"
+            className="text-on-background md:text-headline-lg mb-6 font-black"
+          >
             {post.title as string}
-          </h1>
+          </Heading>
 
           <div className="mb-6 flex flex-wrap items-center justify-between gap-6">
             <div className="flex items-center gap-4">
@@ -166,7 +169,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
               </div>
               <div>
                 <div className="text-on-background font-bold">{author}</div>
-                <div className="text-outline mt-1 flex items-center gap-3 text-sm">
+                <div className="text-outline text-body-sm mt-1 flex items-center gap-3">
                   <span>
                     {post.publishedAt ? formatDate(post.publishedAt as string) : 'Unpublished'}
                   </span>
@@ -204,18 +207,18 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
 
         {/* The Hook */}
         {post.excerpt && (
-          <p className="border-primary text-on-background md:text-subtitle mb-10 border-l-4 py-2 pl-6 text-xl leading-relaxed font-medium">
+          <p className="border-primary text-on-background md:text-subtitle text-title mb-10 border-l-4 py-2 pl-6 font-medium">
             {post.excerpt as string}
           </p>
         )}
 
         {/* Content */}
         {isLocked ? (
-          <section className="article-body text-on-surface-variant max-w-none text-base leading-[1.6]">
+          <section className="article-body text-on-surface-variant text-body-lg max-w-none">
             <PaywallGate isAuthenticated={!!session?.user} />
           </section>
         ) : (
-          <section className="article-body text-on-surface-variant max-w-none text-base leading-[1.6]">
+          <section className="article-body text-on-surface-variant text-body-lg max-w-none">
             <RichText data={post.content as SerializedEditorState} converters={jsxConverters} />
           </section>
         )}
@@ -228,7 +231,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
                 <Link
                   key={tag.slug}
                   href={`/tag/${tag.slug}`}
-                  className="text-primary hover:bg-primary/10 rounded-full px-3 py-1 text-sm font-medium transition-colors"
+                  className="text-primary hover:bg-primary/10 text-body-sm rounded-full px-3 py-1 font-medium transition-colors"
                 >
                   #{tag.name}
                 </Link>

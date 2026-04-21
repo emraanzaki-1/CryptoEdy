@@ -100,7 +100,7 @@ export function EnrollButton({
       >
         {isLoading ? 'Enrolling...' : 'Enroll Now'}
       </Button>
-      {error && <p className="text-error text-sm">{error}</p>}
+      {error && <p className="text-error text-body-sm">{error}</p>}
     </div>
   )
 }

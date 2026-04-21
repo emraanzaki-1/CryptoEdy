@@ -5,6 +5,7 @@ import { signOut } from 'next-auth/react'
 import { AlertTriangle } from 'lucide-react'
 import { deleteAccount } from '@/lib/profile/actions'
 import { Button } from '@/components/ui/button'
+import { FormInput } from '@/components/ui/form-field'
 
 interface DangerZoneProps {
   userEmail?: string
@@ -32,8 +33,8 @@ export function DangerZone({ userEmail }: DangerZoneProps) {
 
   return (
     <div className="border-error/20 bg-error-container/20 mt-12 rounded-3xl border p-8">
-      <h3 className="text-error mb-2 text-base font-bold">Danger Zone</h3>
-      <p className="text-on-surface-variant mb-6 text-base">
+      <h3 className="text-error text-body-lg mb-2 font-bold">Danger Zone</h3>
+      <p className="text-on-surface-variant text-body-lg mb-6">
         Permanently delete your account and all associated data. This action cannot be undone.
       </p>
 
@@ -41,7 +42,7 @@ export function DangerZone({ userEmail }: DangerZoneProps) {
         <Button
           variant="danger"
           onClick={() => setConfirming(true)}
-          className="rounded-full px-6 py-3 text-sm font-bold"
+          className="text-body-sm rounded-full px-6 py-3 font-bold"
         >
           Delete account
         </Button>
@@ -49,7 +50,7 @@ export function DangerZone({ userEmail }: DangerZoneProps) {
         <div className="space-y-4">
           <div className="bg-error/10 flex items-start gap-3 rounded-2xl p-4">
             <AlertTriangle className="text-error mt-0.5 size-5 shrink-0" />
-            <div className="text-sm">
+            <div className="text-body-sm">
               <p className="text-on-surface font-semibold">Are you absolutely sure?</p>
               <p className="text-on-surface-variant mt-1">
                 Type <span className="text-error font-semibold">{userEmail || 'your email'}</span>{' '}
@@ -58,18 +59,18 @@ export function DangerZone({ userEmail }: DangerZoneProps) {
             </div>
           </div>
 
-          <input
+          <FormInput
             type="email"
+            variant="danger"
             value={confirmEmail}
             onChange={(e) => {
               setConfirmEmail(e.target.value)
               setError(null)
             }}
             placeholder="Type your email to confirm"
-            className="border-error/30 text-on-surface placeholder:text-outline focus:border-error focus:ring-error w-full rounded-2xl border bg-transparent px-4 py-3.5 text-base transition-all focus:ring-2"
           />
 
-          {error && <p className="text-error text-sm font-medium">{error}</p>}
+          {error && <p className="text-error text-body-sm font-medium">{error}</p>}
 
           <div className="flex gap-3">
             <Button
@@ -80,7 +81,7 @@ export function DangerZone({ userEmail }: DangerZoneProps) {
                 setError(null)
               }}
               disabled={deleting}
-              className="rounded-full px-6 py-3 text-sm font-bold"
+              className="text-body-sm rounded-full px-6 py-3 font-bold"
             >
               Cancel
             </Button>
@@ -89,7 +90,7 @@ export function DangerZone({ userEmail }: DangerZoneProps) {
               onClick={handleDelete}
               disabled={deleting || !confirmEmail.trim()}
               loading={deleting}
-              className="rounded-full px-6 py-3 text-sm font-bold"
+              className="text-body-sm rounded-full px-6 py-3 font-bold"
             >
               {deleting ? 'Deleting…' : 'Permanently delete'}
             </Button>

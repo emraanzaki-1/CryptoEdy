@@ -57,7 +57,7 @@ export function MarkCompleteButton({
 
   if (isCompleted) {
     return (
-      <div className="bg-secondary/10 text-secondary flex w-full items-center justify-center gap-2 rounded-xl py-6 text-lg font-bold">
+      <div className="bg-secondary/10 text-secondary text-subtitle flex w-full items-center justify-center gap-2 rounded-xl py-6 font-bold">
         <CheckCircle2 className="h-5 w-5" />
         Completed
       </div>
@@ -71,11 +71,11 @@ export function MarkCompleteButton({
         variant="gradient"
         size="xxl"
         loading={isLoading}
-        className="w-full text-lg"
+        className="text-subtitle w-full"
       >
         {isLoading ? 'Saving...' : 'Mark as Complete'}
       </Button>
-      {error && <p className="text-error text-center text-sm">{error}</p>}
+      {error && <p className="text-error text-body-sm text-center">{error}</p>}
     </div>
   )
 }
