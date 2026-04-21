@@ -40,8 +40,9 @@ async function fetchNavCategories(): Promise<NavCategory[]> {
     const c = child as unknown as {
       name: string
       slug: string
-      parent: { id: string | number; slug: string } | string | number
+      parent: { id: string | number; slug: string } | string | number | null
     }
+    if (!c.parent) continue
     const parentId = typeof c.parent === 'object' ? c.parent.id : c.parent
 
     if (!childrenByParent.has(parentId)) {
