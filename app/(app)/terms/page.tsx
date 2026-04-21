@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Gavel, ShieldCheck, Globe, CircleX, CircleCheck, TriangleAlert } from 'lucide-react'
 import { GuestPage } from '@/components/layouts/guest-shell'
+import { getNavCategories } from '@/lib/categories/getCategories'
 import { Card } from '@/components/ui/card'
 import { SidebarNav } from '@/components/common/sidebar-nav'
 import { Heading, Title } from '@/components/ui/typography'
@@ -19,9 +20,11 @@ const sidebarLinks = [
   { id: 'liability', num: '05', label: 'Disclaimers' },
 ]
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const navCategories = await getNavCategories()
+
   return (
-    <GuestPage>
+    <GuestPage navCategories={navCategories}>
       {/* ── Hero Header ── */}
       <header className="mb-20">
         <div className="bg-surface-container text-primary text-overline mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-bold uppercase">

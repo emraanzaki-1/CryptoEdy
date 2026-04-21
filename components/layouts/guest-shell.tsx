@@ -1,19 +1,18 @@
 import { GuestNav } from '@/components/layouts/guest-nav'
 import { Footer } from '@/components/layouts/footer'
-import { getNavCategories } from '@/lib/categories/getCategories'
 import { LAYOUT } from '@/lib/config/layout'
 import { cn } from '@/lib/utils'
+import type { NavCategory } from '@/lib/categories/getCategories'
 
 interface GuestShellProps {
   children: React.ReactNode
   /** Additional className on the <main> element */
   className?: string
+  /** Pass navCategories from a server-component parent. Omit for error/404 pages (graceful degradation). */
+  navCategories?: NavCategory[]
 }
 
-export async function GuestShell({ children, className }: GuestShellProps) {
-  // getNavCategories is cached (60s revalidate) — no extra DB hit when called alongside other layouts
-  const navCategories = await getNavCategories()
-
+export function GuestShell({ children, className, navCategories = [] }: GuestShellProps) {
   return (
     <div className="bg-surface relative flex min-h-screen w-full flex-col overflow-x-clip">
       <div className="bg-surface-container-highest/80 sticky top-0 z-50 w-full backdrop-blur-md">
@@ -34,12 +33,16 @@ export async function GuestShell({ children, className }: GuestShellProps) {
 interface GuestPageProps {
   children: React.ReactNode
   className?: string
+  navCategories?: NavCategory[]
 }
 
 /** Wraps children in `max-w-site` + standard vertical padding. */
-export async function GuestPage({ children, className }: GuestPageProps) {
+export function GuestPage({ children, className, navCategories }: GuestPageProps) {
   return (
-    <GuestShell className={cn(LAYOUT.guest.container, 'w-full', LAYOUT.guest.pagePy, className)}>
+    <GuestShell
+      className={cn(LAYOUT.guest.container, 'w-full', LAYOUT.guest.pagePy, className)}
+      navCategories={navCategories}
+    >
       {children}
     </GuestShell>
   )

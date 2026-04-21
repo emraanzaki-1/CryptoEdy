@@ -12,7 +12,7 @@ export default async function BrowsableLayout({ children }: { children: React.Re
   // Guest — show GuestShell (landing-style nav with Sign In / Join Now)
   if (!session?.user) {
     return (
-      <GuestShell>
+      <GuestShell navCategories={navCategories}>
         <div className={`${LAYOUT.guest.container} ${LAYOUT.guest.pagePy}`}>{children}</div>
       </GuestShell>
     )

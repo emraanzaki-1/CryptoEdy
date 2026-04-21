@@ -1,4 +1,5 @@
 import { GuestShell } from '@/components/layouts/guest-shell'
+import { getNavCategories } from '@/lib/categories/getCategories'
 import { LAYOUT } from '@/lib/config/layout'
 import { HeroSection } from '@/components/landing/hero-section'
 import { ValuePropsSection } from '@/components/landing/value-props-section'
@@ -8,9 +9,11 @@ import { PricingSection } from '@/components/landing/pricing-section'
 import { FAQSection } from '@/components/landing/faq-section'
 import { OnboardingPopup } from '@/components/landing/onboarding-popup'
 
-export default function Home() {
+export default async function Home() {
+  const navCategories = await getNavCategories()
+
   return (
-    <GuestShell>
+    <GuestShell navCategories={navCategories}>
       {/* Full-width hero */}
       <HeroSection />
 

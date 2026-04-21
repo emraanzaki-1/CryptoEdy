@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Database, Shield, Cookie, Scale, CircleCheck } from 'lucide-react'
 import { GuestPage } from '@/components/layouts/guest-shell'
+import { getNavCategories } from '@/lib/categories/getCategories'
 import { SidebarNav } from '@/components/common/sidebar-nav'
 import { Heading, Title } from '@/components/ui/typography'
 
@@ -16,9 +17,11 @@ const sidebarLinks = [
   { id: 'rights', num: '04', label: 'Your Rights' },
 ]
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const navCategories = await getNavCategories()
+
   return (
-    <GuestPage>
+    <GuestPage navCategories={navCategories}>
       {/* ── Hero Header ── */}
       <header className="mb-20">
         <div className="bg-surface-container text-primary text-overline mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-bold uppercase">

@@ -1,9 +1,12 @@
 import { GuestShell } from '@/components/layouts/guest-shell'
+import { getNavCategories } from '@/lib/categories/getCategories'
 import { ErrorContent } from '@/components/common/error-content'
 
-export default function NotFound() {
+export default async function NotFound() {
+  const navCategories = await getNavCategories()
+
   return (
-    <GuestShell>
+    <GuestShell navCategories={navCategories}>
       <ErrorContent
         code={404}
         title="PAGE NOT FOUND"
