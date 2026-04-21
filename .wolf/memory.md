@@ -18,11 +18,25 @@
   - Display responsive: `text-headline-lg md:text-display`
   - Heading responsive: lg→`text-headline md:text-headline-lg`, md→`text-headline md:text-headline-md`, default→`text-title md:text-headline`
 - Refactored `section-heading.tsx` to delegate to `Heading` with `responsive` prop
+
+## 2026-04-21 — Landing page CTA text color fix
+
+- Extended `twMerge` in `lib/utils.ts` with `extendTailwindMerge` to register all custom font-size tokens in the `font-size` classGroup — fixes `text-on-primary` being stripped by twMerge when combined with `text-body-sm`/`text-body-lg` from CVA
+- Added `hover:text-on-primary` to "Explore Free Analysis" button in `hero-section.tsx` to override outline variant's `hover:text-foreground`
 - Registered spacing tokens in `@theme inline`: section, section-x, section-x-md, section-gap, card, card-gap, grid-gap
 - Added `LAYOUT.spacing` object in `lib/config/layout.ts` with composed utility strings
 - Migrated landing sections to use `LAYOUT.spacing.section` etc.
 - Removed unused imports: `Link` from pricing-section, `cn` from course-card
 - All files lint clean, zero type errors
+
+## 2026-04-21 — Design system audit remediation (Pass 3)
+
+- Consumed spacing tokens: research-preview, track-record, faq, pricing cards/grids → `LAYOUT.spacing.{card,gridGap,cardGap}`
+- Added `text-micro` token (12px, line-height 1.4) in `@theme inline` for metadata/timestamps/helper text
+- Migrated 33 `text-xs` instances → `text-micro` across ~20 files; only badge.tsx base class retains `text-xs`
+- Converted hand-styled auth "Back to login" links → `ButtonLink variant="tonal" size="xxl"` in forgot-password + verify-email
+- Removed 6 unused `Link` imports (lesson, course, upgrade, paywall-gate, empty-state, enroll-button)
+- `npm run lint`: 0 errors, 0 warnings
 
 ## 2026-04-21 — Heading system consolidation
 

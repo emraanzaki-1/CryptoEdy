@@ -2580,6 +2580,30 @@
       "related_bugs": [],
       "occurrences": 3,
       "last_seen": "2026-04-21T09:20:13.448Z"
+    },
+    {
+      "id": "bug-045",
+      "timestamp": "2026-04-21T12:00:00.000Z",
+      "error_message": "CTA button text appears black instead of white — text-on-primary stripped by tailwind-merge",
+      "file": "lib/utils.ts",
+      "root_cause": "tailwind-merge v3 cannot distinguish custom font-size tokens (text-body-sm, text-body-lg) from custom text-color tokens (text-on-primary). CVA concatenates base (text-body-sm) + variant (text-on-primary) + size (text-body-lg) — twMerge treats all three as same text-* group and keeps only the last (text-body-lg), stripping the color. Text inherits text-foreground (dark) from body.",
+      "fix": "Extended twMerge via extendTailwindMerge to register all project font-size tokens (overline, label, body-sm, body, body-lg, subtitle, title, headline, headline-md, headline-lg, display) in the font-size classGroup so they no longer conflict with text-color utilities.",
+      "tags": ["tailwind-merge", "twMerge", "text-color", "font-size", "cva", "design-system"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T12:00:00.000Z"
+    },
+    {
+      "id": "bug-046",
+      "timestamp": "2026-04-21T12:00:00.000Z",
+      "error_message": "Explore Free Analysis button text blacks out on hover",
+      "file": "components/landing/hero-section.tsx",
+      "root_cause": "outline variant has hover:text-foreground which overrides the custom text-on-primary on hover. twMerge keeps the variant's hover:text-foreground because className's text-on-primary is static (not hover-prefixed).",
+      "fix": "Added hover:text-on-primary to the button className to override the variant's hover:text-foreground.",
+      "tags": ["hover", "text-color", "button-variant", "outline"],
+      "related_bugs": ["bug-045"],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T12:00:00.000Z"
     }
   ]
 }

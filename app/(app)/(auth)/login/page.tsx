@@ -99,7 +99,7 @@ function LoginForm() {
             labelAction={
               <Link
                 href="/forgot-password"
-                className="text-primary text-xs font-semibold hover:underline"
+                className="text-primary text-overline font-semibold hover:underline"
               >
                 Forgot password?
               </Link>

@@ -69,14 +69,14 @@ export function Footer() {
         </div>
 
         <div className="border-on-primary/20 flex flex-col gap-4 border-t pt-8">
-          <p className="text-on-primary-container text-xs leading-relaxed opacity-70">
+          <p className="text-on-primary-container text-overline leading-relaxed opacity-70">
             <strong>Disclaimer:</strong> The information provided by CryptoEdy is for educational
             and informational purposes only. It does not constitute financial, investment, or
             trading advice. Cryptocurrencies are highly volatile assets, and past performance is not
             indicative of future results. Always conduct your own due diligence before making
             investment decisions.
           </p>
-          <p className="text-on-primary-container text-xs opacity-60">
+          <p className="text-on-primary-container text-overline opacity-60">
             &copy; {new Date().getFullYear()} CryptoEdy Research. All rights reserved.
           </p>
         </div>
