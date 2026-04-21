@@ -47,7 +47,7 @@ export function ArticleCard({
       <article
         className={cn(
           'group border-outline-variant/[0.03] bg-surface-container-lowest relative flex w-full cursor-pointer overflow-hidden rounded-2xl border',
-          isList ? 'flex-col sm:flex-row' : 'flex-col',
+          isList ? 'flex-row' : 'flex-col',
           hero && !isList && 'md:flex-row'
         )}
       >
@@ -56,7 +56,7 @@ export function ArticleCard({
           className={cn(
             'bg-surface-container relative overflow-hidden',
             isList
-              ? 'aspect-[16/10] sm:aspect-auto sm:w-56 sm:shrink-0 md:w-64'
+              ? 'aspect-square w-28 shrink-0 sm:aspect-auto sm:w-56 md:w-64'
               : hero
                 ? 'aspect-[16/9] md:aspect-auto md:w-1/2 md:flex-shrink-0'
                 : 'aspect-[16/10]'
@@ -115,15 +115,19 @@ export function ArticleCard({
         {/* Content */}
         <div
           className={cn(
-            'flex flex-1 flex-col gap-3 p-6',
-            isList && 'justify-center',
+            'flex flex-1 flex-col gap-3',
+            isList ? 'justify-center p-3 sm:p-6' : 'p-6',
             hero && !isList && 'md:justify-center md:p-8'
           )}
         >
           <h3
             className={cn(
               'text-on-surface group-hover:text-primary font-bold transition-colors',
-              hero && !isList ? 'text-headline' : 'text-subtitle'
+              hero && !isList
+                ? 'text-headline'
+                : isList
+                  ? 'text-body-sm sm:text-subtitle line-clamp-2 font-bold sm:font-bold'
+                  : 'text-subtitle'
             )}
           >
             {title}
@@ -132,7 +136,11 @@ export function ArticleCard({
           <p
             className={cn(
               'text-on-surface-variant',
-              hero && !isList ? 'text-body-lg line-clamp-3' : 'text-body-sm line-clamp-2'
+              hero && !isList
+                ? 'text-body-lg line-clamp-3'
+                : isList
+                  ? 'text-body-sm line-clamp-2 hidden sm:block'
+                  : 'text-body-sm line-clamp-2'
             )}
           >
             {excerpt}

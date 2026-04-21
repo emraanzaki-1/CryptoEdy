@@ -226,7 +226,7 @@ export function TopAppBar({
         <button
           type="button"
           onClick={onMenuClick}
-          className="bg-surface-container text-on-surface hover:bg-surface-container-high border-outline-variant/15 flex size-10 cursor-pointer items-center justify-center rounded-full border transition-colors lg:hidden"
+          className="bg-surface-container text-on-surface hover:bg-surface-container-high border-outline-variant/15 flex aspect-square h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-colors lg:hidden"
           aria-label="Open menu"
         >
           <Menu className="size-5" />

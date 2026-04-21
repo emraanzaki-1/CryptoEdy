@@ -27,7 +27,7 @@ export function SettingsNav() {
   const pathname = usePathname()
 
   return (
-    <aside className="w-full shrink-0 lg:w-60">
+    <aside className="hidden shrink-0 lg:block lg:w-60">
       <div className="flex flex-col gap-8">
         {settingsGroups.map((group) => (
           <div key={group.label}>

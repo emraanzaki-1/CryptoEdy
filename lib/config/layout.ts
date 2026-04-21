@@ -23,7 +23,7 @@ export const LAYOUT = {
     /** Constrained container: max-width + auto-center + responsive padding */
     container: 'max-w-site mx-auto px-4 md:px-8',
     /** Vertical page padding for content pages */
-    pagePy: 'pt-16 pb-24',
+    pagePy: 'pt-10 pb-16 md:pt-16 md:pb-24',
   },
 
   /** Spacing tokens — section / card / control patterns */

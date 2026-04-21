@@ -221,7 +221,7 @@ export default function ProfileSettingsPage() {
 
         {/* Actions */}
         <section className="border-outline-variant/15 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:flex-row">
-          <div className="ml-auto flex w-full gap-4 sm:w-auto">
+          <div className="ml-auto flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
             <Button
               variant="ghost"
               size="lg"

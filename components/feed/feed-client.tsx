@@ -44,23 +44,23 @@ export function FeedClient({
   return (
     <div className="mx-auto flex w-full flex-col gap-8">
       {/* Header */}
-      <SectionHeading
-        subtitle="Curated financial intelligence and market analysis."
-        action={<ViewToggle view={view} onViewChange={setView} />}
-      >
+      <SectionHeading subtitle="Curated financial intelligence and market analysis.">
         Your feed
       </SectionHeading>
 
-      {/* Filters */}
-      <div className="flex flex-wrap gap-3">
-        <Link href="/feed">
-          <FilterChip label="All" active={activeFilter === 'All'} />
-        </Link>
-        {filters.map((filter) => (
-          <Link key={filter.slug} href={`/feed/${filter.slug}`}>
-            <FilterChip label={filter.label} active={activeFilter === filter.label} />
+      {/* Filters + View Toggle */}
+      <div className="flex items-center gap-3">
+        <div className="flex flex-1 flex-wrap gap-3">
+          <Link href="/feed">
+            <FilterChip label="All" active={activeFilter === 'All'} />
           </Link>
-        ))}
+          {filters.map((filter) => (
+            <Link key={filter.slug} href={`/feed/${filter.slug}`}>
+              <FilterChip label={filter.label} active={activeFilter === filter.label} />
+            </Link>
+          ))}
+        </div>
+        <ViewToggle view={view} onViewChange={setView} />
       </div>
 
       {/* Feed */}

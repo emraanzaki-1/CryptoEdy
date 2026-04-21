@@ -226,7 +226,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   let navIndex = 0
 
   return (
-    <div className="fixed inset-0 z-100 flex items-start justify-center p-4 pt-[12vh] md:p-12 md:pt-[15vh]">
+    <div className="fixed inset-0 z-100 flex items-start justify-center p-4 pt-[12dvh] md:p-12 md:pt-[15dvh]">
       {/* Backdrop */}
       <div className="bg-on-surface/40 absolute inset-0 backdrop-blur-md" onClick={onClose} />
 
@@ -254,7 +254,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         <div className="bg-outline-variant/10 h-px w-full" />
 
         {/* Scrollable content */}
-        <div ref={listRef} className="max-h-[60vh] overflow-y-auto py-4">
+        <div ref={listRef} className="max-h-[60dvh] overflow-y-auto overscroll-contain py-4">
           {showResults ? (
             /* ── Search Results ── */
             <>

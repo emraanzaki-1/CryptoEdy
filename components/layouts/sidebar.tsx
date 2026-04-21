@@ -17,7 +17,6 @@ import {
   PanelLeftClose,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { NavCategory } from '@/lib/categories/getCategories'
 
 const TOOLS_ITEMS = [
   { href: '/tools/market-direction', label: 'Market Direction', icon: BarChart2 },
@@ -34,10 +33,6 @@ const TOP_NAV = [
 interface SidebarProps {
   collapsed: boolean
   onToggle: () => void
-  /** When true, sidebar is rendered inside the mobile drawer overlay */
-  mobile?: boolean
-  /** Category nav items to show in mobile drawer */
-  navCategories?: NavCategory[]
 }
 
 /* ─── Hover slide-out panel for collapsed Tools ─────────────────────────── */
@@ -68,7 +63,7 @@ function ToolsSlideOut({ visible }: { visible: boolean }) {
   )
 }
 
-export function Sidebar({ collapsed, onToggle, mobile, navCategories }: SidebarProps) {
+export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   const pathname = usePathname()
   const [toolsOpen, setToolsOpen] = useState(false)
   const [toolsHover, setToolsHover] = useState(false)
@@ -88,7 +83,7 @@ export function Sidebar({ collapsed, onToggle, mobile, navCategories }: SidebarP
   return (
     <nav
       className={cn(
-        'bg-surface flex flex-shrink-0 flex-col transition-all duration-300',
+        'bg-surface flex shrink-0 flex-col transition-all duration-300',
         collapsed ? 'w-20 overflow-visible' : 'w-64 overflow-y-auto'
       )}
     >
@@ -113,7 +108,6 @@ export function Sidebar({ collapsed, onToggle, mobile, navCategories }: SidebarP
               key={item.href}
               href={item.href}
               title={collapsed ? item.label : undefined}
-              onClick={mobile ? onToggle : undefined}
               className={cn(
                 'flex items-center gap-3 rounded-lg px-3 py-3 transition-colors',
                 isActive
@@ -128,38 +122,6 @@ export function Sidebar({ collapsed, onToggle, mobile, navCategories }: SidebarP
             </Link>
           )
         })}
-
-        {/* Category nav — mobile only */}
-        {mobile && navCategories && navCategories.length > 0 && (
-          <>
-            <div className="border-outline-variant/15 my-2 border-t" />
-            {navCategories.map((cat) => (
-              <div key={cat.label}>
-                <p className="text-on-surface-variant text-overline mt-2 mb-1 px-3 font-bold uppercase">
-                  {cat.label}
-                </p>
-                {cat.items.map((item) => {
-                  const isActive = pathname.startsWith(item.href)
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={onToggle}
-                      className={cn(
-                        'text-body-sm flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors',
-                        isActive
-                          ? 'text-primary font-medium'
-                          : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  )
-                })}
-              </div>
-            ))}
-          </>
-        )}
 
         {/* Tools — expandable (expanded) or hover slide-out (collapsed) */}
         {collapsed ? (
@@ -211,7 +173,6 @@ export function Sidebar({ collapsed, onToggle, mobile, navCategories }: SidebarP
                     <Link
                       key={item.href}
                       href={item.href}
-                      onClick={mobile ? onToggle : undefined}
                       className={cn(
                         'text-body-sm flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors',
                         isActive
@@ -235,7 +196,6 @@ export function Sidebar({ collapsed, onToggle, mobile, navCategories }: SidebarP
         <Link
           href="/settings/profile"
           title={collapsed ? 'Settings' : undefined}
-          onClick={mobile ? onToggle : undefined}
           className={cn(
             'flex items-center gap-3 rounded-lg px-3 py-3 transition-colors',
             pathname.startsWith('/settings')

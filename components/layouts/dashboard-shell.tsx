@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import { TopAppBar } from '@/components/layouts/top-app-bar'
 import { Sidebar } from '@/components/layouts/sidebar'
+import { MobileNav } from '@/components/layouts/mobile-nav'
 import { SearchModal } from '@/components/common/search-modal'
 import { useSearchModal } from '@/lib/hooks/useSearchModal'
 import { LAYOUT } from '@/lib/config/layout'
@@ -41,20 +42,8 @@ export function DashboardShell({ user, navCategories, children }: DashboardShell
           <Sidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed((c) => !c)} />
         </div>
 
-        {/* Mobile sidebar drawer */}
-        {mobileOpen && (
-          <div className="fixed inset-0 z-40 lg:hidden">
-            <div className="bg-on-surface/40 absolute inset-0" onClick={closeMobile} />
-            <div className="bg-surface relative z-10 h-full w-64 overflow-y-auto shadow-lg">
-              <Sidebar
-                collapsed={false}
-                onToggle={closeMobile}
-                mobile
-                navCategories={navCategories}
-              />
-            </div>
-          </div>
-        )}
+        {/* Mobile full-screen nav */}
+        <MobileNav open={mobileOpen} onClose={closeMobile} navCategories={navCategories} />
 
         <main
           id="main-scroll"
