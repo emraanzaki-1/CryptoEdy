@@ -1463,3 +1463,17 @@ Files changed: `breadcrumb.tsx`, `article-card.tsx`, `top-app-bar.tsx`, `sidebar
 | —    | Updated components/layouts/guest-nav.tsx               | Drill-down links → /research/_, /analysis/_, added "All" items                  | ~80    |
 | —    | Updated components/layouts/footer.tsx                  | Links → /research/_, /analysis/_                                                | ~20    |
 | —    | Updated app/(app)/(browsable)/articles/[slug]/page.tsx | Added generateMetadata with OG/Twitter card from post title/excerpt/cover       | ~400   |
+
+## Session: 2026-04-21 03:29
+
+| Time  | Action                                                                                             | File(s)                                                           | Outcome              | ~Tokens |
+| ----- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------- | ------- |
+| 03:32 | Edited payload.config.ts                                                                           | modified for()                                                    | ~168                 |
+| 03:33 | Edited lib/db/index.ts                                                                             | added 1 condition(s)                                              | ~305                 |
+| 03:33 | Edited app/(app)/api/search/route.ts                                                               | reduced (-8 lines)                                                | ~48                  |
+| 03:33 | Edited app/(app)/api/search/route.ts                                                               | 3→3 lines                                                         | ~28                  |
+| 01:07 | fix: search_vector missing on courses/lessons + deduplicate pg Pool                                | payload.config.ts, lib/db/index.ts, app/(app)/api/search/route.ts | fixed — search works | ~3000   |
+| 03:35 | Session end: 4 writes across 3 files (payload.config.ts, index.ts, route.ts)                       | 10 reads                                                          | ~10205 tok           |
+| 03:36 | Edited lib/auth/config.ts                                                                          | modified adapter()                                                | ~92                  |
+| 03:36 | Edited lib/notifications/create.ts                                                                 | 12→10 lines                                                       | ~119                 |
+| 03:37 | Session end: 6 writes across 5 files (payload.config.ts, index.ts, route.ts, config.ts, create.ts) | 14 reads                                                          | ~14281 tok           |

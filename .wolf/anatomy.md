@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T19:36:15.264Z
-> Files: 312 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T22:06:43.092Z
+> Files: 303 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -18,7 +18,7 @@
 - `next.config.ts` — Next.js configuration (~89 tok)
 - `package-lock.json` — npm lock file (~168205 tok)
 - `package.json` — Node.js package manifest (~692 tok)
-- `payload.config.ts` — Declares filename (~1276 tok)
+- `payload.config.ts` — Declares filename (~1354 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~1022 tok)
 - `README.md` — Project documentation (~363 tok)
@@ -110,6 +110,14 @@
 
 - `layout.tsx` — BrowsableLayout — conditional GuestShell or DashboardShell (~400 tok)
 
+## app/(app)/(browsable)/analysis/
+
+- `page.tsx` — AnalysisPage — hub for analysis categories, dynamic metadata (~200 tok)
+
+## app/(app)/(browsable)/analysis/[slug]/
+
+- `page.tsx` — AnalysisChildPage — single analysis child category, dynamic metadata (~300 tok)
+
 ## app/(app)/(browsable)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
@@ -120,10 +128,6 @@
 - `loading.tsx` — FeedLoading (~282 tok)
 - `page.tsx` — FeedPage — passes isAuthenticated (~1280 tok)
 
-## app/(app)/(browsable)/tag/[slug]/
-
-- `page.tsx` — TagPage — passes isAuthenticated (~650 tok)
-
 ## app/(app)/(browsable)/research/
 
 - `page.tsx` — ResearchPage — hub for research categories, dynamic metadata (~200 tok)
@@ -132,13 +136,9 @@
 
 - `page.tsx` — ResearchChildPage — single research child category, dynamic metadata (~300 tok)
 
-## app/(app)/(browsable)/analysis/
+## app/(app)/(browsable)/tag/[slug]/
 
-- `page.tsx` — AnalysisPage — hub for analysis categories, dynamic metadata (~200 tok)
-
-## app/(app)/(browsable)/analysis/[slug]/
-
-- `page.tsx` — AnalysisChildPage — single analysis child category, dynamic metadata (~300 tok)
+- `page.tsx` — TagPage — passes isAuthenticated (~650 tok)
 
 ## app/(app)/(dashboard)/
 
@@ -228,7 +228,7 @@
 
 ## app/(app)/api/search/
 
-- `route.ts` — Course slug — present on lessons for routing to /learn/courses/[courseSlug]/[lessonSlug] (~2258 tok)
+- `route.ts` — Course slug — present on lessons for routing to /learn/courses/[courseSlug]/[lessonSlug] (~2227 tok)
 
 ## app/(app)/api/subscribe/
 
@@ -350,10 +350,10 @@
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~900 tok)
 - `article-card.tsx` — ArticleCard (~1487 tok)
 - `bookmark-button.tsx` — BookmarkButton — uses useState, useRouter (~686 tok)
+- `category-hub-client.tsx` — CategoryHubClient — shared client for Research/Analysis hubs (~900 tok)
 - `category-pill.tsx` — CategoryPill (~49 tok)
 - `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~276 tok)
 - `feed-client.tsx` — FeedClient (~1124 tok)
-- `category-hub-client.tsx` — CategoryHubClient — shared client for Research/Analysis hubs (~900 tok)
 - `tag-client.tsx` — TagClient (~809 tok)
 - `view-toggle.tsx` — ViewToggle (~433 tok)
 
@@ -494,7 +494,7 @@
 
 ## lib/auth/
 
-- `config.ts` — Exports authConfig (~1367 tok)
+- `config.ts` — Exports authConfig (~1436 tok)
 - `index.ts` (~42 tok)
 - `rate-limit.ts` — Maximum requests allowed within the window (~534 tok)
 - `referral.ts` — Generates a unique 12-character alphanumeric referral code (~116 tok)
@@ -508,8 +508,8 @@
 
 ## lib/categories/
 
-- `getCategories.ts` — Exports NavCategory, getNavCategories (~621 tok)
 - `categoryHub.tsx` — Shared server helpers: renderCategoryHub, renderCategoryChild, generateCategoryHubMetadata, generateCategoryChildMetadata (~1400 tok)
+- `getCategories.ts` — Exports NavCategory, getNavCategories (~621 tok)
 
 ## lib/config/
 
@@ -530,7 +530,7 @@
 
 ## lib/db/
 
-- `index.ts` — Use this in all server-side code (API routes, Server Components, middleware) (~231 tok)
+- `index.ts` — Raw pg Pool for queries that bypass Drizzle ORM (e.g. full-text search on Payload tables). (~305 tok)
 
 ## lib/db/schema/
 
@@ -572,7 +572,7 @@
 
 ## lib/notifications/
 
-- `create.ts` — Filter recipients by role. If omitted, all users receive it. (~1823 tok)
+- `create.ts` — Filter recipients by role. If omitted, all users receive it. (~2227 tok)
 - `events.ts` — Notification event handlers. (~1697 tok)
 - `preferences.ts` — All subtype definitions grouped by type — single source of truth. (~1459 tok)
 - `rate-limit.ts` — In-memory email rate limiter for notifications. (~317 tok)

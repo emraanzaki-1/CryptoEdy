@@ -50,7 +50,8 @@
 - **Dashboard responsive breakpoint:** `lg` (1024px) — sidebar visibility, padding transitions. Below `lg`, sidebar is hidden and replaced by a mobile drawer triggered from TopAppBar hamburger button.
 - **Guest responsive breakpoint:** `md` (768px) — nav links, padding doubles, content goes multi-column.
 - **Mobile sidebar:** `DashboardShell` manages `mobileOpen` state. Sidebar accepts `mobile` prop — when true, all nav links close the drawer on click. Hamburger button in `TopAppBar` via `onMenuClick` prop, hidden at `lg:hidden`.
-- **Payload + Drizzle same DB:** Payload uses `payload` schema, app uses `public` schema. Admin endpoints can query `public.users` via `getDb()` directly.
+- **Payload + Drizzle same DB:** Payload uses `payload` schema, app uses `public` schema. Admin endpoints can query `public.users` via `getDb()` directly. Raw SQL queries (e.g. full-text search) should use `getPool()` from `lib/db/index.ts` — NOT create their own `new Pool()`.
+- **Payload afterSchemaInit for custom columns:** Any column added manually to Payload tables (e.g. `search_vector` tsvector) MUST be declared in `afterSchemaInit` in `payload.config.ts`. Without this, Payload schema sync drops the column. Currently declared for: posts, courses, lessons.
 - **Category hierarchy:** Categories use parent-child self-referencing relationship (not a `type` enum). 3 parents (Research, Analysis, Education) with 12 children. Posts.category is a relationship to categories, not a select. Frontend resolves names via `depth: 2` on Payload queries. Feed filter pills match on `parentCategory` (the parent name like "Research"), not the child name.
 - **Category ordering:** Categories have a `weight` field (number, default 0) for ordering. `defaultSort: 'weight'` on the collection config. Weights are independent per hierarchy level (parents 0–2, children 0–N under each parent). Drag-and-drop reorder in admin auto-saves via `POST /api/categories-reorder` endpoint.
 - **Payload 3.x collection-level list view override:** Use `admin.components.views.list.Component` on the CollectionConfig (NOT a global admin view). This replaces only the list view while keeping standard Payload edit/create forms. The component receives `ListViewServerProps` (with `payload`, `user`, `i18n`, `locale`, `permissions`, `visibleEntities` directly on props). Do NOT use `AdminViewServerProps` (which has `initPageResult`) — that's only for global views. Do NOT wrap in `DefaultTemplate` — Payload already provides the admin shell for list views.
@@ -58,6 +59,9 @@
 ## Do-Not-Repeat
 
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->
+
+- [2026-04-22] Do NOT add custom columns to Payload tables via manual SQL scripts alone. They MUST also be declared in `afterSchemaInit` in `payload.config.ts`, or Payload will drop them on next schema sync.
+- [2026-04-22] Do NOT create standalone `new Pool()` instances for raw SQL queries. Use `getPool()` from `lib/db/index.ts` to share the singleton connection pool across Drizzle ORM and raw queries.
 
 - [2026-04-21] Do NOT create parallel form field/input implementations in different folders. All form primitives live in `components/ui/form-field.tsx`. Settings, auth, and contact pages all import from the same file.
 - [2026-04-21] Do NOT use raw `<input>` for text/email/password fields outside `form-field.tsx`. Use `FormInput` with the appropriate variant (`tonal`, `outlined`, `ghost`, `danger`). Raw `<input>` is only acceptable for structural chrome (sr-only, hidden file, range, OTP cells).

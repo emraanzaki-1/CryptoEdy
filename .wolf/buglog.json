@@ -2688,6 +2688,85 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-21T19:36:09.466Z"
+    },
+    {
+      "id": "bug-225",
+      "timestamp": "2026-04-21T22:02:50.413Z",
+      "error_message": "Type error",
+      "file": "payload.config.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": ["auto-detected", "type-fix", "ts"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T22:02:50.413Z"
+    },
+    {
+      "id": "bug-226",
+      "timestamp": "2026-04-21T22:03:27.384Z",
+      "error_message": "Significant refactor of ",
+      "file": "lib/db/index.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 25→37 lines (2 removed)",
+      "tags": ["auto-detected", "refactor", "ts"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T22:03:27.384Z"
+    },
+    {
+      "id": "bug-227",
+      "timestamp": "2026-04-21T22:03:46.264Z",
+      "error_message": "Significant refactor of ",
+      "file": "app/(app)/api/search/route.ts",
+      "root_cause": "8 lines replaced/restructured",
+      "fix": "Rewrote 14→6 lines (8 removed)",
+      "tags": ["auto-detected", "refactor", "ts"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T22:03:46.264Z"
+    },
+    {
+      "id": "bug-228",
+      "timestamp": "2026-04-21T22:03:52.240Z",
+      "error_message": "Wrong reference: Posts should be shared",
+      "file": "app/(app)/api/search/route.ts",
+      "root_cause": "Used \"Posts\" instead of \"shared\"",
+      "fix": "Changed Posts → shared",
+      "tags": ["auto-detected", "wrong-reference", "ts"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T22:03:52.240Z"
+    },
+    {
+      "id": "bug-229",
+      "timestamp": "2026-04-21T22:04:31.459Z",
+      "error_message": "column l.search_vector does not exist — GET /api/search?q=ethereum 500",
+      "file": "payload.config.ts, app/(app)/api/search/route.ts",
+      "root_cause": "afterSchemaInit in payload.config.ts only declared search_vector on posts table, not courses or lessons. Payload schema sync dropped the manually-added columns from courses/lessons. Also, search route used a standalone pg.Pool instead of the shared one.",
+      "fix": "1) Extended afterSchemaInit to loop over posts/courses/lessons tables. 2) Re-ran scripts/add-course-search-vectors.sql. 3) Extracted shared getPool() from lib/db/index.ts and imported in search route instead of creating a duplicate pool.",
+      "tags": [
+        "search",
+        "payload",
+        "database",
+        "search_vector",
+        "full-text-search",
+        "connection-pool"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T22:04:31.459Z"
+    },
+    {
+      "id": "bug-230",
+      "timestamp": "2026-04-21T22:06:37.134Z",
+      "error_message": "Type error",
+      "file": "lib/auth/config.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": ["auto-detected", "type-fix", "ts"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T22:06:37.134Z"
     }
   ]
 }
