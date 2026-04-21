@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Gavel, ShieldCheck, Globe, CircleX, CircleCheck, TriangleAlert } from 'lucide-react'
 import { GuestPage } from '@/components/layouts/guest-shell'
 import { Card } from '@/components/ui/card'
@@ -97,8 +98,8 @@ export default function TermsPage() {
           {/* S3 — Subscription & Payments */}
           <section id="subscription" className="scroll-mt-32">
             <Heading className="mb-8 flex items-baseline gap-4 font-black">
-              <span className="text-primary/30 text-headline-md italic">03</span>
-              Subscription &amp; Payments
+              <span className="text-primary text-headline-md italic opacity-30">03</span>
+              <span className="text-on-surface">Subscription &amp; Payments</span>
             </Heading>
             <div className="bg-inverse-surface text-inverse-on-surface relative overflow-hidden rounded-xl p-8 shadow-2xl md:p-12">
               <div className="relative z-10">
@@ -174,7 +175,15 @@ export default function TermsPage() {
                   </div>
                 </div>
               </div>
-              <div className="bg-surface-container aspect-square rounded-xl" />
+              <div className="flex aspect-square items-center justify-center rounded-xl">
+                <Image
+                  src="/illustrations/content-rights.svg"
+                  alt="Private files illustration"
+                  width={400}
+                  height={372}
+                  className="h-auto w-full max-w-sm"
+                />
+              </div>
             </div>
           </section>
 

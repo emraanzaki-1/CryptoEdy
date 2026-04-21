@@ -122,7 +122,7 @@ function LoginForm() {
           loading={isSubmitting}
           className="mt-2 w-full"
         >
-          {isSubmitting ? 'Signing in...' : 'Access Gallery'}
+          {isSubmitting ? 'Signing in...' : 'Login'}
         </Button>
       </form>
 
