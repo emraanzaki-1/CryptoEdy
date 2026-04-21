@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDb } from '@/lib/db'
-import { users, notificationPreferences } from '@/lib/db/schema'
+import { users } from '@/lib/db/schema'
 import { eq, or } from 'drizzle-orm'
 import bcrypt from 'bcryptjs'
 import { generateReferralCode, generateSecureToken } from '@/lib/auth/referral'
 import { sendVerificationEmail } from '@/lib/email/send'
 import { rateLimit } from '@/lib/auth/rate-limit'
+import { seedDefaultPreferences } from '@/lib/notifications/preferences'
 
 export async function POST(req: NextRequest) {
   const blocked = rateLimit(req, { maxRequests: 5, windowSec: 60 })
@@ -56,8 +57,8 @@ export async function POST(req: NextRequest) {
       })
       .returning({ id: users.id, email: users.email })
 
-    // Seed default notification preferences
-    await getDb().insert(notificationPreferences).values({ userId: user.id }).onConflictDoNothing()
+    // Seed default notification preferences (9 rows — one per subtype)
+    await seedDefaultPreferences(user.id)
 
     await sendVerificationEmail(user.email, verificationToken)
 

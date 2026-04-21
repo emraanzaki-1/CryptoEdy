@@ -1339,33 +1339,63 @@ Files changed: `breadcrumb.tsx`, `article-card.tsx`, `top-app-bar.tsx`, `sidebar
 
 ## Session: 2026-04-21 18:15
 
-| Time  | Action                                                        | File(s)              | Outcome | ~Tokens |
-| ----- | ------------------------------------------------------------- | -------------------- | ------- | ------- |
-| 18:21 | Created ../../../.claude/plans/agile-percolating-moonbeam.md  | —                    | ~2398   |
-| 18:29 | Created lib/db/schema/notifications.ts                        | —                    | ~497    |
-| 18:30 | Created lib/db/schema/notification-preferences.ts             | —                    | ~298    |
-| 18:30 | Edited lib/db/schema/index.ts                                 | 7→8 lines            | ~76     |
-| 18:30 | Edited app/(app)/api/auth/register/route.ts                   | added 1 import(s)    | ~130    |
-| 18:30 | Edited app/(app)/api/auth/register/route.ts                   | 2→2 lines            | ~33     |
-| 18:31 | Created lib/notifications/preferences.ts                      | —                    | ~1474   |
-| 18:32 | Created drizzle/0006_notification_engine.sql                  | —                    | ~921    |
-| 18:32 | Edited drizzle/meta/\_journal.json                            | expanded (+7 lines)  | ~88     |
-| 18:32 | Created app/(app)/api/user/notification-preferences/route.ts  | —                    | ~1038   |
-| 18:33 | Created lib/notifications/rate-limit.ts                       | —                    | ~317    |
-| 18:33 | Created lib/email/templates/notification.ts                   | —                    | ~187    |
-| 18:33 | Edited lib/email/send.ts                                      | added 1 import(s)    | ~75     |
-| 18:33 | Edited lib/email/send.ts                                      | added 1 condition(s) | ~286    |
-| 18:34 | Created lib/notifications/create.ts                           | —                    | ~1852   |
-| 18:35 | Created lib/notifications/events.ts                           | —                    | ~1696   |
-| 18:40 | Created app/(app)/api/notifications/route.ts                  | —                    | ~638    |
-| 18:41 | Created app/(app)/api/notifications/unread-count/route.ts     | —                    | ~371    |
-| 18:41 | Created app/(app)/api/notifications/read-all/route.ts         | —                    | ~416    |
-| 18:41 | Created app/(app)/api/notifications/[id]/read/route.ts        | —                    | ~330    |
-| 18:43 | Created lib/hooks/useNotifications.ts                         | —                    | ~1463   |
-| 18:43 | Created components/notifications/notification-dropdown.tsx    | —                    | ~2419   |
-| 18:44 | Edited components/layouts/top-app-bar.tsx                     | added 2 import(s)    | ~115    |
-| 18:44 | Edited components/layouts/top-app-bar.tsx                     | removed 90 lines     | ~23     |
-| 18:45 | Edited components/layouts/top-app-bar.tsx                     | modified TopAppBar() | ~85     |
-| 18:45 | Edited components/layouts/top-app-bar.tsx                     | 14→18 lines          | ~253    |
-| 18:47 | Created components/ui/toggle-switch.tsx                       | —                    | ~444    |
-| 18:47 | Created app/(app)/(dashboard)/settings/notifications/page.tsx | —                    | ~2824   |
+| Time  | Action                                                        | File(s)                          | Outcome | ~Tokens |
+| ----- | ------------------------------------------------------------- | -------------------------------- | ------- | ------- |
+| 18:21 | Created ../../../.claude/plans/agile-percolating-moonbeam.md  | —                                | ~2398   |
+| 18:29 | Created lib/db/schema/notifications.ts                        | —                                | ~497    |
+| 18:30 | Created lib/db/schema/notification-preferences.ts             | —                                | ~298    |
+| 18:30 | Edited lib/db/schema/index.ts                                 | 7→8 lines                        | ~76     |
+| 18:30 | Edited app/(app)/api/auth/register/route.ts                   | added 1 import(s)                | ~130    |
+| 18:30 | Edited app/(app)/api/auth/register/route.ts                   | 2→2 lines                        | ~33     |
+| 18:31 | Created lib/notifications/preferences.ts                      | —                                | ~1474   |
+| 18:32 | Created drizzle/0006_notification_engine.sql                  | —                                | ~921    |
+| 18:32 | Edited drizzle/meta/\_journal.json                            | expanded (+7 lines)              | ~88     |
+| 18:32 | Created app/(app)/api/user/notification-preferences/route.ts  | —                                | ~1038   |
+| 18:33 | Created lib/notifications/rate-limit.ts                       | —                                | ~317    |
+| 18:33 | Created lib/email/templates/notification.ts                   | —                                | ~187    |
+| 18:33 | Edited lib/email/send.ts                                      | added 1 import(s)                | ~75     |
+| 18:33 | Edited lib/email/send.ts                                      | added 1 condition(s)             | ~286    |
+| 18:34 | Created lib/notifications/create.ts                           | —                                | ~1852   |
+| 18:35 | Created lib/notifications/events.ts                           | —                                | ~1696   |
+| 18:40 | Created app/(app)/api/notifications/route.ts                  | —                                | ~638    |
+| 18:41 | Created app/(app)/api/notifications/unread-count/route.ts     | —                                | ~371    |
+| 18:41 | Created app/(app)/api/notifications/read-all/route.ts         | —                                | ~416    |
+| 18:41 | Created app/(app)/api/notifications/[id]/read/route.ts        | —                                | ~330    |
+| 18:43 | Created lib/hooks/useNotifications.ts                         | —                                | ~1463   |
+| 18:43 | Created components/notifications/notification-dropdown.tsx    | —                                | ~2419   |
+| 18:44 | Edited components/layouts/top-app-bar.tsx                     | added 2 import(s)                | ~115    |
+| 18:44 | Edited components/layouts/top-app-bar.tsx                     | removed 90 lines                 | ~23     |
+| 18:45 | Edited components/layouts/top-app-bar.tsx                     | modified TopAppBar()             | ~85     |
+| 18:45 | Edited components/layouts/top-app-bar.tsx                     | 14→18 lines                      | ~253    |
+| 18:47 | Created components/ui/toggle-switch.tsx                       | —                                | ~444    |
+| 18:47 | Created app/(app)/(dashboard)/settings/notifications/page.tsx | —                                | ~2824   |
+| 22:59 | Edited lib/hooks/useNotifications.ts                          | expanded (+6 lines)              | ~136    |
+| 22:59 | Edited lib/notifications/create.ts                            | modified while()                 | ~14     |
+| 22:59 | Edited app/(app)/api/notifications/[id]/read/route.ts         | 11→11 lines                      | ~72     |
+| 23:00 | Edited app/(app)/api/notifications/unread-count/route.ts      | inline fix                       | ~13     |
+| 23:00 | Edited lib/hooks/useNotifications.ts                          | modified useNotifications()      | ~191    |
+| 23:00 | Edited lib/hooks/useNotifications.ts                          | setIsLoading() → setFetchedTab() | ~102    |
+
+## Sprint 10 — Notification Engine (2026-04-21)
+
+| Time  | Description                                                                                                                               | File(s)                                                                  | Outcome          | ~Tokens |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------- | ------- |
+| 15:10 | Phase 1: Created notifications table schema with type/subtype enums, indexes                                                              | lib/db/schema/notifications.ts                                           | Created          | ~500    |
+| 15:12 | Phase 1: Redesigned notification_preferences from flat booleans to per-subtype rows                                                       | lib/db/schema/notification-preferences.ts                                | Rewritten        | ~300    |
+| 15:14 | Phase 1: Created migration 0006, updated journal, schema index, registration                                                              | drizzle/0006_notification_engine.sql, register/route.ts, schema/index.ts | Created+Modified | ~400    |
+| 15:18 | Phase 2: Created email rate limiter (in-memory, 1/user/hour/subtype)                                                                      | lib/notifications/rate-limit.ts                                          | Created          | ~200    |
+| 15:19 | Phase 2: Created notification email template                                                                                              | lib/email/templates/notification.ts                                      | Created          | ~150    |
+| 15:20 | Phase 2: Added sendNotificationEmail to email send module                                                                                 | lib/email/send.ts                                                        | Modified         | ~200    |
+| 15:22 | Phase 2: Created notification service (createNotification + broadcastNotification)                                                        | lib/notifications/create.ts                                              | Created          | ~1200   |
+| 15:24 | Phase 2: Rewrote preferences service for new per-subtype model                                                                            | lib/notifications/preferences.ts                                         | Rewritten        | ~800    |
+| 15:28 | Phase 3: Replaced event stubs with real dispatch (6 event handlers)                                                                       | lib/notifications/events.ts                                              | Rewritten        | ~900    |
+| 15:32 | Phase 4: Created notification API routes (GET paginated, unread-count, read-all, [id]/read)                                               | app/(app)/api/notifications/                                             | Created 4 routes | ~800    |
+| 15:34 | Phase 4: Rewrote notification preferences API (GET/PATCH/PUT)                                                                             | app/(app)/api/user/notification-preferences/route.ts                     | Rewritten        | ~500    |
+| 15:38 | Phase 5: Created useNotifications hook (polling, optimistic mark-as-read)                                                                 | lib/hooks/useNotifications.ts                                            | Created          | ~1000   |
+| 15:42 | Phase 5: Created notification dropdown component with tabs, mark-as-read, empty state                                                     | components/notifications/notification-dropdown.tsx                       | Created          | ~1500   |
+| 15:45 | Phase 5: Updated top-app-bar — removed mock data, wired real dropdown + unread badge                                                      | components/layouts/top-app-bar.tsx                                       | Modified         | ~500    |
+| 15:48 | Phase 6: Added indeterminate prop to ToggleSwitch                                                                                         | components/ui/toggle-switch.tsx                                          | Modified         | ~300    |
+| 15:50 | Phase 6: Redesigned notification settings page (4 categories, master toggles)                                                             | app/(app)/(dashboard)/settings/notifications/page.tsx                    | Rewritten        | ~1500   |
+| 15:52 | Fixed lint errors: derived loading state, removed unused vars                                                                             | useNotifications.ts, create.ts, unread-count route, [id]/read route      | Fixed            | ~100    |
+| 23:02 | Session end: 34 writes across 18 files (agile-percolating-moonbeam.md, notifications.ts, notification-preferences.ts, index.ts, route.ts) | 24 reads                                                                 | ~42050 tok       |
+| 23:05 | Session end: 34 writes across 18 files (agile-percolating-moonbeam.md, notifications.ts, notification-preferences.ts, index.ts, route.ts) | 24 reads                                                                 | ~42050 tok       |

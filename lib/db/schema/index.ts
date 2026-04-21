@@ -1,5 +1,6 @@
 export * from './users'
 export * from './sessions'
+export * from './notifications'
 export * from './notification-preferences'
 export * from './bookmarks'
 export * from './course-enrollments'

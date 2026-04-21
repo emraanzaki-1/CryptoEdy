@@ -1,6 +1,7 @@
 import { getResend, FROM_EMAIL, isEmailConfigured } from './index'
 import { verifyEmailTemplate } from './templates/verify-email'
 import { resetPasswordTemplate } from './templates/reset-password'
+import { notificationTemplate } from './templates/notification'
 
 /**
  * In development, redirect all outbound email to Resend's safe test addresses.
@@ -43,5 +44,31 @@ export async function sendPasswordResetEmail(email: string, token: string): Prom
     to: resolveRecipient(email, 'reset'),
     subject: 'Reset your CryptoEdy password',
     html: resetPasswordTemplate({ resetUrl }),
+  })
+}
+
+export async function sendNotificationEmail({
+  email,
+  title,
+  body,
+  link,
+  subtype,
+}: {
+  email: string
+  title: string
+  body: string
+  link?: string
+  subtype: string
+}): Promise<void> {
+  if (!isEmailConfigured()) {
+    console.warn(`[email] RESEND_API_KEY not set. Notification: ${title}`)
+    return
+  }
+
+  await getResend().emails.send({
+    from: FROM_EMAIL,
+    to: resolveRecipient(email, `notif-${subtype}`),
+    subject: title,
+    html: notificationTemplate({ title, body, link }),
   })
 }

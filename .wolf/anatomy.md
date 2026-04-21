@@ -1,7 +1,11 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T09:29:36.657Z
-> Files: 301 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T17:30:47.719Z
+> Files: 313 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../../../.claude/plans/
+
+- `agile-percolating-moonbeam.md` — Notification Engine — Sprint 10 Implementation Plan (~2248 tok)
 
 ## ./
 
@@ -167,7 +171,7 @@
 
 ## app/(app)/(dashboard)/settings/notifications/
 
-- `page.tsx` — NotificationItem — uses useState, useEffect, useCallback (~1675 tok)
+- `page.tsx` — CATEGORIES (~2824 tok)
 
 ## app/(app)/(dashboard)/settings/plans/
 
@@ -219,7 +223,7 @@
 
 ## app/(app)/api/auth/register/
 
-- `route.ts` — Next.js API route: POST (~723 tok)
+- `route.ts` — Next.js API route: POST (~728 tok)
 
 ## app/(app)/api/auth/reset-password/
 
@@ -241,6 +245,22 @@
 
 - `route.ts` — Next.js API route: GET, POST (~768 tok)
 
+## app/(app)/api/notifications/
+
+- `route.ts` — GET — paginated notifications for the current user. Supports ?type= and ?cursor= (~638 tok)
+
+## app/(app)/api/notifications/[id]/read/
+
+- `route.ts` — PATCH — marks a single notification as read. (~326 tok)
+
+## app/(app)/api/notifications/read-all/
+
+- `route.ts` — PATCH — marks all unread notifications as read. Optionally scoped by ?type= (~416 tok)
+
+## app/(app)/api/notifications/unread-count/
+
+- `route.ts` — GET — returns total unread count and per-type breakdown. (~369 tok)
+
 ## app/(app)/api/posts/
 
 - `route.ts` — Next.js API route: GET (~1253 tok)
@@ -255,7 +275,7 @@
 
 ## app/(app)/api/user/notification-preferences/
 
-- `route.ts` — Next.js API route: GET, PATCH (~415 tok)
+- `route.ts` — GET — returns all preferences grouped by type. (~1038 tok)
 
 ## app/(app)/contact/
 
@@ -395,7 +415,7 @@
 - `guest-shell.tsx` — Additional className on the <main> element (~484 tok)
 - `settings-nav.tsx` — settingsGroups (~570 tok)
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2200 tok)
-- `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~3461 tok)
+- `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~2885 tok)
 
 ## components/learn/
 
@@ -409,6 +429,10 @@
 - `module-accordion.tsx` — LessonItem — uses useState (~1973 tok)
 - `progress-bar.tsx` — ProgressBar (~294 tok)
 - `video-player.tsx` — Generic video embed that auto-detects Vimeo vs Bunny from URL pattern. (~845 tok)
+
+## components/notifications/
+
+- `notification-dropdown.tsx` — TABS (~2419 tok)
 
 ## components/providers/
 
@@ -441,7 +465,7 @@
 - `label.tsx` — Label (~148 tok)
 - `separator.tsx` — Separator (~154 tok)
 - `skeleton.tsx` — Skeleton (~79 tok)
-- `toggle-switch.tsx` — ToggleSwitch (~298 tok)
+- `toggle-switch.tsx` — Shows a dash indicator when subtypes are in a mixed state. (~444 tok)
 - `typography.tsx` — Display (~738 tok)
 
 ## docs/
@@ -484,10 +508,11 @@
 - `0003_bookmarks_to_public.sql` — SQL: tables: bookmarks, 1 alter(s) (~144 tok)
 - `0004_dazzling_black_tarantula.sql` — SQL: tables: course_enrollments, lesson_progress, 2 alter(s) (~337 tok)
 - `0005_abandoned_dreaming_celestial.sql` — SQL: tables: marketing_subscribers (~110 tok)
+- `0006_notification_engine.sql` — Sprint 10: Notification Engine (~921 tok)
 
 ## drizzle/meta/
 
-- `_journal.json` (~273 tok)
+- `_journal.json` (~315 tok)
 - `0000_snapshot.json` (~2660 tok)
 - `0001_snapshot.json` (~2710 tok)
 - `0002_snapshot.json` (~3424 tok)
@@ -548,21 +573,23 @@
 
 - `bookmarks.ts` — Exports bookmarks, Bookmark, NewBookmark (~181 tok)
 - `course-enrollments.ts` — Exports courseEnrollments, CourseEnrollment, NewCourseEnrollment (~232 tok)
-- `index.ts` (~67 tok)
+- `index.ts` (~76 tok)
 - `lesson-progress.ts` — Exports lessonProgress, LessonProgress, NewLessonProgress (~230 tok)
 - `marketing-subscribers.ts` — Exports marketingSubscribers, MarketingSubscriber, NewMarketingSubscriber (~197 tok)
-- `notification-preferences.ts` — Exports notificationPreferences, NotificationPreferences, NewNotificationPreferences (~270 tok)
+- `notification-preferences.ts` — Exports notificationPreferences, NotificationPreferences, NewNotificationPreferences (~298 tok)
+- `notifications.ts` — Exports notificationTypeEnum, notificationSubtypeEnum, notifications, Notification + 3 more (~497 tok)
 - `sessions.ts` — NextAuth v5 Drizzle adapter schema — required by DrizzleAdapter. (~490 tok)
 - `users.ts` — Exports roleEnum, users, User, NewUser (~478 tok)
 
 ## lib/email/
 
 - `index.ts` — In development, use Resend's shared sender — no domain verification required. (~205 tok)
-- `send.ts` — In development, redirect all outbound email to Resend's safe test addresses. (~452 tok)
+- `send.ts` — In development, redirect all outbound email to Resend's safe test addresses. (~616 tok)
 
 ## lib/email/templates/
 
 - `layout.ts` — Brand tokens — single source of truth for all email templates (~950 tok)
+- `notification.ts` — Exports notificationTemplate (~187 tok)
 - `reset-password.ts` — Exports resetPasswordTemplate (~241 tok)
 - `verify-email.ts` — Exports verifyEmailTemplate (~243 tok)
 
@@ -570,6 +597,7 @@
 
 - `useDebounce.ts` — Exports useDebounce (~102 tok)
 - `useInfiniteScroll.ts` — Exports useInfiniteScroll (~776 tok)
+- `useNotifications.ts` — Exports useNotifications (~1560 tok)
 - `useSearch.ts` — Exports useSearch (~604 tok)
 - `useSearchModal.ts` — Exports useSearchModal (~212 tok)
 - `useViewPreference.ts` — Exports useViewPreference (~252 tok)
@@ -581,8 +609,10 @@
 
 ## lib/notifications/
 
-- `events.ts` — Sprint 3 stub — full notification engine built in Sprint 10. (~358 tok)
-- `preferences.ts` — Get notification preferences for a user. (~587 tok)
+- `create.ts` — Filter recipients by role. If omitted, all users receive it. (~1838 tok)
+- `events.ts` — Notification event handlers. (~1696 tok)
+- `preferences.ts` — All subtype definitions grouped by type — single source of truth. (~1474 tok)
+- `rate-limit.ts` — In-memory email rate limiter for notifications. (~317 tok)
 
 ## lib/posts/
 
