@@ -14,11 +14,21 @@ type PolymorphicProps<T extends React.ElementType, Extra = object> = {
 
 function Display<T extends React.ElementType = 'h1'>({
   as,
+  responsive = false,
   className,
   ...props
-}: PolymorphicProps<T>) {
+}: PolymorphicProps<T, { responsive?: boolean }>) {
   const Tag = as ?? 'h1'
-  return <Tag className={cn('text-on-surface text-display font-black', className)} {...props} />
+  return (
+    <Tag
+      className={cn(
+        'text-on-surface font-black',
+        responsive ? 'text-headline-lg md:text-display' : 'text-display',
+        className
+      )}
+      {...props}
+    />
+  )
 }
 
 /* ── Heading — page / section headings ───────────────────────── */
@@ -29,15 +39,29 @@ const headingSizeMap = {
   default: 'text-headline',
 } as const
 
+const headingResponsiveMap = {
+  lg: 'text-headline md:text-headline-lg',
+  md: 'text-headline md:text-headline-md',
+  default: 'text-title md:text-headline',
+} as const
+
 function Heading<T extends React.ElementType = 'h2'>({
   as,
   size = 'default',
+  responsive = false,
   className,
   ...props
-}: PolymorphicProps<T, { size?: keyof typeof headingSizeMap }>) {
+}: PolymorphicProps<T, { size?: keyof typeof headingSizeMap; responsive?: boolean }>) {
   const Tag = as ?? 'h2'
   return (
-    <Tag className={cn('text-on-surface font-bold', headingSizeMap[size], className)} {...props} />
+    <Tag
+      className={cn(
+        'text-on-surface font-bold',
+        responsive ? headingResponsiveMap[size] : headingSizeMap[size],
+        className
+      )}
+      {...props}
+    />
   )
 }
 

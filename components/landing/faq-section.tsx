@@ -1,5 +1,6 @@
 import { ChevronDown } from 'lucide-react'
 import { SectionHeading } from '@/components/common/section-heading'
+import { LAYOUT } from '@/lib/config/layout'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
@@ -44,7 +45,9 @@ export async function FAQSection() {
   }
 
   return (
-    <section className="bg-surface-container-low flex flex-col gap-10 rounded-2xl px-6 py-14 md:flex-row md:gap-16 md:px-10">
+    <section
+      className={`bg-surface-container-low flex flex-col gap-10 rounded-2xl md:flex-row md:gap-16 ${LAYOUT.spacing.section}`}
+    >
       {/* Left — trust headline */}
       <SectionHeading
         variant="landing"

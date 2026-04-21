@@ -69,7 +69,7 @@ export default async function CourseDetailPage({
       <header className="flex flex-col gap-6">
         {/* Metadata badges */}
         <div className="flex flex-wrap items-center gap-4">
-          <span className="bg-surface-container-high text-primary text-overline font-bolduppercase rounded-full px-3 py-1">
+          <span className="bg-surface-container-high text-primary text-overline rounded-full px-3 py-1 font-bold uppercase">
             {course.difficulty}
           </span>
           {course.estimatedDuration && (
@@ -87,7 +87,7 @@ export default async function CourseDetailPage({
         </div>
 
         {/* Large editorial heading */}
-        <Heading as="h1" size="md" className="md:text-headline-lg max-w-2xl font-black">
+        <Heading as="h1" size="md" responsive className="max-w-2xl font-black">
           {course.title}
         </Heading>
 

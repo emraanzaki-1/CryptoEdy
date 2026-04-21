@@ -144,7 +144,7 @@ export function OnboardingPopup() {
               <div className="bg-surface-container-lowest/20 flex h-10 w-10 items-center justify-center rounded-lg backdrop-blur-md">
                 <Sparkles className="text-on-primary h-5 w-5" />
               </div>
-              <div className="text-overline text-on-primary font-bolduppercase">
+              <div className="text-overline text-on-primary font-bold uppercase">
                 CryptoEdy Intelligence
               </div>
             </div>
@@ -154,7 +154,7 @@ export function OnboardingPopup() {
           <div className="relative z-10 mt-auto">
             <div className="space-y-4">
               <div className="border-outline-variant/10 bg-surface-container-lowest/10 rounded-lg border p-4 backdrop-blur-md">
-                <div className="text-overline text-on-primary/60 font-bolduppercase mb-1">
+                <div className="text-overline text-on-primary/60 mb-1 font-bold uppercase">
                   Network Growth
                 </div>
                 <div className="flex items-end gap-2">
@@ -235,7 +235,7 @@ export function OnboardingPopup() {
             {/* Trust Signals */}
             <div className="flex items-center gap-1.5">
               <Lock className="text-outline h-3.5 w-3.5" />
-              <span className="text-overline text-outline font-mediumuppercase">
+              <span className="text-overline text-outline font-medium uppercase">
                 No spam. Unsubscribe anytime.
               </span>
             </div>

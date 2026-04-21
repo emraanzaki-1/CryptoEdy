@@ -120,7 +120,7 @@ export default async function LessonPage({
 
         {/* Lesson title */}
         <div className="flex flex-col gap-2">
-          <Heading as="h1" size="md" className="md:text-headline-lg font-black">
+          <Heading as="h1" size="md" responsive className="font-black">
             {lesson.title}
           </Heading>
           {lesson.estimatedDuration && (

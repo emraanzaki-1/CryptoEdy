@@ -73,7 +73,7 @@ function LessonItem({
       {/* Right side status */}
       <div className="flex-shrink-0">
         {isCompleted ? (
-          <span className="text-secondary text-overline font-bolduppercase">Completed</span>
+          <span className="text-secondary text-overline font-bold uppercase">Completed</span>
         ) : isCurrent ? (
           <span className="bg-primary text-overline text-on-primary rounded-lg px-4 py-2 font-bold uppercase shadow-sm">
             Play Now
@@ -169,7 +169,7 @@ export function ModuleAccordion({
             <div className="flex items-center gap-2">
               <span
                 className={cn(
-                  'text-overline font-bolduppercase',
+                  'text-overline font-bold uppercase',
                   isCompleted && 'text-secondary',
                   moduleStatus === 'active' && 'text-primary',
                   isLocked && 'text-on-surface-variant'

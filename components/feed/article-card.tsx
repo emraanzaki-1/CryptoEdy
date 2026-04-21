@@ -21,6 +21,7 @@ export interface ArticleCardProps {
   postId?: string
   isBookmarked?: boolean
   hero?: boolean
+  layout?: 'card' | 'list'
 }
 
 export function ArticleCard({
@@ -36,20 +37,28 @@ export function ArticleCard({
   postId,
   isBookmarked = false,
   hero = false,
+  layout = 'card',
 }: ArticleCardProps) {
+  const isList = layout === 'list'
+
   return (
-    <Link href={`/articles/${slug}`} className="flex h-full">
+    <Link href={`/articles/${slug}`} className={cn('flex', !isList && 'h-full', isList && 'block')}>
       <article
         className={cn(
-          'group border-outline-variant/[0.03] bg-surface-container-lowest relative flex w-full cursor-pointer flex-col overflow-hidden rounded-2xl border',
-          hero && 'md:flex-row'
+          'group border-outline-variant/[0.03] bg-surface-container-lowest relative flex w-full cursor-pointer overflow-hidden rounded-2xl border',
+          isList ? 'flex-row' : 'flex-col',
+          hero && !isList && 'md:flex-row'
         )}
       >
         {/* Image */}
         <div
           className={cn(
             'bg-surface-container relative overflow-hidden',
-            hero ? 'aspect-[16/9] md:aspect-auto md:w-1/2 md:flex-shrink-0' : 'aspect-[16/10]'
+            isList
+              ? 'w-56 flex-shrink-0 sm:w-64'
+              : hero
+                ? 'aspect-[16/9] md:aspect-auto md:w-1/2 md:flex-shrink-0'
+                : 'aspect-[16/10]'
           )}
         >
           <div
@@ -60,7 +69,7 @@ export function ArticleCard({
           />
 
           {/* Gradient overlay for locked articles */}
-          {isPro && (
+          {isPro && !isList && (
             <div className="from-on-surface/40 absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t to-transparent" />
           )}
 
@@ -71,13 +80,21 @@ export function ArticleCard({
                 PRO
               </Badge>
             )}
-            {isPro && (
+            {isPro && !isList && (
               <span className="text-overline bg-on-surface/50 text-on-primary flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold backdrop-blur-sm">
                 <Lock className="size-2.5" />
                 Members only
               </span>
             )}
           </div>
+
+          {/* Lock indicator for list layout */}
+          {isPro && isList && (
+            <div className="text-overline bg-on-surface/50 text-on-primary absolute bottom-3 left-3 flex items-center gap-1 rounded-full px-2 py-0.5 font-semibold backdrop-blur-sm">
+              <Lock className="size-2.5" />
+              Members only
+            </div>
+          )}
 
           {/* Bookmark on hover */}
           {postId && (
@@ -86,12 +103,17 @@ export function ArticleCard({
         </div>
 
         {/* Content */}
-        <div className={cn('flex flex-1 flex-col gap-3 p-6', hero && 'md:justify-center md:p-8')}>
-          {/* Title first */}
+        <div
+          className={cn(
+            'flex flex-1 flex-col gap-3 p-6',
+            isList && 'justify-center',
+            hero && !isList && 'md:justify-center md:p-8'
+          )}
+        >
           <h3
             className={cn(
               'text-on-surface group-hover:text-primary font-bold transition-colors',
-              hero ? 'text-headline' : 'text-subtitle'
+              hero && !isList ? 'text-headline' : 'text-subtitle'
             )}
           >
             {title}
@@ -100,14 +122,20 @@ export function ArticleCard({
           <p
             className={cn(
               'text-on-surface-variant',
-              hero ? 'text-body-lg line-clamp-3' : 'text-body-sm line-clamp-2'
+              hero && !isList ? 'text-body-lg line-clamp-3' : 'text-body-sm line-clamp-2'
             )}
           >
             {excerpt}
           </p>
 
-          {/* Metadata pinned to bottom */}
-          <div className="mt-auto flex items-center justify-between gap-2 pt-2">
+          {/* Metadata */}
+          <div
+            className={cn(
+              'flex items-center justify-between gap-2',
+              !isList && 'mt-auto pt-2',
+              isList && 'mt-1'
+            )}
+          >
             <div className="flex items-center gap-2">
               <CategoryPill category={category} />
               <span className="text-outline text-label">{date}</span>

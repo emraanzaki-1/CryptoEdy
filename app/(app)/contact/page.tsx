@@ -59,7 +59,7 @@ export default function ContactPage() {
       {/* ── Hero Section ── */}
       <GuestSection className="mb-20">
         <div>
-          <span className="text-primary text-overline font-bolduppercase mb-4 block">Contact</span>
+          <span className="text-primary text-overline mb-4 block font-bold uppercase">Contact</span>
           <Heading as="h1" size="lg" className="mb-6 font-black">
             Get in Touch with the <span className="text-primary">CryptoEdy</span> Team.
           </Heading>
@@ -75,7 +75,7 @@ export default function ContactPage() {
         {/* Information Panel */}
         <div className="space-y-12 lg:col-span-4">
           <div>
-            <h3 className="text-on-surface-variant text-overline font-bolduppercase mb-6">
+            <h3 className="text-on-surface-variant text-overline mb-6 font-bold uppercase">
               Contact Channels
             </h3>
             <ul className="space-y-6">
@@ -96,7 +96,7 @@ export default function ContactPage() {
             </ul>
           </div>
           <div>
-            <h3 className="text-on-surface-variant text-overline font-bolduppercase mb-6">
+            <h3 className="text-on-surface-variant text-overline mb-6 font-bold uppercase">
               Social
             </h3>
             <div className="grid grid-cols-2 gap-4">

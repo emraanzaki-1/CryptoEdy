@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { FilterChip } from '@/components/ui/filter-chip'
 import { ViewToggle } from '@/components/feed/view-toggle'
 import { ArticleCard } from '@/components/feed/article-card'
-import { ArticleCardList } from '@/components/feed/article-card-list'
 import {
   ArticleCardSkeleton,
   ArticleCardListSkeleton,
@@ -90,7 +89,7 @@ export function FeedClient({
         ) : (
           <div className="flex flex-col gap-4">
             {articles.map((article) => (
-              <ArticleCardList key={article.slug} {...article} />
+              <ArticleCard key={article.slug} {...article} layout="list" />
             ))}
 
             {/* Loading skeletons */}

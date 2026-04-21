@@ -46,7 +46,9 @@ export function ResearchPreviewSection() {
           Free &amp; Pro &middot; Research
         </span>
         <div className="flex items-baseline justify-between">
-          <Heading className="md:text-headline-md font-black">Latest research.</Heading>
+          <Heading responsive className="font-black">
+            Latest research.
+          </Heading>
           <Link
             href="/feed"
             className="text-primary text-body-sm font-semibold underline-offset-4 hover:underline"

@@ -21,7 +21,7 @@ export function LessonNav({ courseSlug, prevLesson, nextLesson }: LessonNavProps
             <ArrowLeft className="h-5 w-5" />
           </div>
           <div>
-            <span className="text-outline text-overline font-bolduppercase">Previous Lesson</span>
+            <span className="text-outline text-overline font-bold uppercase">Previous Lesson</span>
             <p className="text-on-surface group-hover:text-primary text-body-sm font-bold transition-colors">
               {prevLesson.title}
             </p>
@@ -37,7 +37,7 @@ export function LessonNav({ courseSlug, prevLesson, nextLesson }: LessonNavProps
           className="group flex max-w-xs items-center gap-4 text-right"
         >
           <div>
-            <span className="text-outline text-overline font-bolduppercase">Up Next</span>
+            <span className="text-outline text-overline font-bold uppercase">Up Next</span>
             <p className="text-on-surface group-hover:text-primary text-body-sm font-bold transition-colors">
               {nextLesson.title}
             </p>

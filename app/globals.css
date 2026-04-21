@@ -266,6 +266,12 @@
   /* ── Layout ── */
   --container-site: 1200px;
 
+  /* ── Spacing Tokens ──
+   * Standardized paddings and gaps for sections, cards, and controls.
+   * Use these instead of ad-hoc p-6/gap-4 values.
+   * Registered here so Tailwind auto-generates spacing utilities.
+   */
+
   /* ── Fonts ── */
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
@@ -376,6 +382,15 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ── Spacing Tokens ── */
+  --spacing-section: 3.5rem; /* 56px — vertical section padding */
+  --spacing-section-x: 1.5rem; /* 24px — horizontal section padding (mobile) */
+  --spacing-section-x-md: 2.5rem; /* 40px — horizontal section padding (md+) */
+  --spacing-section-gap: 2.5rem; /* 40px — gap between section header and body */
+  --spacing-card: 1.5rem; /* 24px — card inner padding */
+  --spacing-card-gap: 1rem; /* 16px — card content gap */
+  --spacing-grid-gap: 1rem; /* 16px — grid/list item gap */
 }
 
 * {

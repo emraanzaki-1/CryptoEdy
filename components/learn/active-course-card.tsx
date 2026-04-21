@@ -53,15 +53,15 @@ export function ActiveCourseCard({
         <div className="relative flex-grow">
           <div className="mb-2 flex items-center gap-2">
             {isStarted ? (
-              <span className="bg-secondary-container text-on-secondary-container text-overline font-bolduppercase rounded-full px-2 py-0.5">
+              <span className="bg-secondary-container text-on-secondary-container text-overline rounded-full px-2 py-0.5 font-bold uppercase">
                 In Progress
               </span>
             ) : (
-              <span className="bg-surface-container-high text-on-primary-fixed-variant text-overline font-bolduppercase rounded-full px-2 py-0.5">
+              <span className="bg-surface-container-high text-on-primary-fixed-variant text-overline rounded-full px-2 py-0.5 font-bold uppercase">
                 Up Next
               </span>
             )}
-            <span className="text-outline text-overline font-bolduppercase">
+            <span className="text-outline text-overline font-bold uppercase">
               {moduleCount} modules
             </span>
           </div>

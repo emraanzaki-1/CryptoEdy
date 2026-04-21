@@ -11,7 +11,7 @@ export function HeroSection() {
       }}
     >
       <div className="flex max-w-3xl flex-col gap-4 text-center">
-        <Display className="text-on-primary md:text-display text-headline-lg">
+        <Display responsive className="text-on-primary">
           Institutional-Grade Crypto Research for the Modern Investor
         </Display>
         <p className="text-inverse-primary text-body-lg md:text-subtitle mx-auto max-w-2xl font-normal">

@@ -21,7 +21,7 @@ export default function PrivacyPage() {
     <GuestPage>
       {/* ── Hero Header ── */}
       <header className="mb-20">
-        <div className="bg-surface-container text-primary text-overline font-bolduppercase mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1">
+        <div className="bg-surface-container text-primary text-overline mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-bold uppercase">
           <Shield className="size-3.5" />
           Legal Framework
         </div>
@@ -118,10 +118,10 @@ export default function PrivacyPage() {
               <table className="w-full text-left">
                 <thead className="bg-surface-container-low">
                   <tr>
-                    <th className="text-on-surface-variant text-overline font-blackuppercase px-6 py-4">
+                    <th className="text-on-surface-variant text-overline px-6 py-4 font-black uppercase">
                       Type
                     </th>
-                    <th className="text-on-surface-variant text-overline font-blackuppercase px-6 py-4">
+                    <th className="text-on-surface-variant text-overline px-6 py-4 font-black uppercase">
                       Purpose
                     </th>
                   </tr>

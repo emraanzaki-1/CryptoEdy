@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import { CheckCircle, Wallet } from 'lucide-react'
 import { SectionHeading } from '@/components/common/section-heading'
 import { ButtonLink } from '@/components/ui/button-link'
+import { LAYOUT } from '@/lib/config/layout'
 
 const FEATURES = [
   'Full access to deep-dive research reports',
@@ -13,7 +13,7 @@ const FEATURES = [
 export function PricingSection() {
   return (
     <section
-      className="bg-surface-container-low flex flex-col gap-10 overflow-hidden rounded-2xl px-6 py-14 md:flex-row md:items-start md:gap-16 md:px-10"
+      className={`bg-surface-container-low flex flex-col gap-10 overflow-hidden rounded-2xl md:flex-row md:items-start md:gap-16 ${LAYOUT.spacing.section}`}
       id="pricing"
     >
       {/* Left — copy */}

@@ -33,7 +33,7 @@ function FormField({ label, htmlFor, error, className, labelAction, children }: 
 
 /* ── Shared input styles ───────────────────────────────────────── */
 
-const inputBase = 'w-full text-on-surface text-base transition-all outline-none'
+const inputBase = 'w-full text-on-surface text-body-lg transition-all outline-none'
 
 const inputVariants = {
   tonal:

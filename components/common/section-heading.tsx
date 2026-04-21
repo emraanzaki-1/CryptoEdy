@@ -1,11 +1,16 @@
 import { cn } from '@/lib/utils'
+import { Heading } from '@/components/ui/typography'
 
 /* ── Variant style maps ──────────────────────────────────────── */
 
-const headingStyles = {
-  page: 'text-on-surface text-headline font-bold',
-  landing: 'font-headline text-on-surface text-headline md:text-headline-md font-black',
-  subsection: 'text-on-surface text-body-lg font-semibold',
+const headingVariantProps = {
+  page: { size: 'default' as const, responsive: false, className: '' },
+  landing: { size: 'md' as const, responsive: true, className: 'font-black' },
+  subsection: {
+    size: 'default' as const,
+    responsive: false,
+    className: 'text-body-lg font-semibold',
+  },
 } as const
 
 const subtitleStyles = {
@@ -13,7 +18,7 @@ const subtitleStyles = {
   landing: 'text-on-surface-variant text-body-sm max-w-sm',
 } as const
 
-type Variant = keyof typeof headingStyles
+type Variant = keyof typeof headingVariantProps
 
 const defaultTag: Record<Variant, 'h1' | 'h2' | 'h3'> = {
   page: 'h1',
@@ -44,17 +49,31 @@ function SectionHeading({
   className,
   children,
 }: SectionHeadingProps) {
-  const Tag = as ?? defaultTag[variant]
+  const tag = as ?? defaultTag[variant]
+  const hProps = headingVariantProps[variant]
 
   /* Subsection — bare heading */
   if (variant === 'subsection') {
-    return <Tag className={cn(headingStyles.subsection, 'mb-6', className)}>{children}</Tag>
+    return (
+      <Heading as={tag} size={hProps.size} className={cn(hProps.className, 'mb-6', className)}>
+        {children}
+      </Heading>
+    )
   }
 
   const overlineEl = overline && (
     <span className="text-primary text-overline font-bold uppercase">{overline}</span>
   )
-  const headingEl = <Tag className={headingStyles[variant]}>{children}</Tag>
+  const headingEl = (
+    <Heading
+      as={tag}
+      size={hProps.size}
+      responsive={hProps.responsive}
+      className={hProps.className}
+    >
+      {children}
+    </Heading>
+  )
   const sKey = variant === 'landing' ? 'landing' : 'page'
   const subtitleEl = subtitle && <p className={subtitleStyles[sKey]}>{subtitle}</p>
 

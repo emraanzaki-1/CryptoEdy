@@ -23,7 +23,7 @@ export default function TermsPage() {
     <GuestPage>
       {/* ── Hero Header ── */}
       <header className="mb-20">
-        <div className="bg-surface-container text-primary text-overline font-bolduppercase mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1">
+        <div className="bg-surface-container text-primary text-overline mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1 font-bold uppercase">
           <Gavel className="size-3.5" />
           Legal Framework
         </div>
@@ -114,7 +114,7 @@ export default function TermsPage() {
                 </div>
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                   <div className="space-y-4">
-                    <h4 className="text-primary-fixed text-overline font-blackuppercase">
+                    <h4 className="text-primary-fixed text-overline font-black uppercase">
                       Billing
                     </h4>
                     <p className="text-inverse-on-surface/80 text-body-sm">
@@ -123,7 +123,7 @@ export default function TermsPage() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-primary-fixed text-overline font-blackuppercase">
+                    <h4 className="text-primary-fixed text-overline font-black uppercase">
                       Cancellation
                     </h4>
                     <p className="text-inverse-on-surface/80 text-body-sm">
@@ -132,7 +132,7 @@ export default function TermsPage() {
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-primary-fixed text-overline font-blackuppercase">
+                    <h4 className="text-primary-fixed text-overline font-black uppercase">
                       Changes
                     </h4>
                     <p className="text-inverse-on-surface/80 text-body-sm">

@@ -1,5 +1,6 @@
 import { TrendingUp, Rocket } from 'lucide-react'
 import { SectionHeading } from '@/components/common/section-heading'
+import { LAYOUT } from '@/lib/config/layout'
 
 const TRADES = [
   {
@@ -35,7 +36,7 @@ const TRADES = [
 export function TrackRecordSection() {
   return (
     <section
-      className="bg-surface-container-low flex flex-col gap-10 rounded-2xl px-6 py-14 md:px-10"
+      className={`bg-surface-container-low flex flex-col gap-10 rounded-2xl ${LAYOUT.spacing.section}`}
       id="performance"
     >
       {/* Split header */}

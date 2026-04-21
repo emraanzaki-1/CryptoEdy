@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { FilterChip } from '@/components/ui/filter-chip'
 import { ViewToggle } from '@/components/feed/view-toggle'
 import { ArticleCard } from '@/components/feed/article-card'
-import { ArticleCardList } from '@/components/feed/article-card-list'
 import { EmptyState } from '@/components/common/empty-state'
 import { SectionHeading } from '@/components/common/section-heading'
 import { useViewPreference } from '@/lib/hooks/useViewPreference'
@@ -59,7 +58,7 @@ export function CryptoSchoolClient({
         ) : (
           <div className="flex flex-col gap-4">
             {articles.map((article) => (
-              <ArticleCardList key={article.slug} {...article} />
+              <ArticleCard key={article.slug} {...article} layout="list" />
             ))}
           </div>
         )

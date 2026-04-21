@@ -1,5 +1,6 @@
 import { Lightbulb, TrendingUp, Globe, ShieldCheck } from 'lucide-react'
 import { SectionHeading } from '@/components/common/section-heading'
+import { LAYOUT } from '@/lib/config/layout'
 
 const VALUE_PROPS = [
   {
@@ -30,7 +31,9 @@ const VALUE_PROPS = [
 
 export function ValuePropsSection() {
   return (
-    <section className="bg-surface-container-low flex flex-col gap-12 rounded-2xl px-6 py-14 md:px-10">
+    <section
+      className={`bg-surface-container-low flex flex-col gap-12 rounded-2xl ${LAYOUT.spacing.section}`}
+    >
       {/* Split header */}
       <SectionHeading
         variant="landing"
@@ -42,11 +45,11 @@ export function ValuePropsSection() {
       </SectionHeading>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ${LAYOUT.spacing.gridGap}`}>
         {VALUE_PROPS.map((prop) => (
           <div
             key={prop.title}
-            className="bg-surface-container-lowest shadow-ambient hover:shadow-ambient-hover flex flex-col gap-4 rounded-2xl p-6 transition-all duration-200 hover:-translate-y-0.5"
+            className={`bg-surface-container-lowest shadow-ambient hover:shadow-ambient-hover flex flex-col rounded-2xl transition-all duration-200 hover:-translate-y-0.5 ${LAYOUT.spacing.card} ${LAYOUT.spacing.cardGap}`}
           >
             <div className="bg-primary/8 flex size-11 items-center justify-center rounded-xl">
               <prop.icon className="text-primary size-5" />

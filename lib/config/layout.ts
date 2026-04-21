@@ -25,4 +25,18 @@ export const LAYOUT = {
     /** Vertical page padding for content pages */
     pagePy: 'pt-16 pb-24',
   },
+
+  /** Spacing tokens — section / card / control patterns */
+  spacing: {
+    /** Landing section padding: 24px→40px horizontal, 56px vertical */
+    section: 'px-section-x py-section md:px-section-x-md',
+    /** Gap between section header and body */
+    sectionGap: 'gap-section-gap',
+    /** Card inner padding */
+    card: 'p-card',
+    /** Gap between items within a card */
+    cardGap: 'gap-card-gap',
+    /** Grid / list item gap */
+    gridGap: 'gap-grid-gap',
+  },
 } as const

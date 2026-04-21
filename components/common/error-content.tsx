@@ -53,7 +53,7 @@ export function ErrorContent({
         </div>
 
         {/* Heading */}
-        <Heading size="lg" className="md:text-display mb-6 font-black">
+        <Heading size="lg" responsive className="mb-6 font-black">
           {title}
         </Heading>
 

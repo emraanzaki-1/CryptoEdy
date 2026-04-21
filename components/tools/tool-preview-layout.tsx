@@ -65,7 +65,7 @@ export function ToolPreviewLayout({
             <span className="bg-secondary-container text-on-secondary-container text-overline mb-4 inline-block rounded-full px-3 py-1 font-bold uppercase">
               Coming Soon
             </span>
-            <Heading as="h1" className="lg:text-headline-lg mb-4 font-black">
+            <Heading as="h1" responsive size="lg" className="mb-4 font-black">
               {title}
             </Heading>
             <p className="text-on-surface-variant text-body-lg max-w-md">{description}</p>

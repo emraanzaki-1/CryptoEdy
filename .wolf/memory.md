@@ -5,6 +5,25 @@
 
 | 12:45 | Added sliding pill animation to ViewToggle | components/feed/view-toggle.tsx | done | ~50 |
 
+## 2026-04-21 — Design system audit remediation (Pass 1 + Pass 2)
+
+- Fixed 26 broken `font-*uppercase` typos across 15+ files (sed + manual)
+- Tokenized Button primitive: xs→`text-overline`, sm→`text-label`, base→`text-body-sm`, xl/xxl→`text-body-lg`
+- Tokenized form-field, label, breadcrumb, alert: `text-sm`→`text-body-sm`, `text-base`→`text-body-lg`
+- Badge `category` variant updated to match CategoryPill styling
+- CategoryPill now delegates to `Badge variant="category"` (single source of truth)
+- ArticleCard gained `layout="list"` prop; deleted `article-card-list.tsx` (dead code)
+- Community page refactored to use `ToolPreviewLayout`
+- Created `responsive` prop on `Display` and `Heading` in `typography.tsx`
+  - Display responsive: `text-headline-lg md:text-display`
+  - Heading responsive: lg→`text-headline md:text-headline-lg`, md→`text-headline md:text-headline-md`, default→`text-title md:text-headline`
+- Refactored `section-heading.tsx` to delegate to `Heading` with `responsive` prop
+- Registered spacing tokens in `@theme inline`: section, section-x, section-x-md, section-gap, card, card-gap, grid-gap
+- Added `LAYOUT.spacing` object in `lib/config/layout.ts` with composed utility strings
+- Migrated landing sections to use `LAYOUT.spacing.section` etc.
+- Removed unused imports: `Link` from pricing-section, `cn` from course-card
+- All files lint clean, zero type errors
+
 ## 2026-04-21 — Heading system consolidation
 
 - Created unified `components/common/section-heading.tsx` with 3 variants: `page` (default), `landing`, `subsection`
@@ -1247,6 +1266,11 @@ Migrated ~150 generic Tailwind text utilities → design-system tokens across ~4
 | 14:54 | Session end: 5 writes across 1 files (view-toggle.tsx) | 2 reads                                                   | ~1380 tok |
 
 ## Session: 2026-04-21 14:59
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+| ---- | ------ | ------- | ------- | ------- |
+
+## Session: 2026-04-21 15:09
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 | ---- | ------ | ------- | ------- | ------- |
