@@ -4,11 +4,12 @@ import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, ChevronRight, ArrowLeft, FlaskConical, LineChart } from 'lucide-react'
+import { Menu, X, ChevronRight, ArrowLeft, FlaskConical, LineChart, BookOpen } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ButtonLink } from '@/components/ui/button-link'
 import { Logo } from '@/components/common/logo'
-import { TAXONOMY } from '@/lib/constants/taxonomy'
+import type { NavCategory } from '@/lib/categories/getCategories'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
@@ -17,22 +18,34 @@ const NAV_LINKS = [
   { label: 'Pricing', href: '/#pricing' },
 ] as const
 
-const CATEGORY_SECTIONS = [
-  {
-    key: 'research' as const,
-    label: TAXONOMY.research.label,
-    icon: FlaskConical,
-    items: TAXONOMY.research.items,
-  },
-  {
-    key: 'analysis' as const,
-    label: TAXONOMY.analysis.label,
-    icon: LineChart,
-    items: TAXONOMY.analysis.items,
-  },
-] as const
+/** Icon map keyed by routePrefix — add new entries when new hub sections are created */
+const SECTION_ICONS: Record<string, LucideIcon> = {
+  research: FlaskConical,
+  analysis: LineChart,
+}
 
-export function GuestNav() {
+type CategorySection = {
+  key: string
+  label: string
+  icon: LucideIcon
+  items: NavCategory['items']
+}
+
+interface GuestNavProps {
+  navCategories: NavCategory[]
+}
+
+export function GuestNav({ navCategories }: GuestNavProps) {
+  // Only show parent categories that have a routePrefix (hub-page-based sections)
+  const categorySections: CategorySection[] = navCategories
+    .filter((c) => c.routePrefix)
+    .map((c) => ({
+      key: c.routePrefix!,
+      label: c.label,
+      icon: SECTION_ICONS[c.routePrefix!] ?? BookOpen,
+      items: c.items,
+    }))
+
   const [mobileOpen, setMobileOpen] = useState(false)
 
   function closeMobile() {
@@ -85,7 +98,11 @@ export function GuestNav() {
       </div>
 
       {/* Full-screen mobile menu — portalled to body to escape overflow-x-clip */}
-      {mobileOpen && createPortal(<GuestMobileMenu onClose={closeMobile} />, document.body)}
+      {mobileOpen &&
+        createPortal(
+          <GuestMobileMenu onClose={closeMobile} categorySections={categorySections} />,
+          document.body
+        )}
     </header>
   )
 }
@@ -94,7 +111,13 @@ export function GuestNav() {
 
 type SubMenu = { label: string; items: { label: string; href: string }[] }
 
-function GuestMobileMenu({ onClose }: { onClose: () => void }) {
+function GuestMobileMenu({
+  onClose,
+  categorySections,
+}: {
+  onClose: () => void
+  categorySections: CategorySection[]
+}) {
   const pathname = usePathname()
   const [subMenu, setSubMenu] = useState<SubMenu | null>(null)
 
@@ -164,20 +187,15 @@ function GuestMobileMenu({ onClose }: { onClose: () => void }) {
             )}
           >
             <div className="flex flex-col gap-1">
-              {/* Category drilldowns */}
-              {CATEGORY_SECTIONS.map((section) => (
+              {/* Category drilldowns — built from live Payload data */}
+              {categorySections.map((section) => (
                 <button
                   key={section.key}
                   onClick={() =>
                     openSub({
                       label: section.label,
-                      items: [
-                        { label: `All ${section.label}`, href: `/${section.key}` },
-                        ...section.items.map((i) => ({
-                          label: i.label,
-                          href: `/${section.key}/${i.slug}`,
-                        })),
-                      ],
+                      // items already include the "All X" entry from getNavCategories
+                      items: section.items.map((i) => ({ label: i.label, href: i.href })),
                     })
                   }
                   className={drillClass}
@@ -204,7 +222,7 @@ function GuestMobileMenu({ onClose }: { onClose: () => void }) {
               ))}
 
               {/* Auth buttons */}
-              <div className="border-outline-variant/15 mt-4 flex gap-3 border-t pt-4">
+              <div className="border-outline-variety/15 mt-4 flex gap-3 border-t pt-4">
                 <ButtonLink
                   href="/register"
                   variant="gradient"

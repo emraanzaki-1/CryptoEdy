@@ -1,9 +1,16 @@
 import Link from 'next/link'
 import { Logo } from '@/components/common/logo'
 import { LAYOUT } from '@/lib/config/layout'
-import { TAXONOMY } from '@/lib/constants/taxonomy'
+import type { NavCategory } from '@/lib/categories/getCategories'
 
-export function Footer() {
+interface FooterProps {
+  navCategories: NavCategory[]
+}
+
+export function Footer({ navCategories }: FooterProps) {
+  // Only show parent categories with a routePrefix in the footer (hub-page-based sections)
+  const hubCategories = navCategories.filter((c) => c.routePrefix)
+
   return (
     <footer className={`bg-primary text-on-primary mt-auto py-16 ${LAYOUT.guest.px}`}>
       <div className="max-w-site mx-auto">
@@ -21,46 +28,24 @@ export function Footer() {
           </div>
 
           <div className="grid grid-cols-2 gap-8 md:grid-cols-3 md:gap-16">
-            <div className="flex flex-col gap-4">
-              <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
-                Research
-              </h4>
-              <Link
-                href="/research"
-                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
-              >
-                All Research
-              </Link>
-              {TAXONOMY.research.items.map((item) => (
-                <Link
-                  key={item.slug}
-                  href={`/research/${item.slug}`}
-                  className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-            <div className="flex flex-col gap-4">
-              <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
-                Analysis
-              </h4>
-              <Link
-                href="/analysis"
-                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
-              >
-                All Analysis
-              </Link>
-              {TAXONOMY.analysis.items.map((item) => (
-                <Link
-                  key={item.slug}
-                  href={`/analysis/${item.slug}`}
-                  className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
+            {/* Dynamic category columns — driven by Payload */}
+            {hubCategories.map((category) => (
+              <div key={category.slug} className="flex flex-col gap-4">
+                <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
+                  {category.label}
+                </h4>
+                {category.items.map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={item.href}
+                    className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            ))}
+
             <div className="flex flex-col gap-4">
               <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
                 Legal

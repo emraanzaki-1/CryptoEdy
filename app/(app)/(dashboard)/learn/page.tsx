@@ -4,12 +4,11 @@ import { CryptoSchoolClient } from '@/components/learn/crypto-school-client'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { auth } from '@/lib/auth'
-import { CRYPTO_SCHOOL_CATEGORIES } from '@/lib/constants/taxonomy'
 
 export default async function LearnPage() {
   const payload = await getPayload({ config: configPromise })
 
-  // Find the Crypto School category and its children (grandchildren in the hierarchy)
+  // Find the Crypto School category and its children dynamically
   const { docs: cryptoSchoolDocs } = await payload.find({
     collection: 'categories',
     where: { slug: { equals: 'crypto-school' } },
@@ -20,18 +19,25 @@ export default async function LearnPage() {
   const cryptoSchool = cryptoSchoolDocs[0]
 
   let articles: ReturnType<typeof mapPostToCardProps>[] = []
+  let filters: { label: string; slug: string }[] = []
 
   if (cryptoSchool) {
-    // Get all grandchild category IDs
-    const { docs: grandchildren } = await payload.find({
+    // Fetch sub-categories from Payload — no hardcoded list
+    const { docs: subCategories } = await payload.find({
       collection: 'categories',
       where: { parent: { equals: cryptoSchool.id } },
+      sort: 'weight',
       limit: 50,
       depth: 0,
       overrideAccess: true,
     })
 
-    const categoryIds = [cryptoSchool.id, ...grandchildren.map((c) => c.id)]
+    filters = subCategories.map((c) => ({
+      label: (c as unknown as { name: string }).name,
+      slug: (c as unknown as { slug: string }).slug,
+    }))
+
+    const categoryIds = [cryptoSchool.id, ...subCategories.map((c) => c.id)]
 
     const session = await auth()
     const bookmarkedIds = session?.user?.id
@@ -56,11 +62,6 @@ export default async function LearnPage() {
       })
     )
   }
-
-  const filters = CRYPTO_SCHOOL_CATEGORIES.map((c) => ({
-    label: c.label,
-    slug: c.slug,
-  }))
 
   return <CryptoSchoolClient articles={articles} filters={filters} />
 }

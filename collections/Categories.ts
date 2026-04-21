@@ -59,6 +59,27 @@ export const Categories: CollectionConfig = {
       admin: { description: 'Short description shown on category landing pages.' },
     },
     {
+      name: 'routePrefix',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+        description:
+          'URL prefix for this parent category\'s hub page, e.g. "research" or "analysis". Child links become /{routePrefix}/{childSlug}. Leave blank for categories that use custom routes (e.g. Education → /learn).',
+        condition: (data) => !data.parent,
+      },
+    },
+    {
+      name: 'excludeFromMainFeed',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+        description:
+          'When enabled, posts in this category (and all its children) are excluded from the main /feed page. Use for sections with a dedicated hub (e.g. Education → /learn).',
+        condition: (data) => !data.parent,
+      },
+    },
+    {
       name: 'weight',
       type: 'number',
       defaultValue: 0,

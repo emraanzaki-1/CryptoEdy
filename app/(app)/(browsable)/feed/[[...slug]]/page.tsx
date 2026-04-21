@@ -67,41 +67,53 @@ export default async function FeedPage({ params }: { params: Promise<{ slug?: st
     ? await getBookmarkedPostIds(session.user.id)
     : new Set<string>()
 
-  // Exclude Education posts from the main feed (Education has its own /learn section)
+  // Exclude categories marked excludeFromMainFeed (e.g. Education → /learn)
   if (!categorySlug) {
-    const { docs: eduParentDocs } = await payload.find({
-      collection: 'categories',
-      where: { slug: { equals: 'education' } },
-      limit: 1,
-      depth: 0,
-      overrideAccess: true,
-    })
-    const eduParentId = eduParentDocs[0]?.id
-    if (eduParentId) {
-      const { docs: eduChildren } = await payload.find({
-        collection: 'categories',
-        where: { parent: { equals: eduParentId } },
-        limit: 200,
-        depth: 0,
-        overrideAccess: true,
-      })
-      // Also fetch grandchildren (e.g. Simply Explained, Videos under Crypto School)
-      const childIds = eduChildren.map((c) => c.id)
-      let grandchildIds: (string | number)[] = []
-      if (childIds.length > 0) {
-        const { docs: grandchildren } = await payload.find({
+    const excludedParents = navCategories.filter((c) => c.excludeFromMainFeed)
+    if (excludedParents.length > 0) {
+      const allExcludedIds: (string | number)[] = []
+
+      for (const parent of excludedParents) {
+        const { docs: parentDoc } = await payload.find({
           collection: 'categories',
-          where: { parent: { in: childIds } },
+          where: { slug: { equals: parent.slug } },
+          limit: 1,
+          depth: 0,
+          overrideAccess: true,
+        })
+        const parentId = parentDoc[0]?.id
+        if (!parentId) continue
+
+        allExcludedIds.push(parentId)
+
+        const { docs: childDocs } = await payload.find({
+          collection: 'categories',
+          where: { parent: { equals: parentId } },
           limit: 200,
           depth: 0,
           overrideAccess: true,
         })
-        grandchildIds = grandchildren.map((c) => c.id)
+        const childIds = childDocs.map((c) => c.id)
+        allExcludedIds.push(...childIds)
+
+        // Also exclude grandchildren (e.g. Simply Explained, Videos under Crypto School)
+        if (childIds.length > 0) {
+          const { docs: grandchildren } = await payload.find({
+            collection: 'categories',
+            where: { parent: { in: childIds } },
+            limit: 200,
+            depth: 0,
+            overrideAccess: true,
+          })
+          allExcludedIds.push(...grandchildren.map((c) => c.id))
+        }
       }
-      const eduCategoryIds = [eduParentId, ...childIds, ...grandchildIds]
-      where['category'] = {
-        ...(typeof where['category'] === 'object' ? where['category'] : {}),
-        not_in: eduCategoryIds,
+
+      if (allExcludedIds.length > 0) {
+        where['category'] = {
+          ...(typeof where['category'] === 'object' ? where['category'] : {}),
+          not_in: allExcludedIds,
+        }
       }
     }
   }
@@ -121,8 +133,8 @@ export default async function FeedPage({ params }: { params: Promise<{ slug?: st
     })
   )
 
-  // Exclude Education from feed filter pills (Education lives under /learn)
-  const feedCategories = navCategories.filter((c) => c.slug !== 'education')
+  // Exclude categories with dedicated hub pages from the feed filter pills
+  const feedCategories = navCategories.filter((c) => !c.excludeFromMainFeed)
   const filters = feedCategories.map((c) => ({ label: c.label, slug: c.slug }))
 
   return (

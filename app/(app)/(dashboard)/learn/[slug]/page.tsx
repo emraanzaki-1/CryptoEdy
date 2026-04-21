@@ -5,7 +5,6 @@ import { CryptoSchoolClient } from '@/components/learn/crypto-school-client'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { auth } from '@/lib/auth'
-import { CRYPTO_SCHOOL_CATEGORIES } from '@/lib/constants/taxonomy'
 
 export default async function CryptoSchoolCategoryPage({
   params,
@@ -14,23 +13,32 @@ export default async function CryptoSchoolCategoryPage({
 }) {
   const { slug } = await params
 
-  // Validate the slug is a valid Crypto School sub-category
-  const validSlugs = CRYPTO_SCHOOL_CATEGORIES.map((c) => c.slug)
-  if (!validSlugs.includes(slug as (typeof validSlugs)[number])) {
-    notFound()
-  }
-
   const payload = await getPayload({ config: configPromise })
 
-  // Find the category by slug
-  const { docs: categoryDocs } = await payload.find({
+  // Verify the slug is a real sub-category of Crypto School (no hardcoded whitelist)
+  const { docs: cryptoSchoolDocs } = await payload.find({
     collection: 'categories',
-    where: { slug: { equals: slug } },
+    where: { slug: { equals: 'crypto-school' } },
     limit: 1,
     depth: 0,
     overrideAccess: true,
   })
-  const category = categoryDocs[0]
+  const cryptoSchool = cryptoSchoolDocs[0]
+  if (!cryptoSchool) notFound()
+
+  // Fetch all sub-categories for filter pills
+  const { docs: subCategories } = await payload.find({
+    collection: 'categories',
+    where: { parent: { equals: cryptoSchool.id } },
+    sort: 'weight',
+    limit: 50,
+    depth: 0,
+    overrideAccess: true,
+  })
+
+  const category = subCategories.find(
+    (c) => (c as unknown as { slug: string }).slug === slug
+  ) as unknown as { id: string | number; name: string; slug: string } | undefined
   if (!category) notFound()
 
   const session = await auth()
@@ -56,12 +64,10 @@ export default async function CryptoSchoolCategoryPage({
     })
   )
 
-  const filters = CRYPTO_SCHOOL_CATEGORIES.map((c) => ({
-    label: c.label,
-    slug: c.slug,
+  const filters = subCategories.map((c) => ({
+    label: (c as unknown as { name: string }).name,
+    slug: (c as unknown as { slug: string }).slug,
   }))
 
-  const activeFilter = CRYPTO_SCHOOL_CATEGORIES.find((c) => c.slug === slug)?.label ?? 'All'
-
-  return <CryptoSchoolClient articles={articles} filters={filters} activeFilter={activeFilter} />
+  return <CryptoSchoolClient articles={articles} filters={filters} activeFilter={category.name} />
 }

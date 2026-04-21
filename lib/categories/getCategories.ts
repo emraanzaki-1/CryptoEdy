@@ -5,6 +5,10 @@ import { unstable_cache } from 'next/cache'
 export interface NavCategory {
   label: string
   slug: string
+  /** URL prefix for the hub page, e.g. "research" or "analysis". Null for custom-routed parents. */
+  routePrefix: string | null
+  /** When true, posts in this category are excluded from the main /feed page. */
+  excludeFromMainFeed: boolean
   items: { label: string; slug: string; href: string }[]
 }
 
@@ -20,7 +24,21 @@ async function fetchNavCategories(): Promise<NavCategory[]> {
     overrideAccess: true,
   })
 
-  const parents = docs as { id: string | number; name: string; slug: string }[]
+  const parents = docs as {
+    id: string | number
+    name: string
+    slug: string
+    routePrefix?: string | null
+    excludeFromMainFeed?: boolean | null
+  }[]
+
+  // Build lookup maps from parent data
+  const parentRoutePrefixMap = new Map<string | number, string | null>()
+  const parentExcludeMap = new Map<string | number, boolean>()
+  for (const p of parents) {
+    parentRoutePrefixMap.set(p.id, p.routePrefix ?? null)
+    parentExcludeMap.set(p.id, p.excludeFromMainFeed ?? false)
+  }
 
   const { docs: children } = await payload.find({
     collection: 'categories',
@@ -49,16 +67,16 @@ async function fetchNavCategories(): Promise<NavCategory[]> {
       childrenByParent.set(parentId, [])
     }
 
-    const parentSlug = typeof c.parent === 'object' ? c.parent.slug : undefined
+    const routePrefix = parentRoutePrefixMap.get(parentId) ?? null
+    const excludeFromFeed = parentExcludeMap.get(parentId) ?? false
 
-    // Route children to their dedicated hub paths
     let href: string
-    if (parentSlug === 'education') {
+    if (routePrefix) {
+      // Standard hub routing: /{routePrefix}/{childSlug}
+      href = `/${routePrefix}/${c.slug}`
+    } else if (excludeFromFeed) {
+      // Custom-routed parent (e.g. Education): map known children to their dedicated routes
       href = c.slug === 'trading-course' ? '/learn/courses' : '/learn'
-    } else if (parentSlug === 'research') {
-      href = `/research/${c.slug}`
-    } else if (parentSlug === 'analysis') {
-      href = `/analysis/${c.slug}`
     } else {
       href = `/feed/${c.slug}`
     }
@@ -73,10 +91,12 @@ async function fetchNavCategories(): Promise<NavCategory[]> {
   return parents.map((p) => ({
     label: p.name,
     slug: p.slug,
+    routePrefix: p.routePrefix ?? null,
+    excludeFromMainFeed: p.excludeFromMainFeed ?? false,
     items: [
-      ...(p.slug === 'education'
-        ? []
-        : [{ label: `All ${p.name}`, slug: p.slug, href: `/${p.slug}` }]),
+      ...(p.routePrefix
+        ? [{ label: `All ${p.name}`, slug: p.slug, href: `/${p.routePrefix}` }]
+        : []),
       ...(childrenByParent.get(p.id) ?? []),
     ],
   }))
