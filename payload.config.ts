@@ -18,6 +18,8 @@ import { Lessons } from './collections/Lessons'
 import { richTextEditor } from './lib/lexical/richEditor'
 import { adminUserEndpoints } from './lib/api/admin-users'
 import { adminSubscriberEndpoints } from './lib/api/admin-subscribers'
+import { adminPaymentEndpoints } from './lib/api/admin-payments'
+import { adminSubscriptionEndpoints } from './lib/api/admin-subscriptions'
 import { categoryReorderEndpoint } from './lib/api/category-reorder'
 
 const filename = fileURLToPath(import.meta.url)
@@ -76,10 +78,32 @@ export default buildConfig({
             description: 'View marketing email subscribers',
           },
         },
+        paymentManagement: {
+          Component: '@/components/admin/views/PaymentManagement',
+          path: '/payments',
+          meta: {
+            title: 'Payments',
+            description: 'View payment transactions',
+          },
+        },
+        subscriptionManagement: {
+          Component: '@/components/admin/views/SubscriptionManagement',
+          path: '/subscriptions',
+          meta: {
+            title: 'Subscriptions',
+            description: 'View and manage user subscriptions',
+          },
+        },
       },
     },
   },
-  endpoints: [...adminUserEndpoints, ...adminSubscriberEndpoints, categoryReorderEndpoint],
+  endpoints: [
+    ...adminUserEndpoints,
+    ...adminSubscriberEndpoints,
+    ...adminPaymentEndpoints,
+    ...adminSubscriptionEndpoints,
+    categoryReorderEndpoint,
+  ],
   collections: [Authors, Categories, Tags, Media, Posts, FAQs, Courses, Modules, Lessons],
   // Rich Lexical editor is the global default for all richText fields.
   // Posts.content overrides with the same editor (with custom crypto blocks).

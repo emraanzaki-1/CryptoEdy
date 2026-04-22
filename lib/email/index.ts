@@ -1,24 +1,20 @@
-import { Resend } from 'resend'
+import { BrevoClient } from '@getbrevo/brevo'
 
-// In development, use Resend's shared sender — no domain verification required.
-// In production, switch to the verified domain address.
-export const FROM_EMAIL =
-  process.env.NODE_ENV === 'development'
-    ? 'CryptoEdy <onboarding@resend.dev>'
-    : 'CryptoEdy <noreply@cryptoedy.com>'
+// Sender identity for all outbound email.
+export const FROM_EMAIL = { name: 'CryptoEdy', email: 'noreply@cryptoedy.com' }
 
-let _resend: Resend | null = null
+let _brevo: BrevoClient | null = null
 
-export function getResend(): Resend {
-  if (!_resend) {
-    if (!process.env.RESEND_API_KEY) {
-      throw new Error('[CryptoEdy] RESEND_API_KEY is not set. Check your .env.local file.')
+export function getBrevo(): BrevoClient {
+  if (!_brevo) {
+    if (!process.env.BREVO_API_KEY) {
+      throw new Error('[CryptoEdy] BREVO_API_KEY is not set. Check your .env.local file.')
     }
-    _resend = new Resend(process.env.RESEND_API_KEY)
+    _brevo = new BrevoClient({ apiKey: process.env.BREVO_API_KEY })
   }
-  return _resend
+  return _brevo
 }
 
 export function isEmailConfigured(): boolean {
-  return !!process.env.RESEND_API_KEY
+  return !!process.env.BREVO_API_KEY
 }

@@ -1,0 +1,12 @@
+[Unit]
+Description=CryptoEdy — daily subscription expiry check
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/cryptoedy.env
+ExecStart=/opt/cryptoedy/scripts/subscription-check.sh
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=cryptoedy-subscription-check

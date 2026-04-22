@@ -43,7 +43,7 @@ export const categoryReorderEndpoint: Endpoint = {
       )
     )
 
-    revalidateTag('categories', 'default')
+    revalidateTag('categories', 'max')
 
     return Response.json({ success: true })
   },

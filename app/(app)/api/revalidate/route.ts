@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
   }
 
   if (body.tag) {
-    revalidateTag(body.tag, 'page')
+    revalidateTag(body.tag, 'max')
   }
 
   if (body.path) {

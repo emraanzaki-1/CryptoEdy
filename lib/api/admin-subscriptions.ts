@@ -1,14 +1,92 @@
 import type { Endpoint } from 'payload'
+import { addDataAndFileToRequest } from 'payload'
 import { getDb } from '@/lib/db'
 import { users } from '@/lib/db/schema/users'
 import { payments } from '@/lib/db/schema/payments'
 import { eq, count, sql, desc, gte, and, ilike, or } from 'drizzle-orm'
+import { onSubscriptionActivated } from '@/lib/notifications/events'
 
 function isAdmin(req: { user?: Record<string, unknown> | null }): boolean {
   return (req.user as { role?: string } | null)?.role === 'admin'
 }
 
 export const adminSubscriptionEndpoints: Endpoint[] = [
+  // POST /api/admin-subscriptions/grant — manually grant Pro to a user
+  {
+    path: '/admin-subscriptions/grant',
+    method: 'post',
+    handler: async (req) => {
+      if (!isAdmin(req)) {
+        return Response.json({ error: 'Forbidden' }, { status: 403 })
+      }
+
+      await addDataAndFileToRequest(req)
+      const { userId, durationDays } = (req.data ?? {}) as {
+        userId?: string
+        durationDays?: number
+      }
+
+      if (!userId) return Response.json({ error: 'userId is required' }, { status: 400 })
+      const days = Number(durationDays)
+      if (!days || days < 1 || days > 3650) {
+        return Response.json({ error: 'durationDays must be between 1 and 3650' }, { status: 400 })
+      }
+
+      const db = getDb()
+
+      const [currentUser] = await db
+        .select({ id: users.id, role: users.role, subscriptionExpiry: users.subscriptionExpiry })
+        .from(users)
+        .where(eq(users.id, userId))
+        .limit(1)
+
+      if (!currentUser) return Response.json({ error: 'User not found' }, { status: 404 })
+
+      // Early renewal: extend from current expiry if still Pro
+      const now = new Date()
+      const baseDate =
+        currentUser.subscriptionExpiry && currentUser.subscriptionExpiry > now
+          ? currentUser.subscriptionExpiry
+          : now
+      const expiresAt = new Date(baseDate)
+      expiresAt.setDate(expiresAt.getDate() + days)
+
+      const txHash = `manual-${Date.now()}-${userId}`
+
+      try {
+        await db.transaction(async (tx) => {
+          await tx.insert(payments).values({
+            userId,
+            txHash,
+            chain: 'manual',
+            asset: 'manual',
+            amount: '0.00',
+            status: 'confirmed',
+            provider: 'manual',
+            providerPaymentId: txHash,
+            confirmedAt: now,
+          })
+
+          await tx
+            .update(users)
+            .set({ role: 'pro', subscriptionExpiry: expiresAt, updatedAt: now })
+            .where(eq(users.id, userId))
+        })
+      } catch (err) {
+        console.error('[admin-subscriptions/grant] DB error:', err)
+        return Response.json({ error: 'Failed to grant subscription' }, { status: 500 })
+      }
+
+      try {
+        await onSubscriptionActivated(userId)
+      } catch {
+        // non-blocking
+      }
+
+      return Response.json({ success: true, expiresAt })
+    },
+  },
+
   // GET /api/admin-subscriptions/overview — KPI summary
   {
     path: '/admin-subscriptions/overview',

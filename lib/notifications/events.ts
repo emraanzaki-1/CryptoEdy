@@ -69,28 +69,20 @@ export async function onPostPublished(post: Record<string, unknown>): Promise<vo
     : 'analysis' // fallback for categories without a matching subtype
   const link = `/articles/${event.slug}`
 
-  if (event.isProOnly) {
-    // Pro-only content → notify Pro, Analyst, Admin users only
-    await broadcastNotification({
-      type: 'content',
-      subtype,
-      title: `New ${event.parentCategory}: ${event.title}`,
-      body: `A new ${categoryName.toLowerCase()} article is now available. Read the full analysis on CryptoEdy.`,
-      link,
-      filter: { roles: ['pro', 'analyst', 'admin'] },
-      emailNewsletter: true,
-    })
-  } else {
-    // Free content → notify all users
-    await broadcastNotification({
-      type: 'content',
-      subtype,
-      title: `New ${event.parentCategory}: ${event.title}`,
-      body: `A new ${categoryName.toLowerCase()} article is now available on CryptoEdy.`,
-      link,
-      emailNewsletter: true,
-    })
-  }
+  const excerpt = (post.excerpt as string | undefined)?.trim()
+  const body =
+    excerpt ?? `A new ${categoryName.toLowerCase()} article is now available on CryptoEdy.`
+
+  // All published posts notify free + pro users. Admin and analyst are excluded.
+  await broadcastNotification({
+    type: 'content',
+    subtype,
+    title: `New ${event.parentCategory}: ${event.title}`,
+    body,
+    link,
+    filter: { roles: ['free', 'pro'] },
+    emailNewsletter: true,
+  })
 }
 
 /* ─── Subscription Events ───────────────────────────────────────────────── */
@@ -137,42 +129,5 @@ export async function onSubscriptionExpired(userId: string): Promise<void> {
     title: 'Your Pro membership has expired',
     body: 'You can still access free content on CryptoEdy. Renew anytime to regain full access.',
     link: '/settings/plans',
-  })
-}
-
-/* ─── Referral Events ───────────────────────────────────────────────────── */
-
-/**
- * Fires when a referred user converts (signs up or subscribes).
- * Called from referral reward logic (Sprint 6).
- */
-export async function onReferralConverted(referrerId: string, referredName: string): Promise<void> {
-  await createNotification({
-    userId: referrerId,
-    type: 'account',
-    subtype: 'referral',
-    title: 'Referral reward pending!',
-    body: `${referredName} joined CryptoEdy through your referral link. Your $10 USDC reward is pending.`,
-    link: '/settings/billing',
-  })
-}
-
-/* ─── Airdrop Events ────────────────────────────────────────────────────── */
-
-/**
- * Fires when a new airdrop guide is published.
- * Called from Payload Posts afterChange hook when category is airdrop-related.
- */
-export async function onAirdropPublished(post: Record<string, unknown>): Promise<void> {
-  const title = (post.title as string) ?? 'New Airdrop Guide'
-  const slug = (post.slug as string) ?? ''
-
-  await broadcastNotification({
-    type: 'feed',
-    subtype: 'picks',
-    title: `New airdrop guide: ${title}`,
-    body: 'A new airdrop opportunity has been published. Check it out before it expires.',
-    link: `/articles/${slug}`,
-    filter: { roles: ['pro', 'analyst', 'admin'] },
   })
 }

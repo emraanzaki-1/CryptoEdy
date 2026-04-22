@@ -39,43 +39,6 @@ const CATEGORIES: CategoryConfig[] = [
     ],
   },
   {
-    type: 'community',
-    label: 'Community',
-    subtypes: [
-      {
-        subtype: 'message',
-        label: 'New messages',
-        description: 'Direct messages from other members.',
-      },
-      {
-        subtype: 'mention',
-        label: 'New mentions',
-        description: "When you're mentioned in a forum or chat.",
-      },
-      {
-        subtype: 'reply',
-        label: 'New replies',
-        description: 'Responses to your comments or posts.',
-      },
-    ],
-  },
-  {
-    type: 'feed',
-    label: 'Feed',
-    subtypes: [
-      {
-        subtype: 'market_direction',
-        label: 'Market Direction',
-        description: 'Alerts for macro and trend updates.',
-      },
-      {
-        subtype: 'picks',
-        label: 'Assets & Picks',
-        description: 'Alerts for new high-conviction token selections.',
-      },
-    ],
-  },
-  {
     type: 'account',
     label: 'Account',
     subtypes: [
@@ -83,11 +46,6 @@ const CATEGORIES: CategoryConfig[] = [
         subtype: 'subscription',
         label: 'Subscription',
         description: 'Payment confirmations, expiry warnings, and renewal reminders.',
-      },
-      {
-        subtype: 'referral',
-        label: 'Referrals',
-        description: 'Referral reward notifications when someone joins through your link.',
       },
     ],
   },
@@ -157,29 +115,16 @@ function CategoryGroup({
   prefs,
   saving,
   onToggleSubtype,
-  onToggleMaster,
 }: {
   config: CategoryConfig
   prefs: Record<NotificationSubtype, { inApp: boolean; email: boolean }>
   saving: string | null
   onToggleSubtype: (type: NotificationType, subtype: NotificationSubtype) => void
-  onToggleMaster: (type: NotificationType) => void
 }) {
-  const subtypeValues = config.subtypes.map((s) => prefs[s.subtype]?.inApp ?? true)
-  const allOn = subtypeValues.every(Boolean)
-  const allOff = subtypeValues.every((v) => !v)
-  const indeterminate = !allOn && !allOff
-
   return (
     <section>
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4">
         <SectionHeading variant="subsection">{config.label}</SectionHeading>
-        <ToggleSwitch
-          checked={allOn}
-          indeterminate={indeterminate}
-          onChange={() => onToggleMaster(config.type)}
-          disabled={saving !== null}
-        />
       </div>
       <div className="space-y-4">
         {config.subtypes.map((sub) => (
@@ -189,7 +134,7 @@ function CategoryGroup({
             description={sub.description}
             checked={prefs[sub.subtype]?.inApp ?? true}
             onChange={() => onToggleSubtype(config.type, sub.subtype)}
-            disabled={saving === `${config.type}:${sub.subtype}` || saving === config.type}
+            disabled={saving === `${config.type}:${sub.subtype}`}
           />
         ))}
       </div>
@@ -267,53 +212,6 @@ export default function NotificationSettingsPage() {
     [prefs, saving]
   )
 
-  // Master toggle for a category
-  const handleToggleMaster = useCallback(
-    async (type: NotificationType) => {
-      if (!prefs || saving) return
-
-      const category = CATEGORIES.find((c) => c.type === type)
-      if (!category) return
-
-      // If all are on → turn all off. Otherwise → turn all on.
-      const allOn = category.subtypes.every((s) => prefs[type]?.[s.subtype]?.inApp ?? true)
-      const newValue = !allOn
-
-      // Optimistic update
-      const prevPrefs = prefs
-      setPrefs((prev) => {
-        if (!prev) return prev
-        const updated = { ...prev, [type]: { ...prev[type] } }
-        for (const sub of category.subtypes) {
-          updated[type] = {
-            ...updated[type],
-            [sub.subtype]: { ...updated[type][sub.subtype], inApp: newValue },
-          }
-        }
-        return updated
-      })
-      setSaving(type)
-
-      try {
-        const res = await fetch('/api/user/notification-preferences', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ type, channel: 'inApp', enabled: newValue }),
-        })
-        if (!res.ok) throw new Error('Failed to save')
-        const updated: GroupedPreferences = await res.json()
-        setPrefs(updated)
-        toast.success('Preferences saved')
-      } catch {
-        setPrefs(prevPrefs)
-        toast.error('Failed to save preferences')
-      } finally {
-        setSaving(null)
-      }
-    },
-    [prefs, saving]
-  )
-
   return (
     <>
       <SectionHeading as="h2" subtitle="Manage how and when you receive updates from CryptoEdy.">
@@ -331,7 +229,6 @@ export default function NotificationSettingsPage() {
               prefs={prefs[cat.type] ?? {}}
               saving={saving}
               onToggleSubtype={handleToggleSubtype}
-              onToggleMaster={handleToggleMaster}
             />
           ))}
         </div>

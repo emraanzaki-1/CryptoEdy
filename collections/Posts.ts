@@ -90,7 +90,7 @@ const firePublishedEvent: CollectionAfterChangeHook = async ({ doc, previousDoc 
     if (slug) {
       revalidatePath(`/articles/${slug}`, 'page')
     }
-    revalidateTag('posts', 'page')
+    revalidateTag('posts', 'max')
     revalidatePath('/feed', 'page')
     revalidatePath('/', 'page')
   }
