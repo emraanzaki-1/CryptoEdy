@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: 'Trading Courses — CryptoEdy',
   description:
     'Master the digital economy with structured trading courses. From beginner fundamentals to advanced strategies.',
+  alternates: {
+    canonical: `${process.env.NEXTAUTH_URL ?? 'http://localhost:3000'}/courses`,
+  },
 }
 
 export default async function CoursesPage() {

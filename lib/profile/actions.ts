@@ -106,6 +106,22 @@ export async function updateProfile(fields: {
   return { ok: true, data: updated }
 }
 
+export async function updateThemePreference(
+  theme: 'light' | 'dark' | 'system'
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  const session = await auth()
+  if (!session?.user?.id) {
+    return { ok: false, error: 'Unauthorized' }
+  }
+
+  await getDb()
+    .update(users)
+    .set({ themePreference: theme, updatedAt: new Date() })
+    .where(eq(users.id, session.user.id))
+
+  return { ok: true }
+}
+
 export async function deleteAccount(
   confirmEmail: string
 ): Promise<{ ok: true } | { ok: false; error: string }> {

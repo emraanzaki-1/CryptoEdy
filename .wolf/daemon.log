@@ -253,3 +253,7 @@
 [2026-04-21T22:16:00.151Z] [INFO] Task Consolidate old memory completed in 9ms
 [2026-04-21T22:16:03.658Z] [INFO] Executing task: Token audit report
 [2026-04-21T22:16:03.727Z] [INFO] Task Token audit report completed in 68ms
+[2026-04-21T22:44:01.727Z] [INFO] WebSocket client connected
+[2026-04-22T06:30:00.206Z] [INFO] Executing task: Full anatomy rescan
+[2026-04-22T06:30:00.516Z] [INFO] Task Full anatomy rescan completed in 315ms
+[2026-04-22T09:41:47.416Z] [INFO] WebSocket client connected

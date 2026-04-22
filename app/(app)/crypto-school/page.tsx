@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: 'Crypto School — CryptoEdy',
   description:
     'Master the fundamentals with CryptoEdy Crypto School. Blueprints, guides, videos, and simplified explainers for digital asset intelligence.',
+  alternates: {
+    canonical: `${process.env.NEXTAUTH_URL ?? 'http://localhost:3000'}/crypto-school`,
+  },
 }
 
 interface PostPreview {

@@ -82,6 +82,12 @@ export function Footer({ navCategories }: FooterProps) {
                 Privacy Policy
               </Link>
               <Link
+                href="/legal/disclaimer"
+                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+              >
+                Financial Disclaimer
+              </Link>
+              <Link
                 href="/contact"
                 className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
               >

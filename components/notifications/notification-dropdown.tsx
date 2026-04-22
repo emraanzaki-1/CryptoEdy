@@ -98,7 +98,7 @@ export function NotificationDropdown({ open, onClose }: NotificationDropdownProp
                 key={tab.value}
                 onClick={() => setActiveTab(tab.value)}
                 className={cn(
-                  'text-body-sm rounded-lg px-3 py-1.5 font-medium transition-colors',
+                  'text-body-sm focus-visible:ring-primary rounded-lg px-3 py-1.5 font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none',
                   activeTab === tab.value
                     ? 'bg-primary/10 text-primary'
                     : 'text-on-surface-variant hover:bg-surface-container-high'

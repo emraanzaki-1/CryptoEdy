@@ -21,7 +21,9 @@ export function GuestShell({ children, className, navCategories = [] }: GuestShe
         </div>
       </div>
 
-      <main className={cn('flex-1', className)}>{children}</main>
+      <main id="main-content" className={cn('flex-1', className)}>
+        {children}
+      </main>
 
       <Footer navCategories={navCategories} />
     </div>

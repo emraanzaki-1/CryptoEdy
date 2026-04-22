@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useSession } from 'next-auth/react'
-import { Pencil, Loader2, Check } from 'lucide-react'
+import { Pencil, Loader2, Check, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AvatarUpload } from '@/components/settings/avatar-upload'
 import { SectionHeading } from '@/components/common/section-heading'
@@ -26,6 +26,10 @@ export default function ProfileSettingsPage() {
   const [displayName, setDisplayName] = useState('')
   const [bio, setBio] = useState('')
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
+  const [usernameStatus, setUsernameStatus] = useState<
+    'idle' | 'checking' | 'available' | 'taken' | 'invalid'
+  >('idle')
+  const usernameDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const populateForm = useCallback((data: ProfileData) => {
     setProfile(data)
@@ -36,6 +40,36 @@ export default function ProfileSettingsPage() {
     setBio(data.bio ?? '')
     setAvatarUrl(data.avatarUrl)
   }, [])
+
+  // Debounced username availability check — all setState calls are inside async callbacks
+  useEffect(() => {
+    const raw = username.startsWith('@') ? username.slice(1) : username
+    const isUnchanged = !raw || raw === (profile?.username ?? '')
+
+    if (usernameDebounceRef.current) clearTimeout(usernameDebounceRef.current)
+
+    usernameDebounceRef.current = setTimeout(
+      async () => {
+        if (isUnchanged) {
+          setUsernameStatus('idle')
+          return
+        }
+        setUsernameStatus('checking')
+        const res = await fetch(`/api/user/check-username?username=${encodeURIComponent(raw)}`)
+        const data = (await res.json()) as { available?: boolean; error?: string }
+        if (data.error && !data.available) {
+          setUsernameStatus('invalid')
+        } else {
+          setUsernameStatus(data.available ? 'available' : 'taken')
+        }
+      },
+      isUnchanged ? 0 : 500
+    )
+
+    return () => {
+      if (usernameDebounceRef.current) clearTimeout(usernameDebounceRef.current)
+    }
+  }, [username, profile?.username])
 
   useEffect(() => {
     getProfile().then((result) => {
@@ -175,15 +209,37 @@ export default function ProfileSettingsPage() {
                 </Button>
               </div>
             </FormField>
-            <FormField label="Username" htmlFor="username">
-              <FormInput
-                id="username"
-                variant="outlined"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="@username"
-              />
+            <FormField
+              label="Username"
+              htmlFor="username"
+              error={
+                usernameStatus === 'taken'
+                  ? 'Username is already taken'
+                  : usernameStatus === 'invalid'
+                    ? 'Username must be 3–20 characters: letters, numbers, underscores only'
+                    : undefined
+              }
+            >
+              <div className="relative">
+                <FormInput
+                  id="username"
+                  variant="outlined"
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="@username"
+                  className="pr-9"
+                />
+                {usernameStatus === 'checking' && (
+                  <Loader2 className="text-on-surface-variant absolute top-1/2 right-3 size-4 -translate-y-1/2 animate-spin" />
+                )}
+                {usernameStatus === 'available' && (
+                  <Check className="text-primary absolute top-1/2 right-3 size-4 -translate-y-1/2" />
+                )}
+                {(usernameStatus === 'taken' || usernameStatus === 'invalid') && (
+                  <X className="text-error absolute top-1/2 right-3 size-4 -translate-y-1/2" />
+                )}
+              </div>
             </FormField>
             <FormField label="Display Name" htmlFor="displayName">
               <FormInput

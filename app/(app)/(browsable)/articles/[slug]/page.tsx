@@ -46,20 +46,36 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     post.coverImage && typeof post.coverImage === 'object'
       ? (post.coverImage as { url?: string }).url
       : undefined
+  const featuredImage =
+    post.featuredImage && typeof post.featuredImage === 'object'
+      ? (post.featuredImage as { url?: string }).url
+      : undefined
+  const ogImage = featuredImage ?? coverImage
+  const canonicalUrl = `${process.env.NEXTAUTH_URL ?? 'http://localhost:3000'}/articles/${slug}`
+  const author =
+    post.author && typeof post.author === 'object' && 'displayName' in post.author
+      ? ((post.author as { displayName?: string }).displayName ?? 'CryptoEdy Research')
+      : 'CryptoEdy Research'
 
   return {
     title,
     description,
+    alternates: { canonical: canonicalUrl },
     openGraph: {
-      title,
+      title: post.title as string,
       description,
-      ...(coverImage ? { images: [{ url: coverImage }] } : {}),
+      type: 'article',
+      publishedTime: post.publishedAt as string | undefined,
+      authors: [author],
+      ...(ogImage
+        ? { images: [{ url: ogImage, width: 1200, height: 630, alt: post.title as string }] }
+        : {}),
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: post.title as string,
       description,
-      ...(coverImage ? { images: [coverImage] } : {}),
+      ...(ogImage ? { images: [ogImage] } : {}),
     },
   }
 }
@@ -191,8 +207,29 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   }
   const hubPath = hubPathMap[parentSlug] ?? '/feed'
 
+  const siteUrl = process.env.NEXTAUTH_URL ?? 'http://localhost:3000'
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title as string,
+    description: post.excerpt as string | undefined,
+    image: featuredImage ?? undefined,
+    datePublished: post.publishedAt as string | undefined,
+    author: { '@type': 'Person', name: author },
+    publisher: {
+      '@type': 'Organization',
+      name: 'CryptoEdy',
+      url: siteUrl,
+    },
+    url: `${siteUrl}/articles/${slug}`,
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <article className="mx-auto max-w-4xl">
         {/* Breadcrumbs — authenticated only */}
         {isAuthenticated && (

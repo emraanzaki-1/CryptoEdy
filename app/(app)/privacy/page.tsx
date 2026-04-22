@@ -8,6 +8,9 @@ import { Heading, Title } from '@/components/ui/typography'
 export const metadata = {
   title: 'Privacy Policy – CryptoEdy',
   description: 'Privacy Policy for CryptoEdy Research.',
+  alternates: {
+    canonical: `${process.env.NEXTAUTH_URL ?? 'http://localhost:3000'}/privacy`,
+  },
 }
 
 const sidebarLinks = [

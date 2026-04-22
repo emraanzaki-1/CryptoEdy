@@ -215,7 +215,7 @@ export function TopAppBar({
         <button
           type="button"
           onClick={onMenuClick}
-          className="bg-surface-container text-on-surface hover:bg-surface-container-high border-outline-variant/15 flex aspect-square h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-colors lg:hidden"
+          className="bg-surface-container text-on-surface hover:bg-surface-container-high border-outline-variant/15 focus-visible:ring-primary flex aspect-square h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-colors focus-visible:ring-2 focus-visible:outline-none lg:hidden"
           aria-label="Open menu"
         >
           <Menu className="size-5" />
@@ -236,7 +236,8 @@ export function TopAppBar({
         <button
           type="button"
           onClick={onSearchClick}
-          className="bg-surface-container text-on-surface hover:bg-surface-container-high flex size-10 cursor-pointer items-center justify-center rounded-full transition-colors md:hidden"
+          aria-label="Open search"
+          className="bg-surface-container text-on-surface hover:bg-surface-container-high focus-visible:ring-primary flex size-10 cursor-pointer items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:outline-none md:hidden"
         >
           <Search className="size-5" />
         </button>
@@ -252,7 +253,8 @@ export function TopAppBar({
               setNotifOpen((v) => !v)
               setUserOpen(false)
             }}
-            className="bg-surface-container text-on-surface hover:bg-surface-container-high relative flex size-10 cursor-pointer items-center justify-center rounded-full transition-colors"
+            aria-label="Notifications"
+            className="bg-surface-container text-on-surface hover:bg-surface-container-high focus-visible:ring-primary relative flex size-10 cursor-pointer items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:outline-none"
           >
             <Bell className="size-5" />
             {unreadCount > 0 && (
@@ -271,7 +273,8 @@ export function TopAppBar({
               setUserOpen((v) => !v)
               setNotifOpen(false)
             }}
-            className="bg-surface-container-high hover:ring-primary/30 size-10 cursor-pointer rounded-full bg-cover bg-center bg-no-repeat ring-2 ring-transparent transition-all"
+            aria-label="Open user menu"
+            className="bg-surface-container-high hover:ring-primary/30 focus-visible:ring-primary size-10 cursor-pointer rounded-full bg-cover bg-center bg-no-repeat ring-2 ring-transparent transition-all focus-visible:outline-none"
             style={{ backgroundImage: user?.image ? `url("${user.image}")` : undefined }}
           >
             {!user?.image && (

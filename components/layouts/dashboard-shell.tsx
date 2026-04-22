@@ -46,7 +46,7 @@ export function DashboardShell({ user, navCategories, children }: DashboardShell
         <MobileNav open={mobileOpen} onClose={closeMobile} navCategories={navCategories} />
 
         <main
-          id="main-scroll"
+          id="main-content"
           className={`bg-surface-container-lowest flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain ${LAYOUT.mainRadius}`}
         >
           <div className={`flex-1 ${LAYOUT.content.px} ${LAYOUT.content.pt} ${LAYOUT.content.pb}`}>

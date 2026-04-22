@@ -92,7 +92,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
         <button
           onClick={onToggle}
           className={cn(
-            'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface mb-2 flex size-8 items-center justify-center rounded-lg transition-colors',
+            'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface focus-visible:ring-primary mb-2 flex size-8 items-center justify-center rounded-lg transition-colors focus-visible:ring-2 focus-visible:outline-none',
             collapsed ? 'self-center' : 'self-end'
           )}
           aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
@@ -132,9 +132,10 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
           >
             <button
               title="Tools"
+              aria-label="Tools"
               onClick={() => setToolsHover((v) => !v)}
               className={cn(
-                'flex w-full items-center justify-center rounded-lg px-3 py-3 transition-colors',
+                'focus-visible:ring-primary flex w-full items-center justify-center rounded-lg px-3 py-3 transition-colors focus-visible:ring-2 focus-visible:outline-none',
                 isToolsActive
                   ? 'bg-surface-container-lowest text-primary ring-outline-variant/15 shadow-sm ring-1'
                   : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'

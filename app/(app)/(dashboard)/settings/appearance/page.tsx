@@ -5,6 +5,7 @@ import { useSyncExternalStore } from 'react'
 import { Sun, Moon, Monitor, Check } from 'lucide-react'
 import { SectionHeading } from '@/components/common/section-heading'
 import { cn } from '@/lib/utils'
+import { updateThemePreference } from '@/lib/profile/actions'
 
 const THEMES = [
   {
@@ -102,9 +103,12 @@ export default function AppearanceSettingsPage() {
               return (
                 <button
                   key={t.value}
-                  onClick={() => setTheme(t.value)}
+                  onClick={() => {
+                    setTheme(t.value)
+                    updateThemePreference(t.value)
+                  }}
                   className={cn(
-                    'group relative flex flex-col overflow-hidden rounded-2xl border text-left transition-all duration-200',
+                    'group focus-visible:ring-primary relative flex flex-col overflow-hidden rounded-2xl border text-left transition-all duration-200 focus-visible:ring-2 focus-visible:outline-none',
                     isSelected
                       ? 'border-primary/40 ring-primary/20 ring-2 ring-inset'
                       : 'border-outline-variant/15 hover:border-outline-variant/30'

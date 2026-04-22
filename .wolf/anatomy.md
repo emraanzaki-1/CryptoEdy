@@ -1,11 +1,15 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T07:14:42.082Z
-> Files: 334 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T09:43:02.953Z
+> Files: 340 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../../.claude/plans/
 
 - `composed-foraging-bentley.md` — Guest Education Pages — Implementation Plan (~1787 tok)
+
+## ../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/
+
+- `sprint_status.md` — CryptoEdy Sprint Implementation Status (~1253 tok)
 
 ## ./
 
@@ -77,14 +81,16 @@
 ## app/
 
 - `globals.css` — Styles: 6 rules, 263 vars (~4548 tok)
+- `robots.ts` — Declares robots (~119 tok)
+- `sitemap.ts` — BASE_URL: sitemap (~904 tok)
 
 ## app/(app)/
 
 - `error.tsx` — AppError (~177 tok)
 - `global-error.tsx` — inter (~228 tok)
-- `layout.tsx` — inter (~350 tok)
+- `layout.tsx` — inter (~615 tok)
 - `not-found.tsx` — NotFound (~175 tok)
-- `page.tsx` — Home (~384 tok)
+- `page.tsx` — metadata (~536 tok)
 
 ## app/(app)/(auth)/
 
@@ -120,12 +126,12 @@
 
 ## app/(app)/(browsable)/analysis/[slug]/
 
-- `page.tsx` — generateMetadata (~151 tok)
+- `page.tsx` — generateMetadata (~157 tok)
 
 ## app/(app)/(browsable)/articles/[slug]/
 
 - `loading.tsx` — ArticleLoading (~42 tok)
-- `page.tsx` — generateMetadata (~3150 tok)
+- `page.tsx` — generateMetadata (~3560 tok)
 
 ## app/(app)/(browsable)/feed/[[...slug]]/
 
@@ -138,7 +144,7 @@
 
 ## app/(app)/(browsable)/research/[slug]/
 
-- `page.tsx` — generateMetadata (~151 tok)
+- `page.tsx` — generateMetadata (~157 tok)
 
 ## app/(app)/(browsable)/tag/[slug]/
 
@@ -187,7 +193,7 @@
 
 ## app/(app)/(dashboard)/settings/appearance/
 
-- `page.tsx` — THEMES (~1782 tok)
+- `page.tsx` — THEMES (~1848 tok)
 
 ## app/(app)/(dashboard)/settings/billing/
 
@@ -203,7 +209,7 @@
 
 ## app/(app)/(dashboard)/settings/profile/
 
-- `page.tsx` — ProfileSettingsPage — renders form — uses useState, useCallback, useEffect (~2361 tok)
+- `page.tsx` — ProfileSettingsPage — renders form (~3010 tok)
 
 ## app/(app)/(dashboard)/tools/
 
@@ -297,6 +303,10 @@
 
 - `route.ts` — Next.js API route: POST (~517 tok)
 
+## app/(app)/api/user/check-username/
+
+- `route.ts` — GET /api/user/check-username?username=foo (~348 tok)
+
 ## app/(app)/api/user/notification-preferences/
 
 - `route.ts` — GET — returns all preferences grouped by type. (~1051 tok)
@@ -307,21 +317,25 @@
 
 ## app/(app)/courses/
 
-- `page.tsx` — Guest trading courses marketing page (~750 tok)
+- `page.tsx` — metadata (~695 tok)
 - `page.tsx` — metadata (~666 tok)
 
 ## app/(app)/crypto-school/
 
-- `page.tsx` — Guest Crypto School marketing page (~900 tok)
+- `page.tsx` — metadata (~900 tok)
 - `page.tsx` — metadata (~869 tok)
+
+## app/(app)/legal/disclaimer/
+
+- `page.tsx` — metadata (~2800 tok)
 
 ## app/(app)/privacy/
 
-- `page.tsx` — metadata — renders table (~2939 tok)
+- `page.tsx` — metadata — renders table (~2968 tok)
 
 ## app/(app)/terms/
 
-- `page.tsx` — metadata — renders chart (~3408 tok)
+- `page.tsx` — metadata (~3436 tok)
 
 ## app/(payload)/
 
@@ -437,7 +451,7 @@
 - `feed-cards-skeleton.tsx` — FeedCardsSkeleton (~288 tok)
 - `feed-client.tsx` — FeedClient (~1213 tok)
 - `tag-client.tsx` — TagClient (~866 tok)
-- `view-toggle.tsx` — ViewToggle (~433 tok)
+- `view-toggle.tsx` — ViewToggle (~493 tok)
 
 ## components/landing/
 
@@ -452,14 +466,14 @@
 ## components/layouts/
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~579 tok)
-- `dashboard-shell.tsx` — DashboardShell — uses useState, useCallback (~816 tok)
-- `footer.tsx` — Footer (~1270 tok)
+- `dashboard-shell.tsx` — DashboardShell (~817 tok)
+- `footer.tsx` — Footer (~1339 tok)
 - `guest-nav.tsx` — Icon map keyed by routePrefix — add new entries when new hub sections are created (~2751 tok)
-- `guest-shell.tsx` — Additional className on the <main> element (~593 tok)
+- `guest-shell.tsx` — Additional className on the <main> element (~598 tok)
 - `mobile-nav.tsx` — TOOLS_ITEMS — renders chart (~2042 tok)
 - `settings-nav.tsx` — settingsGroups (~572 tok)
-- `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2215 tok)
-- `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~2873 tok)
+- `sidebar.tsx` — TOOLS_ITEMS (~2267 tok)
+- `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~2985 tok)
 
 ## components/learn/
 
@@ -476,7 +490,7 @@
 
 ## components/notifications/
 
-- `notification-dropdown.tsx` — TABS — uses useRouter, useEffect (~2416 tok)
+- `notification-dropdown.tsx` — TABS (~2438 tok)
 
 ## components/providers/
 
@@ -523,20 +537,20 @@
 
 ## docs/planning/sprints/
 
-- `sprint-01.md` — Sprint 1 — Project Scaffolding (~2884 tok)
-- `sprint-02.md` — Sprint 2 — Data Layer & Auth Foundation (~3523 tok)
-- `sprint-03.md` — Sprint 3 — CMS Collections & Content Model (~2888 tok)
-- `sprint-04.md` — Sprint 4 — Home Feed & Article Page (~4151 tok)
-- `sprint-05.md` — Sprint 5 — Wallet Connection & Payment Flow (~3519 tok)
-- `sprint-06.md` — Sprint 6 — On-Chain Verification & Subscription Management (~3553 tok)
-- `sprint-07.md` — Sprint 7 — Market Direction Dashboard (~2528 tok)
-- `sprint-08.md` — Sprint 8 — Assets & Picks + Portfolio Tracker (~3008 tok)
-- `sprint-09.md` — Sprint 9 — Airdrop Hub (~2795 tok)
-- `sprint-10.md` — Sprint 10 — Notification Engine (~3723 tok)
-- `sprint-11.md` — Sprint 11 — Community Features (~3377 tok)
-- `sprint-12.md` — Sprint 12 — Settings & Admin Dashboard (~3705 tok)
-- `sprint-13.md` — Sprint 13 — Performance, SEO & Mobile Polish (~3831 tok)
-- `sprint-14.md` — Sprint 14 — Hardening & Go-Live (~3654 tok)
+- `sprint-01.md` — Sprint 1 — Project Scaffolding (~2915 tok)
+- `sprint-02.md` — Sprint 2 — Data Layer & Auth Foundation (~3508 tok)
+- `sprint-03.md` — Sprint 3 — CMS Collections & Content Model (~3103 tok)
+- `sprint-04.md` — Sprint 4 — Home Feed & Article Page (~4296 tok)
+- `sprint-05.md` — Sprint 5 — Wallet Connection & Payment Flow (~3597 tok)
+- `sprint-06.md` — Sprint 6 — On-Chain Verification & Subscription Management (~3673 tok)
+- `sprint-07.md` — Sprint 7 — Market Direction Dashboard (~2613 tok)
+- `sprint-08.md` — Sprint 8 — Assets & Picks + Portfolio Tracker (~3108 tok)
+- `sprint-09.md` — Sprint 9 — Airdrop Hub (~3073 tok)
+- `sprint-10.md` — Sprint 10 — Notification Engine (~3787 tok)
+- `sprint-11.md` — Sprint 11 — Community Features (~3479 tok)
+- `sprint-12.md` — Sprint 12 — Settings & Admin Dashboard (~3840 tok)
+- `sprint-13.md` — Sprint 13 — Performance, SEO & Mobile Polish (~4111 tok)
+- `sprint-14.md` — Sprint 14 — Hardening & Go-Live (~3759 tok)
 
 ## docs/specs/
 
@@ -553,6 +567,7 @@
 - `0004_dazzling_black_tarantula.sql` — SQL: tables: course_enrollments, lesson_progress, 2 alter(s) (~337 tok)
 - `0005_abandoned_dreaming_celestial.sql` — SQL: tables: marketing_subscribers (~110 tok)
 - `0006_notification_engine.sql` — Sprint 10: Notification Engine (~987 tok)
+- `0007_theme_preference.sql` (~21 tok)
 
 ## drizzle/meta/
 
@@ -602,7 +617,7 @@
 
 ## lib/categories/
 
-- `categoryHub.tsx` — getParentCategory (~1437 tok)
+- `categoryHub.tsx` — getParentCategory (~1569 tok)
 - `getCategories.ts` — URL prefix for the hub page, e.g. "research" or "analysis". Null for custom-routed parents. (~897 tok)
 
 ## lib/config/
@@ -632,7 +647,7 @@
 - `notification-preferences.ts` — Exports notificationPreferences, NotificationPreferences, NewNotificationPreferences (~298 tok)
 - `notifications.ts` — Exports notificationTypeEnum, notificationSubtypeEnum, notifications, Notification + 3 more (~497 tok)
 - `sessions.ts` — NextAuth v5 Drizzle adapter schema — required by DrizzleAdapter. (~490 tok)
-- `users.ts` — Exports roleEnum, users, User, NewUser (~478 tok)
+- `users.ts` — Exports roleEnum, users, User, NewUser (~507 tok)
 
 ## lib/email/
 
@@ -674,7 +689,7 @@
 
 ## lib/profile/
 
-- `actions.ts` — Exports ProfileData, getProfile, updateProfile, deleteAccount (~1021 tok)
+- `actions.ts` — Exports ProfileData, getProfile, updateProfile, updateThemePreference, deleteAccount (~1140 tok)
 - `avatar.ts` — API routes: GET (1 endpoints) (~756 tok)
 
 ## lib/utils/

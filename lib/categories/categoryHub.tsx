@@ -133,19 +133,27 @@ export async function renderCategoryChild(parentSlug: string, childSlug: string,
 
 /* ── Metadata generators ─────────────────────────────────────────── */
 
-export async function generateCategoryHubMetadata(parentSlug: string): Promise<Metadata> {
+const BASE_URL = process.env.NEXTAUTH_URL ?? 'http://localhost:3000'
+
+export async function generateCategoryHubMetadata(
+  parentSlug: string,
+  canonicalPath?: string
+): Promise<Metadata> {
   const { category } = await getParentCategory(parentSlug)
   if (!category) return {}
-  const cat = category as unknown as { name: string; description?: string }
+  const cat = category as unknown as { name: string; description?: string; routePrefix?: string }
+  const path = canonicalPath ?? cat.routePrefix ?? parentSlug
   return {
     title: `${cat.name} | CryptoEdy`,
     description: cat.description ?? undefined,
+    alternates: { canonical: `${BASE_URL}/${path}` },
   }
 }
 
 export async function generateCategoryChildMetadata(
   parentSlug: string,
-  childSlug: string
+  childSlug: string,
+  canonicalPath?: string
 ): Promise<Metadata> {
   const { payload, category: parent } = await getParentCategory(parentSlug)
   if (!parent) return {}
@@ -153,9 +161,11 @@ export async function generateCategoryChildMetadata(
   const child = children.find((c) => c.slug === childSlug)
   if (!child) return {}
   const parentName = (parent as unknown as { name: string }).name
+  const parentPrefix = (parent as unknown as { routePrefix?: string }).routePrefix ?? parentSlug
   return {
     title: `${child.name} — ${parentName} | CryptoEdy`,
     description:
       child.description ?? (parent as unknown as { description?: string }).description ?? undefined,
+    alternates: { canonical: `${BASE_URL}/${canonicalPath ?? `${parentPrefix}/${childSlug}`}` },
   }
 }

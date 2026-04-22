@@ -22,8 +22,9 @@ export function ViewToggle({ view, onViewChange }: ViewToggleProps) {
       <button
         type="button"
         onClick={() => onViewChange('grid')}
+        aria-label="Grid view"
         className={cn(
-          'relative z-10 flex size-9 cursor-pointer items-center justify-center rounded-md transition-colors duration-200',
+          'focus-visible:ring-primary relative z-10 flex size-9 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 focus-visible:ring-2 focus-visible:outline-none',
           view === 'grid' ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface'
         )}
       >
@@ -32,8 +33,9 @@ export function ViewToggle({ view, onViewChange }: ViewToggleProps) {
       <button
         type="button"
         onClick={() => onViewChange('list')}
+        aria-label="List view"
         className={cn(
-          'relative z-10 flex size-9 cursor-pointer items-center justify-center rounded-md transition-colors duration-200',
+          'focus-visible:ring-primary relative z-10 flex size-9 cursor-pointer items-center justify-center rounded-md transition-colors duration-200 focus-visible:ring-2 focus-visible:outline-none',
           view === 'list' ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface'
         )}
       >

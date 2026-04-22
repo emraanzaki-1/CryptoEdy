@@ -1536,3 +1536,106 @@ Files changed: `breadcrumb.tsx`, `article-card.tsx`, `top-app-bar.tsx`, `sidebar
 | 12:11 | Session end: 15 writes across 12 files (guest-nav.tsx, composed-foraging-bentley.md, seed.ts, faq-section.tsx, conversion-cta.tsx) | 41 reads                                                  | ~78164 tok |
 | 12:44 | Edited components/education/pro-benefits-section.tsx                                                                               | "bg-surface-container-lowe" → "bg-surface-container-lowe" | ~49        |
 | 12:47 | Session end: 16 writes across 12 files (guest-nav.tsx, composed-foraging-bentley.md, seed.ts, faq-section.tsx, conversion-cta.tsx) | 49 reads                                                  | ~85228 tok |
+| 13:07 | Session end: 16 writes across 12 files (guest-nav.tsx, composed-foraging-bentley.md, seed.ts, faq-section.tsx, conversion-cta.tsx) | 49 reads                                                  | ~85228 tok |
+| 13:07 | Session end: 16 writes across 12 files (guest-nav.tsx, composed-foraging-bentley.md, seed.ts, faq-section.tsx, conversion-cta.tsx) | 49 reads                                                  | ~85228 tok |
+
+## Session: 2026-04-22 13:09
+
+| Time  | Action                                                                                               | File(s)              | Outcome    | ~Tokens |
+| ----- | ---------------------------------------------------------------------------------------------------- | -------------------- | ---------- | ------- |
+| 13:35 | Edited docs/planning/sprints/sprint-01.md                                                            | 8→8 lines            | ~126       |
+| 13:36 | Edited docs/planning/sprints/sprint-01.md                                                            | 9→9 lines            | ~138       |
+| 13:36 | Edited docs/planning/sprints/sprint-01.md                                                            | 8→8 lines            | ~112       |
+| 13:36 | Edited docs/planning/sprints/sprint-02.md                                                            | 10→10 lines          | ~188       |
+| 13:36 | Edited docs/planning/sprints/sprint-02.md                                                            | 6→6 lines            | ~126       |
+| 13:36 | Edited docs/planning/sprints/sprint-02.md                                                            | 11→11 lines          | ~224       |
+| 13:36 | Edited docs/planning/sprints/sprint-02.md                                                            | 9→9 lines            | ~239       |
+| 13:36 | Edited docs/planning/sprints/sprint-02.md                                                            | 13→13 lines          | ~206       |
+| 13:37 | Created ../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md | —                    | ~1292      |
+| 13:37 | Session end: 9 writes across 3 files (sprint-01.md, sprint-02.md, sprint_status.md)                  | 19 reads             | ~39536 tok |
+| 13:41 | Edited docs/planning/sprints/sprint-03.md                                                            | modified \_()        | ~1122      |
+| 14:41 | Edited docs/planning/sprints/sprint-04.md                                                            | 73→73 lines          | ~1382      |
+| 14:42 | Edited docs/planning/sprints/sprint-05.md                                                            | 87→92 lines          | ~1426      |
+| 14:43 | Edited docs/planning/sprints/sprint-06.md                                                            | card() → page()      | ~1148      |
+| 14:43 | Edited docs/planning/sprints/sprint-07.md                                                            | expanded (+6 lines)  | ~100       |
+| 14:44 | Edited docs/planning/sprints/sprint-08.md                                                            | expanded (+6 lines)  | ~119       |
+| 14:45 | Edited docs/planning/sprints/sprint-09.md                                                            | modified System()    | ~1247      |
+| 14:45 | Edited docs/planning/sprints/sprint-10.md                                                            | 63→63 lines          | ~1063      |
+| 14:46 | Edited docs/planning/sprints/sprint-11.md                                                            | expanded (+6 lines)  | ~152       |
+| 14:47 | Edited docs/planning/sprints/sprint-12.md                                                            | expanded (+15 lines) | ~1414      |
+| 14:48 | Edited docs/planning/sprints/sprint-13.md                                                            | 104→107 lines        | ~1462      |
+
+## Session: 2026-04-22 14:50
+
+| Time  | Action                                                                                               | File(s)             | Outcome | ~Tokens |
+| ----- | ---------------------------------------------------------------------------------------------------- | ------------------- | ------- | ------- |
+| 14:50 | Edited docs/planning/sprints/sprint-14.md                                                            | expanded (+6 lines) | ~118    |
+| 14:51 | Created ../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md | —                   | ~1323   |
+
+## 2026-04-22 — Sprint doc audit (all 14 sprints)
+
+Updated all 14 sprint planning docs with codebase-verified status (no hallucinations). Key findings:
+
+- Sprints 1–4 + 10: COMPLETE
+- Sprint 9: PARTIAL (education done, airdrops not started)
+- Sprint 12: PARTIAL (settings/admin done, billing blocked by Sprint 5/6)
+- Sprint 13: IN PROGRESS (mobile done, sitemap/robots/lighthouse pending)
+- Sprints 5,6,7,8,11,14: NOT STARTED
+  | 15:00 | Updated all 14 sprint docs with real status | docs/planning/sprints/\*.md | all 14 updated | ~20000 tok |
+  | 14:52 | Session end: 2 writes across 2 files (sprint-14.md, sprint_status.md) | 2 reads | ~5198 tok |
+  | 14:53 | Session end: 2 writes across 2 files (sprint-14.md, sprint_status.md) | 2 reads | ~5198 tok |
+  | 14:57 | Created app/robots.ts | — | ~119 |
+  | 14:57 | Created app/sitemap.ts | — | ~904 |
+  | 14:57 | Edited app/(app)/layout.tsx | expanded (+6 lines) | ~126 |
+  | 14:57 | Edited components/layouts/guest-shell.tsx | "flex-1" → "main-content" | ~24 |
+  | 14:57 | Edited components/layouts/dashboard-shell.tsx | "main-scroll" → "main-content" | ~8 |
+  | 14:58 | Edited app/(app)/(browsable)/articles/[slug]/page.tsx | expanded (+16 lines) | ~384 |
+  | 14:58 | Edited app/(app)/(browsable)/articles/[slug]/page.tsx | added nullish coalescing | ~207 |
+  | 15:00 | Edited lib/categories/categoryHub.tsx | modified generateCategoryHubMetadata() | ~412 |
+  | 15:00 | Edited app/(app)/(browsable)/research/[slug]/page.tsx | inline fix | ~22 |
+  | 15:00 | Edited app/(app)/(browsable)/analysis/[slug]/page.tsx | inline fix | ~22 |
+  | 15:01 | Edited app/(app)/layout.tsx | added nullish coalescing | ~231 |
+  | 15:01 | Edited app/(app)/page.tsx | added 1 import(s) | ~28 |
+  | 15:01 | Edited app/(app)/page.tsx | added nullish coalescing | ~152 |
+  | 15:01 | Edited app/(app)/crypto-school/page.tsx | added nullish coalescing | ~99 |
+  | 15:01 | Edited app/(app)/courses/page.tsx | added nullish coalescing | ~90 |
+  | 15:01 | Edited app/(app)/privacy/page.tsx | added nullish coalescing | ~65 |
+  | 15:01 | Edited app/(app)/terms/page.tsx | added nullish coalescing | ~65 |
+  | 15:02 | Created app/(app)/api/user/check-username/route.ts | — | ~350 |
+  | 15:02 | Edited app/(app)/api/user/check-username/route.ts | inline fix | ~6 |
+  | 15:03 | Edited app/(app)/(dashboard)/settings/profile/page.tsx | 3→3 lines | ~48 |
+  | 15:03 | Edited app/(app)/(dashboard)/settings/profile/page.tsx | 3→7 lines | ~85 |
+  | 15:03 | Edited app/(app)/(dashboard)/settings/profile/page.tsx | added optional chaining | ~276 |
+  | 15:03 | Edited app/(app)/(dashboard)/settings/profile/page.tsx | CSS: characters | ~395 |
+  | 15:03 | Edited lib/db/schema/users.ts | 3→4 lines | ~80 |
+  | 15:04 | Created drizzle/0007_theme_preference.sql | — | ~21 |
+  | 15:04 | Edited lib/profile/actions.ts | added optional chaining | ~129 |
+  | 15:04 | Edited app/(app)/(dashboard)/settings/appearance/page.tsx | added 1 import(s) | ~91 |
+  | 15:04 | Edited app/(app)/(dashboard)/settings/appearance/page.tsx | 1→4 lines | ~42 |
+  | 15:05 | Created app/(app)/legal/disclaimer/page.tsx | — | ~2787 |
+  | 15:05 | Edited components/layouts/footer.tsx | expanded (+6 lines) | ~138 |
+  | 15:06 | Edited components/layouts/top-app-bar.tsx | 7→8 lines | ~104 |
+  | 15:06 | Edited components/layouts/top-app-bar.tsx | 8→9 lines | ~118 |
+  | 15:06 | Edited components/layouts/top-app-bar.tsx | 6→7 lines | ~101 |
+  | 15:07 | Edited components/feed/view-toggle.tsx | 20→22 lines | ~244 |
+  | 15:08 | Edited components/layouts/sidebar.tsx | 3→4 lines | ~39 |
+  | 15:08 | Edited components/layouts/top-app-bar.tsx | "bg-surface-container text" → "bg-surface-container text" | ~92 |
+  | 15:08 | Edited components/layouts/top-app-bar.tsx | "bg-surface-container text" → "bg-surface-container text" | ~75 |
+  | 15:08 | Edited components/layouts/top-app-bar.tsx | "bg-surface-container text" → "bg-surface-container text" | ~76 |
+  | 15:08 | Edited components/layouts/top-app-bar.tsx | "bg-surface-container-high" → "bg-surface-container-high" | ~67 |
+  | 15:08 | Edited components/feed/view-toggle.tsx | "relative z-10 flex size-9" → "relative z-10 flex size-9" | ~54 |
+  | 15:09 | Edited components/layouts/sidebar.tsx | "text-on-surface-variant h" → "text-on-surface-variant h" | ~69 |
+  | 15:09 | Edited components/layouts/sidebar.tsx | CSS: focus-visible, focus-visible, focus-visible | ~116 |
+  | 15:09 | Edited components/notifications/notification-dropdown.tsx | CSS: focus-visible, focus-visible, focus-visible | ~96 |
+  | 15:10 | Edited app/(app)/(dashboard)/settings/appearance/page.tsx | CSS: focus-visible, focus-visible, focus-visible | ~128 |
+  | 15:30 | Implemented all 10 low-hanging fruit tasks: robots.ts, sitemap.ts, skip-to-main, JSON-LD, canonical URLs, homepage OG, check-username API, theme→DB, /legal/disclaimer, aria-label audit, focus-visible sweep | 20+ files | all done | ~12000 tok |
+  | 15:10 | Edited docs/planning/sprints/sprint-13.md | 10→10 lines | ~256 |
+  | 15:10 | Edited docs/planning/sprints/sprint-13.md | 4→4 lines | ~136 |
+  | 15:10 | Edited docs/planning/sprints/sprint-13.md | 3→3 lines | ~69 |
+  | 15:10 | Edited docs/planning/sprints/sprint-13.md | 11→11 lines | ~183 |
+  | 15:11 | Edited docs/planning/sprints/sprint-12.md | inline fix | ~41 |
+  | 15:11 | Edited docs/planning/sprints/sprint-12.md | inline fix | ~54 |
+  | 15:11 | Edited docs/planning/sprints/sprint-12.md | 4→4 lines | ~84 |
+  | 15:11 | Session end: 53 writes across 20 files (sprint-14.md, sprint_status.md, robots.ts, sitemap.ts, layout.tsx) | 27 reads | ~55470 tok |
+  | 15:12 | Edited app/(app)/(dashboard)/settings/profile/page.tsx | CSS: 0 | ~293 |
+  | 15:13 | Edited app/(app)/legal/disclaimer/page.tsx | inline fix | ~42 |

@@ -10,6 +10,9 @@ import { Heading, Title } from '@/components/ui/typography'
 export const metadata = {
   title: 'Terms of Service – CryptoEdy',
   description: 'Terms of Service for CryptoEdy Research.',
+  alternates: {
+    canonical: `${process.env.NEXTAUTH_URL ?? 'http://localhost:3000'}/terms`,
+  },
 }
 
 const sidebarLinks = [

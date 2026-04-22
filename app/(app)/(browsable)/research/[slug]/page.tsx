@@ -7,7 +7,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  return generateCategoryChildMetadata('research', slug)
+  return generateCategoryChildMetadata('research', slug, `research/${slug}`)
 }
 
 export default async function ResearchChildPage({ params }: Props) {
