@@ -4,6 +4,7 @@ import { SessionProvider } from '@/components/providers/session-provider'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { Toaster } from 'sonner'
 import { BackToTop } from '@/components/common/back-to-top'
+import { CookieConsent } from '@/components/layouts/cookie-consent'
 import '../globals.css'
 
 const inter = Inter({
@@ -58,6 +59,7 @@ export default function RootLayout({
           <ThemeProvider>{children}</ThemeProvider>
         </SessionProvider>
         <BackToTop />
+        <CookieConsent />
         <Toaster position="bottom-right" richColors />
       </body>
     </html>

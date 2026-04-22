@@ -5,6 +5,7 @@ import { FeedClient } from '@/components/feed/feed-client'
 import { getNavCategories } from '@/lib/categories/getCategories'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
+import { getBlurDataUrls } from '@/lib/utils/getBlurDataUrl'
 import { auth } from '@/lib/auth'
 import type { Where } from 'payload'
 
@@ -127,11 +128,28 @@ export default async function FeedPage({ params }: { params: Promise<{ slug?: st
     overrideAccess: true,
   })
 
-  const articles = docs.map((post) =>
-    mapPostToCardProps(post as unknown as Record<string, unknown>, {
-      isBookmarked: bookmarkedIds.has(String(post.id)),
+  const imageUrls = docs
+    .map((p) => {
+      const fi = (p as Record<string, unknown>).featuredImage
+      return fi && typeof fi === 'object' && 'url' in (fi as Record<string, unknown>)
+        ? ((fi as Record<string, unknown>).url as string)
+        : ''
     })
-  )
+    .filter(Boolean)
+
+  const blurMap = await getBlurDataUrls(imageUrls)
+
+  const articles = docs.map((post) => {
+    const fi = (post as Record<string, unknown>).featuredImage
+    const imageUrl =
+      fi && typeof fi === 'object' && 'url' in (fi as Record<string, unknown>)
+        ? ((fi as Record<string, unknown>).url as string)
+        : ''
+    return mapPostToCardProps(post as unknown as Record<string, unknown>, {
+      isBookmarked: bookmarkedIds.has(String(post.id)),
+      blurDataUrl: blurMap[imageUrl],
+    })
+  })
 
   // Exclude categories with dedicated hub pages from the feed filter pills
   const feedCategories = navCategories.filter((c) => !c.excludeFromMainFeed)

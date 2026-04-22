@@ -17,6 +17,7 @@ export interface ArticleCardProps {
   date: string
   imageUrl: string
   imageAlt: string
+  blurDataUrl?: string
   isPro?: boolean
   slug: string
   postId?: string
@@ -34,6 +35,7 @@ export function ArticleCard({
   date,
   imageUrl,
   imageAlt,
+  blurDataUrl,
   isPro,
   slug,
   postId,
@@ -77,6 +79,8 @@ export function ArticleCard({
                     : '(max-width: 768px) 100vw, 33vw'
               }
               className="object-cover object-center"
+              placeholder={blurDataUrl ? 'blur' : 'empty'}
+              blurDataURL={blurDataUrl}
             />
           </div>
 

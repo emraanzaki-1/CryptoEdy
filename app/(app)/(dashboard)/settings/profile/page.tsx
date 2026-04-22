@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useSession } from 'next-auth/react'
-import { Pencil, Loader2, Check, X } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
+import { Pencil, Loader2, Check, X, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AvatarUpload } from '@/components/settings/avatar-upload'
 import { SectionHeading } from '@/components/common/section-heading'
@@ -14,11 +15,19 @@ import { getProfile, updateProfile, type ProfileData } from '@/lib/profile/actio
 export default function ProfileSettingsPage() {
   const { update: updateSession } = useSession()
   const { setAvatarUrl: setGlobalAvatar } = useAvatar()
+  const searchParams = useSearchParams()
   const [profile, setProfile] = useState<ProfileData | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  // Email change state
+  const [emailEditOpen, setEmailEditOpen] = useState(false)
+  const [newEmail, setNewEmail] = useState('')
+  const [emailSending, setEmailSending] = useState(false)
+  const [emailSent, setEmailSent] = useState(false)
+  const [emailError, setEmailError] = useState<string | null>(null)
   // Form state
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -81,6 +90,47 @@ export default function ProfileSettingsPage() {
       setLoading(false)
     })
   }, [populateForm])
+
+  // Handle redirect back from email verification link
+  useEffect(() => {
+    const changed = searchParams.get('emailChanged')
+    const errParam = searchParams.get('emailError')
+    if (changed === 'true') {
+      getProfile().then((result) => {
+        if (result.ok) populateForm(result.data)
+        setEmailSent(false)
+        setEmailEditOpen(false)
+        setSaved(true)
+        setTimeout(() => setSaved(false), 3000)
+      })
+    }
+    if (errParam) {
+      Promise.resolve(errParam).then((param) => {
+        setEmailError(
+          param === 'expired'
+            ? 'Verification link expired. Please request a new one.'
+            : 'Invalid or already used verification link.'
+        )
+      })
+    }
+  }, [searchParams, populateForm])
+
+  const handleEmailChange = async () => {
+    setEmailSending(true)
+    setEmailError(null)
+    const res = await fetch('/api/user/change-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ newEmail }),
+    })
+    const data = (await res.json()) as { ok?: boolean; error?: string }
+    if (data.ok) {
+      setEmailSent(true)
+    } else {
+      setEmailError(data.error ?? 'Something went wrong. Please try again.')
+    }
+    setEmailSending(false)
+  }
 
   const handleSave = async () => {
     setSaving(true)
@@ -192,21 +242,98 @@ export default function ProfileSettingsPage() {
               />
             </FormField>
             <FormField label="Email Address" htmlFor="email" className="relative sm:col-span-2">
-              <div className="relative">
-                <FormInput
-                  id="email"
-                  variant="outlined"
-                  type="email"
-                  value={profile?.email ?? ''}
-                  readOnly
-                />
-                <Button
-                  variant="ghost"
-                  size="icon-xs"
-                  className="text-primary hover:text-primary-container absolute top-1/2 right-4 -translate-y-1/2"
-                >
-                  <Pencil className="size-4" />
-                </Button>
+              <div className="space-y-3">
+                <div className="relative">
+                  <FormInput
+                    id="email"
+                    variant="outlined"
+                    type="email"
+                    value={profile?.email ?? ''}
+                    readOnly
+                  />
+                  {!emailEditOpen && (
+                    <Button
+                      variant="ghost"
+                      size="icon-xs"
+                      onClick={() => {
+                        setEmailEditOpen(true)
+                        setEmailSent(false)
+                        setEmailError(null)
+                        setNewEmail('')
+                      }}
+                      className="text-primary hover:text-primary-container absolute top-1/2 right-4 -translate-y-1/2"
+                      aria-label="Change email address"
+                    >
+                      <Pencil className="size-4" />
+                    </Button>
+                  )}
+                </div>
+
+                {emailEditOpen && !emailSent && (
+                  <div className="bg-surface-container space-y-3 rounded-2xl p-4">
+                    <p className="text-on-surface-variant text-body-sm font-medium">
+                      Enter your new email address. We&apos;ll send a verification link there.
+                    </p>
+                    <FormInput
+                      variant="outlined"
+                      type="email"
+                      value={newEmail}
+                      onChange={(e) => setNewEmail(e.target.value)}
+                      placeholder="new@example.com"
+                      autoFocus
+                    />
+                    {emailError && (
+                      <p className="text-error text-body-sm font-medium">{emailError}</p>
+                    )}
+                    <div className="flex gap-2">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          setEmailEditOpen(false)
+                          setEmailError(null)
+                        }}
+                        className="text-on-surface-variant rounded-full"
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        variant="gradient"
+                        size="sm"
+                        onClick={handleEmailChange}
+                        loading={emailSending}
+                        disabled={!newEmail || emailSending}
+                        className="rounded-full"
+                      >
+                        Send verification
+                      </Button>
+                    </div>
+                  </div>
+                )}
+
+                {emailEditOpen && emailSent && (
+                  <div className="bg-primary/5 border-primary/20 flex items-start gap-3 rounded-2xl border p-4">
+                    <Mail className="text-primary mt-0.5 size-4 shrink-0" />
+                    <div>
+                      <p className="text-on-surface text-body-sm font-semibold">
+                        Verification email sent
+                      </p>
+                      <p className="text-on-surface-variant text-body-sm mt-0.5">
+                        Check your inbox at <strong>{newEmail}</strong> and click the link to
+                        confirm the change.
+                      </p>
+                      <button
+                        onClick={() => {
+                          setEmailSent(false)
+                          setEmailError(null)
+                        }}
+                        className="text-primary text-body-sm mt-2 font-semibold hover:underline"
+                      >
+                        Use a different email
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </FormField>
             <FormField

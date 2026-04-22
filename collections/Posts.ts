@@ -4,6 +4,7 @@ import type {
   CollectionAfterChangeHook,
   CollectionAfterDeleteHook,
 } from 'payload'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { onPostPublished } from '../lib/notifications/events'
 import { richTextEditor } from '../lib/lexical/richEditor'
 
@@ -81,6 +82,17 @@ const firePublishedEvent: CollectionAfterChangeHook = async ({ doc, previousDoc 
     (previousDoc?.status !== 'published' || !previousDoc) && doc.status === 'published'
   if (justPublished) {
     await onPostPublished(doc as Record<string, unknown>)
+  }
+
+  // On-demand cache revalidation — always revalidate on any publish/update
+  if (doc.status === 'published') {
+    const slug = doc.slug as string | undefined
+    if (slug) {
+      revalidatePath(`/articles/${slug}`, 'page')
+    }
+    revalidateTag('posts', 'page')
+    revalidatePath('/feed', 'page')
+    revalidatePath('/', 'page')
   }
 }
 

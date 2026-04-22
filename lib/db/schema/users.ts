@@ -33,6 +33,7 @@ export const users = pgTable('users', {
   bio: text('bio'),
   blocked: boolean('blocked').default(false).notNull(),
   themePreference: varchar('theme_preference', { length: 10 }), // 'light' | 'dark' | 'system' | null
+  pendingEmail: varchar('pending_email', { length: 255 }), // staged new email awaiting verification
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 })

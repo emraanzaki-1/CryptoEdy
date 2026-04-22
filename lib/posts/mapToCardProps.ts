@@ -5,7 +5,7 @@ export { timeAgo } from '@/lib/utils/timeAgo'
 
 export function mapPostToCardProps(
   post: Record<string, unknown>,
-  options?: { isBookmarked?: boolean }
+  options?: { isBookmarked?: boolean; blurDataUrl?: string }
 ): ArticleCardProps {
   const featuredImage =
     post.featuredImage &&
@@ -45,5 +45,6 @@ export function mapPostToCardProps(
     slug: typeof post.slug === 'string' ? post.slug : String(post.id),
     postId: String(post.id),
     isBookmarked: options?.isBookmarked ?? false,
+    blurDataUrl: options?.blurDataUrl,
   }
 }

@@ -3,6 +3,7 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { CategoryHubClient } from '@/components/feed/category-hub-client'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
+import { getBlurDataUrls } from '@/lib/utils/getBlurDataUrl'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { auth } from '@/lib/auth'
 import type { Metadata } from 'next'
@@ -60,11 +61,27 @@ export async function renderCategoryHub(parentSlug: string, basePath: string) {
     overrideAccess: true,
   })
 
-  const articles = docs.map((post) =>
-    mapPostToCardProps(post as unknown as Record<string, unknown>, {
-      isBookmarked: bookmarkedIds.has(String(post.id)),
+  const imageUrls = docs
+    .map((p) => {
+      const fi = (p as Record<string, unknown>).featuredImage
+      return fi && typeof fi === 'object' && 'url' in (fi as Record<string, unknown>)
+        ? ((fi as Record<string, unknown>).url as string)
+        : ''
     })
-  )
+    .filter(Boolean)
+  const blurMap = await getBlurDataUrls(imageUrls)
+
+  const articles = docs.map((post) => {
+    const fi = (post as Record<string, unknown>).featuredImage
+    const imageUrl =
+      fi && typeof fi === 'object' && 'url' in (fi as Record<string, unknown>)
+        ? ((fi as Record<string, unknown>).url as string)
+        : ''
+    return mapPostToCardProps(post as unknown as Record<string, unknown>, {
+      isBookmarked: bookmarkedIds.has(String(post.id)),
+      blurDataUrl: blurMap[imageUrl],
+    })
+  })
 
   const filters = children.map((c) => ({ label: c.name, slug: c.slug }))
   const description = (category as unknown as { description?: string }).description ?? ''
@@ -108,11 +125,27 @@ export async function renderCategoryChild(parentSlug: string, childSlug: string,
     overrideAccess: true,
   })
 
-  const articles = docs.map((post) =>
-    mapPostToCardProps(post as unknown as Record<string, unknown>, {
-      isBookmarked: bookmarkedIds.has(String(post.id)),
+  const imageUrls2 = docs
+    .map((p) => {
+      const fi = (p as Record<string, unknown>).featuredImage
+      return fi && typeof fi === 'object' && 'url' in (fi as Record<string, unknown>)
+        ? ((fi as Record<string, unknown>).url as string)
+        : ''
     })
-  )
+    .filter(Boolean)
+  const blurMap2 = await getBlurDataUrls(imageUrls2)
+
+  const articles = docs.map((post) => {
+    const fi = (post as Record<string, unknown>).featuredImage
+    const imageUrl =
+      fi && typeof fi === 'object' && 'url' in (fi as Record<string, unknown>)
+        ? ((fi as Record<string, unknown>).url as string)
+        : ''
+    return mapPostToCardProps(post as unknown as Record<string, unknown>, {
+      isBookmarked: bookmarkedIds.has(String(post.id)),
+      blurDataUrl: blurMap2[imageUrl],
+    })
+  })
 
   const filters = children.map((c) => ({ label: c.name, slug: c.slug }))
 

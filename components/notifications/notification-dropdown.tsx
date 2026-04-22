@@ -72,92 +72,106 @@ export function NotificationDropdown({ open, onClose }: NotificationDropdownProp
   const unreadInTab = items.filter((n) => !n.isRead).length
 
   return (
-    <div
-      ref={ref}
-      className="border-outline-variant/15 bg-surface-container-lowest fixed top-16 right-4 left-4 z-50 overflow-hidden rounded-2xl border shadow-lg sm:absolute sm:top-full sm:right-0 sm:left-auto sm:mt-2 sm:w-96"
-    >
-      {/* Header */}
-      <div className="border-outline-variant/15 flex items-center justify-between border-b px-5 py-4">
-        <h3 className="text-on-surface text-body-lg font-bold">Notifications</h3>
-        <Link
-          href="/settings/notifications"
-          onClick={onClose}
-          className="text-on-surface-variant hover:text-on-surface transition-colors"
-          aria-label="Notification settings"
-        >
-          <Settings className="size-4.5" />
-        </Link>
-      </div>
+    <>
+      {/* Mobile backdrop */}
+      <div
+        className="fixed inset-0 z-40 bg-black/40 sm:hidden"
+        onClick={onClose}
+        aria-hidden="true"
+      />
 
-      {/* Tabs + Mark all as read */}
-      <div className="border-outline-variant/15 border-b px-5 py-3">
-        <div className="flex items-center justify-between">
-          <div className="flex gap-1">
-            {TABS.map((tab) => (
+      {/* Panel — bottom sheet on mobile, dropdown on sm+ */}
+      <div
+        ref={ref}
+        className="border-outline-variant/15 bg-surface-container-lowest shadow-elevated fixed right-0 bottom-0 left-0 z-50 max-h-[85dvh] overflow-hidden rounded-t-3xl border-t sm:absolute sm:top-full sm:right-0 sm:bottom-auto sm:left-auto sm:mt-2 sm:max-h-none sm:w-96 sm:rounded-2xl sm:border"
+      >
+        {/* Drag handle — mobile only */}
+        <div className="flex justify-center pt-3 pb-1 sm:hidden">
+          <div className="bg-outline-variant/40 h-1 w-10 rounded-full" />
+        </div>
+        {/* Header */}
+        <div className="border-outline-variant/15 flex items-center justify-between border-b px-5 py-4">
+          <h3 className="text-on-surface text-body-lg font-bold">Notifications</h3>
+          <Link
+            href="/settings/notifications"
+            onClick={onClose}
+            className="text-on-surface-variant hover:text-on-surface transition-colors"
+            aria-label="Notification settings"
+          >
+            <Settings className="size-4.5" />
+          </Link>
+        </div>
+
+        {/* Tabs + Mark all as read */}
+        <div className="border-outline-variant/15 border-b px-5 py-3">
+          <div className="flex items-center justify-between">
+            <div className="flex gap-1">
+              {TABS.map((tab) => (
+                <button
+                  key={tab.value}
+                  onClick={() => setActiveTab(tab.value)}
+                  className={cn(
+                    'text-body-sm focus-visible:ring-primary rounded-lg px-3 py-1.5 font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none',
+                    activeTab === tab.value
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-on-surface-variant hover:bg-surface-container-high'
+                  )}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            {unreadInTab > 0 && (
               <button
-                key={tab.value}
-                onClick={() => setActiveTab(tab.value)}
-                className={cn(
-                  'text-body-sm focus-visible:ring-primary rounded-lg px-3 py-1.5 font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none',
-                  activeTab === tab.value
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-on-surface-variant hover:bg-surface-container-high'
-                )}
+                onClick={markAllAsRead}
+                className="text-primary text-micro font-semibold transition-opacity hover:opacity-80"
               >
-                {tab.label}
+                Mark all as read
               </button>
-            ))}
+            )}
           </div>
-          {unreadInTab > 0 && (
-            <button
-              onClick={markAllAsRead}
-              className="text-primary text-micro font-semibold transition-opacity hover:opacity-80"
-            >
-              Mark all as read
-            </button>
+        </div>
+
+        {/* Notification list */}
+        <div className="max-h-80 overflow-y-auto overscroll-contain">
+          {isLoading ? (
+            <div className="space-y-1 p-2">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="flex gap-3 rounded-xl px-3 py-3">
+                  <div className="bg-surface-container size-9 shrink-0 animate-pulse rounded-full" />
+                  <div className="flex-1 space-y-2">
+                    <div className="bg-surface-container h-3.5 w-3/4 animate-pulse rounded" />
+                    <div className="bg-surface-container h-3 w-full animate-pulse rounded" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : items.length === 0 ? (
+            <EmptyState />
+          ) : (
+            items.map((notification) => (
+              <NotificationItem
+                key={notification.id}
+                notification={notification}
+                onClick={() => handleNotificationClick(notification)}
+                onMarkRead={() => markAsRead(notification.id)}
+              />
+            ))
           )}
         </div>
-      </div>
 
-      {/* Notification list */}
-      <div className="max-h-80 overflow-y-auto overscroll-contain">
-        {isLoading ? (
-          <div className="space-y-1 p-2">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="flex gap-3 rounded-xl px-3 py-3">
-                <div className="bg-surface-container size-9 shrink-0 animate-pulse rounded-full" />
-                <div className="flex-1 space-y-2">
-                  <div className="bg-surface-container h-3.5 w-3/4 animate-pulse rounded" />
-                  <div className="bg-surface-container h-3 w-full animate-pulse rounded" />
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : items.length === 0 ? (
-          <EmptyState />
-        ) : (
-          items.map((notification) => (
-            <NotificationItem
-              key={notification.id}
-              notification={notification}
-              onClick={() => handleNotificationClick(notification)}
-              onMarkRead={() => markAsRead(notification.id)}
-            />
-          ))
-        )}
+        {/* Footer */}
+        <div className="border-outline-variant/15 border-t px-5 py-3">
+          <Link
+            href="/settings/notifications"
+            className="text-primary hover:text-primary-container text-body-sm block text-center font-semibold transition-colors"
+            onClick={onClose}
+          >
+            Manage preferences
+          </Link>
+        </div>
       </div>
-
-      {/* Footer */}
-      <div className="border-outline-variant/15 border-t px-5 py-3">
-        <Link
-          href="/settings/notifications"
-          className="text-primary hover:text-primary-container text-body-sm block text-center font-semibold transition-colors"
-          onClick={onClose}
-        >
-          Manage preferences
-        </Link>
-      </div>
-    </div>
+    </>
   )
 }
 
