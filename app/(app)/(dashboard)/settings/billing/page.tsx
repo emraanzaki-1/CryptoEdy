@@ -1,18 +1,63 @@
 import { BillingHistoryTable } from '@/components/settings/billing-history-table'
 import { SectionHeading } from '@/components/common/section-heading'
-import { Button } from '@/components/ui/button'
+import { ButtonLink } from '@/components/ui/button-link'
 import { Card } from '@/components/ui/card'
 import { Title } from '@/components/ui/typography'
+import { auth } from '@/lib/auth'
+import { getDb } from '@/lib/db'
+import { payments } from '@/lib/db/schema/payments'
+import { eq, desc } from 'drizzle-orm'
+import { getExplorerUrl } from '@/lib/payments/explorers'
+import { redirect } from 'next/navigation'
 
-const billingHistory = [
-  { date: 'Oct 15, 2023', amount: '$299.00', status: 'Paid' as const },
-  { date: 'Oct 15, 2022', amount: '$299.00', status: 'Paid' as const },
-]
+export default async function BillingSettingsPage() {
+  const session = await auth()
+  if (!session?.user) redirect('/login')
 
-export default function BillingSettingsPage() {
+  const { role, subscriptionExpiry } = session.user as {
+    role: string
+    subscriptionExpiry: string | null
+  }
+  const userId = session.user.id!
+
+  const db = getDb()
+  const userPayments = await db
+    .select()
+    .from(payments)
+    .where(eq(payments.userId, userId))
+    .orderBy(desc(payments.createdAt))
+
+  const paymentEntries = userPayments.map((p) => ({
+    date: new Date(p.createdAt).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    }),
+    chain: p.chain,
+    asset: p.asset,
+    amount: `$${Number(p.amount).toFixed(2)}`,
+    status: (p.status.charAt(0).toUpperCase() + p.status.slice(1)) as
+      | 'Confirmed'
+      | 'Pending'
+      | 'Failed',
+    txHash: p.txHash,
+    explorerUrl: getExplorerUrl(p.chain, p.txHash),
+  }))
+
+  const isPro = role === 'pro'
+  const expiryDate = subscriptionExpiry ? new Date(subscriptionExpiry) : null
+  const isExpired = expiryDate ? expiryDate < new Date() : false
+  const isActive = isPro && !isExpired
+
+  const statusBadge = isActive
+    ? { label: 'Active', className: 'bg-secondary-container/20 text-secondary' }
+    : isExpired
+      ? { label: 'Expired', className: 'bg-error-container/20 text-error' }
+      : { label: 'Free', className: 'bg-outline-variant/20 text-on-surface-variant' }
+
   return (
     <>
-      <SectionHeading as="h2" subtitle="Manage your billing information and view past invoices.">
+      <SectionHeading as="h2" subtitle="Manage your subscription and view transaction history.">
         Billing
       </SectionHeading>
 
@@ -26,55 +71,46 @@ export default function BillingSettingsPage() {
           >
             <div>
               <div className="mb-1 flex items-center gap-3">
-                <Title as="h4">Pro Annual</Title>
-                <span className="bg-secondary-container/20 text-secondary text-micro rounded-md px-2.5 py-1 font-bold">
-                  Active
+                <Title as="h4">{isActive ? 'Pro Annual' : 'Free'}</Title>
+                <span
+                  className={`text-micro rounded-md px-2.5 py-1 font-bold ${statusBadge.className}`}
+                >
+                  {statusBadge.label}
                 </span>
               </div>
               <p className="text-on-surface-variant text-body-sm">
-                Your next billing date is <strong>Oct 15, 2024</strong> for $299.00.
+                {isActive && expiryDate
+                  ? `Your Pro membership expires on ${expiryDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.`
+                  : isExpired && expiryDate
+                    ? `Your membership expired on ${expiryDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}. Renew to regain access.`
+                    : 'Upgrade to Pro for full access to research, courses, and tools.'}
               </p>
             </div>
-            <Button
+            <ButtonLink
+              href="/settings/plans"
               variant="tonal"
               size="lg"
               className="text-on-surface hover:bg-outline-variant/20 rounded-full px-5 font-semibold hover:translate-y-0"
             >
-              Change plan
-            </Button>
+              {isActive ? 'Change plan' : 'Upgrade'}
+            </ButtonLink>
           </Card>
         </section>
 
-        {/* Payment Method */}
+        {/* Connected Wallets */}
         <section>
-          <SectionHeading variant="subsection">Payment Method</SectionHeading>
-          <Card
-            variant="surface"
-            className="flex-col items-start justify-between gap-4 p-6 sm:flex-row sm:items-center"
-          >
-            <div className="flex items-center gap-4">
-              <div className="border-outline-variant/15 bg-surface-container-highest flex h-8 w-12 items-center justify-center rounded border">
-                <span className="text-primary text-micro font-bold">VISA</span>
-              </div>
-              <div>
-                <p className="text-on-surface text-body-lg font-medium">Visa ending in 4242</p>
-                <p className="text-on-surface-variant text-body-sm">Expires 12/2025</p>
-              </div>
-            </div>
-            <Button
-              variant="tonal"
-              size="lg"
-              className="text-on-surface hover:bg-outline-variant/20 rounded-full px-5 font-semibold hover:translate-y-0"
-            >
-              Update
-            </Button>
+          <SectionHeading variant="subsection">Connected Wallets</SectionHeading>
+          <Card variant="surface" className="p-6">
+            <p className="text-on-surface-variant text-body-sm">
+              No wallets connected yet. Connect a wallet when upgrading to Pro.
+            </p>
           </Card>
         </section>
 
-        {/* Billing History */}
+        {/* Transaction History */}
         <section>
-          <SectionHeading variant="subsection">Billing History</SectionHeading>
-          <BillingHistoryTable entries={billingHistory} />
+          <SectionHeading variant="subsection">Transaction History</SectionHeading>
+          <BillingHistoryTable entries={paymentEntries} />
         </section>
       </div>
     </>

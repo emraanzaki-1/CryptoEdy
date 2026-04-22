@@ -1,8 +1,18 @@
-import { Check, ArrowRight, Lock } from 'lucide-react'
+import { Check, Lock } from 'lucide-react'
 import { SectionHeading } from '@/components/common/section-heading'
-import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Title } from '@/components/ui/typography'
+import { UrgencyBanner } from '@/components/plans/UrgencyBanner'
+import { CheckoutButton } from '@/components/payments/CheckoutButton'
+import { auth } from '@/lib/auth'
+import { generateIntentToken } from '@/lib/payments/intent'
+
+function isExpiringSoonFn(isPro: boolean, subscriptionExpiry: string | null): boolean {
+  if (!isPro || !subscriptionExpiry) return false
+  const expiryMs = new Date(subscriptionExpiry).getTime()
+  const nowMs = Date.now()
+  return expiryMs - nowMs <= 30 * 24 * 60 * 60 * 1000 && expiryMs > nowMs
+}
 
 const benefits = [
   '3X Value Guarantee',
@@ -13,9 +23,27 @@ const benefits = [
   'Curated Airdrop Hub',
 ]
 
-export default function PlansSettingsPage() {
+export default async function PlansSettingsPage() {
+  const session = await auth()
+  const userId = (session?.user as { id?: string } | undefined)?.id ?? ''
+  const subscriptionExpiry =
+    (session?.user as { subscriptionExpiry?: string | null } | undefined)?.subscriptionExpiry ??
+    null
+  const role = (session?.user as { role?: string } | undefined)?.role ?? 'free'
+  const isPro = role === 'pro'
+  const isExpiringSoon = isExpiringSoonFn(isPro, subscriptionExpiry)
+
+  // Server-side signed intent — prevents purchaseData spoofing in the widget
+  const intentData = userId ? generateIntentToken(userId) : null
+
   return (
     <div className="max-w-4xl">
+      {isExpiringSoon && subscriptionExpiry && (
+        <div className="mb-6">
+          <UrgencyBanner expiresAt={subscriptionExpiry} />
+        </div>
+      )}
+
       <SectionHeading
         as="h2"
         subtitle="Unlock premium research, proprietary top picks, and expert analysis to navigate the markets with conviction."
@@ -49,14 +77,14 @@ export default function PlansSettingsPage() {
             <p className="text-outline text-body-sm mt-2">Billed annually. Cancel anytime.</p>
           </div>
           <div className="mt-auto flex flex-col gap-4 pt-8">
-            <Button
-              variant="default"
-              size="xxl"
-              className="hover:bg-primary-container hover:text-on-primary-container w-full rounded-2xl font-bold shadow-md hover:shadow-lg"
-            >
-              <span>Upgrade Now</span>
-              <ArrowRight className="size-5" />
-            </Button>
+            {intentData ? (
+              <CheckoutButton
+                className="hover:bg-primary-container hover:text-on-primary-container w-full rounded-2xl font-bold shadow-md hover:shadow-lg"
+                intentData={intentData}
+              />
+            ) : (
+              <p className="text-on-surface-variant text-body-sm text-center">Sign in to upgrade</p>
+            )}
             <div className="text-outline mt-2 flex items-center justify-center gap-4">
               <span className="text-body-sm">USDC</span>
               <span className="text-body-sm">USDT</span>

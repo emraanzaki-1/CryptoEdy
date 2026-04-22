@@ -50,6 +50,34 @@
       "when": 1776950400000,
       "tag": "0006_notification_engine",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1776950500000,
+      "tag": "0007_theme_preference",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1776950600000,
+      "tag": "0008_pending_email",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1776950700000,
+      "tag": "0009_payments",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1776950800000,
+      "tag": "0010_payment_provider",
+      "breakpoints": true
     }
   ]
 }
