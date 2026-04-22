@@ -676,14 +676,16 @@ async function main() {
     if (existing) continue
 
     const passwordHash = await bcrypt.hash(appUser.password, 12)
-    await getDb().insert(users).values({
-      email: appUser.email,
-      passwordHash,
-      role: appUser.role,
-      emailVerified: appUser.emailVerified,
-      subscriptionExpiry: appUser.subscriptionExpiry,
-      referralCode: generateReferralCode(),
-    })
+    await getDb()
+      .insert(users)
+      .values({
+        email: appUser.email,
+        passwordHash,
+        role: appUser.role,
+        emailVerified: appUser.emailVerified,
+        subscriptionExpiry: appUser.subscriptionExpiry,
+        referralCode: generateReferralCode(appUser.email),
+      })
   }
   console.log(`[seed] App users: ${APP_USERS.length} ready.`)
 

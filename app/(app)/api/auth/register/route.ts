@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     }
 
     const passwordHash = await bcrypt.hash(password, 12)
-    const referralCode = generateReferralCode()
+    const referralCode = generateReferralCode(email.toLowerCase())
     const verificationToken = generateSecureToken()
     const verificationTokenExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000) // 24h
 
