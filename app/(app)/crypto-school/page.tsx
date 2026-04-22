@@ -3,6 +3,7 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { GuestShell } from '@/components/layouts/guest-shell'
 import { getNavCategories } from '@/lib/categories/getCategories'
+import { getCategoryVisibility } from '@/lib/categories/visibility'
 import { LAYOUT } from '@/lib/config/layout'
 import { CryptoSchoolHero } from '@/components/education/crypto-school-hero'
 import { CryptoSchoolCatalog } from '@/components/education/crypto-school-catalog'
@@ -45,6 +46,9 @@ async function getCryptoSchoolData(): Promise<CatalogCategory[]> {
     const cryptoSchool = csResults[0]
     if (!cryptoSchool) return []
 
+    const visibility = await getCategoryVisibility()
+    if (visibility.enabledById[String(cryptoSchool.id)] === false) return []
+
     // Find grandchild categories (children of crypto-school)
     const { docs: children } = await payload.find({
       collection: 'categories',
@@ -55,9 +59,12 @@ async function getCryptoSchoolData(): Promise<CatalogCategory[]> {
       overrideAccess: true,
     })
 
+    // Filter disabled children
+    const enabledChildren = children.filter((c) => visibility.enabledById[String(c.id)] !== false)
+
     // For each child, fetch 2 recent published posts
     const categories: CatalogCategory[] = await Promise.all(
-      children.map(async (child) => {
+      enabledChildren.map(async (child) => {
         const { docs: posts } = await payload.find({
           collection: 'posts',
           where: {

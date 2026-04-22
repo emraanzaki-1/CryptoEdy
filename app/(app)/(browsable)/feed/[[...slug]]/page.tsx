@@ -3,6 +3,7 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { FeedClient } from '@/components/feed/feed-client'
 import { getNavCategories } from '@/lib/categories/getCategories'
+import { getCategoryVisibility } from '@/lib/categories/visibility'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
 import { getBlurDataUrls } from '@/lib/utils/getBlurDataUrl'
@@ -22,6 +23,10 @@ export default async function FeedPage({ params }: { params: Promise<{ slug?: st
   let activeFilter = 'All'
 
   if (categorySlug) {
+    // 404 if navigating to a disabled category
+    const visibility = await getCategoryVisibility()
+    if (visibility.enabledBySlug[categorySlug] === false) notFound()
+
     const { docs: matchedCategories } = await payload.find({
       collection: 'categories',
       where: { slug: { equals: categorySlug } },
@@ -68,12 +73,13 @@ export default async function FeedPage({ params }: { params: Promise<{ slug?: st
     ? await getBookmarkedPostIds(session.user.id)
     : new Set<string>()
 
-  // Exclude categories marked excludeFromMainFeed (e.g. Education → /learn)
+  // Exclude categories marked excludeFromMainFeed (e.g. Education → /learn) and disabled categories
   if (!categorySlug) {
+    const visibility = await getCategoryVisibility()
+    const allExcludedIds: (string | number)[] = [...visibility.disabledIds]
+
     const excludedParents = navCategories.filter((c) => c.excludeFromMainFeed)
     if (excludedParents.length > 0) {
-      const allExcludedIds: (string | number)[] = []
-
       for (const parent of excludedParents) {
         const { docs: parentDoc } = await payload.find({
           collection: 'categories',
@@ -109,12 +115,12 @@ export default async function FeedPage({ params }: { params: Promise<{ slug?: st
           allExcludedIds.push(...grandchildren.map((c) => c.id))
         }
       }
+    }
 
-      if (allExcludedIds.length > 0) {
-        where['category'] = {
-          ...(typeof where['category'] === 'object' ? where['category'] : {}),
-          not_in: allExcludedIds,
-        }
+    if (allExcludedIds.length > 0) {
+      where['category'] = {
+        ...(typeof where['category'] === 'object' ? where['category'] : {}),
+        not_in: allExcludedIds,
       }
     }
   }

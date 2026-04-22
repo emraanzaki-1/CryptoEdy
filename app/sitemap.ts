@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
+import { getCategoryVisibility } from '@/lib/categories/visibility'
 
 const BASE_URL = process.env.NEXTAUTH_URL ?? 'http://localhost:3000'
 
@@ -60,10 +61,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // ── Published posts ──────────────────────────────────────────────────────────
+  // ── Published posts (exclude disabled categories) ──────────────────────────
+  const visibility = await getCategoryVisibility()
+
   const { docs: posts } = await payload.find({
     collection: 'posts',
-    where: { status: { equals: 'published' } },
+    where: {
+      status: { equals: 'published' },
+      ...(visibility.disabledIds.length > 0
+        ? { category: { not_in: visibility.disabledIds } }
+        : {}),
+    },
     depth: 1,
     limit: 1000,
     overrideAccess: true,
@@ -99,7 +107,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   })
 
   const categoryRoutes: MetadataRoute.Sitemap = categories
-    .filter((c) => c.routePrefix as string | undefined)
+    .filter((c) => {
+      const hasPrefix = !!(c.routePrefix as string | undefined)
+      const isEnabled = visibility.enabledById[String(c.id)] !== false
+      return hasPrefix && isEnabled
+    })
     .map((c) => ({
       url: `${BASE_URL}/${c.routePrefix as string}`,
       lastModified: new Date(c.updatedAt as string),

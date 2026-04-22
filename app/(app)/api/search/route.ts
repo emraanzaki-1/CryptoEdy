@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPool } from '@/lib/db'
+import { getCategoryVisibility } from '@/lib/categories/visibility'
 
 const MAX_LIMIT = 20
 const DEFAULT_LIMIT = 8
@@ -46,6 +47,15 @@ export async function GET(req: NextRequest) {
 
   try {
     const pool = getPool() // shared singleton — no duplicate connections
+    const visibility = await getCategoryVisibility()
+    const disabledIds = visibility.disabledIds.map(Number).filter((n) => !isNaN(n))
+
+    // Build disabled category clause for posts
+    const disabledClause =
+      disabledIds.length > 0
+        ? `AND p.category_id NOT IN (${disabledIds.map((_, i) => `$${i + 3}`).join(', ')})`
+        : ''
+    const postsParams = [q, limit, ...disabledIds]
 
     // --- Posts ---
     const postsQuery = pool.query<{
@@ -83,10 +93,11 @@ export async function GET(req: NextRequest) {
       LEFT JOIN payload.media m ON p.featured_image_id = m.id
       WHERE p.search_vector @@ plainto_tsquery('english', $1)
         AND p.status = 'published'
+        ${disabledClause}
       ORDER BY rank DESC
       LIMIT $2
       `,
-      [q, limit]
+      postsParams
     )
 
     // --- Courses ---

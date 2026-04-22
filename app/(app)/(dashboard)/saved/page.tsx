@@ -7,6 +7,7 @@ import { bookmarks } from '@/lib/db/schema'
 import { TagClient } from '@/components/feed/tag-client'
 import { EmptyState } from '@/components/common/empty-state'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
+import { getCategoryVisibility } from '@/lib/categories/visibility'
 import { SectionHeading } from '@/components/common/section-heading'
 
 export default async function SavedPage() {
@@ -51,11 +52,19 @@ export default async function SavedPage() {
     overrideAccess: true,
   })
 
-  // Preserve bookmark order
+  // Preserve bookmark order, filter disabled categories
   const postMap = new Map(posts.map((p) => [p.id, p]))
+  const visibility = await getCategoryVisibility()
   const articles = postIds
     .map((id) => postMap.get(id))
-    .filter((p) => p != null)
+    .filter((p) => {
+      if (!p) return false
+      const catId =
+        typeof (p as Record<string, unknown>).category === 'object'
+          ? String(((p as Record<string, unknown>).category as { id: string | number }).id)
+          : String((p as Record<string, unknown>).category)
+      return visibility.enabledById[catId] !== false
+    })
     .map((p) => mapPostToCardProps(p as Record<string, unknown>, { isBookmarked: true }))
 
   return (

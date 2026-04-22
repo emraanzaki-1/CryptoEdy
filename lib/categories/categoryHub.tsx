@@ -6,6 +6,7 @@ import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
 import { getBlurDataUrls } from '@/lib/utils/getBlurDataUrl'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { auth } from '@/lib/auth'
+import { getCategoryVisibility } from '@/lib/categories/visibility'
 import type { Metadata } from 'next'
 
 async function getParentCategory(parentSlug: string) {
@@ -41,8 +42,13 @@ export async function renderCategoryHub(parentSlug: string, basePath: string) {
   const { payload, category } = await getParentCategory(parentSlug)
   if (!category) notFound()
 
+  const visibility = await getCategoryVisibility()
+  if (visibility.enabledById[String(category.id)] === false) notFound()
+
   const children = await getChildCategories(payload, category.id)
-  const categoryIds = [category.id, ...children.map((c) => c.id)]
+  // Filter out disabled children
+  const enabledChildren = children.filter((c) => visibility.enabledById[String(c.id)] !== false)
+  const categoryIds = [category.id, ...enabledChildren.map((c) => c.id)]
 
   const session = await auth()
   const bookmarkedIds = session?.user?.id
@@ -83,7 +89,7 @@ export async function renderCategoryHub(parentSlug: string, basePath: string) {
     })
   })
 
-  const filters = children.map((c) => ({ label: c.name, slug: c.slug }))
+  const filters = enabledChildren.map((c) => ({ label: c.name, slug: c.slug }))
   const description = (category as unknown as { description?: string }).description ?? ''
 
   return (
@@ -104,9 +110,13 @@ export async function renderCategoryChild(parentSlug: string, childSlug: string,
   const { payload, category: parent } = await getParentCategory(parentSlug)
   if (!parent) notFound()
 
+  const visibility = await getCategoryVisibility()
+  if (visibility.enabledById[String(parent.id)] === false) notFound()
+
   const children = await getChildCategories(payload, parent.id)
   const child = children.find((c) => c.slug === childSlug)
   if (!child) notFound()
+  if (visibility.enabledById[String(child.id)] === false) notFound()
 
   const session = await auth()
   const bookmarkedIds = session?.user?.id
@@ -147,7 +157,8 @@ export async function renderCategoryChild(parentSlug: string, childSlug: string,
     })
   })
 
-  const filters = children.map((c) => ({ label: c.name, slug: c.slug }))
+  const enabledChildFilters = children.filter((c) => visibility.enabledById[String(c.id)] !== false)
+  const filters = enabledChildFilters.map((c) => ({ label: c.name, slug: c.slug }))
 
   return (
     <CategoryHubClient

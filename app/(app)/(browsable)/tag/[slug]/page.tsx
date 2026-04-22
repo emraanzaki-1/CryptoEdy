@@ -7,7 +7,9 @@ import { TagClient } from '@/components/feed/tag-client'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
 import { auth } from '@/lib/auth'
+import { getCategoryVisibility } from '@/lib/categories/visibility'
 import { SectionHeading } from '@/components/common/section-heading'
+import type { Where } from 'payload'
 
 export default async function TagPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -26,12 +28,16 @@ export default async function TagPage({ params }: { params: Promise<{ slug: stri
 
   const tagName = (tag as unknown as { name: string }).name
 
+  const visibility = await getCategoryVisibility()
+  const postWhere: Where = {
+    status: { equals: 'published' },
+    tags: { contains: tag.id },
+    ...(visibility.disabledIds.length > 0 ? { category: { not_in: visibility.disabledIds } } : {}),
+  }
+
   const { docs, hasNextPage } = await payload.find({
     collection: 'posts',
-    where: {
-      status: { equals: 'published' },
-      tags: { contains: tag.id },
-    },
+    where: postWhere,
     sort: '-publishedAt',
     depth: 2,
     limit: 12,

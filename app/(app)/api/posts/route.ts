@@ -7,6 +7,7 @@ import { bookmarks } from '@/lib/db/schema'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { auth } from '@/lib/auth'
+import { getCategoryVisibility } from '@/lib/categories/visibility'
 import type { Where } from 'payload'
 
 const MAX_LIMIT = 50
@@ -58,9 +59,17 @@ export async function GET(req: NextRequest) {
     })
 
     const postMap = new Map(posts.map((p) => [p.id, p]))
+    const visibility = await getCategoryVisibility()
     const articles = postIds
       .map((id) => postMap.get(id))
-      .filter((p) => p != null)
+      .filter((p) => {
+        if (!p) return false
+        const catId =
+          typeof (p as Record<string, unknown>).category === 'object'
+            ? String(((p as Record<string, unknown>).category as { id: string | number }).id)
+            : String((p as Record<string, unknown>).category)
+        return visibility.enabledById[catId] !== false
+      })
       .map((p) => mapPostToCardProps(p as Record<string, unknown>, { isBookmarked: true }))
 
     return NextResponse.json({ docs: articles, totalDocs, totalPages, page, hasNextPage })
@@ -68,6 +77,12 @@ export async function GET(req: NextRequest) {
 
   // --- Standard posts mode (feed / tag pages) ---
   const where: Where = { status: { equals: 'published' } }
+
+  // Exclude disabled categories
+  const visibility = await getCategoryVisibility()
+  if (visibility.disabledIds.length > 0) {
+    where['category'] = { not_in: visibility.disabledIds }
+  }
 
   // Category filter — resolve slug to IDs (parent → children)
   if (categorySlug) {

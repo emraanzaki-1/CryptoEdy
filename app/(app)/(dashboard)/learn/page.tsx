@@ -4,6 +4,7 @@ import { CryptoSchoolClient } from '@/components/learn/crypto-school-client'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { auth } from '@/lib/auth'
+import { getCategoryVisibility } from '@/lib/categories/visibility'
 
 export default async function LearnPage() {
   const payload = await getPayload({ config: configPromise })
@@ -22,6 +23,8 @@ export default async function LearnPage() {
   let filters: { label: string; slug: string }[] = []
 
   if (cryptoSchool) {
+    const visibility = await getCategoryVisibility()
+
     // Fetch sub-categories from Payload — no hardcoded list
     const { docs: subCategories } = await payload.find({
       collection: 'categories',
@@ -32,12 +35,15 @@ export default async function LearnPage() {
       overrideAccess: true,
     })
 
-    filters = subCategories.map((c) => ({
+    // Filter out disabled sub-categories
+    const enabledSubs = subCategories.filter((c) => visibility.enabledById[String(c.id)] !== false)
+
+    filters = enabledSubs.map((c) => ({
       label: (c as unknown as { name: string }).name,
       slug: (c as unknown as { slug: string }).slug,
     }))
 
-    const categoryIds = [cryptoSchool.id, ...subCategories.map((c) => c.id)]
+    const categoryIds = [cryptoSchool.id, ...enabledSubs.map((c) => c.id)]
 
     const session = await auth()
     const bookmarkedIds = session?.user?.id

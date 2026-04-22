@@ -1,6 +1,7 @@
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { unstable_cache } from 'next/cache'
+import { getCategoryVisibility } from './visibility'
 
 export interface NavCategory {
   label: string
@@ -14,6 +15,7 @@ export interface NavCategory {
 
 async function fetchNavCategories(): Promise<NavCategory[]> {
   const payload = await getPayload({ config: configPromise })
+  const visibility = await getCategoryVisibility()
 
   const { docs } = await payload.find({
     collection: 'categories',
@@ -32,10 +34,13 @@ async function fetchNavCategories(): Promise<NavCategory[]> {
     excludeFromMainFeed?: boolean | null
   }[]
 
+  // Filter out disabled parents
+  const enabledParents = parents.filter((p) => visibility.enabledById[String(p.id)] !== false)
+
   // Build lookup maps from parent data
   const parentRoutePrefixMap = new Map<string | number, string | null>()
   const parentExcludeMap = new Map<string | number, boolean>()
-  for (const p of parents) {
+  for (const p of enabledParents) {
     parentRoutePrefixMap.set(p.id, p.routePrefix ?? null)
     parentExcludeMap.set(p.id, p.excludeFromMainFeed ?? false)
   }
@@ -61,6 +66,10 @@ async function fetchNavCategories(): Promise<NavCategory[]> {
       parent: { id: string | number; slug: string } | string | number | null
     }
     if (!c.parent) continue
+
+    // Skip disabled children (own or inherited)
+    if (visibility.enabledBySlug[c.slug] === false) continue
+
     const parentId = typeof c.parent === 'object' ? c.parent.id : c.parent
 
     if (!childrenByParent.has(parentId)) {
@@ -88,7 +97,7 @@ async function fetchNavCategories(): Promise<NavCategory[]> {
     })
   }
 
-  return parents.map((p) => ({
+  return enabledParents.map((p) => ({
     label: p.name,
     slug: p.slug,
     routePrefix: p.routePrefix ?? null,

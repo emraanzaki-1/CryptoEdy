@@ -8,7 +8,6 @@ type CategoryOption = {
   name: string
   slug: string
   parent?: { id: number | string; name: string } | null
-  excludeFromMainFeed?: boolean | null
 }
 
 type Group = {
@@ -23,9 +22,19 @@ type Group = {
  * Only leaf categories (children / grandchildren) are selectable.
  */
 export default function GroupedCategorySelect() {
-  const { value, setValue, showError, errorMessage, path } = useField<number | string>({
+  const { value, setValue, showError, errorMessage, path } = useField<
+    number | string | { id: number | string }
+  >({
     path: 'category',
   })
+
+  // Normalize — value can be a raw ID or a populated object
+  const selectedId =
+    value && typeof value === 'object' && 'id' in value
+      ? String((value as { id: number | string }).id)
+      : value != null
+        ? String(value)
+        : ''
   const [groups, setGroups] = useState<Group[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -55,10 +64,6 @@ export default function GroupedCategorySelect() {
       const built: Group[] = []
 
       for (const parent of parents) {
-        // Skip parents excluded from the main feed (e.g. Education) — their content
-        // uses dedicated sections (Courses/Modules/Lessons), not Posts
-        if (parent.excludeFromMainFeed) continue
-
         const children = childrenByParent[String(parent.id)] ?? []
         if (children.length === 0) continue
 
@@ -109,7 +114,7 @@ export default function GroupedCategorySelect() {
       >
         <select
           id={`field-${path}`}
-          value={value ?? ''}
+          value={selectedId}
           onChange={(e) => {
             const v = e.target.value
             setValue(v ? Number(v) : null)
@@ -137,7 +142,7 @@ export default function GroupedCategorySelect() {
           {groups.map((group) => (
             <optgroup key={group.label} label={group.label}>
               {group.options.map((opt) => (
-                <option key={opt.id} value={opt.id}>
+                <option key={opt.id} value={String(opt.id)}>
                   {opt.name}
                 </option>
               ))}

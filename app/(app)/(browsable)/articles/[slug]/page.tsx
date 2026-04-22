@@ -18,6 +18,7 @@ import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import type { Role } from '@/lib/auth/withRole'
 import { jsxConverters } from '@/lib/lexical/jsxConverters'
 import { truncateEditorState } from '@/lib/lexical/truncateEditorState'
+import { getCategoryVisibility } from '@/lib/categories/visibility'
 import { ArticleFAQ } from '@/components/article/article-faq'
 import { RecommendedArticles } from '@/components/article/recommended-articles'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
@@ -40,6 +41,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   })
   const post = docs[0]
   if (!post) return {}
+
+  // Don't expose metadata for posts in disabled categories
+  const catId =
+    post.category && typeof post.category === 'object'
+      ? String((post.category as { id: string | number }).id)
+      : String(post.category)
+  const vis = await getCategoryVisibility()
+  if (vis.enabledById[catId] === false) return {}
 
   const title = `${post.title as string} | CryptoEdy`
   const description = (post.excerpt as string) ?? undefined
@@ -119,6 +128,14 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
   const post = docs[0]
   if (!post) notFound()
+
+  // 404 if the post's category is disabled
+  const postCategoryId =
+    post.category && typeof post.category === 'object'
+      ? String((post.category as { id: string | number }).id)
+      : String(post.category)
+  const visibility = await getCategoryVisibility()
+  if (visibility.enabledById[postCategoryId] === false) notFound()
 
   // Resolve user role
   const session = await auth()

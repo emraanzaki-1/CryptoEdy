@@ -20,10 +20,7 @@ import {
   UploadFeature,
 } from '@payloadcms/richtext-lexical'
 
-import { CalloutBlock } from '../../collections/blocks/CalloutBlock'
-import { ChartEmbedBlock } from '../../collections/blocks/ChartEmbedBlock'
-import { PerformanceTableBlock } from '../../collections/blocks/PerformanceTableBlock'
-import { PriceTargetBlock } from '../../collections/blocks/PriceTargetBlock'
+import { VideoEmbedBlock } from '../../collections/blocks/VideoEmbedBlock'
 
 /**
  * Full-featured Lexical editor for CryptoEdy content authors.
@@ -97,7 +94,7 @@ export const richTextEditor = lexicalEditor({
 
     // ----- Custom crypto blocks -----
     BlocksFeature({
-      blocks: [CalloutBlock, PriceTargetBlock, ChartEmbedBlock, PerformanceTableBlock],
+      blocks: [VideoEmbedBlock],
     }),
   ],
 })

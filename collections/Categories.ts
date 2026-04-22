@@ -1,8 +1,21 @@
 import type { CollectionConfig } from 'payload'
+import { revalidateTag } from 'next/cache'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
   defaultSort: 'weight',
+  hooks: {
+    afterChange: [
+      () => {
+        revalidateTag('categories', 'max')
+      },
+    ],
+    afterDelete: [
+      () => {
+        revalidateTag('categories', 'max')
+      },
+    ],
+  },
   admin: {
     group: 'Content',
     useAsTitle: 'name',
@@ -77,6 +90,16 @@ export const Categories: CollectionConfig = {
         description:
           'When enabled, posts in this category (and all its children) are excluded from the main /feed page. Use for sections with a dedicated hub (e.g. Education → /learn).',
         condition: (data) => !data.parent,
+      },
+    },
+    {
+      name: 'enabled',
+      type: 'checkbox',
+      defaultValue: true,
+      admin: {
+        position: 'sidebar',
+        description:
+          'When disabled, this category and all its children are hidden from the front-end. Content tagged with disabled categories returns 404.',
       },
     },
     {
