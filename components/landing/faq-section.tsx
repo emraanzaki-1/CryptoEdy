@@ -22,14 +22,30 @@ const FALLBACK_FAQS = [
   },
 ]
 
-export async function FAQSection() {
+interface FAQSectionProps {
+  /** Payload FAQ group slug to fetch. Defaults to 'homepage'. */
+  slug?: string
+  /** Overline text above heading. Defaults to 'FAQ'. */
+  overline?: string
+  /** Section heading content. Defaults to 'Trusted by 5,000+ investors.' */
+  heading?: React.ReactNode
+  /** Subtitle below heading. */
+  subtitle?: string
+}
+
+export async function FAQSection({
+  slug = 'homepage',
+  overline = 'FAQ',
+  heading = 'Trusted by 5,000+ investors.',
+  subtitle = 'Still unsure? The team replies personally to every inquiry. Reach out anytime.',
+}: FAQSectionProps = {}) {
   let faqs = FALLBACK_FAQS
 
   try {
     const payload = await getPayload({ config })
     const result = await payload.find({
       collection: 'faqs',
-      where: { slug: { equals: 'homepage' } },
+      where: { slug: { equals: slug } },
       limit: 1,
     })
 
@@ -51,11 +67,11 @@ export async function FAQSection() {
       {/* Left — trust headline */}
       <SectionHeading
         variant="landing"
-        overline="FAQ"
-        subtitle="Still unsure? The team replies personally to every inquiry. Reach out anytime."
+        overline={overline}
+        subtitle={subtitle}
         className="md:sticky md:top-24 md:max-w-xs md:self-start md:pt-2"
       >
-        Trusted by 5,000+ investors.
+        {heading}
       </SectionHeading>
 
       {/* Right — accordion */}

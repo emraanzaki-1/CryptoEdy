@@ -4,7 +4,16 @@ import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, ChevronRight, ArrowLeft, FlaskConical, LineChart, BookOpen } from 'lucide-react'
+import {
+  Menu,
+  X,
+  ChevronRight,
+  ArrowLeft,
+  FlaskConical,
+  LineChart,
+  BookOpen,
+  GraduationCap,
+} from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ButtonLink } from '@/components/ui/button-link'
@@ -206,6 +215,16 @@ function GuestMobileMenu({
                 </button>
               ))}
 
+              {/* Static Education links */}
+              <Link href="/crypto-school" onClick={handleLinkClick} className={linkClass}>
+                <GraduationCap className="size-5 shrink-0" />
+                <span className="flex-1 text-left">Crypto School</span>
+              </Link>
+              <Link href="/courses" onClick={handleLinkClick} className={linkClass}>
+                <BookOpen className="size-5 shrink-0" />
+                <span className="flex-1 text-left">Trading Courses</span>
+              </Link>
+
               {/* Divider */}
               <div className="border-outline-variant/15 my-2 border-t" />
 
@@ -222,7 +241,7 @@ function GuestMobileMenu({
               ))}
 
               {/* Auth buttons */}
-              <div className="border-outline-variety/15 mt-4 flex gap-3 border-t pt-4">
+              <div className="border-outline-variant/15 mt-4 flex gap-3 border-t pt-4">
                 <ButtonLink
                   href="/register"
                   variant="gradient"

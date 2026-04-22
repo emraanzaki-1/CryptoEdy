@@ -3,6 +3,11 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| 12:30 | Added guest education pages (/crypto-school, /courses) with hero, catalog, curriculum, pro-benefits, conversion-cta, FAQ sections | app/(app)/courses/page.tsx, app/(app)/crypto-school/page.tsx, components/education/\*.tsx | 8 new files, 4 modified | ~6000 tok |
+| 12:30 | Parameterized FAQSection with slug/overline/heading/subtitle props | components/landing/faq-section.tsx | backward-compatible | ~200 tok |
+| 12:30 | Added Education FAQ seed data (5 items) | scripts/seed.ts | new 'education' FAQ group | ~300 tok |
+| 12:30 | Added static Education links to footer and mobile nav | components/layouts/footer.tsx, guest-nav.tsx | Crypto School + Trading Courses links | ~200 tok |
+
 ## 2026-04-22 — Guest Catalog & Content Gating
 
 - **proxy.ts**: Added `BROWSABLE_ROUTES` (`/feed`, `/articles`, `/tag`) — guests bypass login redirect on these routes.
@@ -1498,3 +1503,36 @@ Files changed: `breadcrumb.tsx`, `article-card.tsx`, `top-app-bar.tsx`, `sidebar
 | 03:56 | Edited components/admin/fields/GroupedCategorySelect.tsx                                             | modified for()                                                                                                                                               | ~148                                                |
 | 03:56 | Edited components/admin/fields/GroupedParentSelect.tsx                                               | modified for()                                                                                                                                               | ~183                                                |
 | 02:15 | fix: pass-2 — loading.tsx education slug, events.ts name→routePrefix, admin fields data-driven       | loading.tsx, events.ts, GroupedCategorySelect.tsx, GroupedParentSelect.tsx                                                                                   | all hardcoded category slugs removed from app logic | ~2000   |
+| 03:58 | Session end: 22 writes across 15 files (payload.config.ts, index.ts, route.ts, config.ts, create.ts) | 46 reads                                                                                                                                                     | ~51955 tok                                          |
+| 04:00 | Created components/layouts/guest-shell.tsx                                                           | —                                                                                                                                                            | ~593                                                |
+| 04:01 | Edited app/(app)/(browsable)/layout.tsx                                                              | 3→3 lines                                                                                                                                                    | ~46                                                 |
+| 04:01 | Edited app/(app)/page.tsx                                                                            | modified Home()                                                                                                                                              | ~238                                                |
+| 04:01 | Edited app/(app)/not-found.tsx                                                                       | modified NotFound()                                                                                                                                          | ~99                                                 |
+| 04:01 | Edited app/(app)/terms/page.tsx                                                                      | modified TermsPage()                                                                                                                                         | ~255                                                |
+| 04:01 | Edited app/(app)/privacy/page.tsx                                                                    | added 1 import(s)                                                                                                                                            | ~107                                                |
+| 04:02 | Edited app/(app)/privacy/page.tsx                                                                    | modified PrivacyPage()                                                                                                                                       | ~44                                                 |
+| 04:05 | Session end: 29 writes across 17 files (payload.config.ts, index.ts, route.ts, config.ts, create.ts) | 54 reads                                                                                                                                                     | ~62460 tok                                          |
+
+## Session: 2026-04-21 04:13
+
+| Time  | Action                                                                                                                             | File(s)                                                   | Outcome    | ~Tokens |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ---------- | ------- |
+| 10:19 | Edited components/layouts/guest-nav.tsx                                                                                            | inline fix                                                | ~8         |
+| 10:19 | Session end: 1 writes across 1 files (guest-nav.tsx)                                                                               | 1 reads                                                   | ~2598 tok  |
+| 12:02 | Created ../../../.claude/plans/composed-foraging-bentley.md                                                                        | —                                                         | ~1906      |
+| 12:04 | Edited scripts/seed.ts                                                                                                             | expanded (+31 lines)                                      | ~464       |
+| 12:04 | Created components/landing/faq-section.tsx                                                                                         | —                                                         | ~937       |
+| 12:05 | Created components/education/conversion-cta.tsx                                                                                    | —                                                         | ~362       |
+| 12:05 | Created components/education/pro-benefits-section.tsx                                                                              | —                                                         | ~966       |
+| 12:05 | Created components/education/courses-hero.tsx                                                                                      | —                                                         | ~480       |
+| 12:06 | Created components/education/courses-curriculum.tsx                                                                                | —                                                         | ~1185      |
+| 12:06 | Created app/(app)/courses/page.tsx                                                                                                 | —                                                         | ~666       |
+| 12:07 | Created components/education/crypto-school-hero.tsx                                                                                | —                                                         | ~787       |
+| 12:07 | Created components/education/crypto-school-catalog.tsx                                                                             | —                                                         | ~1218      |
+| 12:07 | Created app/(app)/crypto-school/page.tsx                                                                                           | —                                                         | ~869       |
+| 12:07 | Edited components/layouts/footer.tsx                                                                                               | expanded (+19 lines)                                      | ~452       |
+| 12:08 | Edited components/layouts/guest-nav.tsx                                                                                            | expanded (+9 lines)                                       | ~38        |
+| 12:08 | Edited components/layouts/guest-nav.tsx                                                                                            | expanded (+10 lines)                                      | ~197       |
+| 12:11 | Session end: 15 writes across 12 files (guest-nav.tsx, composed-foraging-bentley.md, seed.ts, faq-section.tsx, conversion-cta.tsx) | 41 reads                                                  | ~78164 tok |
+| 12:44 | Edited components/education/pro-benefits-section.tsx                                                                               | "bg-surface-container-lowe" → "bg-surface-container-lowe" | ~49        |
+| 12:47 | Session end: 16 writes across 12 files (guest-nav.tsx, composed-foraging-bentley.md, seed.ts, faq-section.tsx, conversion-cta.tsx) | 49 reads                                                  | ~85228 tok |

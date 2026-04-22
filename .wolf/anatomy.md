@@ -1,7 +1,11 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-21T22:26:19.857Z
-> Files: 321 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T07:14:42.082Z
+> Files: 334 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../../../.claude/plans/
+
+- `composed-foraging-bentley.md` — Guest Education Pages — Implementation Plan (~1787 tok)
 
 ## ./
 
@@ -23,7 +27,7 @@
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~1128 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~215766 tok)
+- `tsconfig.tsbuildinfo` (~215748 tok)
 
 ## .claude/
 
@@ -79,8 +83,8 @@
 - `error.tsx` — AppError (~177 tok)
 - `global-error.tsx` — inter (~228 tok)
 - `layout.tsx` — inter (~350 tok)
-- `not-found.tsx` — NotFound (~131 tok)
-- `page.tsx` — Home (~341 tok)
+- `not-found.tsx` — NotFound (~175 tok)
+- `page.tsx` — Home (~384 tok)
 
 ## app/(app)/(auth)/
 
@@ -108,7 +112,7 @@
 
 ## app/(app)/(browsable)/
 
-- `layout.tsx` — BrowsableLayout (~466 tok)
+- `layout.tsx` — BrowsableLayout (~475 tok)
 
 ## app/(app)/(browsable)/analysis/
 
@@ -156,7 +160,7 @@
 
 ## app/(app)/(dashboard)/learn/[slug]/
 
-- `page.tsx` — CryptoSchoolCategoryPage (~653 tok)
+- `page.tsx` — CryptoSchoolCategoryPage (~644 tok)
 
 ## app/(app)/(dashboard)/learn/courses/
 
@@ -301,13 +305,23 @@
 
 - `page.tsx` — SUBJECTS — renders form — uses useState (~2195 tok)
 
+## app/(app)/courses/
+
+- `page.tsx` — Guest trading courses marketing page (~750 tok)
+- `page.tsx` — metadata (~666 tok)
+
+## app/(app)/crypto-school/
+
+- `page.tsx` — Guest Crypto School marketing page (~900 tok)
+- `page.tsx` — metadata (~869 tok)
+
 ## app/(app)/privacy/
 
-- `page.tsx` — metadata — renders table (~2896 tok)
+- `page.tsx` — metadata — renders table (~2939 tok)
 
 ## app/(app)/terms/
 
-- `page.tsx` — metadata — renders chart (~3364 tok)
+- `page.tsx` — metadata — renders chart (~3408 tok)
 
 ## app/(payload)/
 
@@ -360,7 +374,7 @@
 
 ## components/admin/fields/
 
-- `GroupedCategorySelect.tsx` — Custom field component for the `category` relationship field. (~1595 tok)
+- `GroupedCategorySelect.tsx` — Custom field component for the `category` relationship field. (~1600 tok)
 - `GroupedParentSelect.tsx` — Custom field component for the `parent` relationship on the Categories collection. (~1447 tok)
 
 ## components/admin/views/
@@ -404,6 +418,15 @@
 - `section-heading.tsx` — headingVariantProps (~932 tok)
 - `sidebar-nav.tsx` — SidebarNav — uses useState, useEffect (~592 tok)
 
+## components/education/
+
+- `conversion-cta.tsx` — ConversionCTA (~362 tok)
+- `courses-curriculum.tsx` — Map course slug → icon. Falls back to CandlestickChart. (~1185 tok)
+- `courses-hero.tsx` — CoursesHero (~480 tok)
+- `crypto-school-catalog.tsx` — Map grandchild category slug → icon. Falls back to BookOpen. (~1218 tok)
+- `crypto-school-hero.tsx` — HERO_IMAGE (~787 tok)
+- `pro-benefits-section.tsx` — BENEFITS (~967 tok)
+
 ## components/feed/
 
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~900 tok)
@@ -418,7 +441,7 @@
 
 ## components/landing/
 
-- `faq-section.tsx` — FALLBACK_FAQS (~804 tok)
+- `faq-section.tsx` — Payload FAQ group slug to fetch. Defaults to 'homepage'. (~937 tok)
 - `hero-section.tsx` — HERO_IMAGE (~689 tok)
 - `onboarding-popup.tsx` — DISMISSED_KEY — renders form — uses useState, useCallback, useEffect (~2471 tok)
 - `pricing-section.tsx` — FEATURES — renders chart (~953 tok)
@@ -430,9 +453,9 @@
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~579 tok)
 - `dashboard-shell.tsx` — DashboardShell — uses useState, useCallback (~816 tok)
-- `footer.tsx` — Footer (~1064 tok)
-- `guest-nav.tsx` — Icon map keyed by routePrefix — add new entries when new hub sections are created (~2590 tok)
-- `guest-shell.tsx` — Additional className on the <main> element (~567 tok)
+- `footer.tsx` — Footer (~1270 tok)
+- `guest-nav.tsx` — Icon map keyed by routePrefix — add new entries when new hub sections are created (~2751 tok)
+- `guest-shell.tsx` — Additional className on the <main> element (~593 tok)
 - `mobile-nav.tsx` — TOOLS_ITEMS — renders chart (~2042 tok)
 - `settings-nav.tsx` — settingsGroups (~572 tok)
 - `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2215 tok)
@@ -541,6 +564,18 @@
 - `0004_snapshot.json` (~5120 tok)
 - `0005_snapshot.json` (~5575 tok)
 
+## guest_education/academy_marketing_guest/
+
+- `code.html` — Digital Curator Academy (~4949 tok)
+
+## guest_education/apex_research/
+
+- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
+
+## guest_education/crypto_school_marketing_guest/
+
+- `code.html` — Crypto School (~3787 tok)
+
 ## lib/
 
 - `utils.ts` — Exports cn (~172 tok)
@@ -574,10 +609,6 @@
 
 - `env.ts` — Startup environment validator. (~266 tok)
 - `layout.ts` — Shared layout constants to reduce churn across edits. (~364 tok)
-
-## lib/constants/
-
-- `taxonomy.ts` — Exports TAXONOMY, CRYPTO_SCHOOL_CATEGORIES, ALL_CATEGORIES, CategoryType + 3 more (~716 tok)
 
 ## lib/courses/
 
@@ -655,7 +686,7 @@
 - `add-course-search-vectors.sql` — Search vector migration for full-text search on courses and lessons (~730 tok)
 - `add-search-vector.sql` — Search vector migration for full-text search on posts (~348 tok)
 - `patch-next-env.cjs` — Preload environment variables BEFORE any ESM imports (~241 tok)
-- `seed.ts` — CryptoEdy seed script — Sprint 3 (~39656 tok)
+- `seed.ts` — CryptoEdy seed script — Sprint 3 (~40105 tok)
 
 ## styles/
 

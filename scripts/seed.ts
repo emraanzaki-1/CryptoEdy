@@ -2084,6 +2084,37 @@ async function main() {
       ],
     },
     {
+      title: 'Education',
+      slug: 'education',
+      items: [
+        {
+          question: 'Is the Academy for beginners?',
+          answer:
+            'Yes. Our curriculum is structured from foundational concepts to advanced strategies. Start with Crypto Trading 101 and progress at your own pace through increasingly sophisticated material.',
+        },
+        {
+          question: 'What do Pro members get?',
+          answer:
+            'Pro members unlock the full course library, advanced modules, expert mentorship sessions, on-demand technical analysis, weekly alpha livestreams, and access to the private research archive.',
+        },
+        {
+          question: 'Can I track my progress?',
+          answer:
+            'Absolutely. Your dashboard tracks completed lessons, current module progress, and overall course completion. Pick up exactly where you left off across any device.',
+        },
+        {
+          question: 'Is the content self-paced?',
+          answer:
+            'Yes. All courses are entirely self-paced. There are no deadlines or scheduled sessions — learn when it suits you. Pro members also get access to weekly live sessions for real-time Q&A.',
+        },
+        {
+          question: 'How is Crypto School different from the courses?',
+          answer:
+            'Crypto School is our library of standalone articles, guides, and explainers organized by topic. Trading Courses are structured, sequential curricula with modules and lessons designed to build skills progressively.',
+        },
+      ],
+    },
+    {
       title: 'Article',
       slug: 'article',
       items: [
