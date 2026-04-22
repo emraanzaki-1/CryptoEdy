@@ -1,515 +1,66 @@
 {
-  "session_id": "session-2026-04-22-1450",
-  "started": "2026-04-22T09:20:17.881Z",
+  "session_id": "session-2026-04-22-0210",
+  "started": "2026-04-22T20:40:17.837Z",
   "files_read": {
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/docs/planning/sprints/sprint-14.md": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/email/index.ts": {
       "count": 1,
-      "tokens": 3654,
-      "first_read": "2026-04-22T09:20:22.623Z"
+      "tokens": 205,
+      "first_read": "2026-04-22T20:40:22.720Z"
     },
-    "/Users/emraanzaki/.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/email/send.ts": {
+      "count": 1,
+      "tokens": 850,
+      "first_read": "2026-04-22T20:40:23.643Z"
+    },
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/config/env.ts": {
+      "count": 1,
+      "tokens": 266,
+      "first_read": "2026-04-22T20:43:06.653Z"
+    },
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/.env.example": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-22T09:20:37.057Z"
+      "first_read": "2026-04-22T20:43:06.841Z"
     },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/layout.tsx": {
+    "/Users/emraanzaki/Sites/Personal/CryptoEdy/.env.local": {
       "count": 1,
-      "tokens": 350,
-      "first_read": "2026-04-22T09:25:44.189Z"
+      "tokens": 0,
+      "first_read": "2026-04-22T20:44:10.731Z"
     },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/articles/[slug]/page.tsx": {
+    "/Users/emraanzaki/.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/MEMORY.md": {
       "count": 1,
-      "tokens": 3150,
-      "first_read": "2026-04-22T09:25:47.645Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/page.tsx": {
-      "count": 1,
-      "tokens": 384,
-      "first_read": "2026-04-22T09:25:47.911Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/research/page.tsx": {
-      "count": 1,
-      "tokens": 82,
-      "first_read": "2026-04-22T09:25:54.737Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/privacy/page.tsx": {
-      "count": 1,
-      "tokens": 2939,
-      "first_read": "2026-04-22T09:25:59.411Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts": {
-      "count": 1,
-      "tokens": 478,
-      "first_read": "2026-04-22T09:26:13.439Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/categories/categoryHub.tsx": {
-      "count": 5,
-      "tokens": 1437,
-      "first_read": "2026-04-22T09:26:14.044Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/appearance/page.tsx": {
-      "count": 2,
-      "tokens": 1827,
-      "first_read": "2026-04-22T09:26:39.206Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/guest-shell.tsx": {
-      "count": 1,
-      "tokens": 593,
-      "first_read": "2026-04-22T09:27:37.841Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/dashboard-shell.tsx": {
-      "count": 1,
-      "tokens": 816,
-      "first_read": "2026-04-22T09:27:38.172Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/crypto-school/page.tsx": {
-      "count": 1,
-      "tokens": 900,
-      "first_read": "2026-04-22T09:30:09.372Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/research/[slug]/page.tsx": {
-      "count": 1,
-      "tokens": 151,
-      "first_read": "2026-04-22T09:30:37.371Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/analysis/[slug]/page.tsx": {
-      "count": 1,
-      "tokens": 151,
-      "first_read": "2026-04-22T09:30:37.681Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/courses/page.tsx": {
-      "count": 2,
-      "tokens": 750,
-      "first_read": "2026-04-22T09:31:22.786Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/terms/page.tsx": {
-      "count": 2,
-      "tokens": 3436,
-      "first_read": "2026-04-22T09:31:47.981Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/user/notification-preferences/route.ts": {
-      "count": 1,
-      "tokens": 1051,
-      "first_read": "2026-04-22T09:32:34.773Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx": {
-      "count": 2,
-      "tokens": 2361,
-      "first_read": "2026-04-22T09:33:06.804Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts": {
-      "count": 1,
-      "tokens": 1021,
-      "first_read": "2026-04-22T09:34:29.458Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/footer.tsx": {
-      "count": 1,
-      "tokens": 1270,
-      "first_read": "2026-04-22T09:35:51.659Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx": {
-      "count": 3,
-      "tokens": 2906,
-      "first_read": "2026-04-22T09:36:25.014Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx": {
-      "count": 1,
-      "tokens": 433,
-      "first_read": "2026-04-22T09:37:28.972Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/common/search-modal.tsx": {
-      "count": 3,
-      "tokens": 5495,
-      "first_read": "2026-04-22T09:37:47.979Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/sidebar.tsx": {
-      "count": 3,
-      "tokens": 2246,
-      "first_read": "2026-04-22T09:38:00.824Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/notifications/notification-dropdown.tsx": {
-      "count": 1,
-      "tokens": 2416,
-      "first_read": "2026-04-22T09:39:37.898Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/docs/planning/sprints/sprint-13.md": {
-      "count": 1,
-      "tokens": 3961,
-      "first_read": "2026-04-22T09:40:23.400Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/legal/disclaimer/page.tsx": {
-      "count": 1,
-      "tokens": 2787,
-      "first_read": "2026-04-22T09:42:50.915Z"
+      "tokens": 0,
+      "first_read": "2026-04-22T20:46:49.283Z"
     }
   },
   "files_written": [
     {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/docs/planning/sprints/sprint-14.md",
-      "action": "edit",
-      "tokens": 127,
-      "at": "2026-04-22T09:20:32.237Z"
-    },
-    {
-      "file": "/Users/emraanzaki/.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md",
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/email/index.ts",
       "action": "create",
-      "tokens": 1417,
-      "at": "2026-04-22T09:21:13.890Z"
+      "tokens": 166,
+      "at": "2026-04-22T20:42:36.372Z"
     },
     {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/robots.ts",
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/email/send.ts",
       "action": "create",
-      "tokens": 119,
-      "at": "2026-04-22T09:27:03.179Z"
+      "tokens": 758,
+      "at": "2026-04-22T20:42:51.917Z"
     },
     {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/sitemap.ts",
-      "action": "create",
-      "tokens": 904,
-      "at": "2026-04-22T09:27:17.378Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/layout.tsx",
-      "action": "edit",
-      "tokens": 126,
-      "at": "2026-04-22T09:27:27.827Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/guest-shell.tsx",
-      "action": "edit",
-      "tokens": 24,
-      "at": "2026-04-22T09:27:42.102Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/dashboard-shell.tsx",
-      "action": "edit",
-      "tokens": 8,
-      "at": "2026-04-22T09:27:47.110Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/articles/[slug]/page.tsx",
-      "action": "edit",
-      "tokens": 384,
-      "at": "2026-04-22T09:28:02.168Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/articles/[slug]/page.tsx",
-      "action": "edit",
-      "tokens": 207,
-      "at": "2026-04-22T09:28:10.599Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/categories/categoryHub.tsx",
-      "action": "edit",
-      "tokens": 412,
-      "at": "2026-04-22T09:30:32.590Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/research/[slug]/page.tsx",
-      "action": "edit",
-      "tokens": 22,
-      "at": "2026-04-22T09:30:42.338Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(browsable)/analysis/[slug]/page.tsx",
-      "action": "edit",
-      "tokens": 22,
-      "at": "2026-04-22T09:30:47.822Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/layout.tsx",
-      "action": "edit",
-      "tokens": 231,
-      "at": "2026-04-22T09:31:00.968Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/page.tsx",
-      "action": "edit",
-      "tokens": 28,
-      "at": "2026-04-22T09:31:06.839Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/page.tsx",
-      "action": "edit",
-      "tokens": 152,
-      "at": "2026-04-22T09:31:12.776Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/crypto-school/page.tsx",
-      "action": "edit",
-      "tokens": 99,
-      "at": "2026-04-22T09:31:18.808Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/courses/page.tsx",
-      "action": "edit",
-      "tokens": 90,
-      "at": "2026-04-22T09:31:34.820Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/privacy/page.tsx",
-      "action": "edit",
-      "tokens": 65,
-      "at": "2026-04-22T09:31:40.086Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/terms/page.tsx",
-      "action": "edit",
-      "tokens": 65,
-      "at": "2026-04-22T09:31:53.069Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/user/check-username/route.ts",
-      "action": "create",
-      "tokens": 350,
-      "at": "2026-04-22T09:32:42.708Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/api/user/check-username/route.ts",
+      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/config/env.ts",
       "action": "edit",
       "tokens": 6,
-      "at": "2026-04-22T09:32:56.807Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
-      "action": "edit",
-      "tokens": 48,
-      "at": "2026-04-22T09:33:20.941Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
-      "action": "edit",
-      "tokens": 85,
-      "at": "2026-04-22T09:33:26.600Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
-      "action": "edit",
-      "tokens": 276,
-      "at": "2026-04-22T09:33:38.241Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
-      "action": "edit",
-      "tokens": 395,
-      "at": "2026-04-22T09:33:46.253Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/db/schema/users.ts",
-      "action": "edit",
-      "tokens": 80,
-      "at": "2026-04-22T09:33:59.801Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/drizzle/0007_theme_preference.sql",
-      "action": "create",
-      "tokens": 22,
-      "at": "2026-04-22T09:34:24.498Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/profile/actions.ts",
-      "action": "edit",
-      "tokens": 129,
-      "at": "2026-04-22T09:34:35.369Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/appearance/page.tsx",
-      "action": "edit",
-      "tokens": 91,
-      "at": "2026-04-22T09:34:43.277Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/appearance/page.tsx",
-      "action": "edit",
-      "tokens": 42,
-      "at": "2026-04-22T09:34:49.865Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/legal/disclaimer/page.tsx",
-      "action": "create",
-      "tokens": 2787,
-      "at": "2026-04-22T09:35:35.623Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/footer.tsx",
-      "action": "edit",
-      "tokens": 138,
-      "at": "2026-04-22T09:35:57.939Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
-      "action": "edit",
-      "tokens": 104,
-      "at": "2026-04-22T09:36:31.924Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
-      "action": "edit",
-      "tokens": 118,
-      "at": "2026-04-22T09:36:37.983Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
-      "action": "edit",
-      "tokens": 101,
-      "at": "2026-04-22T09:36:51.657Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
-      "action": "edit",
-      "tokens": 244,
-      "at": "2026-04-22T09:37:37.296Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/sidebar.tsx",
-      "action": "edit",
-      "tokens": 39,
-      "at": "2026-04-22T09:38:07.749Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
-      "action": "edit",
-      "tokens": 92,
-      "at": "2026-04-22T09:38:34.788Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
-      "action": "edit",
-      "tokens": 75,
-      "at": "2026-04-22T09:38:39.925Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
-      "action": "edit",
-      "tokens": 76,
-      "at": "2026-04-22T09:38:45.233Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/top-app-bar.tsx",
-      "action": "edit",
-      "tokens": 67,
-      "at": "2026-04-22T09:38:50.436Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/feed/view-toggle.tsx",
-      "action": "edit",
-      "tokens": 54,
-      "at": "2026-04-22T09:38:56.158Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/sidebar.tsx",
-      "action": "edit",
-      "tokens": 69,
-      "at": "2026-04-22T09:39:08.083Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/layouts/sidebar.tsx",
-      "action": "edit",
-      "tokens": 116,
-      "at": "2026-04-22T09:39:26.855Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/components/notifications/notification-dropdown.tsx",
-      "action": "edit",
-      "tokens": 96,
-      "at": "2026-04-22T09:39:44.471Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/appearance/page.tsx",
-      "action": "edit",
-      "tokens": 128,
-      "at": "2026-04-22T09:40:08.202Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/docs/planning/sprints/sprint-13.md",
-      "action": "edit",
-      "tokens": 274,
-      "at": "2026-04-22T09:40:33.571Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/docs/planning/sprints/sprint-13.md",
-      "action": "edit",
-      "tokens": 146,
-      "at": "2026-04-22T09:40:41.003Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/docs/planning/sprints/sprint-13.md",
-      "action": "edit",
-      "tokens": 74,
-      "at": "2026-04-22T09:40:46.512Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/docs/planning/sprints/sprint-13.md",
-      "action": "edit",
-      "tokens": 196,
-      "at": "2026-04-22T09:40:54.623Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/docs/planning/sprints/sprint-12.md",
-      "action": "edit",
-      "tokens": 44,
-      "at": "2026-04-22T09:41:02.952Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/docs/planning/sprints/sprint-12.md",
-      "action": "edit",
-      "tokens": 58,
-      "at": "2026-04-22T09:41:09.022Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/docs/planning/sprints/sprint-12.md",
-      "action": "edit",
-      "tokens": 90,
-      "at": "2026-04-22T09:41:18.158Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/(dashboard)/settings/profile/page.tsx",
-      "action": "edit",
-      "tokens": 293,
-      "at": "2026-04-22T09:42:42.602Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/app/(app)/legal/disclaimer/page.tsx",
-      "action": "edit",
-      "tokens": 42,
-      "at": "2026-04-22T09:43:02.969Z"
+      "at": "2026-04-22T20:43:17.424Z"
     }
   ],
   "edit_counts": {
-    "docs/planning/sprints/sprint-14.md": 1,
-    "../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md": 1,
-    "app/robots.ts": 1,
-    "app/sitemap.ts": 1,
-    "app/(app)/layout.tsx": 2,
-    "components/layouts/guest-shell.tsx": 1,
-    "components/layouts/dashboard-shell.tsx": 1,
-    "app/(app)/(browsable)/articles/[slug]/page.tsx": 2,
-    "lib/categories/categoryHub.tsx": 1,
-    "app/(app)/(browsable)/research/[slug]/page.tsx": 1,
-    "app/(app)/(browsable)/analysis/[slug]/page.tsx": 1,
-    "app/(app)/page.tsx": 2,
-    "app/(app)/crypto-school/page.tsx": 1,
-    "app/(app)/courses/page.tsx": 1,
-    "app/(app)/privacy/page.tsx": 1,
-    "app/(app)/terms/page.tsx": 1,
-    "app/(app)/api/user/check-username/route.ts": 2,
-    "app/(app)/(dashboard)/settings/profile/page.tsx": 5,
-    "lib/db/schema/users.ts": 1,
-    "drizzle/0007_theme_preference.sql": 1,
-    "lib/profile/actions.ts": 1,
-    "app/(app)/(dashboard)/settings/appearance/page.tsx": 3,
-    "app/(app)/legal/disclaimer/page.tsx": 2,
-    "components/layouts/footer.tsx": 1,
-    "components/layouts/top-app-bar.tsx": 7,
-    "components/feed/view-toggle.tsx": 2,
-    "components/layouts/sidebar.tsx": 3,
-    "components/notifications/notification-dropdown.tsx": 1,
-    "docs/planning/sprints/sprint-13.md": 4,
-    "docs/planning/sprints/sprint-12.md": 3
+    "lib/email/index.ts": 1,
+    "lib/email/send.ts": 1,
+    "lib/config/env.ts": 1
   },
-  "anatomy_hits": 27,
-  "anatomy_misses": 1,
-  "repeated_reads_warned": 14,
+  "anatomy_hits": 3,
+  "anatomy_misses": 3,
+  "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 3
+  "stop_count": 2
 }

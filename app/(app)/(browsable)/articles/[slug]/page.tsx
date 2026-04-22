@@ -17,6 +17,7 @@ import { auth } from '@/lib/auth'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import type { Role } from '@/lib/auth/withRole'
 import { jsxConverters } from '@/lib/lexical/jsxConverters'
+import { truncateEditorState } from '@/lib/lexical/truncateEditorState'
 import { ArticleFAQ } from '@/components/article/article-faq'
 import { RecommendedArticles } from '@/components/article/recommended-articles'
 import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
@@ -129,13 +130,24 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     userRole === 'pro' && subscriptionExpiry && new Date(subscriptionExpiry) < new Date()
   const effectiveRole: Role = isProExpired ? 'free' : userRole
 
-  // Determine lock state — guests are gated on ALL articles, free users only on Pro articles
-  const isGuestGated = !isAuthenticated
-  const isProLocked =
-    isAuthenticated &&
-    post.isProOnly === true &&
-    ROLE_HIERARCHY[effectiveRole] < ROLE_HIERARCHY['pro']
-  const isLocked = isGuestGated || isProLocked
+  // Derive a single access state
+  type AccessState = 'guest-gated' | 'pro-locked' | 'partial-preview' | 'full-access'
+  const accessState: AccessState = (() => {
+    if (!isAuthenticated) return 'guest-gated'
+    if (post.isProOnly === true && ROLE_HIERARCHY[effectiveRole] < ROLE_HIERARCHY['pro'])
+      return 'pro-locked'
+    if (ROLE_HIERARCHY[effectiveRole] < ROLE_HIERARCHY['pro']) return 'partial-preview'
+    return 'full-access'
+  })()
+
+  // Truncate content for partial preview
+  const truncatedContent =
+    accessState === 'partial-preview'
+      ? truncateEditorState(post.content as SerializedEditorState)
+      : null
+  // If truncation returns null (article too short), show full content
+  const effectiveAccess: AccessState =
+    accessState === 'partial-preview' && !truncatedContent ? 'full-access' : accessState
 
   // Fetch recommended articles (same category, excluding current post)
   const categoryId =
@@ -312,8 +324,19 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         )}
 
         {/* Content */}
-        {isLocked ? (
-          <PaywallGate isAuthenticated={isAuthenticated} variant={isGuestGated ? 'guest' : 'pro'} />
+        {effectiveAccess === 'guest-gated' ? (
+          <PaywallGate isAuthenticated={false} variant="guest" />
+        ) : effectiveAccess === 'pro-locked' ? (
+          <PaywallGate isAuthenticated={isAuthenticated} variant="pro" />
+        ) : effectiveAccess === 'partial-preview' && truncatedContent ? (
+          <>
+            <section className="article-body text-on-surface-variant text-body-lg relative max-w-none">
+              <RichText data={truncatedContent} converters={jsxConverters} />
+              {/* Fade-out gradient inside the content container */}
+              <div className="via-background/80 to-background pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent" />
+            </section>
+            <PaywallGate isAuthenticated={isAuthenticated} variant="pro" showPreview={false} />
+          </>
         ) : (
           <section className="article-body text-on-surface-variant text-body-lg max-w-none">
             <RichText data={post.content as SerializedEditorState} converters={jsxConverters} />

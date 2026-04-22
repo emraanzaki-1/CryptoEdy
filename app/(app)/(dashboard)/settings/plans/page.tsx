@@ -51,7 +51,7 @@ export default async function PlansSettingsPage() {
         Plans & Subscriptions
       </SectionHeading>
 
-      <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:gap-12">
+      <div className="mt-8 grid grid-cols-1 items-center gap-8 md:grid-cols-2 lg:gap-12">
         {/* Pricing Card */}
         <Card
           variant="surface"
@@ -112,7 +112,7 @@ export default async function PlansSettingsPage() {
       </div>
 
       {/* Trust Block */}
-      <Card variant="surface" className="mx-auto mt-12 max-w-2xl rounded-3xl p-6 text-center">
+      <Card variant="surface" className="mt-12 rounded-3xl p-6 text-center">
         <div className="flex flex-col items-center gap-3">
           <div className="bg-surface-container-high text-primary mb-2 flex size-12 items-center justify-center rounded-full">
             <Lock className="size-6" />

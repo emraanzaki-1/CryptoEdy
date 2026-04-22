@@ -2,6 +2,7 @@ import { auth } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import { DashboardShell } from '@/components/layouts/dashboard-shell'
 import { AvatarProvider } from '@/components/providers/avatar-provider'
+import { ThirdwebAppProvider } from '@/components/providers/thirdweb-provider'
 import { getNavCategories } from '@/lib/categories/getCategories'
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -18,18 +19,20 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const navCategories = await getNavCategories()
 
   return (
-    <AvatarProvider initialUrl={session.user.image ?? null}>
-      <DashboardShell
-        user={{
-          name: session.user.name ?? session.user.email?.split('@')[0] ?? 'User',
-          email: session.user.email ?? undefined,
-          image: session.user.image ?? undefined,
-          isPro,
-        }}
-        navCategories={navCategories}
-      >
-        {children}
-      </DashboardShell>
-    </AvatarProvider>
+    <ThirdwebAppProvider>
+      <AvatarProvider initialUrl={session.user.image ?? null}>
+        <DashboardShell
+          user={{
+            name: session.user.name ?? session.user.email?.split('@')[0] ?? 'User',
+            email: session.user.email ?? undefined,
+            image: session.user.image ?? undefined,
+            isPro,
+          }}
+          navCategories={navCategories}
+        >
+          {children}
+        </DashboardShell>
+      </AvatarProvider>
+    </ThirdwebAppProvider>
   )
 }

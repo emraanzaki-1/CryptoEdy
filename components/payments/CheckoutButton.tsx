@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { CheckoutWidget } from 'thirdweb/react'
 import { polygon } from 'thirdweb/chains'
-import { thirdwebClient } from '@/lib/thirdweb/client'
+import { getThirdwebClient } from '@/lib/thirdweb/client'
 import { Button } from '@/components/ui/button'
 
 // USDC on Polygon
@@ -18,15 +18,24 @@ interface CheckoutButtonProps {
     userId: string
     ts: number
   }
+  /** When true, shows CheckoutWidget immediately without the "Upgrade Now" gate */
+  inline?: boolean
 }
 
-export function CheckoutButton({ className, intentData }: CheckoutButtonProps) {
-  const [showCheckout, setShowCheckout] = useState(false)
+export function CheckoutButton({ className, intentData, inline = false }: CheckoutButtonProps) {
+  const [showCheckout, setShowCheckout] = useState(inline)
   const [completed, setCompleted] = useState(false)
 
   const sellerAddress = process.env.NEXT_PUBLIC_THIRDWEB_RECIPIENT_ADDRESS
 
-  if (!sellerAddress) {
+  let client: ReturnType<typeof getThirdwebClient> | null = null
+  try {
+    client = getThirdwebClient()
+  } catch {
+    // env var not set
+  }
+
+  if (!sellerAddress || !client) {
     return (
       <Button variant="default" size="xxl" className={className} disabled>
         <span>Payment not configured</span>
@@ -59,7 +68,7 @@ export function CheckoutButton({ className, intentData }: CheckoutButtonProps) {
   return (
     <div className="flex flex-col items-stretch gap-3">
       <CheckoutWidget
-        client={thirdwebClient}
+        client={client!}
         chain={polygon}
         amount="100"
         tokenAddress={USDC_POLYGON as `0x${string}`}
@@ -73,18 +82,22 @@ export function CheckoutButton({ className, intentData }: CheckoutButtonProps) {
           setCompleted(true)
           setShowCheckout(false)
         }}
-        onCancel={() => setShowCheckout(false)}
+        onCancel={() => {
+          if (!inline) setShowCheckout(false)
+        }}
         onError={(error) => {
           console.error('[CheckoutWidget] Payment error:', error)
         }}
       />
-      <button
-        type="button"
-        className="text-on-surface-variant hover:text-on-surface text-body-sm underline"
-        onClick={() => setShowCheckout(false)}
-      >
-        Cancel
-      </button>
+      {!inline && (
+        <button
+          type="button"
+          className="text-on-surface-variant hover:text-on-surface text-body-sm underline"
+          onClick={() => setShowCheckout(false)}
+        >
+          Cancel
+        </button>
+      )}
     </div>
   )
 }

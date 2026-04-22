@@ -51,14 +51,20 @@ interface PaywallGateProps {
   isAuthenticated?: boolean
   /** "guest" gates all content for unauthenticated users; "pro" gates Pro-only content for free users */
   variant?: 'pro' | 'guest'
+  /** When false, skip the fake blurred preview text (used when real truncated content precedes the gate) */
+  showPreview?: boolean
 }
 
-export function PaywallGate({ isAuthenticated = false, variant = 'pro' }: PaywallGateProps) {
+export function PaywallGate({
+  isAuthenticated = false,
+  variant = 'pro',
+  showPreview = true,
+}: PaywallGateProps) {
   if (variant === 'guest') {
     return <GuestGate />
   }
 
-  return <ProGate isAuthenticated={isAuthenticated} />
+  return <ProGate isAuthenticated={isAuthenticated} showPreview={showPreview} />
 }
 
 /* ── Guest gate — register to read any article ───────────────────── */
@@ -157,23 +163,33 @@ function GuestGate() {
 
 /* ── Pro gate — upgrade to read Pro-only content ─────────────────── */
 
-function ProGate({ isAuthenticated }: { isAuthenticated: boolean }) {
+function ProGate({
+  isAuthenticated,
+  showPreview,
+}: {
+  isAuthenticated: boolean
+  showPreview: boolean
+}) {
   return (
     <div className="relative mt-12 mb-16 pb-8">
-      {/* Blurred preview */}
-      <div className="via-background/80 to-background pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-transparent" />
-      <div className="relative z-0 space-y-6 opacity-40 blur-[2px]">
-        <p>
-          Looking closely at the M2 money supply overlaid with Bitcoin&apos;s localized hash rate
-          distribution, a clear divergence emerges. The standard narrative suggests a correlation,
-          but our models show a decoupling driven by structural scarcity.
-        </p>
-        <p>
-          This specific divergence has only occurred three times in the asset&apos;s history. In
-          each previous instance, the subsequent 18-month window saw aggregate market cap expansion
-          exceeding 400%.
-        </p>
-      </div>
+      {/* Blurred preview — only shown when no real truncated content precedes the gate */}
+      {showPreview && (
+        <>
+          <div className="via-background/80 to-background pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-transparent" />
+          <div className="relative z-0 space-y-6 opacity-40 blur-[2px]">
+            <p>
+              Looking closely at the M2 money supply overlaid with Bitcoin&apos;s localized hash
+              rate distribution, a clear divergence emerges. The standard narrative suggests a
+              correlation, but our models show a decoupling driven by structural scarcity.
+            </p>
+            <p>
+              This specific divergence has only occurred three times in the asset&apos;s history. In
+              each previous instance, the subsequent 18-month window saw aggregate market cap
+              expansion exceeding 400%.
+            </p>
+          </div>
+        </>
+      )}
 
       {/* Gate card */}
       <div className="border-outline-variant/15 bg-surface-container-lowest shadow-elevated relative z-20 mt-[-80px] flex flex-col overflow-hidden rounded-2xl border md:flex-row">

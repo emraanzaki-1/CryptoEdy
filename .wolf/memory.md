@@ -3,6 +3,7 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| session-2026-04-22 | Sprint 12-14 batch: POST /api/user/change-email (pendingEmail + verification), plaiceholder blurDataUrls for feed/category pages, Posts afterChange on-demand revalidation, POST /api/revalidate, NotificationBell mobile bottom sheet, cookie consent banner, GET /api/health | 15+ files modified/created, 3 new migrations (0008–0010), commits 188b4d3→d863d8e | all lint errors fixed, committed | ~25000 tok |
 | 12:30 | Added guest education pages (/crypto-school, /courses) with hero, catalog, curriculum, pro-benefits, conversion-cta, FAQ sections | app/(app)/courses/page.tsx, app/(app)/crypto-school/page.tsx, components/education/\*.tsx | 8 new files, 4 modified | ~6000 tok |
 | 12:30 | Parameterized FAQSection with slug/overline/heading/subtitle props | components/landing/faq-section.tsx | backward-compatible | ~200 tok |
 | 12:30 | Added Education FAQ seed data (5 items) | scripts/seed.ts | new 'education' FAQ group | ~300 tok |
@@ -1639,3 +1640,249 @@ Updated all 14 sprint planning docs with codebase-verified status (no hallucinat
   | 15:11 | Session end: 53 writes across 20 files (sprint-14.md, sprint_status.md, robots.ts, sitemap.ts, layout.tsx) | 27 reads | ~55470 tok |
   | 15:12 | Edited app/(app)/(dashboard)/settings/profile/page.tsx | CSS: 0 | ~293 |
   | 15:13 | Edited app/(app)/legal/disclaimer/page.tsx | inline fix | ~42 |
+  | 15:13 | Session end: 55 writes across 20 files (sprint-14.md, sprint_status.md, robots.ts, sitemap.ts, layout.tsx) | 28 reads | ~58592 tok |
+  | 15:14 | Session end: 55 writes across 20 files (sprint-14.md, sprint_status.md, robots.ts, sitemap.ts, layout.tsx) | 28 reads | ~58592 tok |
+  | 15:16 | Session end: 55 writes across 20 files (sprint-14.md, sprint_status.md, robots.ts, sitemap.ts, layout.tsx) | 28 reads | ~58592 tok |
+  | 15:17 | Created docs/planning/IMPLEMENTATION_PLAN.md | — | ~1645 |
+
+## Session: 2026-04-22 15:18
+
+| Time  | Action                                                                                                                                       | File(s)                | Outcome                 | ~Tokens  |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ----------------------- | -------- |
+| 15:18 | Edited docs/planning/sprints/sprint-07.md                                                                                                    | 5→8 lines              | ~177                    |
+| 15:19 | Edited docs/planning/sprints/sprint-08.md                                                                                                    | 5→8 lines              | ~167                    |
+| 15:19 | Edited docs/planning/sprints/sprint-09.md                                                                                                    | 5→8 lines              | ~168                    |
+| 15:19 | Edited docs/planning/sprints/sprint-11.md                                                                                                    | 5→8 lines              | ~170                    |
+| 15:19 | Edited ../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md                                          | 14→17 lines            | ~213                    |
+| 15:19 | Edited ../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md                                          | PARTIAL() → COMPLETE() | ~356                    |
+| 15:19 | Edited ../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md                                          | expanded (+14 lines)   | ~504                    |
+| 15:22 | Added V2 deferred banners to sprint-07.md, sprint-08.md, sprint-09.md, sprint-11.md; updated sprint_status.md memory with finalized V1 scope | 4 sprint docs + memory | scope decision recorded | ~400 tok |
+| 15:20 | Session end: 7 writes across 5 files (sprint-07.md, sprint-08.md, sprint-09.md, sprint-11.md, sprint_status.md)                              | 5 reads                | ~14153 tok              |
+| 15:21 | Session end: 7 writes across 5 files (sprint-07.md, sprint-08.md, sprint-09.md, sprint-11.md, sprint_status.md)                              | 7 reads                | ~22023 tok              |
+| 15:25 | Session end: 7 writes across 5 files (sprint-07.md, sprint-08.md, sprint-09.md, sprint-11.md, sprint_status.md)                              | 7 reads                | ~22023 tok              |
+| 15:27 | Edited docs/planning/sprints/sprint-13.md                                                                                                    | inline fix             | ~66                     |
+| 15:27 | Edited ../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md                                          | inline fix             | ~27                     |
+| 15:27 | Session end: 9 writes across 6 files (sprint-07.md, sprint-08.md, sprint-09.md, sprint-11.md, sprint_status.md)                              | 7 reads                | ~22123 tok              |
+| 15:28 | Session end: 9 writes across 6 files (sprint-07.md, sprint-08.md, sprint-09.md, sprint-11.md, sprint_status.md)                              | 7 reads                | ~22123 tok              |
+| 15:40 | Created app/(app)/api/health/route.ts                                                                                                        | —                      | ~141                    |
+| 15:40 | Created app/(app)/api/revalidate/route.ts                                                                                                    | —                      | ~264                    |
+| 15:40 | Created lib/utils/getBlurDataUrl.ts                                                                                                          | —                      | ~330                    |
+| 15:40 | Created lib/email/templates/change-email.ts                                                                                                  | —                      | ~254                    |
+| 15:40 | Created drizzle/0008_pending_email.sql                                                                                                       | —                      | ~46                     |
+| 15:41 | Created app/(app)/api/user/change-email/route.ts                                                                                             | —                      | ~1144                   |
+| 15:41 | Created components/layouts/cookie-consent.tsx                                                                                                | —                      | ~535                    |
+| 15:41 | Edited lib/db/schema/users.ts                                                                                                                | 2→3 lines              | ~76                     |
+| 15:41 | Edited collections/Posts.ts                                                                                                                  | added 1 import(s)      | ~91                     |
+| 15:41 | Edited collections/Posts.ts                                                                                                                  | added 2 condition(s)   | ~170                    |
+| 15:41 | Edited components/feed/article-card.tsx                                                                                                      | 17→18 lines            | ~103                    |
+| 15:41 | Edited components/feed/article-card.tsx                                                                                                      | modified ArticleCard() | ~73                     |
+| 15:42 | Edited components/feed/article-card.tsx                                                                                                      | 13→15 lines            | ~147                    |
+
+## Subscription & Billing System — Provider-Agnostic Build
+
+- **DB Schema**: Created `lib/db/schema/payments.ts` (13 columns, 4 indexes, paymentStatusEnum). Manual migration `drizzle/0009_payments.sql` applied.
+- **Activation Logic**: Created `lib/payments/verify-and-activate.ts` — atomic Pro upgrade (idempotent on txHash, DB transaction, fires onSubscriptionActivated).
+- **Block Explorers**: Created `lib/payments/explorers.ts` — URL helpers for Ethereum/Polygon/Arbitrum/Solana.
+- **Cron Job**: Created `app/(app)/api/cron/subscription-check/route.ts` — daily job downgrades expired Pro users, sends warnings at 30/14/7/1 days.
+- **Billing UI**: Rebuilt `components/settings/billing-history-table.tsx` for crypto (Date|Chain|Asset|Amount|Status|Tx Hash). Rewrote billing page as async server component with real data.
+- **Admin Endpoints**: Created `lib/api/admin-payments.ts` (list, detail, admin note, CSV export) and `lib/api/admin-subscriptions.ts` (KPI overview, subscriber list).
+- **Admin Views**: Created PaymentManagement + SubscriptionManagement Payload admin views with tables, search, filters, pagination, payment detail drawer.
+- **Registration**: Updated `payload.config.ts` with new endpoints, views at `/admin/payments` and `/admin/subscriptions`. Added nav links to AdminNavLinks.
+- **Docs Updated**: sprint-06.md and IMPLEMENTATION_PLAN.md updated to defer referral system to V2.
+- **Drizzle Gotcha**: Migrations 0006-0008 were manual; drizzle-kit snapshots out of sync. Must use manual SQL migrations, not `drizzle-kit generate`.
+- **Pre-existing build error**: `change-email/route.ts` has wrong imports (checkRateLimit, sendChangeEmailVerification) — unrelated to this work.
+
+## Payment Provider Abstraction + thirdweb Integration
+
+- **Strategy Pattern**: `lib/payments/providers/types.ts` defines `PaymentProvider` interface (createCheckout + verifyWebhook). `lib/payments/providers/index.ts` has `getActiveProvider()` reading `PAYMENT_PROVIDER` env var and `getProvider(name)` for specific webhook routes.
+- **ThirdwebProvider**: `lib/payments/providers/thirdweb.ts` — checkout creation via thirdweb API, HMAC-SHA256 webhook verification, chain normalization.
+- **Provider-specific webhooks**: Each provider gets its own route (`/api/payments/webhook/thirdweb`) so delayed retries still work after switching providers.
+- **Schema update**: Added `provider` (varchar 50, default 'thirdweb') and `providerPaymentId` (varchar 255) columns. Unique index on (provider, providerPaymentId). Migration `drizzle/0010_payment_provider.sql`.
+- **Early renewal**: `verify-and-activate.ts` updated — extends from `max(currentExpiry, now) + 365` so active users don't lose time.
+- **Idempotency**: Dual check on txHash + provider/providerPaymentId. Unique constraint violations treated as idempotent success.
+- **CheckoutButton**: `components/payments/CheckoutButton.tsx` — client component, calls POST /api/payments/checkout, handles redirect. Wired into Plans page.
+- **Env vars**: Updated `.env.example` with PAYMENT*PROVIDER, THIRDWEB*\*, CRON_SECRET sections.
+  | 19:34 | Edited lib/posts/mapToCardProps.ts | modified mapPostToCardProps() | ~44 |
+  | 19:34 | Edited lib/posts/mapToCardProps.ts | 3→4 lines | ~27 |
+  | 19:34 | Edited app/(app)/(browsable)/feed/[[...slug]]/page.tsx | added 1 import(s) | ~56 |
+  | 19:34 | Edited app/(app)/(browsable)/feed/[[...slug]]/page.tsx | CSS: blurDataUrl | ~228 |
+  | 19:34 | Edited lib/categories/categoryHub.tsx | added 1 import(s) | ~134 |
+  | 19:34 | Edited lib/categories/categoryHub.tsx | CSS: blurDataUrl | ~285 |
+  | 19:34 | Edited lib/categories/categoryHub.tsx | CSS: blurDataUrl | ~284 |
+  | 19:35 | Edited components/notifications/notification-dropdown.tsx | modified handleNotificationClick() | ~26 |
+  | 19:35 | Edited components/notifications/notification-dropdown.tsx | modified handleNotificationClick() | ~26 |
+  | 19:35 | Edited components/notifications/notification-dropdown.tsx | expanded (+13 lines) | ~222 |
+  | 19:35 | Edited components/notifications/notification-dropdown.tsx | 13→14 lines | ~112 |
+  | 19:35 | Edited lib/email/send.ts | added 1 import(s) | ~93 |
+  | 19:35 | Edited lib/email/send.ts | added 1 condition(s) | ~147 |
+  | 19:35 | Edited app/(app)/layout.tsx | added 1 import(s) | ~44 |
+  | 19:35 | Edited app/(app)/layout.tsx | 2→3 lines | ~30 |
+  | 19:35 | Edited app/(app)/(dashboard)/settings/profile/page.tsx | added 1 import(s) | ~204 |
+  | 19:36 | Edited app/(app)/(dashboard)/settings/profile/page.tsx | modified ProfileSettingsPage() | ~219 |
+  | 19:36 | Edited app/(app)/(dashboard)/settings/profile/page.tsx | added nullish coalescing | ~429 |
+  | 19:36 | Edited app/(app)/(dashboard)/settings/profile/page.tsx | expanded (+77 lines) | ~1161 |
+  | 19:37 | Edited app/(app)/api/user/change-email/route.ts | modified POST() | ~187 |
+  | 19:37 | Edited app/(app)/api/revalidate/route.ts | modified if() | ~18 |
+  | 19:37 | Edited collections/Posts.ts | modified if() | ~48 |
+  | 19:38 | Edited app/(app)/api/revalidate/route.ts | inline fix | ~10 |
+  | 19:38 | Edited collections/Posts.ts | inline fix | ~10 |
+  | 19:39 | Edited components/layouts/cookie-consent.tsx | 4→5 lines | ~36 |
+  | 19:39 | Edited app/(app)/(dashboard)/settings/profile/page.tsx | modified if() | ~216 |
+  | 19:40 | Edited docs/planning/sprints/sprint-12.md | inline fix | ~60 |
+  | 19:41 | Edited docs/planning/sprints/sprint-13.md | 3→3 lines | ~91 |
+  | 19:41 | Edited docs/planning/sprints/sprint-13.md | 4→4 lines | ~111 |
+  | 19:41 | Edited docs/planning/sprints/sprint-13.md | inline fix | ~36 |
+  | 19:41 | Edited docs/planning/sprints/sprint-13.md | inline fix | ~52 |
+  | 19:41 | Edited docs/planning/sprints/sprint-14.md | inline fix | ~38 |
+  | 19:41 | Edited docs/planning/sprints/sprint-14.md | inline fix | ~61 |
+  | 19:42 | Edited ../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md | 10→10 lines | ~180 |
+  | 19:42 | Edited ../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md | expanded (+8 lines) | ~201 |
+  | 15:35 | Implemented 6 sprint tasks: /api/health, /api/revalidate, email change flow (migration 0008 + API + email template + profile UI), plaiceholder blur placeholders, NotificationBell mobile bottom sheet, CookieConsent banner | 19 files | committed c0ceac3 | ~8000 tok |
+  | 19:42 | Session end: 57 writes across 22 files (sprint-07.md, sprint-08.md, sprint-09.md, sprint-11.md, sprint_status.md) | 22 reads | ~49631 tok |
+  | 19:53 | Session end: 57 writes across 22 files (sprint-07.md, sprint-08.md, sprint-09.md, sprint-11.md, sprint_status.md) | 22 reads | ~49631 tok |
+  | 19:53 | Session end: 57 writes across 22 files (sprint-07.md, sprint-08.md, sprint-09.md, sprint-11.md, sprint_status.md) | 22 reads | ~49631 tok |
+  | 19:54 | Session end: 57 writes across 22 files (sprint-07.md, sprint-08.md, sprint-09.md, sprint-11.md, sprint_status.md) | 22 reads | ~49631 tok |
+  | 19:55 | Edited app/(app)/(dashboard)/settings/plans/page.tsx | inline fix | ~12 |
+  | 19:55 | Edited app/(app)/(dashboard)/settings/plans/page.tsx | 5→6 lines | ~62 |
+  | 20:01 | Edited components/payments/CheckoutButton.tsx | inline fix | ~12 |
+  | 20:02 | Edited app/(app)/(dashboard)/settings/plans/page.tsx | CSS: isPro, subscriptionExpiry | ~91 |
+
+## Thirdweb SDK v5 Refactor
+
+- **Replaced raw REST API** with official `thirdweb` npm package (v5)
+- **CheckoutWidget**: `components/payments/CheckoutButton.tsx` now renders `CheckoutWidget` from `thirdweb/react` inline instead of redirect-based checkout. Configured for USDC on Polygon with crypto+card payment methods.
+- **Bridge.Webhook.parse()**: Webhook route now uses SDK's built-in signature verification (handles `x-payload-signature` + `x-timestamp` headers, `${timestamp}.${payload}` HMAC format).
+- **Signed intent tokens**: `lib/payments/intent.ts` — server generates HMAC-signed `purchaseData` with userId, preventing client-side spoofing. Verified in webhook handler.
+- **ThirdwebProvider scoped**: Only wraps settings layout (not root), keeping wallet/payment JS off other pages.
+- **Shared client**: `lib/thirdweb/client.ts` — `createThirdwebClient({ clientId })`.
+- **Webhook verifies**: recipient address matches, intent token is valid, status is COMPLETED.
+- **New env vars**: `NEXT_PUBLIC_THIRDWEB_RECIPIENT_ADDRESS`, `PAYMENT_INTENT_SECRET`.
+  | 20:02 | Edited app/(app)/(dashboard)/settings/plans/page.tsx | 7→2 lines | ~29 |
+
+## Session: 2026-04-22 20:04
+
+| Time  | Action                                                                                                       | File(s)             | Outcome    | ~Tokens |
+| ----- | ------------------------------------------------------------------------------------------------------------ | ------------------- | ---------- | ------- |
+| 20:07 | Edited docs/planning/sprints/sprint-05.md                                                                    | 3→3 lines           | ~158       |
+| 20:08 | Edited docs/planning/sprints/sprint-05.md                                                                    | reduced (-40 lines) | ~399       |
+| 20:08 | Edited docs/planning/sprints/sprint-05.md                                                                    | reduced (-7 lines)  | ~207       |
+| 20:08 | Edited docs/planning/sprints/sprint-06.md                                                                    | 3→3 lines           | ~190       |
+| 20:09 | Edited docs/planning/sprints/sprint-06.md                                                                    | reduced (-6 lines)  | ~164       |
+| 20:09 | Edited docs/planning/sprints/sprint-06.md                                                                    | 15→15 lines         | ~320       |
+| 20:09 | Edited docs/planning/sprints/sprint-12.md                                                                    | 3→3 lines           | ~131       |
+| 20:09 | Edited docs/planning/sprints/sprint-12.md                                                                    | 2→2 lines           | ~124       |
+| 20:09 | Edited docs/planning/sprints/sprint-12.md                                                                    | 5→5 lines           | ~96        |
+| 20:09 | Edited docs/planning/sprints/sprint-12.md                                                                    | inline fix          | ~30        |
+| 20:10 | Edited docs/planning/sprints/sprint-12.md                                                                    | inline fix          | ~26        |
+| 20:10 | Edited docs/planning/sprints/sprint-13.md                                                                    | 3→3 lines           | ~133       |
+| 20:10 | Edited docs/planning/sprints/sprint-13.md                                                                    | 6→6 lines           | ~102       |
+| 20:10 | Edited docs/planning/sprints/sprint-14.md                                                                    | 3→3 lines           | ~111       |
+| 20:11 | Created ../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/sprint_status.md         | —                   | ~1754      |
+| 20:11 | Session end: 15 writes across 6 files (sprint-05.md, sprint-06.md, sprint-12.md, sprint-13.md, sprint-14.md) | 5 reads             | ~19833 tok |
+
+## Session: 2026-04-22 23:59
+
+| Time  | Action                                                                                                                | File(s)                                               | Outcome    | ~Tokens |
+| ----- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ---------- | ------- |
+| 00:01 | Edited collections/Posts.ts                                                                                           | inline fix                                            | ~10        |
+| 00:02 | Edited lib/api/category-reorder.ts                                                                                    | inline fix                                            | ~11        |
+| 00:02 | Edited app/(app)/api/revalidate/route.ts                                                                              | "page" → "max"                                        | ~10        |
+| 00:04 | Session end: 3 writes across 3 files (Posts.ts, category-reorder.ts, route.ts)                                        | 4 reads                                               | ~3693 tok  |
+| 00:05 | Session end: 3 writes across 3 files (Posts.ts, category-reorder.ts, route.ts)                                        | 5 reads                                               | ~3910 tok  |
+| 00:07 | Edited payload.config.ts                                                                                              | added 2 import(s)                                     | ~97        |
+| 00:07 | Edited payload.config.ts                                                                                              | expanded (+16 lines)                                  | ~232       |
+| 00:07 | Edited payload.config.ts                                                                                              | inline fix                                            | ~43        |
+| 00:07 | registered /payments and /subscriptions admin views + endpoints in payload.config.ts                                  | payload.config.ts                                     | fixed 404  | ~200    |
+| 00:07 | Session end: 6 writes across 4 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts)                     | 8 reads                                               | ~9815 tok  |
+| 00:09 | Edited styles/admin-makeup.css                                                                                        | expanded (+10 lines)                                  | ~139       |
+| 00:09 | Session end: 7 writes across 5 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css)   | 10 reads                                              | ~17996 tok |
+| 00:11 | Edited lib/api/admin-subscriptions.ts                                                                                 | added error handling                                  | ~840       |
+| 00:11 | Edited components/admin/views/SubscriptionManagementClient.tsx                                                        | 3→3 lines                                             | ~23        |
+| 00:11 | Edited components/admin/views/SubscriptionManagementClient.tsx                                                        | added error handling                                  | ~2882      |
+| 00:12 | Edited components/admin/views/SubscriptionManagementClient.tsx                                                        | modified SubscriptionManagementClient()               | ~123       |
+| 00:12 | Edited components/admin/views/SubscriptionManagementClient.tsx                                                        | expanded (+29 lines)                                  | ~442       |
+| 01:05 | Session end: 12 writes across 7 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css)  | 15 reads                                              | ~31370 tok |
+| 01:07 | Session end: 12 writes across 7 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css)  | 17 reads                                              | ~35451 tok |
+| 01:15 | Edited app/(app)/(dashboard)/settings/notifications/page.tsx                                                          | reduced (-42 lines)                                   | ~189       |
+| 01:16 | Edited app/(app)/(dashboard)/settings/notifications/page.tsx                                                          | modified CategoryGroup()                              | ~254       |
+| 01:16 | Edited app/(app)/(dashboard)/settings/notifications/page.tsx                                                          | 8→7 lines                                             | ~64        |
+| 01:16 | Edited app/(app)/(dashboard)/settings/notifications/page.tsx                                                          | 2→1 lines                                             | ~20        |
+| 01:16 | Edited app/(app)/(dashboard)/settings/notifications/page.tsx                                                          | added 1 import(s)                                     | ~37        |
+| 01:16 | Edited app/(app)/(dashboard)/settings/notifications/page.tsx                                                          | removed 48 lines                                      | ~3         |
+| 01:17 | Session end: 18 writes across 8 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css)  | 18 reads                                              | ~38842 tok |
+| 01:17 | Edited lib/notifications/events.ts                                                                                    | reduced (-12 lines)                                   | ~108       |
+| 01:18 | Session end: 19 writes across 9 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css)  | 20 reads                                              | ~39905 tok |
+| 01:19 | Session end: 19 writes across 9 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css)  | 20 reads                                              | ~39905 tok |
+| 01:20 | Edited lib/notifications/events.ts                                                                                    | removed 21 lines                                      | ~1         |
+| 01:20 | Session end: 20 writes across 9 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css)  | 20 reads                                              | ~39906 tok |
+| 01:20 | Edited lib/notifications/events.ts                                                                                    | removed 18 lines                                      | ~1         |
+| 01:20 | Session end: 21 writes across 9 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css)  | 20 reads                                              | ~39907 tok |
+| 01:21 | Created .github/workflows/subscription-cron.yml                                                                       | —                                                     | ~205       |
+| 01:22 | Session end: 22 writes across 10 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 23 reads                                              | ~41528 tok |
+| 01:22 | Created scripts/subscription-check.sh                                                                                 | —                                                     | ~272       |
+| 01:22 | Created scripts/cryptoedy-subscription-check.service                                                                  | —                                                     | ~87        |
+| 01:22 | Created scripts/cryptoedy-subscription-check.timer                                                                    | —                                                     | ~61        |
+| 01:23 | Session end: 25 writes across 13 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 23 reads                                              | ~41977 tok |
+| 01:24 | Session end: 25 writes across 13 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 23 reads                                              | ~41977 tok |
+| 01:25 | Session end: 25 writes across 13 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 26 reads                                              | ~43411 tok |
+| 01:29 | Created lib/email/templates/layout.ts                                                                                 | —                                                     | ~2252      |
+| 01:29 | Created lib/email/templates/notification.ts                                                                           | —                                                     | ~550       |
+| 01:29 | Edited lib/email/send.ts                                                                                              | added nullish coalescing                              | ~228       |
+| 01:30 | Created lib/email/templates/verify-email.ts                                                                           | —                                                     | ~298       |
+| 01:30 | Created lib/email/templates/reset-password.ts                                                                         | —                                                     | ~310       |
+| 01:30 | Created lib/email/templates/change-email.ts                                                                           | —                                                     | ~311       |
+| 01:31 | Session end: 31 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 27 reads                                              | ~47614 tok |
+| 01:34 | Created app/(app)/api/email-preview/route.ts                                                                          | —                                                     | ~960       |
+| 01:34 | Session end: 32 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 27 reads                                              | ~48574 tok |
+| 01:36 | Edited app/(app)/api/email-preview/route.ts                                                                           | modified replace()                                    | ~171       |
+| 01:36 | Session end: 33 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 28 reads                                              | ~49705 tok |
+| 01:39 | Edited lib/notifications/events.ts                                                                                    | added optional chaining                               | ~133       |
+| 01:40 | Edited app/(app)/api/email-preview/route.ts                                                                           | 8→10 lines                                            | ~242       |
+| 01:40 | Session end: 35 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 28 reads                                              | ~50080 tok |
+| 01:40 | Session end: 35 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 28 reads                                              | ~50080 tok |
+| 01:52 | Created lib/email/templates/layout.ts                                                                                 | —                                                     | ~3136      |
+| 01:52 | Created lib/email/templates/verify-email.ts                                                                           | —                                                     | ~301       |
+| 01:52 | Created lib/email/templates/reset-password.ts                                                                         | —                                                     | ~294       |
+| 01:52 | Created lib/email/templates/change-email.ts                                                                           | —                                                     | ~314       |
+| 01:53 | Created lib/email/templates/notification.ts                                                                           | —                                                     | ~554       |
+| 01:53 | Session end: 40 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 28 reads                                              | ~54679 tok |
+| 01:55 | Edited lib/email/templates/layout.ts                                                                                  | 4→3 lines                                             | ~59        |
+| 01:55 | Session end: 41 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 28 reads                                              | ~56907 tok |
+| 01:57 | Edited lib/email/templates/layout.ts                                                                                  | modified divider()                                    | ~132       |
+| 01:57 | Edited lib/email/templates/layout.ts                                                                                  | "padding:36px 40px 40px;" → "padding:32px 40px 36px;" | ~16        |
+| 01:57 | Session end: 43 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 28 reads                                              | ~57055 tok |
+| 01:59 | Created lib/email/templates/layout.ts                                                                                 | —                                                     | ~3334      |
+| 01:59 | Created lib/email/templates/verify-email.ts                                                                           | —                                                     | ~306       |
+| 02:00 | Created lib/email/templates/reset-password.ts                                                                         | —                                                     | ~299       |
+| 02:00 | Created lib/email/templates/change-email.ts                                                                           | —                                                     | ~319       |
+| 02:00 | Created lib/email/templates/notification.ts                                                                           | —                                                     | ~535       |
+| 02:00 | Session end: 48 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 28 reads                                              | ~61941 tok |
+| 02:02 | Edited app/(app)/api/email-preview/route.ts                                                                           | modified replace()                                    | ~252       |
+| 02:03 | Edited lib/email/templates/layout.ts                                                                                  | expanded (+11 lines)                                  | ~338       |
+| 02:03 | Session end: 50 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 28 reads                                              | ~62951 tok |
+| 02:04 | Edited lib/email/templates/layout.ts                                                                                  | 3→3 lines                                             | ~36        |
+| 02:04 | Session end: 51 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 28 reads                                              | ~63100 tok |
+| 02:05 | Session end: 51 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 28 reads                                              | ~63100 tok |
+| 02:06 | Session end: 51 writes across 19 files (Posts.ts, category-reorder.ts, route.ts, payload.config.ts, admin-makeup.css) | 29 reads                                              | ~63305 tok |
+
+## Session: 2026-04-22 02:10
+
+| Time  | Action                                                           | File(s)                            | Outcome   | ~Tokens |
+| ----- | ---------------------------------------------------------------- | ---------------------------------- | --------- | ------- |
+| 02:12 | Created lib/email/index.ts                                       | —                                  | ~166      |
+| 02:12 | Created lib/email/send.ts                                        | —                                  | ~758      |
+| 02:13 | Edited lib/config/env.ts                                         | "RESEND_API_KEY" → "BREVO_API_KEY" | ~6        |
+| 02:14 | Session end: 3 writes across 3 files (index.ts, send.ts, env.ts) | 5 reads                            | ~2251 tok |
+| 02:16 | Session end: 3 writes across 3 files (index.ts, send.ts, env.ts) | 5 reads                            | ~2251 tok |
+
+## Session: Subscription & Billing + Upgrade Page
+
+| Action                               | File(s)                                                        | Outcome                                                             |
+| ------------------------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Built subscription & billing backend | drizzle/0009, 0010, lib/payments/_, lib/api/admin-_            | Provider-agnostic payments schema, verify-and-activate, admin panel |
+| Strategy Pattern payment abstraction | lib/payments/providers/\*                                      | PaymentProvider interface, ThirdwebProvider, factory                |
+| Thirdweb SDK v5 integration          | lib/thirdweb/client.ts, components/payments/CheckoutButton.tsx | CheckoutWidget replaces redirect flow, intent tokens                |
+| Webhook + checkout routes            | app/(app)/api/payments/webhook/thirdweb, checkout              | Bridge.Webhook.parse(), signed purchaseData                         |
+| Admin views                          | components/admin/views/Payment*, Subscription*                 | Payments + subscriptions management                                 |
+| Upgrade page rebuilt                 | app/(app)/(dashboard)/upgrade/page.tsx                         | Two-column checkout: order summary + CheckoutWidget inline          |
+| Scoped ThirdwebProvider              | Inline in upgrade page, settings layout wrapper                | Keeps wallet JS off non-payment pages                               |

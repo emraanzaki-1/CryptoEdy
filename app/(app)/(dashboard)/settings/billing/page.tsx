@@ -92,7 +92,7 @@ export default async function BillingSettingsPage() {
               size="lg"
               className="text-on-surface hover:bg-outline-variant/20 rounded-full px-5 font-semibold hover:translate-y-0"
             >
-              {isActive ? 'Change plan' : 'Upgrade'}
+              {isActive ? 'Renew' : 'Upgrade'}
             </ButtonLink>
           </Card>
         </section>

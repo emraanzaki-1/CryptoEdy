@@ -1,15 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T09:43:02.953Z
-> Files: 340 tracked | Anatomy hits: 0 | Misses: 0
-
-## ../../../.claude/plans/
-
-- `composed-foraging-bentley.md` — Guest Education Pages — Implementation Plan (~1787 tok)
-
-## ../../../.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/
-
-- `sprint_status.md` — CryptoEdy Sprint Implementation Status (~1253 tok)
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T20:43:17.256Z
+> Files: 368 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -24,19 +16,19 @@
 - `eslint.config.mjs` — ESLint flat configuration (~131 tok)
 - `next-env.d.ts` — / <reference types="next" /> (~72 tok)
 - `next.config.ts` — Next.js configuration (~89 tok)
-- `package-lock.json` — npm lock file (~168205 tok)
-- `package.json` — Node.js package manifest (~692 tok)
-- `payload.config.ts` — Declares filename (~1354 tok)
+- `package-lock.json` — npm lock file (~256075 tok)
+- `package.json` — Node.js package manifest (~715 tok)
+- `payload.config.ts` — Declares filename (~1563 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~1128 tok)
 - `README.md` — Project documentation (~363 tok)
 - `tsconfig.json` — TypeScript configuration (~247 tok)
-- `tsconfig.tsbuildinfo` (~215748 tok)
+- `tsconfig.tsbuildinfo` (~276370 tok)
 
 ## .claude/
 
 - `settings.json` (~442 tok)
-- `settings.local.json` — Declares p (~1271 tok)
+- `settings.local.json` — Declares p (~1325 tok)
 
 ## .claude/rules/
 
@@ -45,13 +37,14 @@
 ## .code-review-graph/
 
 - `.gitignore` — Git ignore rules (~38 tok)
-- `graph.db-shm` (~8738 tok)
+- `graph.db-shm` (~8739 tok)
 - `graph.db-wal` (~0 tok)
 
 ## .github/workflows/
 
 - `build.yml` — CI: Build (~219 tok)
 - `ci.yml` — CI: CI (~156 tok)
+- `subscription-cron.yml` — CI: Subscription Check (~205 tok)
 
 ## .husky/
 
@@ -81,14 +74,14 @@
 ## app/
 
 - `globals.css` — Styles: 6 rules, 263 vars (~4548 tok)
-- `robots.ts` — Declares robots (~119 tok)
-- `sitemap.ts` — BASE_URL: sitemap (~904 tok)
+- `robots.ts` — Exports robots (~138 tok)
+- `sitemap.ts` — BASE_URL: sitemap (~970 tok)
 
 ## app/(app)/
 
 - `error.tsx` — AppError (~177 tok)
 - `global-error.tsx` — inter (~228 tok)
-- `layout.tsx` — inter (~615 tok)
+- `layout.tsx` — inter (~642 tok)
 - `not-found.tsx` — NotFound (~175 tok)
 - `page.tsx` — metadata (~536 tok)
 
@@ -136,7 +129,7 @@
 ## app/(app)/(browsable)/feed/[[...slug]]/
 
 - `loading.tsx` — FeedLoading (~324 tok)
-- `page.tsx` — FeedPage (~1340 tok)
+- `page.tsx` — FeedPage (~1536 tok)
 
 ## app/(app)/(browsable)/research/
 
@@ -187,7 +180,7 @@
 
 ## app/(app)/(dashboard)/settings/
 
-- `layout.tsx` — SettingsLayout (~100 tok)
+- `layout.tsx` — SettingsLayout (~140 tok)
 - `loading.tsx` — SettingsLoading (~327 tok)
 - `page.tsx` — SettingsPage (~34 tok)
 
@@ -197,19 +190,19 @@
 
 ## app/(app)/(dashboard)/settings/billing/
 
-- `page.tsx` — billingHistory (~900 tok)
+- `page.tsx` — BillingSettingsPage (~1266 tok)
 
 ## app/(app)/(dashboard)/settings/notifications/
 
-- `page.tsx` — CATEGORIES — renders chart — uses useState, useEffect, useCallback (~2824 tok)
+- `page.tsx` — CATEGORIES (~1937 tok)
 
 ## app/(app)/(dashboard)/settings/plans/
 
-- `page.tsx` — benefits (~1208 tok)
+- `page.tsx` — isExpiringSoonFn (~1566 tok)
 
 ## app/(app)/(dashboard)/settings/profile/
 
-- `page.tsx` — ProfileSettingsPage — renders form (~3010 tok)
+- `page.tsx` — ProfileSettingsPage — renders form — uses useSearchParams, useState, useCallback, useEffect (~4464 tok)
 
 ## app/(app)/(dashboard)/tools/
 
@@ -233,7 +226,7 @@
 
 ## app/(app)/(dashboard)/upgrade/
 
-- `page.tsx` — UpgradePage (~271 tok)
+- `page.tsx` — UpgradePage: two-column checkout (order summary + ThirdwebCheckoutWidget), async server component with auth + intent token (~900 tok)
 
 ## app/(app)/[...catchAll]/
 
@@ -249,7 +242,7 @@
 
 ## app/(app)/api/auth/register/
 
-- `route.ts` — Next.js API route: POST (~728 tok)
+- `route.ts` — Next.js API route: POST (~733 tok)
 
 ## app/(app)/api/auth/reset-password/
 
@@ -271,6 +264,18 @@
 
 - `route.ts` — Next.js API route: GET, POST (~768 tok)
 
+## app/(app)/api/cron/subscription-check/
+
+- `route.ts` — Subscription expiry cron job. (~661 tok)
+
+## app/(app)/api/email-preview/
+
+- `route.ts` — DEV-ONLY — renders email templates in the browser for visual QA. (~1282 tok)
+
+## app/(app)/api/health/
+
+- `route.ts` — Next.js API route: GET (~141 tok)
+
 ## app/(app)/api/notifications/
 
 - `route.ts` — GET — paginated notifications for the current user. Supports ?type= and ?cursor= (~640 tok)
@@ -291,9 +296,21 @@
 
 - `route.ts` — GET — returns total unread count and per-type breakdown. (~356 tok)
 
+## app/(app)/api/payments/checkout/
+
+- `route.ts` — POST /api/payments/checkout (~244 tok)
+
+## app/(app)/api/payments/webhook/thirdweb/
+
+- `route.ts` — POST /api/payments/webhook/thirdweb (~1102 tok)
+
 ## app/(app)/api/posts/
 
 - `route.ts` — Next.js API route: GET (~1253 tok)
+
+## app/(app)/api/revalidate/
+
+- `route.ts` — POST /api/revalidate (~269 tok)
 
 ## app/(app)/api/search/
 
@@ -302,6 +319,10 @@
 ## app/(app)/api/subscribe/
 
 - `route.ts` — Next.js API route: POST (~517 tok)
+
+## app/(app)/api/user/change-email/
+
+- `route.ts` — POST /api/user/change-email (~1101 tok)
 
 ## app/(app)/api/user/check-username/
 
@@ -318,16 +339,14 @@
 ## app/(app)/courses/
 
 - `page.tsx` — metadata (~695 tok)
-- `page.tsx` — metadata (~666 tok)
 
 ## app/(app)/crypto-school/
 
 - `page.tsx` — metadata (~900 tok)
-- `page.tsx` — metadata (~869 tok)
 
 ## app/(app)/legal/disclaimer/
 
-- `page.tsx` — metadata (~2800 tok)
+- `page.tsx` — metadata (~2830 tok)
 
 ## app/(app)/privacy/
 
@@ -335,7 +354,7 @@
 
 ## app/(app)/terms/
 
-- `page.tsx` — metadata (~3436 tok)
+- `page.tsx` — metadata — renders chart (~3436 tok)
 
 ## app/(payload)/
 
@@ -364,7 +383,7 @@
 - `Lessons.ts` — Exports Lessons (~901 tok)
 - `Media.ts` — Exports Media (~292 tok)
 - `Modules.ts` — Exports Modules (~674 tok)
-- `Posts.ts` — Exports Posts (~2769 tok)
+- `Posts.ts` — Exports Posts (~2883 tok)
 - `Tags.ts` — Exports Tags (~270 tok)
 
 ## collections/blocks/
@@ -381,7 +400,7 @@
 ## components/admin/
 
 - `AdminDashboard.tsx` — ─── Types ──────────────────────────────────────────────────────────────────── (~3527 tok)
-- `AdminNavLinks.tsx` — AdminNavLinks (~179 tok)
+- `AdminNavLinks.tsx` — AdminNavLinks (~268 tok)
 - `DashboardBanner.tsx` — CryptoEdy dashboard welcome banner. (~566 tok)
 - `Icon.tsx` — CryptoEdy admin icon — shown in collapsed sidebar and browser tab favicon area. (~199 tok)
 - `Logo.tsx` — CryptoEdy admin sidebar logo. (~405 tok)
@@ -395,8 +414,12 @@
 
 - `CategoriesListClient.tsx` — styles — renders table — uses useState, useCallback (~5744 tok)
 - `CategoriesListView.tsx` — CategoriesListView (~604 tok)
+- `PaymentManagement.tsx` — PaymentManagement (~240 tok)
+- `PaymentManagementClient.tsx` — CHAIN_OPTIONS — uses useState, useCallback, useEffect (~6132 tok)
 - `SubscriberManagement.tsx` — SubscriberManagement (~244 tok)
 - `SubscriberManagementClient.tsx` — StatusBadge — uses useState, useCallback, useEffect (~2789 tok)
+- `SubscriptionManagement.tsx` — SubscriptionManagement (~247 tok)
+- `SubscriptionManagementClient.tsx` — KpiCard (~6692 tok)
 - `UserManagement.tsx` — UserManagement (~236 tok)
 - `UserManagementClient.tsx` — ROLES — uses useState, useCallback, useEffect (~3796 tok)
 - `UserManagementEdit.tsx` — UserManagementEdit (~334 tok)
@@ -436,15 +459,15 @@
 
 - `conversion-cta.tsx` — ConversionCTA (~362 tok)
 - `courses-curriculum.tsx` — Map course slug → icon. Falls back to CandlestickChart. (~1185 tok)
-- `courses-hero.tsx` — CoursesHero (~480 tok)
-- `crypto-school-catalog.tsx` — Map grandchild category slug → icon. Falls back to BookOpen. (~1218 tok)
+- `courses-hero.tsx` — CoursesHero (~458 tok)
+- `crypto-school-catalog.tsx` — Map grandchild category slug → icon. Falls back to BookOpen. (~1196 tok)
 - `crypto-school-hero.tsx` — HERO_IMAGE (~787 tok)
-- `pro-benefits-section.tsx` — BENEFITS (~967 tok)
+- `pro-benefits-section.tsx` — BENEFITS (~970 tok)
 
 ## components/feed/
 
 - `article-card-skeleton.tsx` — ArticleCardSkeleton (~900 tok)
-- `article-card.tsx` — ArticleCard (~1508 tok)
+- `article-card.tsx` — ArticleCard (~1547 tok)
 - `bookmark-button.tsx` — BookmarkButton — uses useState, useRouter (~686 tok)
 - `category-hub-client.tsx` — CategoryHubClient (~818 tok)
 - `category-pill.tsx` — CategoryPill (~49 tok)
@@ -466,13 +489,14 @@
 ## components/layouts/
 
 - `auth-split-layout.tsx` — AuthSplitLayout (~579 tok)
-- `dashboard-shell.tsx` — DashboardShell (~817 tok)
+- `cookie-consent.tsx` — STORAGE_KEY — uses useState, useEffect (~524 tok)
+- `dashboard-shell.tsx` — DashboardShell — uses useState, useCallback (~817 tok)
 - `footer.tsx` — Footer (~1339 tok)
 - `guest-nav.tsx` — Icon map keyed by routePrefix — add new entries when new hub sections are created (~2751 tok)
-- `guest-shell.tsx` — Additional className on the <main> element (~598 tok)
+- `guest-shell.tsx` — Additional className on the <main> element (~602 tok)
 - `mobile-nav.tsx` — TOOLS_ITEMS — renders chart (~2042 tok)
 - `settings-nav.tsx` — settingsGroups (~572 tok)
-- `sidebar.tsx` — TOOLS_ITEMS (~2267 tok)
+- `sidebar.tsx` — TOOLS_ITEMS — renders chart — uses useState (~2267 tok)
 - `top-app-bar.tsx` — Locked props interface — changes here affect DashboardShell and all consumers. (~2985 tok)
 
 ## components/learn/
@@ -490,18 +514,27 @@
 
 ## components/notifications/
 
-- `notification-dropdown.tsx` — TABS (~2438 tok)
+- `notification-dropdown.tsx` — TABS — uses useRouter, useEffect (~2633 tok)
+
+## components/payments/
+
+- `CheckoutButton.tsx` — Signed intent data from server — prevents purchaseData spoofing (~761 tok)
+
+## components/plans/
+
+- `UrgencyBanner.tsx` — ISO date string of subscription expiry (~661 tok)
 
 ## components/providers/
 
 - `avatar-provider.tsx` — AvatarContext — uses useState, useCallback, useContext (~218 tok)
 - `session-provider.tsx` — SessionProvider (~70 tok)
 - `theme-provider.tsx` — ThemeProvider (~103 tok)
+- `thirdweb-provider.tsx` — Scoped wrapper for thirdweb React context. (~97 tok)
 
 ## components/settings/
 
 - `avatar-upload.tsx` — getCroppedBlob — uses useState, useCallback (~2461 tok)
-- `billing-history-table.tsx` — BillingHistoryTable — renders table (~694 tok)
+- `billing-history-table.tsx` — STATUS_STYLES — renders table (~1052 tok)
 - `danger-zone.tsx` — DangerZone — renders form — uses useState (~932 tok)
 - `theme-card.tsx` — ThemeCard (~1087 tok)
 
@@ -533,7 +566,7 @@
 ## docs/planning/
 
 - `.DS_Store` (~1640 tok)
-- `IMPLEMENTATION_PLAN.md` — CryptoEdy Platform — Implementation Plan (~1702 tok)
+- `IMPLEMENTATION_PLAN.md` — CryptoEdy Platform — Implementation Plan (~1762 tok)
 
 ## docs/planning/sprints/
 
@@ -541,16 +574,16 @@
 - `sprint-02.md` — Sprint 2 — Data Layer & Auth Foundation (~3508 tok)
 - `sprint-03.md` — Sprint 3 — CMS Collections & Content Model (~3103 tok)
 - `sprint-04.md` — Sprint 4 — Home Feed & Article Page (~4296 tok)
-- `sprint-05.md` — Sprint 5 — Wallet Connection & Payment Flow (~3597 tok)
-- `sprint-06.md` — Sprint 6 — On-Chain Verification & Subscription Management (~3673 tok)
-- `sprint-07.md` — Sprint 7 — Market Direction Dashboard (~2613 tok)
-- `sprint-08.md` — Sprint 8 — Assets & Picks + Portfolio Tracker (~3108 tok)
-- `sprint-09.md` — Sprint 9 — Airdrop Hub (~3073 tok)
+- `sprint-05.md` — Sprint 5 — Wallet Connection & Payment Flow (~3004 tok)
+- `sprint-06.md` — Sprint 6 — On-Chain Verification & Subscription Management (~3696 tok)
+- `sprint-07.md` — Sprint 7 — Market Direction Dashboard (~2704 tok)
+- `sprint-08.md` — Sprint 8 — Assets & Picks + Portfolio Tracker (~3199 tok)
+- `sprint-09.md` — Sprint 9 — Airdrop Hub (~3175 tok)
 - `sprint-10.md` — Sprint 10 — Notification Engine (~3787 tok)
-- `sprint-11.md` — Sprint 11 — Community Features (~3479 tok)
-- `sprint-12.md` — Sprint 12 — Settings & Admin Dashboard (~3840 tok)
-- `sprint-13.md` — Sprint 13 — Performance, SEO & Mobile Polish (~4111 tok)
-- `sprint-14.md` — Sprint 14 — Hardening & Go-Live (~3759 tok)
+- `sprint-11.md` — Sprint 11 — Community Features (~3577 tok)
+- `sprint-12.md` — Sprint 12 — Settings & Admin Dashboard (~4093 tok)
+- `sprint-13.md` — Sprint 13 — Performance, SEO & Mobile Polish (~4275 tok)
+- `sprint-14.md` — Sprint 14 — Hardening & Go-Live (~3780 tok)
 
 ## docs/specs/
 
@@ -567,11 +600,14 @@
 - `0004_dazzling_black_tarantula.sql` — SQL: tables: course_enrollments, lesson_progress, 2 alter(s) (~337 tok)
 - `0005_abandoned_dreaming_celestial.sql` — SQL: tables: marketing_subscribers (~110 tok)
 - `0006_notification_engine.sql` — Sprint 10: Notification Engine (~987 tok)
-- `0007_theme_preference.sql` (~21 tok)
+- `0007_theme_preference.sql` — SQL: 1 alter(s) (~22 tok)
+- `0008_pending_email.sql` — Sprint 12: Email change flow — stores the unverified new email while awaiting confirmation (~49 tok)
+- `0009_payments.sql` — Sprint 6: Payments table for subscription billing (~352 tok)
+- `0010_payment_provider.sql` — Migration: Add provider columns to payments table for multi-provider support (~98 tok)
 
 ## drizzle/meta/
 
-- `_journal.json` (~315 tok)
+- `_journal.json` (~476 tok)
 - `0000_snapshot.json` (~2660 tok)
 - `0001_snapshot.json` (~2710 tok)
 - `0002_snapshot.json` (~3424 tok)
@@ -579,34 +615,25 @@
 - `0004_snapshot.json` (~5120 tok)
 - `0005_snapshot.json` (~5575 tok)
 
-## guest_education/academy_marketing_guest/
-
-- `code.html` — Digital Curator Academy (~4949 tok)
-
-## guest_education/apex_research/
-
-- `DESIGN.md` — Design System Strategy: The Digital Curator (~1352 tok)
-
-## guest_education/crypto_school_marketing_guest/
-
-- `code.html` — Crypto School (~3787 tok)
-
 ## lib/
 
+- `.DS_Store` (~1640 tok)
 - `utils.ts` — Exports cn (~172 tok)
 
 ## lib/api/
 
+- `admin-payments.ts` — API routes: GET (7 endpoints) (~2480 tok)
 - `admin-subscribers.ts` — API routes: GET (5 endpoints) (~1192 tok)
+- `admin-subscriptions.ts` — API routes: GET (4 endpoints) (~2412 tok)
 - `admin-users.ts` — API routes: GET (4 endpoints) (~3685 tok)
-- `category-reorder.ts` — Exports categoryReorderEndpoint (~421 tok)
+- `category-reorder.ts` — Exports categoryReorderEndpoint (~420 tok)
 
 ## lib/auth/
 
 - `config.ts` — Exports authConfig (~1436 tok)
 - `index.ts` (~42 tok)
 - `rate-limit.ts` — Maximum requests allowed within the window (~534 tok)
-- `referral.ts` — Generates a unique 12-character alphanumeric referral code (~116 tok)
+- `referral.ts` — Generates a deterministic 12-character alphanumeric referral code from an email address (~191 tok)
 - `schemas.ts` — Zod schemas: loginSchema, registerSchema, forgotPasswordSchema (~374 tok)
 - `withRole.ts` — Checks if a user's effective role meets the required minimum role. (~624 tok)
 
@@ -617,7 +644,7 @@
 
 ## lib/categories/
 
-- `categoryHub.tsx` — getParentCategory (~1569 tok)
+- `categoryHub.tsx` — getParentCategory (~1943 tok)
 - `getCategories.ts` — URL prefix for the hub page, e.g. "research" or "analysis". Null for custom-routed parents. (~897 tok)
 
 ## lib/config/
@@ -641,25 +668,27 @@
 
 - `bookmarks.ts` — Exports bookmarks, Bookmark, NewBookmark (~181 tok)
 - `course-enrollments.ts` — Exports courseEnrollments, CourseEnrollment, NewCourseEnrollment (~232 tok)
-- `index.ts` (~76 tok)
+- `index.ts` (~84 tok)
 - `lesson-progress.ts` — Exports lessonProgress, LessonProgress, NewLessonProgress (~230 tok)
 - `marketing-subscribers.ts` — Exports marketingSubscribers, MarketingSubscriber, NewMarketingSubscriber (~197 tok)
 - `notification-preferences.ts` — Exports notificationPreferences, NotificationPreferences, NewNotificationPreferences (~298 tok)
 - `notifications.ts` — Exports notificationTypeEnum, notificationSubtypeEnum, notifications, Notification + 3 more (~497 tok)
+- `payments.ts` — Exports paymentStatusEnum, payments, Payment, NewPayment (~478 tok)
 - `sessions.ts` — NextAuth v5 Drizzle adapter schema — required by DrizzleAdapter. (~490 tok)
-- `users.ts` — Exports roleEnum, users, User, NewUser (~507 tok)
+- `users.ts` — Exports roleEnum, users, User, NewUser (~536 tok)
 
 ## lib/email/
 
-- `index.ts` — In development, use Resend's shared sender — no domain verification required. (~205 tok)
-- `send.ts` — In development, redirect all outbound email to Resend's safe test addresses. (~616 tok)
+- `index.ts` — Sender identity for all outbound email. (~166 tok)
+- `send.ts` — Exports sendVerificationEmail, sendPasswordResetEmail, sendChangeEmailVerification, sendNotification (~758 tok)
 
 ## lib/email/templates/
 
-- `layout.ts` — Brand tokens — single source of truth for all email templates (~950 tok)
-- `notification.ts` — Exports notificationTemplate (~187 tok)
-- `reset-password.ts` — Exports resetPasswordTemplate (~241 tok)
-- `verify-email.ts` — Exports verifyEmailTemplate (~243 tok)
+- `change-email.ts` — Exports changeEmailTemplate (~319 tok)
+- `layout.ts` — Icon in a tinted circle. (~3454 tok)
+- `notification.ts` — Exports notificationTemplate (~535 tok)
+- `reset-password.ts` — Exports resetPasswordTemplate (~299 tok)
+- `verify-email.ts` — Exports verifyEmailTemplate (~306 tok)
 
 ## lib/hooks/
 
@@ -679,33 +708,53 @@
 
 - `create.ts` — Filter recipients by role. If omitted, all users receive it. (~2227 tok)
 - `emitter.ts` — In-process notification event emitter. (~462 tok)
-- `events.ts` — Notification event handlers. (~1854 tok)
+- `events.ts` — Notification event handlers. (~1400 tok)
 - `preferences.ts` — All subtype definitions grouped by type — single source of truth. (~1459 tok)
 - `rate-limit.ts` — In-memory email rate limiter for notifications. (~317 tok)
 
+## lib/payments/
+
+- `explorers.ts` — Block explorer URL helpers for supported chains. (~292 tok)
+- `intent.ts` — Generate a signed payment intent token. (~389 tok)
+- `verify-and-activate.ts` — Core provider-agnostic activation logic. (~1100 tok)
+
+## lib/payments/providers/
+
+- `index.ts` — Returns the active payment provider based on PAYMENT_PROVIDER env var. (~286 tok)
+- `thirdweb.ts` — Thirdweb Checkout payment provider. (~1485 tok)
+- `types.ts` — Payment provider abstraction. (~322 tok)
+
 ## lib/posts/
 
-- `mapToCardProps.ts` — Exports mapPostToCardProps (~506 tok)
+- `mapToCardProps.ts` — Exports mapPostToCardProps (~523 tok)
 
 ## lib/profile/
 
 - `actions.ts` — Exports ProfileData, getProfile, updateProfile, updateThemePreference, deleteAccount (~1140 tok)
 - `avatar.ts` — API routes: GET (1 endpoints) (~756 tok)
 
+## lib/thirdweb/
+
+- `client.ts` — Shared thirdweb client — used by React widgets (browser-side). (~186 tok)
+
 ## lib/utils/
 
+- `getBlurDataUrl.ts` — Generates a base64-encoded blur placeholder for a single image URL. (~330 tok)
 - `timeAgo.ts` — Exports timeAgo (~154 tok)
 
 ## scripts/
 
 - `add-course-search-vectors.sql` — Search vector migration for full-text search on courses and lessons (~730 tok)
 - `add-search-vector.sql` — Search vector migration for full-text search on posts (~348 tok)
+- `cryptoedy-subscription-check.service` (~87 tok)
+- `cryptoedy-subscription-check.timer` (~61 tok)
 - `patch-next-env.cjs` — Preload environment variables BEFORE any ESM imports (~241 tok)
-- `seed.ts` — CryptoEdy seed script — Sprint 3 (~40105 tok)
+- `seed.ts` — CryptoEdy seed script — Sprint 3 (~40117 tok)
+- `subscription-check.sh` — Calls the subscription-check cron endpoint. (~272 tok)
 
 ## styles/
 
-- `admin-makeup.css` — Styles: 85 rules, 17 vars, 1 layers (~7774 tok)
+- `admin-makeup.css` — Styles: 85 rules, 17 vars (~7868 tok)
 - `admin.css` — CryptoEdy Admin Skin (~1596 tok)
 
 ## types/
