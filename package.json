@@ -16,6 +16,7 @@
     "db:studio": "drizzle-kit studio",
     "seed": "node -r ./scripts/patch-next-env.cjs --import tsx scripts/seed.ts",
     "seed:reset": "node -r ./scripts/patch-next-env.cjs --import tsx scripts/seed.ts --reset",
+    "seed:prod": "node -r ./scripts/patch-next-env.cjs --import tsx scripts/seed.ts --prod",
     "analyze": "next experimental-analyze",
     "prepare": "husky"
   },
