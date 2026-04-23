@@ -13,6 +13,7 @@
     "type-check": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
+    "db:init": "node -r ./scripts/patch-next-env.cjs --import tsx scripts/db-init.ts",
     "db:studio": "drizzle-kit studio",
     "seed": "node -r ./scripts/patch-next-env.cjs --import tsx scripts/seed.ts",
     "seed:reset": "node -r ./scripts/patch-next-env.cjs --import tsx scripts/seed.ts --reset",
