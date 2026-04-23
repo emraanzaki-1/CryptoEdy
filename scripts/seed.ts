@@ -488,6 +488,10 @@ async function main() {
     process.exit(1)
   }
 
+  console.log(
+    `[seed] Mode: ${IS_PROD ? 'PRODUCTION (structural data only)' : IS_RESET ? 'RESET' : 'DEVELOPMENT (full seed)'}`
+  )
+
   const payload = await getPayload({ config })
 
   if (IS_RESET) {
