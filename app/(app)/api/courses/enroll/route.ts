@@ -7,6 +7,7 @@ import { getDb } from '@/lib/db'
 import { users } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import { rateLimit } from '@/lib/auth/rate-limit'
+import { checkCsrf } from '@/lib/auth/csrf'
 
 export async function GET(req: NextRequest) {
   const session = await auth()
@@ -29,6 +30,9 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  const csrf = checkCsrf(req)
+  if (csrf) return csrf
+
   const blocked = rateLimit(req, { maxRequests: 10, windowSec: 60 })
   if (blocked) return blocked
 

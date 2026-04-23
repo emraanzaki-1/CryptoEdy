@@ -24,10 +24,10 @@ export function ProgressBar({
       <div className="bg-surface-container h-2 flex-1 overflow-hidden rounded-full">
         <div
           className={cn(
-            'h-full rounded-full transition-all duration-500',
+            'h-full w-full origin-left rounded-full transition-transform duration-500',
             variant === 'secondary' ? 'bg-secondary' : 'bg-primary'
           )}
-          style={{ width: `${percent}%` }}
+          style={{ transform: `scaleX(${percent / 100})` }}
         />
       </div>
       <span className="text-on-surface-variant text-micro font-medium">

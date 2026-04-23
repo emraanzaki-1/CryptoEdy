@@ -1,0 +1,4 @@
+-- Snapshot reconciliation checkpoint (no-op).
+-- Migrations 0006-0010 were manually written SQL files without drizzle-kit snapshots.
+-- This empty migration aligns the drizzle-kit snapshot state with the actual database schema.
+-- Safe to run on any database that has already applied 0006-0010.

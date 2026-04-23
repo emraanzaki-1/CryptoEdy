@@ -58,6 +58,9 @@
 
 ## Do-Not-Repeat
 
+- [2026-04-23] Do NOT assess project scope or V1/V2 boundaries without reading `docs/planning/IMPLEMENTATION_PLAN.md` first. The stub tool pages (`/tools/*`, `/community`) are intentional V2 placeholders — they are not gaps. Scope decisions are documented there with dates.
+- [2026-04-23] `/feed` is NOT a guest-browsable route. It is dashboard-only — authenticated users only. Only `/articles`, `/tag`, `/research`, `/analysis` are in `BROWSABLE_ROUTES`. Do not add `/feed` to BROWSABLE_ROUTES.
+
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->
 
 - [2026-04-22] Do NOT hardcode category slugs ('research', 'analysis', 'education') in application logic. Use Payload fields: `routePrefix` (text) for hub routing, `excludeFromMainFeed` (checkbox) for feed exclusion. Both are set on parent categories in the DB.

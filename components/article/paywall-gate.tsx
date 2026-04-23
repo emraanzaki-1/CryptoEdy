@@ -98,7 +98,7 @@ function GuestGate() {
             Members Only
           </div>
 
-          <Heading as="h3" className="text-on-background mb-4 font-black">
+          <Heading as="h2" className="text-on-background mb-4 font-black">
             Continue Reading with
             <br />
             <span className="text-primary">a Free CryptoEdy Account.</span>
@@ -202,7 +202,7 @@ function ProGate({
             Exclusive Pro Research
           </div>
 
-          <Heading as="h3" className="text-on-background mb-4 font-black">
+          <Heading as="h2" className="text-on-background mb-4 font-black">
             Don&apos;t Trade in the Dark.
             <br />
             <span className="text-primary">Unlock the Full Report.</span>

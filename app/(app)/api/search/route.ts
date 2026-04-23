@@ -6,6 +6,17 @@ const MAX_LIMIT = 20
 const DEFAULT_LIMIT = 8
 const MAX_QUERY_LENGTH = 100
 
+/** Strip all HTML except <mark> tags to prevent XSS from ts_headline output */
+function sanitizeHighlight(html: string): string {
+  return html
+    .replace(/<mark>/gi, '\x00MARK_OPEN\x00')
+    .replace(/<\/mark>/gi, '\x00MARK_CLOSE\x00')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\x00MARK_OPEN\x00/g, '<mark>')
+    .replace(/\x00MARK_CLOSE\x00/g, '</mark>')
+}
+
 export type SearchResultType = 'post' | 'course' | 'lesson'
 
 export interface SearchResult {
@@ -183,9 +194,9 @@ export async function GET(req: NextRequest) {
       id: String(row.id),
       type: 'post' as const,
       title: row.title,
-      highlightedTitle: row.highlighted_title,
+      highlightedTitle: sanitizeHighlight(row.highlighted_title),
       excerpt: row.excerpt ?? '',
-      highlightedExcerpt: row.highlighted_excerpt ?? '',
+      highlightedExcerpt: sanitizeHighlight(row.highlighted_excerpt ?? ''),
       slug: row.slug,
       category: row.category_name,
       publishedAt: row.published_at,
@@ -201,9 +212,9 @@ export async function GET(req: NextRequest) {
       id: String(row.id),
       type: 'course' as const,
       title: row.title,
-      highlightedTitle: row.highlighted_title,
+      highlightedTitle: sanitizeHighlight(row.highlighted_title),
       excerpt: row.excerpt ?? '',
-      highlightedExcerpt: row.highlighted_excerpt ?? '',
+      highlightedExcerpt: sanitizeHighlight(row.highlighted_excerpt ?? ''),
       slug: row.slug,
       category: null,
       publishedAt: null,
@@ -219,7 +230,7 @@ export async function GET(req: NextRequest) {
       id: String(row.id),
       type: 'lesson' as const,
       title: row.title,
-      highlightedTitle: row.highlighted_title,
+      highlightedTitle: sanitizeHighlight(row.highlighted_title),
       excerpt: '',
       highlightedExcerpt: '',
       slug: row.slug,

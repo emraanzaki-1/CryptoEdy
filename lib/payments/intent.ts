@@ -1,6 +1,6 @@
 import crypto from 'crypto'
 
-const INTENT_SECRET = process.env.PAYMENT_INTENT_SECRET ?? process.env.AUTH_SECRET ?? ''
+const INTENT_SECRET = process.env.PAYMENT_INTENT_SECRET ?? ''
 const INTENT_TTL_SECONDS = 3600 // 1 hour
 
 /**

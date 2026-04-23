@@ -1,20 +1,15 @@
 import type { MetadataRoute } from 'next'
 
+const BASE_URL =
+  process.env.NEXT_PUBLIC_APP_URL ?? process.env.NEXTAUTH_URL ?? 'http://localhost:3000'
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
-      allow: [
-        '/',
-        '/research/*',
-        '/analysis/*',
-        '/education/*',
-        '/articles/*',
-        '/tag/*',
-        '/feed/*',
-      ],
-      disallow: ['/dashboard/*', '/settings/*', '/admin/*', '/api/*'],
+      // Default is allow-all — only list explicit disallows
+      disallow: ['/feed/', '/dashboard/', '/settings/', '/admin/', '/api/'],
     },
-    sitemap: `${process.env.NEXTAUTH_URL ?? 'http://localhost:3000'}/sitemap.xml`,
+    sitemap: `${BASE_URL}/sitemap.xml`,
   }
 }

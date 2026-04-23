@@ -4,6 +4,7 @@ import { users } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
 import bcrypt from 'bcryptjs'
 import { rateLimit } from '@/lib/auth/rate-limit'
+import { resetPasswordSchema } from '@/lib/auth/schemas'
 
 // GET: Pre-validate reset token (does not consume the token)
 export async function GET(req: NextRequest) {
@@ -45,15 +46,20 @@ export async function POST(req: NextRequest) {
   if (blocked) return blocked
 
   try {
-    const { token, password } = await req.json()
+    const body = await req.json()
+    const { token } = body as { token?: string }
 
-    if (!token || !password) {
-      return NextResponse.json({ error: 'Token and password are required' }, { status: 400 })
+    if (!token) {
+      return NextResponse.json({ error: 'Token is required' }, { status: 400 })
     }
 
-    if (password.length < 8) {
-      return NextResponse.json({ error: 'Password must be at least 8 characters' }, { status: 400 })
+    const parsed = resetPasswordSchema.safeParse(body)
+    if (!parsed.success) {
+      const firstError = parsed.error.issues[0]?.message ?? 'Invalid input'
+      return NextResponse.json({ error: firstError }, { status: 400 })
     }
+
+    const { password } = parsed.data
 
     const [user] = await getDb()
       .select()

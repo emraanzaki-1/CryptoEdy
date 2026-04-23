@@ -56,7 +56,12 @@ export function TagClient({
           <div className="flex flex-col gap-6">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 [&>*]:h-full">
               {articles.map((article) => (
-                <ArticleCard key={article.slug} {...article} isAuthenticated={isAuthenticated} />
+                <ArticleCard
+                  key={article.slug}
+                  {...article}
+                  isAuthenticated={isAuthenticated}
+                  headingLevel="h2"
+                />
               ))}
             </div>
 
@@ -78,6 +83,7 @@ export function TagClient({
                 {...article}
                 layout="list"
                 isAuthenticated={isAuthenticated}
+                headingLevel="h2"
               />
             ))}
 

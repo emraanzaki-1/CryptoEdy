@@ -56,10 +56,22 @@ export function CategoryHubClient({
       {articles.length > 0 ? (
         view === 'grid' ? (
           <div className="flex flex-col gap-6">
-            {articles[0] && <ArticleCard {...articles[0]} hero isAuthenticated={isAuthenticated} />}
+            {articles[0] && (
+              <ArticleCard
+                {...articles[0]}
+                hero
+                isAuthenticated={isAuthenticated}
+                headingLevel="h2"
+              />
+            )}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 [&>*]:h-full">
               {articles.slice(1).map((article) => (
-                <ArticleCard key={article.slug} {...article} isAuthenticated={isAuthenticated} />
+                <ArticleCard
+                  key={article.slug}
+                  {...article}
+                  isAuthenticated={isAuthenticated}
+                  headingLevel="h2"
+                />
               ))}
             </div>
           </div>
@@ -71,6 +83,7 @@ export function CategoryHubClient({
                 {...article}
                 layout="list"
                 isAuthenticated={isAuthenticated}
+                headingLevel="h2"
               />
             ))}
           </div>

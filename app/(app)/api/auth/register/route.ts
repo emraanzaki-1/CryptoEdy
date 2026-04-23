@@ -7,21 +7,22 @@ import { generateReferralCode, generateSecureToken } from '@/lib/auth/referral'
 import { sendVerificationEmail } from '@/lib/email/send'
 import { rateLimit } from '@/lib/auth/rate-limit'
 import { seedDefaultPreferences } from '@/lib/notifications/preferences'
+import { registerSchema } from '@/lib/auth/schemas'
 
 export async function POST(req: NextRequest) {
   const blocked = rateLimit(req, { maxRequests: 5, windowSec: 60 })
   if (blocked) return blocked
 
   try {
-    const { email, username, password } = await req.json()
+    const body = await req.json()
+    const parsed = registerSchema.safeParse(body)
 
-    if (!email || !username || !password) {
-      return NextResponse.json({ error: 'All fields are required' }, { status: 400 })
+    if (!parsed.success) {
+      const firstError = parsed.error.issues[0]?.message ?? 'Invalid input'
+      return NextResponse.json({ error: firstError }, { status: 400 })
     }
 
-    if (password.length < 8) {
-      return NextResponse.json({ error: 'Password must be at least 8 characters' }, { status: 400 })
-    }
+    const { email, username, password } = parsed.data
 
     // Check for existing email or username
     const [existing] = await getDb()

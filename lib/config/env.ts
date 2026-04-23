@@ -10,6 +10,7 @@ const required = [
   'AUTH_SECRET',
   'NEXTAUTH_URL',
   'BREVO_API_KEY',
+  'PAYMENT_INTENT_SECRET',
 ] as const
 
 type RequiredEnvKey = (typeof required)[number]

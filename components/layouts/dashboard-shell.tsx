@@ -1,13 +1,17 @@
 'use client'
 
 import { useState, useCallback } from 'react'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { TopAppBar } from '@/components/layouts/top-app-bar'
 import { Sidebar } from '@/components/layouts/sidebar'
 import { MobileNav } from '@/components/layouts/mobile-nav'
-import { SearchModal } from '@/components/common/search-modal'
 import { useSearchModal } from '@/lib/hooks/useSearchModal'
 import { LAYOUT } from '@/lib/config/layout'
+
+const SearchModal = dynamic(() =>
+  import('@/components/common/search-modal').then((m) => m.SearchModal)
+)
 
 import type { NavCategory } from '@/lib/categories/getCategories'
 

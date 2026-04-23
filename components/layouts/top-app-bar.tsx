@@ -6,10 +6,14 @@ import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import { useAvatar } from '@/components/providers/avatar-provider'
 import { Bell, Bookmark, LogOut, User, CreditCard, ChevronDown, Search, Menu } from 'lucide-react'
+import dynamic from 'next/dynamic'
 import { Logo } from '@/components/common/logo'
 import { SearchBar } from '@/components/common/search-bar'
-import { NotificationDropdown } from '@/components/notifications/notification-dropdown'
 import { useNotifications } from '@/lib/hooks/useNotifications'
+
+const NotificationDropdown = dynamic(() =>
+  import('@/components/notifications/notification-dropdown').then((m) => m.NotificationDropdown)
+)
 import { cn } from '@/lib/utils'
 import { LAYOUT } from '@/lib/config/layout'
 import type { NavCategory } from '@/lib/categories/getCategories'

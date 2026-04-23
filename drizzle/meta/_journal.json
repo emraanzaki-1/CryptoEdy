@@ -78,6 +78,13 @@
       "when": 1776950800000,
       "tag": "0010_payment_provider",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1745424000000,
+      "tag": "0011_reconcile_snapshot",
+      "breakpoints": true
     }
   ]
 }

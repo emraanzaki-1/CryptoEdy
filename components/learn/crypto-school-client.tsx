@@ -48,17 +48,17 @@ export function CryptoSchoolClient({
       {articles.length > 0 ? (
         view === 'grid' ? (
           <div className="flex flex-col gap-6">
-            {articles[0] && <ArticleCard {...articles[0]} hero />}
+            {articles[0] && <ArticleCard {...articles[0]} hero headingLevel="h2" />}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 [&>*]:h-full">
               {articles.slice(1).map((article) => (
-                <ArticleCard key={article.slug} {...article} />
+                <ArticleCard key={article.slug} {...article} headingLevel="h2" />
               ))}
             </div>
           </div>
         ) : (
           <div className="flex flex-col gap-4">
             {articles.map((article) => (
-              <ArticleCard key={article.slug} {...article} layout="list" />
+              <ArticleCard key={article.slug} {...article} layout="list" headingLevel="h2" />
             ))}
           </div>
         )

@@ -4,11 +4,15 @@ import { getDb } from '@/lib/db'
 import { notifications } from '@/lib/db/schema'
 import { eq, and } from 'drizzle-orm'
 import type { NotificationType } from '@/lib/db/schema/notifications'
+import { checkCsrf } from '@/lib/auth/csrf'
 
 const VALID_TYPES: NotificationType[] = ['content', 'community', 'feed', 'account']
 
 /** PATCH — marks all unread notifications as read. Optionally scoped by ?type= */
 export async function PATCH(req: NextRequest) {
+  const csrf = checkCsrf(req)
+  if (csrf) return csrf
+
   const session = await auth()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

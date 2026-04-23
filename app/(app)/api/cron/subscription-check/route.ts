@@ -4,6 +4,9 @@ import { users } from '@/lib/db/schema'
 import { eq, and, isNotNull } from 'drizzle-orm'
 import { onSubscriptionExpired, onSubscriptionExpiring } from '@/lib/notifications/events'
 
+// In-memory guard: prevents duplicate warning notifications if cron fires twice in quick succession
+let lastRunDate = ''
+
 /**
  * Subscription expiry cron job.
  * Runs daily — downgrades expired Pro users and sends warning notifications.
@@ -19,6 +22,11 @@ export async function GET(req: NextRequest) {
 
   const db = getDb()
   const now = new Date()
+  const todayKey = now.toISOString().slice(0, 10) // YYYY-MM-DD
+
+  // Skip warning notifications if cron already ran today (downgrades still run — they're idempotent)
+  const alreadyRanToday = lastRunDate === todayKey
+  lastRunDate = todayKey
 
   // Fetch all Pro users with a subscription expiry set
   const proUsers = await db
@@ -42,7 +50,7 @@ export async function GET(req: NextRequest) {
     if (daysUntilExpiry <= 0) {
       expiredIds.push(user.id)
       expired++
-    } else if ([1, 7, 14, 30].includes(daysUntilExpiry)) {
+    } else if (!alreadyRanToday && [1, 7, 14, 30].includes(daysUntilExpiry)) {
       try {
         await onSubscriptionExpiring(user.id, daysUntilExpiry)
         warned++

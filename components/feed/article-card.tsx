@@ -25,6 +25,8 @@ export interface ArticleCardProps {
   isAuthenticated?: boolean
   hero?: boolean
   layout?: 'card' | 'list'
+  /** Semantic heading level for accessibility — match to the parent section's hierarchy */
+  headingLevel?: 'h2' | 'h3' | 'h4'
 }
 
 export function ArticleCard({
@@ -43,6 +45,7 @@ export function ArticleCard({
   isAuthenticated = true,
   hero = false,
   layout = 'card',
+  headingLevel: HeadingTag = 'h3',
 }: ArticleCardProps) {
   const isList = layout === 'list'
 
@@ -71,6 +74,7 @@ export function ArticleCard({
               src={imageUrl}
               alt={imageAlt}
               fill
+              priority={hero}
               sizes={
                 isList
                   ? '(max-width: 640px) 224px, 256px'
@@ -126,7 +130,7 @@ export function ArticleCard({
             hero && !isList && 'md:justify-center md:p-8'
           )}
         >
-          <h3
+          <HeadingTag
             className={cn(
               'text-on-surface group-hover:text-primary font-bold transition-colors',
               hero && !isList
@@ -137,7 +141,7 @@ export function ArticleCard({
             )}
           >
             {title}
-          </h3>
+          </HeadingTag>
 
           <p
             className={cn(

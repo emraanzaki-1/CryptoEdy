@@ -1,15 +1,20 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { Inter } from 'next/font/google'
 import { SessionProvider } from '@/components/providers/session-provider'
 import { ThemeProvider } from '@/components/providers/theme-provider'
-import { Toaster } from 'sonner'
-import { BackToTop } from '@/components/common/back-to-top'
-import { CookieConsent } from '@/components/layouts/cookie-consent'
 import '../globals.css'
+
+const BackToTop = dynamic(() => import('@/components/common/back-to-top').then((m) => m.BackToTop))
+const CookieConsent = dynamic(() =>
+  import('@/components/layouts/cookie-consent').then((m) => m.CookieConsent)
+)
+const Toaster = dynamic(() => import('sonner').then((m) => m.Toaster))
 
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
+  display: 'swap',
 })
 
 const SITE_URL = process.env.NEXTAUTH_URL ?? 'http://localhost:3000'

@@ -8,6 +8,7 @@ import { eq, and } from 'drizzle-orm'
 import { randomBytes } from 'crypto'
 import { sendChangeEmailVerification } from '@/lib/email/send'
 import { rateLimit } from '@/lib/auth/rate-limit'
+import { checkCsrf } from '@/lib/auth/csrf'
 
 const IDENTIFIER_PREFIX = 'email_change:'
 
@@ -16,6 +17,9 @@ const IDENTIFIER_PREFIX = 'email_change:'
  * Initiates an email change. Sends a verification link to the new address.
  */
 export async function POST(req: NextRequest) {
+  const csrf = checkCsrf(req)
+  if (csrf) return csrf
+
   const limited = rateLimit(req, { maxRequests: 3, windowSec: 300 })
   if (limited) return limited
 

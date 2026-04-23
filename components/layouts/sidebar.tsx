@@ -40,7 +40,7 @@ function ToolsSlideOut({ visible }: { visible: boolean }) {
   return (
     <div
       className={cn(
-        'border-outline-variant/15 bg-surface-container-lowest absolute top-0 left-full z-[100] ml-1 min-w-[180px] overflow-hidden rounded-xl border shadow-lg transition-all duration-150',
+        'border-outline-variant/15 bg-surface-container-lowest absolute top-0 left-full z-[100] ml-1 min-w-[180px] overflow-hidden rounded-xl border shadow-lg transition-[opacity,transform] duration-150',
         visible
           ? 'pointer-events-auto translate-x-0 opacity-100'
           : 'pointer-events-none -translate-x-1 opacity-0'
@@ -83,7 +83,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   return (
     <nav
       className={cn(
-        'bg-surface flex shrink-0 flex-col transition-all duration-300',
+        'bg-surface flex shrink-0 flex-col transition-[width] duration-300',
         collapsed ? 'w-20 overflow-visible' : 'w-64 overflow-y-auto'
       )}
     >

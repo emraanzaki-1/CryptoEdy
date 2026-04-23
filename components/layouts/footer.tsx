@@ -31,9 +31,9 @@ export function Footer({ navCategories }: FooterProps) {
             {/* Dynamic category columns — driven by Payload */}
             {hubCategories.map((category) => (
               <div key={category.slug} className="flex flex-col gap-4">
-                <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
+                <h2 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
                   {category.label}
-                </h4>
+                </h2>
                 {category.items.map((item) => (
                   <Link
                     key={item.slug}
@@ -48,9 +48,9 @@ export function Footer({ navCategories }: FooterProps) {
 
             {/* Static Education column */}
             <div className="flex flex-col gap-4">
-              <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
+              <h2 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
                 Education
-              </h4>
+              </h2>
               <Link
                 href="/crypto-school"
                 className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
@@ -66,9 +66,9 @@ export function Footer({ navCategories }: FooterProps) {
             </div>
 
             <div className="flex flex-col gap-4">
-              <h4 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
+              <h2 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
                 Legal
-              </h4>
+              </h2>
               <Link
                 href="/terms"
                 className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"

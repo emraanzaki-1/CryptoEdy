@@ -91,8 +91,8 @@ export function CourseCard({
                 <div className="flex items-center gap-2">
                   <div className="bg-surface-container h-1.5 w-20 overflow-hidden rounded-full">
                     <div
-                      className="bg-secondary-container h-full rounded-full transition-all duration-300"
-                      style={{ width: `${progressPercent}%` }}
+                      className="bg-secondary-container h-full w-full origin-left rounded-full transition-transform duration-300"
+                      style={{ transform: `scaleX(${progressPercent / 100})` }}
                     />
                   </div>
                   <span className="text-secondary text-micro font-bold">{progressPercent}%</span>

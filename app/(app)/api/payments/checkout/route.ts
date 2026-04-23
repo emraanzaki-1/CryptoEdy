@@ -1,12 +1,16 @@
 import { auth } from '@/lib/auth'
 import { getActiveProvider } from '@/lib/payments/providers'
+import { checkCsrf } from '@/lib/auth/csrf'
 
 /**
  * POST /api/payments/checkout
  * Creates a checkout session with the active payment provider.
  * Requires authentication.
  */
-export async function POST() {
+export async function POST(request: Request) {
+  const csrf = checkCsrf(request)
+  if (csrf) return csrf
+
   const session = await auth()
 
   if (!session?.user?.id || !session?.user?.email) {

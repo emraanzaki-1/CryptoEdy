@@ -7,9 +7,22 @@ import { eq } from 'drizzle-orm'
 import { writeFile, unlink, mkdir } from 'fs/promises'
 import path from 'path'
 import crypto from 'crypto'
+import { fileTypeFromBuffer } from 'file-type'
 
 const MAX_AVATAR_SIZE = 5 * 1024 * 1024 // 5MB
-const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml']
+const ALLOWED_MIME_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+
+async function detectMimeType(buffer: Buffer): Promise<string | null> {
+  // file-type reads magic bytes for binary formats (JPEG, PNG, WebP)
+  const detected = await fileTypeFromBuffer(buffer)
+  if (detected) return detected.mime
+
+  // SVG is XML text — no binary magic bytes. Check for SVG markers.
+  const text = buffer.subarray(0, 512).toString('utf8')
+  if (/<svg[\s>]/i.test(text) || text.trimStart().startsWith('<?xml')) return 'image/svg+xml'
+
+  return null
+}
 
 export async function uploadAvatar(
   formData: FormData
@@ -24,16 +37,25 @@ export async function uploadAvatar(
     return { ok: false, error: 'No file provided' }
   }
 
-  if (!ALLOWED_TYPES.includes(file.type)) {
-    return { ok: false, error: 'Unsupported file type. Use WEBP, SVG, PNG, or JPG.' }
-  }
-
   if (file.size > MAX_AVATAR_SIZE) {
     return { ok: false, error: 'File too large. Maximum 5MB.' }
   }
 
   const buffer = Buffer.from(await file.arrayBuffer())
-  const ext = file.type === 'image/svg+xml' ? 'svg' : file.type.split('/')[1]
+
+  // Validate by actual file content, not client-supplied Content-Type
+  const detectedMime = await detectMimeType(buffer)
+  if (!detectedMime || !ALLOWED_MIME_TYPES.has(detectedMime)) {
+    return { ok: false, error: 'Invalid file type. Use WEBP, PNG, or JPG.' }
+  }
+
+  const extMap: Record<string, string> = {
+    'image/jpeg': 'jpg',
+    'image/png': 'png',
+    'image/webp': 'webp',
+    'image/svg+xml': 'svg',
+  }
+  const ext = extMap[detectedMime]
   const filename = `${crypto.randomUUID()}.${ext}`
   const avatarDir = path.join(process.cwd(), 'public', 'media', 'avatars')
   await mkdir(avatarDir, { recursive: true })

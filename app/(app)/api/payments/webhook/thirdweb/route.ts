@@ -1,6 +1,7 @@
 import { Bridge } from 'thirdweb'
 import { verifyAndActivate } from '@/lib/payments/verify-and-activate'
 import { verifyIntentToken } from '@/lib/payments/intent'
+import * as Sentry from '@sentry/nextjs'
 
 /**
  * POST /api/payments/webhook/thirdweb
@@ -24,6 +25,7 @@ export async function POST(request: Request) {
   try {
     payload = await Bridge.Webhook.parse(body, headers, webhookSecret)
   } catch (err) {
+    Sentry.captureException(err, { tags: { service: 'webhook', provider: 'thirdweb' } })
     console.warn('[webhook/thirdweb] Signature verification failed:', err)
     return new Response('Invalid signature', { status: 401 })
   }
@@ -97,6 +99,14 @@ export async function POST(request: Request) {
     if (result.code === 'DUPLICATE_TX' || result.code === 'DUPLICATE_PROVIDER_PAYMENT') {
       return new Response('Already processed', { status: 200 })
     }
+    if (result.code === 'AMOUNT_TOO_LOW') {
+      console.warn('[webhook/thirdweb] Payment rejected — amount too low:', result.error)
+      return new Response(result.error, { status: 400 })
+    }
+    Sentry.captureMessage(`[webhook/thirdweb] Activation failed: ${result.error}`, {
+      level: 'error',
+      tags: { service: 'webhook', provider: 'thirdweb', code: result.code },
+    })
     console.error('[webhook/thirdweb] Activation failed:', result.error)
     return new Response('Processing error', { status: 500 })
   }

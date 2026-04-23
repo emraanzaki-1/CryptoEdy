@@ -3,9 +3,13 @@ import { auth } from '@/lib/auth'
 import { getDb } from '@/lib/db'
 import { notifications } from '@/lib/db/schema'
 import { eq, and } from 'drizzle-orm'
+import { checkCsrf } from '@/lib/auth/csrf'
 
 /** PATCH — marks a single notification as read. */
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const csrf = checkCsrf(req)
+  if (csrf) return csrf
+
   const session = await auth()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

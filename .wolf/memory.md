@@ -3,6 +3,8 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| 2026-04-23 go-live prep | Payment amount validation (≥$100), structured JSON payment event logging, avatar magic bytes validation (file-type), Sentry install + instrumentation.ts + next.config.ts | lib/payments/verify-and-activate.ts, lib/profile/avatar.ts, next.config.ts, sentry.\*.config.ts, instrumentation.ts, .env.example | 0 type errors, 0 lint errors | ~3000 tok |
+
 | session-2026-04-22 | Sprint 12-14 batch: POST /api/user/change-email (pendingEmail + verification), plaiceholder blurDataUrls for feed/category pages, Posts afterChange on-demand revalidation, POST /api/revalidate, NotificationBell mobile bottom sheet, cookie consent banner, GET /api/health | 15+ files modified/created, 3 new migrations (0008–0010), commits 188b4d3→d863d8e | all lint errors fixed, committed | ~25000 tok |
 | 12:30 | Added guest education pages (/crypto-school, /courses) with hero, catalog, curriculum, pro-benefits, conversion-cta, FAQ sections | app/(app)/courses/page.tsx, app/(app)/crypto-school/page.tsx, components/education/\*.tsx | 8 new files, 4 modified | ~6000 tok |
 | 12:30 | Parameterized FAQSection with slug/overline/heading/subtitle props | components/landing/faq-section.tsx | backward-compatible | ~200 tok |
@@ -1888,6 +1890,172 @@ Updated all 14 sprint planning docs with codebase-verified status (no hallucinat
 | Scoped ThirdwebProvider              | Inline in upgrade page, settings layout wrapper                | Keeps wallet JS off non-payment pages                               |
 
 ## Session: 2026-04-23 11:57
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+| ---- | ------ | ------- | ------- | ------- |
+
+## Session: 2026-04-23 13:05
+
+| Time  | Action                                                                                                                                 | File(s)                    | Outcome    | ~Tokens |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------- | ------- |
+| 15:15 | Edited lib/payments/verify-and-activate.ts                                                                                             | modified logPaymentEvent() | ~148       |
+| 15:15 | Edited lib/payments/verify-and-activate.ts                                                                                             | added 1 condition(s)       | ~123       |
+| 15:15 | Edited lib/payments/verify-and-activate.ts                                                                                             | modified if()              | ~74        |
+| 15:15 | Edited lib/payments/verify-and-activate.ts                                                                                             | modified if()              | ~96        |
+| 15:15 | Edited lib/payments/verify-and-activate.ts                                                                                             | 5→7 lines                  | ~178       |
+| 15:15 | Edited lib/payments/verify-and-activate.ts                                                                                             | 1→2 lines                  | ~46        |
+| 15:15 | Edited app/(app)/api/payments/webhook/thirdweb/route.ts                                                                                | added 1 condition(s)       | ~149       |
+| 15:16 | Edited lib/profile/avatar.ts                                                                                                           | added 2 condition(s)       | ~545       |
+| 15:17 | Created sentry.client.config.ts                                                                                                        | —                          | ~152       |
+| 15:17 | Created sentry.server.config.ts                                                                                                        | —                          | ~72        |
+| 15:17 | Created sentry.edge.config.ts                                                                                                          | —                          | ~72        |
+| 15:17 | Created instrumentation.ts                                                                                                             | —                          | ~64        |
+| 15:17 | Edited next.config.ts                                                                                                                  | expanded (+15 lines)       | ~233       |
+| 15:18 | Edited next.config.ts                                                                                                                  | 13→9 lines                 | ~74        |
+| 15:20 | Session end: 14 writes across 8 files (verify-and-activate.ts, route.ts, avatar.ts, sentry.client.config.ts, sentry.server.config.ts)  | 10 reads                   | ~17503 tok |
+| 15:22 | Edited next.config.ts                                                                                                                  | expanded (+6 lines)        | ~158       |
+| 15:22 | Edited package.json                                                                                                                    | 2→3 lines                  | ~46        |
+| 15:28 | Created drizzle/0011_reconcile_snapshot.sql                                                                                            | —                          | ~79        |
+| 15:28 | Session end: 17 writes across 10 files (verify-and-activate.ts, route.ts, avatar.ts, sentry.client.config.ts, sentry.server.config.ts) | 20 reads                   | ~26623 tok |
+| 15:35 | Edited docs/planning/sprints/sprint-13.md                                                                                              | inline fix                 | ~190       |
+| 15:35 | Edited docs/planning/sprints/sprint-13.md                                                                                              | 6→9 lines                  | ~166       |
+| 15:35 | Edited docs/planning/sprints/sprint-13.md                                                                                              | 6→7 lines                  | ~157       |
+| 15:36 | Edited docs/planning/sprints/sprint-14.md                                                                                              | inline fix                 | ~163       |
+| 15:36 | Edited docs/planning/sprints/sprint-14.md                                                                                              | expanded (+9 lines)        | ~534       |
+| 15:37 | Edited docs/planning/sprints/sprint-14.md                                                                                              | expanded (+55 lines)       | ~1143      |
+| 15:37 | Session end: 23 writes across 12 files (verify-and-activate.ts, route.ts, avatar.ts, sentry.client.config.ts, sentry.server.config.ts) | 20 reads                   | ~29143 tok |
+| 15:42 | Edited docs/planning/sprints/sprint-13.md                                                                                              | inline fix                 | ~59        |
+| 15:42 | Edited docs/planning/sprints/sprint-14.md                                                                                              | inline fix                 | ~56        |
+| 15:42 | Session end: 25 writes across 12 files (verify-and-activate.ts, route.ts, avatar.ts, sentry.client.config.ts, sentry.server.config.ts) | 24 reads                   | ~30788 tok |
+| 15:45 | Edited components/layouts/footer.tsx                                                                                                   | inline fix                 | ~24        |
+| 15:45 | Edited components/layouts/footer.tsx                                                                                                   | inline fix                 | ~2         |
+| 15:46 | Edited components/common/search-modal.tsx                                                                                              | inline fix                 | ~26        |
+| 15:46 | Edited components/common/search-modal.tsx                                                                                              | inline fix                 | ~2         |
+| 15:47 | Session end: 29 writes across 14 files (verify-and-activate.ts, route.ts, avatar.ts, sentry.client.config.ts, sentry.server.config.ts) | 26 reads                   | ~37676 tok |
+| 15:48 | Edited app/robots.ts                                                                                                                   | modified robots()          | ~126       |
+| 15:48 | Session end: 30 writes across 15 files (verify-and-activate.ts, route.ts, avatar.ts, sentry.client.config.ts, sentry.server.config.ts) | 28 reads                   | ~39021 tok |
+| 15:49 | Session end: 30 writes across 15 files (verify-and-activate.ts, route.ts, avatar.ts, sentry.client.config.ts, sentry.server.config.ts) | 29 reads                   | ~39021 tok |
+
+## Session: 2026-04-23 15:52
+
+| Time  | Action                                                                                                           | File(s)                                                   | Outcome                                      | ~Tokens |
+| ----- | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------- | ------- |
+| 15:58 | Edited app/(app)/(browsable)/articles/[slug]/page.tsx                                                            | CSS: 1, 2, 3                                              | ~846                                         |
+| 15:59 | Edited lib/categories/categoryHub.tsx                                                                            | modified renderCategoryHub()                              | ~219                                         |
+| 15:59 | Edited lib/categories/categoryHub.tsx                                                                            | modified renderCategoryChild()                            | ~199                                         |
+| 15:59 | Edited components/layouts/sidebar.tsx                                                                            | "bg-surface flex shrink-0 " → "bg-surface flex shrink-0 " | ~22                                          |
+| 15:59 | Edited components/layouts/sidebar.tsx                                                                            | "border-outline-variant/15" → "border-outline-variant/15" | ~59                                          |
+| 16:00 | Edited components/learn/progress-bar.tsx                                                                         | CSS: transform                                            | ~80                                          |
+| 16:00 | Edited components/learn/course-card.tsx                                                                          | CSS: transform                                            | ~74                                          |
+| 16:00 | Edited docs/planning/sprints/sprint-14.md                                                                        | 3→3 lines                                                 | ~307                                         |
+| 16:00 | Edited docs/planning/sprints/sprint-14.md                                                                        | 5→6 lines                                                 | ~250                                         |
+| 16:01 | Parallelized article + categoryHub async data fetching (3 waves instead of 5-6 sequential)                       | articles/[slug]/page.tsx, lib/categories/categoryHub.tsx  | latency reduced                              | ~500    |
+| 16:01 | Fixed non-composited animation: ProgressBar + CourseCard width→scaleX, sidebar transition-all→transition-[width] | progress-bar.tsx, course-card.tsx, sidebar.tsx            | Lighthouse non-composited animation resolved | ~200    |
+| 16:01 | Session end: 9 writes across 6 files (page.tsx, categoryHub.tsx, sidebar.tsx, progress-bar.tsx, course-card.tsx) | 19 reads                                                  | ~25633 tok                                   |
+| 16:12 | Edited package.json                                                                                              | inline fix                                                | ~13                                          |
+| 16:12 | Edited next.config.ts                                                                                            | reduced (-6 lines)                                        | ~105                                         |
+
+## Session: 2026-04-23 16:24
+
+| Time  | Action                                                                                             | File(s)                      | Outcome          | ~Tokens |
+| ----- | -------------------------------------------------------------------------------------------------- | ---------------------------- | ---------------- | ------- |
+| 16:57 | Edited .github/workflows/build.yml                                                                 | 5→5 lines                    | ~76              |
+| 16:57 | Edited .gitignore                                                                                  | 2→5 lines                    | ~26              |
+| 16:57 | Edited next.config.ts                                                                              | modified headers()           | ~206             |
+| 16:57 | Edited app/(app)/api/search/route.ts                                                               | modified sanitizeHighlight() | ~132             |
+| 16:57 | Edited app/(app)/api/search/route.ts                                                               | 7→7 lines                    | ~94              |
+| 16:57 | Edited app/(app)/api/search/route.ts                                                               | 7→7 lines                    | ~96              |
+| 16:57 | Edited app/(app)/api/search/route.ts                                                               | 5→5 lines                    | ~64              |
+| 16:58 | Edited lib/db/index.ts                                                                             | added 1 condition(s)         | ~180             |
+| 16:58 | Edited lib/payments/intent.ts                                                                      | inline fix                   | ~18              |
+| 16:58 | Edited lib/config/env.ts                                                                           | 7→8 lines                    | ~43              |
+| 16:58 | Edited app/(app)/api/notifications/stream/route.ts                                                 | modified GET()               | ~459             |
+| 16:59 | Edited app/(app)/api/cron/subscription-check/route.ts                                              | modified GET()               | ~589             |
+| 16:59 | Created lib/auth/csrf.ts                                                                           | —                            | ~292             |
+| 17:00 | Edited app/(app)/api/contact/route.ts                                                              | added 1 import(s)            | ~32              |
+| 17:00 | Edited app/(app)/api/contact/route.ts                                                              | added 1 condition(s)         | ~33              |
+| 17:00 | Edited app/(app)/api/subscribe/route.ts                                                            | added 1 import(s)            | ~78              |
+| 17:00 | Edited app/(app)/api/subscribe/route.ts                                                            | added 1 condition(s)         | ~57              |
+| 17:00 | Edited app/(app)/api/courses/enroll/route.ts                                                       | added 1 import(s)            | ~126             |
+| 17:00 | Edited app/(app)/api/courses/enroll/route.ts                                                       | added 1 condition(s)         | ~67              |
+| 17:00 | Edited app/(app)/api/courses/progress/route.ts                                                     | added 1 import(s)            | ~119             |
+| 17:00 | Edited app/(app)/api/courses/progress/route.ts                                                     | added 1 condition(s)         | ~67              |
+| 17:00 | Edited docs/planning/sprints/sprint-14.md                                                          | 5→5 lines                    | ~274             |
+| 17:00 | Bundle analysis: public routes 227–308KB, thirdweb isolated to /upgrade                            | .next/static/chunks          | No action needed | ~300    |
+| 17:00 | Edited app/(app)/api/user/change-email/route.ts                                                    | added 1 import(s)            | ~140             |
+| 17:00 | Edited app/(app)/api/user/change-email/route.ts                                                    | added 1 condition(s)         | ~58              |
+| 17:00 | Edited app/(app)/api/user/notification-preferences/route.ts                                        | added 1 import(s)            | ~106             |
+| 17:00 | Edited app/(app)/api/user/notification-preferences/route.ts                                        | added 1 condition(s)         | ~63              |
+| 17:00 | Session end: 26 writes across 9 files (build.yml, .gitignore, next.config.ts, route.ts, index.ts)  | 35 reads                     | ~23474 tok       |
+| 17:00 | Edited app/(app)/api/user/notification-preferences/route.ts                                        | added 1 condition(s)         | ~64              |
+| 17:00 | Edited app/(app)/api/payments/checkout/route.ts                                                    | added 1 import(s)            | ~40              |
+| 17:01 | Edited app/(app)/api/payments/checkout/route.ts                                                    | added 1 condition(s)         | ~39              |
+| 17:01 | Edited app/(app)/api/notifications/read-all/route.ts                                               | added 1 import(s)            | ~92              |
+| 17:01 | Edited app/(app)/api/notifications/read-all/route.ts                                               | added 1 condition(s)         | ~62              |
+| 17:01 | Edited app/(app)/api/notifications/[id]/read/route.ts                                              | added 1 import(s)            | ~72              |
+| 17:01 | Edited app/(app)/api/notifications/[id]/read/route.ts                                              | added 1 condition(s)         | ~67              |
+| 17:01 | Edited app/(app)/api/payments/webhook/thirdweb/route.ts                                            | added 1 import(s)            | ~58              |
+| 17:01 | Edited app/(app)/api/payments/webhook/thirdweb/route.ts                                            | modified catch()             | ~71              |
+| 17:01 | Edited app/(app)/api/payments/webhook/thirdweb/route.ts                                            | 2→6 lines                    | ~93              |
+| 17:01 | Edited package.json                                                                                | 2→1 lines                    | ~9               |
+| 17:02 | Edited package.json                                                                                | inline fix                   | ~10              |
+| 17:02 | Edited package.json                                                                                | 1→2 lines                    | ~19              |
+| 17:02 | Edited package.json                                                                                | 3→2 lines                    | ~15              |
+| 17:02 | Edited lib/auth/schemas.ts                                                                         | expanded (+7 lines)          | ~240             |
+| 17:02 | Edited lib/auth/schemas.ts                                                                         | 5→5 lines                    | ~45              |
+| 17:02 | Edited app/(app)/api/auth/register/route.ts                                                        | added optional chaining      | ~281             |
+| 17:03 | Edited app/(app)/api/auth/reset-password/route.ts                                                  | added 2 import(s)            | ~92              |
+| 17:03 | Edited app/(app)/api/auth/reset-password/route.ts                                                  | added optional chaining      | ~134             |
+| 17:03 | Edited sentry.client.config.ts                                                                     | 16→18 lines                  | ~165             |
+| 17:04 | Edited app/(app)/api/auth/register/route.ts                                                        | inline fix                   | ~22              |
+| 17:04 | Edited app/(app)/api/auth/reset-password/route.ts                                                  | inline fix                   | ~22              |
+| 17:06 | Edited app/(app)/api/auth/reset-password/route.ts                                                  | 3→2 lines                    | ~31              |
+| 17:06 | Session end: 49 writes across 12 files (build.yml, .gitignore, next.config.ts, route.ts, index.ts) | 37 reads                     | ~26429 tok       |
+| 17:14 | Session end: 49 writes across 12 files (build.yml, .gitignore, next.config.ts, route.ts, index.ts) | 37 reads                     | ~26429 tok       |
+| 17:18 | Created components/contact/contact-form.tsx                                                        | —                            | ~2161            |
+| 17:19 | Created app/(app)/contact/page.tsx                                                                 | —                            | ~190             |
+| 17:21 | Session end: 51 writes across 14 files (build.yml, .gitignore, next.config.ts, route.ts, index.ts) | 40 reads                     | ~32916 tok       |
+| 17:26 | Edited components/feed/article-card.tsx                                                            | 18→20 lines                  | ~140             |
+| 17:27 | Edited components/feed/article-card.tsx                                                            | CSS: headingLevel            | ~27              |
+| 17:27 | Edited components/feed/article-card.tsx                                                            | 12→12 lines                  | ~120             |
+| 17:27 | Edited components/feed/feed-client.tsx                                                             | inline fix                   | ~31              |
+| 17:27 | Edited components/feed/feed-client.tsx                                                             | inline fix                   | ~29              |
+| 17:27 | Edited components/feed/feed-client.tsx                                                             | 6→7 lines                    | ~64              |
+| 17:28 | Edited components/feed/tag-client.tsx                                                              | inline fix                   | ~29              |
+| 17:28 | Edited components/feed/tag-client.tsx                                                              | 6→7 lines                    | ~64              |
+| 17:28 | Edited components/feed/category-hub-client.tsx                                                     | inline fix                   | ~31              |
+| 17:28 | Edited components/feed/category-hub-client.tsx                                                     | inline fix                   | ~29              |
+| 17:28 | Edited components/feed/category-hub-client.tsx                                                     | 6→7 lines                    | ~64              |
+| 17:28 | Edited components/learn/crypto-school-client.tsx                                                   | inline fix                   | ~21              |
+| 17:28 | Edited components/learn/crypto-school-client.tsx                                                   | inline fix                   | ~19              |
+| 17:28 | Edited components/learn/crypto-school-client.tsx                                                   | inline fix                   | ~23              |
+| 17:28 | Session end: 65 writes across 19 files (build.yml, .gitignore, next.config.ts, route.ts, index.ts) | 48 reads                     | ~44509 tok       |
+| 17:29 | Edited components/article/paywall-gate.tsx                                                         | 5→5 lines                    | ~64              |
+| 17:29 | Edited components/article/paywall-gate.tsx                                                         | 5→5 lines                    | ~66              |
+| 17:29 | Session end: 67 writes across 20 files (build.yml, .gitignore, next.config.ts, route.ts, index.ts) | 49 reads                     | ~47936 tok       |
+| 17:32 | Edited app/(app)/(browsable)/layout.tsx                                                            | CSS: cache-control           | ~687             |
+| 17:32 | Session end: 68 writes across 21 files (build.yml, .gitignore, next.config.ts, route.ts, index.ts) | 50 reads                     | ~49255 tok       |
+| 17:34 | Edited components/feed/article-card.tsx                                                            | 13→14 lines                  | ~140             |
+| 17:34 | Session end: 69 writes across 21 files (build.yml, .gitignore, next.config.ts, route.ts, index.ts) | 50 reads                     | ~49446 tok       |
+| 17:34 | Edited next.config.ts                                                                              | 8→10 lines                   | ~56              |
+| 17:35 | Session end: 70 writes across 21 files (build.yml, .gitignore, next.config.ts, route.ts, index.ts) | 50 reads                     | ~49502 tok       |
+
+## Session: 2026-04-23 17:38
+
+| Time  | Action                                                                                                  | File(s)      | Outcome   | ~Tokens |
+| ----- | ------------------------------------------------------------------------------------------------------- | ------------ | --------- | ------- |
+| 17:38 | Edited app/(app)/layout.tsx                                                                             | CSS: display | ~190      |
+| 17:39 | Edited components/layouts/dashboard-shell.tsx                                                           | 10→14 lines  | ~147      |
+| 17:39 | Edited components/layouts/top-app-bar.tsx                                                               | 4→8 lines    | ~100      |
+| 17:39 | Edited next.config.ts                                                                                   | 2→1 lines    | ~12       |
+| 17:42 | Session end: 4 writes across 4 files (layout.tsx, dashboard-shell.tsx, top-app-bar.tsx, next.config.ts) | 3 reads      | ~4893 tok |
+
+## Session: 2026-04-23 18:01
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+| ---- | ------ | ------- | ------- | ------- |
+
+## Session: 2026-04-23 19:05
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 | ---- | ------ | ------- | ------- | ------- |

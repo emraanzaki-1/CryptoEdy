@@ -3,6 +3,13 @@ import { addConnection } from '@/lib/notifications/emitter'
 
 export const dynamic = 'force-dynamic'
 
+interface CleanupRefs {
+  cleanup: () => void
+  keepAlive: ReturnType<typeof setInterval>
+}
+
+const controllerCleanup = new WeakMap<ReadableStreamDefaultController, CleanupRefs>()
+
 /**
  * SSE endpoint — keeps a long-lived connection open and pushes
  * notification events to the authenticated user in real time.
@@ -33,15 +40,16 @@ export async function GET(): Promise<Response> {
         }
       }, 25_000)
 
-      // Store cleanup refs so cancel() can use them
-      ;(controller as unknown as Record<string, unknown>).__cleanup = cleanup
-      ;(controller as unknown as Record<string, unknown>).__keepAlive = keepAlive
+      controllerCleanup.set(controller, { cleanup, keepAlive })
     },
 
     cancel(controller) {
-      const ctrl = controller as unknown as Record<string, unknown>
-      if (typeof ctrl.__cleanup === 'function') ctrl.__cleanup()
-      if (ctrl.__keepAlive) clearInterval(ctrl.__keepAlive as ReturnType<typeof setInterval>)
+      const refs = controllerCleanup.get(controller as ReadableStreamDefaultController)
+      if (refs) {
+        refs.cleanup()
+        clearInterval(refs.keepAlive)
+        controllerCleanup.delete(controller as ReadableStreamDefaultController)
+      }
     },
   })
 

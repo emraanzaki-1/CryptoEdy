@@ -14,10 +14,24 @@ function ensurePool(): Pool {
     if (!process.env.DATABASE_URL) {
       throw new Error('[CryptoEdy] DATABASE_URL is not set. Check your .env.local file.')
     }
-    _pool = new Pool({ connectionString: process.env.DATABASE_URL })
+    _pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      max: 20,
+      idleTimeoutMillis: 30_000,
+      connectionTimeoutMillis: 5_000,
+    })
   }
   return _pool
 }
+
+// Graceful shutdown — drain pool on process exit
+function handleShutdown() {
+  if (_pool) {
+    _pool.end().catch((err) => console.error('[CryptoEdy] Pool shutdown error:', err))
+  }
+}
+process.on('SIGTERM', handleShutdown)
+process.on('SIGINT', handleShutdown)
 
 export function getDb(): DB {
   if (!_db) {

@@ -290,9 +290,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     const GroupIcon = config.icon
                     return (
                       <section key={group.type} className="mb-4 px-3 last:mb-0">
-                        <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black uppercase">
+                        <h2 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black uppercase">
                           {config.label}
-                        </h4>
+                        </h2>
                         <div className="space-y-0.5">
                           {group.results.map((result) => {
                             const idx = results.indexOf(result)
@@ -370,9 +370,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               {/* Recent Searches */}
               {recentSearches.length > 0 && (
                 <section className="mb-6 px-3">
-                  <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black uppercase">
+                  <h2 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black uppercase">
                     Recent Searches
-                  </h4>
+                  </h2>
                   <div className="space-y-0.5">
                     {recentSearches.map((search) => {
                       const idx = navIndex++
@@ -413,9 +413,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
               {/* Quick Actions */}
               <section className="px-3">
-                <h4 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black uppercase">
+                <h2 className="text-on-surface-variant/60 text-overline mb-2 px-4 font-black uppercase">
                   Quick Actions
-                </h4>
+                </h2>
                 <div className="grid grid-cols-2 gap-2 p-1">
                   {QUICK_ACTIONS.map((action) => {
                     const idx = navIndex++

@@ -113,18 +113,27 @@ function formatDate(date: string | Date): string {
 export default async function ArticleDetailPage({ params }: PageProps) {
   const { slug } = await params
 
-  // Fetch post from CMS
-  const payload = await getPayload({ config: configPromise })
-  const { docs } = await payload.find({
-    collection: 'posts',
-    where: {
-      slug: { equals: slug },
-      status: { equals: 'published' },
-    },
-    depth: 2,
-    limit: 1,
-    overrideAccess: true,
-  })
+  // Wave 1: boot Payload, resolve session and category visibility in parallel
+  const [payload, session, visibility] = await Promise.all([
+    getPayload({ config: configPromise }),
+    auth(),
+    getCategoryVisibility(),
+  ])
+
+  // Wave 2: fetch the post + bookmark state in parallel (both ready after wave 1)
+  const [{ docs }, bookmarkedIds] = await Promise.all([
+    payload.find({
+      collection: 'posts',
+      where: {
+        slug: { equals: slug },
+        status: { equals: 'published' },
+      },
+      depth: 2,
+      limit: 1,
+      overrideAccess: true,
+    }),
+    session?.user?.id ? getBookmarkedPostIds(session.user.id) : Promise.resolve(new Set<string>()),
+  ])
 
   const post = docs[0]
   if (!post) notFound()
@@ -134,11 +143,9 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     post.category && typeof post.category === 'object'
       ? String((post.category as { id: string | number }).id)
       : String(post.category)
-  const visibility = await getCategoryVisibility()
   if (visibility.enabledById[postCategoryId] === false) notFound()
 
   // Resolve user role
-  const session = await auth()
   const isAuthenticated = !!session?.user
   const userRole = (session?.user?.role as Role) ?? 'guest'
   const subscriptionExpiry = (session?.user as { subscriptionExpiry?: string | null } | undefined)
@@ -166,7 +173,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   const effectiveAccess: AccessState =
     accessState === 'partial-preview' && !truncatedContent ? 'full-access' : accessState
 
-  // Fetch recommended articles (same category, excluding current post)
+  // Wave 3: recommended articles (needs post.id + categoryId from wave 2)
   const categoryId =
     post.category && typeof post.category === 'object' ? (post.category as { id: number }).id : null
   const recommendedResult = await payload.find({
@@ -182,10 +189,6 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     overrideAccess: true,
   })
 
-  // Check bookmark state
-  const bookmarkedIds = session?.user?.id
-    ? await getBookmarkedPostIds(session.user.id)
-    : new Set<string>()
   const isBookmarked = bookmarkedIds.has(String(post.id))
 
   // Extract data

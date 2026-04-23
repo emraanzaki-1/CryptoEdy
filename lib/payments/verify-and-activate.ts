@@ -24,7 +24,25 @@ interface ActivateResult {
 interface ActivateError {
   success: false
   error: string
-  code: 'DUPLICATE_TX' | 'DUPLICATE_PROVIDER_PAYMENT' | 'DB_ERROR'
+  code: 'DUPLICATE_TX' | 'DUPLICATE_PROVIDER_PAYMENT' | 'AMOUNT_TOO_LOW' | 'DB_ERROR'
+}
+
+const MIN_PAYMENT_AMOUNT = 100 // USD
+
+function logPaymentEvent(event: {
+  result: 'success' | 'failure'
+  userId: string
+  txHash: string
+  chain: string
+  asset: string
+  amount: number
+  provider: string
+  providerPaymentId: string
+  failureReason?: string
+}) {
+  console.log(
+    JSON.stringify({ timestamp: new Date().toISOString(), service: 'payments', ...event })
+  )
 }
 
 /**
@@ -51,6 +69,26 @@ export async function verifyAndActivate(
     recipientAddress,
   } = input
 
+  // Amount validation — reject underpayments
+  if (amount < MIN_PAYMENT_AMOUNT) {
+    logPaymentEvent({
+      result: 'failure',
+      userId,
+      txHash,
+      chain,
+      asset,
+      amount,
+      provider,
+      providerPaymentId,
+      failureReason: `amount_too_low: ${amount}`,
+    })
+    return {
+      success: false,
+      error: `Payment amount ${amount} is below minimum ${MIN_PAYMENT_AMOUNT}`,
+      code: 'AMOUNT_TOO_LOW',
+    }
+  }
+
   // Idempotency check 1: reject if tx hash already recorded
   const [existingTx] = await db
     .select({ id: payments.id })
@@ -59,6 +97,17 @@ export async function verifyAndActivate(
     .limit(1)
 
   if (existingTx) {
+    logPaymentEvent({
+      result: 'failure',
+      userId,
+      txHash,
+      chain,
+      asset,
+      amount,
+      provider,
+      providerPaymentId,
+      failureReason: 'duplicate_tx',
+    })
     return { success: false, error: 'Transaction already processed', code: 'DUPLICATE_TX' }
   }
 
@@ -71,6 +120,17 @@ export async function verifyAndActivate(
       .limit(1)
 
     if (existingProvider) {
+      logPaymentEvent({
+        result: 'failure',
+        userId,
+        txHash,
+        chain,
+        asset,
+        amount,
+        provider,
+        providerPaymentId,
+        failureReason: 'duplicate_provider_payment',
+      })
       return {
         success: false,
         error: 'Provider payment already processed',
@@ -123,8 +183,30 @@ export async function verifyAndActivate(
     // Handle unique constraint violations as idempotent success
     const message = err instanceof Error ? err.message : String(err)
     if (message.includes('unique') || message.includes('duplicate')) {
+      logPaymentEvent({
+        result: 'failure',
+        userId,
+        txHash,
+        chain,
+        asset,
+        amount,
+        provider,
+        providerPaymentId,
+        failureReason: 'duplicate_tx_constraint',
+      })
       return { success: false, error: 'Payment already processed', code: 'DUPLICATE_TX' }
     }
+    logPaymentEvent({
+      result: 'failure',
+      userId,
+      txHash,
+      chain,
+      asset,
+      amount,
+      provider,
+      providerPaymentId,
+      failureReason: `db_error: ${message}`,
+    })
     console.error('[verifyAndActivate] DB transaction failed:', err)
     return { success: false, error: 'Failed to process payment', code: 'DB_ERROR' }
   }
@@ -136,5 +218,15 @@ export async function verifyAndActivate(
     console.error('[verifyAndActivate] Notification failed (non-blocking):', err)
   }
 
+  logPaymentEvent({
+    result: 'success',
+    userId,
+    txHash,
+    chain,
+    asset,
+    amount,
+    provider,
+    providerPaymentId,
+  })
   return { success: true, newRole: 'pro', expiresAt }
 }

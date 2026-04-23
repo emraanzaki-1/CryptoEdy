@@ -39,10 +39,12 @@ async function getChildCategories(
 /* ── Hub page (all children) ─────────────────────────────────────── */
 
 export async function renderCategoryHub(parentSlug: string, basePath: string) {
-  const { payload, category } = await getParentCategory(parentSlug)
+  const [{ payload, category }, session, visibility] = await Promise.all([
+    getParentCategory(parentSlug),
+    auth(),
+    getCategoryVisibility(),
+  ])
   if (!category) notFound()
-
-  const visibility = await getCategoryVisibility()
   if (visibility.enabledById[String(category.id)] === false) notFound()
 
   const children = await getChildCategories(payload, category.id)
@@ -50,7 +52,6 @@ export async function renderCategoryHub(parentSlug: string, basePath: string) {
   const enabledChildren = children.filter((c) => visibility.enabledById[String(c.id)] !== false)
   const categoryIds = [category.id, ...enabledChildren.map((c) => c.id)]
 
-  const session = await auth()
   const bookmarkedIds = session?.user?.id
     ? await getBookmarkedPostIds(session.user.id)
     : new Set<string>()
@@ -107,10 +108,12 @@ export async function renderCategoryHub(parentSlug: string, basePath: string) {
 /* ── Child page (single child category) ──────────────────────────── */
 
 export async function renderCategoryChild(parentSlug: string, childSlug: string, basePath: string) {
-  const { payload, category: parent } = await getParentCategory(parentSlug)
+  const [{ payload, category: parent }, session, visibility] = await Promise.all([
+    getParentCategory(parentSlug),
+    auth(),
+    getCategoryVisibility(),
+  ])
   if (!parent) notFound()
-
-  const visibility = await getCategoryVisibility()
   if (visibility.enabledById[String(parent.id)] === false) notFound()
 
   const children = await getChildCategories(payload, parent.id)
@@ -118,7 +121,6 @@ export async function renderCategoryChild(parentSlug: string, childSlug: string,
   if (!child) notFound()
   if (visibility.enabledById[String(child.id)] === false) notFound()
 
-  const session = await auth()
   const bookmarkedIds = session?.user?.id
     ? await getBookmarkedPostIds(session.user.id)
     : new Set<string>()

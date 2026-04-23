@@ -7,6 +7,7 @@ import {
   NOTIFICATION_SUBTYPES,
 } from '@/lib/notifications/preferences'
 import type { NotificationType, NotificationSubtype } from '@/lib/db/schema/notifications'
+import { checkCsrf } from '@/lib/auth/csrf'
 
 const VALID_TYPES = Object.keys(NOTIFICATION_SUBTYPES) as NotificationType[]
 
@@ -40,6 +41,9 @@ export async function GET() {
 
 /** PATCH — update a single preference toggle: { type, subtype, channel, enabled }. */
 export async function PATCH(req: NextRequest) {
+  const csrf = checkCsrf(req)
+  if (csrf) return csrf
+
   const session = await auth()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -74,6 +78,9 @@ export async function PATCH(req: NextRequest) {
 
 /** PUT — master toggle: { type, channel, enabled } — updates all subtypes in a category. */
 export async function PUT(req: NextRequest) {
+  const csrf = checkCsrf(req)
+  if (csrf) return csrf
+
   const session = await auth()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
