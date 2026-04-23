@@ -19,45 +19,6 @@ interface ArticlePreview {
   slug: string
 }
 
-const FALLBACK_ARTICLES: ArticlePreview[] = [
-  {
-    title: 'Bitcoin Post-Halving Outlook',
-    excerpt:
-      'Analyzing the historical impact of halvings on BTC price action and adjusting expectations for the current liquidity cycle.',
-    category: 'Macro',
-    date: 'Oct 24',
-    imageUrl:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDqqJh5KXK47FPDUA-An4eQIgvreMU0QdlPfO3_VkR1XZRXfqD8Elt3EG3NqnLL_J_yJUOuK-uJzjtBYs-nTaha-k5GpBXzsVGMDB5fldMZmzozK3KVwuQWXGkY7PgWXfmx6ydffItzTEAxI_AoOcvx1DrfndGxGVzef1Ka-e92PjmYIeOStYAhQ2RvbaOwN6-PaWRzbpYr6ttwcgOhm8aNNtlA6FH3XJeLqdeb7Ka-Nze92XCDcfxFNW4XvY_RyiEAwK7fLKZAxJJ0',
-    imageAlt: 'Bitcoin Post-Halving Outlook',
-    isPro: false,
-    slug: '#',
-  },
-  {
-    title: 'Solana Ecosystem: The Next Wave',
-    excerpt:
-      'Unlocking the next wave of DeFi innovation on Solana requires identifying key protocols with strong revenue generation and low token inflation.',
-    category: 'Deep Dive',
-    date: 'Oct 22',
-    imageUrl:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCZ27KM3aCCmPuQcRXWCdCoNwtfUjl4Gk6EW4kFlqweBmT36hZHNNuJQ3HlfhhZSJJJr3GLtYqnDD_3UynS8MU0l8g7_UItZckqa42QfJLlYGTnSs2zRxgp3Zpndd2W6q1wx4bqEi1dtGQmxs80WfPxrtCL2cQ6Rb0DBYbAKmT9BxWNCtayXpP2CC559WgtahGH9TTblsz4HWHHW16rP_dPRbFkKYLNamPq4XeAvf8DqwagwzPw4TTF6hkGqd7HOiRy5M29YXwSBfh_',
-    imageAlt: 'Solana Ecosystem: The Next Wave',
-    isPro: true,
-    slug: '#',
-  },
-  {
-    title: 'Q4 Macroeconomic Update',
-    excerpt:
-      'Navigating the shifting global liquidity landscape and what central bank policy means for risk assets through year-end.',
-    category: 'Quarterly',
-    date: 'Oct 15',
-    imageUrl:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuC2Lz0Ea4oX2K3GWr5f7v4FmlPL7C2IgSNU-xstBAM3Sv07FRmPxE9skqwOMTQiTOPif86ih3Gdjv57LiQRb0xPKXbK7prVq3esjiKX3XBs6A7bu01a2TI87M6aEVxtwiIXiSkv6yW7ntkmcBTUAIGoCW7VxgENnWhdvGhScaMVWAhrHI9yDZUxOxOSgwkySMqAoRUJ1BiGM9sgFOyz4MReD4QWZojmRfHW8jYCjZ9zpwyaPR0rUZj_-RhvxwUlFR3fN6zCmgbaZbMO',
-    imageAlt: 'Q4 Macroeconomic Update',
-    isPro: false,
-    slug: '#',
-  },
-]
-
 function mapPostToPreview(post: Record<string, unknown>): ArticlePreview {
   const featuredImage =
     post.featuredImage && typeof post.featuredImage === 'object'
@@ -82,7 +43,7 @@ function mapPostToPreview(post: Record<string, unknown>): ArticlePreview {
 }
 
 export async function ResearchPreviewSection() {
-  let articles: ArticlePreview[] = FALLBACK_ARTICLES
+  let articles: ArticlePreview[] = []
 
   try {
     const payload = await getPayload({ config })
@@ -95,12 +56,12 @@ export async function ResearchPreviewSection() {
       overrideAccess: true,
     })
 
-    if (docs.length > 0) {
-      articles = docs.map((doc) => mapPostToPreview(doc as unknown as Record<string, unknown>))
-    }
+    articles = docs.map((doc) => mapPostToPreview(doc as unknown as Record<string, unknown>))
   } catch {
-    // Fall back to hardcoded articles
+    return null
   }
+
+  if (articles.length === 0) return null
 
   return (
     <section className="flex flex-col gap-8" id="research">
