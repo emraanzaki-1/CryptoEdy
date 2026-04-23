@@ -30,18 +30,24 @@ const PARENT_CATEGORIES = [
     name: 'Research',
     slug: 'research',
     description: 'High-conviction picks, deep dives, and research reports.',
+    routePrefix: 'research',
+    excludeFromMainFeed: false,
     weight: 0,
   },
   {
     name: 'Analysis',
     slug: 'analysis',
     description: 'Market updates, macro direction, and on-chain analysis.',
+    routePrefix: 'analysis',
+    excludeFromMainFeed: false,
     weight: 1,
   },
   {
     name: 'Education',
     slug: 'education',
     description: 'Crypto School and structured trading courses.',
+    routePrefix: null,
+    excludeFromMainFeed: true,
     weight: 2,
   },
 ]
@@ -534,7 +540,13 @@ async function main() {
     }
     const created = await payload.create({
       collection: 'categories',
-      data: { name: parent.name, slug: parent.slug, description: parent.description },
+      data: {
+        name: parent.name,
+        slug: parent.slug,
+        description: parent.description,
+        routePrefix: parent.routePrefix ?? undefined,
+        excludeFromMainFeed: parent.excludeFromMainFeed,
+      },
     })
     categoryIdMap[parent.slug] = created.id as string
   }

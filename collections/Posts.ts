@@ -86,13 +86,15 @@ const firePublishedEvent: CollectionAfterChangeHook = async ({ doc, previousDoc 
 
   // On-demand cache revalidation — always revalidate on any publish/update
   if (doc.status === 'published') {
-    const slug = doc.slug as string | undefined
-    if (slug) {
-      revalidatePath(`/articles/${slug}`, 'page')
-    }
-    revalidateTag('posts', 'max')
-    revalidatePath('/feed', 'page')
-    revalidatePath('/', 'page')
+    try {
+      const slug = doc.slug as string | undefined
+      if (slug) {
+        revalidatePath(`/articles/${slug}`, 'page')
+      }
+      revalidateTag('posts', 'max')
+      revalidatePath('/feed', 'page')
+      revalidatePath('/', 'page')
+    } catch {}
   }
 }
 

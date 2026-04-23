@@ -57,6 +57,7 @@ export default buildConfig({
         userManagement: {
           Component: '@/components/admin/views/UserManagement',
           path: '/user-management',
+          exact: true,
           meta: {
             title: 'App Users',
             description: 'Manage application user roles and subscriptions',

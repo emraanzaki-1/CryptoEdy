@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-04-17T20:46:01.631Z",
   "lifetime": {
-    "total_tokens_estimated": 7470041,
-    "total_reads": 4779,
-    "total_writes": 6658,
-    "total_sessions": 52,
-    "anatomy_hits": 4375,
-    "anatomy_misses": 360,
-    "repeated_reads_blocked": 2022,
-    "estimated_savings_vs_bare_cli": 5005462
+    "total_tokens_estimated": 7603699,
+    "total_reads": 4849,
+    "total_writes": 6667,
+    "total_sessions": 56,
+    "anatomy_hits": 4418,
+    "anatomy_misses": 387,
+    "repeated_reads_blocked": 2037,
+    "estimated_savings_vs_bare_cli": 5103865
   },
   "sessions": [
     {
@@ -66645,6 +66645,555 @@
         "writes_count": 4,
         "repeated_reads_blocked": 0,
         "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-04-23-1642",
+      "started": "2026-04-23T16:42:28.801Z",
+      "ended": "2026-04-23T16:45:12.261Z",
+      "reads": [
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/collections/Categories.ts",
+          "tokens_estimated": 1000,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/collections/Posts.ts",
+          "tokens_estimated": 2883,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/collections/Categories.ts",
+          "tokens_estimated": 67,
+          "action": "edit"
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/collections/Posts.ts",
+          "tokens_estimated": 108,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 3883,
+        "output_tokens_estimated": 175,
+        "reads_count": 2,
+        "writes_count": 2,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 2
+      }
+    },
+    {
+      "id": "session-2026-04-23-1934",
+      "started": "2026-04-23T19:34:40.817Z",
+      "ended": "2026-04-23T19:41:13.529Z",
+      "reads": [
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(app)/api/auth/[...nextauth]/route.ts",
+          "tokens_estimated": 22,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/lib/auth/config.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/.env.local",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 22,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 1
+      }
+    },
+    {
+      "id": "session-2026-04-23-1934",
+      "started": "2026-04-23T19:34:40.817Z",
+      "ended": "2026-04-23T19:51:28.581Z",
+      "reads": [
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(app)/api/auth/[...nextauth]/route.ts",
+          "tokens_estimated": 22,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/lib/auth/config.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/.env.local",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/admin/views/UserManagementEdit.tsx",
+          "tokens_estimated": 334,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/admin/views/UserManagementEditClient.tsx",
+          "tokens_estimated": 4682,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/lib/api/admin-users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/payload.config.ts",
+          "tokens_estimated": 1570,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/admin/importMap.js",
+          "tokens_estimated": 2620,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/importMap.ts",
+          "tokens_estimated": 37,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/isPathMatchingRoute.js",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/getCustomViewByRoute.js",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/admin/[[...segments]]/page.tsx",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/getRouteData.js",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/collections/Authors.ts",
+          "tokens_estimated": 584,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/index.js",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/proxy.ts",
+          "tokens_estimated": 1128,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/payload.config.ts",
+          "tokens_estimated": 48,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 11302,
+        "output_tokens_estimated": 48,
+        "reads_count": 17,
+        "writes_count": 1,
+        "repeated_reads_blocked": 4,
+        "anatomy_lookups": 10
+      }
+    },
+    {
+      "id": "session-2026-04-23-1934",
+      "started": "2026-04-23T19:34:40.817Z",
+      "ended": "2026-04-23T19:56:51.701Z",
+      "reads": [
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(app)/api/auth/[...nextauth]/route.ts",
+          "tokens_estimated": 22,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/lib/auth/config.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/.env.local",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/admin/views/UserManagementEdit.tsx",
+          "tokens_estimated": 334,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/admin/views/UserManagementEditClient.tsx",
+          "tokens_estimated": 4682,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/lib/api/admin-users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/payload.config.ts",
+          "tokens_estimated": 1570,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/admin/importMap.js",
+          "tokens_estimated": 2620,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/importMap.ts",
+          "tokens_estimated": 37,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/isPathMatchingRoute.js",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/getCustomViewByRoute.js",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/admin/[[...segments]]/page.tsx",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/getRouteData.js",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/collections/Authors.ts",
+          "tokens_estimated": 584,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/index.js",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/proxy.ts",
+          "tokens_estimated": 1128,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/layouts/footer.tsx",
+          "tokens_estimated": 1339,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/layouts/guest-shell.tsx",
+          "tokens_estimated": 602,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/layouts/guest-nav.tsx",
+          "tokens_estimated": 2751,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(app)/(browsable)/layout.tsx",
+          "tokens_estimated": 688,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/lib/categories/getCategories.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/collections/Categories.ts",
+          "tokens_estimated": 1010,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/scripts/seed.ts",
+          "tokens_estimated": 41105,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/payload.config.ts",
+          "tokens_estimated": 48,
+          "action": "edit"
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/scripts/seed.ts",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/scripts/seed.ts",
+          "tokens_estimated": 89,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 58797,
+        "output_tokens_estimated": 317,
+        "reads_count": 24,
+        "writes_count": 3,
+        "repeated_reads_blocked": 5,
+        "anatomy_lookups": 15
+      }
+    },
+    {
+      "id": "session-2026-04-23-1934",
+      "started": "2026-04-23T19:34:40.817Z",
+      "ended": "2026-04-23T19:57:42.921Z",
+      "reads": [
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(app)/api/auth/[...nextauth]/route.ts",
+          "tokens_estimated": 22,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/lib/auth/config.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/.env.local",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/admin/views/UserManagementEdit.tsx",
+          "tokens_estimated": 334,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/admin/views/UserManagementEditClient.tsx",
+          "tokens_estimated": 4682,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/lib/api/admin-users.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/payload.config.ts",
+          "tokens_estimated": 1570,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/admin/importMap.js",
+          "tokens_estimated": 2620,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/importMap.ts",
+          "tokens_estimated": 37,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/api/[...slug]/route.ts",
+          "tokens_estimated": 116,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/isPathMatchingRoute.js",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/getCustomViewByRoute.js",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(payload)/admin/[[...segments]]/page.tsx",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/getRouteData.js",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/collections/Authors.ts",
+          "tokens_estimated": 584,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/node_modules/@payloadcms/next/dist/views/Root/index.js",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/proxy.ts",
+          "tokens_estimated": 1128,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/layouts/footer.tsx",
+          "tokens_estimated": 1339,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/layouts/guest-shell.tsx",
+          "tokens_estimated": 602,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/components/layouts/guest-nav.tsx",
+          "tokens_estimated": 2751,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/app/(app)/(browsable)/layout.tsx",
+          "tokens_estimated": 688,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/lib/categories/getCategories.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/collections/Categories.ts",
+          "tokens_estimated": 1010,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/scripts/seed.ts",
+          "tokens_estimated": 41105,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/payload.config.ts",
+          "tokens_estimated": 48,
+          "action": "edit"
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/scripts/seed.ts",
+          "tokens_estimated": 180,
+          "action": "edit"
+        },
+        {
+          "file": "/var/www/html/demo.cryptoedy.com/scripts/seed.ts",
+          "tokens_estimated": 89,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 58797,
+        "output_tokens_estimated": 317,
+        "reads_count": 24,
+        "writes_count": 3,
+        "repeated_reads_blocked": 5,
+        "anatomy_lookups": 15
       }
     }
   ],

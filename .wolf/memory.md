@@ -2059,3 +2059,35 @@ Updated all 14 sprint planning docs with codebase-verified status (no hallucinat
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 | ---- | ------ | ------- | ------- | ------- |
+
+## Session: 2026-04-23 16:38
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+| ---- | ------ | ------- | ------- | ------- |
+
+## Session: 2026-04-23 16:42
+
+| Time  | Action                                                         | File(s)              | Outcome   | ~Tokens |
+| ----- | -------------------------------------------------------------- | -------------------- | --------- | ------- |
+| 16:44 | Edited collections/Categories.ts                               | added error handling | ~67       |
+| 16:44 | Edited collections/Posts.ts                                    | added error handling | ~108      |
+| 16:45 | Session end: 2 writes across 2 files (Categories.ts, Posts.ts) | 2 reads              | ~4058 tok |
+
+## Session: 2026-04-23 19:34
+
+| Time  | Action                                                                                                                          | File(s)                  | Outcome                              | ~Tokens |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ------------------------------------ | ------- |
+| 19:37 | Fixed UntrustedHost error — added AUTH_TRUST_HOST=true to .env.local, restarted PM2 with --update-env                           | .env.local               | fixed, /api/auth/session returns 200 | ~300    |
+| 19:48 | Edited payload.config.ts                                                                                                        | 4→5 lines                | ~48                                  |
+| 19:50 | Fixed edit view not rendering — added exact: true to userManagement list view in payload.config.ts                              | payload.config.ts        | fixed, rebuilt & restarted           | ~800    |
+| 19:51 | Session end: 1 writes across 1 files (payload.config.ts)                                                                        | 17 reads                 | ~11350 tok                           |
+| 19:56 | Edited scripts/seed.ts                                                                                                          | expanded (+6 lines)      | ~180                                 |
+| 19:56 | Edited scripts/seed.ts                                                                                                          | added nullish coalescing | ~89                                  |
+| 19:55 | Fixed missing footer/nav links — set route_prefix in DB, fixed seed.ts to include routePrefix/excludeFromMainFeed, busted cache | scripts/seed.ts, DB      | fixed                                | ~500    |
+| 19:56 | Session end: 3 writes across 2 files (payload.config.ts, seed.ts)                                                               | 24 reads                 | ~59114 tok                           |
+| 19:57 | Session end: 3 writes across 2 files (payload.config.ts, seed.ts)                                                               | 24 reads                 | ~59114 tok                           |
+
+## Session: 2026-04-23 20:07
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+| ---- | ------ | ------- | ------- | ------- |

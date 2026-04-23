@@ -58,6 +58,8 @@
 
 ## Do-Not-Repeat
 
+- [2026-04-23] Do NOT register a Payload custom admin view with a prefix path (e.g. `/user-management`) without `exact: true` if a child view exists (e.g. `/user-management/:id`). Payload's `isPathMatchingRoute` uses `startsWith` when `exact` is falsy, so the parent path swallows all child URLs. Always add `exact: true` to the parent/list view when a detail view shares the same prefix.
+
 - [2026-04-23] Do NOT assess project scope or V1/V2 boundaries without reading `docs/planning/IMPLEMENTATION_PLAN.md` first. The stub tool pages (`/tools/*`, `/community`) are intentional V2 placeholders — they are not gaps. Scope decisions are documented there with dates.
 - [2026-04-23] `/feed` is NOT a guest-browsable route. It is dashboard-only — authenticated users only. Only `/articles`, `/tag`, `/research`, `/analysis` are in `BROWSABLE_ROUTES`. Do not add `/feed` to BROWSABLE_ROUTES.
 

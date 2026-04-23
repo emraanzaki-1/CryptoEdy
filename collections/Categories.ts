@@ -7,12 +7,16 @@ export const Categories: CollectionConfig = {
   hooks: {
     afterChange: [
       () => {
-        revalidateTag('categories', 'max')
+        try {
+          revalidateTag('categories', 'max')
+        } catch {}
       },
     ],
     afterDelete: [
       () => {
-        revalidateTag('categories', 'max')
+        try {
+          revalidateTag('categories', 'max')
+        } catch {}
       },
     ],
   },

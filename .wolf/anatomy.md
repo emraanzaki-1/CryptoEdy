@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-23T12:30:01.077Z
-> Files: 515 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-23T19:56:27.853Z
+> Files: 516 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -18,7 +18,7 @@
 - `next-env.d.ts` — / <reference types="next" /> (~71 tok)
 - `next.config.ts` — Next.js configuration (~349 tok)
 - `package.json` — Node.js package manifest (~759 tok)
-- `payload.config.ts` — Declares filename (~1570 tok)
+- `payload.config.ts` — Declares filename (~1577 tok)
 - `postcss.config.mjs` — Declares config (~26 tok)
 - `proxy.ts` — Routes that require an active Pro (or higher) subscription (~1128 tok)
 - `README.md` — Project documentation (~363 tok)
@@ -929,13 +929,13 @@
 ## collections/
 
 - `Authors.ts` — Payload's CMS editor accounts — separate from NextAuth app users. (~584 tok)
-- `Categories.ts` — Exports Categories (~1000 tok)
+- `Categories.ts` — Exports Categories (~1010 tok)
 - `Courses.ts` — Exports Courses (~988 tok)
 - `FAQs.ts` — Exports FAQs (~379 tok)
 - `Lessons.ts` — Exports Lessons (~901 tok)
 - `Media.ts` — Exports Media (~292 tok)
 - `Modules.ts` — Exports Modules (~674 tok)
-- `Posts.ts` — Exports Posts (~2883 tok)
+- `Posts.ts` — Exports Posts (~2894 tok)
 - `Tags.ts` — Exports Tags (~270 tok)
 
 ## collections/blocks/
@@ -1087,3 +1087,7 @@
 - `avatar-provider.tsx` — AvatarContext — uses useState, useCallback, useContext (~218 tok)
 - `session-provider.tsx` — SessionProvider (~70 tok)
 - `theme-provider.tsx` — ThemeProvider (~103 tok)
+
+## scripts/
+
+- `seed.ts` — CryptoEdy seed script — Sprint 3 (~41145 tok)
