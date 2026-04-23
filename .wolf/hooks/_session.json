@@ -1,66 +1,12 @@
 {
-  "session_id": "session-2026-04-22-0210",
-  "started": "2026-04-22T20:40:17.837Z",
-  "files_read": {
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/email/index.ts": {
-      "count": 1,
-      "tokens": 205,
-      "first_read": "2026-04-22T20:40:22.720Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/email/send.ts": {
-      "count": 1,
-      "tokens": 850,
-      "first_read": "2026-04-22T20:40:23.643Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/config/env.ts": {
-      "count": 1,
-      "tokens": 266,
-      "first_read": "2026-04-22T20:43:06.653Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/.env.example": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T20:43:06.841Z"
-    },
-    "/Users/emraanzaki/Sites/Personal/CryptoEdy/.env.local": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T20:44:10.731Z"
-    },
-    "/Users/emraanzaki/.claude/projects/-Users-emraanzaki-Sites-Personal-CryptoEdy/memory/MEMORY.md": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T20:46:49.283Z"
-    }
-  },
-  "files_written": [
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/email/index.ts",
-      "action": "create",
-      "tokens": 166,
-      "at": "2026-04-22T20:42:36.372Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/email/send.ts",
-      "action": "create",
-      "tokens": 758,
-      "at": "2026-04-22T20:42:51.917Z"
-    },
-    {
-      "file": "/Users/emraanzaki/Sites/Personal/CryptoEdy/lib/config/env.ts",
-      "action": "edit",
-      "tokens": 6,
-      "at": "2026-04-22T20:43:17.424Z"
-    }
-  ],
-  "edit_counts": {
-    "lib/email/index.ts": 1,
-    "lib/email/send.ts": 1,
-    "lib/config/env.ts": 1
-  },
-  "anatomy_hits": 3,
-  "anatomy_misses": 3,
+  "session_id": "session-2026-04-23-1157",
+  "started": "2026-04-23T06:27:05.253Z",
+  "files_read": {},
+  "files_written": [],
+  "edit_counts": {},
+  "anatomy_hits": 0,
+  "anatomy_misses": 0,
   "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 2
+  "stop_count": 0
 }
