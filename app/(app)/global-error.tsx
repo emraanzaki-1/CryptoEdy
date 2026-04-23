@@ -12,7 +12,7 @@ export default function GlobalError({
   reset: () => void
 }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full scroll-smooth antialiased`}>
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="bg-surface text-on-surface font-body flex min-h-full flex-col">
         <ErrorContent
           code={500}
