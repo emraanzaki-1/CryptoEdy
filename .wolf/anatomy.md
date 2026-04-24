@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-23T19:56:27.853Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-24T09:44:12.820Z
 > Files: 516 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
