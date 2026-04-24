@@ -15,21 +15,23 @@ export function HeroSection() {
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center dark:brightness-50"
+        className="object-cover object-center dark:brightness-[0.3]"
       />
       {/* Gradient overlay */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 dark:hidden"
         style={{
           background:
             'linear-gradient(to bottom, color-mix(in srgb, var(--color-on-surface) 40%, transparent), color-mix(in srgb, var(--color-primary) 60%, transparent))',
         }}
       />
+      {/* Dark mode overlay */}
+      <div className="absolute inset-0 hidden bg-[#0B1C30]/80 dark:block" />
       <div className="relative z-10 flex max-w-3xl flex-col gap-4 text-center">
-        <Display responsive className="text-on-primary">
+        <Display responsive className="text-on-primary dark:text-white">
           Institutional-Grade Crypto Research for the Modern Investor
         </Display>
-        <p className="text-inverse-primary text-body-lg md:text-subtitle mx-auto max-w-2xl font-normal">
+        <p className="text-inverse-primary text-body-lg md:text-subtitle dark:text-on-surface-variant mx-auto max-w-2xl font-normal">
           Actionable insights, high-conviction picks, and expert analysis designed to cut through
           the noise and deliver measurable edge.
         </p>
@@ -47,7 +49,7 @@ export function HeroSection() {
           href="/research"
           variant="outline"
           size="xl"
-          className="border-on-primary/30 bg-surface-container-lowest/10 text-on-primary hover:bg-surface-container-lowest/20 hover:text-on-primary min-w-[140px] border-2 backdrop-blur-sm hover:-translate-y-1"
+          className="border-on-primary/30 bg-surface-container-lowest/10 text-on-primary hover:bg-surface-container-lowest/20 hover:text-on-primary dark:border-outline-variant dark:bg-surface-container/50 dark:text-on-surface dark:hover:bg-surface-container/80 min-w-[140px] border-2 backdrop-blur-sm hover:-translate-y-1 dark:hover:text-white"
         >
           Explore Free Analysis
         </ButtonLink>
