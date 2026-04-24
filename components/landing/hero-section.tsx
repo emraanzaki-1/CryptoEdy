@@ -15,7 +15,7 @@ export function HeroSection() {
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center"
+        className="object-cover object-center dark:brightness-50"
       />
       {/* Gradient overlay */}
       <div

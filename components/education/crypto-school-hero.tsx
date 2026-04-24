@@ -54,7 +54,7 @@ export function CryptoSchoolHero() {
             alt="Abstract financial intelligence visualization"
             fill
             sizes="(min-width: 1024px) 50vw, 0vw"
-            className="object-cover opacity-80 mix-blend-luminosity dark:opacity-40 dark:mix-blend-normal"
+            className="object-cover opacity-80 mix-blend-luminosity dark:opacity-30 dark:mix-blend-normal dark:brightness-50"
           />
           <div className="from-surface/80 absolute inset-0 bg-gradient-to-tr to-transparent" />
         </div>
