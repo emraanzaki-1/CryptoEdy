@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-24T09:54:11.844Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-24T11:14:43.121Z
 > Files: 520 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -906,7 +906,7 @@
 
 ## app/(app)/terms/
 
-- `page.tsx` — metadata — renders chart (~3436 tok)
+- `page.tsx` — metadata (~3504 tok)
 
 ## app/(payload)/
 
@@ -1015,7 +1015,7 @@
 
 ## components/education/
 
-- `conversion-cta.tsx` — ConversionCTA (~362 tok)
+- `conversion-cta.tsx` — ConversionCTA (~412 tok)
 - `courses-curriculum.tsx` — Map course slug → icon. Falls back to CandlestickChart. (~1185 tok)
 - `courses-hero.tsx` — CoursesHero (~458 tok)
 - `crypto-school-catalog.tsx` — Map grandchild category slug → icon. Falls back to BookOpen. (~1196 tok)

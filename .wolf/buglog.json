@@ -3907,6 +3907,90 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-24T09:44:12.854Z"
+    },
+    {
+      "id": "bug-326",
+      "timestamp": "2026-04-24T09:52:34.034Z",
+      "error_message": "Wrong operator: ?? should be ===",
+      "file": "lib/payments/intent.ts",
+      "root_cause": "Used \"??\" instead of \"===\"",
+      "fix": "Changed operator ?? → ===",
+      "tags": ["auto-detected", "operator-fix", "ts"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-24T09:52:34.034Z"
+    },
+    {
+      "id": "bug-327",
+      "timestamp": "2026-04-24T09:52:39.869Z",
+      "error_message": "Null/undefined access in ",
+      "file": "lib/payments/intent.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check) | Also: const hmac = crypto.createHmac('sha256', INTENT_SECRET ?? ''",
+      "tags": ["auto-detected", "null-safety", "ts"],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-24T09:52:46.730Z"
+    },
+    {
+      "id": "bug-328",
+      "timestamp": "2026-04-24T09:52:52.236Z",
+      "error_message": "Wrong operator: ?? should be ===",
+      "file": "lib/auth/referral.ts",
+      "root_cause": "Used \"??\" instead of \"===\"",
+      "fix": "Changed operator ?? → ===",
+      "tags": ["auto-detected", "operator-fix", "ts"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-24T09:52:52.236Z"
+    },
+    {
+      "id": "bug-329",
+      "timestamp": "2026-04-24T09:53:05.672Z",
+      "error_message": "Null/undefined access in ",
+      "file": "lib/auth/referral.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": ["auto-detected", "null-safety", "ts"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-24T09:53:05.672Z"
+    },
+    {
+      "id": "bug-330",
+      "timestamp": "2026-04-24T09:53:23.392Z",
+      "error_message": "Missing guard clause",
+      "file": "app/(app)/api/search/route.ts",
+      "root_cause": "No early return/throw for edge case: blocked",
+      "fix": "Added guard clause: if (blocked)",
+      "tags": ["auto-detected", "guard-clause", "ts"],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-04-24T09:53:50.513Z"
+    },
+    {
+      "id": "bug-331",
+      "timestamp": "2026-04-24T09:54:01.133Z",
+      "error_message": "Missing error handling in addConnection",
+      "file": "lib/notifications/emitter.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": ["auto-detected", "error-handling", "ts"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-24T09:54:01.133Z"
+    },
+    {
+      "id": "bug-332",
+      "timestamp": "2026-04-24T11:14:28.419Z",
+      "error_message": "CSS fix: dark, hover",
+      "file": "components/education/conversion-cta.tsx",
+      "root_cause": "dark: bg-primary-container relative overflow-hidden rounded-2xl bg-gradient-to-b py-24 md:py-32 dark:bg-none dark:text-white\"> → text-white/75 text-body-lg mx-auto mb-10 max-w-2xl\">; hover: bg-surface-bright hover:text-primary shadow-xl\" → bg-surface-bright hover:text-primary dark:bg-white/15 dark:text-white dark:border-white/30 dark:hover:bg-white/25 dark:hover:text-white shadow-xl\"",
+      "fix": "Changed dark: bg-primary-container relative overflow-hidden rounded-2xl bg-gradient-to-b py-24 md:py-32 dark:bg-none dark:text-white\"> → text-white/75 text-body-lg mx-auto mb-10 max-w-2xl\">; hover: bg-surface-bright hover:text-primary shadow-xl\" → bg-surface-bright hover:text-primary dark:bg-white/15 dark:text-white dark:border-white/30 dark:hover:bg-white/25 dark:hover:text-white shadow-xl\"",
+      "tags": ["auto-detected", "style-fix", "tsx"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-24T11:14:28.419Z"
     }
   ]
 }

@@ -107,42 +107,42 @@ export default async function TermsPage() {
               <span className="text-primary text-headline-md italic opacity-30">03</span>
               <span className="text-on-surface">Subscription &amp; Payments</span>
             </Heading>
-            <div className="bg-inverse-surface text-inverse-on-surface relative overflow-hidden rounded-xl p-8 shadow-2xl md:p-12">
+            <div className="bg-inverse-surface text-inverse-on-surface dark:bg-surface-container-high dark:text-on-surface relative overflow-hidden rounded-xl p-8 shadow-2xl md:p-12">
               <div className="relative z-10">
-                <div className="border-inverse-on-surface/10 mb-10 flex flex-col items-start justify-between gap-8 border-b pb-10 md:flex-row md:items-center">
+                <div className="border-inverse-on-surface/10 dark:border-outline-variant/20 mb-10 flex flex-col items-start justify-between gap-8 border-b pb-10 md:flex-row md:items-center">
                   <div>
                     <Heading as="h3" className="mb-2 font-black">
                       Premium Research Access
                     </Heading>
-                    <p className="text-inverse-on-surface/60 font-medium">
+                    <p className="text-inverse-on-surface/60 dark:text-on-surface-variant font-medium">
                       Full institutional research suite
                     </p>
                   </div>
                 </div>
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                   <div className="space-y-4">
-                    <h4 className="text-primary-fixed text-overline font-black uppercase">
+                    <h4 className="text-primary-fixed dark:text-primary text-overline font-black uppercase">
                       Billing
                     </h4>
-                    <p className="text-inverse-on-surface/80 text-body-sm">
+                    <p className="text-inverse-on-surface/80 dark:text-on-surface/80 text-body-sm">
                       Premium features require a paid subscription. Subscriptions are billed on a
                       recurring basis according to your selected plan.
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-primary-fixed text-overline font-black uppercase">
+                    <h4 className="text-primary-fixed dark:text-primary text-overline font-black uppercase">
                       Cancellation
                     </h4>
-                    <p className="text-inverse-on-surface/80 text-body-sm">
+                    <p className="text-inverse-on-surface/80 dark:text-on-surface/80 text-body-sm">
                       You may cancel at any time, and your access will continue until the end of the
                       current billing period. No partial refunds are provided.
                     </p>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-primary-fixed text-overline font-black uppercase">
+                    <h4 className="text-primary-fixed dark:text-primary text-overline font-black uppercase">
                       Changes
                     </h4>
-                    <p className="text-inverse-on-surface/80 text-body-sm">
+                    <p className="text-inverse-on-surface/80 dark:text-on-surface/80 text-body-sm">
                       We reserve the right to modify pricing with notice. Continued use after
                       changes constitutes acceptance of the new terms.
                     </p>

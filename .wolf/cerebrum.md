@@ -94,6 +94,8 @@
 - [2026-04-21] Do NOT key rate limiter by IP alone — all routes share counters. Key by `ip:pathname` so per-route limits are independent.
 - [2026-04-21] Do NOT let JWT revalidation DB errors crash the callback — wrap in try-catch and keep stale token on failure.
 - [2026-04-21] Do NOT use `h-screen` on dashboard shell — use `h-dvh` to handle iOS Safari address-bar viewport mismatch.
+- [2026-04-24] Do NOT use `bg-inverse-surface` / `text-inverse-on-surface` in dark-mode contexts without overrides. M3 inverse colors literally flip in dark mode: `inverse-surface` = `#e1e1ef` (light lavender) in dark — producing a jarring light card. Always pair with `dark:bg-surface-container-high dark:text-on-surface` overrides.
+- [2026-04-24] Do NOT use `text-primary-fixed-dim` as subtitle text on a `dark:bg-primary-container` CTA background. In dark mode `primary-fixed-dim = #2d6bff` which is the same as `primary` — invisible blue-on-blue. Use `dark:text-white/75` instead.
 - [2026-04-24] Do NOT use `min-h-screen` on GuestShell — use `min-h-dvh`. `min-h-screen` = `100vh` = `100lvh` on iOS Safari, which is the LARGE viewport (chrome collapsed). When the address bar is visible the page extends past the visible area, leaving blank scroll space below the footer.
 - [2026-04-21] Do NOT use `vh` units in modals/overlays — use `dvh` (dynamic viewport height) so they respect iOS Safari virtual keyboard and address bar.
 - [2026-04-21] Do NOT use hover-only interactions (`onMouseEnter`/`onMouseLeave`) without a click/tap fallback — touch devices cannot trigger hover events. Always pair with `onClick` toggle.

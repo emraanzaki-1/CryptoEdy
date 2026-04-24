@@ -12,7 +12,7 @@ export function ConversionCTA() {
         <Heading as="h2" size="lg" responsive className="mb-6 font-black">
           Unlock the Academy
         </Heading>
-        <p className="text-primary-fixed-dim text-body-lg mx-auto mb-10 max-w-2xl">
+        <p className="text-primary-fixed-dim text-body-lg mx-auto mb-10 max-w-2xl dark:text-white/75">
           Join the vanguard of digital asset researchers. Register for a free account to begin your
           curriculum.
         </p>
@@ -20,7 +20,7 @@ export function ConversionCTA() {
           href="/register"
           variant="outline"
           size="xl"
-          className="border-on-primary/30 bg-surface-container-lowest text-primary hover:bg-surface-bright hover:text-primary shadow-xl"
+          className="border-on-primary/30 bg-surface-container-lowest text-primary hover:bg-surface-bright hover:text-primary shadow-xl dark:border-white/30 dark:bg-white/15 dark:text-white dark:hover:bg-white/25 dark:hover:text-white"
         >
           Create Free Account
         </ButtonLink>
