@@ -57,7 +57,7 @@ export function ProBenefitsSection() {
       {/* Right — decorative card composition */}
       <div className="hidden flex-1 lg:block">
         <div className="bg-surface-container-high border-outline-variant/15 shadow-ambient relative aspect-square overflow-hidden rounded-[2rem] border p-8">
-          <div className="from-tertiary-fixed/20 absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] via-transparent to-transparent" />
+          <div className="from-tertiary-fixed/20 dark:from-tertiary-fixed/10 absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] via-transparent to-transparent" />
           <div className="bg-surface-container-lowest border-outline-variant/15 shadow-ambient relative flex h-full w-full flex-col justify-between rounded-xl border p-6">
             <div className="bg-tertiary-fixed/20 text-tertiary flex size-16 items-center justify-center rounded-full">
               <Diamond className="size-8" />

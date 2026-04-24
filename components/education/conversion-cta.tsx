@@ -4,7 +4,7 @@ import { LAYOUT } from '@/lib/config/layout'
 
 export function ConversionCTA() {
   return (
-    <section className="from-primary to-primary-container text-on-primary relative overflow-hidden rounded-2xl bg-gradient-to-b py-24 md:py-32">
+    <section className="from-primary to-primary-container text-on-primary dark:bg-primary-container relative overflow-hidden rounded-2xl bg-gradient-to-b py-24 md:py-32 dark:bg-none dark:text-white">
       {/* Decorative glow */}
       <div className="bg-primary/20 absolute top-0 right-0 size-64 translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]" />
 

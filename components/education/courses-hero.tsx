@@ -30,8 +30,8 @@ export function CoursesHero() {
 
       {/* Decorative blurred circles */}
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-30">
-        <div className="bg-primary-fixed absolute top-1/4 left-1/4 size-96 rounded-full mix-blend-multiply blur-3xl" />
-        <div className="bg-surface-dim absolute right-1/4 bottom-1/4 size-96 rounded-full mix-blend-multiply blur-3xl" />
+        <div className="bg-primary-fixed absolute top-1/4 left-1/4 size-96 rounded-full mix-blend-multiply blur-3xl dark:opacity-20 dark:mix-blend-normal" />
+        <div className="bg-surface-dim absolute right-1/4 bottom-1/4 size-96 rounded-full mix-blend-multiply blur-3xl dark:opacity-20 dark:mix-blend-normal" />
       </div>
     </section>
   )

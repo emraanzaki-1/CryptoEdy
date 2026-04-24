@@ -20,7 +20,7 @@ export function CryptoSchoolHero() {
 
           <Display responsive className="text-on-surface">
             Master the Market with{' '}
-            <span className="from-primary to-primary-container bg-gradient-to-br bg-clip-text text-transparent">
+            <span className="from-primary to-primary-container dark:from-primary dark:to-primary-container bg-gradient-to-br bg-clip-text text-transparent">
               Crypto School
             </span>
             .
@@ -54,7 +54,7 @@ export function CryptoSchoolHero() {
             alt="Abstract financial intelligence visualization"
             fill
             sizes="(min-width: 1024px) 50vw, 0vw"
-            className="object-cover opacity-80 mix-blend-luminosity"
+            className="object-cover opacity-80 mix-blend-luminosity dark:opacity-40 dark:mix-blend-normal"
           />
           <div className="from-surface/80 absolute inset-0 bg-gradient-to-tr to-transparent" />
         </div>

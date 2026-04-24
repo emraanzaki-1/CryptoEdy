@@ -57,7 +57,7 @@ export default async function PlansSettingsPage() {
           variant="surface"
           className="border-outline-variant/30 bg-surface relative rounded-3xl p-8 shadow-sm"
         >
-          <div className="from-primary to-primary-container absolute inset-x-0 top-0 h-2 bg-gradient-to-r" />
+          <div className="from-primary to-primary-container dark:bg-primary-container absolute inset-x-0 top-0 h-2 bg-gradient-to-r dark:bg-none" />
           <div className="mb-6 flex items-center justify-between">
             <Title as="h3">Pro Annual</Title>
             <div className="flex gap-2">

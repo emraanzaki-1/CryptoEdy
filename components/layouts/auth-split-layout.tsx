@@ -12,7 +12,7 @@ export function AuthSplitLayout({ children }: AuthSplitLayoutProps) {
       {/* Left editorial panel */}
       <div className="bg-inverse-surface relative hidden w-1/2 flex-col justify-end p-12 lg:flex">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity"
+          className="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity dark:opacity-10 dark:mix-blend-normal"
           style={{
             backgroundImage:
               "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDuWmH5pPRQOqtA7h8xEfRxdDasSxUnl5cu8g71R_okh_LUO4zwIaFGbXN0evggqJmlTP4hw3PmmJnaLviE9m4wdCcrxACscuPsiRAGboxKFxQTMLSr5TvbIJMfctlEaDV7RxZ9l3p0AMRcUgFnevihmeCFjdSgejBCOzcvKSLbEfdW3KFPSyhes5esEHm0tRgak-n1ki7Y4b2e03omKFyGi-M5RaSmqdwwen39vnR3dpQZtE2I3wZd3n4V-1u2lRZIrsnRfJtKT1rm')",

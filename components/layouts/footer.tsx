@@ -12,16 +12,18 @@ export function Footer({ navCategories }: FooterProps) {
   const hubCategories = navCategories.filter((c) => c.routePrefix)
 
   return (
-    <footer className={`bg-primary text-on-primary mt-auto py-16 ${LAYOUT.guest.px}`}>
+    <footer
+      className={`bg-primary text-on-primary dark:bg-surface-container-lowest dark:text-on-surface dark:border-outline-variant/20 mt-auto py-16 dark:border-t ${LAYOUT.guest.px}`}
+    >
       <div className="max-w-site mx-auto">
         <div className="mb-12 flex flex-col justify-between gap-12 md:flex-row">
           <div className="flex max-w-sm flex-col gap-4">
             <Logo
-              textClassName="text-on-primary"
-              className="text-on-primary"
-              iconClassName="text-on-primary"
+              textClassName="text-on-primary dark:text-on-surface"
+              className="text-on-primary dark:text-on-surface"
+              iconClassName="text-on-primary dark:text-on-surface"
             />
-            <p className="text-on-primary-container text-body-sm opacity-80">
+            <p className="text-on-primary-container text-body-sm dark:text-on-surface-variant opacity-80">
               The Digital Curator of institutional-grade financial intelligence for the modern
               digital asset investor.
             </p>
@@ -31,14 +33,14 @@ export function Footer({ navCategories }: FooterProps) {
             {/* Dynamic category columns — driven by Payload */}
             {hubCategories.map((category) => (
               <div key={category.slug} className="flex flex-col gap-4">
-                <h2 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
+                <h2 className="text-on-primary dark:text-on-surface text-body-sm font-bold tracking-[0.05em] uppercase">
                   {category.label}
                 </h2>
                 {category.items.map((item) => (
                   <Link
                     key={item.slug}
                     href={item.href}
-                    className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+                    className="text-on-primary-container hover:text-on-primary dark:text-on-surface-variant dark:hover:text-on-surface text-body-sm transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -48,48 +50,48 @@ export function Footer({ navCategories }: FooterProps) {
 
             {/* Static Education column */}
             <div className="flex flex-col gap-4">
-              <h2 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
+              <h2 className="text-on-primary dark:text-on-surface text-body-sm font-bold tracking-[0.05em] uppercase">
                 Education
               </h2>
               <Link
                 href="/crypto-school"
-                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary dark:text-on-surface-variant dark:hover:text-on-surface text-body-sm transition-colors"
               >
                 Crypto School
               </Link>
               <Link
                 href="/courses"
-                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary dark:text-on-surface-variant dark:hover:text-on-surface text-body-sm transition-colors"
               >
                 Trading Courses
               </Link>
             </div>
 
             <div className="flex flex-col gap-4">
-              <h2 className="text-on-primary text-body-sm font-bold tracking-[0.05em] uppercase">
+              <h2 className="text-on-primary dark:text-on-surface text-body-sm font-bold tracking-[0.05em] uppercase">
                 Legal
               </h2>
               <Link
                 href="/terms"
-                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary dark:text-on-surface-variant dark:hover:text-on-surface text-body-sm transition-colors"
               >
                 Terms of Service
               </Link>
               <Link
                 href="/privacy"
-                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary dark:text-on-surface-variant dark:hover:text-on-surface text-body-sm transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/legal/disclaimer"
-                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary dark:text-on-surface-variant dark:hover:text-on-surface text-body-sm transition-colors"
               >
                 Financial Disclaimer
               </Link>
               <Link
                 href="/contact"
-                className="text-on-primary-container hover:text-on-primary text-body-sm transition-colors"
+                className="text-on-primary-container hover:text-on-primary dark:text-on-surface-variant dark:hover:text-on-surface text-body-sm transition-colors"
               >
                 Contact
               </Link>
@@ -97,15 +99,15 @@ export function Footer({ navCategories }: FooterProps) {
           </div>
         </div>
 
-        <div className="border-on-primary/20 flex flex-col gap-4 border-t pt-8">
-          <p className="text-on-primary-container text-overline leading-relaxed opacity-70">
+        <div className="border-on-primary/20 dark:border-outline-variant/20 flex flex-col gap-4 border-t pt-8">
+          <p className="text-on-primary-container dark:text-on-surface-variant text-overline leading-relaxed opacity-70">
             <strong>Disclaimer:</strong> The information provided by CryptoEdy is for educational
             and informational purposes only. It does not constitute financial, investment, or
             trading advice. Cryptocurrencies are highly volatile assets, and past performance is not
             indicative of future results. Always conduct your own due diligence before making
             investment decisions.
           </p>
-          <p className="text-on-primary-container text-overline opacity-60">
+          <p className="text-on-primary-container dark:text-on-surface-variant text-overline opacity-60">
             &copy; {new Date().getFullYear()} CryptoEdy Research. All rights reserved.
           </p>
         </div>

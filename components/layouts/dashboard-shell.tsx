@@ -57,18 +57,27 @@ export function DashboardShell({ user, navCategories, children }: DashboardShell
             {children}
           </div>
           <footer
-            className={`from-primary to-primary-container text-on-primary-container bg-gradient-to-r ${LAYOUT.content.px} text-micro py-4 text-center`}
+            className={`from-primary to-primary-container text-on-primary-container dark:bg-primary-container bg-gradient-to-r dark:bg-none dark:text-white ${LAYOUT.content.px} text-micro py-4 text-center`}
           >
             &copy; {new Date().getFullYear()} CryptoEdy Research &middot;{' '}
-            <Link href="/contact" className="text-on-primary-container hover:text-on-primary">
+            <Link
+              href="/contact"
+              className="text-on-primary-container hover:text-on-primary dark:text-white/70 dark:hover:text-white"
+            >
               Help
             </Link>{' '}
             &middot;{' '}
-            <Link href="/terms" className="text-on-primary-container hover:text-on-primary">
+            <Link
+              href="/terms"
+              className="text-on-primary-container hover:text-on-primary dark:text-white/70 dark:hover:text-white"
+            >
               Terms
             </Link>{' '}
             &middot;{' '}
-            <Link href="/privacy" className="text-on-primary-container hover:text-on-primary">
+            <Link
+              href="/privacy"
+              className="text-on-primary-container hover:text-on-primary dark:text-white/70 dark:hover:text-white"
+            >
               Privacy
             </Link>
           </footer>

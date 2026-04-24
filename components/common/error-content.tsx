@@ -36,7 +36,7 @@ export function ErrorContent({
   return (
     <main className="relative flex flex-1 items-center justify-center overflow-hidden px-8 py-24">
       {/* Decorative blurred orbs */}
-      <div className="pointer-events-none absolute inset-0 opacity-10">
+      <div className="pointer-events-none absolute inset-0 opacity-10 dark:opacity-5">
         <div className="bg-primary-container absolute -top-[10%] -right-[5%] h-[600px] w-[600px] rounded-full blur-[120px]" />
         <div className="bg-secondary-container absolute -bottom-[10%] -left-[5%] h-[400px] w-[400px] rounded-full blur-[100px]" />
       </div>

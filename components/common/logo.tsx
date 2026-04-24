@@ -23,7 +23,7 @@ export function Logo({
 }: LogoProps) {
   return (
     <div className={cn('flex items-center gap-4', className)}>
-      <div className={cn('text-primary', iconClassName, sizes[size])}>
+      <div className={cn('text-primary dark:text-primary-container', iconClassName, sizes[size])}>
         <svg
           className="h-full w-full"
           fill="none"
