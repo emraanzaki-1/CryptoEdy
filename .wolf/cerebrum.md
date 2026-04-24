@@ -94,6 +94,7 @@
 - [2026-04-21] Do NOT key rate limiter by IP alone — all routes share counters. Key by `ip:pathname` so per-route limits are independent.
 - [2026-04-21] Do NOT let JWT revalidation DB errors crash the callback — wrap in try-catch and keep stale token on failure.
 - [2026-04-21] Do NOT use `h-screen` on dashboard shell — use `h-dvh` to handle iOS Safari address-bar viewport mismatch.
+- [2026-04-24] Do NOT use `min-h-screen` on GuestShell — use `min-h-dvh`. `min-h-screen` = `100vh` = `100lvh` on iOS Safari, which is the LARGE viewport (chrome collapsed). When the address bar is visible the page extends past the visible area, leaving blank scroll space below the footer.
 - [2026-04-21] Do NOT use `vh` units in modals/overlays — use `dvh` (dynamic viewport height) so they respect iOS Safari virtual keyboard and address bar.
 - [2026-04-21] Do NOT use hover-only interactions (`onMouseEnter`/`onMouseLeave`) without a click/tap fallback — touch devices cannot trigger hover events. Always pair with `onClick` toggle.
 - [2026-04-21] Do NOT use fixed-width dropdowns (`w-96`, `w-64`) without `max-w-[calc(100vw-2rem)]` — they overflow on narrow mobile viewports.

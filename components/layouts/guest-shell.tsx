@@ -14,7 +14,7 @@ interface GuestShellProps {
 
 export function GuestShell({ children, className, navCategories = [] }: GuestShellProps) {
   return (
-    <div className="bg-surface relative flex min-h-screen w-full flex-col overflow-x-clip">
+    <div className="bg-surface relative flex min-h-dvh w-full flex-col overflow-x-clip">
       <div className="bg-surface-container-highest/80 sticky top-0 z-50 w-full backdrop-blur-md">
         <div className={LAYOUT.guest.container}>
           <GuestNav navCategories={navCategories} />

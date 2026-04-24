@@ -2089,5 +2089,15 @@ Updated all 14 sprint planning docs with codebase-verified status (no hallucinat
 
 ## Session: 2026-04-23 20:07
 
-| Time | Action | File(s) | Outcome | ~Tokens |
-| ---- | ------ | ------- | ------- | ------- |
+| Time  | Action                                                                                                                                                                              | File(s)                                                                                                                                                                                        | Outcome      | ~Tokens |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------- |
+| 12:01 | Fixed dark theme: neutralized blue-tinted surfaces, made gradients solid in dark mode, toned down glows/blend-modes                                                                 | globals.css, button.tsx, conversion-cta.tsx, crypto-school-hero.tsx, dashboard-shell.tsx, courses-hero.tsx, auth-split-layout.tsx, error-content.tsx, plans/page.tsx, pro-benefits-section.tsx | Build passes | ~8000   |
+| 12:22 | Revised dark theme to match Apex Research reference: deep navy surfaces (#11131c), vibrant primary-container (#0052ff), solid blue buttons, glass-edge CTA shadow, dark navy footer | globals.css, button.tsx, conversion-cta.tsx, crypto-school-hero.tsx, dashboard-shell.tsx, plans/page.tsx, footer.tsx                                                                           | Build passes | ~6000   |
+
+## Session: 2026-04-24 14:57
+
+| Time  | Action                                                 | File(s)                                                   | Outcome                  | ~Tokens |
+| ----- | ------------------------------------------------------ | --------------------------------------------------------- | ------------------------ | ------- |
+| 15:14 | Edited components/layouts/guest-shell.tsx              | "bg-surface relative flex " → "bg-surface relative flex " | ~26                      |
+| 15:14 | fix blank space below footer on mobile                 | components/layouts/guest-shell.tsx                        | min-h-screen → min-h-dvh | ~200    |
+| 15:14 | Session end: 1 writes across 1 files (guest-shell.tsx) | 12 reads                                                  | ~15072 tok               |
