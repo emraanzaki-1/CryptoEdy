@@ -13,8 +13,11 @@ import {
   LineChart,
   BookOpen,
   GraduationCap,
+  Sun,
+  Moon,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
 import { ButtonLink } from '@/components/ui/button-link'
 import { Logo } from '@/components/common/logo'
@@ -56,6 +59,11 @@ export function GuestNav({ navCategories }: GuestNavProps) {
     }))
 
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { resolvedTheme, setTheme } = useTheme()
+
+  function toggleTheme() {
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+  }
 
   function closeMobile() {
     setMobileOpen(false)
@@ -82,6 +90,16 @@ export function GuestNav({ navCategories }: GuestNavProps) {
             ))}
           </div>
           <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="text-on-surface-variant hover:text-on-surface"
+              aria-label="Toggle theme"
+            >
+              <Sun className="size-4 scale-100 rotate-0 transition-transform dark:scale-0 dark:-rotate-90" />
+              <Moon className="absolute size-4 scale-0 rotate-90 transition-transform dark:scale-100 dark:rotate-0" />
+            </Button>
             <Link
               href="/login"
               className="text-on-surface-variant hover:text-on-surface text-body-sm font-medium transition-colors"
@@ -94,16 +112,28 @@ export function GuestNav({ navCategories }: GuestNavProps) {
           </div>
         </div>
 
-        {/* Mobile hamburger */}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="text-on-surface-variant hover:text-on-surface md:hidden"
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-        >
-          {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-        </Button>
+        {/* Mobile controls */}
+        <div className="flex items-center gap-1 md:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="text-on-surface-variant hover:text-on-surface"
+            aria-label="Toggle theme"
+          >
+            <Sun className="size-4 scale-100 rotate-0 transition-transform dark:scale-0 dark:-rotate-90" />
+            <Moon className="absolute size-4 scale-0 rotate-90 transition-transform dark:scale-100 dark:rotate-0" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="text-on-surface-variant hover:text-on-surface"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </Button>
+        </div>
       </div>
 
       {/* Full-screen mobile menu — portalled to body to escape overflow-x-clip */}
