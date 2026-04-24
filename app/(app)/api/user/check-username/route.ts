@@ -3,6 +3,7 @@ import { auth } from '@/lib/auth'
 import { getDb } from '@/lib/db'
 import { users } from '@/lib/db/schema/users'
 import { eq, and, ne } from 'drizzle-orm'
+import { rateLimit } from '@/lib/auth/rate-limit'
 
 const USERNAME_REGEX = /^[a-zA-Z0-9_]{3,20}$/
 
@@ -10,6 +11,9 @@ const USERNAME_REGEX = /^[a-zA-Z0-9_]{3,20}$/
  *  Returns { available: boolean, error?: string }
  */
 export async function GET(req: NextRequest) {
+  const blocked = rateLimit(req, { maxRequests: 20, windowSec: 60 })
+  if (blocked) return blocked
+
   const session = await auth()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

@@ -3,6 +3,7 @@ import { getDb } from '@/lib/db'
 import { users } from '@/lib/db/schema'
 import { eq, and, isNotNull } from 'drizzle-orm'
 import { onSubscriptionExpired, onSubscriptionExpiring } from '@/lib/notifications/events'
+import { timingSafeEqual } from 'crypto'
 
 // In-memory guard: prevents duplicate warning notifications if cron fires twice in quick succession
 let lastRunDate = ''
@@ -16,7 +17,13 @@ export async function GET(req: NextRequest) {
   const authHeader = req.headers.get('authorization')
   const cronSecret = process.env.CRON_SECRET
 
-  if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
+  if (!cronSecret || !authHeader) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  const expected = Buffer.from(`Bearer ${cronSecret}`)
+  const actual = Buffer.from(authHeader)
+  if (expected.length !== actual.length || !timingSafeEqual(expected, actual)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

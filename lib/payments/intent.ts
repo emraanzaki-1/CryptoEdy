@@ -1,7 +1,11 @@
 import crypto from 'crypto'
 
-const INTENT_SECRET = process.env.PAYMENT_INTENT_SECRET ?? ''
+const INTENT_SECRET = process.env.PAYMENT_INTENT_SECRET
 const INTENT_TTL_SECONDS = 3600 // 1 hour
+
+if (!INTENT_SECRET && process.env.NODE_ENV === 'production') {
+  throw new Error('PAYMENT_INTENT_SECRET must be set in production')
+}
 
 /**
  * Generate a signed payment intent token.
@@ -15,7 +19,7 @@ export function generateIntentToken(userId: string): {
 } {
   const ts = Math.floor(Date.now() / 1000)
   const payload = `${userId}:${ts}`
-  const hmac = crypto.createHmac('sha256', INTENT_SECRET)
+  const hmac = crypto.createHmac('sha256', INTENT_SECRET ?? '')
   hmac.update(payload, 'utf8')
   const intentToken = hmac.digest('hex')
   return { intentToken, userId, ts }
@@ -32,7 +36,7 @@ export function verifyIntentToken(intentToken: string, userId: string, ts: numbe
   }
 
   const payload = `${userId}:${ts}`
-  const hmac = crypto.createHmac('sha256', INTENT_SECRET)
+  const hmac = crypto.createHmac('sha256', INTENT_SECRET ?? '')
   hmac.update(payload, 'utf8')
   const expectedToken = hmac.digest('hex')
 

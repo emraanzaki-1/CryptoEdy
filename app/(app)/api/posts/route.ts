@@ -8,12 +8,16 @@ import { mapPostToCardProps } from '@/lib/posts/mapToCardProps'
 import { getBookmarkedPostIds } from '@/lib/bookmarks/getBookmarkedPostIds'
 import { auth } from '@/lib/auth'
 import { getCategoryVisibility } from '@/lib/categories/visibility'
+import { rateLimit } from '@/lib/auth/rate-limit'
 import type { Where } from 'payload'
 
 const MAX_LIMIT = 50
 const DEFAULT_LIMIT = 12
 
 export async function GET(req: NextRequest) {
+  const blocked = rateLimit(req, { maxRequests: 60, windowSec: 60 })
+  if (blocked) return blocked
+
   const { searchParams } = req.nextUrl
   const page = Math.max(1, Number(searchParams.get('page')) || 1)
   const limit = Math.min(MAX_LIMIT, Math.max(1, Number(searchParams.get('limit')) || DEFAULT_LIMIT))

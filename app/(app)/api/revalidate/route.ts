@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath, revalidateTag } from 'next/cache'
+import { timingSafeEqual } from 'crypto'
 
 /**
  * POST /api/revalidate
@@ -9,7 +10,13 @@ import { revalidatePath, revalidateTag } from 'next/cache'
 export async function POST(req: NextRequest) {
   const body = (await req.json()) as { secret?: string; path?: string; tag?: string }
 
-  if (!body.secret || body.secret !== process.env.REVALIDATION_SECRET) {
+  const expected = process.env.REVALIDATION_SECRET
+  if (!body.secret || !expected) {
+    return NextResponse.json({ error: 'Invalid secret' }, { status: 401 })
+  }
+  const a = Buffer.from(body.secret)
+  const b = Buffer.from(expected)
+  if (a.length !== b.length || !timingSafeEqual(a, b)) {
     return NextResponse.json({ error: 'Invalid secret' }, { status: 401 })
   }
 

@@ -14,6 +14,8 @@ interface UserConnection {
 
 const connections = new Map<string, Set<UserConnection>>()
 
+const MAX_CONNECTIONS_PER_USER = 5
+
 /** Register an SSE connection for a user. Returns a cleanup function. */
 export function addConnection(userId: string, controller: SseController): () => void {
   const conn: UserConnection = { controller, userId }
@@ -21,13 +23,28 @@ export function addConnection(userId: string, controller: SseController): () => 
   if (!connections.has(userId)) {
     connections.set(userId, new Set())
   }
-  connections.get(userId)!.add(conn)
+  const set = connections.get(userId)!
+
+  // Evict oldest connections if limit exceeded
+  while (set.size >= MAX_CONNECTIONS_PER_USER) {
+    const oldest = set.values().next().value
+    if (oldest) {
+      try {
+        oldest.controller.close()
+      } catch {
+        // Already closed
+      }
+      set.delete(oldest)
+    }
+  }
+
+  set.add(conn)
 
   return () => {
-    const set = connections.get(userId)
-    if (set) {
-      set.delete(conn)
-      if (set.size === 0) connections.delete(userId)
+    const s = connections.get(userId)
+    if (s) {
+      s.delete(conn)
+      if (s.size === 0) connections.delete(userId)
     }
   }
 }

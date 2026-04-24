@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-24T09:44:12.820Z
-> Files: 516 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-24T09:54:11.844Z
+> Files: 520 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -822,11 +822,11 @@
 
 ## app/(app)/api/cron/subscription-check/
 
-- `route.ts` — Subscription expiry cron job. (~771 tok)
+- `route.ts` — Subscription expiry cron job. (~848 tok)
 
 ## app/(app)/api/health/
 
-- `route.ts` — Next.js API route: GET (~141 tok)
+- `route.ts` — Next.js API route: GET (~146 tok)
 
 ## app/(app)/api/notifications/
 
@@ -858,15 +858,15 @@
 
 ## app/(app)/api/posts/
 
-- `route.ts` — Next.js API route: GET (~1437 tok)
+- `route.ts` — Next.js API route: GET (~1480 tok)
 
 ## app/(app)/api/revalidate/
 
-- `route.ts` — POST /api/revalidate (~269 tok)
+- `route.ts` — POST /api/revalidate (~343 tok)
 
 ## app/(app)/api/search/
 
-- `route.ts` — Strip all HTML except <mark> tags to prevent XSS from ts_headline output (~2506 tok)
+- `route.ts` — Strip all HTML except <mark> tags to prevent XSS from ts_headline output (~2549 tok)
 
 ## app/(app)/api/subscribe/
 
@@ -878,7 +878,7 @@
 
 ## app/(app)/api/user/check-username/
 
-- `route.ts` — GET /api/user/check-username?username=foo (~348 tok)
+- `route.ts` — GET /api/user/check-username?username=foo (~391 tok)
 
 ## app/(app)/api/user/notification-preferences/
 
@@ -1087,6 +1087,19 @@
 - `avatar-provider.tsx` — AvatarContext — uses useState, useCallback, useContext (~218 tok)
 - `session-provider.tsx` — SessionProvider (~70 tok)
 - `theme-provider.tsx` — ThemeProvider (~103 tok)
+
+## lib/auth/
+
+- `csrf.ts` — CSRF protection via Origin header check. (~418 tok)
+- `referral.ts` — Generates a deterministic 12-character alphanumeric referral code from an email address (~228 tok)
+
+## lib/notifications/
+
+- `emitter.ts` — In-process notification event emitter. (~559 tok)
+
+## lib/payments/
+
+- `intent.ts` — Generate a signed payment intent token. (~422 tok)
 
 ## scripts/
 

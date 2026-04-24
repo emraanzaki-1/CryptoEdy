@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 /**
  * CSRF protection via Origin header check.
  * Returns a 403 response if the request origin doesn't match the app URL.
@@ -17,12 +19,22 @@ export function checkCsrf(request: Request): NextResponse | null {
   if (!origin) return null // Non-browser client (webhook, cURL, server-to-server)
 
   const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? process.env.NEXTAUTH_URL ?? ''
-  if (!appUrl) return null // Can't validate without a configured URL
+  if (!appUrl) {
+    // In production, fail closed — reject the request if we can't validate the origin
+    if (isProduction) {
+      console.error('[csrf] NEXT_PUBLIC_APP_URL / NEXTAUTH_URL not set — rejecting request')
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
+    return null // Development: allow through
+  }
 
   try {
     const appOrigin = new URL(appUrl).origin
     if (origin === appOrigin) return null
   } catch {
+    if (isProduction) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    }
     return null
   }
 

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPool } from '@/lib/db'
 import { getCategoryVisibility } from '@/lib/categories/visibility'
+import { rateLimit } from '@/lib/auth/rate-limit'
 
 const MAX_LIMIT = 20
 const DEFAULT_LIMIT = 8
@@ -41,6 +42,9 @@ export interface SearchResult {
 }
 
 export async function GET(req: NextRequest) {
+  const blocked = rateLimit(req, { maxRequests: 30, windowSec: 60 })
+  if (blocked) return blocked
+
   const { searchParams } = req.nextUrl
   const q = (searchParams.get('q') ?? '').trim()
   const limit = Math.min(MAX_LIMIT, Math.max(1, Number(searchParams.get('limit')) || DEFAULT_LIMIT))

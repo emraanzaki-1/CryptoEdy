@@ -3,6 +3,18 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| 15:20 | API security audit — reviewed all 24 API routes | all api routes | 10 issues identified | ~8000 |
+| 15:35 | Fix 1: CSRF fails closed in production when env vars unset | lib/auth/csrf.ts | fixed | ~100 |
+| 15:36 | Fix 5: Cron secret timing-safe comparison | api/cron/subscription-check/route.ts | fixed | ~100 |
+| 15:36 | Fix 6: Revalidation secret timing-safe comparison | api/revalidate/route.ts | fixed | ~100 |
+| 15:37 | Fix 7: PAYMENT_INTENT_SECRET throws in production if unset | lib/payments/intent.ts | fixed | ~100 |
+| 15:37 | Fix 8: REFERRAL_SECRET throws in production if unset | lib/auth/referral.ts | fixed | ~100 |
+| 15:38 | Fix 2: Rate limit /api/search (30/60s) | api/search/route.ts | fixed | ~50 |
+| 15:38 | Fix 3: Rate limit /api/posts (60/60s) | api/posts/route.ts | fixed | ~50 |
+| 15:38 | Fix 4: Rate limit /api/user/check-username (20/60s) | api/user/check-username/route.ts | fixed | ~50 |
+| 15:39 | Fix 9: SSE max 5 connections per user, evicts oldest | lib/notifications/emitter.ts | fixed | ~100 |
+| 15:39 | Fix 10: Health endpoint hides DB details in production | api/health/route.ts | fixed | ~50 |
+
 | 2026-04-23 go-live prep | Payment amount validation (≥$100), structured JSON payment event logging, avatar magic bytes validation (file-type), Sentry install + instrumentation.ts + next.config.ts | lib/payments/verify-and-activate.ts, lib/profile/avatar.ts, next.config.ts, sentry.\*.config.ts, instrumentation.ts, .env.example | 0 type errors, 0 lint errors | ~3000 tok |
 
 | session-2026-04-22 | Sprint 12-14 batch: POST /api/user/change-email (pendingEmail + verification), plaiceholder blurDataUrls for feed/category pages, Posts afterChange on-demand revalidation, POST /api/revalidate, NotificationBell mobile bottom sheet, cookie consent banner, GET /api/health | 15+ files modified/created, 3 new migrations (0008–0010), commits 188b4d3→d863d8e | all lint errors fixed, committed | ~25000 tok |
@@ -2102,3 +2114,25 @@ Updated all 14 sprint planning docs with codebase-verified status (no hallucinat
 | 15:14 | fix blank space below footer on mobile                 | components/layouts/guest-shell.tsx                        | min-h-screen → min-h-dvh | ~200    |
 | 15:14 | Session end: 1 writes across 1 files (guest-shell.tsx) | 12 reads                                                  | ~15072 tok               |
 | 15:14 | Session end: 1 writes across 1 files (guest-shell.tsx) | 12 reads                                                  | ~15072 tok               |
+
+## Session: 2026-04-24 15:15
+
+| Time  | Action                                                                                        | File(s)                  | Outcome    | ~Tokens |
+| ----- | --------------------------------------------------------------------------------------------- | ------------------------ | ---------- | ------- |
+| 15:18 | Edited lib/auth/csrf.ts                                                                       | added 2 condition(s)     | ~418       |
+| 15:18 | Edited app/(app)/api/cron/subscription-check/route.ts                                         | added 1 condition(s)     | ~317       |
+| 15:22 | Edited app/(app)/api/revalidate/route.ts                                                      | added 1 condition(s)     | ~235       |
+| 15:22 | Edited lib/payments/intent.ts                                                                 | added 1 condition(s)     | ~67        |
+| 15:22 | Edited lib/payments/intent.ts                                                                 | added nullish coalescing | ~50        |
+| 15:22 | Edited lib/payments/intent.ts                                                                 | added nullish coalescing | ~40        |
+| 15:22 | Edited lib/auth/referral.ts                                                                   | added 1 condition(s)     | ~49        |
+| 15:23 | Edited lib/auth/referral.ts                                                                   | added nullish coalescing | ~32        |
+| 15:23 | Edited app/(app)/api/search/route.ts                                                          | added 1 import(s)        | ~60        |
+| 15:23 | Edited app/(app)/api/search/route.ts                                                          | added 1 condition(s)     | ~67        |
+| 15:23 | Edited app/(app)/api/posts/route.ts                                                           | added 1 import(s)        | ~166       |
+| 15:23 | Edited app/(app)/api/posts/route.ts                                                           | added 1 condition(s)     | ~53        |
+| 15:23 | Edited app/(app)/api/user/check-username/route.ts                                             | added 1 import(s)        | ~75        |
+| 15:23 | Edited app/(app)/api/user/check-username/route.ts                                             | added 1 condition(s)     | ~59        |
+| 15:24 | Edited lib/notifications/emitter.ts                                                           | added error handling     | ~254       |
+| 15:24 | Edited app/(app)/api/health/route.ts                                                          | modified GET()           | ~145       |
+| 15:24 | Session end: 16 writes across 5 files (csrf.ts, route.ts, intent.ts, referral.ts, emitter.ts) | 31 reads                 | ~20470 tok |
